@@ -168,7 +168,7 @@ public partial class App : Application
                     {
                         MainWindow.WindowState = WindowState.Minimized;
                         MainWindow.ShowInTaskbar = false;
-                        MainWindow.Opened += (_, _) => MainWindow.Hide();
+                        MainWindow.Opened += MainWindowOnOpenedOnAutoStartup;
                     }
                     desktop.MainWindow = MainWindow;
                     desktop.Exit += DesktopOnExit;
@@ -218,6 +218,12 @@ public partial class App : Application
         }
 
         base.OnFrameworkInitializationCompleted();
+    }
+
+    private void MainWindowOnOpenedOnAutoStartup(object? sender, EventArgs e)
+    {
+        MainWindow.Hide();
+        MainWindow.Opened -= MainWindowOnOpenedOnAutoStartup;
     }
 
     private void DesktopOnExit(object? sender, ControlledApplicationLifetimeExitEventArgs e)

@@ -37,14 +37,14 @@
 		<TrayIcons>
 			<TrayIcon Icon="/Assets/NetSonar.ico"
 					  ToolTipText="{Binding Source={x:Static avalonia:App.SoftwareWithVersion}}"
-					  Command="{Binding ShowApplicationCommand}"
+					  Command="{Binding ToggleApplicationVisibilityCommand}"
 					  IsVisible="{Binding AppSettings.IsTrayVisible}">
 				<TrayIcon.Menu>
 					<NativeMenu>
 
 						<NativeMenuItem Header="👁 Show" Command="{Binding ShowApplicationCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="{Binding PingsSummary}" IsEnabled="False"/>
+						<NativeMenuItem Header="{Binding PingsSummary}" />
 						<NativeMenuItem Header="⚙️ Options">
 							<NativeMenu>
                                 <NativeMenuItem Header="Start with system"

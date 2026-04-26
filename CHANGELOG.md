@@ -1,3 +1,7 @@
+# v0.2.6 (26/04/2026)
+- Fix start with system minimized was not able to show the application after clicking the tray icon
+- Clicking the tray icon now toggles the visibility of the application instead of only showing it
+
 # v0.2.5 (26/04/2026)
 - Add "Start with system" option to the settings [Default: false] (#16)
 - Add "UI Scale" option to the settings

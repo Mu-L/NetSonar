@@ -60,9 +60,23 @@ public partial class AppViewModel : ViewModelBase
     }
 
     [RelayCommand]
+    public void ToggleApplicationVisibility()
+    {
+        if (App.MainWindow.ShowInTaskbar)
+        {
+            HideApplication();
+        }
+        else
+        {
+            ShowApplication();
+        }
+    }
+
+    [RelayCommand]
     public void ShowApplication()
     {
         App.MainWindow.WindowState = AppSettings.LastWindowState;
+        App.MainWindow.ShowInTaskbar = true;
         App.MainWindow.Show();
     }
 
@@ -70,6 +84,7 @@ public partial class AppViewModel : ViewModelBase
     public void HideApplication()
     {
         App.MainWindow.WindowState = WindowState.Minimized;
+        App.MainWindow.ShowInTaskbar = false;
         App.MainWindow.Hide();
     }
 
