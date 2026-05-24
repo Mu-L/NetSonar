@@ -3,6 +3,7 @@
 - Replace the per-user Mutex with ApplicationInstanceGuard and wire ApplicationKit.Logger. 
 - Remove legacy CrashReport and custom RootSettings/collection/subsettings implementations and adapt settings files (AppSettings, PingableServicesFile, SpeedTestsFile) to use ApplicationKit-based constructors, auto-save and new JSON options. 
 - Update usages to UnhandledExceptions.HandleSafeException and adjust file I/O (timer, FileOptions).
+- Fix Call from invalid thread for Toasts (fixes #15)
 - Upgrade AvaloniaUI from 11.3.14 to 12.0.3
 - Upgrade .NET from 10.0.2 to 10.0.5
 

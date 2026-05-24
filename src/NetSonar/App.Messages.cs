@@ -21,21 +21,34 @@ public partial class App
     /// <returns></returns>
     public static SukiToastBuilder CreateToast(string? title, string content, bool autoDismiss, params IEnumerable<ToastActionButton> buttons)
     {
-        var toast = ToastManager.CreateToast().WithContent(content);
-
-        if (autoDismiss)
+        if (global::Avalonia.Threading.Dispatcher.UIThread.CheckAccess())
         {
-            toast.SetCanDismissByClicking(true);
-            toast.SetDismissAfter(RuntimeGlobals.ToastDismissAfter);
+            CreateToastInternal();
+        }
+        else
+        {
+            global::Avalonia.Threading.Dispatcher.UIThread.Post(CreateToastInternal);
         }
 
-        if (!string.IsNullOrWhiteSpace(title)) toast.SetTitle(title);
-        foreach (var actionButton in buttons)
+        void CreateToastInternal()
         {
-            toast.AddActionButton(actionButton.ButtonContent, actionButton.OnClicked, actionButton.DismissOnClick, actionButton.Styles);
-        }
+            var toast = ToastManager.CreateToast().WithContent(content);
 
-        return toast;
+            if (autoDismiss)
+            {
+                toast.SetCanDismissByClicking(true);
+                toast.SetDismissAfter(RuntimeGlobals.ToastDismissAfter);
+            }
+
+            if (!string.IsNullOrWhiteSpace(title)) toast.SetTitle(title);
+            foreach (var actionButton in buttons)
+            {
+                toast.AddActionButton(actionButton.ButtonContent, actionButton.OnClicked, actionButton.DismissOnClick,
+                    actionButton.Styles);
+            }
+
+            return toast;
+        }
     }
 
     public static SukiToastBuilder CreateToast(string? title, string content, params IEnumerable<ToastActionButton> buttons)
