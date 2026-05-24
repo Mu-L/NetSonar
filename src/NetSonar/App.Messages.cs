@@ -23,14 +23,14 @@ public partial class App
     {
         if (global::Avalonia.Threading.Dispatcher.UIThread.CheckAccess())
         {
-            CreateToastInternal();
+            return CreateToastInternal();
         }
         else
         {
-            global::Avalonia.Threading.Dispatcher.UIThread.Post(CreateToastInternal);
+            return global::Avalonia.Threading.Dispatcher.UIThread.Invoke(CreateToastInternal);
         }
 
-        void CreateToastInternal()
+        SukiToastBuilder CreateToastInternal()
         {
             var toast = ToastManager.CreateToast().WithContent(content);
 
