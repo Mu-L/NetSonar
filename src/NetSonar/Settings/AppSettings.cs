@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Net.NetworkInformation;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -11,6 +9,7 @@ using NetSonar.Avalonia.Extensions;
 using NetSonar.Avalonia.Models;
 using NetSonar.Avalonia.Network;
 using ObservableCollections;
+using StageKit;
 using SukiUI.Enums;
 
 namespace NetSonar.Avalonia.Settings;
@@ -86,9 +85,6 @@ public partial class PingServicesSettings : SubSettings
 
     [ObservableProperty]
     public partial bool ResilientReplies { get; set; }
-
-    [ObservableProperty]
-    public partial ObservableList<PingableService> Services { get; set; } = [];
 }
 
 public partial class NetworkInterfacesSettings : SubSettings
@@ -159,7 +155,7 @@ public partial class NetworkInterfacesSettings : SubSettings
     {
     }
 
-    public override void OnLoaded(bool fromFile)
+    protected override void OnLoaded(bool fromFile)
     {
         bool isInit = FilterTypes.Count == 0;
         var interfaceTypes = EnumExtensions.GetAllValues<NetworkInterfaceType>(true);
@@ -276,7 +272,7 @@ public partial class AppSettings : RootSettingsFile<AppSettings>
             }
             catch (Exception e)
             {
-                App.HandleSafeException(e, "RunOnStartup:get");
+                UnhandledExceptions.HandleSafeException(e, "RunOnStartup:get");
 
             }
 
@@ -292,7 +288,7 @@ public partial class AppSettings : RootSettingsFile<AppSettings>
             }
             catch (Exception e)
             {
-                App.HandleSafeException(e, "RunOnStartup:set");
+                UnhandledExceptions.HandleSafeException(e, "RunOnStartup:set");
             }
 
         }
@@ -329,7 +325,7 @@ public partial class AppSettings : RootSettingsFile<AppSettings>
     public partial bool CheckForUpdates { get; set; } = true;
 
     [ObservableProperty]
-    public partial DateTime LastUpdateDateTimeCheck { get; set; } = App.Born;
+    public partial DateTime LastUpdateDateTimeCheck { get; set; } = ApplicationKit.Birth;
 
     [ObservableProperty]
     public partial bool IsSideMenuExpanded { get; set; } = true;
@@ -358,21 +354,19 @@ public partial class AppSettings : RootSettingsFile<AppSettings>
     [ObservableProperty]
     public partial SpeedTestSettings SpeedTest { get; set; } = new();
 
-
     [JsonIgnore]
-    public override string FileName => "app_settings.json";
+    public override SubSettings[] SubSettingsCollection => [
+        PingServices,
+        NetworkInterfaces,
+        SpeedTest
+    ];
 
-    public override void OnLoaded(bool fromFile)
+
+    public AppSettings()
     {
-        if (PingServices.Services.Count > 0)
-        {
-            // TODO Obsolete: Remove this after a few releases, this was to ensure no data loss for users updating from older versions
-            PingableServicesFile.Instance.Items.Clear();
-            PingableServicesFile.Instance.Items.AddRange(PingServices.Services);
-            PingServices.Services.Clear();
-            Save();
-        }
-        PingServices.OnLoaded(fromFile);
-        NetworkInterfaces.OnLoaded(fromFile);
+        AutoSave = true;
+        DirectoryPath = ApplicationKit.ConfigsPath;
+        FileName = "app_settings.json";
+        DefaultDebounceSaveMilliseconds = 10_000;
     }
 }

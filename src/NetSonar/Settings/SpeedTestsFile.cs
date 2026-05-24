@@ -1,10 +1,14 @@
-﻿using System.Text.Json.Serialization;
-using NetSonar.Avalonia.Network;
+﻿using NetSonar.Avalonia.Network;
+using StageKit;
 
 namespace NetSonar.Avalonia.Settings;
 
 public sealed class SpeedTestsFile : RootCollectionFile<SpeedTestsFile, SpeedTestResult>
 {
-    [JsonIgnore]
-    public override string FileName => "speedtests.json";
+    public SpeedTestsFile()
+    {
+        AutoSave = true;
+        DirectoryPath = ApplicationKit.ConfigsPath;
+        FileName = "speedtests.json";
+    }
 }

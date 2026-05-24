@@ -9,6 +9,7 @@
                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                           xmlns:suki="https://github.com/kikipoulet/SukiUI"
                           xmlns:updatum="clr-namespace:Updatum;assembly=Updatum"
+                          xmlns:stageKit="clr-namespace:StageKit;assembly=StageKit"
                           d:DesignHeight="650"
                           d:DesignWidth="1000"
                           x:DataType="dialogs:AboutDialogModel"
@@ -120,7 +121,7 @@
                                      FontWeight="Bold"
                                      Text="{Binding Source={x:Static app:App.SoftwareWithVersionRuntime}}" />
                 <SelectableTextBlock Grid.Row="1"
-                                     Text="{Binding Source={x:Static app:App.AgeShortStr}, StringFormat='Age: {0}'}" />
+                                     Text="{Binding Source={x:Static stageKit:ApplicationKit.AgeShortStr}, StringFormat='Age: {0}'}" />
                 <SelectableTextBlock Grid.Row="2"
                                      Text="{Binding Source={x:Static updatum:EntryApplication.AssemblyCopyright}}" />
                 <SelectableTextBlock Grid.Row="3"

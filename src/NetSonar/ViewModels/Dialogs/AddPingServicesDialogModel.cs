@@ -1,4 +1,13 @@
-﻿using System;
+﻿using Avalonia.Platform.Storage;
+using CommunityToolkit.Mvvm.Input;
+using NetSonar.Avalonia.Extensions;
+using NetSonar.Avalonia.Models;
+using NetSonar.Avalonia.Network;
+using NetSonar.Avalonia.Settings;
+using StageKit;
+using SukiUI.Dialogs;
+using SukiUI.Toasts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,14 +15,6 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Avalonia.Platform.Storage;
-using CommunityToolkit.Mvvm.Input;
-using NetSonar.Avalonia.Extensions;
-using NetSonar.Avalonia.Models;
-using NetSonar.Avalonia.Network;
-using NetSonar.Avalonia.Settings;
-using SukiUI.Dialogs;
-using SukiUI.Toasts;
 using ZLinq;
 
 namespace NetSonar.Avalonia.ViewModels.Dialogs;
@@ -65,7 +66,7 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
             catch (Exception e)
             {
                 App.ShowExceptionToast("Unable to import from json", "The provided json file is invalid or malformed.");
-                 App.HandleSafeException(e, "Import service from json");
+                UnhandledExceptions.HandleSafeException(e, "Import service from json");
             }
 
         }
@@ -147,7 +148,7 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
             }
             catch (Exception ex)
             {
-                 App.HandleSafeException(ex, "Add Service");
+                UnhandledExceptions.HandleSafeException(ex, "Add Service");
             }
         }
 

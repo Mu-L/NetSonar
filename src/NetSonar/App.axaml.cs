@@ -12,10 +12,9 @@ using SukiUI.Toasts;
 using NetSonar.Avalonia.Common;
 using NetSonar.Avalonia.ViewModels.Dialogs;
 using NetSonar.Avalonia.Views.Dialogs;
-using System.Threading.Tasks;
-using NetSonar.Avalonia.Settings;
 using ZLogger;
 using System.Globalization;
+using StageKit;
 using Updatum;
 using ZLinq;
 
@@ -26,7 +25,8 @@ public partial class App : Application
     /// <summary>
     /// Mutex to prevent multiple instances of the application from running.
     /// </summary>
-    private static readonly Mutex AppMutex = new(true, $"Mutex_{Environment.UserDomainName}_{Environment.UserName}_{EntryApplication.AssemblyName}_{{8AEA6BAE-D5D5-49FA-8A8E-479FFC369D5D}}");
+    private static ApplicationInstanceGuard? _appInstanceGuard;
+    //private static readonly Mutex AppMutex = new(true, $"Mutex_{Environment.UserDomainName}_{Environment.UserName}_{EntryApplication.AssemblyName}_{{8AEA6BAE-D5D5-49FA-8A8E-479FFC369D5D}}");
 
     public const bool IsDebug =
 #if DEBUG
@@ -37,21 +37,9 @@ public partial class App : Application
         ;
 
     /// <summary>
-    /// Flag to determine if the application is running in crash report mode.
-    /// </summary>
-    public static bool IsCrashReport { get; private set; }
-
-    /// <summary>
     /// Flag to determine if the application was launched minimized to tray.
     /// </summary>
     public static bool StartMinimized { get; private set; }
-
-    public static CrashReports CrashReports => CrashReports.Instance;
-
-    /// <summary>
-    /// Command line arguments passed to the application.
-    /// </summary>
-    public static string[] Args { get; private set; } = [];
 
     /// <summary>
     /// Main window of the application.
@@ -65,12 +53,28 @@ public partial class App : Application
 
     public static AppViewModel AppViewModel { get; private set; } = null!;
 
-    public override void Initialize()
+    public App()
     {
         CultureInfo.DefaultThreadCurrentUICulture =
             CultureInfo.DefaultThreadCurrentCulture =
                 OptimalCultureInfo;
 
+        ApplicationKit.JsonSerializerOptions = JsonSerializerOptions;
+        ApplicationKit.Birth = DateTime.SpecifyKind(new(2025, 7, 1, 2, 00, 00), DateTimeKind.Utc);
+        ApplicationKit.UiFrameworkInfo = $"Avalonia {typeof(AvaloniaObject).Assembly.GetName().Version?.ToString(3)}";
+        ApplicationKit.ConfigsDirectoryName = "settings";
+
+        UnhandledExceptions.RegisterAppDomainUnhandledException();
+        UnhandledExceptions.RegisterTaskSchedulerUnobservedTaskException();
+        UnhandledExceptions.IgnoreAvaloniaSafeExceptions();
+        UnhandledExceptions.BeforeForcedExit += (sender, args) => PanicSaveSettings();
+
+        CrashReportsFile.IsEnabled = true;
+        CrashReportsFile.CrashReportsFileName = "crash_reports.json";
+    }
+
+    public override void Initialize()
+    {
         AvaloniaXamlLoader.Load(this);
         AppViewModel = new AppViewModel();
         DataContext = AppViewModel;
@@ -83,27 +87,22 @@ public partial class App : Application
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopCheck)
         {
-            if (desktopCheck.Args?.Length > 0) Args = desktopCheck.Args;
-            if (Args.Length >= 1)
+            if (desktopCheck.Args?.Length > 0)
             {
-                switch (Args[0])
-                {
-                    case "--crash-report" when Args.Length >= 2:
-                        IsCrashReport = true;
-                        break;
-                }
-
-                if (Array.IndexOf(Args, "--minimized") >= 0)
+                ApplicationKit.ApplicationArgs = desktopCheck.Args;
+            }
+            if (ApplicationKit.ApplicationArgs?.Length >= 1)
+            {
+                if (Array.IndexOf(ApplicationKit.ApplicationArgs, "--minimized") >= 0)
                 {
                     StartMinimized = true;
                 }
             }
         }
 
-        if (IsCrashReport)
+        if (ApplicationKit.HasCrashReportFlag && ApplicationKit.CrashReportIndex > 0)
         {
-            _ = long.TryParse(Args[1], out var crashReportHashCode);
-            var crashReport = CrashReports.GetActual(crashReportHashCode);
+            var crashReport = ApplicationKit.CrashReport;
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 MainWindow = new GenericWindow
@@ -123,7 +122,7 @@ public partial class App : Application
             }
             else
             {
-                Logger.ZLogCritical($"{crashReport?.FormatedMessage ?? "The application crashed due an unexpected exception. (Unable to present the information in the UI"}.");
+                Logger.ZLogCritical($"{crashReport.FormattedMessage ?? "The application crashed due an unexpected exception. (Unable to present the information in the UI"}.");
                 Environment.Exit(0);
             }
         }
@@ -135,12 +134,10 @@ public partial class App : Application
 #if DEBUG
             if(true)
 #else
-            if (Design.IsDesignMode || AppMutex.WaitOne(TimeSpan.Zero, true))
+            _appInstanceGuard = ApplicationInstanceGuard.AcquirePerUser();
+            if (Design.IsDesignMode || _appInstanceGuard.IsPrimary)
 #endif
             {
-                AppDomain.CurrentDomain.UnhandledException += (sender, e) => HandleUnhandledException((Exception)e.ExceptionObject, "Non-UI");
-                TaskScheduler.UnobservedTaskException += (sender, e) => HandleUnhandledException(e.Exception, "Task");
-
                 if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
                 {
                     /*MainWindow = new MainWindow
@@ -185,7 +182,7 @@ public partial class App : Application
             else
             {
 #pragma warning disable CS0162 // Unreachable code detected
-                AppMutex.Dispose();
+                _appInstanceGuard?.Dispose();
 
                 if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
                 {
@@ -230,6 +227,6 @@ public partial class App : Application
     {
         PanicSaveSettings();
         //AppMutex.ReleaseMutex();
-        AppMutex.Dispose();
+        _appInstanceGuard?.Dispose();
     }
 }

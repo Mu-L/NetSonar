@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using Avalonia.Input.Platform;
 
 namespace NetSonar.Avalonia;
 

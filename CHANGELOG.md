@@ -1,3 +1,11 @@
+# v0.3.0 (24/05/2026)
+- Migrate core app infrastructure to StageKit/ApplicationKit: centralize birth/logs/config paths, application args, and unhandled-exception handling. 
+- Replace the per-user Mutex with ApplicationInstanceGuard and wire ApplicationKit.Logger. 
+- Remove legacy CrashReport and custom RootSettings/collection/subsettings implementations and adapt settings files (AppSettings, PingableServicesFile, SpeedTestsFile) to use ApplicationKit-based constructors, auto-save and new JSON options. 
+- Update usages to UnhandledExceptions.HandleSafeException and adjust file I/O (timer, FileOptions).
+- Upgrade AvaloniaUI from 11.3.14 to 12.0.3
+- Upgrade .NET from 10.0.2 to 10.0.5
+
 # v0.2.6 (26/04/2026)
 - Fix start with system minimized was not able to show the application after clicking the tray icon
 - Clicking the tray icon now toggles the visibility of the application instead of only showing it

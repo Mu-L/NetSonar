@@ -44,7 +44,7 @@
 
 						<NativeMenuItem Header="👁 Show" Command="{Binding ShowApplicationCommand}" />
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="{Binding PingsSummary}" />
+						<NativeMenuItem Header="{Binding PingsSummary}" IsVisible="{Binding PingsSummary, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
 						<NativeMenuItem Header="⚙️ Options">
 							<NativeMenu>
                                 <NativeMenuItem Header="Start with system"

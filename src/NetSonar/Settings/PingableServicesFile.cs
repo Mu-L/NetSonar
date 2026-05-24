@@ -1,12 +1,13 @@
-﻿using NetSonar.Avalonia.Network;
+﻿using NetSonar.Avalonia.Converters;
+using NetSonar.Avalonia.Network;
 using ObservableCollections;
+using StageKit;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
-using NetSonar.Avalonia.Converters;
 using ZLinq;
 
 namespace NetSonar.Avalonia.Settings;
@@ -18,22 +19,21 @@ public sealed class PingableServicesFile : RootCollectionFile<PingableServicesFi
     private Timer? _savePingRepliesTimer;
     #endregion
 
-    /// <inheritdoc />
-    [JsonIgnore]
-    public override string FileName => "ping_services.json";
-
     [JsonIgnore]
     public const string RepliesFileName = "ping_replies.json";
 
-    /// <inheritdoc />
-    [JsonIgnore]
-    protected override JsonSerializerOptions JsonOptions => new(App.JsonSerializerOptions)
+    public PingableServicesFile()
     {
-        TypeInfoResolver = new ConditionalPingRepliesResolver(includePings: AppSettings.Instance.PingServices.ResilientReplies)
-    };
+        DirectoryPath = ApplicationKit.ConfigsPath;
+        FileName = "ping_services.json";
+        JsonOptions = new(App.JsonSerializerOptions)
+        {
+            TypeInfoResolver = new ConditionalPingRepliesResolver(includePings: AppSettings.Instance.PingServices.ResilientReplies)
+        };
+    }
 
     /// <inheritdoc />
-    public override void OnLoaded(bool fromFile)
+    protected override void OnLoaded(bool fromFile)
     {
         var delay = TimeSpan.FromSeconds(60);
         _savePingRepliesTimer = new Timer(_ => SavePingReplies(), null, delay, delay);
@@ -69,7 +69,7 @@ public sealed class PingableServicesFile : RootCollectionFile<PingableServicesFi
         }
         catch (Exception e)
         {
-            App.HandleSafeException(e, $"Read {RepliesFileName}");
+            UnhandledExceptions.HandleSafeException(e, $"Read {RepliesFileName}");
         }
     }
 
@@ -97,19 +97,19 @@ public sealed class PingableServicesFile : RootCollectionFile<PingableServicesFi
                     FileAccess.Write,
                     FileShare.None,
                     4096,
-                    FileOptions.WriteThrough);
+                    FileOptions.None);
 
                 JsonSerializer.Serialize(stream, replies, JsonOptions);
             }
             catch (Exception e)
             {
-                App.HandleSafeException(e, $"Save {RepliesFileName}");
+                UnhandledExceptions.HandleSafeException(e, $"Save {RepliesFileName}");
             }
         }
     }
 
     /// <inheritdoc />
-    public override void Dispose()
+    public new void Dispose()
     {
         _savePingRepliesTimer?.Dispose();
         base.Dispose();

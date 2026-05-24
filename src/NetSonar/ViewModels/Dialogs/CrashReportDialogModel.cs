@@ -1,11 +1,11 @@
 ﻿using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using NetSonar.Avalonia.Models;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Web;
+using StageKit;
 using Updatum;
 
 namespace NetSonar.Avalonia.ViewModels.Dialogs;
@@ -51,7 +51,7 @@ public partial class CrashReportDialogModel : ViewModelBase
 
     private void BuildMessage()
     {
-        Message = CrashReport?.FormatedMessage
+        Message = CrashReport?.FormattedMessage
                    ?? """
                       The application crashed due an unexpected error, but unfortunately we don't have more details.
                       The crash report may have been lost or unable to be saved.
@@ -69,7 +69,7 @@ public partial class CrashReportDialogModel : ViewModelBase
     public Task<bool> Report()
     {
         if (CrashReport is null) return Task.FromResult(false);
-        using var reader = new StringReader(CrashReport.FormatedMessage);
+        using var reader = new StringReader(CrashReport.FormattedMessage);
         var url = $"https://github.com/sn4k3/NetSonar/issues/new?template=bug_report_form.yml&title={HttpUtility.UrlEncode($"[Crash] {reader.ReadLine()}")}&system={HttpUtility.UrlEncode(AboutDialogModel.InformationResumeText)}&bug_description={HttpUtility.UrlEncode($"```\n{Message}\n```")}";
         return LaunchUriAsync(url);
     }

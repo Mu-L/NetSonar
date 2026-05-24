@@ -1,15 +1,16 @@
-﻿using System;
+﻿using Avalonia.Input;
+using Microsoft.Win32;
+using NetSonar.Avalonia.Extensions;
+using StageKit;
+using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using Avalonia.Input;
-using Microsoft.Win32;
 using System.Text.RegularExpressions;
-using NetSonar.Avalonia.Extensions;
+using System.Threading;
+using System.Threading.Tasks;
 using ZLinq;
 
 namespace NetSonar.Avalonia.SystemOS;
@@ -98,7 +99,7 @@ public static class SystemAware
             }
             catch (Exception e)
             {
-                App.HandleSafeException(e, "GetMemoryStatus");
+                UnhandledExceptions.HandleSafeException(e, "GetMemoryStatus");
             }
         }
         else if (OperatingSystem.IsMacOS())
@@ -145,7 +146,7 @@ public static class SystemAware
             }
             catch (Exception e)
             {
-                App.HandleSafeException(e, "GetMemoryStatus");
+                UnhandledExceptions.HandleSafeException(e, "GetMemoryStatus");
             }
         }
 
@@ -189,7 +190,7 @@ public static class SystemAware
         }
         catch (Exception e)
         {
-            App.HandleSafeException(e, "GetProcessorName");
+            UnhandledExceptions.HandleSafeException(e, "GetProcessorName");
         }
 
         return null;
@@ -227,7 +228,7 @@ public static class SystemAware
                 }
                 catch (Exception e)
                 {
-                    App.HandleSafeException(e, "GetGraphicCardName");
+                    UnhandledExceptions.HandleSafeException(e, "GetGraphicCardName");
                 }
 
                 return gpu;
@@ -245,7 +246,7 @@ public static class SystemAware
         }
         catch (Exception e)
         {
-            App.HandleSafeException(e, "GetGraphicCardName");
+            UnhandledExceptions.HandleSafeException(e, "GetGraphicCardName");
         }
 
         return null;
@@ -390,7 +391,7 @@ public static class SystemAware
         }
         catch (Exception e)
         {
-            App.HandleSafeException(e, "SystemAware.OpenUrl");
+            UnhandledExceptions.HandleSafeException(e, "SystemAware.OpenUrl");
         }
 
     }
@@ -405,7 +406,7 @@ public static class SystemAware
         }
         catch (Exception e)
         {
-            App.HandleSafeException(e, "SystemAware.StartProcess");
+            UnhandledExceptions.HandleSafeException(e, "SystemAware.StartProcess");
         }
     }
 

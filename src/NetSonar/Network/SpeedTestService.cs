@@ -1,4 +1,6 @@
 ﻿using Cysharp.Diagnostics;
+using NetSonar.Avalonia.SystemOS;
+using StageKit;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +8,6 @@ using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using NetSonar.Avalonia.SystemOS;
 
 namespace NetSonar.Avalonia.Network;
 
@@ -102,7 +103,7 @@ public class SpeedTestService
         }
         catch (Exception e)
         {
-            App.HandleSafeException(e, "SpeedTestService");
+            UnhandledExceptions.HandleSafeException(e, "SpeedTestService");
         }
 
         return Task.FromResult<string?>(null);

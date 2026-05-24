@@ -1,7 +1,8 @@
+using Microsoft.Win32;
+using StageKit;
 using System;
 using System.IO;
 using System.Runtime.Versioning;
-using Microsoft.Win32;
 using ZLogger;
 
 namespace NetSonar.Avalonia.SystemOS;
@@ -48,7 +49,7 @@ public static class Autostart
         }
         catch (Exception e)
         {
-            App.HandleSafeException(e, $"Autostart.SetEnabled({enabled}) failed");
+            UnhandledExceptions.HandleSafeException(e, $"Autostart.SetEnabled({enabled}) failed");
         }
     }
 
@@ -64,7 +65,7 @@ public static class Autostart
         }
         catch (Exception e)
         {
-            App.HandleSafeException(e, "Autostart.RefreshIfEnabled failed");
+            UnhandledExceptions.HandleSafeException(e, "Autostart.RefreshIfEnabled failed");
         }
 
     }
