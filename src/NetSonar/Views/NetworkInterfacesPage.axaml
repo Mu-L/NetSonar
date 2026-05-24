@@ -195,7 +195,7 @@
                              VerticalAlignment="Center"
                              suki:TextBoxExtensions.AddDeleteButton="True"
                              Text="{Binding FilterText, Delay=500}"
-                             Watermark="Filter interfaces by text" />
+                             PlaceholderText="Filter interfaces by text" />
 
                 </WrapPanel>
 

@@ -69,7 +69,7 @@
                                      VerticalAlignment="Center"
                                      suki:TextBoxExtensions.AddDeleteButton="True"
                                      Text="{Binding FilterText, Delay=500}"
-                                     Watermark="Filter services by text" />
+                                     PlaceholderText="Filter services by text" />
                         </WrapPanel>
 
                         <WrapPanel Grid.Column="1"

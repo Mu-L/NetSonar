@@ -47,22 +47,22 @@
                          Grid.Column="0"
                          Classes="ReadOnly"
                          Text="{Binding OperativeSystemDescription}"
-                         UseFloatingWatermark="True"
-                         Watermark="Operative System:" />
+                         UseFloatingPlaceholder="True"
+                         PlaceholderText="Operative System:" />
 
                 <TextBox Grid.Row="1"
                          Grid.Column="0"
                          Classes="ReadOnly"
                          Text="{Binding GraphicCardName}"
-                         UseFloatingWatermark="True"
-                         Watermark="Graphic Card:" />
+                         UseFloatingPlaceholder="True"
+                         PlaceholderText="Graphic Card:" />
 
                 <TextBox Grid.Row="2"
                          Grid.Column="0"
                          Classes="ReadOnly"
                          Text="{Binding ProcessorName}"
-                         UseFloatingWatermark="True"
-                         Watermark="Processor:" />
+                         UseFloatingPlaceholder="True"
+                         PlaceholderText="Processor:" />
 
                 <Grid Grid.Row="3"
                       Grid.Column="0"
@@ -73,15 +73,15 @@
                              Grid.Column="0"
                              Classes="ReadOnly"
                              Text="{Binding ProcessorCount}"
-                             UseFloatingWatermark="True"
-                             Watermark="Processor cores:" />
+                             UseFloatingPlaceholder="True"
+                             PlaceholderText="Processor cores:" />
 
                     <TextBox Grid.Row="0"
                              Grid.Column="1"
                              Classes="ReadOnly"
                              Text="{Binding MemoryRamDescription}"
-                             UseFloatingWatermark="True"
-                             Watermark="Memory RAM:" />
+                             UseFloatingPlaceholder="True"
+                             PlaceholderText="Memory RAM:" />
                 </Grid>
 
                 <Grid Grid.Row="4"
@@ -93,23 +93,23 @@
                              Grid.Column="0"
                              Classes="ReadOnly"
                              Text="{Binding FrameworkDescription}"
-                             UseFloatingWatermark="True"
-                             Watermark="Framework:" />
+                             UseFloatingPlaceholder="True"
+                             PlaceholderText="Framework:" />
 
                     <TextBox Grid.Row="0"
                              Grid.Column="1"
                              Classes="ReadOnly"
                              Text="{Binding AvaloniaUIDescription}"
-                             UseFloatingWatermark="True"
-                             Watermark="AvaloniaUI:" />
+                             UseFloatingPlaceholder="True"
+                             PlaceholderText="AvaloniaUI:" />
                 </Grid>
 
                 <TextBox Grid.Row="5"
                          Grid.Column="0"
                          Classes="ReadOnly"
                          Text="{Binding ScreensDescription, FallbackValue='(Screen information not available)'}"
-                         UseFloatingWatermark="True"
-                         Watermark="Screens, resolution, working area, usable area:" />
+                         UseFloatingPlaceholder="True"
+                         PlaceholderText="Screens, resolution, working area, usable area:" />
 
             </Grid>
 
