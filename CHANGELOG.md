@@ -1,3 +1,11 @@
+# v0.3.1 (20/07/2026)
+
+- Add `--portable` startup argument to run the app in portable mode. (#21)
+- Add `--profile-path` startup argument to specify a custom profile path. (#21)
+- Upgrade AvaloniaUI from 12.0.3 to 12.1.0
+- Upgrade .NET from 10.0.5 to 10.0.10
+- Upgrade other dependencies
+
 # v0.3.0 (24/05/2026)
 - Migrate core app infrastructure to StageKit/ApplicationKit: centralize birth/logs/config paths, application args, and unhandled-exception handling. 
 - Replace the per-user Mutex with ApplicationInstanceGuard and wire ApplicationKit.Logger. 
@@ -8,23 +16,23 @@
 - Upgrade .NET from 10.0.2 to 10.0.5
 
 # v0.2.6 (26/04/2026)
-- Fix start with system minimized was not able to show the application after clicking the tray icon
+- Fix start with the system minimized was not able to show the application after clicking the tray icon
 - Clicking the tray icon now toggles the visibility of the application instead of only showing it
 
 # v0.2.5 (26/04/2026)
-- Add "Start with system" option to the settings [Default: false] (#16)
-- Add "UI Scale" option to the settings
-- Add "Close to tray" option to the settings [Default: true] (#16)
+- Add the "Start with system" option to the settings [Default: false] (#16)
+- Add the "UI Scale" option to the settings
+- Add the "Close to tray" option to the settings [Default: true] (#16)
 - Add Tray icon with options
 - Fix unable to have uppercase queries (#18)
 - Upgrade AvaloniaUI from 11.3.11 to 11.3.14
 - Upgrade .NET from 10.0.2 to 10.0.6
 
 # v0.2.4 (24/01/2026)
-- Fix speedtest binary not found when path contains spaces
+- Fix speedtest binary not found when the path contains spaces
 
 # v0.2.3 (21/01/2026)
-- Fix the update checker call from different thread
+- Fix the update checker call from a different thread
 
 # v0.2.2 (21/01/2026)
 - Fix the permission issue on speedtest binary for linux and macOS systems
@@ -35,30 +43,30 @@
 - Fix the speedtest path for linux and macOS systems
 
 # v0.2.0 (10/01/2026)
-- Add a option to save and restore ping replies after program restart (#6) (Default: Disable)
-- Add Speed Test module to measure internet speed
+- Add an option to save and restore ping replies after the program restarts (#6) (Default: Disable)
+- Add a Speed Test module to measure internet speed
 - Save and restore pingable services DataGrid column order
 - Change the pingable services DataGrid column order
-- Change the default ping cache from 10000 to 1000
+- Change the default ping cache from 10,000 to 1000
 - Insert pings at the top of the DataGrid instead of the bottom
-- Fix the issue where is not possible to add multiple services at once in the dialog
-- Fix the issue where pingable services hostname were not loaded between sessions
-- Fix when changing theme the base color is reset
-- Ignore the following task exceptions to prevent app from crash: (#2)
+- Fix the issue where it is not possible to add multiple services at once in the dialog
+- Fix the issue where pingable services hostnames were not loaded between sessions
+- Fix changing the theme, the base color is reset
+- Ignore the following task exceptions to prevent the app from crashing: (#2)
   - org.freedesktop.DBus.Error.ServiceUnknown
   - org.freedesktop.DBus.Error.UnknownMethod
 - Upgrade AvaloniaUI from 11.3.5 to 11.3.10
 - Upgrade .NET from 9.0.9 to 10.0.1
 
 # v0.1.2 (12/09/2025)
-- Add a GridSplitter to be able to resize the layout of services page (#6)
+- Add a GridSplitter to be able to resize the layout of services pages (#6)
 - Upgrade AvaloniaUI from 11.3.3 to 11.3.5
 - Upgrade .NET from 9.0.8 to 9.0.9
 
 # v0.1.1 (08/08/2025)
-- Fix settings not being saved if app crashes
+- Fix settings not being saved if the app crashes
 - macOS: Fix missing app icon
-- Windows: Fix the community forum links in support button
+- Windows: Fix the community forum links in the support button
 - Upgrade .NET from 9.0.6 to 9.0.8
 - Upgrade AvaloniaUI from 11.3.2 to 11.3.3
 

@@ -25,25 +25,25 @@
         <PackageReference Include="Avalonia.Themes.Simple" Version="$(AvaloniaVersion)" />
         <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
         <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
-        <PackageReference Include="Avalonia.Controls.DataGrid" Version="12.0.0" />
+        <PackageReference Include="Avalonia.Controls.DataGrid" Version="12.1.0" />
         <!--<PackageReference Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" Condition="'$(Configuration)' == 'Debug'" />-->
         <PackageReference Include="Avalonia.Controls.ItemsRepeater" Version="12.0.0" />
-        <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.1" Condition="'$(Configuration)' == 'Debug'" />
+        <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3" Condition="'$(Configuration)' == 'Debug'" />
         <PackageReference Include="CommunityToolkit.Common" Version="8.4.2" />
 
         <!-- UI Components -->
-        <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.1.0-dev-570" />
+        <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.1.0-dev-798" />
         <PackageReference Include="MarkdownViewer.Core" Version="1.0.5" />
         <PackageReference Include="Material.Icons.Avalonia" Version="3.0.2" />
-        <PackageReference Include="StageKit" Version="0.1.4" />
+        <PackageReference Include="StageKit" Version="0.2.4" />
 
         <!-- UI Theme -->
-        <PackageReference Include="SukiUI" Version="7.0.1" />
-        <PackageReference Include="Svg.Controls.Avalonia" Version="12.0.0.11" />
+        <PackageReference Include="SukiUI" Version="7.0.2-nightly20260625" />
+        <PackageReference Include="Svg.Controls.Avalonia" Version="12.0.0.13" />
 
         <!-- Microsoft -->
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.8" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.10" />
 
         <!-- Collections -->
         <PackageReference Include="MintPlayer.ObservableCollection" Version="10.0.0" />
@@ -56,7 +56,7 @@
 
         <!-- Cysharp -->
         <PackageReference Include="ProcessX" Version="1.5.6" />
-        <PackageReference Include="Updatum" Version="1.3.7" />
+        <PackageReference Include="Updatum" Version="1.4.0" />
         <PackageReference Include="Utf8StringInterpolation" Version="1.3.2" />
         <PackageReference Include="ZLinq" Version="1.5.6" />
         <PackageReference Include="ZLogger" Version="2.5.10" />

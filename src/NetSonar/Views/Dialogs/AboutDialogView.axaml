@@ -8,8 +8,8 @@
                           xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                           xmlns:suki="https://github.com/kikipoulet/SukiUI"
-                          xmlns:updatum="clr-namespace:Updatum;assembly=Updatum"
                           xmlns:stageKit="clr-namespace:StageKit;assembly=StageKit"
+                          xmlns:runtime="clr-namespace:StageKit.Runtime;assembly=StageKit.Runtime"
                           d:DesignHeight="650"
                           d:DesignWidth="1000"
                           x:DataType="dialogs:AboutDialogModel"
@@ -123,9 +123,9 @@
                 <SelectableTextBlock Grid.Row="1"
                                      Text="{Binding Source={x:Static stageKit:ApplicationKit.AgeShortStr}, StringFormat='Age: {0}'}" />
                 <SelectableTextBlock Grid.Row="2"
-                                     Text="{Binding Source={x:Static updatum:EntryApplication.AssemblyCopyright}}" />
+                                     Text="{Binding Source={x:Static runtime:EntryApplication.AssemblyCopyright}}" />
                 <SelectableTextBlock Grid.Row="3"
-                                     Text="{Binding Source={x:Static updatum:EntryApplication.AssemblyAuthors}}" />
+                                     Text="{Binding Source={x:Static runtime:EntryApplication.AssemblyAuthors}}" />
 
                 <Svg Grid.Row="0"
                      Grid.RowSpan="4"
@@ -142,12 +142,12 @@
                         <TextBox MinHeight="310"
                                  VerticalContentAlignment="Top"
                                  Classes="ReadOnlyMultiLineWrap"
-                                 Text="{Binding Source={x:Static updatum:EntryApplication.AssemblyDescription}}" />
+                                 Text="{Binding Source={x:Static runtime:EntryApplication.AssemblyDescription}}" />
                     </TabItem>
                     <TabItem Header="Assemblies">
                         <TextBox VerticalContentAlignment="Top"
                                  Classes="ReadOnlyMultiLine"
-                                 Text="{Binding Source={x:Static updatum:EntryApplication.FormattedLoadedAssemblies}}" />
+                                 Text="{Binding Source={x:Static runtime:EntryApplication.FormattedLoadedAssemblies}}" />
                     </TabItem>
                     <TabItem Header="Terms of use">
                         <TextBox VerticalContentAlignment="Top"

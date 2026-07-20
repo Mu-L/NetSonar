@@ -9,17 +9,17 @@
 <!--[![Chocolatey](https://img.shields.io/chocolatey/dt/NetSonar?color=brown&label=Chocolatey&style=for-the-badge)](https://community.chocolatey.org/packages/NetSonar)!-->
 
 NetSonar is a network diagnostics tool for pinging hosts (ICMP/TCP/UDP/HTTP), managing network interfaces, and discovering local devices/services.  
-Features multi-protocol latency checks, subnet scanning, port/service detection, and real-time interface configuration.  
+Features multiprotocol latency checks, subnet scanning, port/service detection, and real-time interface configuration.  
 Designed for administrators and developers needing lightweight, cross-platform network analysis.
 
 ## Download the latest version at:
 
-## To auto install on Windows (package manager):
+## To auto-install on Windows (package manager):
 
 - **Winget:** `winget install -e --id PTRTECH.NetSonar`
 - Winget is included on Windows 10 with recent updates and Windows 11 by default.
 
-## To auto install on Linux:
+## To auto-install on Linux:
 
 ```bash
 [ "$(command -v apt)" -a -z "$(command -v curl)" ] && sudo apt-get install -y curl 
@@ -29,7 +29,7 @@ Designed for administrators and developers needing lightweight, cross-platform n
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/sn4k3/NetSonar/main/scripts/install-netsonar.sh)"
 ```
 
-## To auto install on MacOS:
+## To auto-install on macOS:
 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/sn4k3/NetSonar/main/scripts/install-netsonar.sh)"
@@ -65,14 +65,26 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/sn4k3/NetSonar/main/scri
 - Windows 10 or greater
 - macOS 13 Monterey or greater
 - Linux (Debian, Ubuntu, Fedora, Arch, etc.)
-- 64 bit System (x64 / arm64)
+- 64-bit System (x64 / arm64)
 - 4GB RAM or higher
 - 1920 x 1080 @ 100% scale as minimum resolution
 
+# Run arguments
+
+NetSonar can be run with the following arguments:
+
+- `--portable [level]`: Run in portable mode, configurations are saved near the executable. Use level to specify the directory level, e.g. `0` for the current directory, `1` for the parent directory, etc.
+  - `NetSonar.exe --portable` will save the configuration in the same directory as the executable.
+- `--profile-path <path>`: Specify the path to the profile file.
+  - `NetSonar.exe --profile-path D:\NetSonarConfigs` will use the profile file at the specified path. 
+  - `NetSonar.exe --profile-path NetSonarConfigs` will use the profile path relative to the executable path.
+
+Note: Both `--portable` and `--profile-path` can be used together, but `--profile-path` will take precedence if both are specified.
+
 # Support my work / Donate
 
-All my work here is given for free (OpenSource), it took some hours to build, test and polish the program.
-If you're happy to contribute for a better program and for my work i will appreciate the tip.  
+All my work here is given for free (OpenSource), it took some hours to build, test, and polish the program.
+If you're happy to contribute to a better program and for my work, I will appreciate the tip.  
 Use one of the following methods:
 
 [![GitHub Sponsors](https://img.shields.io/badge/Donate-Sponsor-red?style=for-the-badge)](https://github.com/sponsors/sn4k3)

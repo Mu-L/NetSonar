@@ -44,8 +44,7 @@
 	HotKey="F11"
 	Content="{icon:MaterialIconExt Fullscreen}"
 	Click="Button_FullScreen_OnClick"/>
-	</suki:SukiWindow.RightWindowTitleBarControls>
-	!-->
+	</suki:SukiWindow.RightWindowTitleBarControls>!-->
 	<LayoutTransformControl>
 		<LayoutTransformControl.LayoutTransform>
 			<ScaleTransform ScaleX="{Binding AppSettings.UiScale}"

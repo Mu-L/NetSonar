@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Web;
 using StageKit;
+using StageKit.Runtime;
 using Updatum;
 
 namespace NetSonar.Avalonia.ViewModels.Dialogs;
@@ -78,7 +79,7 @@ public partial class CrashReportDialogModel : ViewModelBase
     [RelayCommand]
     public static void RestartApplication()
     {
-        EntryApplication.LaunchNewInstance();
+        ApplicationKit.LaunchNewInstanceKeepApplicationArgs();
         CloseWindow();
     }
 

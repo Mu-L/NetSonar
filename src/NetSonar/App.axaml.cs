@@ -63,6 +63,7 @@ public partial class App : Application
         ApplicationKit.Birth = DateTime.SpecifyKind(new(2025, 7, 1, 2, 00, 00), DateTimeKind.Utc);
         ApplicationKit.UiFrameworkInfo = $"Avalonia {typeof(AvaloniaObject).Assembly.GetName().Version?.ToString(3)}";
         ApplicationKit.ConfigsDirectoryName = "settings";
+        ApplicationKit.ParseProfilePathFromArgs();
 
         UnhandledExceptions.RegisterAppDomainUnhandledException();
         UnhandledExceptions.RegisterTaskSchedulerUnobservedTaskException();

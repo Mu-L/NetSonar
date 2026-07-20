@@ -7,8 +7,8 @@
                           xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                           xmlns:suki="https://github.com/kikipoulet/SukiUI"
-                          xmlns:updatum="clr-namespace:Updatum;assembly=Updatum"
                           xmlns:viewModels="clr-namespace:NetSonar.Avalonia.ViewModels"
+                          xmlns:runtime="clr-namespace:StageKit.Runtime;assembly=StageKit.Runtime"
                           d:DesignHeight="450"
                           d:DesignWidth="800"
                           x:DataType="viewModels:MainViewModel"
@@ -74,26 +74,26 @@
                                       Icon="{icon:MaterialIconExt Kind=AboutOutline}"
                                       InputGesture="F1" />
                             <MenuItem Command="{Binding LaunchUriCommand}"
-                                      CommandParameter="{Binding Source={x:Static updatum:EntryApplication.AssemblyRepositoryUrl}}"
+                                      CommandParameter="{Binding Source={x:Static runtime:EntryApplication.AssemblyRepositoryUrl}}"
                                       Header="Website"
                                       Icon="{icon:MaterialIconExt Kind=MicrosoftEdge}" />
 
                             <MenuItem Header="Community forums"
                                       Icon="{icon:MaterialIconExt Kind=ConversationOutline}">
                                 <MenuItem Command="{Binding LaunchUriCommand}"
-                                          CommandParameter="{Binding Source={x:Static updatum:EntryApplication.AssemblyRepositoryUrl}, StringFormat='{}{0}/discussions'}"
+                                          CommandParameter="{Binding Source={x:Static runtime:EntryApplication.AssemblyRepositoryUrl}, StringFormat='{}{0}/discussions'}"
                                           Header="Github"
                                           Icon="{icon:MaterialIconExt Kind=Github}" />
                                 <MenuItem Command="{Binding LaunchUriCommand}"
-                                          CommandParameter="{Binding Source={x:Static updatum:EntryApplication.AssemblyProduct}, StringFormat='https://www.reddit.com/search/?q={0}&amp;type=posts&amp;sort=new'}"
+                                          CommandParameter="{Binding Source={x:Static runtime:EntryApplication.AssemblyProduct}, StringFormat='https://www.reddit.com/search/?q={0}&amp;type=posts&amp;sort=new'}"
                                           Header="Reddit"
                                           Icon="{icon:MaterialIconExt Kind=Reddit}" />
                                 <MenuItem Command="{Binding LaunchUriCommand}"
-                                          CommandParameter="{Binding Source={x:Static updatum:EntryApplication.AssemblyProduct}, StringFormat='https://x.com/search?q={0}&amp;src=typed_query&amp;f=live'}"
+                                          CommandParameter="{Binding Source={x:Static runtime:EntryApplication.AssemblyProduct}, StringFormat='https://x.com/search?q={0}&amp;src=typed_query&amp;f=live'}"
                                           Header="Twitter"
                                           Icon="{icon:MaterialIconExt Kind=Twitter}" />
                                 <MenuItem Command="{Binding LaunchUriCommand}"
-                                          CommandParameter="{Binding Source={x:Static updatum:EntryApplication.AssemblyProduct}, StringFormat='https://www.youtube.com/results?search_query={0}'}"
+                                          CommandParameter="{Binding Source={x:Static runtime:EntryApplication.AssemblyProduct}, StringFormat='https://www.youtube.com/results?search_query={0}'}"
                                           Header="Youtube"
                                           Icon="{icon:MaterialIconExt Kind=Youtube}" />
                             </MenuItem>
@@ -113,15 +113,15 @@
                             <Separator />
 
                             <MenuItem Command="{Binding LaunchUriCommand}"
-                                      CommandParameter="{Binding Source={x:Static updatum:EntryApplication.AssemblyRepositoryUrl}, StringFormat='{}{0}/discussions/categories/q-a'}"
+                                      CommandParameter="{Binding Source={x:Static runtime:EntryApplication.AssemblyRepositoryUrl}, StringFormat='{}{0}/discussions/categories/q-a'}"
                                       Header="Ask a question"
                                       Icon="{icon:MaterialIconExt Kind=QuestionMark}" />
                             <MenuItem Command="{Binding LaunchUriCommand}"
-                                      CommandParameter="{Binding Source={x:Static updatum:EntryApplication.AssemblyRepositoryUrl}, StringFormat='{}{0}/issues'}"
+                                      CommandParameter="{Binding Source={x:Static runtime:EntryApplication.AssemblyRepositoryUrl}, StringFormat='{}{0}/issues'}"
                                       Header="Report an issue"
                                       Icon="{icon:MaterialIconExt Kind=BugOutline}" />
                             <MenuItem Command="{Binding LaunchUriCommand}"
-                                      CommandParameter="{Binding Source={x:Static updatum:EntryApplication.AssemblyRepositoryUrl}, StringFormat='{}{0}/discussions/categories/ideas'}"
+                                      CommandParameter="{Binding Source={x:Static runtime:EntryApplication.AssemblyRepositoryUrl}, StringFormat='{}{0}/discussions/categories/ideas'}"
                                       Header="Suggest an improvement or feature"
                                       Icon="{icon:MaterialIconExt Kind=HeadLightbulbOutline}" />
 

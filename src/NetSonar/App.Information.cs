@@ -8,6 +8,7 @@ using System.Text;
 using Avalonia.Platform;
 using NetSonar.Avalonia.Extensions;
 using StageKit;
+using StageKit.Runtime;
 using Updatum;
 
 namespace NetSonar.Avalonia;
