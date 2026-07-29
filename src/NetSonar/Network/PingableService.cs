@@ -1,9 +1,12 @@
-﻿using System;
+using System;
+using System.Buffers;
+using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -24,7 +27,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
     public const double DefaultPingEverySeconds = 5.0;
 
     public const double MinTimeoutSeconds = 0.1;
-    public const double MaxTimeoutSeconds = int.MaxValue;
+    public const double MaxTimeoutSeconds = ushort.MaxValue;
     public const double DefaultTimeoutSeconds = 5.0;
 
     public const byte DefaultTtl = 128;
@@ -33,11 +36,18 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
     public const int MaxBufferSize = 65500;
     public const int DefaultBufferSize = 32;
 
+    private const int WindowsIcmpTimeoutResolution = 500;
+
+    public const int DefaultNtpPort = 123;
+    private const int NtpPacketLength = 48;
+    private const long NtpEpochOffsetSeconds = 2_208_988_800;
+
     #endregion
 
     #region Members
 
     private byte[]? _sendBuffer;
+    private EndPoint? _socketEndPoint;
 
     #endregion
 
@@ -74,7 +84,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
     public bool CanUseBufferSize => ProtocolType is ServiceProtocolType.ICMP or ServiceProtocolType.TCP or ServiceProtocolType.UDP;
 
     [JsonIgnore]
-    public bool CanUseTtl => ProtocolType is ServiceProtocolType.ICMP or ServiceProtocolType.TCP or ServiceProtocolType.UDP;
+    public bool CanUseTtl => ProtocolType is ServiceProtocolType.ICMP or ServiceProtocolType.TCP or ServiceProtocolType.UDP or ServiceProtocolType.NTP;
 
     [JsonIgnore]
     public bool CanUseDontFragment => ProtocolType is ServiceProtocolType.ICMP;
@@ -89,7 +99,20 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
     /// Gets the ping options.
     /// </summary>
     [JsonIgnore]
-    public PingOptions PingOptions => new(Ttl, DontFragment);
+    public PingOptions PingOptions
+    {
+        get
+        {
+            var options = field;
+            if (options is null || options.Ttl != Ttl || options.DontFragment != DontFragment)
+            {
+                options = new PingOptions(Ttl, DontFragment);
+                field = options;
+            }
+
+            return options;
+        }
+    }
     #endregion
 
     #region Constructor
@@ -129,6 +152,181 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
         }
     }
 
+    private static int GetEffectiveIcmpTimeout(int timeout)
+    {
+        if (!OperatingSystem.IsWindows() || timeout <= 0) return timeout;
+
+        // Windows floors ICMP timeouts to 500 ms; round up so the effective deadline is never shorter.
+        var remainder = timeout % WindowsIcmpTimeoutResolution;
+        if (remainder == 0) return timeout;
+
+        var adjustment = WindowsIcmpTimeoutResolution - remainder;
+        return timeout > int.MaxValue - adjustment ? int.MaxValue : timeout + adjustment;
+    }
+
+    private EndPoint GetSocketEndPoint()
+    {
+        if (_socketEndPoint is not null) return _socketEndPoint;
+        if (IPEndPoint.TryParse(IpAddressOrUrl, out var ipEndPoint))
+        {
+            if (ProtocolType == ServiceProtocolType.NTP && ipEndPoint.Port <= IPEndPoint.MinPort)
+            {
+                ipEndPoint.Port = DefaultNtpPort;
+            }
+
+            return _socketEndPoint = ipEndPoint;
+        }
+
+        var scheme = ProtocolType switch
+        {
+            ServiceProtocolType.TCP => "tcp",
+            ServiceProtocolType.UDP => "udp",
+            ServiceProtocolType.NTP => "udp",
+            _ => throw new InvalidOperationException(
+                $"{nameof(GetSocketEndPoint)} does not support the {ProtocolType} protocol.")
+        };
+        if (!Uri.TryCreate($"{scheme}://{IpAddressOrUrl}", UriKind.Absolute, out var uri)
+            || string.IsNullOrWhiteSpace(uri.IdnHost))
+        {
+            throw new ArgumentException($"Invalid {ProtocolType} host and port ({IpAddressOrUrl}).", nameof(IpAddressOrUrl));
+        }
+
+        var port = uri.Port;
+        if (port <= IPEndPoint.MinPort)
+        {
+            if (ProtocolType != ServiceProtocolType.NTP)
+            {
+                throw new ArgumentException($"Invalid {ProtocolType} host and port ({IpAddressOrUrl}).", nameof(IpAddressOrUrl));
+            }
+
+            port = DefaultNtpPort;
+        }
+
+        return _socketEndPoint = new DnsEndPoint(uri.IdnHost, port);
+    }
+
+    private static async ValueTask<int> ReceiveUdpResponseAsync(Socket socket, CancellationToken cancellationToken)
+    {
+        var receiveBuffer = ArrayPool<byte>.Shared.Rent(MaxBufferSize);
+        try
+        {
+            return await socket.ReceiveAsync(
+                receiveBuffer.AsMemory(0, MaxBufferSize),
+                SocketFlags.None,
+                cancellationToken);
+        }
+        finally
+        {
+            ArrayPool<byte>.Shared.Return(receiveBuffer);
+        }
+    }
+
+    private static void CreateNtpRequest(Span<byte> packet)
+    {
+        packet[..NtpPacketLength].Clear();
+        packet[0] = 0x23; // LI = 0, version = 4, mode = 3 (client).
+
+        var elapsedTicks = DateTime.UtcNow.Ticks - DateTime.UnixEpoch.Ticks;
+        var seconds = elapsedTicks / TimeSpan.TicksPerSecond + NtpEpochOffsetSeconds;
+        var fractionalTicks = elapsedTicks % TimeSpan.TicksPerSecond;
+        var fraction = (uint)(fractionalTicks * 0x1_0000_0000L / TimeSpan.TicksPerSecond);
+
+        BinaryPrimitives.WriteUInt32BigEndian(packet[40..44], unchecked((uint)seconds));
+        BinaryPrimitives.WriteUInt32BigEndian(packet[44..48], fraction);
+    }
+
+    private static async ValueTask<int> ReceiveAndValidateNtpResponseAsync(
+        Socket socket,
+        ReadOnlyMemory<byte> request,
+        CancellationToken cancellationToken)
+    {
+        var receiveBuffer = ArrayPool<byte>.Shared.Rent(MaxBufferSize);
+        try
+        {
+            var length = await socket.ReceiveAsync(
+                receiveBuffer.AsMemory(0, MaxBufferSize),
+                SocketFlags.None,
+                cancellationToken);
+            ValidateNtpResponse(receiveBuffer.AsSpan(0, length), request.Span);
+            return length;
+        }
+        finally
+        {
+            ArrayPool<byte>.Shared.Return(receiveBuffer);
+        }
+    }
+
+    private static void ValidateNtpResponse(ReadOnlySpan<byte> response, ReadOnlySpan<byte> request)
+    {
+        if (response.Length < NtpPacketLength)
+        {
+            throw new InvalidDataException(
+                $"The NTP response is {response.Length} bytes; at least {NtpPacketLength} bytes are required.");
+        }
+
+        var leapIndicator = response[0] >> 6;
+        var version = response[0] >> 3 & 0x07;
+        var mode = response[0] & 0x07;
+        var stratum = response[1];
+
+        if (mode != 4)
+        {
+            throw new InvalidDataException($"The NTP response has mode {mode}; server mode 4 is required.");
+        }
+
+        if (version is < 3 or > 4)
+        {
+            throw new InvalidDataException($"The NTP response has unsupported version {version}.");
+        }
+
+        if (leapIndicator == 3)
+        {
+            throw new InvalidDataException("The NTP server reports that its clock is not synchronized.");
+        }
+
+        if (stratum is 0 or > 15)
+        {
+            throw new InvalidDataException($"The NTP response has invalid or unsynchronized stratum {stratum}.");
+        }
+
+        if (!response.Slice(24, 8).SequenceEqual(request.Slice(40, 8)))
+        {
+            throw new InvalidDataException("The NTP response does not match the request transmit timestamp.");
+        }
+
+        if (IsZeroTimestamp(response.Slice(32, 8)) || IsZeroTimestamp(response.Slice(40, 8)))
+        {
+            throw new InvalidDataException("The NTP response has an empty receive or transmit timestamp.");
+        }
+    }
+
+    private static bool IsZeroTimestamp(ReadOnlySpan<byte> timestamp)
+    {
+        foreach (var value in timestamp)
+        {
+            if (value != 0) return false;
+        }
+
+        return true;
+    }
+
+    private static CancellationTokenSource CreateTimeoutTokenSource(int timeout, CancellationToken cancellationToken)
+    {
+        var timeoutCts = cancellationToken.CanBeCanceled
+            ? CancellationTokenSource.CreateLinkedTokenSource(cancellationToken)
+            : new CancellationTokenSource();
+        if (timeout > 0) timeoutCts.CancelAfter(timeout);
+        return timeoutCts;
+    }
+
+    private static double GetElapsedMilliseconds(long startingTimestamp)
+    {
+        return Math.Round(
+            Stopwatch.GetElapsedTime(startingTimestamp).TotalMilliseconds,
+            2,
+            MidpointRounding.AwayFromZero);
+    }
+
     /// <inheritdoc />
     protected override PingableServiceReply PingCore(int timeout = 0)
     {
@@ -136,6 +334,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
         if (ProtocolType == ServiceProtocolType.ICMP)
         {
             EnsureBuffer();
+            var effectiveTimeout = GetEffectiveIcmpTimeout(timeout);
 
             using var ping = new Ping();
             var sentDateTime = DateTime.Now;
@@ -144,11 +343,11 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
                 PingReply reply;
                 if (OperatingSystem.IsLinux() && !Environment.IsPrivilegedProcess)
                 {
-                    reply = ping.Send(IpAddressOrUrl, timeout);
+                    reply = ping.Send(IpAddressOrUrl, effectiveTimeout);
                 }
                 else
                 {
-                    reply = ping.Send(IpAddressOrUrl, timeout, _sendBuffer, UseDefaultPingOptions ? null : PingOptions);
+                    reply = ping.Send(IpAddressOrUrl, effectiveTimeout, _sendBuffer, UseDefaultPingOptions ? null : PingOptions);
                 }
 
                 return new PingableServiceReply(reply);
@@ -158,7 +357,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
                 return PingableServiceReply.CreateErrorReply(e.InnerException?.Message ?? e.Message, sentDateTime);
             }
         }
-        else if (ProtocolType is ServiceProtocolType.TCP or ServiceProtocolType.UDP)
+        else if (ProtocolType is ServiceProtocolType.TCP or ServiceProtocolType.UDP or ServiceProtocolType.NTP)
         {
             return PingCoreAsync(timeout).Result;
         }
@@ -179,6 +378,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
         if (ProtocolType == ServiceProtocolType.ICMP)
         {
             EnsureBuffer();
+            var effectiveTimeout = GetEffectiveIcmpTimeout(timeout);
 
             using var ping = new Ping();
             var sentOn = DateTime.Now;
@@ -187,11 +387,11 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
                 PingReply reply;
                 if (OperatingSystem.IsLinux() && !Environment.IsPrivilegedProcess)
                 {
-                    reply = await ping.SendPingAsync(IpAddressOrUrl, TimeSpan.FromMilliseconds(timeout), cancellationToken:cancellationToken);
+                    reply = await ping.SendPingAsync(IpAddressOrUrl, TimeSpan.FromMilliseconds(effectiveTimeout), cancellationToken:cancellationToken);
                 }
                 else
                 {
-                    reply = await ping.SendPingAsync(IpAddressOrUrl, TimeSpan.FromMilliseconds(timeout), _sendBuffer, UseDefaultPingOptions ? null : PingOptions, cancellationToken);
+                    reply = await ping.SendPingAsync(IpAddressOrUrl, TimeSpan.FromMilliseconds(effectiveTimeout), _sendBuffer, UseDefaultPingOptions ? null : PingOptions, cancellationToken);
                 }
 
                 return new PingableServiceReply(reply);
@@ -206,31 +406,62 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
                 return PingableServiceReply.CreateErrorReply(e, sentOn);
             }
         }
-        else if (ProtocolType is ServiceProtocolType.TCP or ServiceProtocolType.UDP)
+        else if (ProtocolType is ServiceProtocolType.TCP or ServiceProtocolType.UDP or ServiceProtocolType.NTP)
         {
-            EnsureBuffer();
-            var watch = new Stopwatch();
-            watch.Start();
+            byte[]? ntpRequestBuffer = null;
+            ReadOnlyMemory<byte> sendBuffer;
+            if (ProtocolType == ServiceProtocolType.NTP)
+            {
+                ntpRequestBuffer = ArrayPool<byte>.Shared.Rent(NtpPacketLength);
+                CreateNtpRequest(ntpRequestBuffer);
+                sendBuffer = ntpRequestBuffer.AsMemory(0, NtpPacketLength);
+            }
+            else
+            {
+                EnsureBuffer();
+                sendBuffer = _sendBuffer;
+            }
+
+            var startingTimestamp = Stopwatch.GetTimestamp();
             var sentDateTime = DateTime.Now;
 
             try
             {
-                using var socket = new Socket(IpEndPoint.AddressFamily,
-                    ProtocolType == ServiceProtocolType.TCP ? SocketType.Stream : SocketType.Dgram,
-                    ProtocolType == ServiceProtocolType.TCP ? System.Net.Sockets.ProtocolType.Tcp : System.Net.Sockets.ProtocolType.Udp);
+                var remoteEndPoint = GetSocketEndPoint();
+                var socketType = ProtocolType == ServiceProtocolType.TCP ? SocketType.Stream : SocketType.Dgram;
+                var socketProtocol = ProtocolType == ServiceProtocolType.TCP ? System.Net.Sockets.ProtocolType.Tcp : System.Net.Sockets.ProtocolType.Udp;
+                using var socket = remoteEndPoint is IPEndPoint endpoint
+                    ? new Socket(endpoint.AddressFamily, socketType, socketProtocol)
+                    : new Socket(socketType, socketProtocol);
                 socket.Ttl = Ttl;
 
-                using var timeoutCts = new CancellationTokenSource();
-                if (timeout > 0) timeoutCts.CancelAfter(timeout);
-                using var combinedCts = CancellationTokenSource.CreateLinkedTokenSource(timeoutCts.Token, cancellationToken);
-                await socket.ConnectAsync(IpEndPoint, combinedCts.Token);
-                if (_sendBuffer.Length > 0)
+                using var timeoutCts = CreateTimeoutTokenSource(timeout, cancellationToken);
+                await socket.ConnectAsync(remoteEndPoint, timeoutCts.Token);
+
+                int bufferLength;
+                if (ProtocolType == ServiceProtocolType.UDP)
                 {
-                    await socket.SendAsync(_sendBuffer, combinedCts.Token);
+                    await socket.SendAsync(sendBuffer, timeoutCts.Token);
+                    // UDP has no connection handshake; only a response verifies the remote service.
+                    bufferLength = await ReceiveUdpResponseAsync(socket, timeoutCts.Token);
+                }
+                else if (ProtocolType == ServiceProtocolType.NTP)
+                {
+                    await socket.SendAsync(sendBuffer, timeoutCts.Token);
+                    bufferLength = await ReceiveAndValidateNtpResponseAsync(socket, sendBuffer, timeoutCts.Token);
+                }
+                else
+                {
+                    if (sendBuffer.Length > 0)
+                    {
+                        await socket.SendAsync(sendBuffer, timeoutCts.Token);
+                    }
+
+                    bufferLength = sendBuffer.Length;
                 }
 
-                socket.Close();
-                return new PingableServiceReply(true, IPStatus.Success, IpEndPoint, sentDateTime, Math.Round(watch.Elapsed.TotalMilliseconds, 2, MidpointRounding.AwayFromZero), _sendBuffer.Length, Ttl);
+                var connectedEndPoint = socket.RemoteEndPoint as IPEndPoint ?? IpEndPoint;
+                return new PingableServiceReply(true, IPStatus.Success, connectedEndPoint, sentDateTime, GetElapsedMilliseconds(startingTimestamp), bufferLength, Ttl);
             }
             catch (OperationCanceledException e)
             {
@@ -246,25 +477,26 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
             }
             finally
             {
-                watch.Stop();
+                if (ntpRequestBuffer is not null)
+                {
+                    ArrayPool<byte>.Shared.Return(ntpRequestBuffer);
+                }
             }
         }
         else if (ProtocolType == ServiceProtocolType.HTTP)
         {
             var sentDateTime = DateTime.Now;
-            var watch = new Stopwatch();
 
             try
             {
-                using var timeoutCts = new CancellationTokenSource();
-                if (timeout > 0) timeoutCts.CancelAfter(timeout);
-                using var combinedCts = CancellationTokenSource.CreateLinkedTokenSource(timeoutCts.Token, cancellationToken);
+                using var timeoutCts = CreateTimeoutTokenSource(timeout, cancellationToken);
 
-                watch.Start();
-                var result = await App.HttpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get, IpAddressOrUrl), combinedCts.Token);
-                //var isOk = result.IsSuccessStatusCode || ((int)result.StatusCode >= 300 && (int)result.StatusCode < 400);
-                await using var stream = await result.Content.ReadAsStreamAsync(combinedCts.Token);
-                return new PingableServiceReply(result.IsSuccessStatusCode, result.StatusCode, IpEndPoint, sentDateTime, Math.Round(watch.Elapsed.TotalMilliseconds, 2, MidpointRounding.AwayFromZero), (int)stream.Length);
+                var startingTimestamp = Stopwatch.GetTimestamp();
+                using var request = new HttpRequestMessage(HttpMethod.Get, IpAddressOrUrl);
+                using var response = await App.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, timeoutCts.Token);
+                var contentLength = Math.Min(response.Content.Headers.ContentLength.GetValueOrDefault(), int.MaxValue);
+                var replyEndPoint = new IPEndPoint(IpEndPoint.Address, IpEndPoint.Port);
+                return new PingableServiceReply(response.IsSuccessStatusCode, response.StatusCode, replyEndPoint, sentDateTime, GetElapsedMilliseconds(startingTimestamp), (int)contentLength);
             }
             catch (OperationCanceledException e)
             {
@@ -328,38 +560,51 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
     public static PingableService ParseFromString(string line)
     {
         line = line.Trim();
-        ServiceProtocolType protocol;
-        if (line.Contains('/'))
+        var pingSettings = line.Split('|', StringSplitOptions.TrimEntries);
+        var serviceFields = pingSettings[0].Split(',', StringSplitOptions.TrimEntries);
+        if (serviceFields.Length == 0 || string.IsNullOrWhiteSpace(serviceFields[0]))
         {
-            if (line.StartsWith("icmp://", StringComparison.OrdinalIgnoreCase))
+            throw new MalformedLineException("The service address must not be empty.");
+        }
+
+        var ipAddressOrUrl = serviceFields[0];
+        var description = serviceFields.Length >= 2 ? serviceFields[1] : string.Empty;
+        var group = serviceFields.Length >= 3 ? serviceFields[2] : string.Empty;
+
+        ServiceProtocolType protocol;
+        if (ipAddressOrUrl.Contains('/'))
+        {
+
+            if (ipAddressOrUrl.StartsWith("icmp://", StringComparison.OrdinalIgnoreCase))
             {
-                line = line.Remove(0, "icmp://".Length);
+                ipAddressOrUrl = ipAddressOrUrl.Remove(0, "icmp://".Length);
                 protocol = ServiceProtocolType.ICMP;
-                if (line.Contains(':')) throw new MalformedLineException($"The {protocol} protocol must not contain a port number.");
-                if (line.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (ipAddressOrUrl.Contains(':')) throw new MalformedLineException($"The {protocol} protocol must not contain a port number.");
+                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
             }
-            else if (line.StartsWith("tcp://"))
+            else if (ipAddressOrUrl.StartsWith("tcp://"))
             {
-                line = line.Remove(0, "tcp://".Length);
+                ipAddressOrUrl = ipAddressOrUrl.Remove(0, "tcp://".Length);
                 protocol = ServiceProtocolType.TCP;
-                if (!line.Contains(':')) throw new MalformedLineException($"The {protocol} protocol must contain a port number.");
-                if (line.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (!ipAddressOrUrl.Contains(':')) throw new MalformedLineException($"The {protocol} protocol must contain a port number.");
+                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
             }
-            else if (line.StartsWith("udp://", StringComparison.OrdinalIgnoreCase))
+            else if (ipAddressOrUrl.StartsWith("udp://", StringComparison.OrdinalIgnoreCase))
             {
-                line = line.Remove(0, "udp://".Length);
+                ipAddressOrUrl = ipAddressOrUrl.Remove(0, "udp://".Length);
                 protocol = ServiceProtocolType.UDP;
-                if (!line.Contains(':')) throw new MalformedLineException($"The {protocol} protocol must contain a port number.");
-                if (line.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (!ipAddressOrUrl.Contains(':')) throw new MalformedLineException($"The {protocol} protocol must contain a port number.");
+                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
             }
-            else if (line.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
+            else if (ipAddressOrUrl.StartsWith("ntp://", StringComparison.OrdinalIgnoreCase))
             {
-                line = line.Remove(0, "http://".Length);
-                protocol = ServiceProtocolType.HTTP;
+                ipAddressOrUrl = ipAddressOrUrl.Remove(0, "ntp://".Length);
+                protocol = ServiceProtocolType.NTP;
+                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
             }
-            else if (line.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            else if (ipAddressOrUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+                     || ipAddressOrUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
             {
-                line = line.Remove(0, "https://".Length);
                 protocol = ServiceProtocolType.HTTP;
             }
             else
@@ -370,27 +615,19 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
         else
         {
             protocol = ServiceProtocolType.ICMP;
-            if (line.Contains(':')) throw new MalformedLineException($"The {protocol} protocol must not contain a port number.");
+            if (ipAddressOrUrl.Contains(':')) throw new MalformedLineException($"The {protocol} protocol must not contain a port number.");
         }
 
-        var clearString = line.Split([',', '|'], StringSplitOptions.RemoveEmptyEntries);
-        var ipDescriptionGroup = line.Split(',', StringSplitOptions.TrimEntries);
-        var pingEveryTimeoutBuffer = line.Split('|', StringSplitOptions.TrimEntries);
-
-        var ipAddressOrUrl = clearString[0];
-        var description = ipDescriptionGroup.Length >= 2 ? ipDescriptionGroup[1] : string.Empty;
-        var group = ipDescriptionGroup.Length >= 3 ? ipDescriptionGroup[2] : string.Empty;
-
-        double pingEvery = pingEveryTimeoutBuffer.Length >= 2
-            ? double.TryParse(pingEveryTimeoutBuffer[1], CultureInfo.InvariantCulture, out var pingEveryResult) ? pingEveryResult : App.AppSettings.PingServices.DefaultPingEverySeconds
+        double pingEvery = pingSettings.Length >= 2
+            ? double.TryParse(pingSettings[1], CultureInfo.InvariantCulture, out var pingEveryResult) ? pingEveryResult : App.AppSettings.PingServices.DefaultPingEverySeconds
             : App.AppSettings.PingServices.DefaultPingEverySeconds;
 
-        double timeout = pingEveryTimeoutBuffer.Length >= 3
-            ? double.TryParse(pingEveryTimeoutBuffer[2], CultureInfo.InvariantCulture,  out var timeoutResult) ? timeoutResult : App.AppSettings.PingServices.DefaultTimeoutSeconds
+        double timeout = pingSettings.Length >= 3
+            ? double.TryParse(pingSettings[2], CultureInfo.InvariantCulture,  out var timeoutResult) ? timeoutResult : App.AppSettings.PingServices.DefaultTimeoutSeconds
             : App.AppSettings.PingServices.DefaultTimeoutSeconds;
 
-        int bufferSize = pingEveryTimeoutBuffer.Length >= 4
-            ? int.TryParse(pingEveryTimeoutBuffer[3], out var bufferResult) ? bufferResult : App.AppSettings.PingServices.DefaultBufferSize
+        int bufferSize = pingSettings.Length >= 4
+            ? int.TryParse(pingSettings[3], out var bufferResult) ? bufferResult : App.AppSettings.PingServices.DefaultBufferSize
             : App.AppSettings.PingServices.DefaultBufferSize;
 
         return new PingableService(protocol, ipAddressOrUrl, description, group)

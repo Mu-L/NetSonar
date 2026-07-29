@@ -15,16 +15,26 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text.Json;
 using System.Threading.Tasks;
+using ObservableCollections;
 using ZLinq;
 
 namespace NetSonar.Avalonia.ViewModels.Dialogs;
 
 public partial class AddPingServicesDialogModel : DialogViewModelBase
 {
-    public FastObservableCollection<NewPingService> Services { get; } = [];
+    public ObservableList<NewPingService> Services { get; } = [];
+
+    public NotifyCollectionChangedSynchronizedViewList<NewPingService> ServicesView { get; }
+
+    protected internal override void OnUnloaded()
+    {
+        base.OnUnloaded();
+        ServicesView.Dispose();
+    }
 
     public AddPingServicesDialogModel(ISukiDialog dialog) : base(dialog)
     {
+        ServicesView = Services.ToWritableNotifyCollectionChanged(SynchronizationContextCollectionEventDispatcher.Current);
         AddEmpty();
     }
 
@@ -79,7 +89,16 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
         AddUniques(DnsProvider.DnsProviders
             .Where(dnsProvider => dnsProvider.DNSv4PrimaryAddress.IsValid())
             .Select(dnsProvider => new NewPingService(ServiceProtocolType.ICMP, dnsProvider.DNSv4PrimaryAddress,
-                $"{dnsProvider.ProviderName} ({string.Join(", ", dnsProvider.BlockCategories)})", "DNS")));
+                dnsProvider.FormatedDescription, "DNS")));
+    }
+
+    [RelayCommand]
+    public void ImportPublicNtp()
+    {
+        PurgeEmptyRecords();
+        AddUniques(NtpProvider.NtpProviders
+            .Select(ntpProvider => new NewPingService(ServiceProtocolType.NTP, ntpProvider.Hostname,
+                ntpProvider.FormatedDescription, "NTP")));
     }
 
     [RelayCommand]

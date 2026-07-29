@@ -1,3 +1,21 @@
+# v0.3.2 (29/07/2026)
+
+- Add NTP as a distinct service protocol with standard request packet creation, default port 123, request correlation, and response validation
+- Add a catalogue of public NTP servers and an option to import them from the Add Ping Services dialog
+- Fix Windows ICMP probes timing out before the configured deadline by accounting for the platform's 500 ms timeout resolution
+- Fix TCP, UDP, and NTP hostname/port parsing, endpoint creation, address-family selection, and NTP default-port handling
+- Fix UDP probes reporting success from a connectionless sending alone by waiting for a response from the remote service
+- Fix HTTP replies using `0.0.0.0` after restoring reply history by resolving DNS independently of historical success counts and refreshing unresolved endpoints before HTTP requests
+- Optimize HTTP probes to complete after response headers and use the declared content length without downloading or buffering the response body
+- Prevent slow services from delaying scheduled probes for other services while still blocking overlapping probes for the same service
+- Enforce the configured reply-cache limit both while adding replies and after restoring resilient reply history
+- Fix service-list parsing so protocol prefixes, HTTP/HTTPS URLs, descriptions, groups, intervals, timeouts, buffer sizes, and NTP entries are handled independently
+- Cap configurable probe timeouts at 65,535 seconds and reuse unchanged ICMP `PingOptions`
+- Reduce probe allocations with pooled UDP/NTP buffers and allocation-free elapsed-time measurements
+- Replace the custom `FastObservableCollection` and MintPlayer dependencies with synchronized ObservableCollections views
+- Refactor shared DNS and NTP provider metadata into a common provider model
+- Add DotNext buffer packages for allocation-aware networking and data-processing improvements
+
 # v0.3.1 (20/07/2026)
 
 - Add `--portable` startup argument to run the app in portable mode. (#21)

@@ -64,6 +64,7 @@ public sealed class PingableServicesFile : RootCollectionFile<PingableServicesFi
                     .FirstOrDefault();
                 if (service is null) continue;
                 service.Pings.AddRange(keyValue.Value);
+                service.TrimPingsToCacheLimit();
                 service.RebuildStatistic();
             }
         }

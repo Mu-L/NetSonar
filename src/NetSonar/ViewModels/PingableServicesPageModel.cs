@@ -15,6 +15,7 @@ using SukiUI.Dialogs;
 using Timer = System.Timers.Timer;
 using System.IO;
 using System.Text.Json;
+using System.Collections.Concurrent;
 using Avalonia.Collections;
 using NetSonar.Avalonia.Controls;
 using NetSonar.Avalonia.Settings;
@@ -40,6 +41,7 @@ public partial class PingableServicesPageModel : PageViewModelBase
     public override MaterialIconKind Icon => MaterialIconKind.Radar;
 
     private readonly Timer _timer = new(500);
+    private readonly ConcurrentDictionary<Guid, byte> _activePings = new();
 
     public static int ServicesCount => Services.Count;
     [ObservableProperty] public partial int ServicesFailedCount { get; private set; }
@@ -201,40 +203,53 @@ public partial class PingableServicesPageModel : PageViewModelBase
                 case 0:
                     return;
                 case 1:
-                    servicesToExecute.Array[0].Ping();
-                    anyStatusChanged = servicesToExecute.Array[0].StatusChanged;
+                    var service = servicesToExecute.Array[0];
+                    if (TryPing(service)) anyStatusChanged = service.StatusChanged;
                     break;
                 default:
                     Parallel.ForEach(servicesToExecute.ArraySegment, App.GetParallelOptions(), host =>
                     {
-                        host.Ping();
-                        if (host.StatusChanged) anyStatusChanged = true;
+                        if (TryPing(host) && host.StatusChanged) anyStatusChanged = true;
                     });
                     break;
             }
         }
 
-        if (anyStatusChanged)
+        if (!anyStatusChanged) return;
+
+        failed = 0;
+        success = 0;
+
+        foreach (var service in Services)
         {
-            failed = 0;
-            success = 0;
-
-            foreach (var service in Services)
+            if (service.WasLastPingSucceeded)
             {
-                if (service.WasLastPingSucceeded)
-                {
-                    success++;
-                }
-                else
-                {
-                    failed++;
-                }
+                success++;
             }
+            else
+            {
+                failed++;
+            }
+        }
 
-            ServicesFailedCount = failed;
-            ServicesSucceededCount = success;
+        ServicesFailedCount = failed;
+        ServicesSucceededCount = success;
 
-            if (!string.IsNullOrWhiteSpace(FilterText)) Dispatcher.UIThread.Post(ReAttachFilters);
+        if (!string.IsNullOrWhiteSpace(FilterText)) Dispatcher.UIThread.Post(ReAttachFilters);
+    }
+
+    private bool TryPing(PingableService service)
+    {
+        if (!_activePings.TryAdd(service.Id, 0)) return false;
+
+        try
+        {
+            service.Ping();
+            return true;
+        }
+        finally
+        {
+            _activePings.TryRemove(service.Id, out _);
         }
     }
 

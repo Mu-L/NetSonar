@@ -1,4 +1,4 @@
-﻿using System.Net;
+﻿﻿using System.Net;
 using NetSonar.Avalonia.Converters;
 using NetSonar.Avalonia.Settings;
 using System.Net.Http;

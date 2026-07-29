@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -97,7 +97,7 @@ public partial class NewPingService : ObservableValidatorExtended
                 return new ValidationResult($"The {service.ProtocolType} protocol must contain a port number.");
         }
 
-        if (service.ProtocolType is ServiceProtocolType.ICMP or ServiceProtocolType.TCP or ServiceProtocolType.UDP)
+        if (service.ProtocolType is ServiceProtocolType.ICMP or ServiceProtocolType.TCP or ServiceProtocolType.UDP or ServiceProtocolType.NTP)
         {
             if (ipAddressOrUrl.Contains('/'))
                 return new ValidationResult(

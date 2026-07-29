@@ -41,7 +41,7 @@
                             Padding="15,5"
                             VerticalAlignment="Center"
                             Classes="Information Rounded"
-                            Content="{Binding Services.Count}"
+                            Content="{Binding ServicesView.Count}"
                             IsEnabled="False" />
                 </StackPanel>
 
@@ -64,6 +64,9 @@
                                 <MenuItem Command="{Binding ImportPublicDnsCommand}"
                                           Header="Import public DNS"
                                           Icon="{icon:MaterialIconExt Kind=LibraryOutline}" />
+                                <MenuItem Command="{Binding ImportPublicNtpCommand}"
+                                          Header="Import public NTP"
+                                          Icon="{icon:MaterialIconExt Kind=ClockOutline}" />
                             </MenuFlyout>
                         </SplitButton.Flyout>
                     </SplitButton>
@@ -104,7 +107,7 @@
                       ClipboardCopyMode="IncludeHeader"
                       HeadersVisibility="All"
                       IsReadOnly="False"
-                      ItemsSource="{Binding Services}">
+                      ItemsSource="{Binding ServicesView}">
                 <DataGrid.Styles>
                     <Style Selector="DataGridRow">
                         <Setter Property="Header" Value="{Binding $self.Index}" />

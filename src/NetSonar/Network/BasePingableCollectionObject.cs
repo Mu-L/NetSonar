@@ -16,6 +16,11 @@ namespace NetSonar.Avalonia.Network;
 
 public abstract partial class BasePingableCollectionObject<T> : ObservableObject, IEquatable<BasePingableCollectionObject<T>> where T : BasePingReply
 {
+    private const int MaxDnsResolutionAttempts = 3;
+
+    private int _dnsResolutionAttempts;
+    private int _isDnsResolutionInProgress;
+
     #region Events
     public class PingCompletedEventArgs : EventArgs
     {
@@ -436,7 +441,35 @@ public abstract partial class BasePingableCollectionObject<T> : ObservableObject
 
         if (IPEndPoint.TryParse(ipAddressOrUrl, out var endpoint))
         {
+            if (protocolType == ServiceProtocolType.NTP && endpoint.Port <= IPEndPoint.MinPort)
+            {
+                endpoint.Port = PingableService.DefaultNtpPort;
+            }
+
             IpEndPoint = endpoint;
+        }
+        else if (protocolType is ServiceProtocolType.TCP or ServiceProtocolType.UDP or ServiceProtocolType.NTP)
+        {
+            var scheme = protocolType == ServiceProtocolType.TCP ? "tcp" : "udp";
+            if (!Uri.TryCreate($"{scheme}://{ipAddressOrUrl}", UriKind.Absolute, out var uri)
+                || string.IsNullOrWhiteSpace(uri.IdnHost))
+            {
+                throw new ArgumentException($"Invalid {protocolType} host and port ({ipAddressOrUrl}).", nameof(ipAddressOrUrl));
+            }
+
+            var port = uri.Port;
+            if (port <= IPEndPoint.MinPort)
+            {
+                if (protocolType != ServiceProtocolType.NTP)
+                {
+                    throw new ArgumentException($"Invalid {protocolType} host and port ({ipAddressOrUrl}).", nameof(ipAddressOrUrl));
+                }
+
+                port = PingableService.DefaultNtpPort;
+            }
+
+            HostName = uri.IdnHost;
+            IpEndPoint.Port = port;
         }
         else
         {
@@ -503,34 +536,12 @@ public abstract partial class BasePingableCollectionObject<T> : ObservableObject
         OnPingStarted();
         var result = PingCore(timeout);
 
-        // Try to resolve the DNS if the host is not resolved yet for the first 3 times.
-        if (SucceedCount <= 3 && !IsDnsResolved)
-        {
-            try
-            {
-                var builder = new UriBuilder(IpAddressOrUrl);
-                var hostEntry = Dns.GetHostEntry(builder.Host);
-                HostName = hostEntry.HostName;
-                IpAddresses = hostEntry.AddressList;
-                Aliases = hostEntry.Aliases;
-
-                if (IpAddresses.Length > 0 && !IpEndPoint.IsValid())
-                {
-                    IpAddress = IpAddresses[0];
-                }
-
-                IsDnsResolved = true;
-            }
-            catch (Exception e)
-            {
-                App.WriteLine(e);
-            }
-        }
-
         if (!IpEndPoint.IsValid())
         {
             IpAddress = result.IpAddress;
         }
+
+        ResolveDns();
 
         Add(result);
         LastExecutedDateTime = DateTime.Now;
@@ -559,33 +570,14 @@ public abstract partial class BasePingableCollectionObject<T> : ObservableObject
         var result = await PingCoreAsync(timeout, cancellationToken);
         Add(result);
 
-        // Try to resolve the DNS if the host is not resolved yet for the first 3 times.
-        if (SucceedCount <= 3 && !IsDnsResolved)
-        {
-            try
-            {
-                var builder = new UriBuilder(IpAddressOrUrl);
-                var hostEntry = await Dns.GetHostEntryAsync(builder.Host, cancellationToken);
-                HostName = hostEntry.HostName;
-                IpAddresses = hostEntry.AddressList;
-                Aliases = hostEntry.Aliases;
-
-                if (IpAddresses.Length > 0 && !IpEndPoint.IsValid())
-                {
-                    IpAddress = IpAddresses[0];
-                }
-
-                IsDnsResolved = true;
-            }
-            catch (Exception e)
-            {
-                App.WriteLine(e);
-            }
-        }
-
         if (!IpEndPoint.IsValid())
         {
             IpAddress = result.IpAddress;
+        }
+
+        if (ProtocolType != ServiceProtocolType.HTTP)
+        {
+            await ResolveDnsAsync(cancellationToken: cancellationToken);
         }
 
         LastExecutedDateTime = DateTime.Now;
@@ -687,6 +679,106 @@ public abstract partial class BasePingableCollectionObject<T> : ObservableObject
     /// Rebuilds the statistic cache of the service from the <see cref="Pings"/> collection.
     /// </summary>
     protected virtual void RebuildStatisticCore() { }
+
+    protected string GetDnsLookupTarget()
+    {
+        if (ProtocolType is ServiceProtocolType.TCP or ServiceProtocolType.UDP or ServiceProtocolType.NTP)
+        {
+            var scheme = ProtocolType == ServiceProtocolType.TCP ? "tcp" : "udp";
+            if (Uri.TryCreate($"{scheme}://{IpAddressOrUrl}", UriKind.Absolute, out var uri))
+            {
+                return uri.IdnHost;
+            }
+        }
+        else if (ProtocolType == ServiceProtocolType.HTTP
+                 && Uri.TryCreate(IpAddressOrUrl, UriKind.Absolute, out var uri))
+        {
+            return uri.IdnHost;
+        }
+
+        return IpAddressOrUrl;
+    }
+
+    protected void ResolveDns(bool updateEndpointAddress = false)
+    {
+        if (!TryBeginDnsResolution()) return;
+
+        try
+        {
+            ApplyDnsResult(Dns.GetHostEntry(GetDnsLookupTarget()), updateEndpointAddress);
+        }
+        catch (Exception e)
+        {
+            App.WriteLine(e);
+        }
+        finally
+        {
+            Volatile.Write(ref _isDnsResolutionInProgress, 0);
+        }
+    }
+
+    protected async ValueTask ResolveDnsAsync(
+        bool updateEndpointAddress = false,
+        CancellationToken cancellationToken = default)
+    {
+        if (!TryBeginDnsResolution()) return;
+
+        try
+        {
+            var hostEntry = await Dns.GetHostEntryAsync(GetDnsLookupTarget(), cancellationToken);
+            ApplyDnsResult(hostEntry, updateEndpointAddress);
+        }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+        {
+            throw;
+        }
+        catch (Exception e)
+        {
+            App.WriteLine(e);
+        }
+        finally
+        {
+            Volatile.Write(ref _isDnsResolutionInProgress, 0);
+        }
+    }
+
+    private bool TryBeginDnsResolution()
+    {
+        if (IsDnsResolved || Volatile.Read(ref _dnsResolutionAttempts) >= MaxDnsResolutionAttempts)
+        {
+            return false;
+        }
+
+        if (Interlocked.CompareExchange(ref _isDnsResolutionInProgress, 1, 0) != 0)
+        {
+            return false;
+        }
+
+        if (IsDnsResolved || Volatile.Read(ref _dnsResolutionAttempts) >= MaxDnsResolutionAttempts)
+        {
+            Volatile.Write(ref _isDnsResolutionInProgress, 0);
+            return false;
+        }
+
+        Interlocked.Increment(ref _dnsResolutionAttempts);
+        return true;
+    }
+
+    private void ApplyDnsResult(IPHostEntry hostEntry, bool updateEndpointAddress)
+    {
+        HostName = hostEntry.HostName;
+        IpAddresses = hostEntry.AddressList;
+        Aliases = hostEntry.Aliases;
+
+        if (IpAddresses.Length == 0) return;
+
+        if (updateEndpointAddress || !IpEndPoint.IsValid())
+        {
+            IpAddress = IpAddresses[0];
+        }
+
+        IsDnsResolved = true;
+    }
     #endregion
 
     #region Commands
@@ -762,6 +854,16 @@ public abstract partial class BasePingableCollectionObject<T> : ObservableObject
 
         LastPing = item;
         Pings.Insert(0, item);
+        TrimPingsToCacheLimit();
+    }
+
+    internal void TrimPingsToCacheLimit()
+    {
+        var maxReplies = App.AppSettings.PingServices.MaxRepliesCache;
+        if (maxReplies > 0)
+        {
+            Pings.RemoveExceedingAt(maxReplies, CollectionSide.Tail);
+        }
     }
 
     /// <inheritdoc />

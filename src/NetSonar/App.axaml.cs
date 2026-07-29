@@ -25,7 +25,9 @@ public partial class App : Application
     /// <summary>
     /// Mutex to prevent multiple instances of the application from running.
     /// </summary>
+#pragma warning disable CS0649 // Field is never assigned to, and will always have its default value
     private static ApplicationInstanceGuard? _appInstanceGuard;
+#pragma warning restore CS0649 // Field is never assigned to, and will always have its default value
     //private static readonly Mutex AppMutex = new(true, $"Mutex_{Environment.UserDomainName}_{Environment.UserName}_{EntryApplication.AssemblyName}_{{8AEA6BAE-D5D5-49FA-8A8E-479FFC369D5D}}");
 
     public const bool IsDebug =

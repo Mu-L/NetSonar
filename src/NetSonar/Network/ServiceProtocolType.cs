@@ -15,4 +15,7 @@ public enum ServiceProtocolType
 
     [Description("HTTP: Hypertext Transfer Protocol")]
     HTTP,
+
+    [Description("NTP: Network Time Protocol")]
+    NTP,
 }

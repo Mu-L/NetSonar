@@ -7,18 +7,8 @@ using ZLinq;
 
 namespace NetSonar.Avalonia.Network;
 
-public record DnsProvider
+public record DnsProvider : BaseProvider
 {
-    /// <summary>
-    /// The name of the DNS provider.
-    /// </summary>
-    public required string ProviderName { get; init; } = string.Empty;
-
-    /// <summary>
-    /// The notes of the DNS.
-    /// </summary>
-    public string Notes { get; init; } = string.Empty;
-
     /// <summary>
     /// The block categories of the DNS provider.
     /// </summary>
@@ -76,6 +66,8 @@ public record DnsProvider
     /// The quic DNS address.
     /// </summary>
     public string QuicAddress => string.IsNullOrEmpty(DomainAddress) ? string.Empty : $"quic://{DomainAddress}";
+
+    public override string FormatedDescription => $"{ProviderName} ({string.Join(", ", BlockCategories)})";
 
     [SetsRequiredMembers]
     public DnsProvider(string providerName, DnsBlockCategories blockCategories,

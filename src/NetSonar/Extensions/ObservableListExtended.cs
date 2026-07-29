@@ -9,7 +9,7 @@ public class ObservableListExtended<T> : ObservableList<T>
 {
     public int MaxItemCount { get; set; }
 
-    public ObservableListExtended() : base()
+    public ObservableListExtended()
     {
         CollectionChanged += ObservableListExtended_CollectionChanged;
     }
