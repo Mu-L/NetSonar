@@ -48,24 +48,19 @@ public record DnsProvider : BaseProvider
     public required IPAddress DNSv6SecondaryAddress { get; init; } = IPAddress.IPv6Any;
 
     /// <summary>
-    /// The DNS domain address if contain any tls or https.
-    /// </summary>
-    public string DomainAddress { get; init; } = string.Empty;
-
-    /// <summary>
     /// The https DNS address.
     /// </summary>
-    public string HttpsAddress => string.IsNullOrEmpty(DomainAddress) ? string.Empty : $"https://{DomainAddress}/dns-query";
+    public string HttpsAddress => string.IsNullOrEmpty(Hostname) ? string.Empty : $"https://{Hostname}/dns-query";
 
     /// <summary>
     /// The tls DNS address.
     /// </summary>
-    public string TlsAddress => string.IsNullOrEmpty(DomainAddress) ? string.Empty : $"tls://{DomainAddress}";
+    public string TlsAddress => string.IsNullOrEmpty(Hostname) ? string.Empty : $"tls://{Hostname}";
 
     /// <summary>
     /// The quic DNS address.
     /// </summary>
-    public string QuicAddress => string.IsNullOrEmpty(DomainAddress) ? string.Empty : $"quic://{DomainAddress}";
+    public string QuicAddress => string.IsNullOrEmpty(Hostname) ? string.Empty : $"quic://{Hostname}";
 
     public override string FormatedDescription => $"{ProviderName} ({string.Join(", ", BlockCategories)})";
 
@@ -73,26 +68,26 @@ public record DnsProvider : BaseProvider
     public DnsProvider(string providerName, DnsBlockCategories blockCategories,
         IPAddress dnsv4PrimaryAddress, IPAddress dnsv4SecondaryAddress,
         IPAddress dnsv6PrimaryAddress, IPAddress dnsv6SecondaryAddress,
-        string domainAddress = "")
+        string hostname = "")
     {
+        ProtocolType = ServiceProtocolType.DNS;
         ProviderName = providerName;
         BlockCategories = blockCategories;
         DNSv4PrimaryAddress = dnsv4PrimaryAddress;
         DNSv4SecondaryAddress = dnsv4SecondaryAddress;
         DNSv6PrimaryAddress = dnsv6PrimaryAddress;
         DNSv6SecondaryAddress = dnsv6SecondaryAddress;
-
-        DomainAddress = domainAddress;
+        Hostname = hostname;
     }
 
     [SetsRequiredMembers]
     public DnsProvider(string providerName, DnsBlockCategories blockCategories,
         string dnsv4PrimaryAddress, string dnsv4SecondaryAddress,
         string dnsv6PrimaryAddress, string dnsv6SecondaryAddress,
-        string domainAddress = "") : this(providerName, blockCategories,
+        string hostname = "") : this(providerName, blockCategories,
         IPAddress.Parse(dnsv4PrimaryAddress), IPAddress.Parse(dnsv4SecondaryAddress),
         IPAddress.Parse(dnsv6PrimaryAddress), IPAddress.Parse(dnsv6SecondaryAddress),
-        domainAddress)
+        hostname)
     {
     }
 
@@ -100,10 +95,10 @@ public record DnsProvider : BaseProvider
     public DnsProvider(string providerName,
         string dnsv4PrimaryAddress, string dnsv4SecondaryAddress,
         string dnsv6PrimaryAddress, string dnsv6SecondaryAddress,
-        string domainAddress = "") : this(providerName, DnsBlockCategories.Unfiltered,
+        string hostname = "") : this(providerName, DnsBlockCategories.Unfiltered,
         IPAddress.Parse(dnsv4PrimaryAddress), IPAddress.Parse(dnsv4SecondaryAddress),
         IPAddress.Parse(dnsv6PrimaryAddress), IPAddress.Parse(dnsv6SecondaryAddress),
-        domainAddress)
+        hostname)
     {
     }
 

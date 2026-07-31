@@ -72,7 +72,7 @@ public partial class NetworkInterfacesPageModel : PageViewModelBase
     {
         _timer.Interval = TimeSpan.FromSeconds(AppSettings.NetworkInterfaces.RefreshEverySeconds);
         _timer.IsEnabled = AppSettings.NetworkInterfaces.AutoRefresh;
-        if (AppSettings.NetworkInterfaces.RefreshEverySeconds > 1) Refresh();
+        Refresh();
     }
 
     protected override void OnPropertyChanged(PropertyChangedEventArgs e)
@@ -126,6 +126,7 @@ public partial class NetworkInterfacesPageModel : PageViewModelBase
             else
             {
                 networkInterface = new NetworkInterfaceBridge(adapter);
+                networkInterface.Refresh();
                 Interfaces.Add(adapter.Id, networkInterface);
             }
 
@@ -143,7 +144,8 @@ public partial class NetworkInterfacesPageModel : PageViewModelBase
         {
             foreach (var key in keysToRemove.Span)
             {
-                Interfaces.Remove(key);
+                if (!Interfaces.Remove(key, out var networkInterface)) continue;
+                networkInterface.Dispose();
             }
         }
 

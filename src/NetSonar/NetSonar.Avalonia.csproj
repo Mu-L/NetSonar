@@ -38,7 +38,7 @@
         <PackageReference Include="StageKit" Version="0.2.4" />
 
         <!-- UI Theme -->
-        <PackageReference Include="SukiUI" Version="7.0.2-nightly20260625" />
+        <PackageReference Include="SukiUI" Version="7.0.2-nightly20260731" />
         <PackageReference Include="Svg.Controls.Avalonia" Version="12.0.0.13" />
 
         <!-- Microsoft -->

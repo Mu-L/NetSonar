@@ -14,10 +14,10 @@
         <Authors>Tiago Conceição</Authors>
         <Copyright>Copyright 2025-$([System.DateTime]::Now.ToString(`yyyy`)) © $(Company)</Copyright>
         <Summary>Network diagnostics tools for pinging, scanning, and analyzing hosts</Summary>
-        <Description>NetSonar is a network diagnostics tool for pinging hosts (ICMP/TCP/UDP/HTTP), managing network interfaces, and discovering local devices/services.
+        <Description>NetSonar is a network diagnostics tool for probing hosts and services with ICMP, TCP, UDP, TLS, DNS, NTP, HTTP, WebSocket, SSH, SMTP, IMAP, MQTT, STUN, and SIP, managing network interfaces, and discovering local devices/services.
 Features multi-protocol latency checks, subnet scanning, port/service detection, and real-time interface configuration.
 Designed for administrators and developers needing lightweight, cross-platform network analysis.</Description>
-        <Version>0.3.2</Version>
+        <Version>0.4.0</Version>
 
         <!-- Package -->
         <ApplicationIcon>$(MSBuildThisFileDirectory)media\$(ProductName).ico</ApplicationIcon>
@@ -42,7 +42,7 @@ Designed for administrators and developers needing lightweight, cross-platform n
 
         <!-- Avalonia -->
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-        <AvaloniaVersion>12.1.0</AvaloniaVersion>
+        <AvaloniaVersion>12.1.1</AvaloniaVersion>
 
         <!-- MvvmToolkit -->
         <MvvmToolkitEnableINotifyPropertyChangingSupport>false</MvvmToolkitEnableINotifyPropertyChangingSupport>

@@ -77,12 +77,37 @@ public partial class NewPingService : ObservableValidatorExtended
         if (context.ObjectInstance is not NewPingService service)
             return new ValidationResult("Invalid type on the validator.");
 
-        if (!IPEndPoint.TryParse(ipAddressOrUrl, out var result))
+        var usesSocketEndpoint = service.ProtocolType is ServiceProtocolType.TCP
+            or ServiceProtocolType.UDP
+            or ServiceProtocolType.TLS
+            or ServiceProtocolType.DNS
+            or ServiceProtocolType.NTP
+            or ServiceProtocolType.SSH
+            or ServiceProtocolType.SMTP
+            or ServiceProtocolType.IMAP
+            or ServiceProtocolType.MQTT
+            or ServiceProtocolType.STUN
+            or ServiceProtocolType.SIP;
+        var isValidAddress = IPEndPoint.TryParse(ipAddressOrUrl, out _);
+
+        if (!isValidAddress && usesSocketEndpoint)
         {
-            if (!Uri.IsWellFormedUriString(ipAddressOrUrl, UriKind.RelativeOrAbsolute))
-            {
-                return new ValidationResult("The string is not an valid ip address nor an url.");
-            }
+            var scheme = service.ProtocolType is ServiceProtocolType.TCP
+                or ServiceProtocolType.TLS
+                or ServiceProtocolType.SSH
+                or ServiceProtocolType.SMTP
+                or ServiceProtocolType.IMAP
+                or ServiceProtocolType.MQTT
+                ? "tcp"
+                : "udp";
+            isValidAddress = Uri.TryCreate($"{scheme}://{ipAddressOrUrl}", UriKind.Absolute, out var endpointUri)
+                             && !string.IsNullOrWhiteSpace(endpointUri.IdnHost);
+        }
+
+        if (!isValidAddress
+            && !Uri.IsWellFormedUriString(ipAddressOrUrl, UriKind.RelativeOrAbsolute))
+        {
+            return new ValidationResult("The string is not a valid IP address, hostname, or URL.");
         }
 
         if (service.ProtocolType is ServiceProtocolType.ICMP)
@@ -97,11 +122,19 @@ public partial class NewPingService : ObservableValidatorExtended
                 return new ValidationResult($"The {service.ProtocolType} protocol must contain a port number.");
         }
 
-        if (service.ProtocolType is ServiceProtocolType.ICMP or ServiceProtocolType.TCP or ServiceProtocolType.UDP or ServiceProtocolType.NTP)
+        if (service.ProtocolType == ServiceProtocolType.ICMP || usesSocketEndpoint)
         {
             if (ipAddressOrUrl.Contains('/'))
                 return new ValidationResult(
                     $"The address must not contain path separator '/' for the {service.ProtocolType} protocol.");
+        }
+
+        if (service.ProtocolType == ServiceProtocolType.WebSocket
+            && ipAddressOrUrl.Contains("://", StringComparison.Ordinal)
+            && (!Uri.TryCreate(ipAddressOrUrl, UriKind.Absolute, out var webSocketUri)
+                || webSocketUri.Scheme is not ("ws" or "wss")))
+        {
+            return new ValidationResult("The WebSocket address must use the ws:// or wss:// scheme.");
         }
 
         return ValidationResult.Success;

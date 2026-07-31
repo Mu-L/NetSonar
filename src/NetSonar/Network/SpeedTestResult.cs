@@ -88,7 +88,7 @@ public record SpeedTestResultStream
 {
 
     /// <summary>
-    /// Bandwidth in bits per second
+    /// Bandwidth in bytes per second.
     /// </summary>
     [JsonPropertyName("bandwidth")]
     public int Bandwidth { get; init; }
@@ -97,19 +97,19 @@ public record SpeedTestResultStream
     /// Gets the bandwidth in bytes per second.
     /// </summary>
     [JsonIgnore]
-    public int BandwidthBps => Bandwidth / 8;
+    public int BandwidthBps => Bandwidth;
 
     /// <summary>
     /// Bandwidth in Megabits per second
     /// </summary>
     [JsonIgnore]
-    public int BandwidthMbps => Bandwidth / 124_000;
+    public double BandwidthMbps => Math.Round(Bandwidth / 125_000d, 2, MidpointRounding.AwayFromZero);
 
     /// <summary>
     /// Bandwidth in Megabytes per second
     /// </summary>
     [JsonIgnore]
-    public int BandwidthMBps => BandwidthBps / 124_000;
+    public double BandwidthMBps => Math.Round(Bandwidth / 1_000_000d, 2, MidpointRounding.AwayFromZero);
 
     /// <summary>
     /// Total bytes transferred

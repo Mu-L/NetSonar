@@ -403,22 +403,22 @@
 
                     <DockPanel HorizontalSpacing="10" VerticalSpacing="10">
 
-                        <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="10">
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="10">
                             <ProgressBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                                          Value="{Binding DisplayResult.Download.Progress, FallbackValue=0}"
                                          MinWidth="140"
                                          Minimum="0"
                                          Maximum="1"
-                                         IsVisible="{Binding DisplayResult.Download.Progress, FallbackValue={x:False}}" />
+                                         IsVisible="{Binding !!DisplayResult.Download.Progress, FallbackValue={x:False}}" />
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Classes="bold" Text="Jitter:" IsVisible="{Binding !!DisplayResult.Download.Latency.Jitter, FallbackValue={x:False}}"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding DisplayResult.Download.Latency.Jitter, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Download.Latency.Jitter, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Classes="bold" Text="Jitter:" IsVisible="{Binding !!DisplayResult.Download.Latency.Jitter, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DisplayResult.Download.Latency.Jitter, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Download.Latency.Jitter, FallbackValue={x:False}}"/>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Classes="bold" Text="Low:" IsVisible="{Binding !!DisplayResult.Download.Latency.Low, FallbackValue={x:False}}"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DisplayResult.Download.Latency.Low, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Download.Latency.Low, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Classes="bold" Text="Low:" IsVisible="{Binding !!DisplayResult.Download.Latency.Low, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding DisplayResult.Download.Latency.Low, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Download.Latency.Low, FallbackValue={x:False}}"/>
 
-                            <TextBlock Grid.Row="2" Grid.Column="0" Classes="bold" Text="High:" IsVisible="{Binding !!DisplayResult.Download.Latency.High, FallbackValue={x:False}}"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding DisplayResult.Download.Latency.High, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Download.Latency.High, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Classes="bold" Text="High:" IsVisible="{Binding !!DisplayResult.Download.Latency.High, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding DisplayResult.Download.Latency.High, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Download.Latency.High, FallbackValue={x:False}}"/>
                         </Grid>
 
 
@@ -468,16 +468,16 @@
                                          MinWidth="140"
                                          Minimum="0"
                                          Maximum="1"
-                                         IsVisible="{Binding DisplayResult.Upload.Progress, FallbackValue={x:False}}" />
+                                         IsVisible="{Binding !!DisplayResult.Upload.Progress, FallbackValue={x:False}}" />
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Classes="bold" Text="Jitter:" IsVisible="{Binding !!DisplayResult.Upload.Latency.Jitter, FallbackValue={x:False}}"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding DisplayResult.Upload.Latency.Jitter, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Upload.Latency.Jitter, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Classes="bold" Text="Jitter:" IsVisible="{Binding !!DisplayResult.Upload.Latency.Jitter, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DisplayResult.Upload.Latency.Jitter, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Upload.Latency.Jitter, FallbackValue={x:False}}"/>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Classes="bold" Text="Low:" IsVisible="{Binding !!DisplayResult.Upload.Latency.Low, FallbackValue={x:False}}"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DisplayResult.Upload.Latency.Low, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Upload.Latency.Low, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Classes="bold" Text="Low:" IsVisible="{Binding !!DisplayResult.Upload.Latency.Low, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding DisplayResult.Upload.Latency.Low, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Upload.Latency.Low, FallbackValue={x:False}}"/>
 
-                            <TextBlock Grid.Row="2" Grid.Column="0" Classes="bold" Text="High:" IsVisible="{Binding !!DisplayResult.Upload.Latency.High, FallbackValue={x:False}}"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding DisplayResult.Upload.Latency.High, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Upload.Latency.High, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Classes="bold" Text="High:" IsVisible="{Binding !!DisplayResult.Upload.Latency.High, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding DisplayResult.Upload.Latency.High, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Upload.Latency.High, FallbackValue={x:False}}"/>
 
                         </Grid>
 

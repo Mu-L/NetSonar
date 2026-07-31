@@ -2,6 +2,7 @@
 using Avalonia.Controls.Notifications;
 using Avalonia.Input;
 using Avalonia.Platform.Storage;
+using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Material.Icons;
@@ -17,8 +18,6 @@ using System.IO;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
-using Timer = System.Timers.Timer;
 
 namespace NetSonar.Avalonia.ViewModels;
 
@@ -28,9 +27,9 @@ public partial class SpeedTestPageModel : PageViewModelBase
     public override string DisplayName => "Speed Test";
     public override MaterialIconKind Icon => MaterialIconKind.SpeedometerMedium;
 
-    private readonly Timer _timer = new(3_600_000);
+    private readonly DispatcherTimer _timer = new();
 
-    private CancellationTokenSource _cancellationTokenSource = new();
+    private CancellationTokenSource? _cancellationTokenSource;
 
     public static ObservableList<SpeedTestResult> Results => SpeedTestsFile.Instance.Items;
 
@@ -107,9 +106,8 @@ public partial class SpeedTestPageModel : PageViewModelBase
         AngularMeterMediumSpeedSeries = AppSettings.SpeedTest.InitialSpeedGaugeRange / 4;
         AngularMeterFastSpeedSeries = AppSettings.SpeedTest.InitialSpeedGaugeRange - AngularMeterSlowSpeedSeries - AngularMeterMediumSpeedSeries;
 
-        _timer.Interval = AppSettings.SpeedTest.AutoSpeedTestIntervalSeconds * 1000;
-        _timer.Enabled = AppSettings.SpeedTest.AutoSpeedTest;
-        _timer.Elapsed += TimerOnElapsed;
+        _timer.Tick += TimerOnTick;
+        UpdateAutoSpeedTestTimer();
 
         AppSettings.SpeedTest.PropertyChanged += SpeedTestOnPropertyChanged;
 
@@ -165,9 +163,8 @@ public partial class SpeedTestPageModel : PageViewModelBase
             var maxSpeed = Math.Max(DisplayResult.Download.BandwidthMbps, DisplayResult.Upload.BandwidthMbps);
             if (maxSpeed >= AngularMeterMaxValue)
             {
-                // Calculate the next multiple of 500 that is greater than or equal to Speed
-                var nextStep = ((maxSpeed / AppSettings.SpeedTest.SpeedGaugeRangeIncrement) + 1) * AppSettings.SpeedTest.SpeedGaugeRangeIncrement;
-                AngularMeterMaxValue = nextStep;
+                var increment = AppSettings.SpeedTest.SpeedGaugeRangeIncrement;
+                AngularMeterMaxValue = (int)(Math.Ceiling(maxSpeed / increment) * increment);
             }
         }
     }
@@ -176,15 +173,28 @@ public partial class SpeedTestPageModel : PageViewModelBase
     {
         if (e.PropertyName == nameof(AppSettings.SpeedTest.AutoSpeedTest))
         {
-            _timer.Enabled = AppSettings.SpeedTest.AutoSpeedTest;
+            UpdateAutoSpeedTestTimer();
         }
         else if (e.PropertyName == nameof(AppSettings.SpeedTest.AutoSpeedTestIntervalSeconds))
         {
-            _timer.Interval = AppSettings.SpeedTest.AutoSpeedTestIntervalSeconds * 1000;
+            UpdateAutoSpeedTestTimer();
         }
     }
 
-    private void TimerOnElapsed(object? sender, ElapsedEventArgs e)
+    private void UpdateAutoSpeedTestTimer()
+    {
+        var intervalSeconds = AppSettings.SpeedTest.AutoSpeedTestIntervalSeconds;
+        if (intervalSeconds <= 0)
+        {
+            _timer.IsEnabled = false;
+            return;
+        }
+
+        _timer.Interval = TimeSpan.FromSeconds(intervalSeconds);
+        _timer.IsEnabled = AppSettings.SpeedTest.AutoSpeedTest;
+    }
+
+    private void TimerOnTick(object? sender, EventArgs e)
     {
         _ = StartSpeedTest();
     }
@@ -252,11 +262,14 @@ public partial class SpeedTestPageModel : PageViewModelBase
     public async Task StartSpeedTest()
     {
         if (IsRunning) return;
+
+        var cancellationTokenSource = new CancellationTokenSource();
+        _cancellationTokenSource = cancellationTokenSource;
         IsRunning = true;
 
         try
         {
-            await foreach (var result in SpeedTestService.StartSpeedTest(SelectedServer, _cancellationTokenSource.Token))
+            await foreach (var result in SpeedTestService.StartSpeedTest(SelectedServer, cancellationTokenSource.Token))
             {
                 if (result.HasError)
                 {
@@ -311,11 +324,9 @@ public partial class SpeedTestPageModel : PageViewModelBase
                 }
             }
         }
-        catch (OperationCanceledException)
+        catch (OperationCanceledException) when (cancellationTokenSource.IsCancellationRequested)
         {
-            //App.ShowToast(NotificationType.Information, "Speed test canceleed");
-            _cancellationTokenSource.Dispose();
-            _cancellationTokenSource = new CancellationTokenSource();
+            // The active speed test was stopped by the user.
         }
         catch (Exception e)
         {
@@ -323,6 +334,12 @@ public partial class SpeedTestPageModel : PageViewModelBase
         }
         finally
         {
+            if (ReferenceEquals(_cancellationTokenSource, cancellationTokenSource))
+            {
+                _cancellationTokenSource = null;
+            }
+
+            cancellationTokenSource.Dispose();
             IsRunning = false;
         }
 
@@ -331,8 +348,10 @@ public partial class SpeedTestPageModel : PageViewModelBase
     [RelayCommand]
     public async Task StopSpeedTest()
     {
-        await _cancellationTokenSource.CancelAsync();
-        IsRunning = false;
+        var cancellationTokenSource = _cancellationTokenSource;
+        if (cancellationTokenSource is null) return;
+
+        await cancellationTokenSource.CancelAsync();
     }
 
     [RelayCommand]

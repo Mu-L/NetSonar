@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{4C35FC4D-8
 		LICENSE = LICENSE
 		README.md = README.md
 		TermsOfUse.md = TermsOfUse.md
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "build", "build\build.csproj", "{6195A1E1-AE3A-44A1-8B6C-7E57100117FD}"

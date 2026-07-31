@@ -83,22 +83,43 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
     }
 
     [RelayCommand]
-    public void ImportPublicDns()
+    public void ImportAllPublicProtocolHosts()
     {
         PurgeEmptyRecords();
+
+
         AddUniques(DnsProvider.DnsProviders
             .Where(dnsProvider => dnsProvider.DNSv4PrimaryAddress.IsValid())
-            .Select(dnsProvider => new NewPingService(ServiceProtocolType.ICMP, dnsProvider.DNSv4PrimaryAddress,
-                dnsProvider.FormatedDescription, "DNS")));
+            .Select(dnsProvider => new NewPingService(ServiceProtocolType.DNS,
+                dnsProvider.DNSv4PrimaryAddress,
+                dnsProvider.FormatedDescription,
+                nameof(ServiceProtocolType.DNS))));
+
+        AddUniques(BaseProvider.PublicHosts
+            .Select(provider => new NewPingService(provider.ProtocolType, provider.Address,
+                provider.FormatedDescription, provider.ProtocolType.ToString())));
     }
 
     [RelayCommand]
-    public void ImportPublicNtp()
+    public void ImportPublicProtocolHosts(ServiceProtocolType protocolType)
     {
         PurgeEmptyRecords();
-        AddUniques(NtpProvider.NtpProviders
-            .Select(ntpProvider => new NewPingService(ServiceProtocolType.NTP, ntpProvider.Hostname,
-                ntpProvider.FormatedDescription, "NTP")));
+
+        if (protocolType == ServiceProtocolType.DNS)
+        {
+            AddUniques(DnsProvider.DnsProviders
+                .Where(dnsProvider => dnsProvider.DNSv4PrimaryAddress.IsValid())
+                .Select(dnsProvider => new NewPingService(ServiceProtocolType.DNS,
+                    dnsProvider.DNSv4PrimaryAddress,
+                    dnsProvider.FormatedDescription,
+                    nameof(ServiceProtocolType.DNS))));
+            return;
+        }
+
+        AddUniques(BaseProvider.PublicHosts
+            .Where(provider => provider.ProtocolType == protocolType)
+            .Select(provider => new NewPingService(provider.ProtocolType, provider.Address,
+                provider.FormatedDescription, provider.ProtocolType.ToString())));
     }
 
     [RelayCommand]
@@ -130,7 +151,7 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
     {
         for (var i = Services.Count - 1; i >= 0; i--)
         {
-            if (string.IsNullOrWhiteSpace(Services[0].IpAddressOrUrl)) Services.RemoveAt(i);
+            if (string.IsNullOrWhiteSpace(Services[i].IpAddressOrUrl)) Services.RemoveAt(i);
         }
     }
 

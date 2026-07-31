@@ -9,6 +9,7 @@ using Avalonia.Threading;
 using System.Threading;
 using System.Net;
 using System.Text.Json.Serialization;
+using DotNext.Threading;
 using ObservableCollections;
 using ZLinq;
 
@@ -432,6 +433,12 @@ public abstract partial class BasePingableCollectionObject<T> : ObservableObject
             if (!ipAddressOrUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                 ipAddressOrUrl = $"http://{ipAddressOrUrl}";
         }
+        else if (protocolType == ServiceProtocolType.WebSocket
+                 && !ipAddressOrUrl.StartsWith("ws://", StringComparison.OrdinalIgnoreCase)
+                 && !ipAddressOrUrl.StartsWith("wss://", StringComparison.OrdinalIgnoreCase))
+        {
+            ipAddressOrUrl = $"ws://{ipAddressOrUrl}";
+        }
 
         SinceDateTime = DateTime.Now;
         ProtocolType = protocolType;
@@ -441,16 +448,37 @@ public abstract partial class BasePingableCollectionObject<T> : ObservableObject
 
         if (IPEndPoint.TryParse(ipAddressOrUrl, out var endpoint))
         {
-            if (protocolType == ServiceProtocolType.NTP && endpoint.Port <= IPEndPoint.MinPort)
+            if (endpoint.Port <= IPEndPoint.MinPort)
             {
-                endpoint.Port = PingableService.DefaultNtpPort;
+                var defaultPort = PingableService.GetDefaultPort(protocolType);
+                if (defaultPort > IPEndPoint.MinPort)
+                {
+                    endpoint.Port = defaultPort;
+                }
             }
 
             IpEndPoint = endpoint;
         }
-        else if (protocolType is ServiceProtocolType.TCP or ServiceProtocolType.UDP or ServiceProtocolType.NTP)
+        else if (protocolType is ServiceProtocolType.TCP
+                 or ServiceProtocolType.UDP
+                 or ServiceProtocolType.TLS
+                 or ServiceProtocolType.DNS
+                 or ServiceProtocolType.NTP
+                 or ServiceProtocolType.SSH
+                 or ServiceProtocolType.SMTP
+                 or ServiceProtocolType.IMAP
+                 or ServiceProtocolType.MQTT
+                 or ServiceProtocolType.STUN
+                 or ServiceProtocolType.SIP)
         {
-            var scheme = protocolType == ServiceProtocolType.TCP ? "tcp" : "udp";
+            var scheme = protocolType is ServiceProtocolType.TCP
+                or ServiceProtocolType.TLS
+                or ServiceProtocolType.SSH
+                or ServiceProtocolType.SMTP
+                or ServiceProtocolType.IMAP
+                or ServiceProtocolType.MQTT
+                ? "tcp"
+                : "udp";
             if (!Uri.TryCreate($"{scheme}://{ipAddressOrUrl}", UriKind.Absolute, out var uri)
                 || string.IsNullOrWhiteSpace(uri.IdnHost))
             {
@@ -460,16 +488,28 @@ public abstract partial class BasePingableCollectionObject<T> : ObservableObject
             var port = uri.Port;
             if (port <= IPEndPoint.MinPort)
             {
-                if (protocolType != ServiceProtocolType.NTP)
+                port = PingableService.GetDefaultPort(protocolType);
+                if (port <= IPEndPoint.MinPort)
                 {
                     throw new ArgumentException($"Invalid {protocolType} host and port ({ipAddressOrUrl}).", nameof(ipAddressOrUrl));
                 }
-
-                port = PingableService.DefaultNtpPort;
             }
 
             HostName = uri.IdnHost;
             IpEndPoint.Port = port;
+        }
+        else if (protocolType == ServiceProtocolType.WebSocket)
+        {
+            if (!Uri.TryCreate(ipAddressOrUrl, UriKind.Absolute, out var uri)
+                || uri.Scheme is not ("ws" or "wss")
+                || string.IsNullOrWhiteSpace(uri.IdnHost)
+                || uri.Port <= IPEndPoint.MinPort)
+            {
+                throw new ArgumentException($"Invalid {protocolType} address ({ipAddressOrUrl}).", nameof(ipAddressOrUrl));
+            }
+
+            HostName = uri.IdnHost;
+            IpEndPoint.Port = uri.Port;
         }
         else
         {
@@ -575,10 +615,7 @@ public abstract partial class BasePingableCollectionObject<T> : ObservableObject
             IpAddress = result.IpAddress;
         }
 
-        if (ProtocolType != ServiceProtocolType.HTTP)
-        {
-            await ResolveDnsAsync(cancellationToken: cancellationToken);
-        }
+        await ResolveDnsAsync(cancellationToken: cancellationToken);
 
         LastExecutedDateTime = DateTime.Now;
         IsBusy = false;
@@ -682,15 +719,32 @@ public abstract partial class BasePingableCollectionObject<T> : ObservableObject
 
     protected string GetDnsLookupTarget()
     {
-        if (ProtocolType is ServiceProtocolType.TCP or ServiceProtocolType.UDP or ServiceProtocolType.NTP)
+        if (ProtocolType is ServiceProtocolType.TCP
+            or ServiceProtocolType.UDP
+            or ServiceProtocolType.TLS
+            or ServiceProtocolType.DNS
+            or ServiceProtocolType.NTP
+            or ServiceProtocolType.SSH
+            or ServiceProtocolType.SMTP
+            or ServiceProtocolType.IMAP
+            or ServiceProtocolType.MQTT
+            or ServiceProtocolType.STUN
+            or ServiceProtocolType.SIP)
         {
-            var scheme = ProtocolType == ServiceProtocolType.TCP ? "tcp" : "udp";
+            var scheme = ProtocolType is ServiceProtocolType.TCP
+                or ServiceProtocolType.TLS
+                or ServiceProtocolType.SSH
+                or ServiceProtocolType.SMTP
+                or ServiceProtocolType.IMAP
+                or ServiceProtocolType.MQTT
+                ? "tcp"
+                : "udp";
             if (Uri.TryCreate($"{scheme}://{IpAddressOrUrl}", UriKind.Absolute, out var uri))
             {
                 return uri.IdnHost;
             }
         }
-        else if (ProtocolType == ServiceProtocolType.HTTP
+        else if (ProtocolType is (ServiceProtocolType.HTTP or ServiceProtocolType.WebSocket)
                  && Uri.TryCreate(IpAddressOrUrl, UriKind.Absolute, out var uri))
         {
             return uri.IdnHost;

@@ -1,7 +1,21 @@
-# v0.3.2 (29/07/2026)
+# v0.4.0 (31/07/2026)
 
 - Add NTP as a distinct service protocol with standard request packet creation, default port 123, request correlation, and response validation
 - Add a catalogue of public NTP servers and an option to import them from the Add Ping Services dialog
+- Add DNS as a distinct service protocol with default port 53, request correlation, response validation, text-list parsing, and public resolver imports
+- Add SMTP probes with default port 25 and complete `220` greeting validation
+- Add WebSocket probes for `ws://` and `wss://` endpoints, including custom ports and paths
+- Add MQTT 3.1.1 probes with default port 1883, randomized client identifiers, and CONNACK validation
+- Add TLS probes with default port 443, SNI, negotiated-version reporting, and system certificate validation
+- Add SSH probes with default port 22 and SSH 2.0 identification validation
+- Add STUN Binding probes with default port 3478, transaction correlation, and mapped-address validation
+- Add SIP OPTIONS probes over UDP with default port 5060, transaction correlation, provisional-response handling, and final status validation
+- Add IMAP probes with default port 143, greeting validation, and a tagged CAPABILITY exchange
+- Add a shared public-host catalogue with multiple credential-free TLS, NTP, HTTP, WebSocket, SSH, SMTP, IMAP, MQTT, STUN, and SIP endpoints
+- Expand the public-host catalogue with Let's Encrypt, Azure DevOps, Codeberg, Fastmail, Eclipse IoT, and Twilio endpoints
+- Add individual public-host import actions for TLS, DNS, NTP, HTTP, WebSocket, SSH, SMTP, IMAP, MQTT, STUN, and SIP
+- Add implicit TLS, certificate validation, and hostname validation to IMAP probes on port 993
+- Fix public-service imports removing or retaining the wrong empty rows
 - Fix Windows ICMP probes timing out before the configured deadline by accounting for the platform's 500 ms timeout resolution
 - Fix TCP, UDP, and NTP hostname/port parsing, endpoint creation, address-family selection, and NTP default-port handling
 - Fix UDP probes reporting success from a connectionless sending alone by waiting for a response from the remote service
@@ -12,10 +26,16 @@
 - Fix service-list parsing so protocol prefixes, HTTP/HTTPS URLs, descriptions, groups, intervals, timeouts, buffer sizes, and NTP entries are handled independently
 - Cap configurable probe timeouts at 65,535 seconds and reuse unchanged ICMP `PingOptions`
 - Reduce probe allocations with pooled UDP/NTP buffers and allocation-free elapsed-time measurements
+- Keep pooled NTP request storage alive until asynchronous sends and response validation are complete
 - Replace the custom `FastObservableCollection` and MintPlayer dependencies with synchronized ObservableCollections views
-- Refactor shared DNS and NTP provider metadata into a common provider model
+- Refactor shared provider metadata into a common model and consolidate the public NTP catalogue into `BaseProvider`
 - Add DotNext buffer packages for allocation-aware networking and data-processing improvements
-
+- Fix the Network Interfaces page and adapter details not populating on the first refresh, including when automatic refresh is disabled
+- Dispose removed network-interface bridges and avoid constructing duplicate interface card controls
+- Run automatic speed tests on the UI dispatcher and prevent cancellation from exposing a premature ready state
+- Handle disabled automatic-test intervals, correct Speedtest bandwidth conversions, and separate phase progress from latency details
+- Upgrade AvaloniaUI from 12.1.0 to 12.1.1
+ 
 # v0.3.1 (20/07/2026)
 
 - Add `--portable` startup argument to run the app in portable mode. (#21)
@@ -27,7 +47,7 @@
 # v0.3.0 (24/05/2026)
 - Migrate core app infrastructure to StageKit/ApplicationKit: centralize birth/logs/config paths, application args, and unhandled-exception handling. 
 - Replace the per-user Mutex with ApplicationInstanceGuard and wire ApplicationKit.Logger. 
-- Remove legacy CrashReport and custom RootSettings/collection/subsettings implementations and adapt settings files (AppSettings, PingableServicesFile, SpeedTestsFile) to use ApplicationKit-based constructors, auto-save and new JSON options. 
+- Remove legacy CrashReport and custom RootSettings/collection/subsettings implementations and adapt settings files (AppSettings, PingableServicesFile, SpeedTestsFile) to use ApplicationKit-based constructors, auto-save, and new JSON options.
 - Update usages to UnhandledExceptions.HandleSafeException and adjust file I/O (timer, FileOptions).
 - Fix Call from invalid thread for Toasts (fixes #15)
 - Upgrade AvaloniaUI from 11.3.14 to 12.0.3

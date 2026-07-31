@@ -323,9 +323,7 @@
                 <ItemsRepeater.ItemTemplate>
                     <DataTemplate>
                         <fragments:NetworkInterfaceFragment Width="{Binding #Root.((viewModels:NetworkInterfacesPageModel)DataContext).AppSettings.NetworkInterfaces.CardWidth}"
-                                                            Height="{Binding #Root.((viewModels:NetworkInterfacesPageModel)DataContext).AppSettings.NetworkInterfaces.CardHeight}">
-                            <fragments:NetworkInterfaceFragment DataContext="{Binding .}" />
-                        </fragments:NetworkInterfaceFragment>
+                                                            Height="{Binding #Root.((viewModels:NetworkInterfacesPageModel)DataContext).AppSettings.NetworkInterfaces.CardHeight}" />
                     </DataTemplate>
                 </ItemsRepeater.ItemTemplate>
 

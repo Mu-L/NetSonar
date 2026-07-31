@@ -21,6 +21,8 @@
 							 Icon="/Assets/NetSonar.ico"
 							 WindowStartupLocation="CenterScreen"
 							 WindowState="{Binding AppSettings.LastWindowState}"
+							 RenderScaleX="{Binding AppSettings.UiScale}"
+							 RenderScaleY="{Binding AppSettings.UiScale}"
 							 mc:Ignorable="d">
 	<controls:SukiWindowExtended.KeyBindings>
 		<KeyBinding Command="{Binding ShowAboutDialogCommand}"
@@ -45,11 +47,5 @@
 	Content="{icon:MaterialIconExt Fullscreen}"
 	Click="Button_FullScreen_OnClick"/>
 	</suki:SukiWindow.RightWindowTitleBarControls>!-->
-	<LayoutTransformControl>
-		<LayoutTransformControl.LayoutTransform>
-			<ScaleTransform ScaleX="{Binding AppSettings.UiScale}"
-							ScaleY="{Binding AppSettings.UiScale}" />
-		</LayoutTransformControl.LayoutTransform>
-		<views:MainView />
-	</LayoutTransformControl>
+	<views:MainView />
 </controls:SukiWindowExtended>

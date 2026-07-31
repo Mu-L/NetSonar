@@ -61,12 +61,57 @@
                                 <MenuItem Command="{Binding ImportNetworkGatewaysCommand}"
                                           Header="Import network gateway(s)"
                                           Icon="{icon:MaterialIconExt Kind=ServerNetworkOutline}" />
-                                <MenuItem Command="{Binding ImportPublicDnsCommand}"
-                                          Header="Import public DNS"
-                                          Icon="{icon:MaterialIconExt Kind=LibraryOutline}" />
-                                <MenuItem Command="{Binding ImportPublicNtpCommand}"
-                                          Header="Import public NTP"
-                                          Icon="{icon:MaterialIconExt Kind=ClockOutline}" />
+                                <MenuItem Header="Import public hosts"
+                                          Icon="{icon:MaterialIconExt Kind=ServerNetwork}">
+                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
+                                              CommandParameter="{x:Static network:ServiceProtocolType.TLS}"
+                                              Header="TLS"
+                                              Icon="{icon:MaterialIconExt Kind=ShieldLockOutline}" />
+                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
+                                              CommandParameter="{x:Static network:ServiceProtocolType.DNS}"
+                                              Header="DNS"
+                                              Icon="{icon:MaterialIconExt Kind=DnsOutline}" />
+                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
+                                              CommandParameter="{x:Static network:ServiceProtocolType.NTP}"
+                                              Header="NTP"
+                                              Icon="{icon:MaterialIconExt Kind=ClockOutline}" />
+                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
+                                              CommandParameter="{x:Static network:ServiceProtocolType.HTTP}"
+                                              Header="HTTP"
+                                              Icon="{icon:MaterialIconExt Kind=WebCheck}" />
+                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
+                                              CommandParameter="{x:Static network:ServiceProtocolType.WebSocket}"
+                                              Header="WebSocket"
+                                              Icon="{icon:MaterialIconExt Kind=Web}" />
+                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
+                                              CommandParameter="{x:Static network:ServiceProtocolType.SSH}"
+                                              Header="SSH"
+                                              Icon="{icon:MaterialIconExt Kind=Console}" />
+                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
+                                              CommandParameter="{x:Static network:ServiceProtocolType.SMTP}"
+                                              Header="SMTP"
+                                              Icon="{icon:MaterialIconExt Kind=EmailSendOutline}" />
+                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
+                                              CommandParameter="{x:Static network:ServiceProtocolType.IMAP}"
+                                              Header="IMAP"
+                                              Icon="{icon:MaterialIconExt Kind=EmailReceiveOutline}" />
+                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
+                                              CommandParameter="{x:Static network:ServiceProtocolType.MQTT}"
+                                              Header="MQTT"
+                                              Icon="{icon:MaterialIconExt Kind=MessageProcessingOutline}" />
+                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
+                                              CommandParameter="{x:Static network:ServiceProtocolType.STUN}"
+                                              Header="STUN"
+                                              Icon="{icon:MaterialIconExt Kind=RouterWireless}" />
+                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
+                                              CommandParameter="{x:Static network:ServiceProtocolType.SIP}"
+                                              Header="SIP"
+                                              Icon="{icon:MaterialIconExt Kind=PhoneVoip}" />
+                                    <Separator/>
+                                    <MenuItem Command="{Binding ImportAllPublicProtocolHostsCommand}"
+                                              Header="Import All"
+                                              Icon="{icon:MaterialIconExt Kind=Import}" />
+                                </MenuItem>
                             </MenuFlyout>
                         </SplitButton.Flyout>
                     </SplitButton>
