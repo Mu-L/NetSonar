@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using Avalonia.Collections;
+using System.Collections.Specialized;
 using Avalonia.Media;
 using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
+using LiveChartsCore.Kernel;
 using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore;
 using NetSonar.Avalonia.Network;
@@ -15,7 +15,6 @@ using NetSonar.Avalonia.Extensions;
 using LiveChartsCore.Measure;
 using LiveChartsCore.Painting;
 using SukiUI.Models;
-using Avalonia.Data;
 using ZLinq;
 
 namespace NetSonar.Avalonia.ViewModels.Fragments;
@@ -32,6 +31,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             foreach (var service in _services)
             {
                 service.PingCompleted -= ServiceOnPingCompleted;
+                service.Pings.CollectionChanged -= ServicePingsOnCollectionChanged;
             }
 
             if (value.Length <= 1)
@@ -47,9 +47,10 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
                     .ToArray();
             }
 
-            foreach (var service in value)
+            foreach (var service in _services)
             {
                 service.PingCompleted += ServiceOnPingCompleted;
+                service.Pings.CollectionChanged += ServicePingsOnCollectionChanged;
             }
 
             Rebuild();
@@ -127,6 +128,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             new ColumnSeries<double>(RepliesTimeValuesCollection)
             {
                 Name = "Ping",
+                Mapping = MapFiniteValue,
                 // Defines the distance between every bars in the series
                 Padding = 0,
                 YToolTipLabelFormatter = point => $"{point.Model}ms",
@@ -141,6 +143,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             new LineSeries<double>(RepliesAvgTimeValuesCollection)
             {
                 Name = "Average",
+                Mapping = MapFiniteValue,
                 //Fill = null,
                 //Stroke = null,
                 YToolTipLabelFormatter = point => $"{point.Model}ms",
@@ -178,6 +181,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             {
                 Name = "Maximum",
                 Values = RepliesMaximumTimeValuesCollection,
+                Mapping = MapFiniteValue,
                 IgnoresBarPosition = true,
                 YToolTipLabelFormatter = point => $"{point.Model}ms",
                 Fill = new SolidColorPaint(new SKColor(127, 127, 127, 255)),
@@ -191,6 +195,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             {
                 Name = "Average",
                 Values = RepliesAvgTimeValuesCollection,
+                Mapping = MapFiniteValue,
                 IgnoresBarPosition = true,
                 YToolTipLabelFormatter = point => $"{point.Model}ms",
                 Fill = new SolidColorPaint(new SKColor(Brushes.DarkOrange.Color.ToUInt32())),
@@ -204,6 +209,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             {
                 Name = "Current",
                 Values = RepliesTimeValuesCollection,
+                Mapping = MapFiniteValue,
                 IgnoresBarPosition = true,
                 MaxBarWidth = 25,
                 YToolTipLabelFormatter = point => $"{point.Model}ms",
@@ -218,6 +224,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             {
                 Name = "Minimum",
                 Values = RepliesMinimumTimeValuesCollection,
+                Mapping = MapFiniteValue,
                 IgnoresBarPosition = true,
                 YToolTipLabelFormatter = point => $"{point.Model}ms",
                 Fill = new SolidColorPaint(new SKColor(Brushes.DarkGreen.Color.ToUInt32())),
@@ -275,33 +282,28 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
 
             var service = Services[0];
 
+            var maxReplies = AppSettings.PingServices.MaxRepliesGraphCache;
             var replies = service.Pings
                 .AsValueEnumerable()
-                .TakeLast(AppSettings.PingServices.MaxRepliesGraphCache > 0
-                    ? AppSettings.PingServices.MaxRepliesGraphCache
-                    : int.MaxValue).ToArray();
+                .Take(maxReplies > 0 ? maxReplies : int.MaxValue)
+                .ToArray();
 
             if (replies.Length == 0) return;
+
+            Array.Reverse(replies);
 
             var timeValues = new double[replies.Length];
             var avgTimeValues = new double[replies.Length];
             var labels = new string[replies.Length];
-            double avgTime = 0;
-            uint successCount = 0;
 
             for (var i = 0; i < replies.Length; i++)
             {
                 var reply = replies[i];
-                if (reply.IsSucceeded)
-                {
-                    avgTime += reply.Time;
-                    successCount++;
-                }
-
                 timeValues[i] = reply.Time;
-                avgTimeValues[i] = Math.Round(avgTime / successCount, 2, MidpointRounding.AwayFromZero);
                 labels[i] = reply.SentDateTime.ToLongTimeString();
             }
+
+            FillHistoricalAverageValues(service, replies, avgTimeValues);
 
             _repliesTimeValues.AddRange(timeValues);
             _repliesAvgTimeValues.AddRange(avgTimeValues);
@@ -344,9 +346,13 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             _repliesAvgTimeValues.Add(service.AverageTime);
             _repliesXAxes.Add(e.Reply.SentDateTime.ToLongTimeString());
 
-            _repliesTimeValues.RemoveExceedingAt(AppSettings.PingServices.MaxRepliesGraphCache, CollectionSide.Head);
-            _repliesAvgTimeValues.RemoveExceedingAt(AppSettings.PingServices.MaxRepliesGraphCache, CollectionSide.Head);
-            _repliesXAxes.RemoveExceedingAt(AppSettings.PingServices.MaxRepliesGraphCache, CollectionSide.Head);
+            var maxReplies = AppSettings.PingServices.MaxRepliesGraphCache;
+            if (maxReplies > 0)
+            {
+                _repliesTimeValues.RemoveExceedingAt(maxReplies, CollectionSide.Head);
+                _repliesAvgTimeValues.RemoveExceedingAt(maxReplies, CollectionSide.Head);
+                _repliesXAxes.RemoveExceedingAt(maxReplies, CollectionSide.Head);
+            }
         }
         else
         {
@@ -359,6 +365,46 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             //if (_repliesMaximumTimeValues[index] != service.MaximumTime) _repliesMaximumTimeValues[index] = service.MaximumTime;
 
             Sort();
+        }
+    }
+
+    private void ServicePingsOnCollectionChanged(in NotifyCollectionChangedEventArgs<PingableServiceReply> e)
+    {
+        if (e.Action == NotifyCollectionChangedAction.Reset)
+        {
+            Rebuild();
+        }
+    }
+
+    private static Coordinate MapFiniteValue(double value, int index)
+    {
+        return double.IsFinite(value)
+            ? new Coordinate(index, value)
+            : Coordinate.Empty;
+    }
+
+    private static void FillHistoricalAverageValues(
+        PingableService service,
+        PingableServiceReply[] replies,
+        double[] averageValues)
+    {
+        var totalTime = service.TotalTimeSum;
+        var successCount = service.SucceedCount;
+
+        for (var i = replies.Length - 1; i >= 0; i--)
+        {
+            averageValues[i] = successCount > 0
+                ? Math.Round(totalTime / (double)successCount, 2, MidpointRounding.AwayFromZero)
+                : double.PositiveInfinity;
+
+            var reply = replies[i];
+            if (!reply.IsSucceeded) continue;
+
+            successCount--;
+            if (double.IsFinite(reply.Time))
+            {
+                totalTime -= Convert.ToUInt64(reply.Time);
+            }
         }
     }
 

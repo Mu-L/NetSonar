@@ -20,6 +20,7 @@
 - Fix TCP, UDP, and NTP hostname/port parsing, endpoint creation, address-family selection, and NTP default-port handling
 - Fix UDP probes reporting success from a connectionless sending alone by waiting for a response from the remote service
 - Fix HTTP replies using `0.0.0.0` after restoring reply history by resolving DNS independently of historical success counts and refreshing unresolved endpoints before HTTP requests
+- Fix response-time charts handling timeouts and missing statistics, displaying reply history out of order, mixing average calculations, failing with an unlimited graph cache, and retaining stale data after statistics are reset
 - Optimize HTTP probes to complete after response headers and use the declared content length without downloading or buffering the response body
 - Prevent slow services from delaying scheduled probes for other services while still blocking overlapping probes for the same service
 - Enforce the configured reply-cache limit both while adding replies and after restoring resilient reply history
