@@ -1,5 +1,6 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
         xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
         xmlns:suki="https://github.com/kikipoulet/SukiUI">
     <Design.PreviewWith>
@@ -146,6 +147,54 @@
     <!--  Button  -->
     <Style Selector="Button.AppIcon">
         <Setter Property="Padding" Value="10,8" />
+    </Style>
+
+    <!--  StatusBadge  -->
+    <Style Selector="controls|StatusBadge">
+        <Setter Property="MinHeight" Value="28" />
+        <Setter Property="Padding" Value="10,4" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontWeight" Value="DemiBold" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="8">
+                    <ContentPresenter HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}" />
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="controls|StatusBadge[Appearance=Primary]">
+        <Setter Property="Background" Value="{DynamicResource SukiPrimaryColor}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SukiPrimaryColor}" />
+    </Style>
+    <Style Selector="controls|StatusBadge[Appearance=Accent]">
+        <Setter Property="Background" Value="{DynamicResource SukiAccentColor}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SukiAccentColor}" />
+    </Style>
+    <Style Selector="controls|StatusBadge[Appearance=Information]">
+        <Setter Property="Background" Value="{DynamicResource SukiInformationColor}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SukiInformationColor}" />
+    </Style>
+    <Style Selector="controls|StatusBadge[Appearance=Success]">
+        <Setter Property="Background" Value="{DynamicResource SukiSuccessColor}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SukiSuccessColor}" />
+    </Style>
+    <Style Selector="controls|StatusBadge[Appearance=Warning]">
+        <Setter Property="Background" Value="{DynamicResource SukiWarningColor}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SukiWarningColor}" />
+    </Style>
+    <Style Selector="controls|StatusBadge[Appearance=Danger]">
+        <Setter Property="Background" Value="{DynamicResource SukiDangerColor}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SukiDangerColor}" />
     </Style>
 
     <!--  TextBlock  -->

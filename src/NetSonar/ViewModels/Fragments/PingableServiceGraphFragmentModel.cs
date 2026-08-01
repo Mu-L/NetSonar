@@ -1,19 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using Avalonia.Media;
 using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using LiveChartsCore;
+using LiveChartsCore.Drawing;
 using LiveChartsCore.Kernel;
 using LiveChartsCore.Kernel.Sketches;
-using LiveChartsCore;
-using NetSonar.Avalonia.Network;
-using ObservableCollections;
-using LiveChartsCore.SkiaSharpView.Painting;
-using LiveChartsCore.SkiaSharpView;
-using SkiaSharp;
-using NetSonar.Avalonia.Extensions;
 using LiveChartsCore.Measure;
 using LiveChartsCore.Painting;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Drawing;
+using LiveChartsCore.SkiaSharpView.Drawing.Geometries;
+using LiveChartsCore.SkiaSharpView.Painting;
+using Material.Icons;
+using NetSonar.Avalonia.Network;
+using ObservableCollections;
+using SkiaSharp;
 using SukiUI.Models;
 using ZLinq;
 
@@ -21,8 +27,234 @@ namespace NetSonar.Avalonia.ViewModels.Fragments;
 
 public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposable
 {
+    private const int RollingAverageWindowSize = 10;
+    private const double MultiGraphDataLabelGapRatio = 0.07;
+    private static readonly SKTypeface BoldTypeface = SKTypeface.FromFamilyName("Inter", SKFontStyle.Bold);
+    private readonly Dictionary<PingableService, PingableServiceReply[]> _frozenReplies = [];
+
+    private readonly ObservableList<ServiceComparisonPoint> _multiGraphValues = [];
+    private readonly NotifyCollectionChangedSynchronizedViewList<ServiceComparisonPoint> _multiGraphValuesCollection;
+    private readonly Axis _multiGraphYAxis;
+
+    private readonly ObservableList<string> _repliesYAxes = [];
+
+    private readonly ObservableList<string> _singleGraphLabels = [];
+    private readonly NotifyCollectionChangedSynchronizedViewList<string> _singleGraphLabelsCollection;
+
+    private readonly ObservableList<PingChartPoint> _singleGraphValues = [];
+    private readonly NotifyCollectionChangedSynchronizedViewList<PingChartPoint> _singleGraphValuesCollection;
+    private readonly Axis _singleGraphYAxis;
+
     private bool _isDisposed;
+
+    private GraphWindowSizeOption _selectedWindowSize = null!;
     private PingableService[] _services = [];
+
+
+    public PingableServiceGraphFragmentModel()
+    {
+        WindowSizeOptions = CreateWindowSizeOptions(AppSettings.PingServices.MaxRepliesGraphCache);
+        _selectedWindowSize = FindInitialWindowSize(WindowSizeOptions, AppSettings.PingServices.MaxRepliesGraphCache);
+
+        _singleGraphValuesCollection =
+            _singleGraphValues.ToNotifyCollectionChangedSlim(SynchronizationContextCollectionEventDispatcher.Current);
+        _singleGraphLabelsCollection =
+            _singleGraphLabels.ToNotifyCollectionChangedSlim(SynchronizationContextCollectionEventDispatcher.Current);
+        _multiGraphValuesCollection =
+            _multiGraphValues.ToNotifyCollectionChangedSlim(SynchronizationContextCollectionEventDispatcher.Current);
+        RepliesYAxesCollection =
+            _repliesYAxes.ToNotifyCollectionChangedSlim(SynchronizationContextCollectionEventDispatcher.Current);
+
+
+        SingleGraphSeries =
+        [
+            new ColumnSeries<PingChartPoint>
+            {
+                Name = "Latency",
+                Values = _singleGraphValuesCollection,
+                Mapping = MapLatency,
+                Padding = 0,
+                YToolTipLabelFormatter = point => FormatLatencyTooltip(point.Model),
+                Fill = new SolidColorPaint(new SKColor(
+                    App.Theme.ActiveColorTheme!.Primary.R,
+                    App.Theme.ActiveColorTheme.Primary.G,
+                    App.Theme.ActiveColorTheme.Primary.B)),
+                MaxBarWidth = 18
+            },
+            new ScatterSeries<PingChartPoint, DiamondGeometry>
+            {
+                Name = "Above scale",
+                Values = _singleGraphValuesCollection,
+                Mapping = MapCappedLatency,
+                YToolTipLabelFormatter = point => FormatCappedLatencyTooltip(point.Model),
+                Fill = new SolidColorPaint(SKColors.Gold),
+                Stroke = new SolidColorPaint(SKColors.DarkOrange, 2),
+                GeometrySize = 12,
+                MinGeometrySize = 12,
+                IsVisibleAtLegend = false
+            },
+            new LineSeries<PingChartPoint>
+            {
+                Name = $"Rolling average ({RollingAverageWindowSize})",
+                Values = _singleGraphValuesCollection,
+                Mapping = MapRollingAverage,
+                YToolTipLabelFormatter = point => FormatRollingAverageTooltip(point.Model),
+                Fill = null,
+                Stroke = new SolidColorPaint(new SKColor(Brushes.DarkOrange.Color.ToUInt32()), 3),
+                GeometryStroke = null,
+                GeometryFill = null,
+                GeometrySize = 12,
+                LineSmoothness = 0
+            },
+            new ScatterSeries<PingChartPoint, CrossGeometry>
+            {
+                Name = "Failure",
+                Values = _singleGraphValuesCollection,
+                Mapping = MapFailure,
+                YToolTipLabelFormatter = point => FormatFailureTooltip(point.Model?.Reply),
+                Fill = null,
+                Stroke = new SolidColorPaint(new SKColor(Brushes.Red.Color.ToUInt32()), 3),
+                GeometrySize = 16,
+                MinGeometrySize = 16
+            }
+        ];
+
+        SingleGraphXAxes =
+        [
+            new Axis
+            {
+                Labels = _singleGraphLabelsCollection,
+                LabelsDensity = 1,
+                LabelsPaint = new SolidColorPaint(new SKColor(255, 255, 255)),
+                NamePaint = new SolidColorPaint(new SKColor(255, 255, 255))
+            }
+        ];
+
+        _singleGraphYAxis = new Axis
+        {
+            MinLimit = 0,
+            Labeler = value => value < 0 ? string.Empty : $"{value:0.##} ms",
+            LabelsPaint = new SolidColorPaint(new SKColor(255, 255, 255)),
+            NamePaint = new SolidColorPaint(new SKColor(255, 255, 255))
+        };
+        SingleGraphYAxes = [_singleGraphYAxis];
+
+
+        MultiGraphSeries =
+        [
+            new RowSeries<ServiceComparisonPoint>
+            {
+                Name = "Maximum",
+                Values = _multiGraphValuesCollection,
+                Mapping = MapMaximumServiceValue,
+                IgnoresBarPosition = true,
+                XToolTipLabelFormatter = point => FormatServiceName(point.Model),
+                YToolTipLabelFormatter = point => FormatServiceComparisonTooltip(point.Model),
+                Fill = new SolidColorPaint(new SKColor(127, 127, 127, 150)),
+                DataLabelsPaint = new SolidColorPaint(SKColors.White),
+                DataLabelsPosition = DataLabelsPosition.End,
+                DataLabelsFormatter = point => FormatChartValue(point.Model?.Maximum),
+                DataLabelsTranslate = new LvcPoint(-1, 0)
+            },
+            new RowSeries<ServiceComparisonPoint>
+            {
+                Name = "Average",
+                Values = _multiGraphValuesCollection,
+                Mapping = MapAverageServiceValue,
+                IgnoresBarPosition = true,
+                IsHoverable = false,
+                Fill = new SolidColorPaint(new SKColor(Brushes.DarkOrange.Color.ToUInt32())),
+                DataLabelsPaint = new SolidColorPaint(new SKColor(0, 0, 0)),
+                DataLabelsPosition = DataLabelsPosition.End,
+                DataLabelsFormatter = point => point.Model?.AverageLabel ?? string.Empty,
+                DataLabelsTranslate = new LvcPoint(-1, 0)
+            },
+            new ScatterSeries<ServiceComparisonPoint, VerticalMarkerGeometry, OutlinedLabelGeometry>
+            {
+                Name = "Current",
+                Values = _multiGraphValuesCollection,
+                Mapping = MapCurrentServiceMarker,
+                IsHoverable = false,
+                Fill = new SolidColorPaint(new SKColor(0, 188, 212)),
+                Stroke = new SolidColorPaint(SKColors.White, 2),
+                GeometrySize = 28,
+                MinGeometrySize = 28,
+                ZIndex = 10,
+                DataLabelsPaint = new SolidColorPaint(SKColors.White)
+                {
+                    SKTypeface = BoldTypeface
+                },
+                DataLabelsSize = 14,
+                DataLabelsPosition = DataLabelsPosition.Right,
+                DataLabelsFormatter = point => FormatChartValue(point.Model?.Current),
+                DataLabelsTranslate = new LvcPoint(-0.25, 0)
+            },
+            new RowSeries<ServiceComparisonPoint>
+            {
+                Name = "Minimum",
+                Values = _multiGraphValuesCollection,
+                Mapping = MapMinimumServiceValue,
+                IgnoresBarPosition = true,
+                IsHoverable = false,
+                Fill = new SolidColorPaint(new SKColor(Brushes.DarkGreen.Color.ToUInt32())),
+                DataLabelsPaint = new SolidColorPaint(SKColors.White),
+                DataLabelsPosition = DataLabelsPosition.End,
+                DataLabelsFormatter = point => point.Model?.MinimumLabel ?? string.Empty,
+                DataLabelsTranslate = new LvcPoint(-1, 0)
+            },
+            new ScatterSeries<ServiceComparisonPoint, CrossGeometry>
+            {
+                Name = "Failed",
+                Values = _multiGraphValuesCollection,
+                Mapping = MapFailedServiceValue,
+                XToolTipLabelFormatter = point => FormatServiceName(point.Model),
+                YToolTipLabelFormatter = point => FormatServiceComparisonTooltip(point.Model),
+                Fill = null,
+                Stroke = new SolidColorPaint(new SKColor(Brushes.Red.Color.ToUInt32()), 3),
+                GeometrySize = 16,
+                MinGeometrySize = 16,
+                DataLabelsPaint = new SolidColorPaint(new SKColor(Brushes.Red.Color.ToUInt32())),
+                DataLabelsPosition = DataLabelsPosition.Right,
+                DataLabelsFormatter = point => point.Model?.Service.LastStatusStr ?? "Failed"
+            }
+        ];
+
+        MultiGraphXAxes =
+        [
+            new Axis
+            {
+                Labeler = value => value < 0 ? string.Empty : $"{value:#,##0.##}\nms",
+                LabelsPaint = new SolidColorPaint(new SKColor(255, 255, 255))
+                // SeparatorsPaint = new SolidColorPaint(new SKColor(220, 220, 220))
+            }
+        ];
+
+        _multiGraphYAxis = new Axis
+        {
+            Labels = RepliesYAxesCollection,
+            Position = AxisPosition.End,
+            MinStep = 1,
+            LabelsPaint = new SolidColorPaint(new SKColor(255, 255, 255))
+        };
+        MultiGraphYAxes = [_multiGraphYAxis];
+
+        App.Theme.OnBaseThemeChanged += OnBaseThemeChanged;
+        App.Theme.OnColorThemeChanged += OnColorThemeChanged;
+
+        OnBaseThemeChanged(App.Theme.ActiveBaseTheme);
+        OnColorThemeChanged(App.Theme.ActiveColorTheme);
+    }
+
+    public PingableServiceGraphFragmentModel(PingableService[] services) : this(services, false)
+    {
+    }
+
+    public PingableServiceGraphFragmentModel(PingableService[] services, bool showGraphOptions) : this()
+    {
+        ShowGraphOptions = showGraphOptions;
+        Services = services;
+    }
+
     public PingableService[] Services
     {
         get => _services;
@@ -32,6 +264,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             {
                 service.PingCompleted -= ServiceOnPingCompleted;
                 service.Pings.CollectionChanged -= ServicePingsOnCollectionChanged;
+                service.PropertyChanged -= ServiceOnPropertyChanged;
             }
 
             if (value.Length <= 1)
@@ -51,7 +284,10 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             {
                 service.PingCompleted += ServiceOnPingCompleted;
                 service.Pings.CollectionChanged += ServicePingsOnCollectionChanged;
+                service.PropertyChanged += ServiceOnPropertyChanged;
             }
+
+            if (IsGraphFrozen) CaptureFrozenReplies();
 
             Rebuild();
 
@@ -59,432 +295,153 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             OnPropertyChanged(nameof(HasService));
             OnPropertyChanged(nameof(HasSingleService));
             OnPropertyChanged(nameof(HasMultiServices));
+            OnPropertyChanged(nameof(PingEverySeconds));
+            OnPropertyChanged(nameof(TimeoutSeconds));
+            NotifyServicesEnabledStateChanged();
         }
     }
 
     public bool HasService => Services.Length > 0;
     public bool HasSingleService => Services.Length == 1;
     public bool HasMultiServices => Services.Length > 1;
+    public bool ShowGraphOptions { get; }
+    public string ServicesEnabledActionText => AreAllServicesEnabled ? "Disable" : "Enable";
 
-    private readonly ISeries[] _singleGraphSeries;
-    private readonly ICartesianAxis[] _singleGraphXAxes;
-    private readonly ICartesianAxis[] _singleGraphYAxes;
+    public MaterialIconKind ServicesEnabledActionIcon => AreAllServicesEnabled
+        ? MaterialIconKind.Pause
+        : MaterialIconKind.Play;
 
-    private readonly ISeries[] _multiGraphSeries;
-    private readonly ICartesianAxis[] _multiGraphXAxes;
-    private readonly ICartesianAxis[] _multiGraphYAxes;
+    public string ServicesEnabledActionToolTip => AreAllServicesEnabled
+        ? "Disable every service in this graph"
+        : "Enable every service in this graph";
 
+    public bool AreAllServicesEnabled
+    {
+        get
+        {
+            if (_services.Length == 0) return false;
 
-    [ObservableProperty]
-    public partial ISeries[] GraphSeries { get; private set; } = [];
+            foreach (var service in _services)
+            {
+                if (!service.IsEnabled) return false;
+            }
 
-    [ObservableProperty]
-    public partial ICartesianAxis[] GraphXAxes { get; private set; } = [new Axis()];
+            return true;
+        }
+    }
 
-    [ObservableProperty]
-    public partial ICartesianAxis[] GraphYAxes { get; private set; } = [new Axis()];
+    public double? PingEverySeconds
+    {
+        get
+        {
+            if (_services.Length == 0) return null;
 
+            var value = _services[0].PingEverySeconds;
+            for (var i = 1; i < _services.Length; i++)
+            {
+                if (_services[i].PingEverySeconds != value) return null;
+            }
 
-    private readonly ObservableList<double> _repliesMinimumTimeValues = [];
-    public NotifyCollectionChangedSynchronizedViewList<double> RepliesMinimumTimeValuesCollection { get; }
+            return value;
+        }
+        set
+        {
+            if (value is null) return;
 
-    private readonly ObservableList<double> _repliesTimeValues = [];
-    public NotifyCollectionChangedSynchronizedViewList<double> RepliesTimeValuesCollection { get; }
+            foreach (var service in _services)
+            {
+                service.PingEverySeconds = value.Value;
+            }
 
-    private readonly ObservableList<double> _repliesAvgTimeValues = [];
-    public NotifyCollectionChangedSynchronizedViewList<double> RepliesAvgTimeValuesCollection { get; }
+            OnPropertyChanged();
+        }
+    }
 
-    private readonly ObservableList<double> _repliesMaximumTimeValues = [];
-    public NotifyCollectionChangedSynchronizedViewList<double> RepliesMaximumTimeValuesCollection { get; }
+    public double? TimeoutSeconds
+    {
+        get
+        {
+            if (_services.Length == 0) return null;
 
+            var value = _services[0].TimeoutSeconds;
+            for (var i = 1; i < _services.Length; i++)
+            {
+                if (_services[i].TimeoutSeconds != value) return null;
+            }
 
-    private readonly ObservableList<string> _repliesXAxes  = [];
-    public NotifyCollectionChangedSynchronizedViewList<string> RepliesXAxesCollection { get; }
+            return value;
+        }
+        set
+        {
+            if (value is null) return;
 
-    private readonly ObservableList<string> _repliesYAxes = [];
+            foreach (var service in _services)
+            {
+                service.TimeoutSeconds = value.Value;
+            }
+
+            OnPropertyChanged();
+        }
+    }
+
+    public ISeries[] SingleGraphSeries { get; }
+
+    public ICartesianAxis[] SingleGraphXAxes { get; }
+
+    public ICartesianAxis[] SingleGraphYAxes { get; }
+
+    public ISeries[] MultiGraphSeries { get; }
+
+    public ICartesianAxis[] MultiGraphXAxes { get; }
+
+    public ICartesianAxis[] MultiGraphYAxes { get; }
+
     public NotifyCollectionChangedSynchronizedViewList<string> RepliesYAxesCollection { get; }
 
+    public Func<float, float>? EasingFunction => null;
+
     [ObservableProperty]
-    public partial Func<float, float>? EasingFunction { get; private set; } = LiveCharts.DefaultSettings.EasingFunction;
+    public partial Paint ThemePaint { get; set; } = new SolidColorPaint(new SKColor(255, 255, 255));
 
-    [ObservableProperty] public partial Paint ThemePaint { get; set; } = new SolidColorPaint(new SKColor(255, 255, 255));
+    [ObservableProperty] public partial string CurrentTimeText { get; private set; } = "Ping: -";
+    [ObservableProperty] public partial string MedianTimeText { get; private set; } = "P50: -";
+    [ObservableProperty] public partial string P95TimeText { get; private set; } = "P95: -";
+    [ObservableProperty] public partial string JitterText { get; private set; } = "Jitter: -";
+    [ObservableProperty] public partial string WindowLossText { get; private set; } = "Loss: -";
 
+    [ObservableProperty] public partial bool IsFullScale { get; set; }
 
+    public string ScaleModeText => IsFullScale ? "Full scale" : "Auto scale";
 
-    public PingableServiceGraphFragmentModel()
+    public string ScaleModeToolTip => IsFullScale
+        ? "Use automatic latency scaling"
+        : "Show the full latency range";
+
+    public GraphWindowSizeOption[] WindowSizeOptions { get; }
+
+    public GraphWindowSizeOption SelectedWindowSize
     {
-        RepliesMinimumTimeValuesCollection = _repliesMinimumTimeValues.ToNotifyCollectionChangedSlim(SynchronizationContextCollectionEventDispatcher.Current);
-        RepliesTimeValuesCollection = _repliesTimeValues.ToNotifyCollectionChangedSlim(SynchronizationContextCollectionEventDispatcher.Current);
-        RepliesAvgTimeValuesCollection = _repliesAvgTimeValues.ToNotifyCollectionChangedSlim(SynchronizationContextCollectionEventDispatcher.Current);
-        RepliesMaximumTimeValuesCollection = _repliesMaximumTimeValues.ToNotifyCollectionChangedSlim(SynchronizationContextCollectionEventDispatcher.Current);
-
-        RepliesXAxesCollection = _repliesXAxes.ToNotifyCollectionChangedSlim(SynchronizationContextCollectionEventDispatcher.Current);
-        RepliesYAxesCollection = _repliesYAxes.ToNotifyCollectionChangedSlim(SynchronizationContextCollectionEventDispatcher.Current);
-
-
-
-        _singleGraphSeries =
-        [
-            new ColumnSeries<double>(RepliesTimeValuesCollection)
-            {
-                Name = "Ping",
-                Mapping = MapFiniteValue,
-                // Defines the distance between every bars in the series
-                Padding = 0,
-                YToolTipLabelFormatter = point => $"{point.Model}ms",
-                //DataLabelsPaint = new SolidColorPaint(new SKColor(Brushes.White.Color.R, Brushes.White.Color.G, Brushes.White.Color.B)),
-                // Defines the max width a bar can have
-                Fill = new SolidColorPaint(new SKColor(
-                    App.Theme.ActiveColorTheme!.Primary.R,
-                    App.Theme.ActiveColorTheme.Primary.G,
-                    App.Theme.ActiveColorTheme.Primary.B)),
-                MaxBarWidth = double.MaxValue,
-            },
-            new LineSeries<double>(RepliesAvgTimeValuesCollection)
-            {
-                Name = "Average",
-                Mapping = MapFiniteValue,
-                //Fill = null,
-                //Stroke = null,
-                YToolTipLabelFormatter = point => $"{point.Model}ms",
-                GeometryStroke = null,
-                GeometryFill = null,
-                //IsVisible = true,
-                //GeometrySize = 20
-            },
-        ];
-
-        _singleGraphXAxes = [
-            new Axis
-            {
-                //Name = "Date time",
-                Labels = RepliesXAxesCollection,
-                LabelsRotation = 45,
-                LabelsPaint = new SolidColorPaint(new SKColor(255, 255, 255)),
-                NamePaint = new SolidColorPaint(new SKColor(255, 255, 255)),
-            }
-        ];
-
-        _singleGraphYAxes = [
-            new Axis
-            {
-                //Name = "Ping",
-                LabelsPaint = new SolidColorPaint(new SKColor(255, 255, 255)),
-                NamePaint = new SolidColorPaint(new SKColor(255, 255, 255)),
-            }
-        ];
-
-
-        _multiGraphSeries =
-        [
-            new RowSeries<double>
-            {
-                Name = "Maximum",
-                Values = RepliesMaximumTimeValuesCollection,
-                Mapping = MapFiniteValue,
-                IgnoresBarPosition = true,
-                YToolTipLabelFormatter = point => $"{point.Model}ms",
-                Fill = new SolidColorPaint(new SKColor(127, 127, 127, 255)),
-                DataLabelsPaint = new SolidColorPaint(new SKColor(255, 255, 255)),
-                DataLabelsPosition = DataLabelsPosition.End,
-                DataLabelsFormatter = point => $"{point.Coordinate.PrimaryValue}",
-                DataLabelsTranslate = new(-1, 0),
-            },
-
-            new RowSeries<double>
-            {
-                Name = "Average",
-                Values = RepliesAvgTimeValuesCollection,
-                Mapping = MapFiniteValue,
-                IgnoresBarPosition = true,
-                YToolTipLabelFormatter = point => $"{point.Model}ms",
-                Fill = new SolidColorPaint(new SKColor(Brushes.DarkOrange.Color.ToUInt32())),
-                DataLabelsPaint = new SolidColorPaint(new SKColor(0, 0, 0)),
-                DataLabelsPosition = DataLabelsPosition.End,
-                DataLabelsFormatter = point => $"{point.Coordinate.PrimaryValue}",
-                DataLabelsTranslate = new(-1, 0),
-            },
-
-            new RowSeries<double>
-            {
-                Name = "Current",
-                Values = RepliesTimeValuesCollection,
-                Mapping = MapFiniteValue,
-                IgnoresBarPosition = true,
-                MaxBarWidth = 25,
-                YToolTipLabelFormatter = point => $"{point.Model}ms",
-                Fill = new SolidColorPaint(new SKColor(Brushes.DarkCyan.Color.ToUInt32())),
-                DataLabelsPaint = new SolidColorPaint(new SKColor(255, 255, 255)),
-                DataLabelsPosition = DataLabelsPosition.End,
-                DataLabelsFormatter = point => $"{point.Coordinate.PrimaryValue}",
-                DataLabelsTranslate = new(-1, 0),
-            },
-
-            new RowSeries<double>
-            {
-                Name = "Minimum",
-                Values = RepliesMinimumTimeValuesCollection,
-                Mapping = MapFiniteValue,
-                IgnoresBarPosition = true,
-                YToolTipLabelFormatter = point => $"{point.Model}ms",
-                Fill = new SolidColorPaint(new SKColor(Brushes.DarkGreen.Color.ToUInt32())),
-                DataLabelsPaint = new SolidColorPaint(new SKColor(255, 255, 255)),
-                DataLabelsPosition = DataLabelsPosition.End,
-                DataLabelsFormatter = point => $"{point.Coordinate.PrimaryValue}",
-                DataLabelsTranslate = new(-1, 0),
-            },
-        ];
-
-        _multiGraphXAxes = [
-            new Axis
-            {
-                LabelsPaint = new SolidColorPaint(new SKColor(255, 255, 255))
-               // SeparatorsPaint = new SolidColorPaint(new SKColor(220, 220, 220))
-            }
-        ];
-
-        _multiGraphYAxes = [
-            new Axis
-            {
-                Labels = RepliesYAxesCollection,
-                Position = AxisPosition.End,
-                LabelsPaint = new SolidColorPaint(new SKColor(255, 255, 255)),
-                // SeparatorsPaint = new SolidColorPaint(new SKColor(220, 220, 220))
-            }
-        ];
-
-        App.Theme.OnBaseThemeChanged += OnBaseThemeChanged;
-        App.Theme.OnColorThemeChanged += OnColorThemeChanged;
-
-        OnBaseThemeChanged(App.Theme.ActiveBaseTheme);
-        OnColorThemeChanged(App.Theme.ActiveColorTheme);
-    }
-
-    public PingableServiceGraphFragmentModel(PingableService[] services) : this()
-    {
-        Services = services;
-    }
-
-    public void Rebuild()
-    {
-        if (HasSingleService)
+        get => _selectedWindowSize;
+        set
         {
-            GraphSeries = _singleGraphSeries;
-            GraphXAxes = _singleGraphXAxes;
-            GraphYAxes = _singleGraphYAxes;
-            EasingFunction = null;
-
-            _repliesTimeValues.Clear();
-            _repliesAvgTimeValues.Clear();
-            _repliesXAxes.Clear();
-
-            if (!HasService) return;
-
-            var service = Services[0];
-
-            var maxReplies = AppSettings.PingServices.MaxRepliesGraphCache;
-            var replies = service.Pings
-                .AsValueEnumerable()
-                .Take(maxReplies > 0 ? maxReplies : int.MaxValue)
-                .ToArray();
-
-            if (replies.Length == 0) return;
-
-            Array.Reverse(replies);
-
-            var timeValues = new double[replies.Length];
-            var avgTimeValues = new double[replies.Length];
-            var labels = new string[replies.Length];
-
-            for (var i = 0; i < replies.Length; i++)
-            {
-                var reply = replies[i];
-                timeValues[i] = reply.Time;
-                labels[i] = reply.SentDateTime.ToLongTimeString();
-            }
-
-            FillHistoricalAverageValues(service, replies, avgTimeValues);
-
-            _repliesTimeValues.AddRange(timeValues);
-            _repliesAvgTimeValues.AddRange(avgTimeValues);
-            _repliesXAxes.AddRange(labels);
-        }
-        else
-        {
-            GraphSeries = _multiGraphSeries;
-            GraphXAxes = _multiGraphXAxes;
-            GraphYAxes = _multiGraphYAxes;
-            EasingFunction = LiveCharts.DefaultSettings.EasingFunction;
-
-            _repliesMinimumTimeValues.Clear();
-            _repliesTimeValues.Clear();
-            _repliesAvgTimeValues.Clear();
-            _repliesMaximumTimeValues.Clear();
-            _repliesXAxes.Clear();
-            _repliesYAxes.Clear();
-
-            if (!HasService) return;
-
-            foreach (var service in Services)
-            {
-                _repliesMinimumTimeValues.Add(service.MinimumTime);
-                _repliesTimeValues.Add(service.LastTime);
-                _repliesAvgTimeValues.Add(service.AverageTime);
-                _repliesMaximumTimeValues.Add(service.MaximumTime);
-                _repliesYAxes.Add(string.IsNullOrWhiteSpace(service.HostName) ? service.IpEndPointStr : service.HostName);
-            }
-        }
-    }
-
-    private void ServiceOnPingCompleted(object? sender, BasePingableCollectionObject<PingableServiceReply>.PingCompletedEventArgs e)
-    {
-        if (sender is not PingableService service) return;
-
-        if (HasSingleService)
-        {
-            _repliesTimeValues.Add(e.Reply.Time);
-            _repliesAvgTimeValues.Add(service.AverageTime);
-            _repliesXAxes.Add(e.Reply.SentDateTime.ToLongTimeString());
-
-            var maxReplies = AppSettings.PingServices.MaxRepliesGraphCache;
-            if (maxReplies > 0)
-            {
-                _repliesTimeValues.RemoveExceedingAt(maxReplies, CollectionSide.Head);
-                _repliesAvgTimeValues.RemoveExceedingAt(maxReplies, CollectionSide.Head);
-                _repliesXAxes.RemoveExceedingAt(maxReplies, CollectionSide.Head);
-            }
-        }
-        else
-        {
-            //var index = FindIndexForService(service);
-            //if (index == -1 || _repliesMinimumTimeValues.Count <= index) return;
-
-            //if (_repliesMinimumTimeValues[index] != service.MinimumTime) _repliesMinimumTimeValues[index] = service.MinimumTime;
-            //if (_repliesTimeValues[index] != service.LastTime)_repliesTimeValues[index] = service.LastTime;
-            //if (_repliesAvgTimeValues[index] != service.AverageTime) _repliesAvgTimeValues[index] = service.AverageTime;
-            //if (_repliesMaximumTimeValues[index] != service.MaximumTime) _repliesMaximumTimeValues[index] = service.MaximumTime;
-
-            Sort();
-        }
-    }
-
-    private void ServicePingsOnCollectionChanged(in NotifyCollectionChangedEventArgs<PingableServiceReply> e)
-    {
-        if (e.Action == NotifyCollectionChangedAction.Reset)
-        {
+            if (value is null || Equals(_selectedWindowSize, value)) return;
+            _selectedWindowSize = value;
+            OnPropertyChanged();
             Rebuild();
         }
     }
 
-    private static Coordinate MapFiniteValue(double value, int index)
-    {
-        return double.IsFinite(value)
-            ? new Coordinate(index, value)
-            : Coordinate.Empty;
-    }
+    [ObservableProperty] public partial bool IsGraphFrozen { get; set; }
 
-    private static void FillHistoricalAverageValues(
-        PingableService service,
-        PingableServiceReply[] replies,
-        double[] averageValues)
-    {
-        var totalTime = service.TotalTimeSum;
-        var successCount = service.SucceedCount;
+    public MaterialIconKind FreezeIcon => IsGraphFrozen
+        ? MaterialIconKind.SnowflakeOff
+        : MaterialIconKind.Snowflake;
 
-        for (var i = replies.Length - 1; i >= 0; i--)
-        {
-            averageValues[i] = successCount > 0
-                ? Math.Round(totalTime / (double)successCount, 2, MidpointRounding.AwayFromZero)
-                : double.PositiveInfinity;
+    public string FreezeActionText => IsGraphFrozen ? "Resume" : "Freeze";
 
-            var reply = replies[i];
-            if (!reply.IsSucceeded) continue;
-
-            successCount--;
-            if (double.IsFinite(reply.Time))
-            {
-                totalTime -= Convert.ToUInt64(reply.Time);
-            }
-        }
-    }
-
-    public int FindIndexForService(PingableService service)
-    {
-        var index = -1;
-        for (var i = 0; i < Services.Length; i++)
-        {
-            if (Services[i] == service) return i;
-        }
-
-        return index;
-    }
-
-    public void Sort()
-    {
-        if (!HasMultiServices) return;
-
-        _services = _services
-            .AsValueEnumerable()
-            .OrderByDescending(service => service.AverageTime)
-            .ThenByDescending(service => service.LastTime)
-            .ToArray();
-
-        for (var i = 0; i < Services.Length; i++)
-        {
-            var service = Services[i];
-            if (_repliesMinimumTimeValues[i] != service.MinimumTime) _repliesMinimumTimeValues[i] = service.MinimumTime;
-            if (_repliesTimeValues[i] != service.LastTime) _repliesTimeValues[i] = service.LastTime;
-            if (_repliesAvgTimeValues[i] != service.AverageTime) _repliesAvgTimeValues[i] = service.AverageTime;
-            if (_repliesMaximumTimeValues[i] != service.MaximumTime) _repliesMaximumTimeValues[i] = service.MaximumTime;
-
-
-            var label = string.IsNullOrWhiteSpace(service.HostName) ? service.IpEndPointStr : service.HostName;
-            if (RepliesYAxesCollection[i] != label) _repliesYAxes[i] = label;
-        }
-    }
-
-
-    private void OnBaseThemeChanged(ThemeVariant theme)
-    {
-        var color = App.SukiTextResource;
-        var paint = new SolidColorPaint(new SKColor(color.R, color.G, color.B, color.A));
-
-        foreach (var axis in _singleGraphXAxes)
-        {
-            axis.LabelsPaint = paint;
-            axis.NamePaint = paint;
-        }
-
-        foreach (var axis in _singleGraphYAxes)
-        {
-            axis.LabelsPaint = paint;
-            axis.NamePaint = paint;
-        }
-
-        foreach (var axis in _multiGraphXAxes)
-        {
-            axis.LabelsPaint = paint;
-            axis.NamePaint = paint;
-        }
-
-        foreach (var axis in _multiGraphYAxes)
-        {
-            axis.LabelsPaint = paint;
-            axis.NamePaint = paint;
-        }
-    }
-
-    private void OnColorThemeChanged(SukiColorTheme theme)
-    {
-        if (_singleGraphSeries.Length == 0) return;
-        if (_singleGraphSeries[0] is ColumnSeries<double> column)
-        {
-            column.Fill = new SolidColorPaint(new SKColor(
-                theme.Primary.R,
-                theme.Primary.G,
-                theme.Primary.B));
-        }
-    }
+    public string FreezeToolTip => IsGraphFrozen
+        ? "Resume live graph updates"
+        : "Freeze the graph while probes continue running";
 
     public void Dispose()
     {
@@ -495,11 +452,685 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
         App.Theme.OnColorThemeChanged -= OnColorThemeChanged;
 
         Services = [];
-        RepliesMinimumTimeValuesCollection.Dispose();
-        RepliesTimeValuesCollection.Dispose();
-        RepliesAvgTimeValuesCollection.Dispose();
-        RepliesMaximumTimeValuesCollection.Dispose();
-        RepliesXAxesCollection.Dispose();
+        _singleGraphValuesCollection.Dispose();
+        _singleGraphLabelsCollection.Dispose();
+        _multiGraphValuesCollection.Dispose();
         RepliesYAxesCollection.Dispose();
+    }
+
+    [RelayCommand]
+    private void ToggleServicesEnabled()
+    {
+        var isEnabled = !AreAllServicesEnabled;
+        foreach (var service in _services)
+        {
+            service.IsEnabled = isEnabled;
+        }
+
+        NotifyServicesEnabledStateChanged();
+    }
+
+    partial void OnIsFullScaleChanged(bool value)
+    {
+        OnPropertyChanged(nameof(ScaleModeText));
+        OnPropertyChanged(nameof(ScaleModeToolTip));
+        Rebuild();
+    }
+
+    partial void OnIsGraphFrozenChanged(bool value)
+    {
+        OnPropertyChanged(nameof(FreezeIcon));
+        OnPropertyChanged(nameof(FreezeActionText));
+        OnPropertyChanged(nameof(FreezeToolTip));
+
+        if (value)
+        {
+            CaptureFrozenReplies();
+        }
+        else
+        {
+            _frozenReplies.Clear();
+            Rebuild();
+        }
+    }
+
+    public void Rebuild()
+    {
+        _singleGraphValues.Clear();
+        _singleGraphLabels.Clear();
+        _singleGraphYAxis.MinLimit = 0;
+        _singleGraphYAxis.MaxLimit = null;
+        _multiGraphValues.Clear();
+        _repliesYAxes.Clear();
+        _multiGraphYAxis.MinLimit = null;
+        _multiGraphYAxis.MaxLimit = null;
+        ResetWindowStatistics();
+
+        if (HasSingleService)
+        {
+            var service = Services[0];
+
+            var replies = GetRepliesForGraph(service);
+
+            if (replies.Length == 0) return;
+
+            Array.Reverse(replies);
+            RebuildSingleGraphValues(replies);
+        }
+        else
+        {
+            if (!HasService) return;
+            RebuildMultiGraphValues();
+        }
+    }
+
+    private void ServiceOnPingCompleted(object? sender,
+        BasePingableCollectionObject<PingableServiceReply>.PingCompletedEventArgs e)
+    {
+        if (sender is not PingableService service) return;
+        if (IsGraphFrozen) return;
+
+        if (HasSingleService)
+        {
+            Rebuild();
+        }
+        else
+        {
+            Sort();
+        }
+    }
+
+    private void ServicePingsOnCollectionChanged(in NotifyCollectionChangedEventArgs<PingableServiceReply> e)
+    {
+        if (IsGraphFrozen) return;
+
+        if (e.Action == NotifyCollectionChangedAction.Reset)
+        {
+            Rebuild();
+        }
+    }
+
+    private void ServiceOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(PingableService.PingEverySeconds))
+        {
+            OnPropertyChanged(nameof(PingEverySeconds));
+        }
+        else if (e.PropertyName == nameof(PingableService.TimeoutSeconds))
+        {
+            OnPropertyChanged(nameof(TimeoutSeconds));
+        }
+        else if (e.PropertyName == nameof(PingableService.IsEnabled))
+        {
+            NotifyServicesEnabledStateChanged();
+        }
+    }
+
+    private void NotifyServicesEnabledStateChanged()
+    {
+        OnPropertyChanged(nameof(AreAllServicesEnabled));
+        OnPropertyChanged(nameof(ServicesEnabledActionText));
+        OnPropertyChanged(nameof(ServicesEnabledActionIcon));
+        OnPropertyChanged(nameof(ServicesEnabledActionToolTip));
+    }
+
+    private static Coordinate MapLatency(PingChartPoint point, int index)
+    {
+        return point.Reply.IsSucceeded && double.IsFinite(point.Reply.Time)
+            ? new Coordinate(index, point.PlotLatency)
+            : Coordinate.Empty;
+    }
+
+    private static Coordinate MapRollingAverage(PingChartPoint point, int index)
+    {
+        return double.IsFinite(point.PlotRollingAverage)
+            ? new Coordinate(index, point.PlotRollingAverage)
+            : Coordinate.Empty;
+    }
+
+    private static Coordinate MapCappedLatency(PingChartPoint point, int index)
+    {
+        return point.IsLatencyCapped
+            ? new Coordinate(index, point.CappedMarker)
+            : Coordinate.Empty;
+    }
+
+    private static Coordinate MapFailure(PingChartPoint point, int index)
+    {
+        return point.Reply.IsFailed
+            ? new Coordinate(index, point.FailureMarker)
+            : Coordinate.Empty;
+    }
+
+    private static Coordinate MapMaximumServiceValue(ServiceComparisonPoint comparison, int index)
+    {
+        return double.IsFinite(comparison.Maximum)
+            ? new Coordinate(index, comparison.Maximum)
+            : Coordinate.Empty;
+    }
+
+    private static Coordinate MapAverageServiceValue(ServiceComparisonPoint comparison, int index)
+    {
+        return double.IsFinite(comparison.Average)
+            ? new Coordinate(index, comparison.Average)
+            : Coordinate.Empty;
+    }
+
+    private static Coordinate MapCurrentServiceMarker(ServiceComparisonPoint comparison, int index)
+    {
+        return comparison.Service.WasLastPingSucceeded
+               && double.IsFinite(comparison.Current)
+            ? new Coordinate(comparison.Current, index)
+            : Coordinate.Empty;
+    }
+
+    private static Coordinate MapMinimumServiceValue(ServiceComparisonPoint comparison, int index)
+    {
+        return double.IsFinite(comparison.Minimum)
+            ? new Coordinate(index, comparison.Minimum)
+            : Coordinate.Empty;
+    }
+
+    private static Coordinate MapFailedServiceValue(ServiceComparisonPoint comparison, int index)
+    {
+        return comparison.Service.WasLastPingFailed
+            ? new Coordinate(0, index)
+            : Coordinate.Empty;
+    }
+
+    private void RebuildSingleGraphValues(PingableServiceReply[] replies)
+    {
+        var successfulValues = replies
+            .AsValueEnumerable()
+            .Where(static reply => reply.IsSucceeded && double.IsFinite(reply.Time))
+            .Select(static reply => reply.Time)
+            .ToArray();
+        Array.Sort(successfulValues);
+
+        var median = GetPercentile(successfulValues, 0.50);
+        var p95 = GetPercentile(successfulValues, 0.95);
+        var axisMaximum = IsFullScale
+            ? GetFullAxisMaximum(successfulValues)
+            : GetRobustAxisMaximum(successfulValues, median, p95);
+        _singleGraphYAxis.MinLimit = -axisMaximum * 0.08;
+        _singleGraphYAxis.MaxLimit = axisMaximum;
+        var failedCount = replies.Length - successfulValues.Length;
+
+        var jitterSum = 0d;
+        var jitterPairCount = 0;
+        var previousTime = 0d;
+        var hasPreviousTime = false;
+        foreach (var reply in replies)
+        {
+            if (!reply.IsSucceeded || !double.IsFinite(reply.Time))
+            {
+                hasPreviousTime = false;
+                continue;
+            }
+
+            if (hasPreviousTime)
+            {
+                jitterSum += Math.Abs(reply.Time - previousTime);
+                jitterPairCount++;
+            }
+
+            previousTime = reply.Time;
+            hasPreviousTime = true;
+        }
+
+        var latestReply = replies[^1];
+        CurrentTimeText = $"Ping: {FormatMilliseconds(latestReply.Time)}";
+        MedianTimeText = $"P50: {FormatMilliseconds(median)}";
+        P95TimeText = $"P95: {FormatMilliseconds(p95)}";
+        JitterText = jitterPairCount > 0
+            ? $"Jitter: {FormatMilliseconds(jitterSum / jitterPairCount)}"
+            : "Jitter: ∞";
+        WindowLossText = $"Loss: {failedCount * 100d / replies.Length:0.##}%";
+
+        Span<double> rollingWindow = stackalloc double[RollingAverageWindowSize];
+        var rollingCount = 0;
+        var rollingIndex = 0;
+        var rollingSum = 0d;
+
+        foreach (var reply in replies)
+        {
+            var rollingAverage = double.PositiveInfinity;
+            if (reply.IsSucceeded && double.IsFinite(reply.Time))
+            {
+                if (rollingCount == RollingAverageWindowSize)
+                {
+                    rollingSum -= rollingWindow[rollingIndex];
+                }
+                else
+                {
+                    rollingCount++;
+                }
+
+                rollingWindow[rollingIndex] = reply.Time;
+                rollingIndex = (rollingIndex + 1) % RollingAverageWindowSize;
+                rollingSum += reply.Time;
+                rollingAverage = Math.Round(rollingSum / rollingCount, 2, MidpointRounding.AwayFromZero);
+            }
+
+            var isLatencyCapped = !IsFullScale
+                                  && reply.IsSucceeded
+                                  && double.IsFinite(reply.Time)
+                                  && reply.Time > axisMaximum;
+            var plotLatency = reply.IsSucceeded && double.IsFinite(reply.Time)
+                ? isLatencyCapped ? axisMaximum * 0.92 : reply.Time
+                : double.PositiveInfinity;
+            var plotRollingAverage = double.IsFinite(rollingAverage)
+                ? IsFullScale ? rollingAverage : Math.Min(rollingAverage, axisMaximum * 0.98)
+                : double.PositiveInfinity;
+            var failureMarker = -axisMaximum * 0.04;
+            var cappedMarker = axisMaximum * 0.96;
+            _singleGraphValues.Add(new PingChartPoint(
+                reply,
+                rollingAverage,
+                plotLatency,
+                plotRollingAverage,
+                failureMarker,
+                cappedMarker,
+                isLatencyCapped));
+            _singleGraphLabels.Add(reply.SentDateTime.ToString("HH:mm:ss"));
+        }
+    }
+
+    private void RebuildMultiGraphValues(ServiceComparisonPoint[]? comparisons = null)
+    {
+        _multiGraphValues.Clear();
+        _repliesYAxes.Clear();
+
+        comparisons ??= Services
+            .AsValueEnumerable()
+            .Select(BuildServiceComparison)
+            .ToArray();
+
+        var graphMaximum = 0d;
+        foreach (var comparison in comparisons)
+        {
+            if (double.IsFinite(comparison.Maximum))
+            {
+                graphMaximum = Math.Max(graphMaximum, comparison.Maximum);
+            }
+        }
+
+        var dataLabelMinimumGap = Math.Max(1, graphMaximum * MultiGraphDataLabelGapRatio);
+
+        for (var i = 0; i < comparisons.Length; i++)
+        {
+            var comparison = comparisons[i];
+            var current = comparison.Service.WasLastPingSucceeded
+                ? comparison.Current
+                : double.NaN;
+            var averageLabel = HasDataLabelSpace(comparison.Average, comparison.Minimum, dataLabelMinimumGap)
+                               && HasDataLabelSpace(comparison.Average, current, dataLabelMinimumGap)
+                               && HasDataLabelSpace(comparison.Average, comparison.Maximum, dataLabelMinimumGap)
+                ? FormatChartValue(comparison.Average)
+                : string.Empty;
+            var minimumLabel = HasDataLabelSpace(comparison.Minimum, current, dataLabelMinimumGap)
+                               && HasDataLabelSpace(comparison.Minimum, comparison.Maximum, dataLabelMinimumGap)
+                ? FormatChartValue(comparison.Minimum)
+                : string.Empty;
+            comparison = comparison with
+            {
+                AverageLabel = averageLabel,
+                MinimumLabel = minimumLabel
+            };
+            comparisons[i] = comparison;
+            var service = comparison.Service;
+            _multiGraphValues.Add(comparison);
+            _repliesYAxes.Add(string.IsNullOrWhiteSpace(service.HostName) ? service.IpEndPointStr : service.HostName);
+        }
+
+        _multiGraphYAxis.MinLimit = -0.5;
+        _multiGraphYAxis.MaxLimit = Math.Max(0.5, comparisons.Length - 0.5);
+    }
+
+    private ServiceComparisonPoint BuildServiceComparison(PingableService service)
+    {
+        IReadOnlyList<PingableServiceReply> replies = IsGraphFrozen
+                                                      && _frozenReplies.TryGetValue(service, out var frozenReplies)
+            ? frozenReplies
+            : service.Pings;
+        var maxReplies = SelectedWindowSize.Count;
+        var sampleCount = maxReplies > 0 ? Math.Min(replies.Count, maxReplies) : replies.Count;
+        var failedCount = 0;
+        var successCount = 0;
+        var minimum = double.PositiveInfinity;
+        var maximum = double.NegativeInfinity;
+        var sum = 0d;
+
+        for (var i = 0; i < sampleCount; i++)
+        {
+            var reply = replies[i];
+            if (!reply.IsSucceeded || !double.IsFinite(reply.Time))
+            {
+                failedCount++;
+                continue;
+            }
+
+            successCount++;
+            sum += reply.Time;
+            minimum = Math.Min(minimum, reply.Time);
+            maximum = Math.Max(maximum, reply.Time);
+        }
+
+        return new ServiceComparisonPoint(
+            service,
+            sampleCount,
+            failedCount,
+            minimum,
+            successCount > 0
+                ? Math.Round(sum / successCount, 2, MidpointRounding.AwayFromZero)
+                : double.PositiveInfinity,
+            successCount > 0 ? maximum : double.PositiveInfinity,
+            service.LastTime);
+    }
+
+    private static double GetPercentile(double[] sortedValues, double percentile)
+    {
+        if (sortedValues.Length == 0) return double.PositiveInfinity;
+        if (sortedValues.Length == 1) return sortedValues[0];
+
+        var position = (sortedValues.Length - 1) * percentile;
+        var lowerIndex = (int)Math.Floor(position);
+        var upperIndex = (int)Math.Ceiling(position);
+        if (lowerIndex == upperIndex) return sortedValues[lowerIndex];
+
+        var fraction = position - lowerIndex;
+        return Math.Round(
+            sortedValues[lowerIndex] + (sortedValues[upperIndex] - sortedValues[lowerIndex]) * fraction,
+            2,
+            MidpointRounding.AwayFromZero);
+    }
+
+    private static double GetRobustAxisMaximum(double[] sortedValues, double median, double p95)
+    {
+        if (sortedValues.Length == 0) return 1;
+
+        var actualMaximum = sortedValues[^1];
+        var typicalMaximum = Math.Max(10, Math.Max(median * 3, p95 * 1.5));
+        return Math.Ceiling(Math.Max(1, Math.Min(actualMaximum * 1.1, typicalMaximum)));
+    }
+
+    private static double GetFullAxisMaximum(double[] sortedValues)
+    {
+        return sortedValues.Length == 0
+            ? 1
+            : Math.Ceiling(Math.Max(1, sortedValues[^1] * 1.1));
+    }
+
+    private static string FormatMilliseconds(double value)
+    {
+        return double.IsFinite(value) ? $"{value:N0} ms" : "∞";
+    }
+
+    private static string FormatLatencyTooltip(PingChartPoint? point)
+    {
+        return point is null
+            ? string.Empty
+            : $"{point.Reply.SentDateTime:G}\n" +
+              $"Latency: {FormatMilliseconds(point.Reply.Time)}\n" +
+              $"Rolling average: {FormatMilliseconds(point.RollingAverage)}\n" +
+              $"Status: {point.Reply.StatusStr}";
+    }
+
+    private static string FormatRollingAverageTooltip(PingChartPoint? point)
+    {
+        return point is null
+            ? string.Empty
+            : $"Rolling average: {FormatMilliseconds(point.RollingAverage)}";
+    }
+
+    private static string FormatCappedLatencyTooltip(PingChartPoint? point)
+    {
+        return point is null
+            ? string.Empty
+            : $"{point.Reply.SentDateTime:G}\n" +
+              $"Latency: {FormatMilliseconds(point.Reply.Time)}\n" +
+              "Above automatic scale";
+    }
+
+    private static string FormatFailureTooltip(PingableServiceReply? reply)
+    {
+        return reply is null
+            ? string.Empty
+            : string.IsNullOrWhiteSpace(reply.ErrorMessage)
+                ? $"{reply.SentDateTime:G}\nStatus: {reply.StatusStr}"
+                : $"{reply.SentDateTime:G}\nStatus: {reply.StatusStr}\n{reply.ErrorMessage}";
+    }
+
+    private static string FormatChartValue(double? value)
+    {
+        return value is not null && double.IsFinite(value.Value)
+            ? $"{value.Value:#,##0}"
+            : string.Empty;
+    }
+
+    private static bool HasDataLabelSpace(
+        double value,
+        double otherValue,
+        double minimumGap)
+    {
+        return !double.IsFinite(otherValue)
+               || Math.Abs(value - otherValue) >= minimumGap;
+    }
+
+    private static string FormatServiceName(ServiceComparisonPoint? comparison)
+    {
+        if (comparison is null) return string.Empty;
+
+        var service = comparison.Service;
+        return string.IsNullOrWhiteSpace(service.HostName) ? service.IpEndPointStr : service.HostName;
+    }
+
+    private static string FormatServiceComparisonTooltip(ServiceComparisonPoint? comparison)
+    {
+        if (comparison is null) return string.Empty;
+
+        var service = comparison.Service;
+        var loss = comparison.SampleCount > 0
+            ? comparison.FailedCount * 100d / comparison.SampleCount
+            : 0;
+        var current = service.WasLastPingSucceeded && double.IsFinite(comparison.Current)
+            ? FormatMilliseconds(comparison.Current)
+            : "-";
+
+        return $"Min: {FormatMilliseconds(comparison.Minimum)}\n" +
+               $"Average: {FormatMilliseconds(comparison.Average)}\n" +
+               $"Current: {current}\n" +
+               $"Max: {FormatMilliseconds(comparison.Maximum)}\n" +
+               $"Loss: {loss:0.##}% ({comparison.FailedCount}/{comparison.SampleCount})\n" +
+               $"Status: {service.LastStatusStr}";
+    }
+
+    private void ResetWindowStatistics()
+    {
+        CurrentTimeText = "Ping: -";
+        MedianTimeText = "P50: -";
+        P95TimeText = "P95: -";
+        JitterText = "Jitter: -";
+        WindowLossText = "Loss: -";
+    }
+
+    private PingableServiceReply[] GetRepliesForGraph(PingableService service)
+    {
+        var maxReplies = SelectedWindowSize.Count;
+        return IsGraphFrozen && _frozenReplies.TryGetValue(service, out var frozenReplies)
+            ? frozenReplies.AsValueEnumerable().Take(maxReplies > 0 ? maxReplies : int.MaxValue).ToArray()
+            : service.Pings.AsValueEnumerable().Take(maxReplies > 0 ? maxReplies : int.MaxValue).ToArray();
+    }
+
+    private void CaptureFrozenReplies()
+    {
+        _frozenReplies.Clear();
+        foreach (var service in Services)
+        {
+            _frozenReplies[service] = service.Pings.AsValueEnumerable().ToArray();
+        }
+    }
+
+    private static GraphWindowSizeOption[] CreateWindowSizeOptions(int configuredSize)
+    {
+        List<int> sizes = [50, 100, 250];
+        if (configuredSize > 0 && !sizes.Contains(configuredSize)) sizes.Add(configuredSize);
+        sizes.Sort();
+
+        var options = new GraphWindowSizeOption[sizes.Count + 1];
+        for (var i = 0; i < sizes.Count; i++)
+        {
+            options[i] = new GraphWindowSizeOption(sizes[i], $"{sizes[i]} samples");
+        }
+
+        options[^1] = new GraphWindowSizeOption(0, "All samples");
+        return options;
+    }
+
+    private static GraphWindowSizeOption FindInitialWindowSize(
+        GraphWindowSizeOption[] options,
+        int configuredSize)
+    {
+        foreach (var option in options)
+        {
+            if (option.Count == configuredSize) return option;
+        }
+
+        return options[0];
+    }
+
+    public void Sort()
+    {
+        if (!HasMultiServices) return;
+
+        var comparisons = _services
+            .AsValueEnumerable()
+            .Select(service => BuildServiceComparison(service))
+            .OrderByDescending(static comparison => comparison.Average)
+            .ThenByDescending(static comparison => comparison.Current)
+            .ToArray();
+        _services = comparisons
+            .AsValueEnumerable()
+            .Select(static comparison => comparison.Service)
+            .ToArray();
+        RebuildMultiGraphValues(comparisons);
+    }
+
+
+    private void OnBaseThemeChanged(ThemeVariant theme)
+    {
+        var color = App.SukiTextResource;
+        var paint = new SolidColorPaint(new SKColor(color.R, color.G, color.B, color.A));
+
+        foreach (var axis in SingleGraphXAxes)
+        {
+            axis.LabelsPaint = paint;
+            axis.NamePaint = paint;
+        }
+
+        foreach (var axis in SingleGraphYAxes)
+        {
+            axis.LabelsPaint = paint;
+            axis.NamePaint = paint;
+        }
+
+        foreach (var axis in MultiGraphXAxes)
+        {
+            axis.LabelsPaint = paint;
+            axis.NamePaint = paint;
+        }
+
+        foreach (var axis in MultiGraphYAxes)
+        {
+            axis.LabelsPaint = paint;
+            axis.NamePaint = paint;
+        }
+    }
+
+    private void OnColorThemeChanged(SukiColorTheme theme)
+    {
+        if (SingleGraphSeries.Length == 0) return;
+        if (SingleGraphSeries[0] is ColumnSeries<PingChartPoint> column)
+        {
+            column.Fill = new SolidColorPaint(new SKColor(
+                theme.Primary.R,
+                theme.Primary.G,
+                theme.Primary.B));
+        }
+    }
+
+    public sealed record GraphWindowSizeOption(int Count, string Label)
+    {
+        public override string ToString()
+        {
+            return Label;
+        }
+    }
+
+    private sealed record PingChartPoint(
+        PingableServiceReply Reply,
+        double RollingAverage,
+        double PlotLatency,
+        double PlotRollingAverage,
+        double FailureMarker,
+        double CappedMarker,
+        bool IsLatencyCapped);
+
+    private sealed record ServiceComparisonPoint(
+        PingableService Service,
+        int SampleCount,
+        int FailedCount,
+        double Minimum,
+        double Average,
+        double Maximum,
+        double Current)
+    {
+        public string AverageLabel { get; init; } = string.Empty;
+        public string MinimumLabel { get; init; } = string.Empty;
+    }
+
+    private sealed class VerticalMarkerGeometry : BoundedDrawnGeometry, IDrawnElement<SkiaSharpDrawingContext>
+    {
+        private const float MarkerWidth = 7;
+
+        public void Draw(SkiaSharpDrawingContext context)
+        {
+            var width = MathF.Min(MarkerWidth, Width);
+            var radius = width * 0.5f;
+            context.Canvas.DrawRoundRect(
+                X + (Width - width) * 0.5f,
+                Y,
+                width,
+                Height,
+                radius,
+                radius,
+                context.ActiveSkiaPaint);
+        }
+    }
+
+    private sealed class OutlinedLabelGeometry : LabelGeometry
+    {
+        public override void Draw(SkiaSharpDrawingContext context)
+        {
+            var paint = context.ActiveSkiaPaint;
+            var color = paint.Color;
+            var style = paint.Style;
+            var strokeWidth = paint.StrokeWidth;
+            var strokeJoin = paint.StrokeJoin;
+
+            paint.Color = SKColors.Black;
+            paint.Style = SKPaintStyle.Stroke;
+            paint.StrokeWidth = 3;
+            paint.StrokeJoin = SKStrokeJoin.Round;
+            base.Draw(context);
+
+            paint.Color = color;
+            paint.Style = SKPaintStyle.Fill;
+            base.Draw(context);
+
+            paint.Style = style;
+            paint.StrokeWidth = strokeWidth;
+            paint.StrokeJoin = strokeJoin;
+        }
     }
 }

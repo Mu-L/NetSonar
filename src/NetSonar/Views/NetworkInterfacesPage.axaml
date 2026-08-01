@@ -61,12 +61,11 @@
                                 Command="{Binding AttachStatusOfflineFilterCommand}"
                                 Content="{Binding OfflineInterfaceCount}" />
 
-                        <Button MinWidth="45"
-                                Padding="15,5"
-                                VerticalAlignment="Center"
-                                Classes="Warning Rounded"
-                                Content="{Binding InterfacesViewCollection.Count}"
-                                IsEnabled="False" />
+                        <controls:StatusBadge MinWidth="45"
+                                              Padding="15,5"
+                                              VerticalAlignment="Center"
+                                              Appearance="Warning"
+                                              Content="{Binding InterfacesViewCollection.Count}" />
                     </StackPanel>
 
 

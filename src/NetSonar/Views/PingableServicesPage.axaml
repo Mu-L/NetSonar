@@ -31,7 +31,7 @@
 
                             <icon:MaterialIconText Kind="Web"
                                                    Text="Services"
-                                                   Classes="Title"/>
+                                                   Classes="Title" />
 
                             <StackPanel VerticalAlignment="Center"
                                         Orientation="Horizontal"
@@ -57,12 +57,11 @@
                                         Command="{Binding AttachStatusFailedFilterCommand}"
                                         Content="{Binding ServicesFailedCount}" />
 
-                                <Button MinWidth="45"
-                                        Padding="15,5"
-                                        VerticalAlignment="Center"
-                                        Classes="Warning Rounded"
-                                        Content="{Binding ServicesViewCollection.Count}"
-                                        IsEnabled="False" />
+                                <controls:StatusBadge MinWidth="45"
+                                                Padding="15,5"
+                                                VerticalAlignment="Center"
+                                                Appearance="Warning"
+                                                Content="{Binding ServicesViewCollection.Count}" />
                             </StackPanel>
 
                             <TextBox Width="300"
@@ -151,39 +150,39 @@
                                                                                VerticalAlignment="Center"
                                                                                Text="Ping every:" />
                                                                     <NumericUpDown Grid.Row="0"
-                                                                                   Grid.Column="1"
-                                                                                   suki:NumericUpDownExtensions.Unit="s"
-                                                                                   FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
-                                                                                   Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownPingIncrement}}"
-                                                                                   Maximum="{Binding Source={x:Static network:PingableService.MaxPingEverySeconds}}"
-                                                                                   Minimum="{Binding Source={x:Static network:PingableService.MinPingEverySeconds}}"
-                                                                                   Value="{Binding AppSettings.PingServices.DefaultPingEverySeconds}" />
+                                                                            Grid.Column="1"
+                                                                            suki:NumericUpDownExtensions.Unit="s"
+                                                                            FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
+                                                                            Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownPingIncrement}}"
+                                                                            Maximum="{Binding Source={x:Static network:PingableService.MaxPingEverySeconds}}"
+                                                                            Minimum="{Binding Source={x:Static network:PingableService.MinPingEverySeconds}}"
+                                                                            Value="{Binding AppSettings.PingServices.DefaultPingEverySeconds}" />
 
                                                                     <TextBlock Grid.Row="1"
                                                                                Grid.Column="0"
                                                                                VerticalAlignment="Center"
                                                                                Text="Ping timeout:" />
                                                                     <NumericUpDown Grid.Row="1"
-                                                                                   Grid.Column="1"
-                                                                                   suki:NumericUpDownExtensions.Unit="s"
-                                                                                   FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
-                                                                                   Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeoutIncrement}}"
-                                                                                   Maximum="{Binding Source={x:Static network:PingableService.MaxTimeoutSeconds}}"
-                                                                                   Minimum="{Binding Source={x:Static network:PingableService.MinTimeoutSeconds}}"
-                                                                                   Value="{Binding AppSettings.PingServices.DefaultTimeoutSeconds}" />
+                                                                            Grid.Column="1"
+                                                                            suki:NumericUpDownExtensions.Unit="s"
+                                                                            FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
+                                                                            Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeoutIncrement}}"
+                                                                            Maximum="{Binding Source={x:Static network:PingableService.MaxTimeoutSeconds}}"
+                                                                            Minimum="{Binding Source={x:Static network:PingableService.MinTimeoutSeconds}}"
+                                                                            Value="{Binding AppSettings.PingServices.DefaultTimeoutSeconds}" />
 
                                                                     <TextBlock Grid.Row="2"
                                                                                Grid.Column="0"
                                                                                VerticalAlignment="Center"
                                                                                Text="Buffer size:" />
                                                                     <NumericUpDown Grid.Row="2"
-                                                                                   Grid.Column="1"
-                                                                                   suki:NumericUpDownExtensions.Unit="bytes"
-                                                                                   FormatString="N0"
-                                                                                   Increment="8"
-                                                                                   Maximum="{Binding Source={x:Static network:PingableService.MaxBufferSize}}"
-                                                                                   Minimum="{Binding Source={x:Static network:PingableService.MinBufferSize}}"
-                                                                                   Value="{Binding AppSettings.PingServices.DefaultBufferSize}" />
+                                                                            Grid.Column="1"
+                                                                            suki:NumericUpDownExtensions.Unit="bytes"
+                                                                            FormatString="N0"
+                                                                            Increment="8"
+                                                                            Maximum="{Binding Source={x:Static network:PingableService.MaxBufferSize}}"
+                                                                            Minimum="{Binding Source={x:Static network:PingableService.MinBufferSize}}"
+                                                                            Value="{Binding AppSettings.PingServices.DefaultBufferSize}" />
 
 
                                                                     <TextBlock Grid.Row="3"
@@ -191,21 +190,21 @@
                                                                                VerticalAlignment="Center"
                                                                                Text="Time to live:" />
                                                                     <NumericUpDown Grid.Row="3"
-                                                                                   Grid.Column="1"
-                                                                                   suki:NumericUpDownExtensions.Unit="TTL"
-                                                                                   FormatString="N0"
-                                                                                   Increment="1"
-                                                                                   Maximum="{Binding Source={x:Static sys:Byte.MaxValue}}"
-                                                                                   Minimum="{Binding Source={x:Static sys:Byte.MinValue}}"
-                                                                                   Value="{Binding AppSettings.PingServices.DefaultTtl}" />
+                                                                            Grid.Column="1"
+                                                                            suki:NumericUpDownExtensions.Unit="TTL"
+                                                                            FormatString="N0"
+                                                                            Increment="1"
+                                                                            Maximum="{Binding Source={x:Static sys:Byte.MaxValue}}"
+                                                                            Minimum="{Binding Source={x:Static sys:Byte.MinValue}}"
+                                                                            Value="{Binding AppSettings.PingServices.DefaultTtl}" />
 
                                                                     <TextBlock Grid.Row="4"
                                                                                Grid.Column="0"
                                                                                VerticalAlignment="Center"
                                                                                Text="Do not fragment:" />
                                                                     <ToggleSwitch Grid.Row="4"
-                                                                                  Grid.Column="1"
-                                                                                  IsChecked="{Binding AppSettings.PingServices.DefaultDontFragment}" />
+                                                                            Grid.Column="1"
+                                                                            IsChecked="{Binding AppSettings.PingServices.DefaultDontFragment}" />
 
                                                                     <Separator Grid.Row="5"
                                                                                Grid.Column="0"
@@ -216,33 +215,33 @@
                                                                                VerticalAlignment="Center"
                                                                                Text="Ping cache size:" />
                                                                     <NumericUpDown Grid.Row="6"
-                                                                                   Grid.Column="1"
-                                                                                   FormatString="N0"
-                                                                                   Increment="100"
-                                                                                   Maximum="1000000"
-                                                                                   Minimum="0"
-                                                                                   Value="{Binding AppSettings.PingServices.MaxRepliesCache}" />
+                                                                            Grid.Column="1"
+                                                                            FormatString="N0"
+                                                                            Increment="100"
+                                                                            Maximum="1000000"
+                                                                            Minimum="0"
+                                                                            Value="{Binding AppSettings.PingServices.MaxRepliesCache}" />
 
                                                                     <TextBlock Grid.Row="7"
                                                                                Grid.Column="0"
                                                                                VerticalAlignment="Center"
                                                                                Text="Graph cache size:" />
                                                                     <NumericUpDown Grid.Row="7"
-                                                                                   Grid.Column="1"
-                                                                                   FormatString="N0"
-                                                                                   Increment="10"
-                                                                                   Maximum="1000"
-                                                                                   Minimum="0"
-                                                                                   Value="{Binding AppSettings.PingServices.MaxRepliesGraphCache}" />
+                                                                            Grid.Column="1"
+                                                                            FormatString="N0"
+                                                                            Increment="10"
+                                                                            Maximum="1000"
+                                                                            Minimum="0"
+                                                                            Value="{Binding AppSettings.PingServices.MaxRepliesGraphCache}" />
                                                                     <TextBlock Grid.Row="8"
                                                                                Grid.Column="0"
                                                                                VerticalAlignment="Center"
                                                                                Text="Persistent pings:"
                                                                                ToolTip.Tip="Save and restore ping replies after program restart" />
                                                                     <ToggleSwitch Grid.Row="8"
-                                                                                  Grid.Column="1"
-                                                                                  IsChecked="{Binding AppSettings.PingServices.ResilientReplies}"
-                                                                                  ToolTip.Tip="Save and restore ping replies after program restart" />
+                                                                            Grid.Column="1"
+                                                                            IsChecked="{Binding AppSettings.PingServices.ResilientReplies}"
+                                                                            ToolTip.Tip="Save and restore ping replies after program restart" />
                                                                 </Grid>
                                                             </suki:GroupBox>
                                                         </StackPanel>
@@ -428,10 +427,11 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <!--<DataGridTextColumn Header="Avg. time" Binding="{Binding AverageTime, StringFormat='{}{0}ms'}" IsReadOnly="True" />-->
-                        <DataGridTextColumn Binding="{Binding MaximumTime, StringFormat='{}{0:#,#0.##}ms', Mode=OneWay}"
-                                            CellStyleClasses="center"
-                                            Header="Max. time"
-                                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding MaximumTime, StringFormat='{}{0:#,#0.##}ms', Mode=OneWay}"
+                            CellStyleClasses="center"
+                            Header="Max. time"
+                            IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding SentCount, Mode=OneWay}"
                                             CellStyleClasses="center"
                                             Header="Pings"
@@ -493,7 +493,8 @@
                                 <DataTemplate>
                                     <TextBlock>
                                         <Run Text="{Binding ConsecutiveSucceedCount, Mode=OneWay}" />
-                                        <Run Text="{Binding MaxConsecutiveSucceedCount, StringFormat='/ {0}', Mode=OneWay}" />
+                                        <Run
+                                            Text="{Binding MaxConsecutiveSucceedCount, StringFormat='/ {0}', Mode=OneWay}" />
                                     </TextBlock>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -507,7 +508,8 @@
                                 <DataTemplate>
                                     <TextBlock>
                                         <Run Text="{Binding ConsecutiveFailedCount, Mode=OneWay}" />
-                                        <Run Text="{Binding MaxConsecutiveFailedCount, StringFormat='/ {0}', Mode=OneWay}" />
+                                        <Run
+                                            Text="{Binding MaxConsecutiveFailedCount, StringFormat='/ {0}', Mode=OneWay}" />
                                     </TextBlock>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -528,9 +530,10 @@
                                             IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding Group}"
                                             Header="Group" />
-                        <DataGridTemplateColumn ClipboardContentBinding="{Binding Order, DataType=network:PingableService}"
-                                                Header="Order"
-                                                SortMemberPath="Order">
+                        <DataGridTemplateColumn
+                            ClipboardContentBinding="{Binding Order, DataType=network:PingableService}"
+                            Header="Order"
+                            SortMemberPath="Order">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <NumericUpDown Width="90"
@@ -541,9 +544,10 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn ClipboardContentBinding="{Binding PingEverySeconds, DataType=network:PingableService}"
-                                                Header="Ping every (s)"
-                                                SortMemberPath="PingEveryMilliseconds">
+                        <DataGridTemplateColumn
+                            ClipboardContentBinding="{Binding PingEverySeconds, DataType=network:PingableService}"
+                            Header="Ping every (s)"
+                            SortMemberPath="PingEveryMilliseconds">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <NumericUpDown Width="130"
@@ -556,9 +560,10 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn ClipboardContentBinding="{Binding TimeoutSeconds, DataType=network:PingableService}"
-                                                Header="Timeout (s)"
-                                                SortMemberPath="Timeout">
+                        <DataGridTemplateColumn
+                            ClipboardContentBinding="{Binding TimeoutSeconds, DataType=network:PingableService}"
+                            Header="Timeout (s)"
+                            SortMemberPath="Timeout">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <NumericUpDown Width="130"
@@ -571,9 +576,10 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn ClipboardContentBinding="{Binding BufferSize, DataType=network:PingableService}"
-                                                Header="Buffer size"
-                                                SortMemberPath="BufferSize">
+                        <DataGridTemplateColumn
+                            ClipboardContentBinding="{Binding BufferSize, DataType=network:PingableService}"
+                            Header="Buffer size"
+                            SortMemberPath="BufferSize">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <NumericUpDown Width="90"
@@ -585,9 +591,10 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn ClipboardContentBinding="{Binding Ttl, DataType=network:PingableService}"
-                                                Header="TTL"
-                                                SortMemberPath="TTL">
+                        <DataGridTemplateColumn
+                            ClipboardContentBinding="{Binding Ttl, DataType=network:PingableService}"
+                            Header="TTL"
+                            SortMemberPath="TTL">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <NumericUpDown Width="90"
@@ -640,43 +647,43 @@
 
                                 <icon:MaterialIconText Kind="Radar"
                                                        Text="Pings"
-                                                       Classes="SubTitle"/>
+                                                       Classes="SubTitle" />
 
-                                <Button MinWidth="45"
-                                        Margin="5,0,0,0"
-                                        Padding="15,5"
-                                        VerticalAlignment="Center"
-                                        Classes="Information Rounded"
-                                        Content="{Binding SelectedService.SentCount, FallbackValue=0}"
-                                        IsEnabled="False"
-                                        IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                        ToolTip.Tip="Total pings" />
+                                <controls:StatusBadge MinWidth="45"
+                                                Margin="5,0,0,0"
+                                                Padding="15,5"
+                                                VerticalAlignment="Center"
+                                                Appearance="Information"
+                                                Content="{Binding SelectedService.SentCount, FallbackValue=0}"
+                                                IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                                ToolTip.Tip="Total pings" />
 
-                                <Button MinWidth="45"
-                                        Padding="15,5"
-                                        VerticalAlignment="Center"
-                                        Classes="Success Rounded"
-                                        IsEnabled="False"
-                                        IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                        ToolTip.Tip="Succeed pings">
+                                <controls:StatusBadge MinWidth="45"
+                                                Padding="15,5"
+                                                VerticalAlignment="Center"
+                                                Appearance="Success"
+                                                IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                                ToolTip.Tip="Succeed pings">
                                     <TextBlock>
-                                        <Run Text="{Binding SelectedService.SucceedCount, Mode=OneWay, FallbackValue=0}" />
-                                        <Run Text="{Binding SelectedService.SucceedPercentage, Mode=OneWay, StringFormat='({0}%)', FallbackValue='(0%)'}" />
+                                        <Run
+                                            Text="{Binding SelectedService.SucceedCount, Mode=OneWay, FallbackValue=0}" />
+                                        <Run
+                                            Text="{Binding SelectedService.SucceedPercentage, Mode=OneWay, StringFormat='({0}%)', FallbackValue='(0%)'}" />
                                     </TextBlock>
-                                </Button>
+                                </controls:StatusBadge>
 
-                                <Button MinWidth="45"
-                                        Padding="15,5"
-                                        VerticalAlignment="Center"
-                                        Classes="Danger Rounded"
-                                        IsEnabled="False"
-                                        IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                        ToolTip.Tip="Failed pings">
+                                <controls:StatusBadge MinWidth="45"
+                                                Padding="15,5"
+                                                VerticalAlignment="Center"
+                                                Appearance="Danger"
+                                                IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                                ToolTip.Tip="Failed pings">
                                     <TextBlock>
                                         <Run Text="{Binding SelectedService.FailedCount, Mode=OneWay, FallbackValue=0}" />
-                                        <Run Text="{Binding SelectedService.FailedPercentage, Mode=OneWay, StringFormat='({0}%)', FallbackValue='(0%)'}" />
+                                        <Run
+                                            Text="{Binding SelectedService.FailedPercentage, Mode=OneWay, StringFormat='({0}%)', FallbackValue='(0%)'}" />
                                     </TextBlock>
-                                </Button>
+                                </controls:StatusBadge>
                             </WrapPanel>
 
                             <WrapPanel Grid.Column="1"
@@ -802,59 +809,128 @@
                     <suki:GroupBox.Header>
 
                         <Grid ColumnDefinitions="*,Auto"
-                              RowDefinitions="*">
-                            <WrapPanel Grid.Column="0"
+                              RowDefinitions="Auto,Auto">
+                            <WrapPanel Grid.Row="0"
+                                       Grid.Column="0"
                                        ItemSpacing="5"
                                        LineSpacing="5"
+                                       VerticalAlignment="Center"
                                        Orientation="Horizontal">
 
                                 <icon:MaterialIconText Kind="ChartBar"
                                                        Text="Response time"
-                                                       Classes="SubTitle"/>
+                                                       Classes="SubTitle" />
+
+                                <Panel VerticalAlignment="Center" IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}">
+                                    <controls:StatusBadge MinWidth="45"
+                                                    Padding="10,4"
+                                                    Appearance="Success"
+                                                    Content="{Binding SelectedService?.LastStatus, Mode=OneWay}"
+                                                    IsVisible="{Binding !SelectedService.WasLastPingFailed, FallbackValue=True}"
+                                                    ToolTip.Tip="Last reply status" />
+                                    <controls:StatusBadge MinWidth="45"
+                                                    Padding="10,4"
+                                                    Appearance="Danger"
+                                                    Content="{Binding SelectedService?.LastStatus, Mode=OneWay}"
+                                                    IsVisible="{Binding SelectedService.WasLastPingFailed, FallbackValue=False}"
+                                                    ToolTip.Tip="Last reply status" />
+                                </Panel>
 
                                 <TextBlock Margin="5,0,0,0"
                                            VerticalAlignment="Center"
                                            Foreground="{DynamicResource SukiLowText}"
                                            IsVisible="{Binding PingGraphModel.HasMultiServices}"
                                            Text="{Binding PingGraphModel.Services.Length, StringFormat='({0} services)'}" />
-
-                                <Button MinWidth="45"
-                                        Margin="5,0,0,0"
-                                        Padding="15,5"
-                                        VerticalAlignment="Center"
-                                        Classes="Success Rounded"
-                                        Content="{Binding SelectedService.MinimumTime, StringFormat='Min: {0:#,#0.##}ms', FallbackValue=0}"
-                                        IsEnabled="False"
-                                        IsVisible="{Binding PingGraphModel.HasSingleService}"
-                                        ToolTip.Tip="Minimum Time" />
-
-                                <Button MinWidth="45"
-                                        Padding="15,5"
-                                        VerticalAlignment="Center"
-                                        Classes="Information Rounded"
-                                        Content="{Binding SelectedService.AverageTime, StringFormat='Avg: {0:#,#0.##}ms', FallbackValue=0}"
-                                        IsEnabled="False"
-                                        IsVisible="{Binding PingGraphModel.HasSingleService}"
-                                        ToolTip.Tip="Minimum Time" />
-
-                                <Button MinWidth="45"
-                                        Padding="15,5"
-                                        VerticalAlignment="Center"
-                                        Classes="Danger Rounded"
-                                        Content="{Binding SelectedService.MaximumTime, StringFormat='Max: {0:#,#0.##}ms', FallbackValue=0}"
-                                        IsEnabled="False"
-                                        IsVisible="{Binding PingGraphModel.HasSingleService}"
-                                        ToolTip.Tip="Minimum Time" />
                             </WrapPanel>
 
-                            <Button Grid.Column="1"
-                                    Padding="10,8"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Command="{Binding OpenGraphInNewWindowCommand}"
-                                    Content="{icon:MaterialIconExt Kind=ChartBoxOutline}"
-                                    IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                    ToolTip.Tip="Open graph in a new window" />
+                            <WrapPanel Grid.Column="0" Grid.Row="1"
+                                       Grid.ColumnSpan="2"
+                                       Margin="0,6,0,0"
+                                       IsVisible="{Binding PingGraphModel.HasSingleService}"
+                                       ItemSpacing="5"
+                                       LineSpacing="5"
+                                       Orientation="Horizontal">
+                                <controls:StatusBadge MinWidth="45"
+                                                Padding="10,4"
+                                                VerticalAlignment="Center"
+                                                Appearance="Information"
+                                                Content="{Binding PingGraphModel.CurrentTimeText}"
+                                                ToolTip.Tip="Latest reply latency or status" />
+
+                                <controls:StatusBadge MinWidth="45"
+                                                Padding="10,4"
+                                                VerticalAlignment="Center"
+                                                Appearance="Success"
+                                                Content="{Binding PingGraphModel.MedianTimeText}"
+                                                ToolTip.Tip="Median latency in the displayed window" />
+
+                                <controls:StatusBadge MinWidth="45"
+                                                Padding="10,4"
+                                                VerticalAlignment="Center"
+                                                Appearance="Warning"
+                                                Content="{Binding PingGraphModel.P95TimeText}"
+                                                ToolTip.Tip="95th percentile latency in the displayed window" />
+
+                                <controls:StatusBadge MinWidth="45"
+                                                Padding="10,4"
+                                                VerticalAlignment="Center"
+                                                Appearance="Information"
+                                                Content="{Binding PingGraphModel.JitterText}"
+                                                ToolTip.Tip="Mean latency change between adjacent successful replies" />
+
+                                <controls:StatusBadge MinWidth="45"
+                                                Padding="10,4"
+                                                VerticalAlignment="Center"
+                                                Appearance="Danger"
+                                                Content="{Binding PingGraphModel.WindowLossText}"
+                                                ToolTip.Tip="Failed replies in the displayed window" />
+                            </WrapPanel>
+
+                            <WrapPanel Grid.Row="0"
+                                       Grid.Column="1"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Orientation="Horizontal"
+                                       Height="34"
+                                       ItemSpacing="5">
+                                <ComboBox MinWidth="112"
+                                          VerticalAlignment="Stretch"
+                                          IsVisible="{Binding PingGraphModel.HasService}"
+                                          ItemsSource="{Binding PingGraphModel.WindowSizeOptions}"
+                                          SelectedItem="{Binding PingGraphModel.SelectedWindowSize}"
+                                          ToolTip.Tip="Recent replies included in the graph and statistics" />
+
+                                <ToggleButton Padding="10,4"
+                                              Command="{Binding PingGraphModel.ToggleServicesEnabledCommand}"
+                                              IsChecked="{Binding PingGraphModel.AreAllServicesEnabled, Mode=OneWay}"
+                                              IsVisible="{Binding PingGraphModel.HasService}"
+                                              ToolTip.Tip="{Binding PingGraphModel.ServicesEnabledActionToolTip}">
+                                    <icon:MaterialIconText Kind="{Binding PingGraphModel.ServicesEnabledActionIcon}"
+                                                           Text="{Binding PingGraphModel.ServicesEnabledActionText}" />
+                                </ToggleButton>
+
+                                <ToggleButton Padding="10,4"
+                                              IsChecked="{Binding PingGraphModel.IsGraphFrozen}"
+                                              IsVisible="{Binding PingGraphModel.HasService}"
+                                              ToolTip.Tip="{Binding PingGraphModel.FreezeToolTip}">
+                                    <icon:MaterialIconText Kind="{Binding PingGraphModel.FreezeIcon}"
+                                                           Text="{Binding PingGraphModel.FreezeActionText}" />
+                                </ToggleButton>
+
+                                <ToggleButton Padding="10,4"
+                                              IsChecked="{Binding PingGraphModel.IsFullScale}"
+                                              IsVisible="{Binding PingGraphModel.HasSingleService}"
+                                              ToolTip.Tip="{Binding PingGraphModel.ScaleModeToolTip}">
+                                    <icon:MaterialIconText Kind="ArrowExpandVertical"
+                                                           Text="{Binding PingGraphModel.ScaleModeText}" />
+                                </ToggleButton>
+
+                                <Button Padding="10,4"
+                                        Command="{Binding OpenGraphInNewWindowCommand}"
+                                        Content="{icon:MaterialIconExt Kind=ChartBoxOutline}"
+                                        IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                        ToolTip.Tip="Open graph in a new window" />
+                            </WrapPanel>
                         </Grid>
 
                     </suki:GroupBox.Header>
@@ -867,8 +943,6 @@
         </Grid>
 
     </Grid>
-
-
 
 
 </controls:UserControlBase>

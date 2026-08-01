@@ -702,7 +702,9 @@ public partial class PingableServicesPageModel : PageViewModelBase
             Content = new ContentPresenter
             {
                 Margin = new Thickness(20),
-                Content = new PingableServiceGraphFragmentModel(_servicesDataGrid.SelectedItems.AsValueEnumerable<PingableService>().ToArray())
+                Content = new PingableServiceGraphFragmentModel(
+                    _servicesDataGrid.SelectedItems.AsValueEnumerable<PingableService>().ToArray(),
+                    showGraphOptions: true)
             }
         };
 

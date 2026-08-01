@@ -13,9 +13,9 @@
         <CompanyRDNS>pt.ptrtech</CompanyRDNS>
         <Authors>Tiago Conceição</Authors>
         <Copyright>Copyright 2025-$([System.DateTime]::Now.ToString(`yyyy`)) © $(Company)</Copyright>
-        <Summary>Network diagnostics tools for pinging, scanning, and analyzing hosts</Summary>
-        <Description>NetSonar is a network diagnostics tool for probing hosts and services with ICMP, TCP, UDP, TLS, DNS, NTP, HTTP, WebSocket, SSH, SMTP, IMAP, MQTT, STUN, and SIP, managing network interfaces, and discovering local devices/services.
-Features multi-protocol latency checks, subnet scanning, port/service detection, and real-time interface configuration.
+        <Summary>Cross-platform network service monitoring, interface management, and speed testing</Summary>
+        <Description>NetSonar is a network diagnostics and monitoring tool for probing hosts and services with ICMP, TCP, UDP, TLS, DNS, NTP, HTTP, WebSocket, SSH, SMTP, IMAP, MQTT, STUN, and SIP.
+Features protocol-aware latency checks, live single-service and multi-service response-time charts, network-interface inspection and configuration, and internet speed testing.
 Designed for administrators and developers needing lightweight, cross-platform network analysis.</Description>
         <Version>0.4.0</Version>
 
@@ -26,7 +26,7 @@ Designed for administrators and developers needing lightweight, cross-platform n
         <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
         <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
 
-        <PackageTags>Network;Diagnostics;Monitoring;ICMP;TCP;UDP;HTTP;Ping;Port-Scanning;Service-Discovery;Subnet-Scanner;Network-Management;Network-Interfaces;Cross-Platform;Admin;DevOps;IT;Tools</PackageTags>
+        <PackageTags>Network;Diagnostics;Monitoring;Ping;ICMP;TCP;UDP;TLS;DNS;NTP;HTTP;WebSocket;SSH;SMTP;IMAP;MQTT;STUN;SIP;Speed-Test;Network-Management;Network-Interfaces;Cross-Platform;Admin;DevOps;IT;Tools</PackageTags>
 
         <!-- Set the path map and artifacts path. -->
         <PathMap>$(MSBuildProjectDirectory)=$(MSBuildProjectName)</PathMap>

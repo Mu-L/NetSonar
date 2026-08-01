@@ -3,8 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fragments="clr-namespace:NetSonar.Avalonia.ViewModels.Fragments"
+             xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:network="clr-namespace:NetSonar.Avalonia.Network"
+             xmlns:suki="https://github.com/kikipoulet/SukiUI"
+             xmlns:viewModels="clr-namespace:NetSonar.Avalonia.ViewModels"
              d:DesignHeight="450"
              d:DesignWidth="800"
              x:DataType="fragments:PingableServiceGraphFragmentModel"
@@ -12,9 +16,104 @@
     <Design.DataContext>
         <fragments:PingableServiceGraphFragmentModel />
     </Design.DataContext>
-    <lvc:CartesianChart Name="ResponseTimeGraph"
-                        EasingFunction="{Binding EasingFunction}"
-                        Series="{Binding GraphSeries}"
-                        XAxes="{Binding GraphXAxes}"
-                        YAxes="{Binding GraphYAxes}" />
+    <Grid RowDefinitions="Auto,*">
+        <Expander Grid.Row="0"
+                  Margin="0,0,0,10"
+                  Header="Graph options"
+                  HorizontalContentAlignment="Stretch"
+                  IsExpanded="True"
+                  IsVisible="{Binding ShowGraphOptions}">
+            <Border Padding="0,8,0,10"
+                    BorderBrush="{DynamicResource SukiLowText}">
+                <WrapPanel HorizontalAlignment="Right"
+                           ItemSpacing="8"
+                           LineSpacing="8"
+                           Height="34"
+                           Orientation="Horizontal">
+                    <StackPanel IsVisible="{Binding HasService}"
+                                Orientation="Horizontal"
+                                Spacing="5">
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="Ping every:" />
+                        <NumericUpDown Width="105"
+                                       suki:NumericUpDownExtensions.Unit="s"
+                                       FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
+                                       Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownPingIncrement}}"
+                                       Maximum="{Binding Source={x:Static network:PingableService.MaxPingEverySeconds}}"
+                                       Minimum="{Binding Source={x:Static network:PingableService.MinPingEverySeconds}}"
+                                       ToolTip.Tip="Changes the probe interval for every service in this graph"
+                                       Value="{Binding PingEverySeconds, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel IsVisible="{Binding HasService}"
+                                Orientation="Horizontal"
+                                Spacing="5">
+                        <TextBlock VerticalAlignment="Center"
+                                   Text="Timeout:" />
+                        <NumericUpDown Width="105"
+                                       suki:NumericUpDownExtensions.Unit="s"
+                                       FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
+                                       Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeoutIncrement}}"
+                                       Maximum="{Binding Source={x:Static network:PingableService.MaxTimeoutSeconds}}"
+                                       Minimum="{Binding Source={x:Static network:PingableService.MinTimeoutSeconds}}"
+                                       ToolTip.Tip="Changes the timeout for every service in this graph"
+                                       Value="{Binding TimeoutSeconds, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <ComboBox MinWidth="112"
+                              VerticalAlignment="Stretch"
+                              IsVisible="{Binding HasService}"
+                              ItemsSource="{Binding WindowSizeOptions}"
+                              SelectedItem="{Binding SelectedWindowSize}"
+                              ToolTip.Tip="Recent replies included in the graph and statistics" />
+
+                    <ToggleButton Padding="10,4"
+                                  Command="{Binding ToggleServicesEnabledCommand}"
+                                  IsChecked="{Binding AreAllServicesEnabled, Mode=OneWay}"
+                                  IsVisible="{Binding HasService}"
+                                  Classes="Success"
+                                  ToolTip.Tip="{Binding ServicesEnabledActionToolTip}">
+                        <icon:MaterialIconText Kind="{Binding ServicesEnabledActionIcon}"
+                                               Text="{Binding ServicesEnabledActionText}" />
+                    </ToggleButton>
+
+                    <ToggleButton Padding="10,4"
+                                  IsChecked="{Binding IsGraphFrozen}"
+                                  IsVisible="{Binding HasService}"
+                                  ToolTip.Tip="{Binding FreezeToolTip}">
+                        <icon:MaterialIconText Kind="{Binding FreezeIcon}"
+                                               Text="{Binding FreezeActionText}" />
+                    </ToggleButton>
+
+                    <ToggleButton Padding="10,4"
+                                  IsChecked="{Binding IsFullScale}"
+                                  IsVisible="{Binding HasSingleService}"
+                                  ToolTip.Tip="{Binding ScaleModeToolTip}">
+                        <icon:MaterialIconText Kind="ArrowExpandVertical"
+                                               Text="{Binding ScaleModeText}" />
+                    </ToggleButton>
+                </WrapPanel>
+            </Border>
+        </Expander>
+
+        <Grid Grid.Row="1">
+            <lvc:CartesianChart Name="SingleResponseTimeGraph"
+                                EasingFunction="{Binding EasingFunction}"
+                                IsVisible="{Binding HasSingleService}"
+                                LegendPosition="Top"
+                                Series="{Binding SingleGraphSeries}"
+                                XAxes="{Binding SingleGraphXAxes}"
+                                YAxes="{Binding SingleGraphYAxes}"
+                                ZoomMode="X" />
+
+            <lvc:CartesianChart Name="MultiResponseTimeGraph"
+                                EasingFunction="{Binding EasingFunction}"
+                                IsVisible="{Binding HasMultiServices}"
+                                LegendPosition="Top"
+                                Series="{Binding MultiGraphSeries}"
+                                XAxes="{Binding MultiGraphXAxes}"
+                                YAxes="{Binding MultiGraphYAxes}"
+                                ZoomMode="X" />
+        </Grid>
+    </Grid>
 </UserControl>
