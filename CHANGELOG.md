@@ -17,7 +17,7 @@
 - Add a shared public-host catalogue with multiple credential-free TLS, NTP, HTTP, WebSocket, SSH, SMTP, IMAP, MQTT,
   STUN, and SIP endpoints
 - Add public HTTP targets for Google, Microsoft, Apple, Mozilla, Canonical, Cloudflare, and GitHub
-- Expand the public-host catalogue with Let's Encrypt, Azure DevOps, Codeberg, Fastmail, Eclipse IoT, and Twilio
+- Expand the public-hosted catalogue with Let's Encrypt, Azure DevOps, Codeberg, Fastmail, Eclipse IoT, and Twilio
   endpoints
 - Add individual public-host import actions for TLS, DNS, NTP, HTTP, WebSocket, SSH, SMTP, IMAP, MQTT, STUN, and SIP
 - Add implicit TLS, certificate validation, and hostname validation to IMAP probes on port 993
@@ -35,10 +35,10 @@
   percentile, jitter, and displayed-window loss statistics
 - Add multiservice response-time comparisons with minimum, average, current, maximum, failure status, host labels, and
   consolidated per-host tooltips
-- Improve response-time chart timeout markers, multi-service current-value markers, outlined labels, and label spacing,
-  value and axis formatting, tooltip deduplication, and transitions between single-service and multi-service views
+- Improve response-time chart timeout markers, multiservice current-value markers, outlined labels, and label spacing,
+  value and axis formatting, tooltip deduplication, and transitions between single-service and multiservice views
 - Add response-time graph controls to the main and pop-out views for sample window, freeze, scale, and synchronized
-  service-enablement toggles, with collapsible pop-out controls for probe interval and timeout and multi-service batch
+  service-enablement toggles, with collapsible pop-out controls for probe interval and timeout and multiservice batch
   editing
 - Add live reply-status summaries and replace disabled summary buttons with reusable, theme-aware status badges across
   the ping and network-interface views
