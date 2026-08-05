@@ -1,0 +1,1289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Navigation.Settings" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Settings.Theme" xml:space="preserve">
+    <value>テーマ</value>
+  </data>
+  <data name="Settings.Language" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="Settings.Language.FollowSystem" xml:space="preserve">
+    <value>システムの言語を使用</value>
+  </data>
+  <data name="Settings.Language.Description" xml:space="preserve">
+    <value>アプリケーション全体で使用される言語を選択します。</value>
+  </data>
+  <data name="Ui.Show" xml:space="preserve">
+    <value>👁 ショー</value>
+  </data>
+  <data name="Ui.Options" xml:space="preserve">
+    <value>⚙️オプション</value>
+  </data>
+  <data name="Ui.StartWithSystem" xml:space="preserve">
+    <value>システムと同時に起動</value>
+  </data>
+  <data name="Ui.ThemeSystem" xml:space="preserve">
+    <value>🖌️ テーマ: システム</value>
+  </data>
+  <data name="Ui.ThemeLight" xml:space="preserve">
+    <value>🖌️ テーマ: ライト</value>
+  </data>
+  <data name="Ui.ThemeDark" xml:space="preserve">
+    <value>🖌️ テーマ: ダーク</value>
+  </data>
+  <data name="Ui.Exit" xml:space="preserve">
+    <value>✖ 終了</value>
+  </data>
+  <data name="Ui.On" xml:space="preserve">
+    <value>オン</value>
+  </data>
+  <data name="Ui.Off" xml:space="preserve">
+    <value>オフ</value>
+  </data>
+  <data name="Ui.OperativeSystem" xml:space="preserve">
+    <value>オペレーティングシステム:</value>
+  </data>
+  <data name="Ui.GraphicCard" xml:space="preserve">
+    <value>グラフィックカード:</value>
+  </data>
+  <data name="Ui.Processor" xml:space="preserve">
+    <value>プロセッサ:</value>
+  </data>
+  <data name="Ui.ProcessorCores" xml:space="preserve">
+    <value>プロセッサコア:</value>
+  </data>
+  <data name="Ui.MemoryRAM" xml:space="preserve">
+    <value>メモリRAM:</value>
+  </data>
+  <data name="Ui.Framework" xml:space="preserve">
+    <value>フレームワーク:</value>
+  </data>
+  <data name="Ui.AvaloniaUI" xml:space="preserve">
+    <value>AvaloniaUI:</value>
+  </data>
+  <data name="Ui.ScreensResolutionWorkingAreaUsableArea" xml:space="preserve">
+    <value>画面、解像度、作業領域、使用可能領域：</value>
+  </data>
+  <data name="Ui.Description" xml:space="preserve">
+    <value>説明</value>
+  </data>
+  <data name="Ui.Assemblies" xml:space="preserve">
+    <value>アセンブリ</value>
+  </data>
+  <data name="Ui.TermsOfUse" xml:space="preserve">
+    <value>利用規約</value>
+  </data>
+  <data name="Ui.Services" xml:space="preserve">
+    <value>サービス</value>
+  </data>
+  <data name="Ui.AddNewServiceS" xml:space="preserve">
+    <value>新しいサービスを追加する</value>
+  </data>
+  <data name="Ui.ImportFromJSON" xml:space="preserve">
+    <value>JSONからインポート</value>
+  </data>
+  <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
+    <value>ネットワークゲートウェイをインポートする</value>
+  </data>
+  <data name="Ui.ImportPublicHosts" xml:space="preserve">
+    <value>パブリックホストをインポートする</value>
+  </data>
+  <data name="Ui.ImportAll" xml:space="preserve">
+    <value>すべてインポート</value>
+  </data>
+  <data name="Ui.RemoveServiceS" xml:space="preserve">
+    <value>サービスを削除する</value>
+  </data>
+  <data name="Ui.RemoveAll" xml:space="preserve">
+    <value>すべて削除する</value>
+  </data>
+  <data name="Ui.PleaseFixTheFollowingErrors" xml:space="preserve">
+    <value>次のエラーを修正してください。</value>
+  </data>
+  <data name="Ui.RemoveSelectedServiceS" xml:space="preserve">
+    <value>選択したサービスを削除します</value>
+  </data>
+  <data name="Ui.Enable" xml:space="preserve">
+    <value>有効にする</value>
+  </data>
+  <data name="Ui.Type" xml:space="preserve">
+    <value>種類</value>
+  </data>
+  <data name="Ui.IPAddressUrl" xml:space="preserve">
+    <value>IP アドレス / URL</value>
+  </data>
+  <data name="Ui.Group" xml:space="preserve">
+    <value>グループ</value>
+  </data>
+  <data name="Ui.PingEveryS" xml:space="preserve">
+    <value>間隔 (秒)</value>
+  </data>
+  <data name="Ui.TimeoutS" xml:space="preserve">
+    <value>タイムアウト (秒)</value>
+  </data>
+  <data name="Ui.BufferSize" xml:space="preserve">
+    <value>バッファサイズ</value>
+  </data>
+  <data name="Ui.NoFrag" xml:space="preserve">
+    <value>フラグメントしない</value>
+  </data>
+  <data name="Ui.Import" xml:space="preserve">
+    <value>インポート</value>
+  </data>
+  <data name="Ui.Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Ui.Megabytes" xml:space="preserve">
+    <value>メガバイト</value>
+  </data>
+  <data name="Ui.AutomaticIPAssignmentFromDHCP" xml:space="preserve">
+    <value>DHCP による IP の自動割り当て</value>
+  </data>
+  <data name="Ui.ManualIPAssignment" xml:space="preserve">
+    <value>手動IP割り当て</value>
+  </data>
+  <data name="Ui.IPAddress" xml:space="preserve">
+    <value>IPアドレス:</value>
+  </data>
+  <data name="Ui.SubnetMask" xml:space="preserve">
+    <value>サブネットマスク:</value>
+  </data>
+  <data name="Ui.Gateway" xml:space="preserve">
+    <value>ゲートウェイ:</value>
+  </data>
+  <data name="Ui.ClearTheGatewayAddress" xml:space="preserve">
+    <value>ゲートウェイアドレスをクリアする</value>
+  </data>
+  <data name="Ui.AutomaticDNSAssignmentFromDHCP" xml:space="preserve">
+    <value>DHCP による DNS の自動割り当て</value>
+  </data>
+  <data name="Ui.ManualDNSAssignment" xml:space="preserve">
+    <value>手動DNS割り当て</value>
+  </data>
+  <data name="Ui.Presets" xml:space="preserve">
+    <value>プリセット</value>
+  </data>
+  <data name="Ui.PrimaryDNS" xml:space="preserve">
+    <value>プライマリDNS:</value>
+  </data>
+  <data name="Ui.SetTheDNSFromTheDefinedServerGateway" xml:space="preserve">
+    <value>定義したサーバーゲートウェイからDNSを設定します。</value>
+  </data>
+  <data name="Ui.ClearAddress" xml:space="preserve">
+    <value>アドレスをクリア</value>
+  </data>
+  <data name="Ui.SecondaryDNS" xml:space="preserve">
+    <value>セカンダリDNS:</value>
+  </data>
+  <data name="Ui.Apply" xml:space="preserve">
+    <value>適用</value>
+  </data>
+  <data name="Ui.Disable" xml:space="preserve">
+    <value>無効にする</value>
+  </data>
+  <data name="Ui.ReleaseIP" xml:space="preserve">
+    <value>IP を解放</value>
+  </data>
+  <data name="Ui.RenewIP" xml:space="preserve">
+    <value>IP を更新</value>
+  </data>
+  <data name="Ui.SetIP" xml:space="preserve">
+    <value>IPの設定</value>
+  </data>
+  <data name="Ui.ManualAssignment" xml:space="preserve">
+    <value>手動割り当て</value>
+  </data>
+  <data name="Ui.ExportTo" xml:space="preserve">
+    <value>エクスポート先</value>
+  </data>
+  <data name="Ui.OpenInNewWindow" xml:space="preserve">
+    <value>新しいウィンドウで開きます</value>
+  </data>
+  <data name="Ui.PhysicalAddressMACAddress" xml:space="preserve">
+    <value>物理アドレス（MACアドレス）</value>
+  </data>
+  <data name="Ui.ConnectionSpeed" xml:space="preserve">
+    <value>接続速度</value>
+  </data>
+  <data name="Ui.StaticIPv4" xml:space="preserve">
+    <value>静的IPv4</value>
+  </data>
+  <data name="Ui.Downloaded" xml:space="preserve">
+    <value>ダウンロード済み</value>
+  </data>
+  <data name="Ui.Uploaded" xml:space="preserve">
+    <value>アップロードされました</value>
+  </data>
+  <data name="Ui.Property" xml:space="preserve">
+    <value>プロパティ</value>
+  </data>
+  <data name="Ui.Value" xml:space="preserve">
+    <value>値</value>
+  </data>
+  <data name="Ui.GraphOptions" xml:space="preserve">
+    <value>グラフのオプション</value>
+  </data>
+  <data name="Ui.PingEvery" xml:space="preserve">
+    <value>間隔:</value>
+  </data>
+  <data name="Ui.ChangesTheProbeIntervalForEveryServiceInThisGraph" xml:space="preserve">
+    <value>このグラフ内のすべてのサービスのプローブ間隔を変更します</value>
+  </data>
+  <data name="Ui.Timeout" xml:space="preserve">
+    <value>タイムアウト:</value>
+  </data>
+  <data name="Ui.ChangesTheTimeoutForEveryServiceInThisGraph" xml:space="preserve">
+    <value>このグラフ内のすべてのサービスのタイムアウトを変更します</value>
+  </data>
+  <data name="Ui.RecentRepliesIncludedInTheGraphAndStatistics" xml:space="preserve">
+    <value>最近の返信がグラフと統計に含まれる</value>
+  </data>
+  <data name="Ui.ClickToToggleTopMenu" xml:space="preserve">
+    <value>クリックしてトップメニューを切り替えます。</value>
+  </data>
+  <data name="Ui.About" xml:space="preserve">
+    <value>について</value>
+  </data>
+  <data name="Ui.Website" xml:space="preserve">
+    <value>ウェブサイト</value>
+  </data>
+  <data name="Ui.CommunityForums" xml:space="preserve">
+    <value>コミュニティフォーラム</value>
+  </data>
+  <data name="Ui.Donate" xml:space="preserve">
+    <value>寄付する</value>
+  </data>
+  <data name="Ui.AskAQuestion" xml:space="preserve">
+    <value>質問する</value>
+  </data>
+  <data name="Ui.ReportAnIssue" xml:space="preserve">
+    <value>問題を報告する</value>
+  </data>
+  <data name="Ui.SuggestAnImprovementOrFeature" xml:space="preserve">
+    <value>改善または機能を提案する</value>
+  </data>
+  <data name="Ui.OpenProfileFolder" xml:space="preserve">
+    <value>プロファイルフォルダーを開く</value>
+  </data>
+  <data name="Ui.CheckForUpdates" xml:space="preserve">
+    <value>更新を確認</value>
+  </data>
+  <data name="Ui.Debug" xml:space="preserve">
+    <value>デバッグ</value>
+  </data>
+  <data name="Ui.OpenExecutableFolder" xml:space="preserve">
+    <value>実行可能フォルダーを開く</value>
+  </data>
+  <data name="Ui.TriggerNewUpdate" xml:space="preserve">
+    <value>新しいアップデートをトリガーする</value>
+  </data>
+  <data name="Ui.ThrowException" xml:space="preserve">
+    <value>例外をスローする</value>
+  </data>
+  <data name="Ui.ToogleFullscreen" xml:space="preserve">
+    <value>全画面表示を切り替え</value>
+  </data>
+  <data name="Ui.NetworkInterfaces" xml:space="preserve">
+    <value>ネットワークインターフェース</value>
+  </data>
+  <data name="Ui.Status" xml:space="preserve">
+    <value>ステータス</value>
+  </data>
+  <data name="Ui.Others" xml:space="preserve">
+    <value>その他</value>
+  </data>
+  <data name="Ui.VirtualNetworks" xml:space="preserve">
+    <value>仮想ネットワーク</value>
+  </data>
+  <data name="Ui.HavePhysicalAddress" xml:space="preserve">
+    <value>物理アドレスあり</value>
+  </data>
+  <data name="Ui.HaveIPAddress" xml:space="preserve">
+    <value>IP アドレスあり</value>
+  </data>
+  <data name="Ui.IsTransmittingData" xml:space="preserve">
+    <value>データ転送中</value>
+  </data>
+  <data name="Ui.FilterInterfacesByText" xml:space="preserve">
+    <value>インターフェースをテキストでフィルタリングする</value>
+  </data>
+  <data name="Ui.RefreshAllInterfaces" xml:space="preserve">
+    <value>すべてのインターフェースを更新する</value>
+  </data>
+  <data name="Ui.OpenSystemNetworkManager" xml:space="preserve">
+    <value>システムのネットワーク設定を開く</value>
+  </data>
+  <data name="Ui.NetworkInterfacesSettings" xml:space="preserve">
+    <value>ネットワークインターフェースの設定</value>
+  </data>
+  <data name="Ui.AutoRefresh" xml:space="preserve">
+    <value>自動更新:</value>
+  </data>
+  <data name="Ui.CardWidth" xml:space="preserve">
+    <value>カード幅:</value>
+  </data>
+  <data name="Ui.CardHeight" xml:space="preserve">
+    <value>カードの高さ:</value>
+  </data>
+  <data name="Ui.FilterServicesByText" xml:space="preserve">
+    <value>サービスをテキストでフィルタリングする</value>
+  </data>
+  <data name="Ui.ResumeAll" xml:space="preserve">
+    <value>すべて再開</value>
+  </data>
+  <data name="Ui.PauseAll" xml:space="preserve">
+    <value>すべて一時停止する</value>
+  </data>
+  <data name="Ui.GridViewOptions" xml:space="preserve">
+    <value>グリッドビューのオプション</value>
+  </data>
+  <data name="Ui.GroupBy" xml:space="preserve">
+    <value>グループ化:</value>
+  </data>
+  <data name="Ui.ResetColumnsOrder" xml:space="preserve">
+    <value>列の順序をリセットする</value>
+  </data>
+  <data name="Ui.DefaultPingOptions" xml:space="preserve">
+    <value>デフォルトの ping オプション</value>
+  </data>
+  <data name="Ui.PingTimeout" xml:space="preserve">
+    <value>タイムアウト:</value>
+  </data>
+  <data name="Ui.BufferSize1DF49DCA" xml:space="preserve">
+    <value>バッファサイズ:</value>
+  </data>
+  <data name="Ui.TimeToLive" xml:space="preserve">
+    <value>有効期間 (TTL):</value>
+  </data>
+  <data name="Ui.DoNotFragment" xml:space="preserve">
+    <value>フラグメントしない:</value>
+  </data>
+  <data name="Ui.PingCacheSize" xml:space="preserve">
+    <value>Ping キャッシュ サイズ:</value>
+  </data>
+  <data name="Ui.GraphCacheSize" xml:space="preserve">
+    <value>グラフのキャッシュ サイズ:</value>
+  </data>
+  <data name="Ui.PersistentPings" xml:space="preserve">
+    <value>永続的な ping:</value>
+  </data>
+  <data name="Ui.SaveAndRestorePingRepliesAfterProgramRestart" xml:space="preserve">
+    <value>プログラムの再起動後に ping 応答を保存および復元する</value>
+  </data>
+  <data name="Ui.PauseSelected" xml:space="preserve">
+    <value>選択したものを一時停止する</value>
+  </data>
+  <data name="Ui.ResumeSelected" xml:space="preserve">
+    <value>選択項目を再開</value>
+  </data>
+  <data name="Ui.ResetSelectedStatistics" xml:space="preserve">
+    <value>選択した統計をリセットします</value>
+  </data>
+  <data name="Ui.ResetAllStatistics" xml:space="preserve">
+    <value>すべての統計をリセットする</value>
+  </data>
+  <data name="Ui.RemoveSelected" xml:space="preserve">
+    <value>選択したものを削除</value>
+  </data>
+  <data name="Ui.ExportSelectedToJSON" xml:space="preserve">
+    <value>選択したものを JSON にエクスポート</value>
+  </data>
+  <data name="Ui.ExportAllToJSON" xml:space="preserve">
+    <value>すべてを JSON にエクスポート</value>
+  </data>
+  <data name="Ui.OpenInBrowser" xml:space="preserve">
+    <value>ブラウザで開く</value>
+  </data>
+  <data name="Ui.IPAddress3C3DE0C9" xml:space="preserve">
+    <value>IPアドレス</value>
+  </data>
+  <data name="Ui.Time" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="Ui.MinTime" xml:space="preserve">
+    <value>最小遅延</value>
+  </data>
+  <data name="Ui.AvgTime" xml:space="preserve">
+    <value>平均遅延</value>
+  </data>
+  <data name="Ui.MaxTime" xml:space="preserve">
+    <value>最大遅延</value>
+  </data>
+  <data name="Ui.Pings" xml:space="preserve">
+    <value>Ping テスト</value>
+  </data>
+  <data name="Ui.Succeed" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="Ui.Failed" xml:space="preserve">
+    <value>失敗しました</value>
+  </data>
+  <data name="Ui.ConsecutiveSucceed" xml:space="preserve">
+    <value>連続成功</value>
+  </data>
+  <data name="Ui.ConsecutiveFailed" xml:space="preserve">
+    <value>連続失敗</value>
+  </data>
+  <data name="Ui.SucceedDate" xml:space="preserve">
+    <value>最終成功</value>
+  </data>
+  <data name="Ui.FailedDate" xml:space="preserve">
+    <value>最終失敗</value>
+  </data>
+  <data name="Ui.HostnameQuery" xml:space="preserve">
+    <value>ホスト名/クエリ</value>
+  </data>
+  <data name="Ui.Order" xml:space="preserve">
+    <value>順序</value>
+  </data>
+  <data name="Ui.TotalPings" xml:space="preserve">
+    <value>合計ping数</value>
+  </data>
+  <data name="Ui.SucceedPings" xml:space="preserve">
+    <value>成功した Ping</value>
+  </data>
+  <data name="Ui.FailedPings" xml:space="preserve">
+    <value>失敗した Ping</value>
+  </data>
+  <data name="Ui.ClearStatistics" xml:space="preserve">
+    <value>統計をクリア</value>
+  </data>
+  <data name="Ui.Resume" xml:space="preserve">
+    <value>再開</value>
+  </data>
+  <data name="Ui.Pause" xml:space="preserve">
+    <value>一時停止</value>
+  </data>
+  <data name="Ui.ExportPings" xml:space="preserve">
+    <value>エクスポート ping</value>
+  </data>
+  <data name="Ui.ExportToCSV" xml:space="preserve">
+    <value>CSVにエクスポート</value>
+  </data>
+  <data name="Ui.ExportToJSON" xml:space="preserve">
+    <value>JSON にエクスポート</value>
+  </data>
+  <data name="Ui.ReplyIPAddress" xml:space="preserve">
+    <value>返信IPアドレス</value>
+  </data>
+  <data name="Ui.SentOn" xml:space="preserve">
+    <value>に送信されました</value>
+  </data>
+  <data name="Ui.ErrorMessage" xml:space="preserve">
+    <value>エラーメッセージ</value>
+  </data>
+  <data name="Ui.ResponseTime" xml:space="preserve">
+    <value>応答時間</value>
+  </data>
+  <data name="Ui.LastReplyStatus" xml:space="preserve">
+    <value>最終返信ステータス</value>
+  </data>
+  <data name="Ui.LatestReplyLatencyOrStatus" xml:space="preserve">
+    <value>最新の返信の遅延またはステータス</value>
+  </data>
+  <data name="Ui.MedianLatencyInTheDisplayedWindow" xml:space="preserve">
+    <value>表示されたウィンドウのレイテンシの中央値</value>
+  </data>
+  <data name="Ui.95thPercentileLatencyInTheDisplayedWindow" xml:space="preserve">
+    <value>表示されたウィンドウの 95 パーセンタイルのレイテンシ</value>
+  </data>
+  <data name="Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies" xml:space="preserve">
+    <value>隣接する成功した応答間の平均遅延変化</value>
+  </data>
+  <data name="Ui.FailedRepliesInTheDisplayedWindow" xml:space="preserve">
+    <value>表示されたウィンドウでの失敗した応答</value>
+  </data>
+  <data name="Ui.OpenGraphInANewWindow" xml:space="preserve">
+    <value>新しいウィンドウでグラフを開く</value>
+  </data>
+  <data name="Ui.SystemMode" xml:space="preserve">
+    <value>システムモード</value>
+  </data>
+  <data name="Ui.LightMode" xml:space="preserve">
+    <value>ライトモード</value>
+  </data>
+  <data name="Ui.DarkMode" xml:space="preserve">
+    <value>ダークモード</value>
+  </data>
+  <data name="Ui.UIScale" xml:space="preserve">
+    <value>UIスケール</value>
+  </data>
+  <data name="Ui.AdjustTheUIScaleToIncreaseOrDecreaseTheSizeOfTheInterfaceElements" xml:space="preserve">
+    <value>UI スケールを調整して、インターフェイス要素のサイズを拡大または縮小します。</value>
+  </data>
+  <data name="Ui.Background" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="Ui.AnimatedBackground" xml:space="preserve">
+    <value>アニメーションの背景</value>
+  </data>
+  <data name="Ui.EnableDisableTheAnimationsForTheBackgroundWhichAreDrivenByTheCurrentlyAc" xml:space="preserve">
+    <value>現在アクティブなエフェクトによって駆動される背景のアニメーションを有効または無効にします。</value>
+  </data>
+  <data name="Ui.BackgroundTransitions" xml:space="preserve">
+    <value>背景の遷移</value>
+  </data>
+  <data name="Ui.EnableDisableTheTransitionsForTheBackgroundTheseWillFadeBetweenTheActive" xml:space="preserve">
+    <value>背景のトランジションを有効/無効にします。変更すると、アクティブなエフェクト間でフェードアウトします。</value>
+  </data>
+  <data name="Ui.BackgroundStyle" xml:space="preserve">
+    <value>背景のスタイル</value>
+  </data>
+  <data name="Ui.SelectFromTheIncludedBackgroundStyles" xml:space="preserve">
+    <value>付属の背景スタイルから選択します。</value>
+  </data>
+  <data name="Ui.CustomShaders" xml:space="preserve">
+    <value>カスタムシェーダー</value>
+  </data>
+  <data name="Ui.ClickAnyOfTheButtonsBelowToEnableABackgroundShaderClickItAgainToDisableI" xml:space="preserve">
+    <value>以下のいずれかのボタンをクリックして、背景シェーダーを有効にします。無効にするには、もう一度クリックします。これらは GPU にかなりの負荷をかける可能性があり、純粋にバックグラウンド レンダラーの機能をデモンストレーションおよびテストすることを目的としています。</value>
+  </data>
+  <data name="Ui.General" xml:space="preserve">
+    <value>全般</value>
+  </data>
+  <data name="Ui.StartTheApplicationAutomaticallyWhenTheSystemStarts" xml:space="preserve">
+    <value>システム起動時にアプリケーションを自動的に起動します。</value>
+  </data>
+  <data name="Ui.UseSystemTray" xml:space="preserve">
+    <value>システムトレイを使用する</value>
+  </data>
+  <data name="Ui.ShowATrayIconInTheSystemNotificationAreaForQuickAccessWhenTheAppIsRunnin" xml:space="preserve">
+    <value>アプリの実行中に簡単にアクセスできるように、システム通知領域にトレイ アイコンを表示します。</value>
+  </data>
+  <data name="Ui.CloseToSystemTray" xml:space="preserve">
+    <value>システムトレイの近く</value>
+  </data>
+  <data name="Ui.WhenClosingTheMainWindowKeepTheAppRunningInTheSystemTrayInsteadOfExiting" xml:space="preserve">
+    <value>メイン ウィンドウを閉じるときは、アプリを終了せずにシステム トレイで実行したままにしてください。</value>
+  </data>
+  <data name="Ui.CheckForUpdatesOnStart" xml:space="preserve">
+    <value>起動時にアップデートを確認する</value>
+  </data>
+  <data name="Ui.CheckForUpdatesOnApplicationStartIfAnUpdateIsAvailableItWillNotifyAndAdd" xml:space="preserve">
+    <value>アプリケーションの起動時に更新を確認します。アップデートが利用可能な場合は、通知が表示され、さらにアクションを求めるプロンプトが表示されます。</value>
+  </data>
+  <data name="Ui.SpeedTests" xml:space="preserve">
+    <value>速度テスト</value>
+  </data>
+  <data name="Ui.NewSpeedTest" xml:space="preserve">
+    <value>新しいスピードテスト</value>
+  </data>
+  <data name="Ui.StopSpeedTest" xml:space="preserve">
+    <value>停止速度テスト</value>
+  </data>
+  <data name="Ui.SpeedTestSettings" xml:space="preserve">
+    <value>スピードテスト設定</value>
+  </data>
+  <data name="Ui.AutoSpeedTest" xml:space="preserve">
+    <value>自動テスト:</value>
+  </data>
+  <data name="Ui.Server" xml:space="preserve">
+    <value>サーバー:</value>
+  </data>
+  <data name="Ui.GaugeRange" xml:space="preserve">
+    <value>ゲージ範囲:</value>
+  </data>
+  <data name="Ui.GaugeIncrement" xml:space="preserve">
+    <value>ゲージ増加量:</value>
+  </data>
+  <data name="Ui.OpenResult" xml:space="preserve">
+    <value>結果を開く</value>
+  </data>
+  <data name="Ui.DateTime" xml:space="preserve">
+    <value>日付時刻</value>
+  </data>
+  <data name="Ui.Ping" xml:space="preserve">
+    <value>Ping 遅延</value>
+  </data>
+  <data name="Ui.Download" xml:space="preserve">
+    <value>ダウンロード</value>
+  </data>
+  <data name="Ui.Upload" xml:space="preserve">
+    <value>アップロード</value>
+  </data>
+  <data name="Ui.PacketLoss" xml:space="preserve">
+    <value>パケットロス</value>
+  </data>
+  <data name="Ui.Interface" xml:space="preserve">
+    <value>インターフェース</value>
+  </data>
+  <data name="Ui.ServerAEF7DE28" xml:space="preserve">
+    <value>サーバー</value>
+  </data>
+  <data name="Ui.SpeedtestDependencyWasNotFoundInTheSystem" xml:space="preserve">
+    <value>Speedtest の依存関係がシステム内に見つかりませんでした</value>
+  </data>
+  <data name="Ui.ThisModuleRequiresTheOoklaSpeedtestCLIBinaryYetWasNotFoundInTheSystemPle" xml:space="preserve">
+    <value>このモジュールには Ookla Speedtest CLI バイナリが必要ですが、システム内に見つかりませんでした。
+依存関係をインストールし、モジュールをリロードしてください。</value>
+  </data>
+  <data name="Ui.Jitter" xml:space="preserve">
+    <value>ジッター:</value>
+  </data>
+  <data name="Ui.Low" xml:space="preserve">
+    <value>低:</value>
+  </data>
+  <data name="Ui.High" xml:space="preserve">
+    <value>高:</value>
+  </data>
+  <data name="Ui.PLoss" xml:space="preserve">
+    <value>パケット損失:</value>
+  </data>
+  <data name="Ui.IQM" xml:space="preserve">
+    <value>四分位平均 (IQM):</value>
+  </data>
+  <data name="Ui.Name" xml:space="preserve">
+    <value>名前:</value>
+  </data>
+  <data name="Ui.Location" xml:space="preserve">
+    <value>場所:</value>
+  </data>
+  <data name="Ui.Host" xml:space="preserve">
+    <value>ホスト:</value>
+  </data>
+  <data name="Ui.IP" xml:space="preserve">
+    <value>IP アドレス:</value>
+  </data>
+  <data name="Ui.Port" xml:space="preserve">
+    <value>ポート:</value>
+  </data>
+  <data name="Ui.ISP" xml:space="preserve">
+    <value>インターネット事業者:</value>
+  </data>
+  <data name="Ui.Index" xml:space="preserve">
+    <value>インデックス</value>
+  </data>
+  <data name="Ui.NameDCD1D522" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="Navigation.Interfaces" xml:space="preserve">
+    <value>インターフェース</value>
+  </data>
+  <data name="Navigation.Pings" xml:space="preserve">
+    <value>Ping 監視</value>
+  </data>
+  <data name="Navigation.SpeedTest" xml:space="preserve">
+    <value>スピードテスト</value>
+  </data>
+  <data name="Common.Yes" xml:space="preserve">
+    <value>はい</value>
+  </data>
+  <data name="Common.No" xml:space="preserve">
+    <value>いいえ</value>
+  </data>
+  <data name="Common.Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Common.Unknown" xml:space="preserve">
+    <value>不明</value>
+  </data>
+  <data name="Common.View" xml:space="preserve">
+    <value>見る</value>
+  </data>
+  <data name="Common.Ignore" xml:space="preserve">
+    <value>無視する</value>
+  </data>
+  <data name="Common.CopiedToClipboard" xml:space="preserve">
+    <value>クリップボードにコピーされました</value>
+  </data>
+  <data name="Common.OpenFile" xml:space="preserve">
+    <value>ファイルを開く</value>
+  </data>
+  <data name="Common.OpenFolder" xml:space="preserve">
+    <value>フォルダーを開く</value>
+  </data>
+  <data name="Dialog.About.Title" xml:space="preserve">
+    <value>{0}について</value>
+  </data>
+  <data name="Update.TriggerUnavailable.Title" xml:space="preserve">
+    <value>新しい更新をトリガーできません</value>
+  </data>
+  <data name="Update.TriggerUnavailable.Message" xml:space="preserve">
+    <value>新しいアップデートをトリガーできるリリースはありません。</value>
+  </data>
+  <data name="Update.None.Title" xml:space="preserve">
+    <value>利用可能なアップデートはありません。</value>
+  </data>
+  <data name="Update.None.Message" xml:space="preserve">
+    <value>{0} は最新バージョンを実行しています。</value>
+  </data>
+  <data name="Update.CheckFailed" xml:space="preserve">
+    <value>アップデートを確認できません</value>
+  </data>
+  <data name="Update.Found.Title" xml:space="preserve">
+    <value>{0} 件のアップデートが見つかりました</value>
+  </data>
+  <data name="Update.Found.Message" xml:space="preserve">
+    <value>現在のバージョン: {0}
+新しいバージョン: {1}
+先のリリース: {2}
+発売日: {3:f}</value>
+  </data>
+  <data name="Common.Copy" xml:space="preserve">
+    <value>コピー</value>
+  </data>
+  <data name="Common.Copied" xml:space="preserve">
+    <value>コピーされました</value>
+  </data>
+  <data name="Common.Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="Common.Report" xml:space="preserve">
+    <value>レポート</value>
+  </data>
+  <data name="Common.Help" xml:space="preserve">
+    <value>ヘルプ</value>
+  </data>
+  <data name="Common.Restart" xml:space="preserve">
+    <value>再起動</value>
+  </data>
+  <data name="Common.Reload" xml:space="preserve">
+    <value>リロード</value>
+  </data>
+  <data name="Common.ProcessId" xml:space="preserve">
+    <value>
+
+プロセス ID: {0}</value>
+  </data>
+  <data name="Update.Auto" xml:space="preserve">
+    <value>自動更新</value>
+  </data>
+  <data name="Update.Manual" xml:space="preserve">
+    <value>手動アップデート</value>
+  </data>
+  <data name="Window.CrashReport.Title" xml:space="preserve">
+    <value>{0} - クラッシュレポート</value>
+  </data>
+  <data name="Window.AlreadyRunning.Title" xml:space="preserve">
+    <value>{0} - すでに実行中です</value>
+  </data>
+  <data name="InstanceAlreadyRunning.Message" xml:space="preserve">
+    <value>{0} の別のインスタンスが実行されています。一度に実行できるのは、{0} のインスタンス 1 つだけです。
+実行中のインスタンスを見つけて開くか、新しいインスタンスを開始する前に閉じてください。</value>
+  </data>
+  <data name="CrashReport.Header" xml:space="preserve">
+    <value>予期しないエラーのため、{0} がクラッシュしました。
+必要に応じて、このエラーを報告できます。
+詳細については以下をご覧ください。</value>
+  </data>
+  <data name="CrashReport.NoDetails" xml:space="preserve">
+    <value>予期しないエラーによりアプリケーションがクラッシュしましたが、残念ながら詳細は不明です。
+クラッシュ レポートが失われたか、保存できなかった可能性があります。</value>
+  </data>
+  <data name="Ping.ResetOne.Title" xml:space="preserve">
+    <value>選択した ping ホストをリセットしてもよろしいですか?</value>
+  </data>
+  <data name="Ping.ResetOne.Message" xml:space="preserve">
+    <value>選択した ping ホスト統計をリセットしようとしています。
+
+IP アドレス: {0}
+ホスト: {1}
+
+続行してもよろしいですか?</value>
+  </data>
+  <data name="Ping.ResetSelected.Title" xml:space="preserve">
+    <value>選択した {0} 個の ping ホストをリセットしてもよろしいですか?</value>
+  </data>
+  <data name="Ping.ResetSelected.Message" xml:space="preserve">
+    <value>選択した {0} 台の ping ホストの統計をリセットしようとしています。
+続行してもよろしいですか?</value>
+  </data>
+  <data name="Ping.ResetAll.Title" xml:space="preserve">
+    <value>すべての {0} ping ホストをリセットしてもよろしいですか?</value>
+  </data>
+  <data name="Ping.ResetAll.Message" xml:space="preserve">
+    <value>すべての {0} ping ホストの統計をリセットしようとしています。
+続行してもよろしいですか?</value>
+  </data>
+  <data name="Ping.RemoveSelected.Title" xml:space="preserve">
+    <value>選択した {0} 個の ping ホストを削除してもよろしいですか?</value>
+  </data>
+  <data name="Ping.RemoveSelected.Message" xml:space="preserve">
+    <value>選択した {0} 個の ping ホストを削除しようとしています。
+続行してもよろしいですか?</value>
+  </data>
+  <data name="Ping.RemoveAll.Title" xml:space="preserve">
+    <value>すべての {0} ping ホストを削除してもよろしいですか?</value>
+  </data>
+  <data name="Ping.RemoveAll.Message" xml:space="preserve">
+    <value>すべての {0} ping ホストを削除しようとしています。
+続行してもよろしいですか?</value>
+  </data>
+  <data name="Export.Services.Title" xml:space="preserve">
+    <value>サービスを JSON にエクスポートする</value>
+  </data>
+  <data name="Export.Services.Success" xml:space="preserve">
+    <value>{0} サービスは「{1}」にエクスポートされました。</value>
+  </data>
+  <data name="Export.Services.Error" xml:space="preserve">
+    <value>サービスをエクスポートしようとしたときにエラーが発生しました:</value>
+  </data>
+  <data name="Export.Pings.CsvTitle" xml:space="preserve">
+    <value>ping を CSV にエクスポート</value>
+  </data>
+  <data name="Export.Pings.JsonTitle" xml:space="preserve">
+    <value>ping を JSON にエクスポートする</value>
+  </data>
+  <data name="Export.Pings.Success" xml:space="preserve">
+    <value>「{1}」の {0} ping が「{2}」にエクスポートされました。</value>
+  </data>
+  <data name="Export.Pings.Error" xml:space="preserve">
+    <value>ping をエクスポートしようとしたときにエラーが発生しました:</value>
+  </data>
+  <data name="SpeedTest.Install.Title" xml:space="preserve">
+    <value>Speedtest CLI のインストール</value>
+  </data>
+  <data name="SpeedTest.Install.Success" xml:space="preserve">
+    <value>Speedtest CLI が正常にインストールされました。</value>
+  </data>
+  <data name="SpeedTest.Install.Error" xml:space="preserve">
+    <value>Speedtest CLI のインストールに失敗しました。 https://www.speedtest.net/apps/cli から手動でインストールしてください。</value>
+  </data>
+  <data name="SpeedTest.Error" xml:space="preserve">
+    <value>速度テスト中のエラー</value>
+  </data>
+  <data name="Export.Results.Title" xml:space="preserve">
+    <value>結果をJSONにエクスポート</value>
+  </data>
+  <data name="Export.Results.Success" xml:space="preserve">
+    <value>{0} の結果が「{1}」にエクスポートされました。</value>
+  </data>
+  <data name="Export.Results.Error" xml:space="preserve">
+    <value>結果をエクスポートしようとしたときにエラーが発生しました:</value>
+  </data>
+  <data name="SpeedTest.RemoveSelected.Title" xml:space="preserve">
+    <value>{0} 個の選択した結果を削除してもよろしいですか?</value>
+  </data>
+  <data name="SpeedTest.RemoveSelected.Message" xml:space="preserve">
+    <value>選択した {0} 件の結果を削除しようとしています。
+続行してもよろしいですか?</value>
+  </data>
+  <data name="SpeedTest.RemoveAll.Title" xml:space="preserve">
+    <value>すべての {0} の結果を削除してもよろしいですか?</value>
+  </data>
+  <data name="SpeedTest.RemoveAll.Message" xml:space="preserve">
+    <value>すべての {0} の結果を削除しようとしています。
+続行してもよろしいですか?</value>
+  </data>
+  <data name="SpeedTest.AutoInstall" xml:space="preserve">
+    <value>自動インストール</value>
+  </data>
+  <data name="SpeedTest.ManualInstall" xml:space="preserve">
+    <value>手動インストール</value>
+  </data>
+  <data name="Network.Disable.Title" xml:space="preserve">
+    <value>{0}を無効にする</value>
+  </data>
+  <data name="Network.Disable.Success" xml:space="preserve">
+    <value>インターフェース「{0}」は正常に無効になりました。</value>
+  </data>
+  <data name="Network.Disable.Error" xml:space="preserve">
+    <value>「{0}」を無効にできません。</value>
+  </data>
+  <data name="Network.Enable.Title" xml:space="preserve">
+    <value>{0} を有効にする</value>
+  </data>
+  <data name="Network.Enable.Success" xml:space="preserve">
+    <value>インターフェース「{0}」は正常に有効になりました。</value>
+  </data>
+  <data name="Network.Enable.Error" xml:space="preserve">
+    <value>「{0}」を有効にできません。</value>
+  </data>
+  <data name="Network.Release.Title" xml:space="preserve">
+    <value>{0}を解放します</value>
+  </data>
+  <data name="Network.Release.Success" xml:space="preserve">
+    <value>IPアドレスが正常に解放されました。</value>
+  </data>
+  <data name="Network.Release.Error" xml:space="preserve">
+    <value>「{0}」を解放できません。</value>
+  </data>
+  <data name="Network.Renew.Title" xml:space="preserve">
+    <value>{0}を更新します</value>
+  </data>
+  <data name="Network.Renew.Success" xml:space="preserve">
+    <value>IPアドレスが正常に更新されました。</value>
+  </data>
+  <data name="Network.Renew.Error" xml:space="preserve">
+    <value>「{0}」を更新できません。</value>
+  </data>
+  <data name="Network.StaticIp.Success" xml:space="preserve">
+    <value>IP アドレスが {0} {1} {2} に正常に設定されました</value>
+  </data>
+  <data name="Network.StaticIp.Error" xml:space="preserve">
+    <value>「{1}」に静的 IPv{0} を設定できません。</value>
+  </data>
+  <data name="Network.DhcpIp.Success" xml:space="preserve">
+    <value>IP アドレスが DHCPv に正常に設定されました{0}</value>
+  </data>
+  <data name="Network.DhcpIp.Error" xml:space="preserve">
+    <value>「{1}」に DHCPv{0} を設定できません。</value>
+  </data>
+  <data name="Network.Dns.Title" xml:space="preserve">
+    <value>「{0}」の DNS 割り当て</value>
+  </data>
+  <data name="Network.Dns.Success" xml:space="preserve">
+    <value>DNS サーバーが正常に割り当てられました: {0} {1}</value>
+  </data>
+  <data name="Network.Dns.Error" xml:space="preserve">
+    <value>DNSを割り当てることができません。</value>
+  </data>
+  <data name="Network.DhcpDns.Success" xml:space="preserve">
+    <value>DHCP DNS が正常に割り当てられました。</value>
+  </data>
+  <data name="Network.DhcpDns.Error" xml:space="preserve">
+    <value>DHCP DNS を割り当てることができません。</value>
+  </data>
+  <data name="Network.IpAssignment.Title" xml:space="preserve">
+    <value>「{0}」の IP 割り当て</value>
+  </data>
+  <data name="Network.IpAssignment.NoChanges" xml:space="preserve">
+    <value>定義された設定が以前の設定と一致するため、変更は行われませんでした。</value>
+  </data>
+  <data name="Network.IpAssignment.Error" xml:space="preserve">
+    <value>IPを割り当てることができません。</value>
+  </data>
+  <data name="Export.Interface.Title" xml:space="preserve">
+    <value>インターフェースを {0} にエクスポート</value>
+  </data>
+  <data name="Export.Interface.Success" xml:space="preserve">
+    <value>インターフェース「{0}」は「{1}」にエクスポートされました。</value>
+  </data>
+  <data name="Export.Interface.Error" xml:space="preserve">
+    <value>インターフェイスをエクスポートしようとしたときにエラーが発生しました:</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Default" xml:space="preserve">
+    <value>システム設定</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Light" xml:space="preserve">
+    <value>ライト</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Dark" xml:space="preserve">
+    <value>ダーク</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.None" xml:space="preserve">
+    <value>グループ化なし</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.ProtocolType" xml:space="preserve">
+    <value>プロトコルの種類</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.LastStatus" xml:space="preserve">
+    <value>最新ステータス</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.Group" xml:space="preserve">
+    <value>グループ</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.ICMP" xml:space="preserve">
+    <value>ICMP: インターネット制御メッセージ プロトコル</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.TCP" xml:space="preserve">
+    <value>TCP: 伝送制御プロトコル</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.UDP" xml:space="preserve">
+    <value>UDP: ユーザー データグラム プロトコル</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.TLS" xml:space="preserve">
+    <value>TLS: トランスポート層セキュリティ</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.DNS" xml:space="preserve">
+    <value>DNS: ドメイン ネーム システム</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.NTP" xml:space="preserve">
+    <value>NTP: ネットワーク タイム プロトコル</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.HTTP" xml:space="preserve">
+    <value>HTTP: ハイパーテキスト転送プロトコル</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.WebSocket" xml:space="preserve">
+    <value>WebSocket: 全二重通信プロトコル</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SSH" xml:space="preserve">
+    <value>SSH: セキュア シェル プロトコル</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SMTP" xml:space="preserve">
+    <value>SMTP: 簡易メール転送プロトコル</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.IMAP" xml:space="preserve">
+    <value>IMAP: インターネット メッセージ アクセス プロトコル</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.MQTT" xml:space="preserve">
+    <value>MQTT: メッセージ キュー テレメトリ トランスポート</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.STUN" xml:space="preserve">
+    <value>STUN: NAT 用セッション トラバーサル ユーティリティ</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SIP" xml:space="preserve">
+    <value>SIP: セッション開始プロトコル</value>
+  </data>
+  <data name="Operation.Success" xml:space="preserve">
+    <value>操作は正常に完了しました。</value>
+  </data>
+  <data name="Operation.SudoRequired" xml:space="preserve">
+    <value>sudo アクセスが必要なため、操作を実行できません。
+pkexec が見つかりませんでした。 pkexec をインストールするか、sudo を使用してアプリケーションを実行します。</value>
+  </data>
+  <data name="Import.Json.ErrorTitle" xml:space="preserve">
+    <value>JSONからインポートできません</value>
+  </data>
+  <data name="Import.Json.ErrorMessage" xml:space="preserve">
+    <value>提供された JSON ファイルが無効であるか、形式が正しくありません。</value>
+  </data>
+  <data name="SpeedTest.ServerList.Error" xml:space="preserve">
+    <value>サーバーリストを取得できません</value>
+  </data>
+  <data name="Ui.ServicesCount" xml:space="preserve">
+    <value>({0} サービス)</value>
+  </data>
+  <data name="Ui.Auto" xml:space="preserve">
+    <value>自動</value>
+  </data>
+  <data name="Tray.PingsUp" xml:space="preserve">
+    <value>{0} 稼働</value>
+  </data>
+  <data name="Ui.LastUpdateCheck" xml:space="preserve">
+    <value>最終更新確認: {0}</value>
+  </data>
+  <data name="Ui.ChangelogWithReleases" xml:space="preserve">
+    <value>{0} リリース分の変更履歴:</value>
+  </data>
+  <data name="Tray.PingsDown" xml:space="preserve">
+    <value>{0} 停止</value>
+  </data>
+  <data name="Ui.License" xml:space="preserve">
+    <value>ライセンス ({0})</value>
+  </data>
+  <data name="Ui.Age" xml:space="preserve">
+    <value>経過期間: {0}</value>
+  </data>
+  <data name="Graph.Latency" xml:space="preserve">
+    <value>レイテンシ</value>
+  </data>
+  <data name="Graph.AboveScale" xml:space="preserve">
+    <value>スケール超過</value>
+  </data>
+  <data name="Graph.RollingAverage" xml:space="preserve">
+    <value>移動平均</value>
+  </data>
+  <data name="Graph.Failure" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="Graph.Maximum" xml:space="preserve">
+    <value>最大</value>
+  </data>
+  <data name="Graph.Average" xml:space="preserve">
+    <value>平均</value>
+  </data>
+  <data name="Graph.Current" xml:space="preserve">
+    <value>現在</value>
+  </data>
+  <data name="Graph.Minimum" xml:space="preserve">
+    <value>最小</value>
+  </data>
+  <data name="Graph.Failed" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="Graph.DisableAll.ToolTip" xml:space="preserve">
+    <value>このグラフのすべてのサービスを無効にします</value>
+  </data>
+  <data name="Graph.EnableAll.ToolTip" xml:space="preserve">
+    <value>このグラフのすべてのサービスを有効にします</value>
+  </data>
+  <data name="Graph.FullScale" xml:space="preserve">
+    <value>全範囲</value>
+  </data>
+  <data name="Graph.AutoScale" xml:space="preserve">
+    <value>自動スケール</value>
+  </data>
+  <data name="Graph.AutoScale.ToolTip" xml:space="preserve">
+    <value>レイテンシを自動スケーリングします</value>
+  </data>
+  <data name="Graph.FullScale.ToolTip" xml:space="preserve">
+    <value>レイテンシの全範囲を表示します</value>
+  </data>
+  <data name="Graph.Freeze" xml:space="preserve">
+    <value>固定</value>
+  </data>
+  <data name="Graph.Freeze.ToolTip" xml:space="preserve">
+    <value>監視を続けたままグラフを固定します</value>
+  </data>
+  <data name="Graph.Resume.ToolTip" xml:space="preserve">
+    <value>グラフのリアルタイム更新を再開します</value>
+  </data>
+  <data name="Graph.Samples" xml:space="preserve">
+    <value>{0}件</value>
+  </data>
+  <data name="Graph.AllSamples" xml:space="preserve">
+    <value>すべてのサンプル</value>
+  </data>
+  <data name="Graph.AboveAutomaticScale" xml:space="preserve">
+    <value>自動スケールを超過</value>
+  </data>
+  <data name="Graph.Jitter" xml:space="preserve">
+    <value>ジッター</value>
+  </data>
+  <data name="Graph.Loss" xml:space="preserve">
+    <value>損失</value>
+  </data>
+  <data name="Graph.Title" xml:space="preserve">
+    <value>グラフ</value>
+  </data>
+  <data name="Status.Success" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="Status.DestinationNetworkUnreachable" xml:space="preserve">
+    <value>宛先ネットワークに到達できません</value>
+  </data>
+  <data name="Status.DestinationHostUnreachable" xml:space="preserve">
+    <value>宛先ホストに到達できません</value>
+  </data>
+  <data name="Status.DestinationProtocolUnreachable" xml:space="preserve">
+    <value>宛先プロトコルに到達できません</value>
+  </data>
+  <data name="Status.DestinationPortUnreachable" xml:space="preserve">
+    <value>宛先ポートに到達できません</value>
+  </data>
+  <data name="Status.DestinationProhibited" xml:space="preserve">
+    <value>宛先への通信が禁止されています</value>
+  </data>
+  <data name="Status.NoResources" xml:space="preserve">
+    <value>リソース不足</value>
+  </data>
+  <data name="Status.BadOption" xml:space="preserve">
+    <value>無効なオプション</value>
+  </data>
+  <data name="Status.HardwareError" xml:space="preserve">
+    <value>ハードウェア エラー</value>
+  </data>
+  <data name="Status.PacketTooBig" xml:space="preserve">
+    <value>パケットが大きすぎます</value>
+  </data>
+  <data name="Status.BadRoute" xml:space="preserve">
+    <value>無効なルート</value>
+  </data>
+  <data name="Status.TtlExpired" xml:space="preserve">
+    <value>TTL の有効期限切れ</value>
+  </data>
+  <data name="Status.TtlReassemblyTimeExceeded" xml:space="preserve">
+    <value>再構成中に TTL の有効期限切れ</value>
+  </data>
+  <data name="Status.ParameterProblem" xml:space="preserve">
+    <value>パラメーター エラー</value>
+  </data>
+  <data name="Status.SourceQuench" xml:space="preserve">
+    <value>送信元抑制</value>
+  </data>
+  <data name="Status.BadDestination" xml:space="preserve">
+    <value>無効な宛先</value>
+  </data>
+  <data name="Status.DestinationUnreachable" xml:space="preserve">
+    <value>宛先に到達できません</value>
+  </data>
+  <data name="Status.TimeExceeded" xml:space="preserve">
+    <value>時間超過</value>
+  </data>
+  <data name="Status.BadHeader" xml:space="preserve">
+    <value>無効なヘッダー</value>
+  </data>
+  <data name="Status.UnrecognizedNextHeader" xml:space="preserve">
+    <value>次のヘッダーを認識できません</value>
+  </data>
+  <data name="Status.IcmpError" xml:space="preserve">
+    <value>ICMP エラー</value>
+  </data>
+  <data name="Status.DestinationScopeMismatch" xml:space="preserve">
+    <value>宛先スコープの不一致</value>
+  </data>
+  <data name="Status.NoContent" xml:space="preserve">
+    <value>コンテンツなし</value>
+  </data>
+  <data name="Status.ConnectionReset" xml:space="preserve">
+    <value>接続がリセットされました</value>
+  </data>
+  <data name="Status.TimedOut" xml:space="preserve">
+    <value>タイムアウト</value>
+  </data>
+  <data name="Status.Unknown" xml:space="preserve">
+    <value>不明</value>
+  </data>
+  <data name="Status.Open" xml:space="preserve">
+    <value>オープン</value>
+  </data>
+  <data name="Status.SocketErrorFallback" xml:space="preserve">
+    <value>ソケット エラー ({0})</value>
+  </data>
+  <data name="Status.HttpRequestErrorFallback" xml:space="preserve">
+    <value>HTTP リクエスト エラー</value>
+  </data>
+  <data name="Status.WebSocketErrorFallback" xml:space="preserve">
+    <value>WebSocket エラー</value>
+  </data>
+  <data name="Status.HttpFallback" xml:space="preserve">
+    <value>HTTP {0}</value>
+  </data>
+  <data name="Status.ErrorFallback" xml:space="preserve">
+    <value>エラー ({0})</value>
+  </data>
+  <data name="Ui.ServicesCountPlain" xml:space="preserve">
+    <value>サービス {0} 件</value>
+  </data>
+</root>

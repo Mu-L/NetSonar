@@ -1,6 +1,7 @@
 <controls:UserControlBase x:Class="NetSonar.Avalonia.Views.Dialogs.SetInterfaceIPDialogView"
                           xmlns="https://github.com/avaloniaui"
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
                           xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                           xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
@@ -17,7 +18,7 @@
 
     <suki:SukiMessageBoxHost Classes="AppPanel">
         <suki:SukiMessageBoxHost.Header>
-            <suki:InfoBar Title="Please fix the following errors:"
+            <suki:InfoBar Title="{localization:Translate Ui.PleaseFixTheFollowingErrors}"
                           Grid.Row="0"
                           Grid.Column="0"
                           VerticalContentAlignment="Center"
@@ -43,10 +44,10 @@
                                     Grid.ColumnSpan="2"
                                     Orientation="Vertical"
                                     Spacing="10">
-                            <RadioButton Content="Automatic IP assignment from DHCP"
+                            <RadioButton Content="{localization:Translate Ui.AutomaticIPAssignmentFromDHCP}"
                                          IsChecked="{Binding IPv4DHCP}" />
 
-                            <RadioButton Content="Manual IP assignment"
+                            <RadioButton Content="{localization:Translate Ui.ManualIPAssignment}"
                                          IsChecked="{Binding !IPv4DHCP}" />
                         </StackPanel>
 
@@ -54,7 +55,7 @@
                                    Grid.Column="0"
                                    VerticalAlignment="Center"
                                    IsEnabled="{Binding !IPv4DHCP}"
-                                   Text="IP Address:" />
+                                   Text="{localization:Translate Ui.IPAddress}" />
 
                         <StackPanel Grid.Row="1"
                                     Grid.Column="1"
@@ -98,7 +99,7 @@
                                    Grid.Column="0"
                                    VerticalAlignment="Center"
                                    IsEnabled="{Binding !IPv4DHCP}"
-                                   Text="Subnet Mask:" />
+                                   Text="{localization:Translate Ui.SubnetMask}" />
 
                         <StackPanel Grid.Row="2"
                                     Grid.Column="1"
@@ -133,7 +134,7 @@
                                    Grid.Column="0"
                                    VerticalAlignment="Center"
                                    IsEnabled="{Binding !IPv4DHCP}"
-                                   Text="Gateway:" />
+                                   Text="{localization:Translate Ui.Gateway}" />
 
                         <StackPanel Grid.Row="3"
                                     Grid.Column="1"
@@ -165,7 +166,7 @@
 
                             <Button Command="{Binding ClearIPv4GatewayCommand}"
                                     Content="{icon:MaterialIconExt Kind=Erase}"
-                                    ToolTip.Tip="Clear the gateway address" />
+                                    ToolTip.Tip="{localization:Translate Ui.ClearTheGatewayAddress}" />
                         </StackPanel>
 
                         <Separator Grid.Row="4"
@@ -178,15 +179,15 @@
                                     Grid.ColumnSpan="2"
                                     Orientation="Vertical"
                                     Spacing="10">
-                            <RadioButton Content="Automatic DNS assignment from DHCP"
+                            <RadioButton Content="{localization:Translate Ui.AutomaticDNSAssignmentFromDHCP}"
                                          IsChecked="{Binding DNSv4DHCP}"
                                          IsEnabled="{Binding IPv4DHCP}" />
                             <StackPanel Orientation="Horizontal"
                                         Spacing="10">
-                                <RadioButton Content="Manual DNS assignment"
+                                <RadioButton Content="{localization:Translate Ui.ManualDNSAssignment}"
                                              IsChecked="{Binding !DNSv4DHCP}" />
 
-                                <DropDownButton Content="Presets"
+                                <DropDownButton Content="{localization:Translate Ui.Presets}"
                                                 IsEnabled="{Binding !DNSv4DHCP}">
                                     <DropDownButton.Flyout>
                                         <MenuFlyout ItemsSource="{Binding DNSv4Presets}"
@@ -201,7 +202,7 @@
                                    Grid.Column="0"
                                    VerticalAlignment="Center"
                                    IsEnabled="{Binding !DNSv4DHCP}"
-                                   Text="Primary DNS:" />
+                                   Text="{localization:Translate Ui.PrimaryDNS}" />
 
                         <StackPanel Grid.Row="6"
                                     Grid.Column="1"
@@ -233,11 +234,11 @@
 
                             <SplitButton Command="{Binding SetDNSv4PrimaryFromGatewayCommand}"
                                          Content="{icon:MaterialIconExt Kind=ServerNetwork}"
-                                         ToolTip.Tip="Set the DNS from the defined server gateway.">
+                                         ToolTip.Tip="{localization:Translate Ui.SetTheDNSFromTheDefinedServerGateway}">
                                 <SplitButton.Flyout>
                                     <MenuFlyout>
                                         <MenuItem Command="{Binding ClearDNSv4PrimaryAddressCommand}"
-                                                  Header="Clear address"
+                                                  Header="{localization:Translate Ui.ClearAddress}"
                                                   Icon="{icon:MaterialIconExt Kind=Clear}" />
                                     </MenuFlyout>
                                 </SplitButton.Flyout>
@@ -248,7 +249,7 @@
                                    Grid.Column="0"
                                    VerticalAlignment="Center"
                                    IsEnabled="{Binding !IPv4DHCP}"
-                                   Text="Secondary DNS:" />
+                                   Text="{localization:Translate Ui.SecondaryDNS}" />
 
                         <StackPanel Grid.Row="7"
                                     Grid.Column="1"
@@ -280,11 +281,11 @@
 
                             <SplitButton Command="{Binding SetDNSv4SecondaryFromGatewayCommand}"
                                          Content="{icon:MaterialIconExt Kind=ServerNetwork}"
-                                         ToolTip.Tip="Set the DNS from the defined server gateway.">
+                                         ToolTip.Tip="{localization:Translate Ui.SetTheDNSFromTheDefinedServerGateway}">
                                 <SplitButton.Flyout>
                                     <MenuFlyout>
                                         <MenuItem Command="{Binding ClearDNSv4SecondaryAddressCommand}"
-                                                  Header="Clear address"
+                                                  Header="{localization:Translate Ui.ClearAddress}"
                                                   Icon="{icon:MaterialIconExt Kind=Clear}" />
                                     </MenuFlyout>
                                 </SplitButton.Flyout>
@@ -310,10 +311,10 @@
                                     Grid.ColumnSpan="2"
                                     Orientation="Vertical"
                                     Spacing="10">
-                            <RadioButton Content="Automatic IP assignment from DHCP"
+                            <RadioButton Content="{localization:Translate Ui.AutomaticIPAssignmentFromDHCP}"
                                          IsChecked="{Binding IPv6DHCP}" />
 
-                            <RadioButton Content="Manual IP assignment"
+                            <RadioButton Content="{localization:Translate Ui.ManualIPAssignment}"
                                          IsChecked="{Binding !IPv6DHCP}" />
                         </StackPanel>
 
@@ -321,7 +322,7 @@
                                    Grid.Column="0"
                                    VerticalAlignment="Center"
                                    IsEnabled="{Binding !IPv6DHCP}"
-                                   Text="IP Address:" />
+                                   Text="{localization:Translate Ui.IPAddress}" />
 
                         <StackPanel Grid.Row="1"
                                     Grid.Column="1"
@@ -347,7 +348,7 @@
                                    Grid.Column="0"
                                    VerticalAlignment="Center"
                                    IsEnabled="{Binding !IPv6DHCP}"
-                                   Text="Gateway:" />
+                                   Text="{localization:Translate Ui.Gateway}" />
 
                         <StackPanel Grid.Row="2"
                                     Grid.Column="1"
@@ -369,15 +370,15 @@
                                     Grid.ColumnSpan="2"
                                     Orientation="Vertical"
                                     Spacing="10">
-                            <RadioButton Content="Automatic DNS assignment from DHCP"
+                            <RadioButton Content="{localization:Translate Ui.AutomaticDNSAssignmentFromDHCP}"
                                          IsChecked="{Binding DNSv6DHCP}"
                                          IsEnabled="{Binding IPv6DHCP}" />
                             <StackPanel Orientation="Horizontal"
                                         Spacing="10">
-                                <RadioButton Content="Manual DNS assignment"
+                                <RadioButton Content="{localization:Translate Ui.ManualDNSAssignment}"
                                              IsChecked="{Binding !DNSv6DHCP}" />
 
-                                <DropDownButton Content="Presets"
+                                <DropDownButton Content="{localization:Translate Ui.Presets}"
                                                 IsEnabled="{Binding !DNSv6DHCP}">
                                     <DropDownButton.Flyout>
                                         <MenuFlyout ItemsSource="{Binding DNSv6Presets}"
@@ -392,7 +393,7 @@
                                    Grid.Column="0"
                                    VerticalAlignment="Center"
                                    IsEnabled="{Binding !DNSv6DHCP}"
-                                   Text="Primary DNS:" />
+                                   Text="{localization:Translate Ui.PrimaryDNS}" />
 
                         <StackPanel Grid.Row="6"
                                     Grid.Column="1"
@@ -405,11 +406,11 @@
 
                             <SplitButton Command="{Binding SetDNSv6PrimaryFromGatewayCommand}"
                                          Content="{icon:MaterialIconExt Kind=ServerNetwork}"
-                                         ToolTip.Tip="Set the DNS from the defined server gateway.">
+                                         ToolTip.Tip="{localization:Translate Ui.SetTheDNSFromTheDefinedServerGateway}">
                                 <SplitButton.Flyout>
                                     <MenuFlyout>
                                         <MenuItem Command="{Binding ClearDNSv6PrimaryAddressCommand}"
-                                                  Header="Clear address"
+                                                  Header="{localization:Translate Ui.ClearAddress}"
                                                   Icon="{icon:MaterialIconExt Kind=Clear}" />
                                     </MenuFlyout>
                                 </SplitButton.Flyout>
@@ -420,7 +421,7 @@
                                    Grid.Column="0"
                                    VerticalAlignment="Center"
                                    IsEnabled="{Binding !IPv6DHCP}"
-                                   Text="Secondary DNS:" />
+                                   Text="{localization:Translate Ui.SecondaryDNS}" />
 
                         <StackPanel Grid.Row="7"
                                     Grid.Column="1"
@@ -433,11 +434,11 @@
 
                             <SplitButton Command="{Binding SetDNSv6SecondaryFromGatewayCommand}"
                                          Content="{icon:MaterialIconExt Kind=ServerNetwork}"
-                                         ToolTip.Tip="Set the DNS from the defined server gateway.">
+                                         ToolTip.Tip="{localization:Translate Ui.SetTheDNSFromTheDefinedServerGateway}">
                                 <SplitButton.Flyout>
                                     <MenuFlyout>
                                         <MenuItem Command="{Binding ClearDNSv6SecondaryAddressCommand}"
-                                                  Header="Clear address"
+                                                  Header="{localization:Translate Ui.ClearAddress}"
                                                   Icon="{icon:MaterialIconExt Kind=Clear}" />
                                     </MenuFlyout>
                                 </SplitButton.Flyout>
@@ -482,11 +483,11 @@
             <Button Classes="Flat"
                     Command="{Binding ApplyCommand}"
                     Content="{icon:MaterialIconTextExt Kind=Check,
-                                                       Text='Apply'}" />
+                                                       Text={localization:Translate Ui.Apply}}" />
             <Button Classes="Flat"
                     Command="{Binding CloseDialogCommand}"
                     Content="{icon:MaterialIconTextExt Kind=Cancel,
-                                                       Text='Cancel'}" />
+                                                       Text={localization:Translate Common.Cancel}}" />
         </suki:SukiMessageBoxHost.ActionButtonsSource>
     </suki:SukiMessageBoxHost>
 
@@ -495,7 +496,7 @@
           RowDefinitions="Auto,*,Auto"
           RowSpacing="20">
 
-        <suki:InfoBar Title="Please fix the following errors:"
+        <suki:InfoBar Title="{localization:Translate Ui.PleaseFixTheFollowingErrors}"
                       Grid.Row="0"
                       Grid.Column="0"
                       VerticalContentAlignment="Center"
@@ -522,10 +523,10 @@
                                         Grid.ColumnSpan="2"
                                         Orientation="Vertical"
                                         Spacing="10">
-                                <RadioButton Content="Automatic IP assignment from DHCP"
+                                <RadioButton Content="{localization:Translate Ui.AutomaticIPAssignmentFromDHCP}"
                                              IsChecked="{Binding IPv4DHCP}" />
 
-                                <RadioButton Content="Manual IP assignment"
+                                <RadioButton Content="{localization:Translate Ui.ManualIPAssignment}"
                                              IsChecked="{Binding !IPv4DHCP}" />
                             </StackPanel>
 
@@ -533,7 +534,7 @@
                                        Grid.Column="0"
                                        VerticalAlignment="Center"
                                        IsEnabled="{Binding !IPv4DHCP}"
-                                       Text="IP Address:" />
+                                       Text="{localization:Translate Ui.IPAddress}" />
 
                             <StackPanel Grid.Row="1"
                                         Grid.Column="1"
@@ -577,7 +578,7 @@
                                        Grid.Column="0"
                                        VerticalAlignment="Center"
                                        IsEnabled="{Binding !IPv4DHCP}"
-                                       Text="Subnet Mask:" />
+                                       Text="{localization:Translate Ui.SubnetMask}" />
 
                             <StackPanel Grid.Row="2"
                                         Grid.Column="1"
@@ -612,7 +613,7 @@
                                        Grid.Column="0"
                                        VerticalAlignment="Center"
                                        IsEnabled="{Binding !IPv4DHCP}"
-                                       Text="Gateway:" />
+                                       Text="{localization:Translate Ui.Gateway}" />
 
                             <StackPanel Grid.Row="3"
                                         Grid.Column="1"
@@ -644,7 +645,7 @@
 
                                 <Button Command="{Binding ClearIPv4GatewayCommand}"
                                         Content="{icon:MaterialIconExt Kind=Erase}"
-                                        ToolTip.Tip="Clear the gateway address" />
+                                        ToolTip.Tip="{localization:Translate Ui.ClearTheGatewayAddress}" />
                             </StackPanel>
 
                             <Separator Grid.Row="4"
@@ -657,15 +658,15 @@
                                         Grid.ColumnSpan="2"
                                         Orientation="Vertical"
                                         Spacing="10">
-                                <RadioButton Content="Automatic DNS assignment from DHCP"
+                                <RadioButton Content="{localization:Translate Ui.AutomaticDNSAssignmentFromDHCP}"
                                              IsChecked="{Binding DNSv4DHCP}"
                                              IsEnabled="{Binding IPv4DHCP}" />
                                 <StackPanel Orientation="Horizontal"
                                             Spacing="10">
-                                    <RadioButton Content="Manual DNS assignment"
+                                    <RadioButton Content="{localization:Translate Ui.ManualDNSAssignment}"
                                                  IsChecked="{Binding !DNSv4DHCP}" />
 
-                                    <DropDownButton Content="Presets"
+                                    <DropDownButton Content="{localization:Translate Ui.Presets}"
                                                     IsEnabled="{Binding !DNSv4DHCP}">
                                         <DropDownButton.Flyout>
                                             <MenuFlyout ItemsSource="{Binding DNSv4Presets}"
@@ -680,7 +681,7 @@
                                        Grid.Column="0"
                                        VerticalAlignment="Center"
                                        IsEnabled="{Binding !DNSv4DHCP}"
-                                       Text="Primary DNS:" />
+                                       Text="{localization:Translate Ui.PrimaryDNS}" />
 
                             <StackPanel Grid.Row="6"
                                         Grid.Column="1"
@@ -712,11 +713,11 @@
 
                                 <SplitButton Command="{Binding SetDNSv4PrimaryFromGatewayCommand}"
                                              Content="{icon:MaterialIconExt Kind=ServerNetwork}"
-                                             ToolTip.Tip="Set the DNS from the defined server gateway.">
+                                             ToolTip.Tip="{localization:Translate Ui.SetTheDNSFromTheDefinedServerGateway}">
                                     <SplitButton.Flyout>
                                         <MenuFlyout>
                                             <MenuItem Command="{Binding ClearDNSv4PrimaryAddressCommand}"
-                                                      Header="Clear address"
+                                                      Header="{localization:Translate Ui.ClearAddress}"
                                                       Icon="{icon:MaterialIconExt Kind=Clear}" />
                                         </MenuFlyout>
                                     </SplitButton.Flyout>
@@ -727,7 +728,7 @@
                                        Grid.Column="0"
                                        VerticalAlignment="Center"
                                        IsEnabled="{Binding !IPv4DHCP}"
-                                       Text="Secondary DNS:" />
+                                       Text="{localization:Translate Ui.SecondaryDNS}" />
 
                             <StackPanel Grid.Row="7"
                                         Grid.Column="1"
@@ -759,11 +760,11 @@
 
                                 <SplitButton Command="{Binding SetDNSv4SecondaryFromGatewayCommand}"
                                              Content="{icon:MaterialIconExt Kind=ServerNetwork}"
-                                             ToolTip.Tip="Set the DNS from the defined server gateway.">
+                                             ToolTip.Tip="{localization:Translate Ui.SetTheDNSFromTheDefinedServerGateway}">
                                     <SplitButton.Flyout>
                                         <MenuFlyout>
                                             <MenuItem Command="{Binding ClearDNSv4SecondaryAddressCommand}"
-                                                      Header="Clear address"
+                                                      Header="{localization:Translate Ui.ClearAddress}"
                                                       Icon="{icon:MaterialIconExt Kind=Clear}" />
                                         </MenuFlyout>
                                     </SplitButton.Flyout>
@@ -789,10 +790,10 @@
                                         Grid.ColumnSpan="2"
                                         Orientation="Vertical"
                                         Spacing="10">
-                                <RadioButton Content="Automatic IP assignment from DHCP"
+                                <RadioButton Content="{localization:Translate Ui.AutomaticIPAssignmentFromDHCP}"
                                              IsChecked="{Binding IPv6DHCP}" />
 
-                                <RadioButton Content="Manual IP assignment"
+                                <RadioButton Content="{localization:Translate Ui.ManualIPAssignment}"
                                              IsChecked="{Binding !IPv6DHCP}" />
                             </StackPanel>
 
@@ -800,7 +801,7 @@
                                        Grid.Column="0"
                                        VerticalAlignment="Center"
                                        IsEnabled="{Binding !IPv6DHCP}"
-                                       Text="IP Address:" />
+                                       Text="{localization:Translate Ui.IPAddress}" />
 
                             <StackPanel Grid.Row="1"
                                         Grid.Column="1"
@@ -826,7 +827,7 @@
                                        Grid.Column="0"
                                        VerticalAlignment="Center"
                                        IsEnabled="{Binding !IPv6DHCP}"
-                                       Text="Gateway:" />
+                                       Text="{localization:Translate Ui.Gateway}" />
 
                             <StackPanel Grid.Row="2"
                                         Grid.Column="1"
@@ -848,15 +849,15 @@
                                         Grid.ColumnSpan="2"
                                         Orientation="Vertical"
                                         Spacing="10">
-                                <RadioButton Content="Automatic DNS assignment from DHCP"
+                                <RadioButton Content="{localization:Translate Ui.AutomaticDNSAssignmentFromDHCP}"
                                              IsChecked="{Binding DNSv6DHCP}"
                                              IsEnabled="{Binding IPv6DHCP}" />
                                 <StackPanel Orientation="Horizontal"
                                             Spacing="10">
-                                    <RadioButton Content="Manual DNS assignment"
+                                    <RadioButton Content="{localization:Translate Ui.ManualDNSAssignment}"
                                                  IsChecked="{Binding !DNSv6DHCP}" />
 
-                                    <DropDownButton Content="Presets"
+                                    <DropDownButton Content="{localization:Translate Ui.Presets}"
                                                     IsEnabled="{Binding !DNSv6DHCP}">
                                         <DropDownButton.Flyout>
                                             <MenuFlyout ItemsSource="{Binding DNSv6Presets}"
@@ -871,7 +872,7 @@
                                        Grid.Column="0"
                                        VerticalAlignment="Center"
                                        IsEnabled="{Binding !DNSv6DHCP}"
-                                       Text="Primary DNS:" />
+                                       Text="{localization:Translate Ui.PrimaryDNS}" />
 
                             <StackPanel Grid.Row="6"
                                         Grid.Column="1"
@@ -884,11 +885,11 @@
 
                                 <SplitButton Command="{Binding SetDNSv6PrimaryFromGatewayCommand}"
                                              Content="{icon:MaterialIconExt Kind=ServerNetwork}"
-                                             ToolTip.Tip="Set the DNS from the defined server gateway.">
+                                             ToolTip.Tip="{localization:Translate Ui.SetTheDNSFromTheDefinedServerGateway}">
                                     <SplitButton.Flyout>
                                         <MenuFlyout>
                                             <MenuItem Command="{Binding ClearDNSv6PrimaryAddressCommand}"
-                                                      Header="Clear address"
+                                                      Header="{localization:Translate Ui.ClearAddress}"
                                                       Icon="{icon:MaterialIconExt Kind=Clear}" />
                                         </MenuFlyout>
                                     </SplitButton.Flyout>
@@ -899,7 +900,7 @@
                                        Grid.Column="0"
                                        VerticalAlignment="Center"
                                        IsEnabled="{Binding !IPv6DHCP}"
-                                       Text="Secondary DNS:" />
+                                       Text="{localization:Translate Ui.SecondaryDNS}" />
 
                             <StackPanel Grid.Row="7"
                                         Grid.Column="1"
@@ -912,11 +913,11 @@
 
                                 <SplitButton Command="{Binding SetDNSv6SecondaryFromGatewayCommand}"
                                              Content="{icon:MaterialIconExt Kind=ServerNetwork}"
-                                             ToolTip.Tip="Set the DNS from the defined server gateway.">
+                                             ToolTip.Tip="{localization:Translate Ui.SetTheDNSFromTheDefinedServerGateway}">
                                     <SplitButton.Flyout>
                                         <MenuFlyout>
                                             <MenuItem Command="{Binding ClearDNSv6SecondaryAddressCommand}"
-                                                      Header="Clear address"
+                                                      Header="{localization:Translate Ui.ClearAddress}"
                                                       Icon="{icon:MaterialIconExt Kind=Clear}" />
                                         </MenuFlyout>
                                     </SplitButton.Flyout>
@@ -974,7 +975,7 @@
                     <StackPanel Orientation="Horizontal"
                                 Spacing="5">
                         <icon:MaterialIcon Kind="Check" />
-                        <TextBlock Text="Apply" />
+                        <TextBlock Text="{localization:Translate Ui.Apply}" />
                     </StackPanel>
                 </Button>
                 <Button Classes="Flat"
@@ -982,7 +983,7 @@
                     <StackPanel Orientation="Horizontal"
                                 Spacing="5">
                         <icon:MaterialIcon Kind="Cancel" />
-                        <TextBlock Text="Cancel" />
+                        <TextBlock Text="{localization:Translate Ui.Cancel}" />
                     </StackPanel>
                 </Button>
             </StackPanel>

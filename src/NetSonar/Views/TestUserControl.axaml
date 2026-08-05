@@ -1,6 +1,7 @@
 <UserControl x:Class="NetSonar.Avalonia.Views.TestUserControl"
              xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:suki="https://github.com/kikipoulet/SukiUI"
@@ -23,10 +24,10 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Index}"
                                     CellStyleClasses="center"
-                                    Header="Index" />
-                <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
-                <DataGridTextColumn Binding="{Binding Description}" Header="Description" />
-                <DataGridTextColumn Binding="{Binding Group}" Header="Group" />
+                                    Header="{localization:Translate Ui.Index}" />
+                <DataGridTextColumn Binding="{Binding Name}" Header="{localization:Translate Ui.NameDCD1D522}" />
+                <DataGridTextColumn Binding="{Binding Description}" Header="{localization:Translate Ui.Description}" />
+                <DataGridTextColumn Binding="{Binding Group}" Header="{localization:Translate Ui.Group}" />
             </DataGrid.Columns>
         </DataGrid>
     </suki:GlassCard>

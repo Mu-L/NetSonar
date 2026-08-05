@@ -14,11 +14,7 @@ namespace NetSonar.Avalonia.ViewModels.Dialogs;
 public partial class CrashReportDialogModel : ViewModelBase
 {
     [ObservableProperty]
-    public partial string Header { get; set; } = $"""
-                                                  {App.Software} crashed due an unexpected error.
-                                                  You can report this error if you find necessary.
-                                                  Find more details below:
-                                                  """;
+    public partial string Header { get; set; } = App.Localization.Format("CrashReport.Header", App.Software);
 
     [ObservableProperty]
     public partial string Message { get; set; } = string.Empty;
@@ -52,11 +48,7 @@ public partial class CrashReportDialogModel : ViewModelBase
 
     private void BuildMessage()
     {
-        Message = CrashReport?.FormattedMessage
-                   ?? """
-                      The application crashed due an unexpected error, but unfortunately we don't have more details.
-                      The crash report may have been lost or unable to be saved.
-                      """;
+        Message = CrashReport?.FormattedMessage ?? App.Localization["CrashReport.NoDetails"];
     }
 
     [RelayCommand]

@@ -18,6 +18,7 @@ using System.Text.Json;
 using System.Collections.Concurrent;
 using Avalonia.Collections;
 using NetSonar.Avalonia.Controls;
+using NetSonar.Avalonia.Localization;
 using NetSonar.Avalonia.Settings;
 using NetSonar.Avalonia.SystemOS;
 using ObservableCollections;
@@ -37,7 +38,7 @@ public partial class PingableServicesPageModel : PageViewModelBase
     public const double NumericUpDownPingIncrement = 0.50;
     public const double NumericUpDownTimeoutIncrement = 0.50;
     public override int Index => 0;
-    public override string DisplayName => "Pings";
+    public override string DisplayName => App.Localization["Navigation.Pings"];
     public override MaterialIconKind Icon => MaterialIconKind.Radar;
 
     private readonly Timer _timer = new(500);
@@ -119,6 +120,8 @@ public partial class PingableServicesPageModel : PageViewModelBase
                 RegroupServicesGrid();
             }
         };
+
+        App.Localization.PropertyChanged += LocalizationOnPropertyChanged;
     }
 
     protected internal override void OnInitialized()
@@ -328,6 +331,7 @@ public partial class PingableServicesPageModel : PageViewModelBase
                     return service.WasLastPingFailed;
                 }
 
+                if (StatusLocalization.GetText(service.LastStatus).Contains(word, StringComparison.CurrentCultureIgnoreCase)) return true;
                 if (service.LastStatusStr.Contains(word, StringComparison.OrdinalIgnoreCase)) return true;
                 if (service.ProtocolType.ToString().Contains(word, StringComparison.OrdinalIgnoreCase)) return true;
                 if (service.IpAddresses.AsValueEnumerable().Any(ipAddress => ipAddress.ToString().Contains(word, StringComparison.OrdinalIgnoreCase))) return true;
@@ -338,6 +342,18 @@ public partial class PingableServicesPageModel : PageViewModelBase
             }
 
             return false;
+        });
+    }
+
+    private void LocalizationOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName != nameof(ILocalizationService.Culture)) return;
+
+        Dispatcher.UIThread.Post(() =>
+        {
+            ReAttachFilters();
+            ServicesGroupView.Refresh();
+            if (_servicesPingsDataGrid is not null) _servicesPingsDataGrid.CollectionView?.Refresh();
         });
     }
 
@@ -442,15 +458,8 @@ public partial class PingableServicesPageModel : PageViewModelBase
         if (_servicesDataGrid.SelectedIndex == -1 || _servicesDataGrid.SelectedItem is not PingableService service) return;
 
         CreateMessageBoxYesNo(NotificationType.Warning,
-                "Are you sure you want to reset the selected ping host?",
-                $"""
-                 You are about to reset the selected ping host statistics.
-
-                 IP Address: {service.IpEndPoint}
-                 Host: {service.HostName}
-
-                 Are you sure you want to continue?
-                 """, _ =>
+                App.Localization["Ping.ResetOne.Title"],
+                App.Localization.Format("Ping.ResetOne.Message", service.IpEndPoint, service.HostName), _ =>
                 {
                     service.Clear();
                 })
@@ -463,11 +472,8 @@ public partial class PingableServicesPageModel : PageViewModelBase
     {
         if (_servicesDataGrid.SelectedIndex == -1) return;
         CreateMessageBoxYesNo(NotificationType.Warning,
-                $"Are you sure you want to reset the {_servicesDataGrid.SelectedItems.Count} selected ping hosts?",
-                $"""
-                 You are about to reset the {_servicesDataGrid.SelectedItems.Count} selected ping hosts statistics.
-                 Are you sure you want to continue?
-                 """, _ =>
+                App.Localization.Format("Ping.ResetSelected.Title", _servicesDataGrid.SelectedItems.Count),
+                App.Localization.Format("Ping.ResetSelected.Message", _servicesDataGrid.SelectedItems.Count), _ =>
                 {
                     foreach (PingableService service in _servicesDataGrid.SelectedItems)
                     {
@@ -483,11 +489,8 @@ public partial class PingableServicesPageModel : PageViewModelBase
     {
         if (Services.Count == 0) return;
         CreateMessageBoxYesNo(NotificationType.Warning,
-                $"Are you sure you want to reset all the {Services.Count} ping hosts?",
-                $"""
-                 You are about to reset all the {Services.Count} ping hosts statistics.
-                 Are you sure you want to continue?
-                 """, _ =>
+                App.Localization.Format("Ping.ResetAll.Title", Services.Count),
+                App.Localization.Format("Ping.ResetAll.Message", Services.Count), _ =>
                 {
                     foreach (var ping in Services)
                     {
@@ -503,11 +506,9 @@ public partial class PingableServicesPageModel : PageViewModelBase
     {
         if (_servicesDataGrid.SelectedIndex == -1) return;
         CreateMessageBoxYesNo(NotificationType.Warning,
-                $"Are you sure you want to remove the {_servicesDataGrid.SelectedItems.Count} selected ping hosts?",
-                $"""
-                 You are about to remove the {_servicesDataGrid.SelectedItems.Count} selected ping hosts.
-                 Are you sure you want to continue?
-                 """, _ => Services.RemoveRange(_servicesDataGrid.SelectedItems))
+                App.Localization.Format("Ping.RemoveSelected.Title", _servicesDataGrid.SelectedItems.Count),
+                App.Localization.Format("Ping.RemoveSelected.Message", _servicesDataGrid.SelectedItems.Count),
+                _ => Services.RemoveRange(_servicesDataGrid.SelectedItems))
             .TryShow();
 
     }
@@ -517,11 +518,8 @@ public partial class PingableServicesPageModel : PageViewModelBase
     {
         if (Services.Count == 0) return;
         CreateMessageBoxYesNo(NotificationType.Warning,
-                $"Are you sure you want to remove all the {Services.Count} ping hosts?",
-                $"""
-                        You are about to remove all the {Services.Count} ping hosts.
-                        Are you sure you want to continue?
-                        """, _ => Services.Clear())
+                App.Localization.Format("Ping.RemoveAll.Title", Services.Count),
+                App.Localization.Format("Ping.RemoveAll.Message", Services.Count), _ => Services.Clear())
             .TryShow();
 
     }
@@ -547,16 +545,16 @@ public partial class PingableServicesPageModel : PageViewModelBase
             await using var stream = File.Create(filePath);
             await JsonSerializer.SerializeAsync(stream, _servicesDataGrid.SelectedItems, App.JsonSerializerOptions);
             App.ShowToast(NotificationType.Success,
-                "Export services to JSON",
-                $"The {_servicesDataGrid.SelectedItems.Count} services were exported to \"{file.Name}\".",
-                new ToastActionButton("Open file", toast => { SystemAware.StartProcess(filePath); }),
-                new ToastActionButton("Open folder", toast => { SystemAware.SelectFileOnExplorer(filePath); })
+                App.Localization["Export.Services.Title"],
+                App.Localization.Format("Export.Services.Success", _servicesDataGrid.SelectedItems.Count, file.Name),
+                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { SystemAware.StartProcess(filePath); }),
+                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { SystemAware.SelectFileOnExplorer(filePath); })
             );
 
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, "Export services to JSON", "Error while trying to export services:");
+            App.ShowExceptionToast(e, App.Localization["Export.Services.Title"], App.Localization["Export.Services.Error"]);
         }
     }
 
@@ -581,16 +579,16 @@ public partial class PingableServicesPageModel : PageViewModelBase
             await using var stream = File.Create(filePath);
             await JsonSerializer.SerializeAsync(stream, Services, App.JsonSerializerOptions);
             App.ShowToast(NotificationType.Success,
-                "Export services to JSON",
-                $"The {Services.Count} services were exported to \"{file.Name}\".",
-                new ToastActionButton("Open file", toast => { SystemAware.StartProcess(filePath); }),
-                new ToastActionButton("Open folder", toast => { SystemAware.SelectFileOnExplorer(filePath); })
+                App.Localization["Export.Services.Title"],
+                App.Localization.Format("Export.Services.Success", Services.Count, file.Name),
+                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { SystemAware.StartProcess(filePath); }),
+                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { SystemAware.SelectFileOnExplorer(filePath); })
             );
 
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, "Export services to JSON", "Error while trying to export services:");
+            App.ShowExceptionToast(e, App.Localization["Export.Services.Title"], App.Localization["Export.Services.Error"]);
         }
     }
 
@@ -643,15 +641,15 @@ public partial class PingableServicesPageModel : PageViewModelBase
             }
 
             App.ShowToast(NotificationType.Success,
-                "Export ping to CSV",
-                $"The {count} pings in \"{SelectedService.HostName}\" were exported to \"{file.Name}\".",
-                new ToastActionButton("Open file", toast => { SystemAware.StartProcess(filePath); }),
-                new ToastActionButton("Open folder", toast => { SystemAware.SelectFileOnExplorer(filePath); })
+                App.Localization["Export.Pings.CsvTitle"],
+                App.Localization.Format("Export.Pings.Success", count, SelectedService.HostName, file.Name),
+                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { SystemAware.StartProcess(filePath); }),
+                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { SystemAware.SelectFileOnExplorer(filePath); })
                 );
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, "Export pings to CSV", "Error while trying to export pings:");
+            App.ShowExceptionToast(e, App.Localization["Export.Pings.CsvTitle"], App.Localization["Export.Pings.Error"]);
         }
     }
 
@@ -677,16 +675,16 @@ public partial class PingableServicesPageModel : PageViewModelBase
             var count = SelectedService.Pings.Count;
             await JsonSerializer.SerializeAsync(stream, SelectedService.Pings, App.JsonSerializerOptions);
             App.ShowToast(NotificationType.Success,
-                "Export ping to JSON",
-                $"The {count} pings in \"{SelectedService.HostName}\" were exported to \"{file.Name}\".",
-                new ToastActionButton("Open file", toast => { SystemAware.StartProcess(filePath); }),
-                new ToastActionButton("Open folder", toast => { SystemAware.SelectFileOnExplorer(filePath); })
+                App.Localization["Export.Pings.JsonTitle"],
+                App.Localization.Format("Export.Pings.Success", count, SelectedService.HostName, file.Name),
+                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { SystemAware.StartProcess(filePath); }),
+                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { SystemAware.SelectFileOnExplorer(filePath); })
                 );
 
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, "Export pings to JSON", "Error while trying to export pings:");
+            App.ShowExceptionToast(e, App.Localization["Export.Pings.JsonTitle"], App.Localization["Export.Pings.Error"]);
         }
     }
 
@@ -697,7 +695,7 @@ public partial class PingableServicesPageModel : PageViewModelBase
 
         GenericWindow window = new()
         {
-            Title = $"{App.SoftwareWithVersion}  Chart",
+            Title = $"{App.SoftwareWithVersion}  {App.Localization["Graph.Title"]}",
             CanPin = true,
             Content = new ContentPresenter
             {
@@ -715,7 +713,7 @@ public partial class PingableServicesPageModel : PageViewModelBase
         }
         else
         {
-            window.Title += $" - {_servicesDataGrid.SelectedItems.Count} services";
+            window.Title += $" - {App.Localization.Format("Ui.ServicesCountPlain", _servicesDataGrid.SelectedItems.Count)}";
 
         }
 

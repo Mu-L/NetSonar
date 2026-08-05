@@ -1,6 +1,7 @@
 <controls:UserControlBase x:Class="NetSonar.Avalonia.Views.MainView"
                           xmlns="https://github.com/avaloniaui"
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
                           xmlns:app="clr-namespace:NetSonar.Avalonia"
                           xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -51,7 +52,7 @@
                    PointerPressed="InputElement_OnPointerPressed"
                    Source="Assets/OIG.N5o-removebg-preview.png"
 
-                   ToolTip.Tip="Click To Toggle Top Menu." />
+                   ToolTip.Tip="{localization:Translate Ui.ClickToToggleTopMenu}" />
                    !-->
         </suki:SukiSideMenu.HeaderContent>
         <suki:SukiSideMenu.FooterContent>
@@ -70,15 +71,15 @@
                     <Button.Flyout>
                         <MenuFlyout>
                             <MenuItem Command="{Binding ShowAboutDialogCommand}"
-                                      Header="About"
+                                      Header="{localization:Translate Ui.About}"
                                       Icon="{icon:MaterialIconExt Kind=AboutOutline}"
                                       InputGesture="F1" />
                             <MenuItem Command="{Binding LaunchUriCommand}"
                                       CommandParameter="{Binding Source={x:Static runtime:EntryApplication.AssemblyRepositoryUrl}}"
-                                      Header="Website"
+                                      Header="{localization:Translate Ui.Website}"
                                       Icon="{icon:MaterialIconExt Kind=MicrosoftEdge}" />
 
-                            <MenuItem Header="Community forums"
+                            <MenuItem Header="{localization:Translate Ui.CommunityForums}"
                                       Icon="{icon:MaterialIconExt Kind=ConversationOutline}">
                                 <MenuItem Command="{Binding LaunchUriCommand}"
                                           CommandParameter="{Binding Source={x:Static runtime:EntryApplication.AssemblyRepositoryUrl}, StringFormat='{}{0}/discussions'}"
@@ -98,7 +99,7 @@
                                           Icon="{icon:MaterialIconExt Kind=Youtube}" />
                             </MenuItem>
 
-                            <MenuItem Header="Donate"
+                            <MenuItem Header="{localization:Translate Ui.Donate}"
                                       Icon="{icon:MaterialIconExt Kind=DonateOutline}">
                                 <MenuItem Command="{Binding LaunchUriCommand}"
                                           CommandParameter="{x:Static app:App.DonateGitHubUrl}"
@@ -114,38 +115,38 @@
 
                             <MenuItem Command="{Binding LaunchUriCommand}"
                                       CommandParameter="{Binding Source={x:Static runtime:EntryApplication.AssemblyRepositoryUrl}, StringFormat='{}{0}/discussions/categories/q-a'}"
-                                      Header="Ask a question"
+                                      Header="{localization:Translate Ui.AskAQuestion}"
                                       Icon="{icon:MaterialIconExt Kind=QuestionMark}" />
                             <MenuItem Command="{Binding LaunchUriCommand}"
                                       CommandParameter="{Binding Source={x:Static runtime:EntryApplication.AssemblyRepositoryUrl}, StringFormat='{}{0}/issues'}"
-                                      Header="Report an issue"
+                                      Header="{localization:Translate Ui.ReportAnIssue}"
                                       Icon="{icon:MaterialIconExt Kind=BugOutline}" />
                             <MenuItem Command="{Binding LaunchUriCommand}"
                                       CommandParameter="{Binding Source={x:Static runtime:EntryApplication.AssemblyRepositoryUrl}, StringFormat='{}{0}/discussions/categories/ideas'}"
-                                      Header="Suggest an improvement or feature"
+                                      Header="{localization:Translate Ui.SuggestAnImprovementOrFeature}"
                                       Icon="{icon:MaterialIconExt Kind=HeadLightbulbOutline}" />
 
                             <Separator />
 
                             <MenuItem Command="{Binding OpenProfileFolderCommand}"
-                                      Header="Open profile folder"
+                                      Header="{localization:Translate Ui.OpenProfileFolder}"
                                       Icon="{icon:MaterialIconExt Kind=FolderOutline}" />
 
                             <MenuItem Command="{Binding CheckForUpdatesCommand}"
-                                      Header="Check for updates"
+                                      Header="{localization:Translate Ui.CheckForUpdates}"
                                       Icon="{icon:MaterialIconExt Kind=Update}" />
 
-                            <MenuItem Header="Debug"
+                            <MenuItem Header="{localization:Translate Ui.Debug}"
                                       Icon="{icon:MaterialIconExt Kind=BugCheckOutline}"
                                       IsVisible="{Binding Source={x:Static app:App.IsDebug}}">
                                 <MenuItem Command="{Binding OpenExecutableFolderCommand}"
-                                          Header="Open executable folder"
+                                          Header="{localization:Translate Ui.OpenExecutableFolder}"
                                           Icon="{icon:MaterialIconExt Kind=Folder}" />
                                 <MenuItem Command="{Binding TriggerNewUpdateCommand}"
-                                          Header="Trigger new update"
+                                          Header="{localization:Translate Ui.TriggerNewUpdate}"
                                           Icon="{icon:MaterialIconExt Kind=Update}" />
                                 <MenuItem Command="{Binding ThrowExceptionCommand}"
-                                          Header="Throw exception"
+                                          Header="{localization:Translate Ui.ThrowException}"
                                           Icon="{icon:MaterialIconExt Kind=LightningBoltOutline}" />
                             </MenuItem>
                         </MenuFlyout>

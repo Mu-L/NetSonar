@@ -1,6 +1,7 @@
 <Application x:Class="NetSonar.Avalonia.App"
 			 xmlns="https://github.com/avaloniaui"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
 			 xmlns:converters="clr-namespace:NetSonar.Avalonia.Converters"
 			 xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
 			 xmlns:suki="https://github.com/kikipoulet/SukiUI"
@@ -15,6 +16,10 @@
 		<converters:FromStringToEnumConverter x:Key="FromStringToEnumConverter" />
 		<converters:EnumToCollectionConverter x:Key="EnumToCollectionConverter" />
 		<converters:FromValueDescriptionToEnumConverter x:Key="FromValueDescriptionToEnumConverter" />
+		<converters:LocalizedFallbackConverter x:Key="LocalizedFallbackConverter" />
+		<converters:LocalizedStringFormatConverter x:Key="LocalizedStringFormatConverter" />
+		<converters:LocalizedStatusConverter x:Key="LocalizedStatusConverter" />
+		<converters:LocalizedStatusComparer x:Key="LocalizedStatusComparer" />
 		<converters:FileSizeNormalizeConverter x:Key="FileSizeNormalize" />
 		<converters:InternetSpeedNormalizeConverter x:Key="InternetSpeedNormalize" />
 		<converters:BoolErrorGridRowBackgroundConverter x:Key="BoolErrorGridRowBackground" />
@@ -42,25 +47,25 @@
 				<TrayIcon.Menu>
 					<NativeMenu>
 
-						<NativeMenuItem Header="👁 Show" Command="{Binding ShowApplicationCommand}" />
+						<NativeMenuItem Header="{Binding TrayShow}" Command="{Binding ShowApplicationCommand}" />
 						<NativeMenuItemSeparator />
 						<NativeMenuItem Header="{Binding PingsSummary}" IsVisible="{Binding PingsSummary, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
-						<NativeMenuItem Header="⚙️ Options">
+						<NativeMenuItem Header="{Binding TrayOptions}">
 							<NativeMenu>
-                                <NativeMenuItem Header="Start with system"
+                                <NativeMenuItem Header="{Binding TrayStartWithSystem}"
                                                 ToggleType="CheckBox"
                                                 IsChecked="{Binding AppSettings.RunOnStartup, Mode=TwoWay}" />
 
                                 <NativeMenuItemSeparator />
 
-                                <NativeMenuItem Header="🖌️ Theme: System" Command="{Binding SetThemeSystemCommand}"/>
-								<NativeMenuItem Header="🖌️ Theme: Light" Command="{Binding SetThemeLightCommand}"/>
-								<NativeMenuItem Header="🖌️ Theme: Dark" Command="{Binding SetThemeDarkCommand}"/>
+                                <NativeMenuItem Header="{Binding TrayThemeSystem}" Command="{Binding SetThemeSystemCommand}"/>
+								<NativeMenuItem Header="{Binding TrayThemeLight}" Command="{Binding SetThemeLightCommand}"/>
+								<NativeMenuItem Header="{Binding TrayThemeDark}" Command="{Binding SetThemeDarkCommand}"/>
 							</NativeMenu>
 						</NativeMenuItem>
 
 						<NativeMenuItemSeparator />
-						<NativeMenuItem Header="✖ Exit" Command="{Binding ExitApplicationCommand}" />
+						<NativeMenuItem Header="{Binding TrayExit}" Command="{Binding ExitApplicationCommand}" />
 					</NativeMenu>
 				</TrayIcon.Menu>
 			</TrayIcon>

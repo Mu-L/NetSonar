@@ -15,14 +15,11 @@ public partial class InstanceAlreadyRunningDialogModel : ViewModelBase
     {
         var processes = Process.GetProcessesByName(App.Software);
 
-        Message = $"""
-                   There is another instance of {App.Software} running. Only one instance of {App.Software} can run at a time.
-                   Please find and open the running instance or close it before starting a new one.
-                   """;
+        Message = App.Localization.Format("InstanceAlreadyRunning.Message", App.Software);
 
         if (Design.IsDesignMode)
         {
-            Message += "\n\nProcess ID: 1001";
+            Message += App.Localization.Format("Common.ProcessId", 1001);
         }
         else
         {
@@ -33,7 +30,7 @@ public partial class InstanceAlreadyRunningDialogModel : ViewModelBase
                     .FirstOrDefault(p => p.Id != Environment.ProcessId);
                 if (FirstProcess is not null)
                 {
-                    Message += $"\n\nProcess ID: {FirstProcess.Id}";
+                    Message += App.Localization.Format("Common.ProcessId", FirstProcess.Id);
                 }
             }
         }

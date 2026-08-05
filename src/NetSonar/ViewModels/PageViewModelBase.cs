@@ -1,11 +1,22 @@
 ﻿using Avalonia.Rendering.Composition;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Material.Icons;
+using System.ComponentModel;
 
 namespace NetSonar.Avalonia.ViewModels;
 
 public abstract partial class PageViewModelBase : ViewModelBase
 {
+    protected PageViewModelBase()
+    {
+        App.Localization.PropertyChanged += LocalizationOnPropertyChanged;
+    }
+
+    private void LocalizationOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(App.Localization.Culture)) OnPropertyChanged(nameof(DisplayName));
+    }
+
     /// <summary>
     /// The index of the page.
     /// </summary>

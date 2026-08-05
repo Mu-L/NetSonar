@@ -1,6 +1,7 @@
 <controls:UserControlBase x:Class="NetSonar.Avalonia.Views.NetworkInterfacesPage"
                           xmlns="https://github.com/avaloniaui"
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
                           xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                           xmlns:fragments="clr-namespace:NetSonar.Avalonia.Views.Fragments"
@@ -35,7 +36,7 @@
                            Orientation="Horizontal">
 
                     <icon:MaterialIconText Kind="{Binding Icon}"
-                                           Text="Network Interfaces"
+                                           Text="{localization:Translate Ui.NetworkInterfaces}"
                                            Classes="Title"/>
 
                     <StackPanel Orientation="Horizontal"
@@ -75,7 +76,7 @@
                                         Spacing="5">
                                 <CheckBox IsChecked="{Binding AppSettings.NetworkInterfaces.EnableFilterTypes}" />
                                 <icon:MaterialIconText Kind="Filter"
-                                                       Text="Type" />
+                                                       Text="{localization:Translate Ui.Type}" />
                             </StackPanel>
                         </DropDownButton.Content>
                         <DropDownButton.DataTemplates>
@@ -108,7 +109,7 @@
                                         Spacing="5">
                                 <CheckBox IsChecked="{Binding AppSettings.NetworkInterfaces.EnableFilterStatus}" />
                                 <icon:MaterialIconText Kind="Filter"
-                                                       Text="Status" />
+                                                       Text="{localization:Translate Ui.Status}" />
                             </StackPanel>
                         </DropDownButton.Content>
                         <DropDownButton.DataTemplates>
@@ -142,7 +143,7 @@
                                         Spacing="5">
                                 <CheckBox IsChecked="{Binding AppSettings.NetworkInterfaces.EnableFilterOthers}" />
                                 <icon:MaterialIconText Kind="Filter"
-                                                       Text="Others" />
+                                                       Text="{localization:Translate Ui.Others}" />
                             </StackPanel>
                         </DropDownButton.Content>
                         <DropDownButton.Flyout>
@@ -151,7 +152,7 @@
                                     <MenuItem.Header>
                                         <CheckBox HorizontalAlignment="Stretch"
                                                   HorizontalContentAlignment="Stretch"
-                                                  Content="Virtual Networks"
+                                                  Content="{localization:Translate Ui.VirtualNetworks}"
                                                   IsChecked="{Binding AppSettings.NetworkInterfaces.FilterByVirtual}"
                                                   IsThreeState="True" />
                                     </MenuItem.Header>
@@ -161,7 +162,7 @@
                                     <MenuItem.Header>
                                         <CheckBox HorizontalAlignment="Stretch"
                                                   HorizontalContentAlignment="Stretch"
-                                                  Content="Have Physical Address"
+                                                  Content="{localization:Translate Ui.HavePhysicalAddress}"
                                                   IsChecked="{Binding AppSettings.NetworkInterfaces.FilterByHavePhysicalAddress}"
                                                   IsThreeState="True" />
                                     </MenuItem.Header>
@@ -171,7 +172,7 @@
                                     <MenuItem.Header>
                                         <CheckBox HorizontalAlignment="Stretch"
                                                   HorizontalContentAlignment="Stretch"
-                                                  Content="Have IP Address"
+                                                  Content="{localization:Translate Ui.HaveIPAddress}"
                                                   IsChecked="{Binding AppSettings.NetworkInterfaces.FilterByHaveIPAddress}"
                                                   IsThreeState="True" />
                                     </MenuItem.Header>
@@ -181,7 +182,7 @@
                                     <MenuItem.Header>
                                         <CheckBox HorizontalAlignment="Stretch"
                                                   HorizontalContentAlignment="Stretch"
-                                                  Content="Is Transmitting Data"
+                                                  Content="{localization:Translate Ui.IsTransmittingData}"
                                                   IsChecked="{Binding AppSettings.NetworkInterfaces.FilterByIsTransmittingData}"
                                                   IsThreeState="True" />
                                     </MenuItem.Header>
@@ -194,7 +195,7 @@
                              VerticalAlignment="Center"
                              suki:TextBoxExtensions.AddDeleteButton="True"
                              Text="{Binding FilterText, Delay=500}"
-                             PlaceholderText="Filter interfaces by text" />
+                             PlaceholderText="{localization:Translate Ui.FilterInterfacesByText}" />
 
                 </WrapPanel>
 
@@ -208,12 +209,12 @@
                             Classes="Flat"
                             Command="{Binding RefreshCommand}"
                             Content="{icon:MaterialIconExt Kind=Refresh}"
-                            ToolTip.Tip="Refresh all interfaces" />
+                            ToolTip.Tip="{localization:Translate Ui.RefreshAllInterfaces}" />
 
                     <Button Padding="10,8"
                             Command="{Binding OpenSystemNetworkManagerCommand}"
                             Content="{icon:MaterialIconExt Kind=Lan}"
-                            ToolTip.Tip="Open system network manager" />
+                            ToolTip.Tip="{localization:Translate Ui.OpenSystemNetworkManager}" />
 
                     <Button Padding="10,8"
                             Content="{icon:MaterialIconExt Kind=Settings}">
@@ -235,7 +236,7 @@
                                                 Background="{DynamicResource PopupGradientBrush}">
                                             <suki:GlassCard Padding="15"
                                                             CornerRadius="15">
-                                                <suki:GroupBox Header="Network Interfaces Settings">
+                                                <suki:GroupBox Header="{localization:Translate Ui.NetworkInterfacesSettings}">
                                                     <Grid ColumnDefinitions="Auto,*"
                                                           ColumnSpacing="10"
                                                           RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
@@ -244,7 +245,7 @@
                                                         <TextBlock Grid.Row="0"
                                                                    Grid.Column="0"
                                                                    VerticalAlignment="Center"
-                                                                   Text="Auto refresh:" />
+                                                                   Text="{localization:Translate Ui.AutoRefresh}" />
 
                                                         <Grid Grid.Row="0"
                                                               Grid.Column="1"
@@ -270,7 +271,7 @@
                                                         <TextBlock Grid.Row="2"
                                                                    Grid.Column="0"
                                                                    VerticalAlignment="Center"
-                                                                   Text="Card width:" />
+                                                                   Text="{localization:Translate Ui.CardWidth}" />
                                                         <NumericUpDown Grid.Row="2"
                                                                        Grid.Column="1"
                                                                        suki:NumericUpDownExtensions.Unit="px"
@@ -283,7 +284,7 @@
                                                         <TextBlock Grid.Row="3"
                                                                    Grid.Column="0"
                                                                    VerticalAlignment="Center"
-                                                                   Text="Card height:" />
+                                                                   Text="{localization:Translate Ui.CardHeight}" />
                                                         <NumericUpDown Grid.Row="3"
                                                                        Grid.Column="1"
                                                                        suki:NumericUpDownExtensions.Unit="px"

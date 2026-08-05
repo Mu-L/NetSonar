@@ -1,5 +1,6 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
         xmlns:suki="https://github.com/kikipoulet/SukiUI"
         xmlns:system="clr-namespace:System;assembly=netstandard">
     <Styles.Resources>
@@ -13,7 +14,7 @@
                     Margin="20"
                     Background="White"
                     Spacing="24">
-            <ToggleSwitch OnContent="On" OffContent="Off" />
+            <ToggleSwitch OnContent="{localization:Translate Ui.On}" OffContent="{localization:Translate Ui.Off}" />
 
         </StackPanel>
     </Design.PreviewWith>

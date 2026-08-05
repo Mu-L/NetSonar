@@ -16,6 +16,7 @@ public partial class App
     private static void SetupTheme()
     {
         Theme = SukiTheme.GetInstance();
+        Theme.Locale = GetSukiLocale(Localization.Culture);
         ChangeBaseTheme(AppSettings.Theme);
         ChangeColorTheme();
     }

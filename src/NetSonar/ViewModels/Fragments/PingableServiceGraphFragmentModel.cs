@@ -17,6 +17,7 @@ using LiveChartsCore.SkiaSharpView.Drawing;
 using LiveChartsCore.SkiaSharpView.Drawing.Geometries;
 using LiveChartsCore.SkiaSharpView.Painting;
 using Material.Icons;
+using NetSonar.Avalonia.Localization;
 using NetSonar.Avalonia.Network;
 using ObservableCollections;
 using SkiaSharp;
@@ -70,7 +71,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
         [
             new ColumnSeries<PingChartPoint>
             {
-                Name = "Latency",
+                Name = App.Localization["Graph.Latency"],
                 Values = _singleGraphValuesCollection,
                 Mapping = MapLatency,
                 Padding = 0,
@@ -83,7 +84,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             },
             new ScatterSeries<PingChartPoint, DiamondGeometry>
             {
-                Name = "Above scale",
+                Name = App.Localization["Graph.AboveScale"],
                 Values = _singleGraphValuesCollection,
                 Mapping = MapCappedLatency,
                 YToolTipLabelFormatter = point => FormatCappedLatencyTooltip(point.Model),
@@ -95,7 +96,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             },
             new LineSeries<PingChartPoint>
             {
-                Name = $"Rolling average ({RollingAverageWindowSize})",
+                Name = $"{App.Localization["Graph.RollingAverage"]} ({RollingAverageWindowSize})",
                 Values = _singleGraphValuesCollection,
                 Mapping = MapRollingAverage,
                 YToolTipLabelFormatter = point => FormatRollingAverageTooltip(point.Model),
@@ -108,7 +109,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             },
             new ScatterSeries<PingChartPoint, CrossGeometry>
             {
-                Name = "Failure",
+                Name = App.Localization["Graph.Failure"],
                 Values = _singleGraphValuesCollection,
                 Mapping = MapFailure,
                 YToolTipLabelFormatter = point => FormatFailureTooltip(point.Model?.Reply),
@@ -144,7 +145,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
         [
             new RowSeries<ServiceComparisonPoint>
             {
-                Name = "Maximum",
+                Name = App.Localization["Graph.Maximum"],
                 Values = _multiGraphValuesCollection,
                 Mapping = MapMaximumServiceValue,
                 IgnoresBarPosition = true,
@@ -158,7 +159,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             },
             new RowSeries<ServiceComparisonPoint>
             {
-                Name = "Average",
+                Name = App.Localization["Graph.Average"],
                 Values = _multiGraphValuesCollection,
                 Mapping = MapAverageServiceValue,
                 IgnoresBarPosition = true,
@@ -171,7 +172,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             },
             new ScatterSeries<ServiceComparisonPoint, VerticalMarkerGeometry, OutlinedLabelGeometry>
             {
-                Name = "Current",
+                Name = App.Localization["Graph.Current"],
                 Values = _multiGraphValuesCollection,
                 Mapping = MapCurrentServiceMarker,
                 IsHoverable = false,
@@ -191,7 +192,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             },
             new RowSeries<ServiceComparisonPoint>
             {
-                Name = "Minimum",
+                Name = App.Localization["Graph.Minimum"],
                 Values = _multiGraphValuesCollection,
                 Mapping = MapMinimumServiceValue,
                 IgnoresBarPosition = true,
@@ -204,7 +205,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             },
             new ScatterSeries<ServiceComparisonPoint, CrossGeometry>
             {
-                Name = "Failed",
+                Name = App.Localization["Graph.Failed"],
                 Values = _multiGraphValuesCollection,
                 Mapping = MapFailedServiceValue,
                 XToolTipLabelFormatter = point => FormatServiceName(point.Model),
@@ -215,7 +216,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
                 MinGeometrySize = 16,
                 DataLabelsPaint = new SolidColorPaint(new SKColor(Brushes.Red.Color.ToUInt32())),
                 DataLabelsPosition = DataLabelsPosition.Right,
-                DataLabelsFormatter = point => point.Model?.Service.LastStatusStr ?? "Failed"
+                DataLabelsFormatter = point => StatusLocalization.GetText(point.Model?.Service.LastStatus)
             }
         ];
 
@@ -240,6 +241,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
 
         App.Theme.OnBaseThemeChanged += OnBaseThemeChanged;
         App.Theme.OnColorThemeChanged += OnColorThemeChanged;
+        App.Localization.PropertyChanged += LocalizationOnPropertyChanged;
 
         OnBaseThemeChanged(App.Theme.ActiveBaseTheme);
         OnColorThemeChanged(App.Theme.ActiveColorTheme);
@@ -305,15 +307,15 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
     public bool HasSingleService => Services.Length == 1;
     public bool HasMultiServices => Services.Length > 1;
     public bool ShowGraphOptions { get; }
-    public string ServicesEnabledActionText => AreAllServicesEnabled ? "Disable" : "Enable";
+    public string ServicesEnabledActionText => App.Localization[AreAllServicesEnabled ? "Ui.Disable" : "Ui.Enable"];
 
     public MaterialIconKind ServicesEnabledActionIcon => AreAllServicesEnabled
         ? MaterialIconKind.Pause
         : MaterialIconKind.Play;
 
     public string ServicesEnabledActionToolTip => AreAllServicesEnabled
-        ? "Disable every service in this graph"
-        : "Enable every service in this graph";
+        ? App.Localization["Graph.DisableAll.ToolTip"]
+        : App.Localization["Graph.EnableAll.ToolTip"];
 
     public bool AreAllServicesEnabled
     {
@@ -403,21 +405,21 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
     [ObservableProperty]
     public partial Paint ThemePaint { get; set; } = new SolidColorPaint(new SKColor(255, 255, 255));
 
-    [ObservableProperty] public partial string CurrentTimeText { get; private set; } = "Ping: -";
+    [ObservableProperty] public partial string CurrentTimeText { get; private set; } = $"{App.Localization["Ui.Ping"]}: -";
     [ObservableProperty] public partial string MedianTimeText { get; private set; } = "P50: -";
     [ObservableProperty] public partial string P95TimeText { get; private set; } = "P95: -";
-    [ObservableProperty] public partial string JitterText { get; private set; } = "Jitter: -";
-    [ObservableProperty] public partial string WindowLossText { get; private set; } = "Loss: -";
+    [ObservableProperty] public partial string JitterText { get; private set; } = $"{App.Localization["Graph.Jitter"]}: -";
+    [ObservableProperty] public partial string WindowLossText { get; private set; } = $"{App.Localization["Graph.Loss"]}: -";
 
     [ObservableProperty] public partial bool IsFullScale { get; set; }
 
-    public string ScaleModeText => IsFullScale ? "Full scale" : "Auto scale";
+    public string ScaleModeText => App.Localization[IsFullScale ? "Graph.FullScale" : "Graph.AutoScale"];
 
     public string ScaleModeToolTip => IsFullScale
-        ? "Use automatic latency scaling"
-        : "Show the full latency range";
+        ? App.Localization["Graph.AutoScale.ToolTip"]
+        : App.Localization["Graph.FullScale.ToolTip"];
 
-    public GraphWindowSizeOption[] WindowSizeOptions { get; }
+    public GraphWindowSizeOption[] WindowSizeOptions { get; private set; }
 
     public GraphWindowSizeOption SelectedWindowSize
     {
@@ -437,11 +439,13 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
         ? MaterialIconKind.SnowflakeOff
         : MaterialIconKind.Snowflake;
 
-    public string FreezeActionText => IsGraphFrozen ? "Resume" : "Freeze";
+    public string FreezeActionText => IsGraphFrozen
+        ? App.Localization["Ui.Resume"]
+        : App.Localization["Graph.Freeze"];
 
     public string FreezeToolTip => IsGraphFrozen
-        ? "Resume live graph updates"
-        : "Freeze the graph while probes continue running";
+        ? App.Localization["Graph.Resume.ToolTip"]
+        : App.Localization["Graph.Freeze.ToolTip"];
 
     public void Dispose()
     {
@@ -450,6 +454,7 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
 
         App.Theme.OnBaseThemeChanged -= OnBaseThemeChanged;
         App.Theme.OnColorThemeChanged -= OnColorThemeChanged;
+        App.Localization.PropertyChanged -= LocalizationOnPropertyChanged;
 
         Services = [];
         _singleGraphValuesCollection.Dispose();
@@ -566,6 +571,35 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
         }
     }
 
+    private void LocalizationOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName != nameof(App.Localization.Culture)) return;
+
+        SingleGraphSeries[0].Name = App.Localization["Graph.Latency"];
+        SingleGraphSeries[1].Name = App.Localization["Graph.AboveScale"];
+        SingleGraphSeries[2].Name = $"{App.Localization["Graph.RollingAverage"]} ({RollingAverageWindowSize})";
+        SingleGraphSeries[3].Name = App.Localization["Graph.Failure"];
+        MultiGraphSeries[0].Name = App.Localization["Graph.Maximum"];
+        MultiGraphSeries[1].Name = App.Localization["Graph.Average"];
+        MultiGraphSeries[2].Name = App.Localization["Graph.Current"];
+        MultiGraphSeries[3].Name = App.Localization["Graph.Minimum"];
+        MultiGraphSeries[4].Name = App.Localization["Graph.Failed"];
+
+        var selectedWindowSize = _selectedWindowSize.Count;
+        WindowSizeOptions = CreateWindowSizeOptions(AppSettings.PingServices.MaxRepliesGraphCache);
+        _selectedWindowSize = FindInitialWindowSize(WindowSizeOptions, selectedWindowSize);
+
+        OnPropertyChanged(nameof(WindowSizeOptions));
+        OnPropertyChanged(nameof(SelectedWindowSize));
+        OnPropertyChanged(nameof(ServicesEnabledActionText));
+        OnPropertyChanged(nameof(ServicesEnabledActionToolTip));
+        OnPropertyChanged(nameof(ScaleModeText));
+        OnPropertyChanged(nameof(ScaleModeToolTip));
+        OnPropertyChanged(nameof(FreezeActionText));
+        OnPropertyChanged(nameof(FreezeToolTip));
+        Rebuild();
+    }
+
     private void NotifyServicesEnabledStateChanged()
     {
         OnPropertyChanged(nameof(AreAllServicesEnabled));
@@ -679,13 +713,13 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
         }
 
         var latestReply = replies[^1];
-        CurrentTimeText = $"Ping: {FormatMilliseconds(latestReply.Time)}";
+        CurrentTimeText = $"{App.Localization["Ui.Ping"]}: {FormatMilliseconds(latestReply.Time)}";
         MedianTimeText = $"P50: {FormatMilliseconds(median)}";
         P95TimeText = $"P95: {FormatMilliseconds(p95)}";
         JitterText = jitterPairCount > 0
-            ? $"Jitter: {FormatMilliseconds(jitterSum / jitterPairCount)}"
-            : "Jitter: ∞";
-        WindowLossText = $"Loss: {failedCount * 100d / replies.Length:0.##}%";
+            ? $"{App.Localization["Graph.Jitter"]}: {FormatMilliseconds(jitterSum / jitterPairCount)}"
+            : $"{App.Localization["Graph.Jitter"]}: ∞";
+        WindowLossText = $"{App.Localization["Graph.Loss"]}: {failedCount * 100d / replies.Length:0.##}%";
 
         Span<double> rollingWindow = stackalloc double[RollingAverageWindowSize];
         var rollingCount = 0;
@@ -871,16 +905,16 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
         return point is null
             ? string.Empty
             : $"{point.Reply.SentDateTime:G}\n" +
-              $"Latency: {FormatMilliseconds(point.Reply.Time)}\n" +
-              $"Rolling average: {FormatMilliseconds(point.RollingAverage)}\n" +
-              $"Status: {point.Reply.StatusStr}";
+              $"{App.Localization["Graph.Latency"]}: {FormatMilliseconds(point.Reply.Time)}\n" +
+              $"{App.Localization["Graph.RollingAverage"]}: {FormatMilliseconds(point.RollingAverage)}\n" +
+              $"{App.Localization["Ui.Status"]}: {StatusLocalization.GetText(point.Reply.Status)}";
     }
 
     private static string FormatRollingAverageTooltip(PingChartPoint? point)
     {
         return point is null
             ? string.Empty
-            : $"Rolling average: {FormatMilliseconds(point.RollingAverage)}";
+            : $"{App.Localization["Graph.RollingAverage"]}: {FormatMilliseconds(point.RollingAverage)}";
     }
 
     private static string FormatCappedLatencyTooltip(PingChartPoint? point)
@@ -888,8 +922,8 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
         return point is null
             ? string.Empty
             : $"{point.Reply.SentDateTime:G}\n" +
-              $"Latency: {FormatMilliseconds(point.Reply.Time)}\n" +
-              "Above automatic scale";
+              $"{App.Localization["Graph.Latency"]}: {FormatMilliseconds(point.Reply.Time)}\n" +
+              App.Localization["Graph.AboveAutomaticScale"];
     }
 
     private static string FormatFailureTooltip(PingableServiceReply? reply)
@@ -897,8 +931,8 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
         return reply is null
             ? string.Empty
             : string.IsNullOrWhiteSpace(reply.ErrorMessage)
-                ? $"{reply.SentDateTime:G}\nStatus: {reply.StatusStr}"
-                : $"{reply.SentDateTime:G}\nStatus: {reply.StatusStr}\n{reply.ErrorMessage}";
+                ? $"{reply.SentDateTime:G}\n{App.Localization["Ui.Status"]}: {StatusLocalization.GetText(reply.Status)}"
+                : $"{reply.SentDateTime:G}\n{App.Localization["Ui.Status"]}: {StatusLocalization.GetText(reply.Status)}\n{reply.ErrorMessage}";
     }
 
     private static string FormatChartValue(double? value)
@@ -937,21 +971,21 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
             ? FormatMilliseconds(comparison.Current)
             : "-";
 
-        return $"Min: {FormatMilliseconds(comparison.Minimum)}\n" +
-               $"Average: {FormatMilliseconds(comparison.Average)}\n" +
-               $"Current: {current}\n" +
-               $"Max: {FormatMilliseconds(comparison.Maximum)}\n" +
-               $"Loss: {loss:0.##}% ({comparison.FailedCount}/{comparison.SampleCount})\n" +
-               $"Status: {service.LastStatusStr}";
+        return $"{App.Localization["Graph.Minimum"]}: {FormatMilliseconds(comparison.Minimum)}\n" +
+               $"{App.Localization["Graph.Average"]}: {FormatMilliseconds(comparison.Average)}\n" +
+               $"{App.Localization["Graph.Current"]}: {current}\n" +
+               $"{App.Localization["Graph.Maximum"]}: {FormatMilliseconds(comparison.Maximum)}\n" +
+               $"{App.Localization["Graph.Loss"]}: {loss:0.##}% ({comparison.FailedCount}/{comparison.SampleCount})\n" +
+               $"{App.Localization["Ui.Status"]}: {StatusLocalization.GetText(service.LastStatus)}";
     }
 
     private void ResetWindowStatistics()
     {
-        CurrentTimeText = "Ping: -";
+        CurrentTimeText = $"{App.Localization["Ui.Ping"]}: -";
         MedianTimeText = "P50: -";
         P95TimeText = "P95: -";
-        JitterText = "Jitter: -";
-        WindowLossText = "Loss: -";
+        JitterText = $"{App.Localization["Graph.Jitter"]}: -";
+        WindowLossText = $"{App.Localization["Graph.Loss"]}: -";
     }
 
     private PingableServiceReply[] GetRepliesForGraph(PingableService service)
@@ -980,10 +1014,12 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
         var options = new GraphWindowSizeOption[sizes.Count + 1];
         for (var i = 0; i < sizes.Count; i++)
         {
-            options[i] = new GraphWindowSizeOption(sizes[i], $"{sizes[i]} samples");
+            options[i] = new GraphWindowSizeOption(
+                sizes[i],
+                App.Localization.Format("Graph.Samples", sizes[i]));
         }
 
-        options[^1] = new GraphWindowSizeOption(0, "All samples");
+        options[^1] = new GraphWindowSizeOption(0, App.Localization["Graph.AllSamples"]);
         return options;
     }
 

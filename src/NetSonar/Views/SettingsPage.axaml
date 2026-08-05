@@ -1,6 +1,7 @@
 <controls:UserControlBase x:Class="NetSonar.Avalonia.Views.SettingsPage"
 						  xmlns="https://github.com/avaloniaui"
 						  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+						  xmlns:app="clr-namespace:NetSonar.Avalonia"
 						  xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
 						  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 						  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,6 +10,7 @@
 						  xmlns:viewModels="clr-namespace:NetSonar.Avalonia.ViewModels"
 						  xmlns:views="clr-namespace:NetSonar.Avalonia.Views"
 						  xmlns:avalonia="clr-namespace:NetSonar.Avalonia"
+						  xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
 						  d:DesignHeight="650"
 						  d:DesignWidth="1110"
 						  x:DataType="viewModels:SettingsPageModel"
@@ -16,7 +18,7 @@
 	<suki:SettingsLayout>
 		<suki:SettingsLayout.Items>
 			<objectModel:ObservableCollection x:TypeArguments="suki:SettingsLayoutItem">
-				<suki:SettingsLayoutItem Header="Theme">
+				<suki:SettingsLayoutItem Header="{localization:Translate Settings.Theme}">
 					<suki:SettingsLayoutItem.Content>
 
 						<Grid ColumnDefinitions="Auto,*"
@@ -44,7 +46,7 @@
 												   VerticalAlignment="Bottom"
 												   FontWeight="DemiBold"
 												   Foreground="#fafafa"
-												   Text="System Mode" />
+												   Text="{localization:Translate Ui.SystemMode}" />
 									</Border>
 								</RadioButton>
 
@@ -62,7 +64,7 @@
 												   VerticalAlignment="Bottom"
 												   FontWeight="DemiBold"
 												   Foreground="#555555"
-												   Text="Light Mode" />
+												   Text="{localization:Translate Ui.LightMode}" />
 									</Border>
 								</RadioButton>
 
@@ -79,7 +81,7 @@
 												   VerticalAlignment="Bottom"
 												   FontWeight="DemiBold"
 												   Foreground="#fafafa"
-												   Text="Dark Mode" />
+												   Text="{localization:Translate Ui.DarkMode}" />
 									</Border>
 								</RadioButton>
 							</StackPanel>
@@ -131,11 +133,11 @@
 										<StackPanel HorizontalAlignment="Left">
 											<TextBlock FontSize="16"
 													   FontWeight="DemiBold"
-													   Text="UI Scale" />
+													   Text="{localization:Translate Ui.UIScale}" />
 											<TextBlock Margin="0,12,70,0"
 													   Foreground="{DynamicResource SukiLowText}"
 													   TextWrapping="Wrap"
-													   Text="Adjust the UI scale to increase or decrease the size of the interface elements."/>
+													   Text="{localization:Translate Ui.AdjustTheUIScaleToIncreaseOrDecreaseTheSizeOfTheInterfaceElements}"/>
 
 										</StackPanel>
 									</DockPanel>
@@ -147,7 +149,7 @@
 					</suki:SettingsLayoutItem.Content>
 				</suki:SettingsLayoutItem>
 
-				<suki:SettingsLayoutItem Header="Background">
+				<suki:SettingsLayoutItem Header="{localization:Translate Ui.Background}">
 					<suki:SettingsLayoutItem.Content>
 						<StackPanel>
 							<suki:GlassCard Margin="0,25,0,0"
@@ -161,10 +163,10 @@
 										<StackPanel HorizontalAlignment="Left">
 											<TextBlock FontSize="16"
 													   FontWeight="DemiBold"
-													   Text="Animated Background" />
+													   Text="{localization:Translate Ui.AnimatedBackground}" />
 											<TextBlock Margin="0,12,70,0"
 													   Foreground="{DynamicResource SukiLowText}"
-													   Text="Enable/disable the animations for the background, which are driven by the currently active effect."
+													   Text="{localization:Translate Ui.EnableDisableTheAnimationsForTheBackgroundWhichAreDrivenByTheCurrentlyAc}"
 													   TextWrapping="Wrap" />
 										</StackPanel>
 									</DockPanel>
@@ -175,10 +177,10 @@
 										<StackPanel HorizontalAlignment="Left">
 											<TextBlock FontSize="16"
 													   FontWeight="DemiBold"
-													   Text="Background Transitions" />
+													   Text="{localization:Translate Ui.BackgroundTransitions}" />
 											<TextBlock Margin="0,12,70,0"
 													   Foreground="{DynamicResource SukiLowText}"
-													   Text="Enable/disable the transitions for the background, these will fade between the active effects when changed."
+													   Text="{localization:Translate Ui.EnableDisableTheTransitionsForTheBackgroundTheseWillFadeBetweenTheActive}"
 													   TextWrapping="Wrap" />
 										</StackPanel>
 									</DockPanel>
@@ -195,10 +197,10 @@
 										<StackPanel HorizontalAlignment="Left">
 											<TextBlock FontSize="16"
 													   FontWeight="DemiBold"
-													   Text="Background Style" />
+													   Text="{localization:Translate Ui.BackgroundStyle}" />
 											<TextBlock Margin="0,12,70,0"
 													   Foreground="{DynamicResource SukiLowText}"
-													   Text="Select from the included background styles."
+													   Text="{localization:Translate Ui.SelectFromTheIncludedBackgroundStyles}"
 													   TextWrapping="Wrap" />
 										</StackPanel>
 									</DockPanel>
@@ -207,10 +209,10 @@
 									<StackPanel HorizontalAlignment="Left" DockPanel.Dock="Top">
 									<TextBlock FontSize="16"
 									FontWeight="DemiBold"
-									Text="Custom Shaders" />
+									Text="{localization:Translate Ui.CustomShaders}" />
 									<TextBlock Margin="0,12,70,0"
 									Foreground="{DynamicResource SukiLowText}"
-									Text="Click any of the buttons below to enable a background shader. Click it again to disable it. These are likely to put quite a load on your GPU and are purely to demonstrate and test the capabilities of the background renderer."
+									Text="{localization:Translate Ui.ClickAnyOfTheButtonsBelowToEnableABackgroundShaderClickItAgainToDisableI}"
 									TextWrapping="Wrap" />
 									</StackPanel>
 
@@ -237,9 +239,35 @@
 					</suki:SettingsLayoutItem.Content>
 				</suki:SettingsLayoutItem>
 
-				<suki:SettingsLayoutItem Header="General">
+				<suki:SettingsLayoutItem Header="{localization:Translate Ui.General}">
 					<suki:SettingsLayoutItem.Content>
 						<StackPanel>
+							<suki:GlassCard Margin="0,25,0,0"
+											Padding="25">
+								<DockPanel>
+									<ComboBox Width="220"
+											  VerticalAlignment="Top"
+											  DockPanel.Dock="Right"
+											  ItemsSource="{Binding LanguageOptions}"
+											  SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}">
+										<ComboBox.ItemTemplate>
+											<DataTemplate x:DataType="viewModels:LanguageOption">
+												<TextBlock Text="{Binding DisplayName}" />
+											</DataTemplate>
+										</ComboBox.ItemTemplate>
+									</ComboBox>
+									<StackPanel Margin="0,0,30,0" HorizontalAlignment="Left">
+										<TextBlock FontSize="16"
+												   FontWeight="DemiBold"
+												   Text="{localization:Translate Settings.Language}" />
+										<TextBlock Margin="0,12,0,0"
+												   Foreground="{DynamicResource SukiLowText}"
+												   Text="{localization:Translate Settings.Language.Description}"
+												   TextWrapping="Wrap" />
+									</StackPanel>
+								</DockPanel>
+							</suki:GlassCard>
+
 							<suki:GlassCard Margin="0,25,0,0"
 											Padding="25">
 								<StackPanel Spacing="40">
@@ -251,11 +279,11 @@
 										<StackPanel HorizontalAlignment="Left">
 											<TextBlock FontSize="16"
 													   FontWeight="DemiBold"
-													   Text="Start with system" />
+													   Text="{localization:Translate Ui.StartWithSystem}" />
 											<TextBlock Margin="0,12,70,0"
 													   Foreground="{DynamicResource SukiLowText}"
 													   TextWrapping="Wrap"
-													   Text="Start the application automatically when the system starts."/>
+													   Text="{localization:Translate Ui.StartTheApplicationAutomaticallyWhenTheSystemStarts}"/>
 										</StackPanel>
 									</DockPanel>
 								</StackPanel>
@@ -272,11 +300,11 @@
 										<StackPanel HorizontalAlignment="Left">
 											<TextBlock FontSize="16"
 													   FontWeight="DemiBold"
-													   Text="Use system tray" />
+													   Text="{localization:Translate Ui.UseSystemTray}" />
 											<TextBlock Margin="0,12,70,0"
 													   Foreground="{DynamicResource SukiLowText}"
 													   TextWrapping="Wrap"
-													   Text="Show a tray icon in the system notification area for quick access when the app is running."/>
+													   Text="{localization:Translate Ui.ShowATrayIconInTheSystemNotificationAreaForQuickAccessWhenTheAppIsRunnin}"/>
 										</StackPanel>
 									</DockPanel>
 
@@ -288,11 +316,11 @@
 										<StackPanel HorizontalAlignment="Left">
 											<TextBlock FontSize="16"
 													   FontWeight="DemiBold"
-													   Text="Close to system tray" />
+													   Text="{localization:Translate Ui.CloseToSystemTray}" />
 											<TextBlock Margin="0,12,70,0"
 													   Foreground="{DynamicResource SukiLowText}"
 													   TextWrapping="Wrap"
-													   Text="When closing the main window, keep the app running in the system tray instead of exiting."/>
+													   Text="{localization:Translate Ui.WhenClosingTheMainWindowKeepTheAppRunningInTheSystemTrayInsteadOfExiting}"/>
 										</StackPanel>
 									</DockPanel>
 								</StackPanel>
@@ -309,12 +337,20 @@
 										<StackPanel HorizontalAlignment="Left">
 											<TextBlock FontSize="16"
 													   FontWeight="DemiBold"
-													   Text="Check for updates on start" />
+													   Text="{localization:Translate Ui.CheckForUpdatesOnStart}" />
 											<TextBlock Margin="0,12,70,0"
 													   Foreground="{DynamicResource SukiLowText}"
 													   TextWrapping="Wrap">
-												<Run Text="Check for updates on application start. If an update is available it will notify and additionally prompt for your action." />
-												<Run FontWeight="Bold" Text="{Binding AppSettings.LastUpdateDateTimeCheck, Mode=OneWay, StringFormat='Last update check: {0}'}" />
+												<Run Text="{localization:Translate Ui.CheckForUpdatesOnApplicationStartIfAnUpdateIsAvailableItWillNotifyAndAdd}" />
+												<Run FontWeight="Bold">
+													<Run.Text>
+														<MultiBinding Converter="{StaticResource LocalizedStringFormatConverter}"
+																	  ConverterParameter="Ui.LastUpdateCheck">
+															<Binding Path="AppSettings.LastUpdateDateTimeCheck" Mode="OneWay" />
+															<Binding Source="{x:Static app:App.Localization}" Path="Culture" />
+														</MultiBinding>
+													</Run.Text>
+												</Run>
 											</TextBlock>
 										</StackPanel>
 									</DockPanel>

@@ -338,9 +338,9 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
 
         var toast = new ProcessXToast
         {
-            Title = $"Disable {Interface.Description}",
-            SuccessGenericMessage = $"Interface \"{Interface.Name}\" successfully disabled.",
-            ErrorGenericMessage = $"Unable to disable \"{Interface.Name}\"."
+            Title = App.Localization.Format("Network.Disable.Title", Interface.Description),
+            SuccessGenericMessage = App.Localization.Format("Network.Disable.Success", Interface.Name),
+            ErrorGenericMessage = App.Localization.Format("Network.Disable.Error", Interface.Name)
         };
 
         bool success;
@@ -367,9 +367,9 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
 
         var toast = new ProcessXToast
         {
-            Title = $"Enable {Interface.Description}",
-            SuccessGenericMessage = $"Interface \"{Interface.Name}\" successfully enabled.",
-            ErrorGenericMessage = $"Unable to enable \"{Interface.Name}\"."
+            Title = App.Localization.Format("Network.Enable.Title", Interface.Description),
+            SuccessGenericMessage = App.Localization.Format("Network.Enable.Success", Interface.Name),
+            ErrorGenericMessage = App.Localization.Format("Network.Enable.Error", Interface.Name)
         };
 
         bool success;
@@ -397,9 +397,9 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
 
         var toast = new ProcessXToast
         {
-            Title = $"Release {Interface.Description}",
-            SuccessGenericMessage = "IP address successfully released.",
-            ErrorGenericMessage = $"Unable to release \"{Interface.Name}\"."
+            Title = App.Localization.Format("Network.Release.Title", Interface.Description),
+            SuccessGenericMessage = App.Localization["Network.Release.Success"],
+            ErrorGenericMessage = App.Localization.Format("Network.Release.Error", Interface.Name)
         };
 
         bool success;
@@ -422,9 +422,9 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
 
         var toast = new ProcessXToast
         {
-            Title = $"Renew {Interface.Description}",
-            SuccessGenericMessage = "IP address successfully renewed.",
-            ErrorGenericMessage = $"Unable to renew \"{Interface.Name}\"."
+            Title = App.Localization.Format("Network.Renew.Title", Interface.Description),
+            SuccessGenericMessage = App.Localization["Network.Renew.Success"],
+            ErrorGenericMessage = App.Localization.Format("Network.Renew.Error", Interface.Name)
         };
 
         bool success;
@@ -490,8 +490,8 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
         var toast = new ProcessXToast
         {
             Title = Interface.Description,
-            SuccessGenericMessage = $"IP address successfully set to {ipAddress} {subnetMask} {gateway}",
-            ErrorGenericMessage = $"Unable set static IPv{version} for \"{Interface.Name}\"."
+            SuccessGenericMessage = App.Localization.Format("Network.StaticIp.Success", ipAddress, subnetMask, gateway),
+            ErrorGenericMessage = App.Localization.Format("Network.StaticIp.Error", version, Interface.Name)
         };
 
         if (OperatingSystem.IsWindows())
@@ -524,8 +524,8 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
         var toast = new ProcessXToast
         {
             Title = Interface.Description,
-            SuccessGenericMessage = $"IP address successfully set to DHCPv{versionStr}",
-            ErrorGenericMessage = $"Unable set DHCPv{versionStr} for \"{Interface.Name}\"."
+            SuccessGenericMessage = App.Localization.Format("Network.DhcpIp.Success", versionStr),
+            ErrorGenericMessage = App.Localization.Format("Network.DhcpIp.Error", versionStr, Interface.Name)
         };
 
         List<string> commands = [];
@@ -610,9 +610,9 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
 
         await ProcessXExtensions.ExecuteHandled(commands, new ProcessXToast()
         {
-            Title = $"DNS assignment for \"{Interface.Name}\"",
-            SuccessGenericMessage = $"DNS servers successfully assigned: {dnsAddress1} {dnsAddress2}",
-            ErrorGenericMessage = "Unable to assign DNS.",
+            Title = App.Localization.Format("Network.Dns.Title", Interface.Name),
+            SuccessGenericMessage = App.Localization.Format("Network.Dns.Success", dnsAddress1, dnsAddress2),
+            ErrorGenericMessage = App.Localization["Network.Dns.Error"],
         }, requireAdminRights);
     }
 
@@ -661,9 +661,9 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
 
         await ProcessXExtensions.ExecuteHandled(commands, new ProcessXToast()
         {
-            Title = $"DNS assignment for \"{Interface.Name}\"",
-            SuccessGenericMessage = "DHCP DNS successfully assigned",
-            ErrorGenericMessage = "Unable to assign DHCP DNS.",
+            Title = App.Localization.Format("Network.Dns.Title", Interface.Name),
+            SuccessGenericMessage = App.Localization["Network.DhcpDns.Success"],
+            ErrorGenericMessage = App.Localization["Network.DhcpDns.Error"],
         }, requireAdminRights);
     }
 
@@ -702,15 +702,16 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
             }
 
             App.ShowToast(NotificationType.Success,
-                "Export interface to CSV",
-                $"The interface \"{Interface.Name}\" were exported to \"{file.Name}\".",
-                new ToastActionButton("Open file", toast => { SystemAware.StartProcess(filePath); }),
-                new ToastActionButton("Open folder", toast => { SystemAware.SelectFileOnExplorer(filePath); })
+                App.Localization.Format("Export.Interface.Title", "CSV"),
+                App.Localization.Format("Export.Interface.Success", Interface.Name, file.Name),
+                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { SystemAware.StartProcess(filePath); }),
+                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { SystemAware.SelectFileOnExplorer(filePath); })
                 );
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, "Export interface to CSV", "Error while trying to export the interface:");
+            App.ShowExceptionToast(e, App.Localization.Format("Export.Interface.Title", "CSV"),
+                App.Localization["Export.Interface.Error"]);
         }
     }
 
@@ -734,15 +735,16 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
             await using var stream = File.Create(filePath);
             await JsonSerializer.SerializeAsync(stream, TabularData, App.JsonSerializerOptions);
             App.ShowToast(NotificationType.Success,
-                "Export interface to JSON",
-                $"The interface \"{Interface.Name}\" were exported to \"{file.Name}\".",
-                new ToastActionButton("Open file", toast => { SystemAware.StartProcess(filePath); }),
-                new ToastActionButton("Open folder", toast => { SystemAware.SelectFileOnExplorer(filePath); })
+                App.Localization.Format("Export.Interface.Title", "JSON"),
+                App.Localization.Format("Export.Interface.Success", Interface.Name, file.Name),
+                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { SystemAware.StartProcess(filePath); }),
+                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { SystemAware.SelectFileOnExplorer(filePath); })
                 );
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, "Export interface to JSON", "Error while trying to export the interface:");
+            App.ShowExceptionToast(e, App.Localization.Format("Export.Interface.Title", "JSON"),
+                App.Localization["Export.Interface.Error"]);
         }
     }
 
@@ -778,15 +780,16 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
             }
 
             App.ShowToast(NotificationType.Success,
-                "Export interface to INI",
-                $"The interface \"{Interface.Name}\" were exported to \"{file.Name}\".",
-                new ToastActionButton("Open file", toast => { SystemAware.StartProcess(filePath); }),
-                new ToastActionButton("Open folder", toast => { SystemAware.SelectFileOnExplorer(filePath); })
+                App.Localization.Format("Export.Interface.Title", "INI"),
+                App.Localization.Format("Export.Interface.Success", Interface.Name, file.Name),
+                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { SystemAware.StartProcess(filePath); }),
+                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { SystemAware.SelectFileOnExplorer(filePath); })
                 );
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, "Export interface to INI", "Error while trying to export the interface:");
+            App.ShowExceptionToast(e, App.Localization.Format("Export.Interface.Title", "INI"),
+                App.Localization["Export.Interface.Error"]);
         }
     }
 

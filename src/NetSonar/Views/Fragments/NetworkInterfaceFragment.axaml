@@ -1,6 +1,7 @@
 <controls:UserControlBase x:Class="NetSonar.Avalonia.Views.Fragments.NetworkInterfaceFragment"
                           xmlns="https://github.com/avaloniaui"
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
                           xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                           xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
@@ -76,25 +77,25 @@
                         <Button.Flyout>
                             <MenuFlyout>
                                 <MenuItem Command="{Binding DisableCommand}"
-                                          Header="Disable"
+                                          Header="{localization:Translate Ui.Disable}"
                                           Icon="{icon:MaterialIconExt Kind=NetworkOffOutline}"
                                           IsVisible="{Binding IsEnabled}" />
 
                                 <MenuItem Command="{Binding EnableCommand}"
-                                          Header="Enable"
+                                          Header="{localization:Translate Ui.Enable}"
                                           Icon="{icon:MaterialIconExt Kind=NetworkOutline}"
                                           IsVisible="{Binding IsDisabled}" />
 
 
                                 <!--
-                <MenuItem Header="Release IP"
+                <MenuItem Header="{localization:Translate Ui.ReleaseIP}"
                           Icon="{icon:MaterialIconExt Kind=Ip}"
                           IsVisible="{Binding IsActive}"
                           Command="{Binding ReleaseIpCommand}"/>
                                 -->
 
                                 <MenuItem Command="{Binding RenewIpCommand}"
-                                          Header="Renew IP"
+                                          Header="{localization:Translate Ui.RenewIP}"
                                           Icon="{icon:MaterialIconExt Kind=Autorenew}">
                                     <MenuItem.IsVisible>
                                         <MultiBinding Converter="{x:Static BoolConverters.And}">
@@ -104,7 +105,7 @@
                                     </MenuItem.IsVisible>
                                 </MenuItem>
 
-                                <MenuItem Header="Set IP"
+                                <MenuItem Header="{localization:Translate Ui.SetIP}"
                                           Icon="{icon:MaterialIconExt Kind=Ip}"
                                           IsVisible="{Binding SupportsAnyIpProtocol}">
                                     <MenuItem Command="{Binding SetDhcpIPCommand}"
@@ -123,13 +124,13 @@
                                               Icon="{icon:MaterialIconExt Kind=Asterisk}" />
 
                                     <MenuItem Command="{Binding ShowManualAssignmentIPDialogCommand}"
-                                              Header="Manual assignment"
+                                              Header="{localization:Translate Ui.ManualAssignment}"
                                               Icon="{icon:MaterialIconExt Kind=Numeric}" />
                                 </MenuItem>
 
                                 <Separator />
 
-                                <MenuItem Header="Export to"
+                                <MenuItem Header="{localization:Translate Ui.ExportTo}"
                                           Icon="{icon:MaterialIconExt Kind=Export}">
                                     <MenuItem Command="{Binding ExportToCsvCommand}"
                                               Header="CSV"
@@ -145,7 +146,7 @@
                                 <Separator />
 
                                 <MenuItem Command="{Binding OpenInNewWindowCommand}"
-                                          Header="Open in new window"
+                                          Header="{localization:Translate Ui.OpenInNewWindow}"
                                           Icon="{icon:MaterialIconExt Kind=WindowRestore}" />
                             </MenuFlyout>
                         </Button.Flyout>
@@ -189,14 +190,14 @@
                                              HorizontalAlignment="Center"
                                              IsVisible="{Binding PhysicalAddressString, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                                              Text="{Binding PhysicalAddressString}"
-                                             ToolTip.Tip="Physical address (MAC Address)" />
+                                             ToolTip.Tip="{localization:Translate Ui.PhysicalAddressMACAddress}" />
 
                         <SelectableTextBlock Grid.Row="0"
                                              Grid.Column="2"
                                              HorizontalAlignment="Right"
                                              IsVisible="{Binding !!Interface.Speed}"
                                              Text="{Binding Interface.Speed, Converter={StaticResource InternetSpeedNormalize}}"
-                                             ToolTip.Tip="Connection speed" />
+                                             ToolTip.Tip="{localization:Translate Ui.ConnectionSpeed}" />
                         <WrapPanel Grid.Row="1"
                                    Grid.Column="0"
                                    Grid.ColumnSpan="2"
@@ -232,7 +233,7 @@
                                     Padding="15,5"
                                     VerticalAlignment="Center"
                                     Classes="Information Rounded"
-                                    Content="Static IPv4"
+                                    Content="{localization:Translate Ui.StaticIPv4}"
                                     IsEnabled="False"
                                     IsVisible="{Binding IsStaticIPv4}" />
                         </WrapPanel>
@@ -245,13 +246,13 @@
                                                    IsVisible="{Binding !!BytesReceived}"
                                                    Kind="ArrowDown"
                                                    Text="{Binding Statistics.BytesReceived, Converter={StaticResource FileSizeNormalize}}"
-                                                   ToolTip.Tip="Downloaded" />
+                                                   ToolTip.Tip="{localization:Translate Ui.Downloaded}" />
 
                             <icon:MaterialIconText IsTextSelectable="True"
                                                    IsVisible="{Binding !!BytesSent}"
                                                    Kind="ArrowUp"
                                                    Text="{Binding Statistics.BytesSent, Converter={StaticResource FileSizeNormalize}}"
-                                                   ToolTip.Tip="Uploaded" />
+                                                   ToolTip.Tip="{localization:Translate Ui.Uploaded}" />
                         </StackPanel>
                     </Grid>
 
@@ -277,9 +278,9 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="180"
                                         Binding="{ReflectionBinding Value.Name}"
-                                        Header="Property" />
+                                        Header="{localization:Translate Ui.Property}" />
                     <DataGridTextColumn Binding="{ReflectionBinding Value.Value}"
-                                        Header="Value" />
+                                        Header="{localization:Translate Ui.Value}" />
                 </DataGrid.Columns>
             </DataGrid>
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NetSonar.Avalonia.Common;
+using NetSonar.Avalonia.Localization;
 using NetSonar.Avalonia.Services;
 using NetSonar.Avalonia.ViewModels;
 using NetSonar.Avalonia.ViewModels.Dialogs;
@@ -54,6 +55,7 @@ public partial class App
 
     private static ServiceProvider ConfigureServices(ServiceCollection services)
     {
+        services.AddSingleton<ILocalizationService>(Localization);
         services.AddSingleton<ClipboardService>();
         //services.AddSingleton<PageNavigationService>();
 

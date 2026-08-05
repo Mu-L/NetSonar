@@ -57,9 +57,7 @@ public partial class App : Application
 
     public App()
     {
-        CultureInfo.DefaultThreadCurrentUICulture =
-            CultureInfo.DefaultThreadCurrentCulture =
-                OptimalCultureInfo;
+        CultureInfo.DefaultThreadCurrentCulture = OptimalCultureInfo;
 
         ApplicationKit.JsonSerializerOptions = JsonSerializerOptions;
         ApplicationKit.Birth = DateTime.SpecifyKind(new(2025, 7, 1, 2, 00, 00), DateTimeKind.Utc);
@@ -86,6 +84,7 @@ public partial class App : Application
     public override void OnFrameworkInitializationCompleted()
     {
         SetupLogger();
+        SetupLocalization();
         SetupTheme();
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopCheck)
@@ -110,7 +109,7 @@ public partial class App : Application
             {
                 MainWindow = new GenericWindow
                 {
-                    Title = $"{SoftwareWithVersion} - Crash Report",
+                    Title = Localization.Format("Window.CrashReport.Title", SoftwareWithVersion),
                     SizeToContent = SizeToContent.WidthAndHeight,
                     CanResize = false,
                     CanMaximize = false,
@@ -191,7 +190,7 @@ public partial class App : Application
                 {
                     MainWindow = new GenericWindow()
                     {
-                        Title = $"{SoftwareWithVersion} - Already running",
+                        Title = Localization.Format("Window.AlreadyRunning.Title", SoftwareWithVersion),
                         SizeToContent = SizeToContent.WidthAndHeight,
                         CanResize = false,
                         CanMaximize = false,

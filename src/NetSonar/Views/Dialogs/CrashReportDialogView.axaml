@@ -1,6 +1,7 @@
 <controls:UserControlBase x:Class="NetSonar.Avalonia.Views.Dialogs.CrashReportDialogView"
                           xmlns="https://github.com/avaloniaui"
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
                           xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                           xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
@@ -33,13 +34,13 @@
         <suki:SukiMessageBoxHost.FooterLeftItemsSource>
             <Button Command="{Binding CopyInformationToClipboardCommand}"
                     Content="{icon:MaterialIconTextExt Kind=ContentCopy,
-                                                       Text='Copy'}"
+                                                       Text={localization:Translate Common.Copy}}"
                     IsEnabled="{Binding CrashReport, Converter={x:Static ObjectConverters.IsNotNull}}"
                     IsVisible="{Binding !IsContentCopied}" />
 
             <Button Classes="Success"
                     Content="{icon:MaterialIconTextExt Kind=Check,
-                                                       Text='Copied'}"
+                                                       Text={localization:Translate Common.Copied}}"
                     IsVisible="{Binding IsContentCopied}" />
         </suki:SukiMessageBoxHost.FooterLeftItemsSource>
 
@@ -47,23 +48,23 @@
             <Button Classes="Flat"
                     Command="{Binding ReportCommand}"
                     Content="{icon:MaterialIconTextExt Kind=Bug,
-                                                       Text='Report'}"
+                                                       Text={localization:Translate Common.Report}}"
                     IsEnabled="{Binding CrashReport, Converter={x:Static ObjectConverters.IsNotNull}}" />
 
             <Button Classes="Flat"
                     Command="{Binding RestartApplicationCommand}"
                     Content="{icon:MaterialIconTextExt Kind=Help,
-                                                       Text='Help'}" />
+                                                       Text={localization:Translate Common.Help}}" />
 
             <Button Classes="Flat"
                     Command="{Binding RestartApplicationCommand}"
                     Content="{icon:MaterialIconTextExt Kind=Restart,
-                                                       Text='Restart'}" />
+                                                       Text={localization:Translate Common.Restart}}" />
 
             <Button Classes="Danger"
                     Command="{Binding CloseWindowCommand}"
                     Content="{icon:MaterialIconTextExt Kind=Close,
-                                                       Text='Close'}"
+                                                       Text={localization:Translate Common.Close}}"
                     IsCancel="True" />
         </suki:SukiMessageBoxHost.ActionButtonsSource>
     </suki:SukiMessageBoxHost>

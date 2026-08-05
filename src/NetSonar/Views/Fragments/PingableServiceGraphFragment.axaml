@@ -1,6 +1,7 @@
 <UserControl x:Class="NetSonar.Avalonia.Views.Fragments.PingableServiceGraphFragment"
              xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fragments="clr-namespace:NetSonar.Avalonia.ViewModels.Fragments"
              xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
@@ -19,7 +20,7 @@
     <Grid RowDefinitions="Auto,*">
         <Expander Grid.Row="0"
                   Margin="0,0,0,10"
-                  Header="Graph options"
+                  Header="{localization:Translate Ui.GraphOptions}"
                   HorizontalContentAlignment="Stretch"
                   IsExpanded="True"
                   IsVisible="{Binding ShowGraphOptions}">
@@ -34,14 +35,14 @@
                                 Orientation="Horizontal"
                                 Spacing="5">
                         <TextBlock VerticalAlignment="Center"
-                                   Text="Ping every:" />
+                                   Text="{localization:Translate Ui.PingEvery}" />
                         <NumericUpDown Width="105"
                                        suki:NumericUpDownExtensions.Unit="s"
                                        FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
                                        Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownPingIncrement}}"
                                        Maximum="{Binding Source={x:Static network:PingableService.MaxPingEverySeconds}}"
                                        Minimum="{Binding Source={x:Static network:PingableService.MinPingEverySeconds}}"
-                                       ToolTip.Tip="Changes the probe interval for every service in this graph"
+                                       ToolTip.Tip="{localization:Translate Ui.ChangesTheProbeIntervalForEveryServiceInThisGraph}"
                                        Value="{Binding PingEverySeconds, Mode=TwoWay}" />
                     </StackPanel>
 
@@ -49,14 +50,14 @@
                                 Orientation="Horizontal"
                                 Spacing="5">
                         <TextBlock VerticalAlignment="Center"
-                                   Text="Timeout:" />
+                                   Text="{localization:Translate Ui.Timeout}" />
                         <NumericUpDown Width="105"
                                        suki:NumericUpDownExtensions.Unit="s"
                                        FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
                                        Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeoutIncrement}}"
                                        Maximum="{Binding Source={x:Static network:PingableService.MaxTimeoutSeconds}}"
                                        Minimum="{Binding Source={x:Static network:PingableService.MinTimeoutSeconds}}"
-                                       ToolTip.Tip="Changes the timeout for every service in this graph"
+                                       ToolTip.Tip="{localization:Translate Ui.ChangesTheTimeoutForEveryServiceInThisGraph}"
                                        Value="{Binding TimeoutSeconds, Mode=TwoWay}" />
                     </StackPanel>
 
@@ -65,7 +66,7 @@
                               IsVisible="{Binding HasService}"
                               ItemsSource="{Binding WindowSizeOptions}"
                               SelectedItem="{Binding SelectedWindowSize}"
-                              ToolTip.Tip="Recent replies included in the graph and statistics" />
+                              ToolTip.Tip="{localization:Translate Ui.RecentRepliesIncludedInTheGraphAndStatistics}" />
 
                     <ToggleButton Padding="10,4"
                                   Command="{Binding ToggleServicesEnabledCommand}"

@@ -797,8 +797,8 @@ public partial class SetInterfaceIPDialogModel : DialogViewModelBase
         if (commands.Count == 0)
         {
             App.ShowToast(NotificationType.Information,
-                $"IP assignment for \"{NetworkInterface.Interface.Name}\"",
-                "No changes were made as the defined settings matches the same settings as before.");
+                App.Localization.Format("Network.IpAssignment.Title", NetworkInterface.Interface.Name),
+                App.Localization["Network.IpAssignment.NoChanges"]);
             return true;
         }
 
@@ -813,9 +813,9 @@ public partial class SetInterfaceIPDialogModel : DialogViewModelBase
         zsb.Flush();
         var success = await ProcessXExtensions.ExecuteHandled(commands, new ProcessXToast()
         {
-            Title = $"IP assignment for \"{NetworkInterface.Interface.Name}\"",
+            Title = App.Localization.Format("Network.IpAssignment.Title", NetworkInterface.Interface.Name),
             SuccessGenericMessage = writer.ToString(),
-            ErrorGenericMessage = "Unable to assign IP.",
+            ErrorGenericMessage = App.Localization["Network.IpAssignment.Error"],
         }, requireAdminRights);
 
         NetworkInterface.Reset();

@@ -1,6 +1,7 @@
 <controls:UserControlBase x:Class="NetSonar.Avalonia.Views.Dialogs.InstanceAlreadyRunningDialogView"
                           xmlns="https://github.com/avaloniaui"
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
                           xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                           xmlns:dialogs="clr-namespace:NetSonar.Avalonia.ViewModels.Dialogs"
@@ -39,7 +40,7 @@
                 Classes="Flat Large"
                 Command="{Binding CloseWindowCommand}"
                 Content="{icon:MaterialIconTextExt Kind=Close,
-                                                   Text='Close'}"
+                                                   Text={localization:Translate Common.Close}}"
                 IsCancel="True"
                 IsDefault="True" />
     </Grid>

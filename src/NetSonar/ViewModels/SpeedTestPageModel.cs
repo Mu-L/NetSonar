@@ -24,7 +24,7 @@ namespace NetSonar.Avalonia.ViewModels;
 public partial class SpeedTestPageModel : PageViewModelBase
 {
     public override int Index => 2;
-    public override string DisplayName => "Speed Test";
+    public override string DisplayName => App.Localization["Navigation.SpeedTest"];
     public override MaterialIconKind Icon => MaterialIconKind.SpeedometerMedium;
 
     private readonly DispatcherTimer _timer = new();
@@ -212,10 +212,10 @@ public partial class SpeedTestPageModel : PageViewModelBase
         IsExecutableInstalling = true;
         ProcessXToast toast = new()
         {
-            Title = "Speedtest CLI installation",
+            Title = App.Localization["SpeedTest.Install.Title"],
             ShowOnlySuccessGenericMessage = true,
-            SuccessGenericMessage = "Speedtest CLI installed successfully.",
-            ErrorGenericMessage = "Failed to install Speedtest CLI. Please install it manually from https://www.speedtest.net/apps/cli"
+            SuccessGenericMessage = App.Localization["SpeedTest.Install.Success"],
+            ErrorGenericMessage = App.Localization["SpeedTest.Install.Error"]
         };
 
         if (OperatingSystem.IsMacOS())
@@ -273,7 +273,7 @@ public partial class SpeedTestPageModel : PageViewModelBase
             {
                 if (result.HasError)
                 {
-                    App.ShowToast(NotificationType.Error, "Error while speed testing", result.Error);
+                    App.ShowToast(NotificationType.Error, App.Localization["SpeedTest.Error"], result.Error);
                     continue;
                 }
 
@@ -330,7 +330,7 @@ public partial class SpeedTestPageModel : PageViewModelBase
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, "Error while speed testing");
+            App.ShowExceptionToast(e, App.Localization["SpeedTest.Error"]);
         }
         finally
         {
@@ -375,16 +375,16 @@ public partial class SpeedTestPageModel : PageViewModelBase
             await using var stream = File.Create(filePath);
             await JsonSerializer.SerializeAsync(stream, _speedTestDataGrid.SelectedItems, App.JsonSerializerOptions);
             App.ShowToast(NotificationType.Success,
-                "Export results to JSON",
-                $"The {_speedTestDataGrid.SelectedItems.Count} results were exported to \"{file.Name}\".",
-                new ToastActionButton("Open file", toast => { SystemAware.StartProcess(filePath); }),
-                new ToastActionButton("Open folder", toast => { SystemAware.SelectFileOnExplorer(filePath); })
+                App.Localization["Export.Results.Title"],
+                App.Localization.Format("Export.Results.Success", _speedTestDataGrid.SelectedItems.Count, file.Name),
+                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { SystemAware.StartProcess(filePath); }),
+                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { SystemAware.SelectFileOnExplorer(filePath); })
             );
 
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, "Export results to JSON", "Error while trying to export results:");
+            App.ShowExceptionToast(e, App.Localization["Export.Results.Title"], App.Localization["Export.Results.Error"]);
         }
     }
 
@@ -409,16 +409,16 @@ public partial class SpeedTestPageModel : PageViewModelBase
             await using var stream = File.Create(filePath);
             await JsonSerializer.SerializeAsync(stream, Results, App.JsonSerializerOptions);
             App.ShowToast(NotificationType.Success,
-                "Export results to JSON",
-                $"The {Results.Count} results were exported to \"{file.Name}\".",
-                new ToastActionButton("Open file", toast => { SystemAware.StartProcess(filePath); }),
-                new ToastActionButton("Open folder", toast => { SystemAware.SelectFileOnExplorer(filePath); })
+                App.Localization["Export.Results.Title"],
+                App.Localization.Format("Export.Results.Success", Results.Count, file.Name),
+                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { SystemAware.StartProcess(filePath); }),
+                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { SystemAware.SelectFileOnExplorer(filePath); })
             );
 
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, "Export results to JSON", "Error while trying to export results:");
+            App.ShowExceptionToast(e, App.Localization["Export.Results.Title"], App.Localization["Export.Results.Error"]);
         }
     }
 
@@ -427,11 +427,9 @@ public partial class SpeedTestPageModel : PageViewModelBase
     {
         if (_speedTestDataGrid.SelectedIndex == -1) return;
         CreateMessageBoxYesNo(NotificationType.Warning,
-                $"Are you sure you want to remove the {_speedTestDataGrid.SelectedItems.Count} selected results?",
-                $"""
-                 You are about to remove the {_speedTestDataGrid.SelectedItems.Count} selected results.
-                 Are you sure you want to continue?
-                 """, _ => Results.RemoveRange(_speedTestDataGrid.SelectedItems))
+                App.Localization.Format("SpeedTest.RemoveSelected.Title", _speedTestDataGrid.SelectedItems.Count),
+                App.Localization.Format("SpeedTest.RemoveSelected.Message", _speedTestDataGrid.SelectedItems.Count),
+                _ => Results.RemoveRange(_speedTestDataGrid.SelectedItems))
             .TryShow();
 
     }
@@ -441,11 +439,8 @@ public partial class SpeedTestPageModel : PageViewModelBase
     {
         if (Results.Count == 0) return;
         CreateMessageBoxYesNo(NotificationType.Warning,
-                $"Are you sure you want to remove all the {Results.Count} results?",
-                $"""
-                 You are about to remove all the {Results.Count} results.
-                 Are you sure you want to continue?
-                 """, _ => Results.Clear())
+                App.Localization.Format("SpeedTest.RemoveAll.Title", Results.Count),
+                App.Localization.Format("SpeedTest.RemoveAll.Message", Results.Count), _ => Results.Clear())
             .TryShow();
 
     }

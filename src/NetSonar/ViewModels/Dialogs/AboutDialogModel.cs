@@ -20,7 +20,7 @@ public partial class AboutDialogModel : DialogViewModelBase
     {
     }
 
-    public override string DialogTitle => $"About {App.SoftwareWithVersion}";
+    public override string DialogTitle => App.Localization.Format("Dialog.About.Title", App.SoftwareWithVersion);
 
     public static string OperativeSystemDescription => $"{RuntimeInformation.OSDescription} {RuntimeInformation.OSArchitecture}";
 
@@ -43,7 +43,7 @@ public partial class AboutDialogModel : DialogViewModelBase
             var memory = SystemAware.GetMemoryStatus();
             if (memory.ullTotalPhys == 0)
             {
-                return "Unknown";
+                return App.Localization["Common.Unknown"];
             }
 
             var factor = Math.Pow(1024, 3);

@@ -75,7 +75,8 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
             }
             catch (Exception e)
             {
-                App.ShowExceptionToast("Unable to import from json", "The provided json file is invalid or malformed.");
+                App.ShowExceptionToast(App.Localization["Import.Json.ErrorTitle"],
+                    App.Localization["Import.Json.ErrorMessage"]);
                 UnhandledExceptions.HandleSafeException(e, "Import service from json");
             }
 

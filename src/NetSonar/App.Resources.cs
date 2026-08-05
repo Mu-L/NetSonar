@@ -1,9 +1,12 @@
 ﻿using Avalonia.Media;
+using NetSonar.Avalonia.Localization;
 
 namespace NetSonar.Avalonia;
 
 public partial class App
 {
+    public static ILocalizationService Localization { get; } = new LocalizationService();
+
     public static Color SukiTextResource
     {
         get

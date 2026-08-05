@@ -1,6 +1,7 @@
 <controls:UserControlBase x:Class="NetSonar.Avalonia.Views.Dialogs.AddPingServicesDialogView"
                           xmlns="https://github.com/avaloniaui"
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
                           xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                           xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
@@ -35,7 +36,7 @@
 
                     <TextBlock VerticalAlignment="Center"
                                Classes="h4"
-                               Text="Services" />
+                               Text="{localization:Translate Ui.Services}" />
 
                     <Button MinWidth="45"
                             Padding="15,5"
@@ -52,16 +53,16 @@
                     <SplitButton Classes="Flat Small"
                                  Command="{Binding AddEmptyCommand}"
                                  Content="{icon:MaterialIconExt Kind=Add}"
-                                 ToolTip.Tip="Add new service(s)">
+                                 ToolTip.Tip="{localization:Translate Ui.AddNewServiceS}">
                         <SplitButton.Flyout>
                             <MenuFlyout Placement="Bottom">
                                 <MenuItem Command="{Binding ImportFromJsonCommand}"
-                                          Header="Import from JSON"
+                                          Header="{localization:Translate Ui.ImportFromJSON}"
                                           Icon="{icon:MaterialIconExt Kind=CodeJson}" />
                                 <MenuItem Command="{Binding ImportNetworkGatewaysCommand}"
-                                          Header="Import network gateway(s)"
+                                          Header="{localization:Translate Ui.ImportNetworkGatewayS}"
                                           Icon="{icon:MaterialIconExt Kind=ServerNetworkOutline}" />
-                                <MenuItem Header="Import public hosts"
+                                <MenuItem Header="{localization:Translate Ui.ImportPublicHosts}"
                                           Icon="{icon:MaterialIconExt Kind=ServerNetwork}">
                                     <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
                                               CommandParameter="{x:Static network:ServiceProtocolType.TLS}"
@@ -109,7 +110,7 @@
                                               Icon="{icon:MaterialIconExt Kind=PhoneVoip}" />
                                     <Separator/>
                                     <MenuItem Command="{Binding ImportAllPublicProtocolHostsCommand}"
-                                              Header="Import All"
+                                              Header="{localization:Translate Ui.ImportAll}"
                                               Icon="{icon:MaterialIconExt Kind=Import}" />
                                 </MenuItem>
                             </MenuFlyout>
@@ -120,11 +121,11 @@
                                  Command="{Binding RemoveServicesCommand}"
                                  CommandParameter="{Binding #ServicesGrid.SelectedItems}"
                                  Content="{icon:MaterialIconExt Kind=TrashCanOutline}"
-                                 ToolTip.Tip="Remove service(s)">
+                                 ToolTip.Tip="{localization:Translate Ui.RemoveServiceS}">
                         <SplitButton.Flyout>
                             <MenuFlyout Placement="Bottom">
                                 <MenuItem Command="{Binding ClearCommand}"
-                                          Header="Remove all"
+                                          Header="{localization:Translate Ui.RemoveAll}"
                                           Icon="{icon:MaterialIconExt Kind=TrashCan}" />
                             </MenuFlyout>
                         </SplitButton.Flyout>
@@ -136,7 +137,7 @@
         <Grid ColumnDefinitions="*"
               RowDefinitions="Auto,*">
 
-            <suki:InfoBar Title="Please fix the following errors:"
+            <suki:InfoBar Title="{localization:Translate Ui.PleaseFixTheFollowingErrors}"
                           Grid.Row="0"
                           Grid.Column="0"
                           IsVisible="{Binding HasErrors}"
@@ -162,7 +163,7 @@
                     <ContextMenu>
                         <MenuItem Command="{Binding RemoveServicesCommand}"
                                   CommandParameter="{Binding $parent[DataGrid].SelectedItems}"
-                                  Header="Remove selected service(s)"
+                                  Header="{localization:Translate Ui.RemoveSelectedServiceS}"
                                   HotKey="Shift + Delete"
                                   Icon="{icon:MaterialIconExt Kind=Delete}"
                                   IsEnabled="{Binding $parent[DataGrid].SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}" />
@@ -171,9 +172,9 @@
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn Binding="{Binding IsEnabled}"
                                             CellStyleClasses="center"
-                                            Header="Enable" />
+                                            Header="{localization:Translate Ui.Enable}" />
                     <DataGridTemplateColumn ClipboardContentBinding="{Binding ProtocolType, DataType=models:NewPingService}"
-                                            Header="Type"
+                                            Header="{localization:Translate Ui.Type}"
                                             SortMemberPath="ProtocolType">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -185,15 +186,15 @@
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Width="200"
                                         Binding="{Binding IpAddressOrUrl}"
-                                        Header="IP Address / Url" />
+                                        Header="{localization:Translate Ui.IPAddressUrl}" />
                     <DataGridTextColumn Width="150"
                                         Binding="{Binding Description}"
-                                        Header="Description" />
+                                        Header="{localization:Translate Ui.Description}" />
                     <DataGridTextColumn Width="150"
                                         Binding="{Binding Group}"
-                                        Header="Group" />
+                                        Header="{localization:Translate Ui.Group}" />
                     <DataGridTemplateColumn ClipboardContentBinding="{Binding PingEverySeconds, DataType=network:PingableService}"
-                                            Header="Ping every (s)"
+                                            Header="{localization:Translate Ui.PingEveryS}"
                                             SortMemberPath="PingEveryMilliseconds">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -208,7 +209,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn ClipboardContentBinding="{Binding TimeoutSeconds, DataType=network:PingableService}"
-                                            Header="Timeout (s)"
+                                            Header="{localization:Translate Ui.TimeoutS}"
                                             SortMemberPath="Timeout">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -223,7 +224,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn ClipboardContentBinding="{Binding BufferSize, DataType=network:PingableService}"
-                                            Header="Buffer size"
+                                            Header="{localization:Translate Ui.BufferSize}"
                                             SortMemberPath="BufferSize">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -250,7 +251,7 @@
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn CellStyleClasses="center"
                                             ClipboardContentBinding="{Binding DontFragment, DataType=network:PingableService}"
-                                            Header="No Frag."
+                                            Header="{localization:Translate Ui.NoFrag}"
                                             SortMemberPath="DontFragment">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -268,7 +269,7 @@
                 <StackPanel Orientation="Horizontal"
                             Spacing="5">
                     <icon:MaterialIcon Kind="Import" />
-                    <TextBlock Text="Import" />
+                    <TextBlock Text="{localization:Translate Ui.Import}" />
                 </StackPanel>
             </Button>
             <Button Classes="Flat"
@@ -276,7 +277,7 @@
                 <StackPanel Orientation="Horizontal"
                             Spacing="5">
                     <icon:MaterialIcon Kind="Cancel" />
-                    <TextBlock Text="Cancel" />
+                    <TextBlock Text="{localization:Translate Ui.Cancel}" />
                 </StackPanel>
             </Button>
         </suki:SukiMessageBoxHost.ActionButtonsSource>

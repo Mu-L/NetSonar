@@ -1,3 +1,9 @@
+# v0.4.1 (05/08/2026)
+
+- Translate the application UI, dialogs, notifications, networking actions, and enum descriptions into German,
+  Spanish, French, Italian, Japanese, Korean, Dutch, Polish, Brazilian and European Portuguese, Russian, Turkish,
+  and Simplified Chinese (AI Translation) (closes #14)
+
 # v0.4.0 (01/08/2026)
 
 - Add NTP as a distinct service protocol with standard request packet creation, default port 123, request correlation,

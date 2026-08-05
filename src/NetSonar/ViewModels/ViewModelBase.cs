@@ -93,8 +93,8 @@ public partial class ViewModelBase : ObservableValidatorExtended
         Action<ISukiDialog> yesAction, Action<ISukiDialog>? noAction = null)
     {
         var dialog = CreateMessageBox(type, title, content)
-            .WithActionButton("Yes", yesAction, true)
-            .WithActionButton("No", noAction ?? (_ => { }), true);
+            .WithActionButton(App.Localization["Common.Yes"], yesAction, true)
+            .WithActionButton(App.Localization["Common.No"], noAction ?? (_ => { }), true);
 
 
         if (dialog.Dialog.ActionButtons[0] is Button yesButton)
@@ -115,9 +115,9 @@ public partial class ViewModelBase : ObservableValidatorExtended
     {
 
         var dialog = CreateMessageBox(type, title, content)
-            .WithActionButton("Yes", yesAction, true)
-            .WithActionButton("No", noAction ?? (_ => { }), true)
-            .WithActionButton("Cancel", cancelAction ?? (_ => { }), true);
+            .WithActionButton(App.Localization["Common.Yes"], yesAction, true)
+            .WithActionButton(App.Localization["Common.No"], noAction ?? (_ => { }), true)
+            .WithActionButton(App.Localization["Common.Cancel"], cancelAction ?? (_ => { }), true);
 
         if (dialog.Dialog.ActionButtons[0] is Button yesButton)
         {

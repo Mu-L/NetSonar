@@ -1,6 +1,8 @@
 <controls:UserControlBase x:Class="NetSonar.Avalonia.Views.SpeedTestPage"
                           xmlns="https://github.com/avaloniaui"
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:app="clr-namespace:NetSonar.Avalonia"
+                          xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
                           xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                           xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
@@ -33,7 +35,7 @@
                                         Spacing="10">
 
                                 <icon:MaterialIconText Kind="{Binding Icon}"
-                                                       Text="Speed tests"
+                                                       Text="{localization:Translate Ui.SpeedTests}"
                                                        Classes="Title"/>
 
                             </StackPanel>
@@ -68,13 +70,13 @@
                                     Command="{Binding StartSpeedTestCommand}"
                                     Content="{icon:MaterialIconExt Kind=PlayCircleOutline}"
                                     IsVisible="{Binding !IsRunning}"
-                                    ToolTip.Tip="New speed test" />
+                                    ToolTip.Tip="{localization:Translate Ui.NewSpeedTest}" />
                             <Button Padding="10,8"
                                     Classes="Danger"
                                     Command="{Binding StopSpeedTestCommand}"
                                     Content="{icon:MaterialIconExt Kind=StopAlertOutline}"
                                     IsVisible="{Binding IsRunning}"
-                                    ToolTip.Tip="Stop speed test" />
+                                    ToolTip.Tip="{localization:Translate Ui.StopSpeedTest}" />
 
                             <Button Padding="10,8"
                                     Content="{icon:MaterialIconExt Kind=Settings}">
@@ -96,7 +98,7 @@
                                                         Background="{DynamicResource PopupGradientBrush}">
                                                     <suki:GlassCard Padding="15"
                                                                     CornerRadius="15">
-                                                        <suki:GroupBox Header="Speed test Settings">
+                                                        <suki:GroupBox Header="{localization:Translate Ui.SpeedTestSettings}">
                                                             <Grid ColumnDefinitions="Auto,*"
                                                                   ColumnSpacing="10"
                                                                   RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
@@ -105,7 +107,7 @@
                                                                 <TextBlock Grid.Row="0"
                                                                            Grid.Column="0"
                                                                            VerticalAlignment="Center"
-                                                                           Text="Auto speed test:" />
+                                                                           Text="{localization:Translate Ui.AutoSpeedTest}" />
 
                                                                 <Grid Grid.Row="0"
                                                                       Grid.Column="1"
@@ -130,7 +132,7 @@
                                                                 <TextBlock Grid.Row="1"
                                                                            Grid.Column="0"
                                                                            VerticalAlignment="Center"
-                                                                           Text="Server:" />
+                                                                           Text="{localization:Translate Ui.Server}" />
                                                                 <ComboBox Grid.Row="1"
                                                                           Grid.Column="1"
                                                                           VerticalAlignment="Center"
@@ -138,7 +140,14 @@
                                                                           SelectedItem="{Binding SelectedServer}">
                                                                     <ComboBox.ItemTemplate>
                                                                         <DataTemplate>
-                                                                            <TextBlock Text="{Binding Name, Mode=OneWay, FallbackValue='(Auto)'}">
+                                                                            <TextBlock>
+                                                                                <TextBlock.Text>
+                                                                                    <MultiBinding Converter="{StaticResource LocalizedFallbackConverter}"
+                                                                                                  ConverterParameter="Ui.Auto">
+                                                                                        <Binding Path="Name" Mode="OneWay" />
+                                                                                        <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
+                                                                                    </MultiBinding>
+                                                                                </TextBlock.Text>
                                                                                 <!--
                                                                                 <ToolTip.Tip>
                                                                                     <TextBlock>
@@ -156,7 +165,7 @@
                                                                 <TextBlock Grid.Row="2"
                                                                            Grid.Column="0"
                                                                            VerticalAlignment="Center"
-                                                                           Text="Gauge range:" />
+                                                                           Text="{localization:Translate Ui.GaugeRange}" />
                                                                 <NumericUpDown Grid.Row="2"
                                                                                Grid.Column="1"
                                                                                suki:NumericUpDownExtensions.Unit="Mbps"
@@ -169,7 +178,7 @@
                                                                 <TextBlock Grid.Row="3"
                                                                            Grid.Column="0"
                                                                            VerticalAlignment="Center"
-                                                                           Text="Gauge increment:" />
+                                                                           Text="{localization:Translate Ui.GaugeIncrement}" />
                                                                 <NumericUpDown Grid.Row="3"
                                                                                Grid.Column="1"
                                                                                suki:NumericUpDownExtensions.Unit="Mbps"
@@ -233,22 +242,22 @@
                                 <DataGrid.ContextMenu>
                                     <ContextMenu>
                                         <MenuItem Command="{Binding RemoveSelectedResultsCommand}"
-                                        Header="Remove selected"
+                                        Header="{localization:Translate Ui.RemoveSelected}"
                                         Icon="{icon:MaterialIconExt Kind=TrashCan}"
                                         IsEnabled="{Binding SelectedResult, Converter={x:Static ObjectConverters.IsNotNull}}" />
                                         <MenuItem Command="{Binding RemoveAllResultsCommand}"
-                                        Header="Remove all"
+                                        Header="{localization:Translate Ui.RemoveAll}"
                                         Icon="{icon:MaterialIconExt Kind=DeleteSweep}"
                                         IsEnabled="{Binding ResultsView.Count}" />
 
 
                                         <Separator />
                                         <MenuItem Command="{Binding ExportSelectedResultsToJsonCommand}"
-                                        Header="Export selected to JSON"
+                                        Header="{localization:Translate Ui.ExportSelectedToJSON}"
                                         Icon="{icon:MaterialIconExt Kind=CodeJson}"
                                         IsEnabled="{Binding SelectedResult, Converter={x:Static ObjectConverters.IsNotNull}}" />
                                         <MenuItem Command="{Binding ExportAllResultsToJsonCommand}"
-                                        Header="Export all to JSON"
+                                        Header="{localization:Translate Ui.ExportAllToJSON}"
                                         Icon="{icon:MaterialIconExt Kind=CodeJson}"
                                         IsEnabled="{Binding ResultsView.Count}" />
                                         <Separator />
@@ -257,7 +266,7 @@
                                         <Separator />
                                         <MenuItem Command="{Binding LaunchUriCommand}"
                                                   CommandParameter="{Binding SelectedResult.Result.Url, FallbackValue={x:Null}}"
-                                                  Header="Open result"
+                                                  Header="{localization:Translate Ui.OpenResult}"
                                                   Icon="{icon:MaterialIconExt Kind=Web}"
                                                   IsEnabled="{Binding SelectedResult.Result.Url, Converter={x:Static StringConverters.IsNotNullOrEmpty}, FallbackValue={x:False}}"
                                                   ToolTip.Tip="{Binding SelectedResult.Result.Url, FallbackValue={x:Null}}" />
@@ -266,21 +275,21 @@
 
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding TimestampLocal, Mode=OneWay}"
-                                                        Header="Date time"
+                                                        Header="{localization:Translate Ui.DateTime}"
                                                         IsReadOnly="True" />
                                     <DataGridTextColumn Binding="{Binding Ping.GridRepresentation, Mode=OneWay}"
-                                                        Header="Ping"
+                                                        Header="{localization:Translate Ui.Ping}"
                                                         IsReadOnly="True"
                                                         SortMemberPath="Ping.Latency" />
                                     <DataGridTextColumn Binding="{Binding Download.GridRepresentation, Mode=OneWay}"
-                                                        Header="Download"
+                                                        Header="{localization:Translate Ui.Download}"
                                                         IsReadOnly="True" />
                                     <DataGridTextColumn Binding="{Binding Upload.GridRepresentation, Mode=OneWay}"
-                                                        Header="Upload"
+                                                        Header="{localization:Translate Ui.Upload}"
                                                         IsReadOnly="True" />
                                     <DataGridTemplateColumn Width="130"
                                                             ClipboardContentBinding="{Binding PacketLoss, DataType=network:SpeedTestResult}"
-                                                            Header="Packet loss"
+                                                            Header="{localization:Translate Ui.PacketLoss}"
                                                             IsReadOnly="True"
                                                             SortMemberPath="PacketLoss">
                                         <DataGridTemplateColumn.CellTemplate>
@@ -302,11 +311,11 @@
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
                                     <DataGridTextColumn Binding="{Binding Interface.GridRepresentation, Mode=OneWay}"
-                                                        Header="Interface"
+                                                        Header="{localization:Translate Ui.Interface}"
                                                         IsReadOnly="True"
                                                         SortMemberPath="Interface.MacAddr" />
                                     <DataGridTextColumn Binding="{Binding Server.GridRepresentation, Mode=OneWay}"
-                                                        Header="Server"
+                                                        Header="{localization:Translate Ui.ServerAEF7DE28}"
                                                         IsReadOnly="True"
                                                         SortMemberPath="Server.Host" />
                                     <DataGridTextColumn Binding="{Binding ISP, Mode=OneWay}"
@@ -326,21 +335,33 @@
                             VerticalAlignment="Top"
                             IsVisible="{Binding !IsExecutableAvailable}">
 
-                        <suki:SukiMessageBoxHost Header="Speedtest dependency was not found in the system"
+                        <suki:SukiMessageBoxHost Header="{localization:Translate Ui.SpeedtestDependencyWasNotFoundInTheSystem}"
                                                  IconPreset="Error">
-                            <SelectableTextBlock Text="This module requires the Ookla Speedtest CLI binary, yet was not found in the system.&#xA;Please install the dependency and reload the module." />
+                            <SelectableTextBlock Text="{localization:Translate Ui.ThisModuleRequiresTheOoklaSpeedtestCLIBinaryYetWasNotFoundInTheSystemPle}" />
 
                             <suki:SukiMessageBoxHost.ActionButtonsSource>
                                 <Button suki:ButtonExtensions.ShowProgress="{Binding IsExecutableInstalling}"
                                         Command="{Binding AutoInstallDependencyCommand}"
-                                        Content="{icon:MaterialIconTextExt Kind=AutoDownload, Text='Auto install'}"
-                                        IsVisible="{Binding CanExecutableAutoInstall}" />
+                                        IsVisible="{Binding CanExecutableAutoInstall}">
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                        <icon:MaterialIcon Kind="AutoDownload" />
+                                        <TextBlock Text="{localization:Translate SpeedTest.AutoInstall}" />
+                                    </StackPanel>
+                                </Button>
                                 <Button Command="{Binding LaunchUriCommand}"
-                                        CommandParameter="https://www.speedtest.net/apps/cli"
-                                        Content="{icon:MaterialIconTextExt Kind=Download, Text='Manual install'}" />
+                                        CommandParameter="https://www.speedtest.net/apps/cli">
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                        <icon:MaterialIcon Kind="Download" />
+                                        <TextBlock Text="{localization:Translate SpeedTest.ManualInstall}" />
+                                    </StackPanel>
+                                </Button>
                                 <Button Classes="Flat"
-                                        Command="{Binding CheckSpeedTestAvailableCommand}"
-                                        Content="{icon:MaterialIconTextExt Kind=Refresh, Text='Reload'}" />
+                                        Command="{Binding CheckSpeedTestAvailableCommand}">
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                        <icon:MaterialIcon Kind="Refresh" />
+                                        <TextBlock Text="{localization:Translate Common.Reload}" />
+                                    </StackPanel>
+                                </Button>
                             </suki:SukiMessageBoxHost.ActionButtonsSource>
                         </suki:SukiMessageBoxHost>
                     </Border>
@@ -359,7 +380,7 @@
                 <suki:GroupBox MinWidth="120">
                     <suki:GroupBox.Header>
                         <StackPanel Orientation="Horizontal" Spacing="10">
-                            <icon:MaterialIconText Kind="Radar" Text="Ping" Classes="h5 bold"/>
+                            <icon:MaterialIconText Kind="Radar" Text="{localization:Translate Ui.Ping}" Classes="h5 bold"/>
                             <TextBlock VerticalAlignment="Center" Text="{Binding DisplayResult.Ping.Latency, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" Classes="Warning"/>
                         </StackPanel>
 
@@ -367,22 +388,27 @@
                     <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,Auto"
                           ColumnSpacing="10" RowSpacing="10">
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" Classes="bold" Text="Jitter:" IsVisible="{Binding !!DisplayResult.Ping.Jitter, FallbackValue={x:False}}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.Jitter}" IsVisible="{Binding !!DisplayResult.Ping.Jitter, FallbackValue={x:False}}"/>
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding DisplayResult.Ping.Jitter, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Ping.Jitter, FallbackValue={x:False}}"/>
 
-                        <TextBlock Grid.Row="1" Grid.Column="0" Classes="bold" Text="Low:" IsVisible="{Binding !!DisplayResult.Ping.Low, FallbackValue={x:False}}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.Low}" IsVisible="{Binding !!DisplayResult.Ping.Low, FallbackValue={x:False}}"/>
                         <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DisplayResult.Ping.Low, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Ping.Low, FallbackValue={x:False}}"/>
 
-                        <TextBlock Grid.Row="2" Grid.Column="0" Classes="bold" Text="High:" IsVisible="{Binding !!DisplayResult.Ping.High, FallbackValue={x:False}}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.High}" IsVisible="{Binding !!DisplayResult.Ping.High, FallbackValue={x:False}}"/>
                         <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding DisplayResult.Ping.High, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Ping.High, FallbackValue={x:False}}"/>
 
-                        <TextBlock Grid.Row="3" Grid.Column="0" Classes="bold" Text="P.Loss:" IsVisible="{Binding !!DisplayResult.PacketLoss, FallbackValue={x:False}}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.PLoss}" IsVisible="{Binding !!DisplayResult.PacketLoss, FallbackValue={x:False}}"/>
                         <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding DisplayResult.PacketLoss, FallbackValue={x:Null}, StringFormat='{}{0:#,#0.##}%'}"  IsVisible="{Binding !!DisplayResult.PacketLoss, FallbackValue={x:False}}"/>
 
-                        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="{icon:MaterialIconTextExt Kind=Web, Text='Open result'}"
+                        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
                                 Command="{Binding LaunchUriCommand}"
                                 CommandParameter="{Binding DisplayResult.Result.Url, FallbackValue={x:Null}}"
-                                IsVisible="{Binding DisplayResult.Result.Url, FallbackValue={x:False}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                                IsVisible="{Binding DisplayResult.Result.Url, FallbackValue={x:False}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <icon:MaterialIcon Kind="Web" />
+                                <TextBlock Text="{localization:Translate Ui.OpenResult}" />
+                            </StackPanel>
+                        </Button>
 
                     </Grid>
                 </suki:GroupBox>
@@ -392,10 +418,10 @@
                 <suki:GroupBox>
                     <suki:GroupBox.Header>
                         <Grid RowDefinitions="Auto" ColumnDefinitions="Auto,Auto,*" RowSpacing="10" ColumnSpacing="10">
-                            <icon:MaterialIconText Grid.Row="0" Grid.Column="0" Kind="DownloadCircleOutline" Text="Download" Classes="h5 bold"/>
+                            <icon:MaterialIconText Grid.Row="0" Grid.Column="0" Kind="DownloadCircleOutline" Text="{localization:Translate Ui.Download}" Classes="h5 bold"/>
                             <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding DisplayResult.Download.BandwidthMbps, FallbackValue={x:Null}, StringFormat='{}{0} Mbps'}" Classes="Warning"/>
                             <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" >
-                                <Run Text="IQM:" Classes="bold"/>
+                                <Run Text="{localization:Translate Ui.IQM}" Classes="bold"/>
                                 <Run Text="{Binding DisplayResult.Download.Latency.Iqm, Mode=OneWay, FallbackValue={x:Null}, StringFormat='{}{0:F1} ms'}"/>
                             </TextBlock>
                         </Grid>
@@ -411,20 +437,20 @@
                                          Maximum="1"
                                          IsVisible="{Binding !!DisplayResult.Download.Progress, FallbackValue={x:False}}" />
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Classes="bold" Text="Jitter:" IsVisible="{Binding !!DisplayResult.Download.Latency.Jitter, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.Jitter}" IsVisible="{Binding !!DisplayResult.Download.Latency.Jitter, FallbackValue={x:False}}"/>
                             <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DisplayResult.Download.Latency.Jitter, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Download.Latency.Jitter, FallbackValue={x:False}}"/>
 
-                            <TextBlock Grid.Row="2" Grid.Column="0" Classes="bold" Text="Low:" IsVisible="{Binding !!DisplayResult.Download.Latency.Low, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.Low}" IsVisible="{Binding !!DisplayResult.Download.Latency.Low, FallbackValue={x:False}}"/>
                             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding DisplayResult.Download.Latency.Low, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Download.Latency.Low, FallbackValue={x:False}}"/>
 
-                            <TextBlock Grid.Row="3" Grid.Column="0" Classes="bold" Text="High:" IsVisible="{Binding !!DisplayResult.Download.Latency.High, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.High}" IsVisible="{Binding !!DisplayResult.Download.Latency.High, FallbackValue={x:False}}"/>
                             <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding DisplayResult.Download.Latency.High, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Download.Latency.High, FallbackValue={x:False}}"/>
                         </Grid>
 
 
 
                         <gauges:RadialGauge DockPanel.Dock="Right" HorizontalAlignment="Right" Classes="Primary" StartAngle="-150" EndAngle="-30"
-                                            Minimum="0" Maximum="{Binding AngularMeterMaxValue}" SubtitleText="Download"
+                                            Minimum="0" Maximum="{Binding AngularMeterMaxValue}" SubtitleText="{localization:Translate Ui.Download}"
                                             Value="{Binding DisplayResult.Download.BandwidthMbps, FallbackValue=0}">
                             <gauges:RadialGauge.Transitions>
                                 <Transitions>
@@ -451,10 +477,10 @@
                 <suki:GroupBox>
                     <suki:GroupBox.Header>
                         <Grid RowDefinitions="Auto" ColumnDefinitions="Auto,Auto,*" RowSpacing="10" ColumnSpacing="10">
-                            <icon:MaterialIconText Grid.Row="0" Grid.Column="0" Kind="UploadCircleOutline" Text="Upload" Classes="h5 bold"/>
+                            <icon:MaterialIconText Grid.Row="0" Grid.Column="0" Kind="UploadCircleOutline" Text="{localization:Translate Ui.Upload}" Classes="h5 bold"/>
                             <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Text="{Binding DisplayResult.Upload.BandwidthMbps, FallbackValue={x:Null}, StringFormat='{}{0} Mbps'}" Classes="Warning"/>
                             <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" >
-                                <Run Text="IQM:" Classes="bold"/>
+                                <Run Text="{localization:Translate Ui.IQM}" Classes="bold"/>
                                 <Run Text="{Binding DisplayResult.Upload.Latency.Iqm, Mode=OneWay, FallbackValue={x:Null}, StringFormat='{}{0:F1} ms'}"/>
                             </TextBlock>
                         </Grid>
@@ -470,19 +496,19 @@
                                          Maximum="1"
                                          IsVisible="{Binding !!DisplayResult.Upload.Progress, FallbackValue={x:False}}" />
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Classes="bold" Text="Jitter:" IsVisible="{Binding !!DisplayResult.Upload.Latency.Jitter, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.Jitter}" IsVisible="{Binding !!DisplayResult.Upload.Latency.Jitter, FallbackValue={x:False}}"/>
                             <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DisplayResult.Upload.Latency.Jitter, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Upload.Latency.Jitter, FallbackValue={x:False}}"/>
 
-                            <TextBlock Grid.Row="2" Grid.Column="0" Classes="bold" Text="Low:" IsVisible="{Binding !!DisplayResult.Upload.Latency.Low, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.Low}" IsVisible="{Binding !!DisplayResult.Upload.Latency.Low, FallbackValue={x:False}}"/>
                             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding DisplayResult.Upload.Latency.Low, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Upload.Latency.Low, FallbackValue={x:False}}"/>
 
-                            <TextBlock Grid.Row="3" Grid.Column="0" Classes="bold" Text="High:" IsVisible="{Binding !!DisplayResult.Upload.Latency.High, FallbackValue={x:False}}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.High}" IsVisible="{Binding !!DisplayResult.Upload.Latency.High, FallbackValue={x:False}}"/>
                             <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding DisplayResult.Upload.Latency.High, FallbackValue={x:Null}, StringFormat='{}{0:F2} ms'}" IsVisible="{Binding !!DisplayResult.Upload.Latency.High, FallbackValue={x:False}}"/>
 
                         </Grid>
 
                         <gauges:RadialGauge DockPanel.Dock="Right" HorizontalAlignment="Right" Classes="Primary" StartAngle="-150" EndAngle="-30"
-                                            Minimum="0" Maximum="{Binding AngularMeterMaxValue}" SubtitleText="Upload"
+                                            Minimum="0" Maximum="{Binding AngularMeterMaxValue}" SubtitleText="{localization:Translate Ui.Upload}"
                                             Value="{Binding DisplayResult.Upload.BandwidthMbps, FallbackValue=0}">
                             <gauges:RadialGauge.Transitions>
                                 <Transitions>
@@ -508,7 +534,7 @@
                 <suki:GroupBox>
                     <suki:GroupBox.Header>
                         <Grid RowDefinitions="Auto" ColumnDefinitions="Auto,*" RowSpacing="10" ColumnSpacing="10">
-                            <icon:MaterialIconText Grid.Row="0" Grid.Column="0" Kind="Server" Text="Server" Classes="h5 bold"/>
+                            <icon:MaterialIconText Grid.Row="0" Grid.Column="0" Kind="Server" Text="{localization:Translate Ui.ServerAEF7DE28}" Classes="h5 bold"/>
                             <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding DisplayResult.Server.Id, FallbackValue={x:Null}, StringFormat='ID: {0}'}"/>
                         </Grid>
                     </suki:GroupBox.Header>
@@ -516,10 +542,10 @@
 
                     <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="10">
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" Classes="bold" Text="Name:"/>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.Name}"/>
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding DisplayResult.Server.Name, FallbackValue={x:Null}}"/>
 
-                        <TextBlock Grid.Row="1" Grid.Column="0" Classes="bold" Text="Location:"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.Location}"/>
                         <TextBlock Grid.Row="1" Grid.Column="1">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0}, {1}">
@@ -529,16 +555,16 @@
                             </TextBlock.Text>
                         </TextBlock>
 
-                        <TextBlock Grid.Row="2" Grid.Column="0" Classes="bold" Text="Host:"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.Host}"/>
                         <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding DisplayResult.Server.Host, FallbackValue={x:Null}}"/>
 
-                        <TextBlock Grid.Row="3" Grid.Column="0" Classes="bold" Text="IP:"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.IP}"/>
                         <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding DisplayResult.Server.Ip, FallbackValue={x:Null}}"/>
 
-                        <TextBlock Grid.Row="4" Grid.Column="0" Classes="bold" Text="Port:"/>
+                        <TextBlock Grid.Row="4" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.Port}"/>
                         <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding DisplayResult.Server.Port, FallbackValue={x:Null}}"/>
 
-                        <TextBlock Grid.Row="5" Grid.Column="0" Classes="bold" Text="ISP:" IsVisible="{Binding DisplayResult.ISP, FallbackValue={x:False}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                        <TextBlock Grid.Row="5" Grid.Column="0" Classes="bold" Text="{localization:Translate Ui.ISP}" IsVisible="{Binding DisplayResult.ISP, FallbackValue={x:False}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                         <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding DisplayResult.ISP, FallbackValue={x:Null}}" IsVisible="{Binding DisplayResult.ISP, FallbackValue={x:False}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                     </Grid>
 

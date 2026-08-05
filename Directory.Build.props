@@ -17,7 +17,7 @@
         <Description>NetSonar is a network diagnostics and monitoring tool for probing hosts and services with ICMP, TCP, UDP, TLS, DNS, NTP, HTTP, WebSocket, SSH, SMTP, IMAP, MQTT, STUN, and SIP.
 Features protocol-aware latency checks, live single-service and multi-service response-time charts, network-interface inspection and configuration, and internet speed testing.
 Designed for administrators and developers needing lightweight, cross-platform network analysis.</Description>
-        <Version>0.4.0</Version>
+        <Version>0.4.1</Version>
 
         <!-- Package -->
         <ApplicationIcon>$(MSBuildThisFileDirectory)media\$(ProductName).ico</ApplicationIcon>

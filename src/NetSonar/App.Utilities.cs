@@ -53,6 +53,6 @@ public partial class App
         if (text.Length > 1024) text = $"{text[..1024]}...";
 
         if (!showToast) return;
-        ShowToast(NotificationType.Information, "Copied to clipboard", text);
+        ShowToast(NotificationType.Information, Localization["Common.CopiedToClipboard"], text);
     }
 }

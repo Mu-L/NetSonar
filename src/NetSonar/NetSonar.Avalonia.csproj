@@ -1,4 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <NeutralLanguage>en</NeutralLanguage>
+    </PropertyGroup>
+
     <ItemGroup>
         <AvaloniaResource Include="Assets\**" />
 
@@ -25,7 +29,7 @@
         <PackageReference Include="Avalonia.Themes.Simple" Version="$(AvaloniaVersion)" />
         <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
         <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
-        <PackageReference Include="Avalonia.Controls.DataGrid" Version="12.1.0" />
+        <PackageReference Include="Avalonia.Controls.DataGrid" Version="12.1.2" />
         <!--<PackageReference Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" Condition="'$(Configuration)' == 'Debug'" />-->
         <PackageReference Include="Avalonia.Controls.ItemsRepeater" Version="12.0.0" />
         <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3" Condition="'$(Configuration)' == 'Debug'" />
@@ -38,7 +42,7 @@
         <PackageReference Include="StageKit" Version="0.2.4" />
 
         <!-- UI Theme -->
-        <PackageReference Include="SukiUI" Version="7.0.2-nightly20260731" />
+        <PackageReference Include="SukiUI" Version="7.0.2-nightly20260801" />
         <PackageReference Include="Svg.Controls.Avalonia" Version="12.0.0.13" />
 
         <!-- Microsoft -->
@@ -59,8 +63,8 @@
         <PackageReference Include="ZLogger" Version="2.5.10" />
 
         <!-- DotNext -->
-        <PackageReference Include="DotNext" Version="6.5.0" />
-        <PackageReference Include="DotNext.IO" Version="6.5.0" />
+        <PackageReference Include="DotNext" Version="6.6.0" />
+        <PackageReference Include="DotNext.IO" Version="6.6.0" />
     </ItemGroup>
 
 </Project>

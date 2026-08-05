@@ -1,6 +1,7 @@
 <controls:SukiWindowExtended x:Class="NetSonar.Avalonia.Views.MainWindow"
 							 xmlns="https://github.com/avaloniaui"
 							 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
 							 xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
 							 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 							 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -42,7 +43,7 @@
 	<!--
 	<suki:SukiWindow.RightWindowTitleBarControls>
 	<Button Classes="Rounded WindowControlsButton"
-	ToolTip.Tip="Toogle fullscreen"
+	ToolTip.Tip="{localization:Translate Ui.ToogleFullscreen}"
 	HotKey="F11"
 	Content="{icon:MaterialIconExt Fullscreen}"
 	Click="Button_FullScreen_OnClick"/>

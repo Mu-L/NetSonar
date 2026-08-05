@@ -33,7 +33,7 @@ public class SpeedTestService
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, "Unable to get server list");
+            App.ShowExceptionToast(e, App.Localization["SpeedTest.ServerList.Error"]);
         }
 
         return [];

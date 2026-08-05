@@ -21,3 +21,9 @@ Choose a growable buffer using this guidance:
 | `SparseBufferWriter<T>` | The optimal initial size is unknown and written lengths vary widely. It provides constant-space writes by storing sparse chunks. | Yes | O(1) |
 
 Prefer `SparseBufferWriter<T>` over `RecyclableMemoryStream` for large or highly variable buffers when its generic element support and sparse growth model fit the operation.
+
+## Localization
+
+Whenever a feature adds or changes user-facing text, update the neutral English `Strings.resx` catalog and every `Strings.<culture>.resx` translation in the same change. Do not rely on the English fallback for newly introduced text. Keep translations concise and appropriate to their UI context, preserve composite-format placeholders and intentional line breaks exactly, and validate resource-key parity before completing the change.
+
+Never leave a resource value blank. Every key in every catalog must contain a meaningful, context-appropriate value; validate catalogs for missing, extra, duplicate, and empty values before completing localization work.

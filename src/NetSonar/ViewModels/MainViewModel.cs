@@ -71,7 +71,8 @@ public partial class MainViewModel : ViewModelBase
 
         if (App.AppUpdater.Releases.Count == 0)
         {
-            App.ShowToast("Unable to trigger new update", "No available releases to trigger the new update.");
+            App.ShowToast(App.Localization["Update.TriggerUnavailable.Title"],
+                App.Localization["Update.TriggerUnavailable.Message"]);
             return;
         }
         var release = App.AppUpdater.Releases[0];

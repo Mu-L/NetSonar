@@ -18,7 +18,7 @@ namespace NetSonar.Avalonia.ViewModels;
 public partial class NetworkInterfacesPageModel : PageViewModelBase
 {
     public override int Index => 1;
-    public override string DisplayName => "Interfaces";
+    public override string DisplayName => App.Localization["Navigation.Interfaces"];
     public override MaterialIconKind Icon => MaterialIconKind.Network;
 
     private readonly DispatcherTimer _timer = new();

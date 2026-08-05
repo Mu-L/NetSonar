@@ -20,6 +20,9 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 10.0.x
+    - name: Validate localization resources
+      shell: pwsh
+      run: ./scripts/Validate-LocalizationResources.ps1
     - name: Restore dependencies
       run: dotnet restore
     - name: Build

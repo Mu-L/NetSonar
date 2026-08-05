@@ -40,7 +40,8 @@ public partial class App
             Logger.ZLogInformation($"Checking for updates: ({updateFound})");
             if (!updateFound && showNoUpdateFoundMessage)
             {
-                ShowToast(NotificationType.Success, "No updates available.", $"{SoftwareWithVersion} is running the latest version.");
+                ShowToast(NotificationType.Success, Localization["Update.None.Title"],
+                    Localization.Format("Update.None.Message", SoftwareWithVersion));
             }
             AppSettings.LastUpdateDateTimeCheck = AppUpdater.LastCheckDateTime;
         }
@@ -48,7 +49,7 @@ public partial class App
         {
             if (showNoUpdateFoundMessage)
             {
-                ShowExceptionToast(ex, "Unable to check for updates");
+                ShowExceptionToast(ex, Localization["Update.CheckFailed"]);
             }
         }
 
@@ -66,7 +67,7 @@ public partial class App
             new(new MaterialIconText
             {
                 Kind = MaterialIconKind.Eye,
-                Text = "View",
+                Text = Localization["Common.View"],
             }, toast =>
             {
                 DialogManager.CreateDialog()
@@ -76,16 +77,12 @@ public partial class App
             new(new MaterialIconText
             {
                 Kind = MaterialIconKind.Close,
-                Text = "Ignore",
+                Text = Localization["Common.Ignore"],
             }, null, true),
         ];
-        CreateToast(NotificationType.Information, $"{Software} update found",
-            $"""
-             Current version: {EntryApplication.AssemblyVersionString}
-             New version: {release.TagName}
-             Release(s) ahead: {AppUpdater.ReleasesAheadCount}
-             Release date: {release.CreatedAt.ToLocalTime():f}
-             """,
+        CreateToast(NotificationType.Information, Localization.Format("Update.Found.Title", Software),
+            Localization.Format("Update.Found.Message", EntryApplication.AssemblyVersionString, release.TagName,
+                AppUpdater.ReleasesAheadCount, release.CreatedAt.ToLocalTime()),
             false,
             buttons).Queue();
 

@@ -1,6 +1,7 @@
 <controls:UserControlBase x:Class="NetSonar.Avalonia.Views.Dialogs.AboutDialogView"
                           xmlns="https://github.com/avaloniaui"
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
                           xmlns:app="clr-namespace:NetSonar.Avalonia"
                           xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -22,12 +23,12 @@
         <suki:SukiMessageBoxHost.FooterLeftItemsSource>
             <Button Command="{Binding CopyInformationToClipboardCommand}"
                     Content="{icon:MaterialIconTextExt Kind=ContentCopy,
-                                                       Text='Copy'}"
+                                                       Text={localization:Translate Common.Copy}}"
                     IsVisible="{Binding !IsContentCopied}" />
 
             <Button Classes="Success"
                     Content="{icon:MaterialIconTextExt Kind=Check,
-                                                       Text='Copied'}"
+                                                       Text={localization:Translate Common.Copied}}"
                     IsVisible="{Binding IsContentCopied}" />
         </suki:SukiMessageBoxHost.FooterLeftItemsSource>
         <suki:SukiMessageBoxHost.ActionButtonsSource>
@@ -48,21 +49,21 @@
                          Classes="ReadOnly"
                          Text="{Binding OperativeSystemDescription}"
                          UseFloatingPlaceholder="True"
-                         PlaceholderText="Operative System:" />
+                         PlaceholderText="{localization:Translate Ui.OperativeSystem}" />
 
                 <TextBox Grid.Row="1"
                          Grid.Column="0"
                          Classes="ReadOnly"
                          Text="{Binding GraphicCardName}"
                          UseFloatingPlaceholder="True"
-                         PlaceholderText="Graphic Card:" />
+                         PlaceholderText="{localization:Translate Ui.GraphicCard}" />
 
                 <TextBox Grid.Row="2"
                          Grid.Column="0"
                          Classes="ReadOnly"
                          Text="{Binding ProcessorName}"
                          UseFloatingPlaceholder="True"
-                         PlaceholderText="Processor:" />
+                         PlaceholderText="{localization:Translate Ui.Processor}" />
 
                 <Grid Grid.Row="3"
                       Grid.Column="0"
@@ -74,14 +75,14 @@
                              Classes="ReadOnly"
                              Text="{Binding ProcessorCount}"
                              UseFloatingPlaceholder="True"
-                             PlaceholderText="Processor cores:" />
+                             PlaceholderText="{localization:Translate Ui.ProcessorCores}" />
 
                     <TextBox Grid.Row="0"
                              Grid.Column="1"
                              Classes="ReadOnly"
                              Text="{Binding MemoryRamDescription}"
                              UseFloatingPlaceholder="True"
-                             PlaceholderText="Memory RAM:" />
+                             PlaceholderText="{localization:Translate Ui.MemoryRAM}" />
                 </Grid>
 
                 <Grid Grid.Row="4"
@@ -94,14 +95,14 @@
                              Classes="ReadOnly"
                              Text="{Binding FrameworkDescription}"
                              UseFloatingPlaceholder="True"
-                             PlaceholderText="Framework:" />
+                             PlaceholderText="{localization:Translate Ui.Framework}" />
 
                     <TextBox Grid.Row="0"
                              Grid.Column="1"
                              Classes="ReadOnly"
                              Text="{Binding AvaloniaUIDescription}"
                              UseFloatingPlaceholder="True"
-                             PlaceholderText="AvaloniaUI:" />
+                             PlaceholderText="{localization:Translate Ui.AvaloniaUI}" />
                 </Grid>
 
                 <TextBox Grid.Row="5"
@@ -109,7 +110,7 @@
                          Classes="ReadOnly"
                          Text="{Binding ScreensDescription, FallbackValue='(Screen information not available)'}"
                          UseFloatingPlaceholder="True"
-                         PlaceholderText="Screens, resolution, working area, usable area:" />
+                         PlaceholderText="{localization:Translate Ui.ScreensResolutionWorkingAreaUsableArea}" />
 
             </Grid>
 
@@ -120,8 +121,15 @@
                                      Classes="h5"
                                      FontWeight="Bold"
                                      Text="{Binding Source={x:Static app:App.SoftwareWithVersionRuntime}}" />
-                <SelectableTextBlock Grid.Row="1"
-                                     Text="{Binding Source={x:Static stageKit:ApplicationKit.AgeShortStr}, StringFormat='Age: {0}'}" />
+                <SelectableTextBlock Grid.Row="1">
+                    <SelectableTextBlock.Text>
+                        <MultiBinding Converter="{StaticResource LocalizedStringFormatConverter}"
+                                      ConverterParameter="Ui.Age">
+                            <Binding Source="{x:Static stageKit:ApplicationKit.AgeShortStr}" />
+                            <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
+                        </MultiBinding>
+                    </SelectableTextBlock.Text>
+                </SelectableTextBlock>
                 <SelectableTextBlock Grid.Row="2"
                                      Text="{Binding Source={x:Static runtime:EntryApplication.AssemblyCopyright}}" />
                 <SelectableTextBlock Grid.Row="3"
@@ -138,23 +146,34 @@
                             Width="560"
                             MaxHeight="335"
                             VerticalAlignment="Top">
-                    <TabItem Header="Description">
+                    <TabItem Header="{localization:Translate Ui.Description}">
                         <TextBox MinHeight="310"
                                  VerticalContentAlignment="Top"
                                  Classes="ReadOnlyMultiLineWrap"
                                  Text="{Binding Source={x:Static runtime:EntryApplication.AssemblyDescription}}" />
                     </TabItem>
-                    <TabItem Header="Assemblies">
+                    <TabItem Header="{localization:Translate Ui.Assemblies}">
                         <TextBox VerticalContentAlignment="Top"
                                  Classes="ReadOnlyMultiLine"
                                  Text="{Binding Source={x:Static runtime:EntryApplication.FormattedLoadedAssemblies}}" />
                     </TabItem>
-                    <TabItem Header="Terms of use">
+                    <TabItem Header="{localization:Translate Ui.TermsOfUse}">
                         <TextBox VerticalContentAlignment="Top"
                                  Classes="ReadOnlyMultiLineWrap"
                                  Text="{Binding Source={x:Static app:App.TermsOfUseText}}" />
                     </TabItem>
-                    <TabItem Header="{Binding Source={x:Static app:App.LicenseShort}, StringFormat='License ({0})'}">
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource LocalizedStringFormatConverter}"
+                                                  ConverterParameter="Ui.License">
+                                        <Binding Source="{x:Static app:App.LicenseShort}" />
+                                        <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </TabItem.Header>
                         <TextBox VerticalContentAlignment="Top"
                                  Classes="ReadOnlyMultiLineWrap"
                                  Text="{Binding Source={x:Static app:App.LicenseText}}" />

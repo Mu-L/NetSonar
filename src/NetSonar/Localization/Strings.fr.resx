@@ -1,0 +1,1289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Navigation.Settings" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="Settings.Theme" xml:space="preserve">
+    <value>Thème</value>
+  </data>
+  <data name="Settings.Language" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="Settings.Language.FollowSystem" xml:space="preserve">
+    <value>Utiliser la langue du système</value>
+  </data>
+  <data name="Settings.Language.Description" xml:space="preserve">
+    <value>Choisissez la langue utilisée dans toute l'application.</value>
+  </data>
+  <data name="Ui.Show" xml:space="preserve">
+    <value>👁 Afficher</value>
+  </data>
+  <data name="Ui.Options" xml:space="preserve">
+    <value>⚙️ Paramètres</value>
+  </data>
+  <data name="Ui.StartWithSystem" xml:space="preserve">
+    <value>Démarrer avec le système</value>
+  </data>
+  <data name="Ui.ThemeSystem" xml:space="preserve">
+    <value>🖌️ Thème : Système</value>
+  </data>
+  <data name="Ui.ThemeLight" xml:space="preserve">
+    <value>🖌️ Thème : Clair</value>
+  </data>
+  <data name="Ui.ThemeDark" xml:space="preserve">
+    <value>🖌️ Thème : Sombre</value>
+  </data>
+  <data name="Ui.Exit" xml:space="preserve">
+    <value>✖ Quitter</value>
+  </data>
+  <data name="Ui.On" xml:space="preserve">
+    <value>Activé</value>
+  </data>
+  <data name="Ui.Off" xml:space="preserve">
+    <value>Désactivé</value>
+  </data>
+  <data name="Ui.OperativeSystem" xml:space="preserve">
+    <value>Système d'exploitation :</value>
+  </data>
+  <data name="Ui.GraphicCard" xml:space="preserve">
+    <value>Carte graphique :</value>
+  </data>
+  <data name="Ui.Processor" xml:space="preserve">
+    <value>Processeur :</value>
+  </data>
+  <data name="Ui.ProcessorCores" xml:space="preserve">
+    <value>Cœurs de processeur :</value>
+  </data>
+  <data name="Ui.MemoryRAM" xml:space="preserve">
+    <value>Mémoire RAM :</value>
+  </data>
+  <data name="Ui.Framework" xml:space="preserve">
+    <value>Environnement d'exécution :</value>
+  </data>
+  <data name="Ui.AvaloniaUI" xml:space="preserve">
+    <value>AvaloniaUI:</value>
+  </data>
+  <data name="Ui.ScreensResolutionWorkingAreaUsableArea" xml:space="preserve">
+    <value>Écrans, résolution, zone de travail, surface utilisable :</value>
+  </data>
+  <data name="Ui.Description" xml:space="preserve">
+    <value>Descriptif</value>
+  </data>
+  <data name="Ui.Assemblies" xml:space="preserve">
+    <value>Assemblys .NET</value>
+  </data>
+  <data name="Ui.TermsOfUse" xml:space="preserve">
+    <value>Conditions d'utilisation</value>
+  </data>
+  <data name="Ui.Services" xml:space="preserve">
+    <value>Prestations</value>
+  </data>
+  <data name="Ui.AddNewServiceS" xml:space="preserve">
+    <value>Ajouter de nouveaux services</value>
+  </data>
+  <data name="Ui.ImportFromJSON" xml:space="preserve">
+    <value>Importer depuis JSON</value>
+  </data>
+  <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
+    <value>Importer des passerelles réseau</value>
+  </data>
+  <data name="Ui.ImportPublicHosts" xml:space="preserve">
+    <value>Importer des hôtes publics</value>
+  </data>
+  <data name="Ui.ImportAll" xml:space="preserve">
+    <value>Tout importer</value>
+  </data>
+  <data name="Ui.RemoveServiceS" xml:space="preserve">
+    <value>Supprimer un ou plusieurs services</value>
+  </data>
+  <data name="Ui.RemoveAll" xml:space="preserve">
+    <value>Supprimer tout</value>
+  </data>
+  <data name="Ui.PleaseFixTheFollowingErrors" xml:space="preserve">
+    <value>Veuillez corriger les erreurs suivantes :</value>
+  </data>
+  <data name="Ui.RemoveSelectedServiceS" xml:space="preserve">
+    <value>Supprimer le(s) service(s) sélectionné(s)</value>
+  </data>
+  <data name="Ui.Enable" xml:space="preserve">
+    <value>Activer</value>
+  </data>
+  <data name="Ui.Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Ui.IPAddressUrl" xml:space="preserve">
+    <value>Adresse IP / URL</value>
+  </data>
+  <data name="Ui.Group" xml:space="preserve">
+    <value>Groupe</value>
+  </data>
+  <data name="Ui.PingEveryS" xml:space="preserve">
+    <value>Intervalle (s)</value>
+  </data>
+  <data name="Ui.TimeoutS" xml:space="preserve">
+    <value>Délai d'attente (s)</value>
+  </data>
+  <data name="Ui.BufferSize" xml:space="preserve">
+    <value>Taille du tampon</value>
+  </data>
+  <data name="Ui.NoFrag" xml:space="preserve">
+    <value>Ne pas fragmenter</value>
+  </data>
+  <data name="Ui.Import" xml:space="preserve">
+    <value>Importer</value>
+  </data>
+  <data name="Ui.Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Ui.Megabytes" xml:space="preserve">
+    <value>Mégaoctets</value>
+  </data>
+  <data name="Ui.AutomaticIPAssignmentFromDHCP" xml:space="preserve">
+    <value>Attribution automatique de l'IP par DHCP</value>
+  </data>
+  <data name="Ui.ManualIPAssignment" xml:space="preserve">
+    <value>Attribution manuelle de l'adresse IP</value>
+  </data>
+  <data name="Ui.IPAddress" xml:space="preserve">
+    <value>Adresse IP :</value>
+  </data>
+  <data name="Ui.SubnetMask" xml:space="preserve">
+    <value>Masque de sous-réseau :</value>
+  </data>
+  <data name="Ui.Gateway" xml:space="preserve">
+    <value>Passerelle :</value>
+  </data>
+  <data name="Ui.ClearTheGatewayAddress" xml:space="preserve">
+    <value>Effacer l'adresse de la passerelle</value>
+  </data>
+  <data name="Ui.AutomaticDNSAssignmentFromDHCP" xml:space="preserve">
+    <value>Attribution automatique du DNS par DHCP</value>
+  </data>
+  <data name="Ui.ManualDNSAssignment" xml:space="preserve">
+    <value>Attribution DNS manuelle</value>
+  </data>
+  <data name="Ui.Presets" xml:space="preserve">
+    <value>Préréglages</value>
+  </data>
+  <data name="Ui.PrimaryDNS" xml:space="preserve">
+    <value>DNS primaire :</value>
+  </data>
+  <data name="Ui.SetTheDNSFromTheDefinedServerGateway" xml:space="preserve">
+    <value>Définissez le DNS à partir de la passerelle de serveur définie.</value>
+  </data>
+  <data name="Ui.ClearAddress" xml:space="preserve">
+    <value>Effacer l'adresse</value>
+  </data>
+  <data name="Ui.SecondaryDNS" xml:space="preserve">
+    <value>DNS secondaire :</value>
+  </data>
+  <data name="Ui.Apply" xml:space="preserve">
+    <value>Appliquer</value>
+  </data>
+  <data name="Ui.Disable" xml:space="preserve">
+    <value>Désactiver</value>
+  </data>
+  <data name="Ui.ReleaseIP" xml:space="preserve">
+    <value>Libérer l'IP</value>
+  </data>
+  <data name="Ui.RenewIP" xml:space="preserve">
+    <value>Renouveler l'adresse IP</value>
+  </data>
+  <data name="Ui.SetIP" xml:space="preserve">
+    <value>Définir l'adresse IP</value>
+  </data>
+  <data name="Ui.ManualAssignment" xml:space="preserve">
+    <value>Affectation manuelle</value>
+  </data>
+  <data name="Ui.ExportTo" xml:space="preserve">
+    <value>Exporter vers</value>
+  </data>
+  <data name="Ui.OpenInNewWindow" xml:space="preserve">
+    <value>Ouvrir dans une nouvelle fenêtre</value>
+  </data>
+  <data name="Ui.PhysicalAddressMACAddress" xml:space="preserve">
+    <value>Adresse physique (adresse MAC)</value>
+  </data>
+  <data name="Ui.ConnectionSpeed" xml:space="preserve">
+    <value>Vitesse de connexion</value>
+  </data>
+  <data name="Ui.StaticIPv4" xml:space="preserve">
+    <value>IPv4 statique</value>
+  </data>
+  <data name="Ui.Downloaded" xml:space="preserve">
+    <value>Téléchargé</value>
+  </data>
+  <data name="Ui.Uploaded" xml:space="preserve">
+    <value>Téléchargé</value>
+  </data>
+  <data name="Ui.Property" xml:space="preserve">
+    <value>Propriété</value>
+  </data>
+  <data name="Ui.Value" xml:space="preserve">
+    <value>Valeur</value>
+  </data>
+  <data name="Ui.GraphOptions" xml:space="preserve">
+    <value>Options du graphique</value>
+  </data>
+  <data name="Ui.PingEvery" xml:space="preserve">
+    <value>Intervalle :</value>
+  </data>
+  <data name="Ui.ChangesTheProbeIntervalForEveryServiceInThisGraph" xml:space="preserve">
+    <value>Modifie l'intervalle de sonde pour chaque service dans ce graphique</value>
+  </data>
+  <data name="Ui.Timeout" xml:space="preserve">
+    <value>Délai d'attente :</value>
+  </data>
+  <data name="Ui.ChangesTheTimeoutForEveryServiceInThisGraph" xml:space="preserve">
+    <value>Modifie le délai d'attente pour chaque service dans ce graphique</value>
+  </data>
+  <data name="Ui.RecentRepliesIncludedInTheGraphAndStatistics" xml:space="preserve">
+    <value>Réponses récentes incluses dans le graphique et les statistiques</value>
+  </data>
+  <data name="Ui.ClickToToggleTopMenu" xml:space="preserve">
+    <value>Cliquez pour basculer le menu supérieur.</value>
+  </data>
+  <data name="Ui.About" xml:space="preserve">
+    <value>À propos</value>
+  </data>
+  <data name="Ui.Website" xml:space="preserve">
+    <value>Site Web</value>
+  </data>
+  <data name="Ui.CommunityForums" xml:space="preserve">
+    <value>Forums communautaires</value>
+  </data>
+  <data name="Ui.Donate" xml:space="preserve">
+    <value>Faire un don</value>
+  </data>
+  <data name="Ui.AskAQuestion" xml:space="preserve">
+    <value>Poser une question</value>
+  </data>
+  <data name="Ui.ReportAnIssue" xml:space="preserve">
+    <value>Signaler un problème</value>
+  </data>
+  <data name="Ui.SuggestAnImprovementOrFeature" xml:space="preserve">
+    <value>Suggérer une amélioration ou une fonctionnalité</value>
+  </data>
+  <data name="Ui.OpenProfileFolder" xml:space="preserve">
+    <value>Ouvrir le dossier de profil</value>
+  </data>
+  <data name="Ui.CheckForUpdates" xml:space="preserve">
+    <value>Rechercher des mises à jour</value>
+  </data>
+  <data name="Ui.Debug" xml:space="preserve">
+    <value>Débogage</value>
+  </data>
+  <data name="Ui.OpenExecutableFolder" xml:space="preserve">
+    <value>Ouvrir le dossier exécutable</value>
+  </data>
+  <data name="Ui.TriggerNewUpdate" xml:space="preserve">
+    <value>Déclencher une nouvelle mise à jour</value>
+  </data>
+  <data name="Ui.ThrowException" xml:space="preserve">
+    <value>Lancer une exception</value>
+  </data>
+  <data name="Ui.ToogleFullscreen" xml:space="preserve">
+    <value>Basculer en plein écran</value>
+  </data>
+  <data name="Ui.NetworkInterfaces" xml:space="preserve">
+    <value>Interfaces réseau</value>
+  </data>
+  <data name="Ui.Status" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="Ui.Others" xml:space="preserve">
+    <value>D'autres</value>
+  </data>
+  <data name="Ui.VirtualNetworks" xml:space="preserve">
+    <value>Réseaux virtuels</value>
+  </data>
+  <data name="Ui.HavePhysicalAddress" xml:space="preserve">
+    <value>Avec une adresse physique</value>
+  </data>
+  <data name="Ui.HaveIPAddress" xml:space="preserve">
+    <value>Avec une adresse IP</value>
+  </data>
+  <data name="Ui.IsTransmittingData" xml:space="preserve">
+    <value>Transmission de données en cours</value>
+  </data>
+  <data name="Ui.FilterInterfacesByText" xml:space="preserve">
+    <value>Filtrer les interfaces par texte</value>
+  </data>
+  <data name="Ui.RefreshAllInterfaces" xml:space="preserve">
+    <value>Actualiser toutes les interfaces</value>
+  </data>
+  <data name="Ui.OpenSystemNetworkManager" xml:space="preserve">
+    <value>Ouvrir le gestionnaire réseau du système</value>
+  </data>
+  <data name="Ui.NetworkInterfacesSettings" xml:space="preserve">
+    <value>Paramètres des interfaces réseau</value>
+  </data>
+  <data name="Ui.AutoRefresh" xml:space="preserve">
+    <value>Actualisation automatique :</value>
+  </data>
+  <data name="Ui.CardWidth" xml:space="preserve">
+    <value>Largeur de la carte :</value>
+  </data>
+  <data name="Ui.CardHeight" xml:space="preserve">
+    <value>Hauteur de la carte :</value>
+  </data>
+  <data name="Ui.FilterServicesByText" xml:space="preserve">
+    <value>Filtrer les services par texte</value>
+  </data>
+  <data name="Ui.ResumeAll" xml:space="preserve">
+    <value>Tout reprendre</value>
+  </data>
+  <data name="Ui.PauseAll" xml:space="preserve">
+    <value>Tout mettre en pause</value>
+  </data>
+  <data name="Ui.GridViewOptions" xml:space="preserve">
+    <value>Options d'affichage en grille</value>
+  </data>
+  <data name="Ui.GroupBy" xml:space="preserve">
+    <value>Regrouper par :</value>
+  </data>
+  <data name="Ui.ResetColumnsOrder" xml:space="preserve">
+    <value>Réinitialiser l'ordre des colonnes</value>
+  </data>
+  <data name="Ui.DefaultPingOptions" xml:space="preserve">
+    <value>Options de ping par défaut</value>
+  </data>
+  <data name="Ui.PingTimeout" xml:space="preserve">
+    <value>Délai d'attente :</value>
+  </data>
+  <data name="Ui.BufferSize1DF49DCA" xml:space="preserve">
+    <value>Taille du tampon :</value>
+  </data>
+  <data name="Ui.TimeToLive" xml:space="preserve">
+    <value>Durée de vie (TTL) :</value>
+  </data>
+  <data name="Ui.DoNotFragment" xml:space="preserve">
+    <value>Ne pas fragmenter :</value>
+  </data>
+  <data name="Ui.PingCacheSize" xml:space="preserve">
+    <value>Taille du cache ping :</value>
+  </data>
+  <data name="Ui.GraphCacheSize" xml:space="preserve">
+    <value>Taille du cache graphique :</value>
+  </data>
+  <data name="Ui.PersistentPings" xml:space="preserve">
+    <value>Pings persistants :</value>
+  </data>
+  <data name="Ui.SaveAndRestorePingRepliesAfterProgramRestart" xml:space="preserve">
+    <value>Enregistrez et restaurez les réponses ping après le redémarrage du programme</value>
+  </data>
+  <data name="Ui.PauseSelected" xml:space="preserve">
+    <value>Pause sélectionnée</value>
+  </data>
+  <data name="Ui.ResumeSelected" xml:space="preserve">
+    <value>Reprendre la sélection</value>
+  </data>
+  <data name="Ui.ResetSelectedStatistics" xml:space="preserve">
+    <value>Réinitialiser les statistiques sélectionnées</value>
+  </data>
+  <data name="Ui.ResetAllStatistics" xml:space="preserve">
+    <value>Réinitialiser toutes les statistiques</value>
+  </data>
+  <data name="Ui.RemoveSelected" xml:space="preserve">
+    <value>Supprimer la sélection</value>
+  </data>
+  <data name="Ui.ExportSelectedToJSON" xml:space="preserve">
+    <value>Exporter la sélection vers JSON</value>
+  </data>
+  <data name="Ui.ExportAllToJSON" xml:space="preserve">
+    <value>Exporter tout vers JSON</value>
+  </data>
+  <data name="Ui.OpenInBrowser" xml:space="preserve">
+    <value>Ouvrir dans le navigateur</value>
+  </data>
+  <data name="Ui.IPAddress3C3DE0C9" xml:space="preserve">
+    <value>Adresse IP</value>
+  </data>
+  <data name="Ui.Time" xml:space="preserve">
+    <value>Temps</value>
+  </data>
+  <data name="Ui.MinTime" xml:space="preserve">
+    <value>Latence min.</value>
+  </data>
+  <data name="Ui.AvgTime" xml:space="preserve">
+    <value>Latence moy.</value>
+  </data>
+  <data name="Ui.MaxTime" xml:space="preserve">
+    <value>Latence max.</value>
+  </data>
+  <data name="Ui.Pings" xml:space="preserve">
+    <value>Tests ping</value>
+  </data>
+  <data name="Ui.Succeed" xml:space="preserve">
+    <value>Réussi</value>
+  </data>
+  <data name="Ui.Failed" xml:space="preserve">
+    <value>Échec</value>
+  </data>
+  <data name="Ui.ConsecutiveSucceed" xml:space="preserve">
+    <value>Réussites consécutives</value>
+  </data>
+  <data name="Ui.ConsecutiveFailed" xml:space="preserve">
+    <value>Échecs consécutifs</value>
+  </data>
+  <data name="Ui.SucceedDate" xml:space="preserve">
+    <value>Dernière réussite</value>
+  </data>
+  <data name="Ui.FailedDate" xml:space="preserve">
+    <value>Dernier échec</value>
+  </data>
+  <data name="Ui.HostnameQuery" xml:space="preserve">
+    <value>Nom d'hôte/requête</value>
+  </data>
+  <data name="Ui.Order" xml:space="preserve">
+    <value>Ordre</value>
+  </data>
+  <data name="Ui.TotalPings" xml:space="preserve">
+    <value>Nombre total de pings</value>
+  </data>
+  <data name="Ui.SucceedPings" xml:space="preserve">
+    <value>Pings réussis</value>
+  </data>
+  <data name="Ui.FailedPings" xml:space="preserve">
+    <value>Pings échoués</value>
+  </data>
+  <data name="Ui.ClearStatistics" xml:space="preserve">
+    <value>Effacer les statistiques</value>
+  </data>
+  <data name="Ui.Resume" xml:space="preserve">
+    <value>Reprendre</value>
+  </data>
+  <data name="Ui.Pause" xml:space="preserve">
+    <value>Mettre en pause</value>
+  </data>
+  <data name="Ui.ExportPings" xml:space="preserve">
+    <value>Exporter les pings</value>
+  </data>
+  <data name="Ui.ExportToCSV" xml:space="preserve">
+    <value>Exporter au format CSV</value>
+  </data>
+  <data name="Ui.ExportToJSON" xml:space="preserve">
+    <value>Exporter vers JSON</value>
+  </data>
+  <data name="Ui.ReplyIPAddress" xml:space="preserve">
+    <value>Adresse IP de réponse</value>
+  </data>
+  <data name="Ui.SentOn" xml:space="preserve">
+    <value>Envoyé le</value>
+  </data>
+  <data name="Ui.ErrorMessage" xml:space="preserve">
+    <value>Message d'erreur</value>
+  </data>
+  <data name="Ui.ResponseTime" xml:space="preserve">
+    <value>Temps de réponse</value>
+  </data>
+  <data name="Ui.LastReplyStatus" xml:space="preserve">
+    <value>Statut de la dernière réponse</value>
+  </data>
+  <data name="Ui.LatestReplyLatencyOrStatus" xml:space="preserve">
+    <value>Latence ou état de la dernière réponse</value>
+  </data>
+  <data name="Ui.MedianLatencyInTheDisplayedWindow" xml:space="preserve">
+    <value>Latence médiane dans la fenêtre affichée</value>
+  </data>
+  <data name="Ui.95thPercentileLatencyInTheDisplayedWindow" xml:space="preserve">
+    <value>Latence du 95ème percentile dans la fenêtre affichée</value>
+  </data>
+  <data name="Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies" xml:space="preserve">
+    <value>Changement de latence moyen entre les réponses réussies adjacentes</value>
+  </data>
+  <data name="Ui.FailedRepliesInTheDisplayedWindow" xml:space="preserve">
+    <value>Réponses échouées dans la fenêtre affichée</value>
+  </data>
+  <data name="Ui.OpenGraphInANewWindow" xml:space="preserve">
+    <value>Ouvrir le graphique dans une nouvelle fenêtre</value>
+  </data>
+  <data name="Ui.SystemMode" xml:space="preserve">
+    <value>Mode système</value>
+  </data>
+  <data name="Ui.LightMode" xml:space="preserve">
+    <value>Mode lumière</value>
+  </data>
+  <data name="Ui.DarkMode" xml:space="preserve">
+    <value>Mode sombre</value>
+  </data>
+  <data name="Ui.UIScale" xml:space="preserve">
+    <value>Échelle de l'interface utilisateur</value>
+  </data>
+  <data name="Ui.AdjustTheUIScaleToIncreaseOrDecreaseTheSizeOfTheInterfaceElements" xml:space="preserve">
+    <value>Ajustez l'échelle de l'interface utilisateur pour augmenter ou diminuer la taille des éléments de l'interface.</value>
+  </data>
+  <data name="Ui.Background" xml:space="preserve">
+    <value>Arrière-plan</value>
+  </data>
+  <data name="Ui.AnimatedBackground" xml:space="preserve">
+    <value>Fond animé</value>
+  </data>
+  <data name="Ui.EnableDisableTheAnimationsForTheBackgroundWhichAreDrivenByTheCurrentlyAc" xml:space="preserve">
+    <value>Activez/désactivez les animations pour l'arrière-plan, qui sont pilotées par l'effet actuellement actif.</value>
+  </data>
+  <data name="Ui.BackgroundTransitions" xml:space="preserve">
+    <value>Transitions d'arrière-plan</value>
+  </data>
+  <data name="Ui.EnableDisableTheTransitionsForTheBackgroundTheseWillFadeBetweenTheActive" xml:space="preserve">
+    <value>Activez/désactivez les transitions pour l'arrière-plan, celles-ci s'estomperont entre les effets actifs lorsqu'elles seront modifiées.</value>
+  </data>
+  <data name="Ui.BackgroundStyle" xml:space="preserve">
+    <value>Style d'arrière-plan</value>
+  </data>
+  <data name="Ui.SelectFromTheIncludedBackgroundStyles" xml:space="preserve">
+    <value>Sélectionnez parmi les styles d’arrière-plan inclus.</value>
+  </data>
+  <data name="Ui.CustomShaders" xml:space="preserve">
+    <value>Shaders personnalisés</value>
+  </data>
+  <data name="Ui.ClickAnyOfTheButtonsBelowToEnableABackgroundShaderClickItAgainToDisableI" xml:space="preserve">
+    <value>Cliquez sur l'un des boutons ci-dessous pour activer un shader d'arrière-plan. Cliquez à nouveau dessus pour le désactiver. Ceux-ci sont susceptibles de mettre une charge importante sur votre GPU et servent uniquement à démontrer et tester les capacités du moteur de rendu en arrière-plan.</value>
+  </data>
+  <data name="Ui.General" xml:space="preserve">
+    <value>Général</value>
+  </data>
+  <data name="Ui.StartTheApplicationAutomaticallyWhenTheSystemStarts" xml:space="preserve">
+    <value>Démarrez l'application automatiquement au démarrage du système.</value>
+  </data>
+  <data name="Ui.UseSystemTray" xml:space="preserve">
+    <value>Utiliser la barre d'état système</value>
+  </data>
+  <data name="Ui.ShowATrayIconInTheSystemNotificationAreaForQuickAccessWhenTheAppIsRunnin" xml:space="preserve">
+    <value>Affichez une icône de la barre d'état dans la zone de notification du système pour un accès rapide lorsque l'application est en cours d'exécution.</value>
+  </data>
+  <data name="Ui.CloseToSystemTray" xml:space="preserve">
+    <value>Près de la barre d'état système</value>
+  </data>
+  <data name="Ui.WhenClosingTheMainWindowKeepTheAppRunningInTheSystemTrayInsteadOfExiting" xml:space="preserve">
+    <value>Lorsque vous fermez la fenêtre principale, laissez l'application fonctionner dans la barre d'état système au lieu de la quitter.</value>
+  </data>
+  <data name="Ui.CheckForUpdatesOnStart" xml:space="preserve">
+    <value>Vérifier les mises à jour au démarrage</value>
+  </data>
+  <data name="Ui.CheckForUpdatesOnApplicationStartIfAnUpdateIsAvailableItWillNotifyAndAdd" xml:space="preserve">
+    <value>Vérifiez les mises à jour au démarrage de l'application. Si une mise à jour est disponible, elle vous en informera et vous demandera en outre votre action.</value>
+  </data>
+  <data name="Ui.SpeedTests" xml:space="preserve">
+    <value>Tests de vitesse</value>
+  </data>
+  <data name="Ui.NewSpeedTest" xml:space="preserve">
+    <value>Nouveau test de vitesse</value>
+  </data>
+  <data name="Ui.StopSpeedTest" xml:space="preserve">
+    <value>Test de vitesse d'arrêt</value>
+  </data>
+  <data name="Ui.SpeedTestSettings" xml:space="preserve">
+    <value>Paramètres du test de débit</value>
+  </data>
+  <data name="Ui.AutoSpeedTest" xml:space="preserve">
+    <value>Tests automatiques :</value>
+  </data>
+  <data name="Ui.Server" xml:space="preserve">
+    <value>Serveur :</value>
+  </data>
+  <data name="Ui.GaugeRange" xml:space="preserve">
+    <value>Plage de jauge :</value>
+  </data>
+  <data name="Ui.GaugeIncrement" xml:space="preserve">
+    <value>Incrément de jauge :</value>
+  </data>
+  <data name="Ui.OpenResult" xml:space="preserve">
+    <value>Ouvrir le résultat</value>
+  </data>
+  <data name="Ui.DateTime" xml:space="preserve">
+    <value>Date et heure</value>
+  </data>
+  <data name="Ui.Ping" xml:space="preserve">
+    <value>Latence ping</value>
+  </data>
+  <data name="Ui.Download" xml:space="preserve">
+    <value>Télécharger</value>
+  </data>
+  <data name="Ui.Upload" xml:space="preserve">
+    <value>Envoi</value>
+  </data>
+  <data name="Ui.PacketLoss" xml:space="preserve">
+    <value>Perte de paquets</value>
+  </data>
+  <data name="Ui.Interface" xml:space="preserve">
+    <value>Interface réseau</value>
+  </data>
+  <data name="Ui.ServerAEF7DE28" xml:space="preserve">
+    <value>Serveur</value>
+  </data>
+  <data name="Ui.SpeedtestDependencyWasNotFoundInTheSystem" xml:space="preserve">
+    <value>La dépendance Speedtest n'a pas été trouvée dans le système</value>
+  </data>
+  <data name="Ui.ThisModuleRequiresTheOoklaSpeedtestCLIBinaryYetWasNotFoundInTheSystemPle" xml:space="preserve">
+    <value>Ce module nécessite le binaire Ookla Speedtest CLI, mais n'a pas été trouvé dans le système.
+Veuillez installer la dépendance et recharger le module.</value>
+  </data>
+  <data name="Ui.Jitter" xml:space="preserve">
+    <value>Gigue :</value>
+  </data>
+  <data name="Ui.Low" xml:space="preserve">
+    <value>Faible :</value>
+  </data>
+  <data name="Ui.High" xml:space="preserve">
+    <value>Élevé :</value>
+  </data>
+  <data name="Ui.PLoss" xml:space="preserve">
+    <value>Perte :</value>
+  </data>
+  <data name="Ui.IQM" xml:space="preserve">
+    <value>GIQ :</value>
+  </data>
+  <data name="Ui.Name" xml:space="preserve">
+    <value>Nom :</value>
+  </data>
+  <data name="Ui.Location" xml:space="preserve">
+    <value>Localisation :</value>
+  </data>
+  <data name="Ui.Host" xml:space="preserve">
+    <value>Hôte :</value>
+  </data>
+  <data name="Ui.IP" xml:space="preserve">
+    <value>Adresse IP :</value>
+  </data>
+  <data name="Ui.Port" xml:space="preserve">
+    <value>Port réseau :</value>
+  </data>
+  <data name="Ui.ISP" xml:space="preserve">
+    <value>FAI :</value>
+  </data>
+  <data name="Ui.Index" xml:space="preserve">
+    <value>Indice</value>
+  </data>
+  <data name="Ui.NameDCD1D522" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Navigation.Interfaces" xml:space="preserve">
+    <value>Interfaces réseau</value>
+  </data>
+  <data name="Navigation.Pings" xml:space="preserve">
+    <value>Suivi des pings</value>
+  </data>
+  <data name="Navigation.SpeedTest" xml:space="preserve">
+    <value>Test de vitesse</value>
+  </data>
+  <data name="Common.Yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="Common.No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="Common.Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Common.Unknown" xml:space="preserve">
+    <value>Inconnu</value>
+  </data>
+  <data name="Common.View" xml:space="preserve">
+    <value>Voir</value>
+  </data>
+  <data name="Common.Ignore" xml:space="preserve">
+    <value>Ignorer</value>
+  </data>
+  <data name="Common.CopiedToClipboard" xml:space="preserve">
+    <value>Copié dans le presse-papiers</value>
+  </data>
+  <data name="Common.OpenFile" xml:space="preserve">
+    <value>Ouvrir le fichier</value>
+  </data>
+  <data name="Common.OpenFolder" xml:space="preserve">
+    <value>Ouvrir le dossier</value>
+  </data>
+  <data name="Dialog.About.Title" xml:space="preserve">
+    <value>Environ {0}</value>
+  </data>
+  <data name="Update.TriggerUnavailable.Title" xml:space="preserve">
+    <value>Impossible de déclencher une nouvelle mise à jour</value>
+  </data>
+  <data name="Update.TriggerUnavailable.Message" xml:space="preserve">
+    <value>Aucune version disponible pour déclencher la nouvelle mise à jour.</value>
+  </data>
+  <data name="Update.None.Title" xml:space="preserve">
+    <value>Aucune mise à jour disponible.</value>
+  </data>
+  <data name="Update.None.Message" xml:space="preserve">
+    <value>{0} exécute la dernière version.</value>
+  </data>
+  <data name="Update.CheckFailed" xml:space="preserve">
+    <value>Impossible de vérifier les mises à jour</value>
+  </data>
+  <data name="Update.Found.Title" xml:space="preserve">
+    <value>{0} mise à jour trouvée</value>
+  </data>
+  <data name="Update.Found.Message" xml:space="preserve">
+    <value>Version actuelle : {0}
+Nouvelle version : {1}
+Sortie(s) à venir : {2}
+Date de sortie : {3:f}</value>
+  </data>
+  <data name="Common.Copy" xml:space="preserve">
+    <value>Copier</value>
+  </data>
+  <data name="Common.Copied" xml:space="preserve">
+    <value>Copié</value>
+  </data>
+  <data name="Common.Close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="Common.Report" xml:space="preserve">
+    <value>Rapport</value>
+  </data>
+  <data name="Common.Help" xml:space="preserve">
+    <value>Aide</value>
+  </data>
+  <data name="Common.Restart" xml:space="preserve">
+    <value>Redémarrer</value>
+  </data>
+  <data name="Common.Reload" xml:space="preserve">
+    <value>Recharger</value>
+  </data>
+  <data name="Common.ProcessId" xml:space="preserve">
+    <value>
+
+ID de processus : {0}</value>
+  </data>
+  <data name="Update.Auto" xml:space="preserve">
+    <value>Mise à jour automatique</value>
+  </data>
+  <data name="Update.Manual" xml:space="preserve">
+    <value>Mise à jour manuelle</value>
+  </data>
+  <data name="Window.CrashReport.Title" xml:space="preserve">
+    <value>{0} – Rapport d'erreur</value>
+  </data>
+  <data name="Window.AlreadyRunning.Title" xml:space="preserve">
+    <value>{0} – Déjà en cours d'exécution</value>
+  </data>
+  <data name="InstanceAlreadyRunning.Message" xml:space="preserve">
+    <value>Il existe une autre instance de {0} en cours d'exécution. Une seule instance de {0} peut s'exécuter à la fois.
+Veuillez rechercher et ouvrir l'instance en cours d'exécution ou la fermer avant d'en démarrer une nouvelle.</value>
+  </data>
+  <data name="CrashReport.Header" xml:space="preserve">
+    <value>{0} s'est écrasé en raison d'une erreur inattendue.
+Vous pouvez signaler cette erreur si nécessaire.
+Trouvez plus de détails ci-dessous :</value>
+  </data>
+  <data name="CrashReport.NoDetails" xml:space="preserve">
+    <value>L'application a planté en raison d'une erreur inattendue, mais malheureusement aucun détail supplémentaire n'est disponible.
+Le rapport d'erreur a peut-être été perdu ou n'a pas pu être enregistré.</value>
+  </data>
+  <data name="Ping.ResetOne.Title" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir réinitialiser l'hôte ping sélectionné ?</value>
+  </data>
+  <data name="Ping.ResetOne.Message" xml:space="preserve">
+    <value>Vous êtes sur le point de réinitialiser les statistiques de l'hôte ping sélectionné.
+
+Adresse IP : {0}
+Hôte : {1}
+
+Êtes-vous sûr de vouloir continuer ?</value>
+  </data>
+  <data name="Ping.ResetSelected.Title" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir réinitialiser les {0} hôtes ping sélectionnés ?</value>
+  </data>
+  <data name="Ping.ResetSelected.Message" xml:space="preserve">
+    <value>Vous êtes sur le point de réinitialiser les statistiques de {0} hôtes ping sélectionnés.
+Êtes-vous sûr de vouloir continuer ?</value>
+  </data>
+  <data name="Ping.ResetAll.Title" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir réinitialiser tous les {0} hôtes ping ?</value>
+  </data>
+  <data name="Ping.ResetAll.Message" xml:space="preserve">
+    <value>Vous êtes sur le point de réinitialiser les statistiques de tous les {0} hôtes ping.
+Êtes-vous sûr de vouloir continuer ?</value>
+  </data>
+  <data name="Ping.RemoveSelected.Title" xml:space="preserve">
+    <value>Voulez-vous vraiment supprimer les {0} hôtes ping sélectionnés ?</value>
+  </data>
+  <data name="Ping.RemoveSelected.Message" xml:space="preserve">
+    <value>Vous êtes sur le point de supprimer {0} hôtes ping sélectionnés.
+Êtes-vous sûr de vouloir continuer ?</value>
+  </data>
+  <data name="Ping.RemoveAll.Title" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer tous les {0} hôtes ping ?</value>
+  </data>
+  <data name="Ping.RemoveAll.Message" xml:space="preserve">
+    <value>Vous êtes sur le point de supprimer tous les {0} hôtes ping.
+Êtes-vous sûr de vouloir continuer ?</value>
+  </data>
+  <data name="Export.Services.Title" xml:space="preserve">
+    <value>Exporter des services vers JSON</value>
+  </data>
+  <data name="Export.Services.Success" xml:space="preserve">
+    <value>Les services {0} ont été exportés vers "{1}".</value>
+  </data>
+  <data name="Export.Services.Error" xml:space="preserve">
+    <value>Erreur lors de la tentative d'exportation des services :</value>
+  </data>
+  <data name="Export.Pings.CsvTitle" xml:space="preserve">
+    <value>Exporter les pings au format CSV</value>
+  </data>
+  <data name="Export.Pings.JsonTitle" xml:space="preserve">
+    <value>Exporter les pings vers JSON</value>
+  </data>
+  <data name="Export.Pings.Success" xml:space="preserve">
+    <value>Les {0} pings pour "{1}" ont été exportés vers "{2}".</value>
+  </data>
+  <data name="Export.Pings.Error" xml:space="preserve">
+    <value>Erreur lors de la tentative d'exportation des pings :</value>
+  </data>
+  <data name="SpeedTest.Install.Title" xml:space="preserve">
+    <value>Installation CLI de test rapide</value>
+  </data>
+  <data name="SpeedTest.Install.Success" xml:space="preserve">
+    <value>Speedtest CLI installé avec succès.</value>
+  </data>
+  <data name="SpeedTest.Install.Error" xml:space="preserve">
+    <value>Échec de l'installation de Speedtest CLI. Veuillez l'installer manuellement à partir de https://www.speedtest.net/apps/cli</value>
+  </data>
+  <data name="SpeedTest.Error" xml:space="preserve">
+    <value>Erreur lors du test de vitesse</value>
+  </data>
+  <data name="Export.Results.Title" xml:space="preserve">
+    <value>Exporter les résultats vers JSON</value>
+  </data>
+  <data name="Export.Results.Success" xml:space="preserve">
+    <value>Les résultats {0} ont été exportés vers "{1}".</value>
+  </data>
+  <data name="Export.Results.Error" xml:space="preserve">
+    <value>Erreur lors de la tentative d'exportation des résultats :</value>
+  </data>
+  <data name="SpeedTest.RemoveSelected.Title" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer les {0} résultats sélectionnés ?</value>
+  </data>
+  <data name="SpeedTest.RemoveSelected.Message" xml:space="preserve">
+    <value>Vous êtes sur le point de supprimer {0} résultats sélectionnés.
+Êtes-vous sûr de vouloir continuer ?</value>
+  </data>
+  <data name="SpeedTest.RemoveAll.Title" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer tous les {0} résultats ?</value>
+  </data>
+  <data name="SpeedTest.RemoveAll.Message" xml:space="preserve">
+    <value>Vous êtes sur le point de supprimer tous les {0} résultats.
+Êtes-vous sûr de vouloir continuer ?</value>
+  </data>
+  <data name="SpeedTest.AutoInstall" xml:space="preserve">
+    <value>Installation automatique</value>
+  </data>
+  <data name="SpeedTest.ManualInstall" xml:space="preserve">
+    <value>Installation manuelle</value>
+  </data>
+  <data name="Network.Disable.Title" xml:space="preserve">
+    <value>Désactiver {0}</value>
+  </data>
+  <data name="Network.Disable.Success" xml:space="preserve">
+    <value>L'interface "{0}" a été désactivée avec succès.</value>
+  </data>
+  <data name="Network.Disable.Error" xml:space="preserve">
+    <value>Impossible de désactiver "{0}".</value>
+  </data>
+  <data name="Network.Enable.Title" xml:space="preserve">
+    <value>Activer {0}</value>
+  </data>
+  <data name="Network.Enable.Success" xml:space="preserve">
+    <value>L'interface "{0}" a été activée avec succès.</value>
+  </data>
+  <data name="Network.Enable.Error" xml:space="preserve">
+    <value>Impossible d'activer "{0}".</value>
+  </data>
+  <data name="Network.Release.Title" xml:space="preserve">
+    <value>Libérer {0}</value>
+  </data>
+  <data name="Network.Release.Success" xml:space="preserve">
+    <value>Adresse IP libérée avec succès.</value>
+  </data>
+  <data name="Network.Release.Error" xml:space="preserve">
+    <value>Impossible de libérer "{0}".</value>
+  </data>
+  <data name="Network.Renew.Title" xml:space="preserve">
+    <value>Renouveler {0}</value>
+  </data>
+  <data name="Network.Renew.Success" xml:space="preserve">
+    <value>Adresse IP renouvelée avec succès.</value>
+  </data>
+  <data name="Network.Renew.Error" xml:space="preserve">
+    <value>Impossible de renouveler "{0}".</value>
+  </data>
+  <data name="Network.StaticIp.Success" xml:space="preserve">
+    <value>Adresse IP définie avec succès sur {0} {1} {2}</value>
+  </data>
+  <data name="Network.StaticIp.Error" xml:space="preserve">
+    <value>Impossible de définir une adresse IPv statique{0} pour "{1}".</value>
+  </data>
+  <data name="Network.DhcpIp.Success" xml:space="preserve">
+    <value>Adresse IP définie avec succès sur DHCPv{0}</value>
+  </data>
+  <data name="Network.DhcpIp.Error" xml:space="preserve">
+    <value>Impossible de définir DHCPv{0} pour "{1}".</value>
+  </data>
+  <data name="Network.Dns.Title" xml:space="preserve">
+    <value>Attribution DNS pour "{0}"</value>
+  </data>
+  <data name="Network.Dns.Success" xml:space="preserve">
+    <value>Serveurs DNS correctement attribués : {0} {1}</value>
+  </data>
+  <data name="Network.Dns.Error" xml:space="preserve">
+    <value>Impossible d'attribuer un DNS.</value>
+  </data>
+  <data name="Network.DhcpDns.Success" xml:space="preserve">
+    <value>DHCP DNS attribué avec succès.</value>
+  </data>
+  <data name="Network.DhcpDns.Error" xml:space="preserve">
+    <value>Impossible d'attribuer un DNS DHCP.</value>
+  </data>
+  <data name="Network.IpAssignment.Title" xml:space="preserve">
+    <value>Attribution d'adresse IP pour "{0}"</value>
+  </data>
+  <data name="Network.IpAssignment.NoChanges" xml:space="preserve">
+    <value>Aucune modification n'a été apportée car les paramètres définis correspondent aux paramètres précédents.</value>
+  </data>
+  <data name="Network.IpAssignment.Error" xml:space="preserve">
+    <value>Impossible d'attribuer une adresse IP.</value>
+  </data>
+  <data name="Export.Interface.Title" xml:space="preserve">
+    <value>Exporter l'interface vers {0}</value>
+  </data>
+  <data name="Export.Interface.Success" xml:space="preserve">
+    <value>L'interface "{0}" a été exportée vers "{1}".</value>
+  </data>
+  <data name="Export.Interface.Error" xml:space="preserve">
+    <value>Erreur lors de la tentative d'export de l'interface :</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Default" xml:space="preserve">
+    <value>Système</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Light" xml:space="preserve">
+    <value>Clair</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Dark" xml:space="preserve">
+    <value>Sombre</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.None" xml:space="preserve">
+    <value>Aucun regroupement</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.ProtocolType" xml:space="preserve">
+    <value>Type de protocole</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.LastStatus" xml:space="preserve">
+    <value>Dernier état</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.Group" xml:space="preserve">
+    <value>Groupe</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.ICMP" xml:space="preserve">
+    <value>ICMP : protocole de messages de contrôle Internet</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.TCP" xml:space="preserve">
+    <value>TCP : protocole de contrôle de transmission</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.UDP" xml:space="preserve">
+    <value>UDP : protocole de datagramme utilisateur</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.TLS" xml:space="preserve">
+    <value>TLS : sécurité de la couche de transport</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.DNS" xml:space="preserve">
+    <value>DNS : système de noms de domaine</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.NTP" xml:space="preserve">
+    <value>NTP : protocole de temps réseau</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.HTTP" xml:space="preserve">
+    <value>HTTP : protocole de transfert hypertexte</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.WebSocket" xml:space="preserve">
+    <value>WebSocket : protocole de communication full-duplex</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SSH" xml:space="preserve">
+    <value>SSH : protocole Secure Shell</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SMTP" xml:space="preserve">
+    <value>SMTP : protocole simple de transfert de courrier</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.IMAP" xml:space="preserve">
+    <value>IMAP : protocole d'accès aux messages Internet</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.MQTT" xml:space="preserve">
+    <value>MQTT : transport de télémétrie par file de messages</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.STUN" xml:space="preserve">
+    <value>STUN : utilitaires de traversée de NAT pour les sessions</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SIP" xml:space="preserve">
+    <value>SIP : protocole d'initiation de session</value>
+  </data>
+  <data name="Operation.Success" xml:space="preserve">
+    <value>Opération terminée avec succès.</value>
+  </data>
+  <data name="Operation.SudoRequired" xml:space="preserve">
+    <value>Impossible d'exécuter l'opération car un accès sudo est requis.
+pkexec n'a pas été trouvé. Installez pkexec ou exécutez l'application avec sudo.</value>
+  </data>
+  <data name="Import.Json.ErrorTitle" xml:space="preserve">
+    <value>Impossible d'importer depuis JSON</value>
+  </data>
+  <data name="Import.Json.ErrorMessage" xml:space="preserve">
+    <value>Le fichier JSON fourni n'est pas valide ou est mal formé.</value>
+  </data>
+  <data name="SpeedTest.ServerList.Error" xml:space="preserve">
+    <value>Impossible d'obtenir la liste des serveurs</value>
+  </data>
+  <data name="Ui.Auto" xml:space="preserve">
+    <value>Automatique</value>
+  </data>
+  <data name="Tray.PingsUp" xml:space="preserve">
+    <value>{0} disponibles</value>
+  </data>
+  <data name="Ui.LastUpdateCheck" xml:space="preserve">
+    <value>Dernière vérification : {0}</value>
+  </data>
+  <data name="Tray.PingsDown" xml:space="preserve">
+    <value>{0} indisponibles</value>
+  </data>
+  <data name="Ui.ServicesCount" xml:space="preserve">
+    <value>({0} services surveillés)</value>
+  </data>
+  <data name="Ui.ChangelogWithReleases" xml:space="preserve">
+    <value>Journal des modifications de {0} versions :</value>
+  </data>
+  <data name="Ui.License" xml:space="preserve">
+    <value>Licence ({0})</value>
+  </data>
+  <data name="Ui.Age" xml:space="preserve">
+    <value>Âge : {0}</value>
+  </data>
+  <data name="Graph.Latency" xml:space="preserve">
+    <value>Latence</value>
+  </data>
+  <data name="Graph.AboveScale" xml:space="preserve">
+    <value>Au-dessus de l’échelle</value>
+  </data>
+  <data name="Graph.RollingAverage" xml:space="preserve">
+    <value>Moyenne mobile</value>
+  </data>
+  <data name="Graph.Failure" xml:space="preserve">
+    <value>Échec</value>
+  </data>
+  <data name="Graph.Maximum" xml:space="preserve">
+    <value>Valeur max.</value>
+  </data>
+  <data name="Graph.Average" xml:space="preserve">
+    <value>Moyenne</value>
+  </data>
+  <data name="Graph.Current" xml:space="preserve">
+    <value>Actuelle</value>
+  </data>
+  <data name="Graph.Minimum" xml:space="preserve">
+    <value>Valeur min.</value>
+  </data>
+  <data name="Graph.Failed" xml:space="preserve">
+    <value>Échec</value>
+  </data>
+  <data name="Graph.DisableAll.ToolTip" xml:space="preserve">
+    <value>Désactiver tous les services de ce graphique</value>
+  </data>
+  <data name="Graph.EnableAll.ToolTip" xml:space="preserve">
+    <value>Activer tous les services de ce graphique</value>
+  </data>
+  <data name="Graph.FullScale" xml:space="preserve">
+    <value>Échelle complète</value>
+  </data>
+  <data name="Graph.AutoScale" xml:space="preserve">
+    <value>Échelle automatique</value>
+  </data>
+  <data name="Graph.AutoScale.ToolTip" xml:space="preserve">
+    <value>Utiliser la mise à l’échelle automatique de la latence</value>
+  </data>
+  <data name="Graph.FullScale.ToolTip" xml:space="preserve">
+    <value>Afficher toute la plage de latence</value>
+  </data>
+  <data name="Graph.Freeze" xml:space="preserve">
+    <value>Figer</value>
+  </data>
+  <data name="Graph.Freeze.ToolTip" xml:space="preserve">
+    <value>Figer le graphique pendant que les contrôles continuent</value>
+  </data>
+  <data name="Graph.Resume.ToolTip" xml:space="preserve">
+    <value>Reprendre l’actualisation du graphique en direct</value>
+  </data>
+  <data name="Graph.Samples" xml:space="preserve">
+    <value>{0} échantillons</value>
+  </data>
+  <data name="Graph.AllSamples" xml:space="preserve">
+    <value>Tous les échantillons</value>
+  </data>
+  <data name="Graph.AboveAutomaticScale" xml:space="preserve">
+    <value>Au-dessus de l’échelle automatique</value>
+  </data>
+  <data name="Graph.Jitter" xml:space="preserve">
+    <value>Gigue</value>
+  </data>
+  <data name="Graph.Loss" xml:space="preserve">
+    <value>Perte</value>
+  </data>
+  <data name="Graph.Title" xml:space="preserve">
+    <value>Graphique</value>
+  </data>
+  <data name="Status.Success" xml:space="preserve">
+    <value>Réussi</value>
+  </data>
+  <data name="Status.DestinationNetworkUnreachable" xml:space="preserve">
+    <value>Réseau de destination inaccessible</value>
+  </data>
+  <data name="Status.DestinationHostUnreachable" xml:space="preserve">
+    <value>Hôte de destination inaccessible</value>
+  </data>
+  <data name="Status.DestinationProtocolUnreachable" xml:space="preserve">
+    <value>Protocole de destination inaccessible</value>
+  </data>
+  <data name="Status.DestinationPortUnreachable" xml:space="preserve">
+    <value>Port de destination inaccessible</value>
+  </data>
+  <data name="Status.DestinationProhibited" xml:space="preserve">
+    <value>Destination interdite</value>
+  </data>
+  <data name="Status.NoResources" xml:space="preserve">
+    <value>Ressources insuffisantes</value>
+  </data>
+  <data name="Status.BadOption" xml:space="preserve">
+    <value>Option non valide</value>
+  </data>
+  <data name="Status.HardwareError" xml:space="preserve">
+    <value>Erreur matérielle</value>
+  </data>
+  <data name="Status.PacketTooBig" xml:space="preserve">
+    <value>Paquet trop volumineux</value>
+  </data>
+  <data name="Status.BadRoute" xml:space="preserve">
+    <value>Route non valide</value>
+  </data>
+  <data name="Status.TtlExpired" xml:space="preserve">
+    <value>TTL expiré</value>
+  </data>
+  <data name="Status.TtlReassemblyTimeExceeded" xml:space="preserve">
+    <value>TTL expiré pendant le réassemblage</value>
+  </data>
+  <data name="Status.ParameterProblem" xml:space="preserve">
+    <value>Problème de paramètre</value>
+  </data>
+  <data name="Status.SourceQuench" xml:space="preserve">
+    <value>Ralentissement de la source</value>
+  </data>
+  <data name="Status.BadDestination" xml:space="preserve">
+    <value>Destination non valide</value>
+  </data>
+  <data name="Status.DestinationUnreachable" xml:space="preserve">
+    <value>Destination inaccessible</value>
+  </data>
+  <data name="Status.TimeExceeded" xml:space="preserve">
+    <value>Temps dépassé</value>
+  </data>
+  <data name="Status.BadHeader" xml:space="preserve">
+    <value>En-tête non valide</value>
+  </data>
+  <data name="Status.UnrecognizedNextHeader" xml:space="preserve">
+    <value>En-tête suivant non reconnu</value>
+  </data>
+  <data name="Status.IcmpError" xml:space="preserve">
+    <value>Erreur ICMP</value>
+  </data>
+  <data name="Status.DestinationScopeMismatch" xml:space="preserve">
+    <value>Portée de destination incompatible</value>
+  </data>
+  <data name="Status.NoContent" xml:space="preserve">
+    <value>Aucun contenu</value>
+  </data>
+  <data name="Status.ConnectionReset" xml:space="preserve">
+    <value>Connexion réinitialisée</value>
+  </data>
+  <data name="Status.TimedOut" xml:space="preserve">
+    <value>Délai dépassé</value>
+  </data>
+  <data name="Status.Unknown" xml:space="preserve">
+    <value>Inconnu</value>
+  </data>
+  <data name="Status.Open" xml:space="preserve">
+    <value>Ouvert</value>
+  </data>
+  <data name="Status.SocketErrorFallback" xml:space="preserve">
+    <value>Erreur de socket ({0})</value>
+  </data>
+  <data name="Status.HttpRequestErrorFallback" xml:space="preserve">
+    <value>Erreur de requête HTTP</value>
+  </data>
+  <data name="Status.WebSocketErrorFallback" xml:space="preserve">
+    <value>Erreur WebSocket</value>
+  </data>
+  <data name="Status.HttpFallback" xml:space="preserve">
+    <value>HTTP {0}</value>
+  </data>
+  <data name="Status.ErrorFallback" xml:space="preserve">
+    <value>Erreur ({0})</value>
+  </data>
+  <data name="Ui.ServicesCountPlain" xml:space="preserve">
+    <value>{0} services</value>
+  </data>
+</root>

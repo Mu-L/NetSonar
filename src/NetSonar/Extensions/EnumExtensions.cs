@@ -19,6 +19,10 @@ public static class EnumExtensions
 {
     public static string GetDescription(this Enum value)
     {
+        var localizationKey = $"Enum.{value.GetType().Name}.{value}";
+        var localizedDescription = App.Localization.GetString(localizationKey);
+        if (localizedDescription != localizationKey) return localizedDescription;
+
         var attributes = value.GetType()
             .GetField(value.ToString())?
             .GetCustomAttributes(typeof(DescriptionAttribute), false);

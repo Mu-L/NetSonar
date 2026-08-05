@@ -15,17 +15,17 @@ public record ProcessXToast
 {
     public string? Title { get; init; }
     public bool ShowOnlySuccessGenericMessage { get; init; }
-    public string SuccessGenericMessage { get; init; } = "Operation completed successfully.";
+    public string SuccessGenericMessage { get; init; } = App.Localization["Operation.Success"];
     public string? ErrorGenericMessage { get; init; }
 
     public ProcessXToast()
     {
     }
 
-    public ProcessXToast(string? title, string successGenericMessage = "Operation completed successfully.", string? errorGenericMessage = null)
+    public ProcessXToast(string? title, string? successGenericMessage = null, string? errorGenericMessage = null)
     {
         Title = title;
-        SuccessGenericMessage = successGenericMessage;
+        SuccessGenericMessage = successGenericMessage ?? App.Localization["Operation.Success"];
         ErrorGenericMessage = errorGenericMessage;
     }
 }
@@ -94,11 +94,7 @@ public static class ProcessXExtensions
             {
                 if (!SystemAware.TryFindEnvFile("pkexec", out var path))
                 {
-                    App.ShowToast(NotificationType.Error, toast.Title, """
-                                                                       Unable to run the operation due sudo requirement.
-                                                                       Tried to run pkexec but it was not found.
-                                                                       Please install pkexec or run the application with sudo.
-                                                                       """);
+                    App.ShowToast(NotificationType.Error, toast.Title, App.Localization["Operation.SudoRequired"]);
                     return false;
                 }
 
