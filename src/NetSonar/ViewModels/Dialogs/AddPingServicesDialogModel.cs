@@ -1,4 +1,6 @@
-﻿using Avalonia.Platform.Storage;
+﻿using Avalonia.Controls.Notifications;
+using Avalonia.Input;
+using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.Input;
 using NetSonar.Avalonia.Extensions;
 using NetSonar.Avalonia.Models;
@@ -146,6 +148,40 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
     public void RemoveServices(IList list)
     {
         Services.RemoveRange(list.Cast<NewPingService>());
+    }
+
+    [RelayCommand]
+    public async Task PasteFromClipboard()
+    {
+        var clipboard = TopLevel.Clipboard;
+        if (clipboard is null) return;
+        var data = await clipboard.TryGetDataAsync();
+        var text = data is null ? null : await AsyncDataTransferExtensions.TryGetTextAsync(data);
+
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            App.ShowToast(NotificationType.Warning,
+                App.Localization["Import.Clipboard.ErrorTitle"],
+                App.Localization["Import.Clipboard.NoData"]);
+            return;
+        }
+
+        var result = ClipboardPasteParser.Parse(text);
+        if (result.Services.Count == 0)
+        {
+            App.ShowToast(NotificationType.Warning,
+                App.Localization["Import.Clipboard.ErrorTitle"],
+                App.Localization["Import.Clipboard.NoData"]);
+            return;
+        }
+
+        PurgeEmptyRecords();
+        AddUniques(result.Services);
+
+        ToastManager.CreateSimpleInfoToast()
+            .WithContent(App.Localization.Format("Import.Clipboard.Summary",
+                result.Services.Count, result.SkippedCount))
+            .Queue();
     }
 
     private void PurgeEmptyRecords()

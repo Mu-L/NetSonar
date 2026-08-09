@@ -53,9 +53,13 @@
                     <SplitButton Classes="Flat Small"
                                  Command="{Binding AddEmptyCommand}"
                                  Content="{icon:MaterialIconExt Kind=Add}"
-                                 ToolTip.Tip="{localization:Translate Ui.AddNewServiceS}">
+                                 ToolTip.Tip="{localization:Translate Ui.AddNewServiceSWithPasteHint}">
                         <SplitButton.Flyout>
                             <MenuFlyout Placement="Bottom">
+                                <MenuItem Command="{Binding PasteFromClipboardCommand}"
+                                          Header="{localization:Translate Ui.PasteFromClipboard}"
+                                          Icon="{icon:MaterialIconExt Kind=ContentPaste}"
+                                          ToolTip.Tip="{localization:Translate Ui.PasteFormatHint}" />
                                 <MenuItem Command="{Binding ImportFromJsonCommand}"
                                           Header="{localization:Translate Ui.ImportFromJSON}"
                                           Icon="{icon:MaterialIconExt Kind=CodeJson}" />
