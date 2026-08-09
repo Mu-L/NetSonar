@@ -146,10 +146,10 @@
     <value>Coller depuis le presse-papiers</value>
   </data>
   <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>Ordre des colonnes : IP | Port | Intervalle | Description | Groupe&#10;Exemple : 192.168.1.10  80  30  Serveur web  LAN&#10;Exemple : 192.168.130:80|30|Serveur web|LAN</value>
+    <value>Ordre des colonnes : IP | Port | Intervalle | Description | Groupe&#10;Exemple : 192.168.1.10  80  30  Serveur web  LAN&#10;Exemple : 192.168.130:80|30|Serveur web|LAN&#10;Les ports connus sélectionnent le protocole ; les ports inconnus utilisent TCP.</value>
   </data>
   <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
-    <value>Ajouter : bouton principal = ligne vide, flèche = importer&#10;Format de collage : IP | Port | Intervalle | Description | Groupe&#10;Exemple : 192.168.1.10  80  30  Serveur web  LAN&#10;Exemple : 192.168.130:80|30|Serveur web|LAN</value>
+    <value>Ajouter : bouton principal = ligne vide, flèche = importer&#10;Format de collage : IP | Port | Intervalle | Description | Groupe&#10;Exemple : 192.168.1.10  80  30  Serveur web  LAN&#10;Exemple : 192.168.130:80|30|Serveur web|LAN&#10;Les ports connus sélectionnent le protocole ; les ports inconnus utilisent TCP.</value>
   </data>
   <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
     <value>Impossible de coller depuis le presse-papiers</value>

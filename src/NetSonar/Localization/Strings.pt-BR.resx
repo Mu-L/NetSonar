@@ -146,10 +146,10 @@
     <value>Colar da área de transferência</value>
   </data>
   <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>Ordem das colunas: IP | Porta | Intervalo | Descrição | Grupo&#10;Exemplo: 192.168.1.10  80  30  Servidor Web  LAN&#10;Exemplo: 192.168.130:80|30|Servidor Web|LAN</value>
+    <value>Ordem das colunas: IP | Porta | Intervalo | Descrição | Grupo&#10;Exemplo: 192.168.1.10  80  30  Servidor Web  LAN&#10;Exemplo: 192.168.130:80|30|Servidor Web|LAN&#10;Portas conhecidas selecionam o protocolo; portas desconhecidas usam TCP.</value>
   </data>
   <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
-    <value>Adicionar: botão principal = linha vazia, seta = importar&#10;Formato de colagem: IP | Porta | Intervalo | Descrição | Grupo&#10;Exemplo: 192.168.1.10  80  30  Servidor Web  LAN&#10;Exemplo: 192.168.130:80|30|Servidor Web|LAN</value>
+    <value>Adicionar: botão principal = linha vazia, seta = importar&#10;Formato de colagem: IP | Porta | Intervalo | Descrição | Grupo&#10;Exemplo: 192.168.1.10  80  30  Servidor Web  LAN&#10;Exemplo: 192.168.130:80|30|Servidor Web|LAN&#10;Portas conhecidas selecionam o protocolo; portas desconhecidas usam TCP.</value>
   </data>
   <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
     <value>Não foi possível colar da área de transferência</value>

@@ -89,23 +89,23 @@ public partial class NewPingService : ObservableValidatorExtended
             or ServiceProtocolType.STUN
             or ServiceProtocolType.SIP;
         var isIpAddressLiteral = IPAddressExtensions.TryParseLiteral(ipAddressOrUrl, out _);
-        var isValidAddress = isIpAddressLiteral || IPEndPoint.TryParse(ipAddressOrUrl, out _);
 
-        if (!isValidAddress && usesSocketEndpoint)
+        if (usesSocketEndpoint)
         {
-            var scheme = service.ProtocolType is ServiceProtocolType.TCP
-                or ServiceProtocolType.TLS
-                or ServiceProtocolType.SSH
-                or ServiceProtocolType.SMTP
-                or ServiceProtocolType.IMAP
-                or ServiceProtocolType.MQTT
-                ? "tcp"
-                : "udp";
-            isValidAddress = Uri.TryCreate($"{scheme}://{ipAddressOrUrl}", UriKind.Absolute, out var endpointUri)
-                             && !string.IsNullOrWhiteSpace(endpointUri.IdnHost);
+            var hasExplicitPort = HasExplicitPort(ipAddressOrUrl, isIpAddressLiteral);
+            if (service.ProtocolType is ServiceProtocolType.TCP or ServiceProtocolType.UDP
+                && !hasExplicitPort)
+            {
+                return new ValidationResult($"The {service.ProtocolType} protocol must contain a port number.");
+            }
+
+            if (!IsValidSocketAddress(ipAddressOrUrl, service.ProtocolType, isIpAddressLiteral, hasExplicitPort))
+                return new ValidationResult("The string is not a valid IP address, hostname, or URL.");
+
+            return ValidationResult.Success;
         }
 
-        if (!isValidAddress
+        if (!isIpAddressLiteral
             && !Uri.IsWellFormedUriString(ipAddressOrUrl, UriKind.RelativeOrAbsolute))
         {
             return new ValidationResult("The string is not a valid IP address, hostname, or URL.");
@@ -117,13 +117,7 @@ public partial class NewPingService : ObservableValidatorExtended
                 return new ValidationResult($"The {service.ProtocolType} protocol must not contain a port number.");
         }
 
-        if (service.ProtocolType is ServiceProtocolType.TCP or ServiceProtocolType.UDP)
-        {
-            if (!ipAddressOrUrl.Contains(':'))
-                return new ValidationResult($"The {service.ProtocolType} protocol must contain a port number.");
-        }
-
-        if (service.ProtocolType == ServiceProtocolType.ICMP || usesSocketEndpoint)
+        if (service.ProtocolType == ServiceProtocolType.ICMP)
         {
             if (ipAddressOrUrl.Contains('/'))
                 return new ValidationResult(
@@ -139,6 +133,45 @@ public partial class NewPingService : ObservableValidatorExtended
         }
 
         return ValidationResult.Success;
+    }
+
+    private static bool HasExplicitPort(string address, bool isIpAddressLiteral)
+    {
+        if (isIpAddressLiteral) return false;
+        if (!address.StartsWith('[')) return address.Contains(':');
+
+        var closingBracket = address.IndexOf(']');
+        return closingBracket >= 0
+               && closingBracket + 1 < address.Length
+               && address[closingBracket + 1] == ':';
+    }
+
+    private static bool IsValidSocketAddress(
+        string address,
+        ServiceProtocolType protocolType,
+        bool isIpAddressLiteral,
+        bool hasExplicitPort)
+    {
+        if (address.Contains('/') || address.Contains('?') || address.Contains('#') || address.Contains('@'))
+            return false;
+
+        if (isIpAddressLiteral) return true;
+
+        if (IPEndPoint.TryParse(address, out var ipEndPoint))
+            return !hasExplicitPort || ipEndPoint.Port > IPEndPoint.MinPort;
+
+        var scheme = protocolType is ServiceProtocolType.TCP
+            or ServiceProtocolType.TLS
+            or ServiceProtocolType.SSH
+            or ServiceProtocolType.SMTP
+            or ServiceProtocolType.IMAP
+            or ServiceProtocolType.MQTT
+            ? "tcp"
+            : "udp";
+        return Uri.TryCreate($"{scheme}://{address}", UriKind.Absolute, out var endpointUri)
+               && !string.IsNullOrWhiteSpace(endpointUri.IdnHost)
+               && (!hasExplicitPort
+                   || endpointUri.Port is > IPEndPoint.MinPort and <= IPEndPoint.MaxPort);
     }
 
     protected bool Equals(NewPingService other)

@@ -128,18 +128,12 @@ public static class ClipboardPasteParser
         }
         else if (!hasExplicitProtocol && addrHasPort)
         {
-            if (TryGetAddressPort(addr, out var embeddedPort, out var host))
-            {
-                protocol = GuessProtocol(embeddedPort);
-                protocolAddr = embeddedPort == IPEndPoint.MinPort
-                    ? NormalizeIpLiteral(host)
-                    : addr;
-            }
-            else
-            {
-                protocol = ServiceProtocolType.TCP;
-                protocolAddr = addr;
-            }
+            if (!TryGetAddressPort(addr, out var embeddedPort, out var host)) return false;
+
+            protocol = GuessProtocol(embeddedPort);
+            protocolAddr = embeddedPort == IPEndPoint.MinPort
+                ? NormalizeIpLiteral(host)
+                : addr;
         }
         else if (!hasExplicitProtocol
                  && (IPAddressExtensions.TryParseLiteral(addr, out var ipAddress) || !addr.Contains(':')))
@@ -150,9 +144,7 @@ public static class ClipboardPasteParser
         }
         else if (!hasExplicitProtocol)
         {
-            // Colon but not a parseable endpoint (e.g. "host:http") → TCP; the validation gate rejects malformed ones.
-            protocol = ServiceProtocolType.TCP;
-            protocolAddr = addr;
+            return false;
         }
 
         var candidate = new NewPingService(protocol, protocolAddr, description, group);

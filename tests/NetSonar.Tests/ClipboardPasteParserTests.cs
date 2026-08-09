@@ -231,6 +231,22 @@ public sealed class ClipboardPasteParserTests
     }
 
     [TestMethod]
+    [DataRow("example.com:http")]
+    [DataRow("example.com:65536")]
+    [DataRow("example.com:99999")]
+    [DataRow("tcp://example.com:99999")]
+    [DataRow("udp://example.com:http")]
+    [DataRow("dns://example.com:99999")]
+    [DataRow("tcp://[2001:db8::1]")]
+    public void Parse_MalformedSocketEndpoint_SkipsRow(string text)
+    {
+        var result = ClipboardPasteParser.Parse(text);
+
+        Assert.AreEqual(0, result.Services.Count);
+        Assert.AreEqual(1, result.SkippedCount);
+    }
+
+    [TestMethod]
     [DataRow("example.com\t0", ServiceProtocolType.ICMP, "example.com")]
     [DataRow("example.com:0", ServiceProtocolType.ICMP, "example.com")]
     [DataRow("[2001:db8::1]:0", ServiceProtocolType.ICMP, "2001:db8::1")]

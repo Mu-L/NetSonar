@@ -146,10 +146,10 @@
     <value>클립보드에서 붙여넣기</value>
   </data>
   <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>열 순서: IP | 포트 | 간격 | 설명 | 그룹&#10;예: 192.168.1.10  80  30  웹 서버  LAN&#10;예: 192.168.130:80|30|웹 서버|LAN</value>
+    <value>열 순서: IP | 포트 | 간격 | 설명 | 그룹&#10;예: 192.168.1.10  80  30  웹 서버  LAN&#10;예: 192.168.130:80|30|웹 서버|LAN&#10;알려진 포트는 프로토콜을 선택하고 알 수 없는 포트는 TCP를 사용합니다.</value>
   </data>
   <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
-    <value>추가: 기본 버튼 = 빈 행, 화살표 = 가져오기&#10;붙여넣기 형식: IP | 포트 | 간격 | 설명 | 그룹&#10;예: 192.168.1.10  80  30  웹 서버  LAN&#10;예: 192.168.130:80|30|웹 서버|LAN</value>
+    <value>추가: 기본 버튼 = 빈 행, 화살표 = 가져오기&#10;붙여넣기 형식: IP | 포트 | 간격 | 설명 | 그룹&#10;예: 192.168.1.10  80  30  웹 서버  LAN&#10;예: 192.168.130:80|30|웹 서버|LAN&#10;알려진 포트는 프로토콜을 선택하고 알 수 없는 포트는 TCP를 사용합니다.</value>
   </data>
   <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
     <value>클립보드에서 붙여넣을 수 없음</value>

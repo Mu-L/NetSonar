@@ -171,9 +171,7 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
         var result = ClipboardPasteParser.Parse(text);
         if (result.Services.Count == 0)
         {
-            App.ShowToast(NotificationType.Warning,
-                App.Localization["Import.Clipboard.ErrorTitle"],
-                App.Localization["Import.Clipboard.NoData"]);
+            ShowPasteSummary(0, result.SkippedCount);
             return;
         }
 
@@ -181,10 +179,7 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
         var addedCount = AddUniques(result.Services);
         var duplicateCount = result.Services.Count - addedCount;
 
-        ToastManager.CreateSimpleInfoToast()
-            .WithContent(App.Localization.Format("Import.Clipboard.Summary",
-                addedCount, result.SkippedCount + duplicateCount))
-            .Queue();
+        ShowPasteSummary(addedCount, result.SkippedCount + duplicateCount);
     }
 
     private void PurgeEmptyRecords()
@@ -198,9 +193,16 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
     private int AddUniques(IEnumerable<NewPingService> services)
     {
         using var servicesPool =
-            services.AsValueEnumerable().Where(service => !Services.Contains(service)).ToArrayPool();
+            services.AsValueEnumerable().Distinct().Where(service => !Services.Contains(service)).ToArrayPool();
         Services.AddRange(servicesPool.Span);
         return servicesPool.Size;
+    }
+
+    private static void ShowPasteSummary(int addedCount, int skippedCount)
+    {
+        ToastManager.CreateSimpleInfoToast()
+            .WithContent(App.Localization.Format("Import.Clipboard.Summary", addedCount, skippedCount))
+            .Queue();
     }
 
     protected override bool ValidateInternal()

@@ -146,10 +146,10 @@
     <value>Aus Zwischenablage einfügen</value>
   </data>
   <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>Spaltenreihenfolge: IP | Port | Intervall | Beschreibung | Gruppe&#10;Beispiel: 192.168.1.10  80  30  Webserver  LAN&#10;Beispiel: 192.168.130:80|30|Webserver|LAN</value>
+    <value>Spaltenreihenfolge: IP | Port | Intervall | Beschreibung | Gruppe&#10;Beispiel: 192.168.1.10  80  30  Webserver  LAN&#10;Beispiel: 192.168.130:80|30|Webserver|LAN&#10;Bekannte Ports wählen das Protokoll; unbekannte Ports verwenden TCP.</value>
   </data>
   <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
-    <value>Hinzufügen: Hauptschaltfläche = leere Zeile, Pfeil = importieren&#10;Einfügeformat: IP | Port | Intervall | Beschreibung | Gruppe&#10;Beispiel: 192.168.1.10  80  30  Webserver  LAN&#10;Beispiel: 192.168.130:80|30|Webserver|LAN</value>
+    <value>Hinzufügen: Hauptschaltfläche = leere Zeile, Pfeil = importieren&#10;Einfügeformat: IP | Port | Intervall | Beschreibung | Gruppe&#10;Beispiel: 192.168.1.10  80  30  Webserver  LAN&#10;Beispiel: 192.168.130:80|30|Webserver|LAN&#10;Bekannte Ports wählen das Protokoll; unbekannte Ports verwenden TCP.</value>
   </data>
   <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
     <value>Einfügen aus der Zwischenablage nicht möglich</value>

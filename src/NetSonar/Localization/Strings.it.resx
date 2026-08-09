@@ -146,10 +146,10 @@
     <value>Incolla dagli appunti</value>
   </data>
   <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>Ordine colonne: IP | Porta | Intervallo | Descrizione | Gruppo&#10;Esempio: 192.168.1.10  80  30  Server web  LAN&#10;Esempio: 192.168.130:80|30|Server web|LAN</value>
+    <value>Ordine colonne: IP | Porta | Intervallo | Descrizione | Gruppo&#10;Esempio: 192.168.1.10  80  30  Server web  LAN&#10;Esempio: 192.168.130:80|30|Server web|LAN&#10;Le porte note selezionano il protocollo; quelle sconosciute usano TCP.</value>
   </data>
   <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
-    <value>Aggiungi: pulsante principale = riga vuota, freccia = importa&#10;Formato di incolla: IP | Porta | Intervallo | Descrizione | Gruppo&#10;Esempio: 192.168.1.10  80  30  Server web  LAN&#10;Esempio: 192.168.130:80|30|Server web|LAN</value>
+    <value>Aggiungi: pulsante principale = riga vuota, freccia = importa&#10;Formato di incolla: IP | Porta | Intervallo | Descrizione | Gruppo&#10;Esempio: 192.168.1.10  80  30  Server web  LAN&#10;Esempio: 192.168.130:80|30|Server web|LAN&#10;Le porte note selezionano il protocollo; quelle sconosciute usano TCP.</value>
   </data>
   <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
     <value>Impossibile incollare dagli appunti</value>

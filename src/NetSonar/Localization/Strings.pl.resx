@@ -146,10 +146,10 @@
     <value>Wklej ze schowka</value>
   </data>
   <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>Kolejność kolumn: IP | Port | Interwał | Opis | Grupa&#10;Przykład: 192.168.1.10  80  30  Serwer WWW  LAN&#10;Przykład: 192.168.130:80|30|Serwer WWW|LAN</value>
+    <value>Kolejność kolumn: IP | Port | Interwał | Opis | Grupa&#10;Przykład: 192.168.1.10  80  30  Serwer WWW  LAN&#10;Przykład: 192.168.130:80|30|Serwer WWW|LAN&#10;Znane porty wybierają protokół; nieznane porty używają TCP.</value>
   </data>
   <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
-    <value>Dodaj: główny przycisk = pusty wiersz, strzałka = import&#10;Format wklejania: IP | Port | Interwał | Opis | Grupa&#10;Przykład: 192.168.1.10  80  30  Serwer WWW  LAN&#10;Przykład: 192.168.130:80|30|Serwer WWW|LAN</value>
+    <value>Dodaj: główny przycisk = pusty wiersz, strzałka = import&#10;Format wklejania: IP | Port | Interwał | Opis | Grupa&#10;Przykład: 192.168.1.10  80  30  Serwer WWW  LAN&#10;Przykład: 192.168.130:80|30|Serwer WWW|LAN&#10;Znane porty wybierają protokół; nieznane porty używają TCP.</value>
   </data>
   <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
     <value>Nie można wkleić ze schowka</value>

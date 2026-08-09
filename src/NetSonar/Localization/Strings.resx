@@ -146,10 +146,10 @@
     <value>Paste from clipboard</value>
   </data>
   <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>Column order: IP | Port | Interval | Description | Group&#10;Example: 192.168.1.10  80  30  Web server  LAN&#10;Example: 192.168.130:80|30|Web server|LAN</value>
+    <value>Column order: IP | Port | Interval | Description | Group&#10;Example: 192.168.1.10  80  30  Web server  LAN&#10;Example: 192.168.130:80|30|Web server|LAN&#10;Known ports select the protocol; unknown ports use TCP.</value>
   </data>
   <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
-    <value>Add: main button = empty row, arrow = import&#10;Paste format: IP | Port | Interval | Description | Group&#10;Example: 192.168.1.10  80  30  Web server  LAN&#10;Example: 192.168.130:80|30|Web server|LAN</value>
+    <value>Add: main button = empty row, arrow = import&#10;Paste format: IP | Port | Interval | Description | Group&#10;Example: 192.168.1.10  80  30  Web server  LAN&#10;Example: 192.168.130:80|30|Web server|LAN&#10;Known ports select the protocol; unknown ports use TCP.</value>
   </data>
   <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
     <value>Unable to paste from clipboard</value>
