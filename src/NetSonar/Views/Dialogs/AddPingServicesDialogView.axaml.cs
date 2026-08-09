@@ -44,6 +44,7 @@ public partial class AddPingServicesDialogView : UserControlBase
             && (e.KeyModifiers & (KeyModifiers.Control | KeyModifiers.Meta)) != 0
             && TopLevel.GetTopLevel(this)?.FocusManager?.GetFocusedElement() is not TextBox
             && DataContext is AddPingServicesDialogModel vm
+            && !vm.IsEditing
             && vm.PasteFromClipboardCommand.CanExecute(null))
         {
             vm.PasteFromClipboardCommand.Execute(null);

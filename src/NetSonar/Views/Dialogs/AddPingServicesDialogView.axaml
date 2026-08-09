@@ -36,7 +36,7 @@
 
                     <TextBlock VerticalAlignment="Center"
                                Classes="h4"
-                               Text="{localization:Translate Ui.Services}" />
+                               Text="{Binding HeaderText}" />
 
                     <Button MinWidth="45"
                             Padding="15,5"
@@ -53,12 +53,14 @@
                     <SplitButton Classes="Flat Small"
                                  Command="{Binding AddEmptyCommand}"
                                  Content="{icon:MaterialIconExt Kind=Add}"
+                                 IsVisible="{Binding !IsEditing}"
                                  ToolTip.Tip="{localization:Translate Ui.AddNewServiceSWithPasteHint}">
                         <SplitButton.Flyout>
                             <MenuFlyout Placement="Bottom">
                                 <MenuItem Command="{Binding PasteFromClipboardCommand}"
                                           Header="{localization:Translate Ui.PasteFromClipboard}"
                                           Icon="{icon:MaterialIconExt Kind=ContentPaste}"
+                                          IsVisible="{Binding !IsEditing}"
                                           ToolTip.Tip="{localization:Translate Ui.PasteFormatHint}" />
                                 <MenuItem Command="{Binding ImportFromJsonCommand}"
                                           Header="{localization:Translate Ui.ImportFromJSON}"
@@ -125,6 +127,7 @@
                                  Command="{Binding RemoveServicesCommand}"
                                  CommandParameter="{Binding #ServicesGrid.SelectedItems}"
                                  Content="{icon:MaterialIconExt Kind=TrashCanOutline}"
+                                 IsVisible="{Binding !IsEditing}"
                                  ToolTip.Tip="{localization:Translate Ui.RemoveServiceS}">
                         <SplitButton.Flyout>
                             <MenuFlyout Placement="Bottom">
@@ -170,7 +173,8 @@
                                   Header="{localization:Translate Ui.RemoveSelectedServiceS}"
                                   HotKey="Shift + Delete"
                                   Icon="{icon:MaterialIconExt Kind=Delete}"
-                                  IsEnabled="{Binding $parent[DataGrid].SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                  IsEnabled="{Binding $parent[DataGrid].SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                  IsVisible="{Binding !IsEditing}" />
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
@@ -272,8 +276,8 @@
                     Command="{Binding ApplyCommand}">
                 <StackPanel Orientation="Horizontal"
                             Spacing="5">
-                    <icon:MaterialIcon Kind="Import" />
-                    <TextBlock Text="{localization:Translate Ui.Import}" />
+                    <icon:MaterialIcon Kind="{Binding ApplyButtonIcon}" />
+                    <TextBlock Text="{Binding ApplyButtonText}" />
                 </StackPanel>
             </Button>
             <Button Classes="Flat"

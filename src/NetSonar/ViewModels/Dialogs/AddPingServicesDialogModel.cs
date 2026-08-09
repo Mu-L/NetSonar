@@ -2,6 +2,7 @@
 using Avalonia.Input;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.Input;
+using Material.Icons;
 using NetSonar.Avalonia.Extensions;
 using NetSonar.Avalonia.Models;
 using NetSonar.Avalonia.Network;
@@ -28,16 +29,34 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
 
     public NotifyCollectionChangedSynchronizedViewList<NewPingService> ServicesView { get; }
 
+    private readonly PingableService? _editingService;
+
+    public bool IsEditing => _editingService is not null;
+
+    public string HeaderText => App.Localization[IsEditing ? "Ui.EditServiceS" : "Ui.Services"];
+
+    public string ApplyButtonText => App.Localization[IsEditing ? "Ui.Save" : "Ui.Import"];
+
+    public MaterialIconKind ApplyButtonIcon => IsEditing ? MaterialIconKind.ContentSave : MaterialIconKind.Import;
+
     protected internal override void OnUnloaded()
     {
         base.OnUnloaded();
         ServicesView.Dispose();
     }
 
-    public AddPingServicesDialogModel(ISukiDialog dialog) : base(dialog)
+    public AddPingServicesDialogModel(ISukiDialog dialog, PingableService? serviceToEdit = null) : base(dialog)
     {
         ServicesView = Services.ToWritableNotifyCollectionChanged(SynchronizationContextCollectionEventDispatcher.Current);
-        AddEmpty();
+        _editingService = serviceToEdit;
+        if (serviceToEdit is not null)
+        {
+            Services.Add(new NewPingService(serviceToEdit));
+        }
+        else
+        {
+            AddEmpty();
+        }
     }
 
 
@@ -153,6 +172,7 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
     [RelayCommand]
     public async Task PasteFromClipboard()
     {
+        if (IsEditing) return;
         var clipboard = TopLevel.Clipboard;
         if (clipboard is null) return;
         var data = await clipboard.TryGetDataAsync();
@@ -210,6 +230,15 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
 
     protected override Task<bool> ApplyInternal()
     {
+        if (IsEditing)
+        {
+            ApplyEdit();
+            ToastManager.CreateSimpleInfoToast()
+                .WithContent(App.Localization["Ui.ServiceUpdated"])
+                .Queue();
+            return base.ApplyInternal();
+        }
+
         var importCount = 0;
 
         foreach (var service in Services)
@@ -234,5 +263,35 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
             .Queue();
 
         return base.ApplyInternal();
+    }
+
+    private void ApplyEdit()
+    {
+        if (_editingService is null || Services.Count == 0) return;
+        var edited = Services[0];
+        var target = _editingService;
+        var identityChanged = edited.ProtocolType != target.ProtocolType
+                              || !string.Equals(edited.IpAddressOrUrl, target.IpAddressOrUrl, StringComparison.Ordinal);
+        if (identityChanged)
+        {
+            var order = target.Order;
+            var items = PingableServicesFile.Instance.Items;
+            var index = items.IndexOf(target);
+            items.Remove(target);
+            var replacement = new PingableService(edited) { Order = order };
+            if (index >= 0) items.Insert(Math.Min(index, items.Count), replacement);
+            else items.Add(replacement);
+        }
+        else
+        {
+            target.Description = edited.Description;
+            target.Group = edited.Group;
+            target.IsEnabled = edited.IsEnabled;
+            target.PingEverySeconds = edited.PingEverySeconds;
+            target.TimeoutSeconds = edited.TimeoutSeconds;
+            target.BufferSize = edited.BufferSize;
+            target.Ttl = edited.Ttl;
+            target.DontFragment = edited.DontFragment;
+        }
     }
 }

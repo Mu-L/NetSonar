@@ -1304,4 +1304,16 @@ IP 地址：{0}
   <data name="Ui.ServicesCountPlain" xml:space="preserve">
     <value>{0} 个服务</value>
   </data>
+  <data name="Ui.Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="Ui.EditServiceS" xml:space="preserve">
+    <value>编辑服务</value>
+  </data>
+  <data name="Ui.Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Ui.ServiceUpdated" xml:space="preserve">
+    <value>服务已成功更新。</value>
+  </data>
 </root>

@@ -266,8 +266,9 @@
                           CanUserResizeColumns="True"
                           CanUserSortColumns="True"
                           ClipboardCopyMode="IncludeHeader"
+                          DoubleTapped="OnServicesGridDoubleTapped"
                           HeadersVisibility="All"
-                          IsReadOnly="False"
+                          IsReadOnly="True"
                           ItemsSource="{Binding ServicesViewCollection}"
                           SelectedItem="{Binding SelectedService}">
                     <DataGrid.Styles>
@@ -295,6 +296,13 @@
                     !-->
                     <DataGrid.ContextMenu>
                         <ContextMenu>
+                            <MenuItem Command="{Binding EditSelectedServiceCommand}"
+                                      Header="{localization:Translate Ui.EditServiceS}"
+                                      Icon="{icon:MaterialIconExt Kind=Pencil}"
+                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}" />
+
+                            <Separator />
+
                             <MenuItem Command="{Binding PauseSelectedServicesCommand}"
                                       Header="{localization:Translate Ui.PauseSelected}"
                                       Icon="{icon:MaterialIconExt Kind=Pause}"

@@ -396,6 +396,17 @@ public partial class PingableServicesPageModel : PageViewModelBase
     }
 
     [RelayCommand]
+    public void EditSelectedService()
+    {
+        if (_servicesDataGrid.SelectedIndex == -1) return;
+        if (_servicesDataGrid.SelectedItem is not PingableService service) return;
+        var dialog = DialogManager
+            .CreateDialog()
+            .WithViewModel(dialog => new AddPingServicesDialogModel(dialog, service));
+        dialog.TryShow();
+    }
+
+    [RelayCommand]
     public void PauseSelectedService()
     {
         if (_servicesDataGrid.SelectedIndex == -1) return;
