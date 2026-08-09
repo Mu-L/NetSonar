@@ -17,6 +17,9 @@ public static class Protocols
     public const int DefaultStunPort = 3478;
     public const int DefaultSipPort = 5060;
 
+    /// <summary>
+    /// A read-only dictionary mapping default port numbers to their corresponding service protocol types.
+    /// </summary>
     public static readonly IReadOnlyDictionary<int, ServiceProtocolType> ProtocolsByDefaultPort =
         new Dictionary<int, ServiceProtocolType>
         {
