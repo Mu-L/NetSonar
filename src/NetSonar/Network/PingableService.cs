@@ -46,36 +46,25 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
 
     private const int WindowsIcmpTimeoutResolution = 500;
 
-    public const int DefaultNtpPort = 123;
     private const int NtpPacketLength = 48;
     private const long NtpEpochOffsetSeconds = 2_208_988_800;
 
-    public const int DefaultDnsPort = 53;
     private const int DnsHeaderLength = 12;
     private const int DnsQuestionLength = 17;
     private const int DnsPacketLength = DnsHeaderLength + DnsQuestionLength;
 
-    public const int DefaultSmtpPort = 25;
     private const int MaxSmtpResponseLength = 8192;
 
-    public const int DefaultMqttPort = 1883;
     private const int MqttConnectPacketLength = 35;
     private const int MqttConnAckPacketLength = 4;
 
-    public const int DefaultTlsPort = 443;
-
-    public const int DefaultSshPort = 22;
     private const int MaxSshIdentificationLength = 8192;
 
-    public const int DefaultStunPort = 3478;
     private const int StunPacketLength = 20;
     private const uint StunMagicCookie = 0x2112_A442;
 
-    public const int DefaultSipPort = 5060;
     private const int MaxSipResponseLength = 8192;
 
-    public const int DefaultImapPort = 143;
-    public const int DefaultImapTlsPort = 993;
     private const int MaxImapResponseLength = 8192;
 
     #endregion
@@ -237,15 +226,15 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
     {
         return protocolType switch
         {
-            ServiceProtocolType.TLS => DefaultTlsPort,
-            ServiceProtocolType.DNS => DefaultDnsPort,
-            ServiceProtocolType.NTP => DefaultNtpPort,
-            ServiceProtocolType.SSH => DefaultSshPort,
-            ServiceProtocolType.SMTP => DefaultSmtpPort,
-            ServiceProtocolType.IMAP => DefaultImapPort,
-            ServiceProtocolType.MQTT => DefaultMqttPort,
-            ServiceProtocolType.STUN => DefaultStunPort,
-            ServiceProtocolType.SIP => DefaultSipPort,
+            ServiceProtocolType.TLS => Protocols.DefaultTlsPort,
+            ServiceProtocolType.DNS => Protocols.DefaultDnsPort,
+            ServiceProtocolType.NTP => Protocols.DefaultNtpPort,
+            ServiceProtocolType.SSH => Protocols.DefaultSshPort,
+            ServiceProtocolType.SMTP => Protocols.DefaultSmtpPort,
+            ServiceProtocolType.IMAP => Protocols.DefaultImapPort,
+            ServiceProtocolType.MQTT => Protocols.DefaultMqttPort,
+            ServiceProtocolType.STUN => Protocols.DefaultStunPort,
+            ServiceProtocolType.SIP => Protocols.DefaultSipPort,
             _ => IPEndPoint.MinPort
         };
     }
@@ -450,7 +439,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
             host = $"[{host}]";
         }
 
-        return IpEndPoint.Port == DefaultSipPort ? host : $"{host}:{IpEndPoint.Port}";
+        return IpEndPoint.Port == Protocols.DefaultSipPort ? host : $"{host}:{IpEndPoint.Port}";
     }
 
     private static async ValueTask<int> ReceiveAndValidateNtpResponseAsync(
@@ -1339,7 +1328,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
                     bufferLength = await ReceiveAndValidateImapAsync(
                         socket,
                         GetDnsLookupTarget(),
-                        remotePort == DefaultImapTlsPort,
+                remotePort == Protocols.DefaultImapTlsPort,
                         timeoutCts.Token);
                 }
                 else if (ProtocolType == ServiceProtocolType.MQTT)

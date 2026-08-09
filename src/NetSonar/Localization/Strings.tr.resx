@@ -146,10 +146,10 @@
     <value>Panodan yapıştır</value>
   </data>
   <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>Sütun sırası: IP | Bağlantı noktası | Aralık | Açıklama | Grup&#10;Örnek: 192.168.1.10  80  30  Web sunucusu  LAN&#10;Adresteki bağlantı noktası: 192.168.130:80|30|Web sunucusu|LAN</value>
+    <value>Sütun sırası: IP | Bağlantı noktası | Aralık | Açıklama | Grup&#10;Örnek: 192.168.1.10  80  30  Web sunucusu  LAN&#10;Örnek: 192.168.130:80|30|Web sunucusu|LAN</value>
   </data>
   <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
-    <value>Ekle: ana düğme = boş satır, ok = içe aktar&#10;Yapıştırma biçimi: IP | Bağlantı noktası | Aralık | Açıklama | Grup&#10;Örnek: 192.168.1.10  80  30  Web sunucusu  LAN&#10;Adresteki bağlantı noktası: 192.168.130:80|30|Web sunucusu|LAN</value>
+    <value>Ekle: ana düğme = boş satır, ok = içe aktar&#10;Yapıştırma biçimi: IP | Bağlantı noktası | Aralık | Açıklama | Grup&#10;Örnek: 192.168.1.10  80  30  Web sunucusu  LAN&#10;Örnek: 192.168.130:80|30|Web sunucusu|LAN</value>
   </data>
   <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
     <value>Panodan yapıştırılamadı</value>

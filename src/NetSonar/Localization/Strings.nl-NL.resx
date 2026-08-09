@@ -146,10 +146,10 @@
     <value>Plakken vanaf klembord</value>
   </data>
   <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>Kolomvolgorde: IP | Poort | Interval | Beschrijving | Groep&#10;Voorbeeld: 192.168.1.10  80  30  Webserver  LAN&#10;Poort in adres: 192.168.130:80|30|Webserver|LAN</value>
+    <value>Kolomvolgorde: IP | Poort | Interval | Beschrijving | Groep&#10;Voorbeeld: 192.168.1.10  80  30  Webserver  LAN&#10;Voorbeeld: 192.168.130:80|30|Webserver|LAN</value>
   </data>
   <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
-    <value>Toevoegen: hoofdknop = lege rij, pijl = importeren&#10;Plakindeling: IP | Poort | Interval | Beschrijving | Groep&#10;Voorbeeld: 192.168.1.10  80  30  Webserver  LAN&#10;Poort in adres: 192.168.130:80|30|Webserver|LAN</value>
+    <value>Toevoegen: hoofdknop = lege rij, pijl = importeren&#10;Plakindeling: IP | Poort | Interval | Beschrijving | Groep&#10;Voorbeeld: 192.168.1.10  80  30  Webserver  LAN&#10;Voorbeeld: 192.168.130:80|30|Webserver|LAN</value>
   </data>
   <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
     <value>Kan niet plakken vanaf het klembord</value>
