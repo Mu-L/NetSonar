@@ -8,6 +8,24 @@ namespace NetSonar.Avalonia.Extensions;
 
 public static class IPAddressExtensions
 {
+    /// <summary>
+    /// Parses a bare IP address or a bracketed IP literal without an endpoint port.
+    /// </summary>
+    public static bool TryParseLiteral(string? value, out IPAddress? ipAddress)
+    {
+        ipAddress = null;
+        if (string.IsNullOrWhiteSpace(value)) return false;
+
+        var span = value.AsSpan();
+        if (span[0] == '[')
+        {
+            if (span.Length < 2 || span[^1] != ']') return false;
+            span = span[1..^1];
+        }
+
+        return IPAddress.TryParse(span, out ipAddress);
+    }
+
     public static bool IsValid(this IPAddress ipAddress)
     {
         return !ipAddress.Equals(IPAddress.None) && !ipAddress.Equals(IPAddress.Any) && !ipAddress.Equals(IPAddress.IPv6Any);

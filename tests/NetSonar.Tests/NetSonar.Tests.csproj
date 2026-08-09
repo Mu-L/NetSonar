@@ -1,0 +1,14 @@
+<Project Sdk="MSTest.Sdk/4.3.3">
+    <PropertyGroup>
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\NetSonar\NetSonar.Avalonia.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\..\src\NetSonar\Localization\Strings*.resx" Link="Localization\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+</Project>

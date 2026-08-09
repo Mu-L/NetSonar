@@ -88,7 +88,8 @@ public partial class NewPingService : ObservableValidatorExtended
             or ServiceProtocolType.MQTT
             or ServiceProtocolType.STUN
             or ServiceProtocolType.SIP;
-        var isValidAddress = IPEndPoint.TryParse(ipAddressOrUrl, out _);
+        var isIpAddressLiteral = IPAddressExtensions.TryParseLiteral(ipAddressOrUrl, out _);
+        var isValidAddress = isIpAddressLiteral || IPEndPoint.TryParse(ipAddressOrUrl, out _);
 
         if (!isValidAddress && usesSocketEndpoint)
         {
@@ -112,7 +113,7 @@ public partial class NewPingService : ObservableValidatorExtended
 
         if (service.ProtocolType is ServiceProtocolType.ICMP)
         {
-            if (ipAddressOrUrl.Contains(':'))
+            if (ipAddressOrUrl.Contains(':') && !isIpAddressLiteral)
                 return new ValidationResult($"The {service.ProtocolType} protocol must not contain a port number.");
         }
 

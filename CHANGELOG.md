@@ -1,3 +1,8 @@
+# Unreleased
+
+- Add batch import of services for all supported protocols from tab- or pipe-separated clipboard data, including
+  explicit protocol schemes, optional intervals, descriptions, groups, duplicate reporting, and IPv6 support
+
 # v0.4.1 (05/08/2026)
 
 - Translate the application UI, dialogs, notifications, networking actions, and enum descriptions into German,
