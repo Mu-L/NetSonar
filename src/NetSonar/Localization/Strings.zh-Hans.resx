@@ -68,16 +68,16 @@
     <value>语言</value>
   </data>
   <data name="Settings.Language.FollowSystem" xml:space="preserve">
-    <value>使用系统语言</value>
+    <value>跟随系统</value>
   </data>
   <data name="Settings.Language.Description" xml:space="preserve">
-    <value>选择整个应用程序中使用的语言。</value>
+    <value>选择应用程序中使用的语言。</value>
   </data>
   <data name="Ui.Show" xml:space="preserve">
     <value>👁 显示</value>
   </data>
   <data name="Ui.Options" xml:space="preserve">
-    <value>⚙️选项</value>
+    <value>⚙️ 选项</value>
   </data>
   <data name="Ui.StartWithSystem" xml:space="preserve">
     <value>随系统启动</value>
@@ -98,7 +98,7 @@
     <value>开</value>
   </data>
   <data name="Ui.Off" xml:space="preserve">
-    <value>关闭</value>
+    <value>关</value>
   </data>
   <data name="Ui.OperativeSystem" xml:space="preserve">
     <value>操作系统：</value>
@@ -110,10 +110,10 @@
     <value>处理器：</value>
   </data>
   <data name="Ui.ProcessorCores" xml:space="preserve">
-    <value>处理器核心：</value>
+    <value>处理器核心数：</value>
   </data>
   <data name="Ui.MemoryRAM" xml:space="preserve">
-    <value>内存：</value>
+    <value>内存（RAM）：</value>
   </data>
   <data name="Ui.Framework" xml:space="preserve">
     <value>框架：</value>
@@ -122,7 +122,7 @@
     <value>AvaloniaUI:</value>
   </data>
   <data name="Ui.ScreensResolutionWorkingAreaUsableArea" xml:space="preserve">
-    <value>屏幕、分辨率、工作区域、可用区域：</value>
+    <value>屏幕、分辨率、工作区、可用区域：</value>
   </data>
   <data name="Ui.Description" xml:space="preserve">
     <value>描述</value>
@@ -137,7 +137,7 @@
     <value>服务</value>
   </data>
   <data name="Ui.AddNewServiceS" xml:space="preserve">
-    <value>添加新服务</value>
+    <value>添加服务</value>
   </data>
   <data name="Ui.ImportFromJSON" xml:space="preserve">
     <value>从 JSON 导入</value>
@@ -179,7 +179,7 @@
     <value>请修正以下错误：</value>
   </data>
   <data name="Ui.RemoveSelectedServiceS" xml:space="preserve">
-    <value>删除选定的服务</value>
+    <value>删除所选服务</value>
   </data>
   <data name="Ui.Enable" xml:space="preserve">
     <value>启用</value>
@@ -206,7 +206,7 @@
     <value>不分片</value>
   </data>
   <data name="Ui.Import" xml:space="preserve">
-    <value>进口</value>
+    <value>导入</value>
   </data>
   <data name="Ui.Cancel" xml:space="preserve">
     <value>取消</value>
@@ -218,7 +218,7 @@
     <value>通过 DHCP 自动分配 IP</value>
   </data>
   <data name="Ui.ManualIPAssignment" xml:space="preserve">
-    <value>手动分配IP</value>
+    <value>手动分配 IP</value>
   </data>
   <data name="Ui.IPAddress" xml:space="preserve">
     <value>IP 地址：</value>
@@ -236,22 +236,22 @@
     <value>通过 DHCP 自动分配 DNS</value>
   </data>
   <data name="Ui.ManualDNSAssignment" xml:space="preserve">
-    <value>手动 DNS 分配</value>
+    <value>手动分配 DNS</value>
   </data>
   <data name="Ui.Presets" xml:space="preserve">
     <value>预设</value>
   </data>
   <data name="Ui.PrimaryDNS" xml:space="preserve">
-    <value>主 DNS：</value>
+    <value>首选 DNS：</value>
   </data>
   <data name="Ui.SetTheDNSFromTheDefinedServerGateway" xml:space="preserve">
-    <value>从定义的服务器网关设置 DNS。</value>
+    <value>使用已定义的服务器网关设置 DNS。</value>
   </data>
   <data name="Ui.ClearAddress" xml:space="preserve">
     <value>清除地址</value>
   </data>
   <data name="Ui.SecondaryDNS" xml:space="preserve">
-    <value>辅助 DNS：</value>
+    <value>备用 DNS：</value>
   </data>
   <data name="Ui.Apply" xml:space="preserve">
     <value>应用</value>
@@ -266,7 +266,7 @@
     <value>续租 IP</value>
   </data>
   <data name="Ui.SetIP" xml:space="preserve">
-    <value>设置IP</value>
+    <value>设置 IP</value>
   </data>
   <data name="Ui.ManualAssignment" xml:space="preserve">
     <value>手动分配</value>
@@ -278,13 +278,13 @@
     <value>在新窗口中打开</value>
   </data>
   <data name="Ui.PhysicalAddressMACAddress" xml:space="preserve">
-    <value>物理地址（MAC地址）</value>
+    <value>物理地址（MAC 地址）</value>
   </data>
   <data name="Ui.ConnectionSpeed" xml:space="preserve">
     <value>连接速度</value>
   </data>
   <data name="Ui.StaticIPv4" xml:space="preserve">
-    <value>静态IPv4</value>
+    <value>静态 IPv4</value>
   </data>
   <data name="Ui.Downloaded" xml:space="preserve">
     <value>已下载</value>
@@ -293,10 +293,10 @@
     <value>已上传</value>
   </data>
   <data name="Ui.Property" xml:space="preserve">
-    <value>财产</value>
+    <value>属性</value>
   </data>
   <data name="Ui.Value" xml:space="preserve">
-    <value>价值</value>
+    <value>值</value>
   </data>
   <data name="Ui.GraphOptions" xml:space="preserve">
     <value>图表选项</value>
@@ -305,19 +305,19 @@
     <value>间隔：</value>
   </data>
   <data name="Ui.ChangesTheProbeIntervalForEveryServiceInThisGraph" xml:space="preserve">
-    <value>更改此图中每个服务的探测间隔</value>
+    <value>更改此图表中所有服务的探测间隔</value>
   </data>
   <data name="Ui.Timeout" xml:space="preserve">
     <value>超时：</value>
   </data>
   <data name="Ui.ChangesTheTimeoutForEveryServiceInThisGraph" xml:space="preserve">
-    <value>更改此图中每个服务的超时</value>
+    <value>更改此图表中所有服务的超时时间</value>
   </data>
   <data name="Ui.RecentRepliesIncludedInTheGraphAndStatistics" xml:space="preserve">
-    <value>图表和统计数据中包含最近的回复</value>
+    <value>包含在图表和统计中的近期回复数</value>
   </data>
   <data name="Ui.ClickToToggleTopMenu" xml:space="preserve">
-    <value>单击“切换顶部菜单”。</value>
+    <value>点击切换顶部菜单。</value>
   </data>
   <data name="Ui.About" xml:space="preserve">
     <value>关于</value>
@@ -332,16 +332,16 @@
     <value>捐赠</value>
   </data>
   <data name="Ui.AskAQuestion" xml:space="preserve">
-    <value>问一个问题</value>
+    <value>提问</value>
   </data>
   <data name="Ui.ReportAnIssue" xml:space="preserve">
     <value>报告问题</value>
   </data>
   <data name="Ui.SuggestAnImprovementOrFeature" xml:space="preserve">
-    <value>提出改进或功能建议</value>
+    <value>建议改进或新功能</value>
   </data>
   <data name="Ui.OpenProfileFolder" xml:space="preserve">
-    <value>打开配置文件文件夹</value>
+    <value>打开配置文件夹</value>
   </data>
   <data name="Ui.CheckForUpdates" xml:space="preserve">
     <value>检查更新</value>
@@ -350,10 +350,10 @@
     <value>调试</value>
   </data>
   <data name="Ui.OpenExecutableFolder" xml:space="preserve">
-    <value>打开可执行文件夹</value>
+    <value>打开程序所在文件夹</value>
   </data>
   <data name="Ui.TriggerNewUpdate" xml:space="preserve">
-    <value>触发新的更新</value>
+    <value>触发新更新</value>
   </data>
   <data name="Ui.ThrowException" xml:space="preserve">
     <value>抛出异常</value>
@@ -383,10 +383,10 @@
     <value>正在传输数据</value>
   </data>
   <data name="Ui.FilterInterfacesByText" xml:space="preserve">
-    <value>按文本过滤界面</value>
+    <value>按文本筛选接口</value>
   </data>
   <data name="Ui.RefreshAllInterfaces" xml:space="preserve">
-    <value>刷新所有界面</value>
+    <value>刷新所有接口</value>
   </data>
   <data name="Ui.OpenSystemNetworkManager" xml:space="preserve">
     <value>打开系统网络管理器</value>
@@ -401,10 +401,10 @@
     <value>卡片宽度：</value>
   </data>
   <data name="Ui.CardHeight" xml:space="preserve">
-    <value>卡高：</value>
+    <value>卡片高度：</value>
   </data>
   <data name="Ui.FilterServicesByText" xml:space="preserve">
-    <value>按文本过滤服务</value>
+    <value>按文本筛选服务</value>
   </data>
   <data name="Ui.ResumeAll" xml:space="preserve">
     <value>全部恢复</value>
@@ -416,55 +416,55 @@
     <value>网格视图选项</value>
   </data>
   <data name="Ui.GroupBy" xml:space="preserve">
-    <value>分组依据：</value>
+    <value>分组方式：</value>
   </data>
   <data name="Ui.ResetColumnsOrder" xml:space="preserve">
     <value>重置列顺序</value>
   </data>
   <data name="Ui.DefaultPingOptions" xml:space="preserve">
-    <value>默认 ping 选项</value>
+    <value>默认探测选项</value>
   </data>
   <data name="Ui.PingTimeout" xml:space="preserve">
-    <value>超时：</value>
+    <value>探测超时：</value>
   </data>
   <data name="Ui.BufferSize1DF49DCA" xml:space="preserve">
     <value>缓冲区大小：</value>
   </data>
   <data name="Ui.TimeToLive" xml:space="preserve">
-    <value>生存时间 (TTL)：</value>
+    <value>TTL（生存时间）：</value>
   </data>
   <data name="Ui.DoNotFragment" xml:space="preserve">
     <value>不分片：</value>
   </data>
   <data name="Ui.PingCacheSize" xml:space="preserve">
-    <value>Ping 缓存大小：</value>
+    <value>探测缓存大小：</value>
   </data>
   <data name="Ui.GraphCacheSize" xml:space="preserve">
-    <value>图缓存大小：</value>
+    <value>图表缓存大小：</value>
   </data>
   <data name="Ui.PersistentPings" xml:space="preserve">
-    <value>持续 ping：</value>
+    <value>持久化探测结果：</value>
   </data>
   <data name="Ui.SaveAndRestorePingRepliesAfterProgramRestart" xml:space="preserve">
-    <value>程序重启后保存并恢复 ping 回复</value>
+    <value>程序重启后保存并恢复探测记录</value>
   </data>
   <data name="Ui.PauseSelected" xml:space="preserve">
     <value>暂停所选</value>
   </data>
   <data name="Ui.ResumeSelected" xml:space="preserve">
-    <value>恢复所选项</value>
+    <value>恢复所选</value>
   </data>
   <data name="Ui.ResetSelectedStatistics" xml:space="preserve">
-    <value>重置选定的统计数据</value>
+    <value>重置所选统计</value>
   </data>
   <data name="Ui.ResetAllStatistics" xml:space="preserve">
-    <value>重置所有统计数据</value>
+    <value>重置全部统计</value>
   </data>
   <data name="Ui.RemoveSelected" xml:space="preserve">
-    <value>删除选定的</value>
+    <value>删除所选</value>
   </data>
   <data name="Ui.ExportSelectedToJSON" xml:space="preserve">
-    <value>将所选内容导出为 JSON</value>
+    <value>将所选导出为 JSON</value>
   </data>
   <data name="Ui.ExportAllToJSON" xml:space="preserve">
     <value>全部导出为 JSON</value>
@@ -473,22 +473,22 @@
     <value>在浏览器中打开</value>
   </data>
   <data name="Ui.IPAddress3C3DE0C9" xml:space="preserve">
-    <value>IP地址</value>
+    <value>IP 地址</value>
   </data>
   <data name="Ui.Time" xml:space="preserve">
     <value>时间</value>
   </data>
   <data name="Ui.MinTime" xml:space="preserve">
-    <value>最低延迟</value>
+    <value>最小延迟</value>
   </data>
   <data name="Ui.AvgTime" xml:space="preserve">
     <value>平均延迟</value>
   </data>
   <data name="Ui.MaxTime" xml:space="preserve">
-    <value>最高延迟</value>
+    <value>最大延迟</value>
   </data>
   <data name="Ui.Pings" xml:space="preserve">
-    <value>Ping 测试</value>
+    <value>探测</value>
   </data>
   <data name="Ui.Succeed" xml:space="preserve">
     <value>成功</value>
@@ -509,22 +509,22 @@
     <value>上次失败</value>
   </data>
   <data name="Ui.HostnameQuery" xml:space="preserve">
-    <value>主机名/查询</value>
+    <value>主机名 / 查询</value>
   </data>
   <data name="Ui.Order" xml:space="preserve">
     <value>顺序</value>
   </data>
   <data name="Ui.TotalPings" xml:space="preserve">
-    <value>总 ping 数</value>
+    <value>探测总数</value>
   </data>
   <data name="Ui.SucceedPings" xml:space="preserve">
-    <value>成功的 Ping</value>
+    <value>成功次数</value>
   </data>
   <data name="Ui.FailedPings" xml:space="preserve">
-    <value>失败的 Ping</value>
+    <value>失败次数</value>
   </data>
   <data name="Ui.ClearStatistics" xml:space="preserve">
-    <value>清除统计信息</value>
+    <value>清除统计</value>
   </data>
   <data name="Ui.Resume" xml:space="preserve">
     <value>恢复</value>
@@ -533,7 +533,7 @@
     <value>暂停</value>
   </data>
   <data name="Ui.ExportPings" xml:space="preserve">
-    <value>导出 ping</value>
+    <value>导出探测记录</value>
   </data>
   <data name="Ui.ExportToCSV" xml:space="preserve">
     <value>导出为 CSV</value>
@@ -542,10 +542,10 @@
     <value>导出为 JSON</value>
   </data>
   <data name="Ui.ReplyIPAddress" xml:space="preserve">
-    <value>回复IP地址</value>
+    <value>回复 IP 地址</value>
   </data>
   <data name="Ui.SentOn" xml:space="preserve">
-    <value>发送于</value>
+    <value>发送时间</value>
   </data>
   <data name="Ui.ErrorMessage" xml:space="preserve">
     <value>错误信息</value>
@@ -560,16 +560,16 @@
     <value>最新回复延迟或状态</value>
   </data>
   <data name="Ui.MedianLatencyInTheDisplayedWindow" xml:space="preserve">
-    <value>显示窗口中的中值延迟</value>
+    <value>显示窗口中的中位数延迟</value>
   </data>
   <data name="Ui.95thPercentileLatencyInTheDisplayedWindow" xml:space="preserve">
-    <value>显示窗口中第 95 个百分位数的延迟</value>
+    <value>显示窗口中的第 95 百分位延迟</value>
   </data>
   <data name="Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies" xml:space="preserve">
     <value>相邻成功回复之间的平均延迟变化</value>
   </data>
   <data name="Ui.FailedRepliesInTheDisplayedWindow" xml:space="preserve">
-    <value>在显示的窗口中回复失败</value>
+    <value>显示窗口中失败的回复</value>
   </data>
   <data name="Ui.OpenGraphInANewWindow" xml:space="preserve">
     <value>在新窗口中打开图表</value>
@@ -578,43 +578,43 @@
     <value>系统模式</value>
   </data>
   <data name="Ui.LightMode" xml:space="preserve">
-    <value>灯光模式</value>
+    <value>浅色模式</value>
   </data>
   <data name="Ui.DarkMode" xml:space="preserve">
     <value>深色模式</value>
   </data>
   <data name="Ui.UIScale" xml:space="preserve">
-    <value>用户界面比例</value>
+    <value>界面缩放</value>
   </data>
   <data name="Ui.AdjustTheUIScaleToIncreaseOrDecreaseTheSizeOfTheInterfaceElements" xml:space="preserve">
-    <value>调整 UI 比例以增大或减小界面元素的大小。</value>
+    <value>调整界面缩放以增大或减小界面元素的大小。</value>
   </data>
   <data name="Ui.Background" xml:space="preserve">
     <value>背景</value>
   </data>
   <data name="Ui.AnimatedBackground" xml:space="preserve">
-    <value>动画背景</value>
+    <value>动态背景</value>
   </data>
   <data name="Ui.EnableDisableTheAnimationsForTheBackgroundWhichAreDrivenByTheCurrentlyAc" xml:space="preserve">
     <value>启用/禁用由当前活动效果驱动的背景动画。</value>
   </data>
   <data name="Ui.BackgroundTransitions" xml:space="preserve">
-    <value>背景转换</value>
+    <value>背景过渡</value>
   </data>
   <data name="Ui.EnableDisableTheTransitionsForTheBackgroundTheseWillFadeBetweenTheActive" xml:space="preserve">
-    <value>启用/禁用背景过渡，更改后这些过渡将在活动效果之间淡出。</value>
+    <value>启用/禁用背景过渡，切换时将在活动效果之间淡入淡出。</value>
   </data>
   <data name="Ui.BackgroundStyle" xml:space="preserve">
-    <value>背景风格</value>
+    <value>背景样式</value>
   </data>
   <data name="Ui.SelectFromTheIncludedBackgroundStyles" xml:space="preserve">
-    <value>从包含的背景样式中进行选择。</value>
+    <value>从内置背景样式中选择。</value>
   </data>
   <data name="Ui.CustomShaders" xml:space="preserve">
     <value>自定义着色器</value>
   </data>
   <data name="Ui.ClickAnyOfTheButtonsBelowToEnableABackgroundShaderClickItAgainToDisableI" xml:space="preserve">
-    <value>单击下面的任意按钮以启用背景着色器。再次单击它可将其禁用。这些可能会给您的 GPU 带来相当大的负载，并且纯粹是为了演示和测试后台渲染器的功能。</value>
+    <value>单击下面的任意按钮可启用背景着色器，再次单击可将其禁用。这些着色器可能会给 GPU 带来较大负载，仅用于演示和测试背景渲染器的能力。</value>
   </data>
   <data name="Ui.General" xml:space="preserve">
     <value>常规</value>
@@ -626,34 +626,34 @@
     <value>使用系统托盘</value>
   </data>
   <data name="Ui.ShowATrayIconInTheSystemNotificationAreaForQuickAccessWhenTheAppIsRunnin" xml:space="preserve">
-    <value>在系统通知区域显示托盘图标，以便在应用程序运行时快速访问。</value>
+    <value>在系统通知区域显示托盘图标，以便在应用运行时快速访问。</value>
   </data>
   <data name="Ui.CloseToSystemTray" xml:space="preserve">
-    <value>靠近系统托盘</value>
+    <value>关闭时最小化到托盘</value>
   </data>
   <data name="Ui.WhenClosingTheMainWindowKeepTheAppRunningInTheSystemTrayInsteadOfExiting" xml:space="preserve">
-    <value>关闭主窗口时，使应用程序在系统托盘中保持运行而不是退出。</value>
+    <value>关闭主窗口时将应用保持在系统托盘中运行而不是退出。</value>
   </data>
   <data name="Ui.CheckForUpdatesOnStart" xml:space="preserve">
     <value>启动时检查更新</value>
   </data>
   <data name="Ui.CheckForUpdatesOnApplicationStartIfAnUpdateIsAvailableItWillNotifyAndAdd" xml:space="preserve">
-    <value>检查应用程序启动时的更新。如果有可用更新，它会通知您并提示您采取行动。</value>
+    <value>应用程序启动时检查更新。如有可用更新，会通知并提示您操作。</value>
   </data>
   <data name="Ui.SpeedTests" xml:space="preserve">
-    <value>速度测试</value>
+    <value>测速</value>
   </data>
   <data name="Ui.NewSpeedTest" xml:space="preserve">
-    <value>新速度测试</value>
+    <value>新建测速</value>
   </data>
   <data name="Ui.StopSpeedTest" xml:space="preserve">
-    <value>停止速度测试</value>
+    <value>停止测速</value>
   </data>
   <data name="Ui.SpeedTestSettings" xml:space="preserve">
     <value>测速设置</value>
   </data>
   <data name="Ui.AutoSpeedTest" xml:space="preserve">
-    <value>自动测试：</value>
+    <value>自动测速：</value>
   </data>
   <data name="Ui.Server" xml:space="preserve">
     <value>服务器：</value>
@@ -668,10 +668,10 @@
     <value>打开结果</value>
   </data>
   <data name="Ui.DateTime" xml:space="preserve">
-    <value>日期时间</value>
+    <value>日期和时间</value>
   </data>
   <data name="Ui.Ping" xml:space="preserve">
-    <value>Ping 延迟</value>
+    <value>Ping</value>
   </data>
   <data name="Ui.Download" xml:space="preserve">
     <value>下载</value>
@@ -680,7 +680,7 @@
     <value>上传</value>
   </data>
   <data name="Ui.PacketLoss" xml:space="preserve">
-    <value>丢包</value>
+    <value>丢包率</value>
   </data>
   <data name="Ui.Interface" xml:space="preserve">
     <value>接口</value>
@@ -692,8 +692,8 @@
     <value>系统中未找到 Speedtest 依赖项</value>
   </data>
   <data name="Ui.ThisModuleRequiresTheOoklaSpeedtestCLIBinaryYetWasNotFoundInTheSystemPle" xml:space="preserve">
-    <value>该模块需要 Ookla Speedtest CLI 二进制文件，但在系统中未找到。
-请安装依赖项并重新加载模块。</value>
+    <value>此模块需要 Ookla Speedtest CLI 可执行文件，但系统中未找到。
+请安装该依赖项并重新加载模块。</value>
   </data>
   <data name="Ui.Jitter" xml:space="preserve">
     <value>抖动：</value>
@@ -705,46 +705,46 @@
     <value>高：</value>
   </data>
   <data name="Ui.PLoss" xml:space="preserve">
-    <value>丢包：</value>
+    <value>丢包率：</value>
   </data>
   <data name="Ui.IQM" xml:space="preserve">
-    <value>四分位均值 (IQM)：</value>
+    <value>四分位均值（IQM）：</value>
   </data>
   <data name="Ui.Name" xml:space="preserve">
-    <value>姓名：</value>
+    <value>名称：</value>
   </data>
   <data name="Ui.Location" xml:space="preserve">
-    <value>地点：</value>
+    <value>位置：</value>
   </data>
   <data name="Ui.Host" xml:space="preserve">
     <value>主机：</value>
   </data>
   <data name="Ui.IP" xml:space="preserve">
-    <value>IP 地址：</value>
+    <value>IP：</value>
   </data>
   <data name="Ui.Port" xml:space="preserve">
     <value>端口：</value>
   </data>
   <data name="Ui.ISP" xml:space="preserve">
-    <value>互联网服务提供商：</value>
+    <value>ISP：</value>
   </data>
   <data name="Ui.Index" xml:space="preserve">
-    <value>索引</value>
+    <value>序号</value>
   </data>
   <data name="Ui.NameDCD1D522" xml:space="preserve">
     <value>名称</value>
   </data>
   <data name="Navigation.Interfaces" xml:space="preserve">
-    <value>接口</value>
+    <value>网络接口</value>
   </data>
   <data name="Navigation.Pings" xml:space="preserve">
-    <value>Ping 监控</value>
+    <value>服务监控</value>
   </data>
   <data name="Navigation.SpeedTest" xml:space="preserve">
-    <value>速度测试</value>
+    <value>测速</value>
   </data>
   <data name="Common.Yes" xml:space="preserve">
-    <value>是的</value>
+    <value>是</value>
   </data>
   <data name="Common.No" xml:space="preserve">
     <value>否</value>
@@ -771,16 +771,16 @@
     <value>打开文件夹</value>
   </data>
   <data name="Dialog.About.Title" xml:space="preserve">
-    <value>关于{0}</value>
+    <value>关于 {0}</value>
   </data>
   <data name="Update.TriggerUnavailable.Title" xml:space="preserve">
-    <value>无法触发新的更新</value>
+    <value>无法触发新更新</value>
   </data>
   <data name="Update.TriggerUnavailable.Message" xml:space="preserve">
-    <value>没有可用的版本来触发新的更新。</value>
+    <value>没有可用于触发新更新的发布版本。</value>
   </data>
   <data name="Update.None.Title" xml:space="preserve">
-    <value>没有可用的更新。</value>
+    <value>没有可用更新。</value>
   </data>
   <data name="Update.None.Message" xml:space="preserve">
     <value>{0} 正在运行最新版本。</value>
@@ -794,7 +794,7 @@
   <data name="Update.Found.Message" xml:space="preserve">
     <value>当前版本：{0}
 新版本：{1}
-提前发布：{2}
+已发布版本数：{2}
 发布日期：{3:f}</value>
   </data>
   <data name="Common.Copy" xml:space="preserve">
@@ -836,112 +836,112 @@
     <value>{0} - 已在运行</value>
   </data>
   <data name="InstanceAlreadyRunning.Message" xml:space="preserve">
-    <value>还有另一个 {0} 实例正在运行。一次只能运行一个 {0} 实例。
-请找到并打开正在运行的实例，或者在启动新实例之前将其关闭。</value>
+    <value>已有另一个 {0} 实例在运行。一次只能运行一个 {0} 实例。
+请找到并打开正在运行的实例，或在启动新实例前将其关闭。</value>
   </data>
   <data name="CrashReport.Header" xml:space="preserve">
-    <value>{0} 由于意外错误而崩溃。
+    <value>{0} 因意外错误而崩溃。
 如有必要，您可以报告此错误。
-请在下面找到更多详细信息：</value>
+更多详细信息如下：</value>
   </data>
   <data name="CrashReport.NoDetails" xml:space="preserve">
-    <value>该应用程序由于意外错误而崩溃，但遗憾的是没有更多详细信息。
+    <value>应用程序因意外错误而崩溃，但遗憾的是没有更多详细信息。
 崩溃报告可能已丢失或无法保存。</value>
   </data>
   <data name="Ping.ResetOne.Title" xml:space="preserve">
-    <value>您确定要重置选定的 ping 主机吗？</value>
+    <value>确定要重置选定的探测主机吗？</value>
   </data>
   <data name="Ping.ResetOne.Message" xml:space="preserve">
-    <value>您即将重置选定的 ping 主机统计信息。
+    <value>您即将重置选定探测主机的统计信息。
 
 IP 地址：{0}
-主持人：{1}
+主机：{1}
 
-您确定要继续吗？</value>
+确定要继续吗？</value>
   </data>
   <data name="Ping.ResetSelected.Title" xml:space="preserve">
-    <value>您确定要重置 {0} 个选定的 ping 主机吗？</value>
+    <value>确定要重置选定的 {0} 个探测主机吗？</value>
   </data>
   <data name="Ping.ResetSelected.Message" xml:space="preserve">
-    <value>您即将重置 {0} 个选定 ping 主机的统计信息。
-您确定要继续吗？</value>
+    <value>您即将重置 {0} 个选定探测主机的统计信息。
+确定要继续吗？</value>
   </data>
   <data name="Ping.ResetAll.Title" xml:space="preserve">
-    <value>您确定要重置所有 {0} 个 ping 主机吗？</value>
+    <value>确定要重置所有 {0} 个探测主机吗？</value>
   </data>
   <data name="Ping.ResetAll.Message" xml:space="preserve">
-    <value>您将重置所有 {0} 个 ping 主机的统计信息。
-您确定要继续吗？</value>
+    <value>您即将重置全部 {0} 个探测主机的统计信息。
+确定要继续吗？</value>
   </data>
   <data name="Ping.RemoveSelected.Title" xml:space="preserve">
-    <value>您确定要删除 {0} 个选定的 ping 主机吗？</value>
+    <value>确定要删除选定的 {0} 个探测主机吗？</value>
   </data>
   <data name="Ping.RemoveSelected.Message" xml:space="preserve">
-    <value>您即将删除 {0} 个选定的 ping 主机。
-您确定要继续吗？</value>
+    <value>您即将删除 {0} 个选定的探测主机。
+确定要继续吗？</value>
   </data>
   <data name="Ping.RemoveAll.Title" xml:space="preserve">
-    <value>您确定要删除所有 {0} 个 ping 主机吗？</value>
+    <value>确定要删除所有 {0} 个探测主机吗？</value>
   </data>
   <data name="Ping.RemoveAll.Message" xml:space="preserve">
-    <value>您即将删除所有 {0} 个 ping 主机。
-您确定要继续吗？</value>
+    <value>您即将删除全部 {0} 个探测主机。
+确定要继续吗？</value>
   </data>
   <data name="Export.Services.Title" xml:space="preserve">
     <value>将服务导出为 JSON</value>
   </data>
   <data name="Export.Services.Success" xml:space="preserve">
-    <value>{0} 服务已导出到“{1}”。</value>
+    <value>已将 {0} 个服务导出到"{1}"。</value>
   </data>
   <data name="Export.Services.Error" xml:space="preserve">
-    <value>尝试导出服务时出错：</value>
+    <value>导出服务时出错：</value>
   </data>
   <data name="Export.Pings.CsvTitle" xml:space="preserve">
-    <value>将 ping 导出到 CSV</value>
+    <value>将探测记录导出为 CSV</value>
   </data>
   <data name="Export.Pings.JsonTitle" xml:space="preserve">
-    <value>将 ping 导出为 JSON</value>
+    <value>将探测记录导出为 JSON</value>
   </data>
   <data name="Export.Pings.Success" xml:space="preserve">
-    <value>“{1}”的 {0} ping 已导出到“{2}”。</value>
+    <value>已将"{1}"的 {0} 条探测记录导出到"{2}"。</value>
   </data>
   <data name="Export.Pings.Error" xml:space="preserve">
-    <value>尝试导出 ping 时出错：</value>
+    <value>导出探测记录时出错：</value>
   </data>
   <data name="SpeedTest.Install.Title" xml:space="preserve">
-    <value>速度测试 CLI 安装</value>
+    <value>Speedtest CLI 安装</value>
   </data>
   <data name="SpeedTest.Install.Success" xml:space="preserve">
     <value>Speedtest CLI 安装成功。</value>
   </data>
   <data name="SpeedTest.Install.Error" xml:space="preserve">
-    <value>无法安装 Speedtest CLI。请从 https://www.speedtest.net/apps/cli 手动安装</value>
+    <value>安装 Speedtest CLI 失败。请从 https://www.speedtest.net/apps/cli 手动安装</value>
   </data>
   <data name="SpeedTest.Error" xml:space="preserve">
-    <value>速度测试时出错</value>
+    <value>测速时出错</value>
   </data>
   <data name="Export.Results.Title" xml:space="preserve">
     <value>将结果导出为 JSON</value>
   </data>
   <data name="Export.Results.Success" xml:space="preserve">
-    <value>{0} 结果已导出到“{1}”。</value>
+    <value>已将 {0} 个结果导出到"{1}"。</value>
   </data>
   <data name="Export.Results.Error" xml:space="preserve">
-    <value>尝试导出结果时出错：</value>
+    <value>导出结果时出错：</value>
   </data>
   <data name="SpeedTest.RemoveSelected.Title" xml:space="preserve">
-    <value>您确定要删除 {0} 个选定的结果吗？</value>
+    <value>确定要删除选定的 {0} 个结果吗？</value>
   </data>
   <data name="SpeedTest.RemoveSelected.Message" xml:space="preserve">
     <value>您即将删除 {0} 个选定的结果。
-您确定要继续吗？</value>
+确定要继续吗？</value>
   </data>
   <data name="SpeedTest.RemoveAll.Title" xml:space="preserve">
-    <value>您确定要删除所有 {0} 个结果吗？</value>
+    <value>确定要删除所有 {0} 个结果吗？</value>
   </data>
   <data name="SpeedTest.RemoveAll.Message" xml:space="preserve">
-    <value>您即将删除所有 {0} 个结果。
-您确定要继续吗？</value>
+    <value>您即将删除全部 {0} 个结果。
+确定要继续吗？</value>
   </data>
   <data name="SpeedTest.AutoInstall" xml:space="preserve">
     <value>自动安装</value>
@@ -950,85 +950,85 @@ IP 地址：{0}
     <value>手动安装</value>
   </data>
   <data name="Network.Disable.Title" xml:space="preserve">
-    <value>禁用{0}</value>
+    <value>禁用 {0}</value>
   </data>
   <data name="Network.Disable.Success" xml:space="preserve">
-    <value>接口“{0}”已成功禁用。</value>
+    <value>接口"{0}"已成功禁用。</value>
   </data>
   <data name="Network.Disable.Error" xml:space="preserve">
-    <value>无法禁用“{0}”。</value>
+    <value>无法禁用"{0}"。</value>
   </data>
   <data name="Network.Enable.Title" xml:space="preserve">
-    <value>启用{0}</value>
+    <value>启用 {0}</value>
   </data>
   <data name="Network.Enable.Success" xml:space="preserve">
-    <value>接口“{0}”已成功启用。</value>
+    <value>接口"{0}"已成功启用。</value>
   </data>
   <data name="Network.Enable.Error" xml:space="preserve">
-    <value>无法启用“{0}”。</value>
+    <value>无法启用"{0}"。</value>
   </data>
   <data name="Network.Release.Title" xml:space="preserve">
-    <value>释放{0}</value>
+    <value>释放 {0}</value>
   </data>
   <data name="Network.Release.Success" xml:space="preserve">
-    <value>IP地址释放成功。</value>
+    <value>IP 地址释放成功。</value>
   </data>
   <data name="Network.Release.Error" xml:space="preserve">
-    <value>无法释放“{0}”。</value>
+    <value>无法释放"{0}"。</value>
   </data>
   <data name="Network.Renew.Title" xml:space="preserve">
-    <value>续订{0}</value>
+    <value>续租 {0}</value>
   </data>
   <data name="Network.Renew.Success" xml:space="preserve">
-    <value>IP 地址更新成功。</value>
+    <value>IP 地址续租成功。</value>
   </data>
   <data name="Network.Renew.Error" xml:space="preserve">
-    <value>无法续订“{0}”。</value>
+    <value>无法续租"{0}"。</value>
   </data>
   <data name="Network.StaticIp.Success" xml:space="preserve">
-    <value>IP 地址已成功设置为 {0} {1} {2}</value>
+    <value>已将 IP 地址设置为 {0} {1} {2}</value>
   </data>
   <data name="Network.StaticIp.Error" xml:space="preserve">
-    <value>无法为“{1}”设置静态 IPv{0}。</value>
+    <value>无法为"{1}"设置静态 IPv{0}。</value>
   </data>
   <data name="Network.DhcpIp.Success" xml:space="preserve">
-    <value>IP 地址已成功设置为 DHCPv{0}</value>
+    <value>已将 IP 地址设置为 DHCPv{0}</value>
   </data>
   <data name="Network.DhcpIp.Error" xml:space="preserve">
-    <value>无法为“{1}”设置 DHCPv{0}。</value>
+    <value>无法为"{1}"设置 DHCPv{0}。</value>
   </data>
   <data name="Network.Dns.Title" xml:space="preserve">
-    <value>“{0}”的 DNS 分配</value>
+    <value>"{0}"的 DNS 分配</value>
   </data>
   <data name="Network.Dns.Success" xml:space="preserve">
-    <value>成功分配 DNS 服务器：{0} {1}</value>
+    <value>已成功分配 DNS 服务器：{0} {1}</value>
   </data>
   <data name="Network.Dns.Error" xml:space="preserve">
     <value>无法分配 DNS。</value>
   </data>
   <data name="Network.DhcpDns.Success" xml:space="preserve">
-    <value>DHCP DNS 已成功分配。</value>
+    <value>DHCP DNS 分配成功。</value>
   </data>
   <data name="Network.DhcpDns.Error" xml:space="preserve">
     <value>无法分配 DHCP DNS。</value>
   </data>
   <data name="Network.IpAssignment.Title" xml:space="preserve">
-    <value>“{0}”的 IP 分配</value>
+    <value>"{0}"的 IP 分配</value>
   </data>
   <data name="Network.IpAssignment.NoChanges" xml:space="preserve">
-    <value>未进行任何更改，因为定义的设置与以前的设置匹配。</value>
+    <value>未做任何更改，因为所定义的设置与先前的设置相同。</value>
   </data>
   <data name="Network.IpAssignment.Error" xml:space="preserve">
-    <value>无法分配IP。</value>
+    <value>无法分配 IP。</value>
   </data>
   <data name="Export.Interface.Title" xml:space="preserve">
     <value>将接口导出到 {0}</value>
   </data>
   <data name="Export.Interface.Success" xml:space="preserve">
-    <value>接口“{0}”已导出到“{1}”。</value>
+    <value>接口"{0}"已导出到"{1}"。</value>
   </data>
   <data name="Export.Interface.Error" xml:space="preserve">
-    <value>尝试导出接口时出错：</value>
+    <value>导出接口时出错：</value>
   </data>
   <data name="Enum.ApplicationTheme.Default" xml:space="preserve">
     <value>跟随系统</value>
@@ -1052,7 +1052,7 @@ IP 地址：{0}
     <value>组</value>
   </data>
   <data name="Enum.ServiceProtocolType.ICMP" xml:space="preserve">
-    <value>ICMP：互联网控制消息协议</value>
+    <value>ICMP：互联网控制报文协议</value>
   </data>
   <data name="Enum.ServiceProtocolType.TCP" xml:space="preserve">
     <value>TCP：传输控制协议</value>
@@ -1061,7 +1061,7 @@ IP 地址：{0}
     <value>UDP：用户数据报协议</value>
   </data>
   <data name="Enum.ServiceProtocolType.TLS" xml:space="preserve">
-    <value>TLS：传输层安全</value>
+    <value>TLS：传输层安全协议</value>
   </data>
   <data name="Enum.ServiceProtocolType.DNS" xml:space="preserve">
     <value>DNS：域名系统</value>
@@ -1088,7 +1088,7 @@ IP 地址：{0}
     <value>MQTT：消息队列遥测传输</value>
   </data>
   <data name="Enum.ServiceProtocolType.STUN" xml:space="preserve">
-    <value>STUN：NAT 会话遍历实用程序</value>
+    <value>STUN：NAT 会话穿越工具</value>
   </data>
   <data name="Enum.ServiceProtocolType.SIP" xml:space="preserve">
     <value>SIP：会话发起协议</value>
@@ -1097,8 +1097,8 @@ IP 地址：{0}
     <value>操作成功完成。</value>
   </data>
   <data name="Operation.SudoRequired" xml:space="preserve">
-    <value>无法运行该操作，因为需要 sudo 访问权限。
-未找到 pkexec。安装 pkexec 或使用 sudo 运行应用程序。</value>
+    <value>无法执行该操作，因为需要 sudo 权限。
+未找到 pkexec。请安装 pkexec 或使用 sudo 运行应用程序。</value>
   </data>
   <data name="Import.Json.ErrorTitle" xml:space="preserve">
     <value>无法从 JSON 导入</value>
@@ -1116,16 +1116,16 @@ IP 地址：{0}
     <value>自动</value>
   </data>
   <data name="Tray.PingsUp" xml:space="preserve">
-    <value>{0} 个正常</value>
+    <value>{0} 个在线</value>
   </data>
   <data name="Ui.LastUpdateCheck" xml:space="preserve">
     <value>上次检查更新：{0}</value>
   </data>
   <data name="Ui.ChangelogWithReleases" xml:space="preserve">
-    <value>{0} 个版本的更新日志：</value>
+    <value>更新日志（{0} 个版本）：</value>
   </data>
   <data name="Tray.PingsDown" xml:space="preserve">
-    <value>{0} 个故障</value>
+    <value>{0} 个离线</value>
   </data>
   <data name="Ui.License" xml:space="preserve">
     <value>许可证（{0}）</value>
@@ -1140,7 +1140,7 @@ IP 地址：{0}
     <value>超出刻度</value>
   </data>
   <data name="Graph.RollingAverage" xml:space="preserve">
-    <value>移动平均</value>
+    <value>滚动平均</value>
   </data>
   <data name="Graph.Failure" xml:space="preserve">
     <value>失败</value>
@@ -1170,10 +1170,10 @@ IP 地址：{0}
     <value>完整刻度</value>
   </data>
   <data name="Graph.AutoScale" xml:space="preserve">
-    <value>自动缩放</value>
+    <value>自动刻度</value>
   </data>
   <data name="Graph.AutoScale.ToolTip" xml:space="preserve">
-    <value>使用延迟自动缩放</value>
+    <value>使用自动延迟刻度</value>
   </data>
   <data name="Graph.FullScale.ToolTip" xml:space="preserve">
     <value>显示完整延迟范围</value>
@@ -1182,7 +1182,7 @@ IP 地址：{0}
     <value>冻结</value>
   </data>
   <data name="Graph.Freeze.ToolTip" xml:space="preserve">
-    <value>在继续检测时冻结图表</value>
+    <value>冻结图表，同时探测继续运行</value>
   </data>
   <data name="Graph.Resume.ToolTip" xml:space="preserve">
     <value>恢复实时图表更新</value>
@@ -1191,7 +1191,7 @@ IP 地址：{0}
     <value>{0} 个样本</value>
   </data>
   <data name="Graph.AllSamples" xml:space="preserve">
-    <value>所有样本</value>
+    <value>全部样本</value>
   </data>
   <data name="Graph.AboveAutomaticScale" xml:space="preserve">
     <value>超出自动刻度</value>
@@ -1227,7 +1227,7 @@ IP 地址：{0}
     <value>资源不足</value>
   </data>
   <data name="Status.BadOption" xml:space="preserve">
-    <value>选项无效</value>
+    <value>无效选项</value>
   </data>
   <data name="Status.HardwareError" xml:space="preserve">
     <value>硬件错误</value>
@@ -1236,7 +1236,7 @@ IP 地址：{0}
     <value>数据包过大</value>
   </data>
   <data name="Status.BadRoute" xml:space="preserve">
-    <value>路由无效</value>
+    <value>无效路由</value>
   </data>
   <data name="Status.TtlExpired" xml:space="preserve">
     <value>TTL 已过期</value>
@@ -1251,7 +1251,7 @@ IP 地址：{0}
     <value>源端抑制</value>
   </data>
   <data name="Status.BadDestination" xml:space="preserve">
-    <value>目标无效</value>
+    <value>无效目标</value>
   </data>
   <data name="Status.DestinationUnreachable" xml:space="preserve">
     <value>目标不可达</value>
@@ -1260,10 +1260,10 @@ IP 地址：{0}
     <value>超时</value>
   </data>
   <data name="Status.BadHeader" xml:space="preserve">
-    <value>标头无效</value>
+    <value>无效标头</value>
   </data>
   <data name="Status.UnrecognizedNextHeader" xml:space="preserve">
-    <value>无法识别下一个标头</value>
+    <value>无法识别的下一个标头</value>
   </data>
   <data name="Status.IcmpError" xml:space="preserve">
     <value>ICMP 错误</value>
@@ -1278,7 +1278,7 @@ IP 地址：{0}
     <value>连接已重置</value>
   </data>
   <data name="Status.TimedOut" xml:space="preserve">
-    <value>超时</value>
+    <value>已超时</value>
   </data>
   <data name="Status.Unknown" xml:space="preserve">
     <value>未知</value>
@@ -1287,7 +1287,7 @@ IP 地址：{0}
     <value>已打开</value>
   </data>
   <data name="Status.SocketErrorFallback" xml:space="preserve">
-    <value>套接字错误 ({0})</value>
+    <value>套接字错误（{0}）</value>
   </data>
   <data name="Status.HttpRequestErrorFallback" xml:space="preserve">
     <value>HTTP 请求错误</value>
@@ -1299,7 +1299,7 @@ IP 地址：{0}
     <value>HTTP {0}</value>
   </data>
   <data name="Status.ErrorFallback" xml:space="preserve">
-    <value>错误 ({0})</value>
+    <value>错误（{0}）</value>
   </data>
   <data name="Ui.ServicesCountPlain" xml:space="preserve">
     <value>{0} 个服务</value>
