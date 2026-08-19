@@ -2,6 +2,8 @@
     <PropertyGroup>
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
+        <!-- Use the VSTest runner instead of Microsoft.Testing.Platform so IDE test discovery works. -->
+        <UseVSTest>true</UseVSTest>
     </PropertyGroup>
 
     <ItemGroup>
@@ -11,4 +13,5 @@
     <ItemGroup>
         <None Include="..\..\src\NetSonar\Localization\Strings*.resx" Link="Localization\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>
+
 </Project>
