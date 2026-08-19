@@ -146,10 +146,10 @@
     <value>从剪贴板粘贴</value>
   </data>
   <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>粘贴格式：IP | 端口 | 间隔 | 描述 | 分组&#10;例：192.168.1.10  80  30  Web服务器  内网</value>
+    <value>粘贴格式：IP | 端口 | 间隔 | 描述 | 分组&#10;例：192.168.1.10  80  30  Web服务器  内网&#10;例：192.168.130:80|30|Web服务器|内网&#10;已知端口会选择相应协议；未知端口使用 TCP。</value>
   </data>
-  <data name="Ui.AddNewServiceSWithPasteHint" xml:space="preserve">
-    <value>添加服务：主按钮=加空行，下拉=导入&#10;粘贴格式：IP | 端口 | 间隔 | 描述 | 分组&#10;例：192.168.1.10  80  30  Web服务器  内网</value>
+  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
+    <value>添加服务：主按钮=加空行，下拉=导入&#10;粘贴格式：IP | 端口 | 间隔 | 描述 | 分组&#10;例：192.168.1.10  80  30  Web服务器  内网&#10;例：192.168.130:80|30|Web服务器|内网&#10;已知端口会选择相应协议；未知端口使用 TCP。</value>
   </data>
   <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
     <value>无法从剪贴板粘贴</value>

@@ -10,17 +10,45 @@ on:
         type: boolean
 
 env:
-   WINGET_PACKAGE_ID: PTRTECH.NetSonar
-   WINGET_TOKEN: ${{ secrets.WINGET_TOKEN }}
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_NOLOGO: true
+  WINGET_PACKAGE_ID: PTRTECH.NetSonar
+  WINGET_TOKEN: ${{ secrets.WINGET_TOKEN }}
+
+permissions:
+  contents: read
 
 jobs:
   extract_information:
     name: '🔍 Extract release information'
     uses: sn4k3/Actions/.github/workflows/extract-csproj-information.yml@main
 
+  test:
+    name: '🧪 Test'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Validate localization resources
+        shell: pwsh
+        run: ./scripts/Validate-LocalizationResources.ps1
+
+      - name: Restore dependencies
+        run: dotnet restore tests/NetSonar.Tests/NetSonar.Tests.csproj
+
+      - name: Run tests
+        run: dotnet test tests/NetSonar.Tests/NetSonar.Tests.csproj --configuration Release --no-restore
+
   build:
     name: '🛠️ Build (${{ matrix.rid }})'
-    needs: extract_information
+    needs: [extract_information, test]
     strategy:
       matrix:
         include:
@@ -37,11 +65,11 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.ref }}
 
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '10.0.x'
 
@@ -57,7 +85,7 @@ jobs:
       - run: nuke publish --rids ${{ matrix.rid }} --publish-discard-non-bundles
 
       - name: Upload release assets
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.rid }}
           path: |
@@ -74,9 +102,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      packages: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
@@ -93,13 +120,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      packages: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           path: repo
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           path: release-artifacts
 
@@ -118,6 +144,7 @@ jobs:
 
       - name: Delete tag if release fails
         if: failure()
+        working-directory: repo
         run: |
           version="${{ needs.extract_information.outputs.version }}"
           git config user.name "github-actions[bot]"

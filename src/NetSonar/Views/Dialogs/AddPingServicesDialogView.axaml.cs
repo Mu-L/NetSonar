@@ -9,6 +9,8 @@ namespace NetSonar.Avalonia.Views.Dialogs;
 
 public partial class AddPingServicesDialogView : UserControlBase
 {
+    private TopLevel? _keyHandlerTopLevel;
+
     public AddPingServicesDialogView()
     {
         InitializeComponent();
@@ -16,7 +18,7 @@ public partial class AddPingServicesDialogView : UserControlBase
     }
 
     /// <summary>
-    /// While this dialog is open, Ctrl+V is caught at the window level (tunnelling phase, before the
+    /// While this dialog is open, Ctrl+V is caught at the window level (tunneling phase, before the
     /// DataGrid's built-in cell-paste) so it always runs the batch clipboard import — regardless of
     /// where focus currently sits inside the dialog. While a text cell is being edited (focus is inside
     /// a TextBox) the key is left alone so pasting text into a cell keeps working.
@@ -24,25 +26,29 @@ public partial class AddPingServicesDialogView : UserControlBase
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
-        var topLevel = TopLevel.GetTopLevel(this);
-        if (topLevel is not null)
-            topLevel.AddHandler(InputElement.KeyDownEvent, OnDialogKeyDown, RoutingStrategies.Tunnel);
+        RemoveDialogKeyHandler();
+        _keyHandlerTopLevel = TopLevel.GetTopLevel(this);
+        _keyHandlerTopLevel?.AddHandler(KeyDownEvent, OnDialogKeyDown, RoutingStrategies.Tunnel);
     }
 
     protected override void OnUnloaded(RoutedEventArgs e)
     {
-        var topLevel = TopLevel.GetTopLevel(this);
-        if (topLevel is not null)
-            topLevel.RemoveHandler(InputElement.KeyDownEvent, OnDialogKeyDown);
+        RemoveDialogKeyHandler();
         base.OnUnloaded(e);
     }
 
     private void OnDialogKeyDown(object? sender, KeyEventArgs e)
     {
+        if (_keyHandlerTopLevel is not { } topLevel
+            || !ReferenceEquals(TopLevel.GetTopLevel(this), topLevel))
+        {
+            return;
+        }
+
         if (!e.Handled
             && e.Key == Key.V
             && (e.KeyModifiers & (KeyModifiers.Control | KeyModifiers.Meta)) != 0
-            && TopLevel.GetTopLevel(this)?.FocusManager?.GetFocusedElement() is not TextBox
+            && topLevel.FocusManager?.GetFocusedElement() is not TextBox
             && DataContext is AddPingServicesDialogModel vm
             && !vm.IsEditing
             && vm.PasteFromClipboardCommand.CanExecute(null))
@@ -50,5 +56,12 @@ public partial class AddPingServicesDialogView : UserControlBase
             vm.PasteFromClipboardCommand.Execute(null);
             e.Handled = true;
         }
+    }
+
+    private void RemoveDialogKeyHandler()
+    {
+        if (_keyHandlerTopLevel is null) return;
+        _keyHandlerTopLevel.RemoveHandler(KeyDownEvent, OnDialogKeyDown);
+        _keyHandlerTopLevel = null;
     }
 }
