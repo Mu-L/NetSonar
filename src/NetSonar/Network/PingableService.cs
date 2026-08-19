@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using DotNext.Buffers;
 using Microsoft.VisualBasic.FileIO;
+using NetSonar.Avalonia.Extensions;
 using NetSonar.Avalonia.Models;
 
 namespace NetSonar.Avalonia.Network;
@@ -28,6 +29,7 @@ namespace NetSonar.Avalonia.Network;
 public partial class PingableService : BasePingableCollectionObject<PingableServiceReply>
 {
     #region Constants
+
     public const double MinPingEverySeconds = 0.50;
     public const double MaxPingEverySeconds = int.MaxValue;
     public const double DefaultPingEverySeconds = 5.0;
@@ -44,36 +46,25 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
 
     private const int WindowsIcmpTimeoutResolution = 500;
 
-    public const int DefaultNtpPort = 123;
     private const int NtpPacketLength = 48;
     private const long NtpEpochOffsetSeconds = 2_208_988_800;
 
-    public const int DefaultDnsPort = 53;
     private const int DnsHeaderLength = 12;
     private const int DnsQuestionLength = 17;
     private const int DnsPacketLength = DnsHeaderLength + DnsQuestionLength;
 
-    public const int DefaultSmtpPort = 25;
     private const int MaxSmtpResponseLength = 8192;
 
-    public const int DefaultMqttPort = 1883;
     private const int MqttConnectPacketLength = 35;
     private const int MqttConnAckPacketLength = 4;
 
-    public const int DefaultTlsPort = 443;
-
-    public const int DefaultSshPort = 22;
     private const int MaxSshIdentificationLength = 8192;
 
-    public const int DefaultStunPort = 3478;
     private const int StunPacketLength = 20;
     private const uint StunMagicCookie = 0x2112_A442;
 
-    public const int DefaultSipPort = 5060;
     private const int MaxSipResponseLength = 8192;
 
-    public const int DefaultImapPort = 143;
-    public const int DefaultImapTlsPort = 993;
     private const int MaxImapResponseLength = 8192;
 
     #endregion
@@ -119,7 +110,8 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
     public partial bool DontFragment { get; set; }
 
     [JsonIgnore]
-    public bool CanUseBufferSize => ProtocolType is ServiceProtocolType.ICMP or ServiceProtocolType.TCP or ServiceProtocolType.UDP;
+    public bool CanUseBufferSize =>
+        ProtocolType is ServiceProtocolType.ICMP or ServiceProtocolType.TCP or ServiceProtocolType.UDP;
 
     [JsonIgnore]
     public bool CanUseTtl => ProtocolType is ServiceProtocolType.ICMP
@@ -135,8 +127,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
         or ServiceProtocolType.STUN
         or ServiceProtocolType.SIP;
 
-    [JsonIgnore]
-    public bool CanUseDontFragment => ProtocolType is ServiceProtocolType.ICMP;
+    [JsonIgnore] public bool CanUseDontFragment => ProtocolType is ServiceProtocolType.ICMP;
 
     /// <summary>
     /// Gets if the default ping options are used.
@@ -162,6 +153,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
             return options;
         }
     }
+
     #endregion
 
     #region Constructor
@@ -174,13 +166,15 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
 
     [SetsRequiredMembers]
     [JsonConstructor]
-    public PingableService(ServiceProtocolType protocolType, string ipAddressOrUrl, string description = "", string group = "") : base(protocolType, ipAddressOrUrl, description, group)
+    public PingableService(ServiceProtocolType protocolType, string ipAddressOrUrl, string description = "",
+        string group = "") : base(protocolType, ipAddressOrUrl, description, group)
     {
         BufferSize = GetProtocolBufferSize(ProtocolType, BufferSize);
     }
 
     [SetsRequiredMembers]
-    public PingableService(NewPingService service) : base(service.ProtocolType, service.IpAddressOrUrl, service.Description, service.Group)
+    public PingableService(NewPingService service) : base(service.ProtocolType, service.IpAddressOrUrl,
+        service.Description, service.Group)
     {
         IsEnabled = service.IsEnabled;
         PingEverySeconds = service.PingEverySeconds;
@@ -232,15 +226,15 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
     {
         return protocolType switch
         {
-            ServiceProtocolType.TLS => DefaultTlsPort,
-            ServiceProtocolType.DNS => DefaultDnsPort,
-            ServiceProtocolType.NTP => DefaultNtpPort,
-            ServiceProtocolType.SSH => DefaultSshPort,
-            ServiceProtocolType.SMTP => DefaultSmtpPort,
-            ServiceProtocolType.IMAP => DefaultImapPort,
-            ServiceProtocolType.MQTT => DefaultMqttPort,
-            ServiceProtocolType.STUN => DefaultStunPort,
-            ServiceProtocolType.SIP => DefaultSipPort,
+            ServiceProtocolType.TLS => Protocols.DefaultTlsPort,
+            ServiceProtocolType.DNS => Protocols.DefaultDnsPort,
+            ServiceProtocolType.NTP => Protocols.DefaultNtpPort,
+            ServiceProtocolType.SSH => Protocols.DefaultSshPort,
+            ServiceProtocolType.SMTP => Protocols.DefaultSmtpPort,
+            ServiceProtocolType.IMAP => Protocols.DefaultImapPort,
+            ServiceProtocolType.MQTT => Protocols.DefaultMqttPort,
+            ServiceProtocolType.STUN => Protocols.DefaultStunPort,
+            ServiceProtocolType.SIP => Protocols.DefaultSipPort,
             _ => IPEndPoint.MinPort
         };
     }
@@ -299,7 +293,8 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
         if (!Uri.TryCreate($"{scheme}://{IpAddressOrUrl}", UriKind.Absolute, out var uri)
             || string.IsNullOrWhiteSpace(uri.IdnHost))
         {
-            throw new ArgumentException($"Invalid {ProtocolType} host and port ({IpAddressOrUrl}).", nameof(IpAddressOrUrl));
+            throw new ArgumentException($"Invalid {ProtocolType} host and port ({IpAddressOrUrl}).",
+                nameof(IpAddressOrUrl));
         }
 
         var port = uri.Port;
@@ -308,7 +303,8 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
             port = GetDefaultPort(ProtocolType);
             if (port <= IPEndPoint.MinPort)
             {
-                throw new ArgumentException($"Invalid {ProtocolType} host and port ({IpAddressOrUrl}).", nameof(IpAddressOrUrl));
+                throw new ArgumentException($"Invalid {ProtocolType} host and port ({IpAddressOrUrl}).",
+                    nameof(IpAddressOrUrl));
             }
         }
 
@@ -369,7 +365,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
         3, (byte)'c', (byte)'o', (byte)'m',
         0,
         0, 1, // QTYPE = A
-        0, 1  // QCLASS = IN
+        0, 1 // QCLASS = IN
     ];
 
     private static void CreateDnsRequest(Span<byte> packet)
@@ -443,7 +439,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
             host = $"[{host}]";
         }
 
-        return IpEndPoint.Port == DefaultSipPort ? host : $"{host}:{IpEndPoint.Port}";
+        return IpEndPoint.Port == Protocols.DefaultSipPort ? host : $"{host}:{IpEndPoint.Port}";
     }
 
     private static async ValueTask<int> ReceiveAndValidateNtpResponseAsync(
@@ -538,8 +534,8 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
         string targetHost,
         CancellationToken cancellationToken)
     {
-        using var networkStream = new NetworkStream(socket, ownsSocket: false);
-        using var tlsStream = new SslStream(networkStream, leaveInnerStreamOpen: false);
+        using var networkStream = new NetworkStream(socket, false);
+        using var tlsStream = new SslStream(networkStream, false);
         await tlsStream.AuthenticateAsClientAsync(
             new SslClientAuthenticationOptions
             {
@@ -633,13 +629,13 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
         bool useImplicitTls,
         CancellationToken cancellationToken)
     {
-        using var networkStream = new NetworkStream(socket, ownsSocket: false);
+        using var networkStream = new NetworkStream(socket, false);
         if (!useImplicitTls)
         {
             return await ReceiveAndValidateImapAsync(networkStream, cancellationToken);
         }
 
-        using var tlsStream = new SslStream(networkStream, leaveInnerStreamOpen: false);
+        using var tlsStream = new SslStream(networkStream, false);
         await tlsStream.AuthenticateAsClientAsync(
             new SslClientAuthenticationOptions
             {
@@ -726,7 +722,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
                 if (!StartsWithAsciiIgnoreCase(line, "A001 "u8)) continue;
                 var completion = line[5..];
                 if (!StartsWithAsciiIgnoreCase(completion, "OK"u8)
-                    || completion.Length > 2 && completion[2] != (byte)' ')
+                    || (completion.Length > 2 && completion[2] != (byte)' '))
                 {
                     throw new InvalidDataException("The IMAP server rejected the CAPABILITY command.");
                 }
@@ -753,7 +749,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
         }
 
         var leapIndicator = response[0] >> 6;
-        var version = response[0] >> 3 & 0x07;
+        var version = (response[0] >> 3) & 0x07;
         var mode = response[0] & 0x07;
         var stratum = response[1];
 
@@ -1013,8 +1009,8 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
             {
                 var name = line[..separator].Trim();
                 if (name.Equals(headerName, StringComparison.OrdinalIgnoreCase)
-                    || compactHeaderName is not null
-                    && name.Equals(compactHeaderName, StringComparison.OrdinalIgnoreCase))
+                    || (compactHeaderName is not null
+                        && name.Equals(compactHeaderName, StringComparison.OrdinalIgnoreCase)))
                 {
                     return line[(separator + 1)..].Trim()
                         .Equals(expectedValue, StringComparison.OrdinalIgnoreCase);
@@ -1104,7 +1100,6 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
     /// <inheritdoc />
     protected override PingableServiceReply PingCore(int timeout = 0)
     {
-
         if (ProtocolType == ServiceProtocolType.ICMP)
         {
             EnsureBuffer();
@@ -1121,7 +1116,8 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
                 }
                 else
                 {
-                    reply = ping.Send(IpAddressOrUrl, effectiveTimeout, _sendBuffer, UseDefaultPingOptions ? null : PingOptions);
+                    reply = ping.Send(IpAddressOrUrl, effectiveTimeout, _sendBuffer,
+                        UseDefaultPingOptions ? null : PingOptions);
                 }
 
                 return new PingableServiceReply(reply);
@@ -1155,7 +1151,8 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
 
 
     /// <inheritdoc />
-    protected override async Task<PingableServiceReply> PingCoreAsync(int timeout = 0, CancellationToken cancellationToken = default)
+    protected override async Task<PingableServiceReply> PingCoreAsync(int timeout = 0,
+        CancellationToken cancellationToken = default)
     {
         if (ProtocolType == ServiceProtocolType.ICMP)
         {
@@ -1169,15 +1166,16 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
                 PingReply reply;
                 if (OperatingSystem.IsLinux() && !Environment.IsPrivilegedProcess)
                 {
-                    reply = await ping.SendPingAsync(IpAddressOrUrl, TimeSpan.FromMilliseconds(effectiveTimeout), cancellationToken:cancellationToken);
+                    reply = await ping.SendPingAsync(IpAddressOrUrl, TimeSpan.FromMilliseconds(effectiveTimeout),
+                        cancellationToken: cancellationToken);
                 }
                 else
                 {
-                    reply = await ping.SendPingAsync(IpAddressOrUrl, TimeSpan.FromMilliseconds(effectiveTimeout), _sendBuffer, UseDefaultPingOptions ? null : PingOptions, cancellationToken);
+                    reply = await ping.SendPingAsync(IpAddressOrUrl, TimeSpan.FromMilliseconds(effectiveTimeout),
+                        _sendBuffer, UseDefaultPingOptions ? null : PingOptions, cancellationToken);
                 }
 
                 return new PingableServiceReply(reply);
-
             }
             catch (OperationCanceledException e)
             {
@@ -1330,7 +1328,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
                     bufferLength = await ReceiveAndValidateImapAsync(
                         socket,
                         GetDnsLookupTarget(),
-                        remotePort == DefaultImapTlsPort,
+                remotePort == Protocols.DefaultImapTlsPort,
                         timeoutCts.Token);
                 }
                 else if (ProtocolType == ServiceProtocolType.MQTT)
@@ -1360,7 +1358,8 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
                 }
 
                 var connectedEndPoint = socket.RemoteEndPoint as IPEndPoint ?? IpEndPoint;
-                return new PingableServiceReply(true, replyStatus, connectedEndPoint, sentDateTime, GetElapsedMilliseconds(startingTimestamp), bufferLength, Ttl);
+                return new PingableServiceReply(true, replyStatus, connectedEndPoint, sentDateTime,
+                    GetElapsedMilliseconds(startingTimestamp), bufferLength, Ttl);
             }
             catch (OperationCanceledException e)
             {
@@ -1385,10 +1384,12 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
 
                 var startingTimestamp = Stopwatch.GetTimestamp();
                 using var request = new HttpRequestMessage(HttpMethod.Get, IpAddressOrUrl);
-                using var response = await App.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, timeoutCts.Token);
+                using var response = await App.HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead,
+                    timeoutCts.Token);
                 var contentLength = Math.Min(response.Content.Headers.ContentLength.GetValueOrDefault(), int.MaxValue);
                 var replyEndPoint = new IPEndPoint(IpEndPoint.Address, IpEndPoint.Port);
-                return new PingableServiceReply(response.IsSuccessStatusCode, response.StatusCode, replyEndPoint, sentDateTime, GetElapsedMilliseconds(startingTimestamp), (int)contentLength);
+                return new PingableServiceReply(response.IsSuccessStatusCode, response.StatusCode, replyEndPoint,
+                    sentDateTime, GetElapsedMilliseconds(startingTimestamp), (int)contentLength);
             }
             catch (OperationCanceledException e)
             {
@@ -1482,7 +1483,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
             service = ParseFromString(line);
             return true;
         }
-        catch(Exception)
+        catch (Exception)
         {
             service = null;
             return false;
@@ -1506,45 +1507,59 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
         ServiceProtocolType protocol;
         if (ipAddressOrUrl.Contains('/'))
         {
-
             if (ipAddressOrUrl.StartsWith("icmp://", StringComparison.OrdinalIgnoreCase))
             {
                 ipAddressOrUrl = ipAddressOrUrl.Remove(0, "icmp://".Length);
                 protocol = ServiceProtocolType.ICMP;
-                if (ipAddressOrUrl.Contains(':')) throw new MalformedLineException($"The {protocol} protocol must not contain a port number.");
-                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (ipAddressOrUrl.Contains(':'))
+                    throw new MalformedLineException($"The {protocol} protocol must not contain a port number.");
+                if (ipAddressOrUrl.Contains('/'))
+                    throw new MalformedLineException(
+                        $"The address must not contain path separator '/' for the {protocol} protocol.");
             }
             else if (ipAddressOrUrl.StartsWith("tcp://"))
             {
                 ipAddressOrUrl = ipAddressOrUrl.Remove(0, "tcp://".Length);
                 protocol = ServiceProtocolType.TCP;
-                if (!ipAddressOrUrl.Contains(':')) throw new MalformedLineException($"The {protocol} protocol must contain a port number.");
-                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (!ipAddressOrUrl.Contains(':'))
+                    throw new MalformedLineException($"The {protocol} protocol must contain a port number.");
+                if (ipAddressOrUrl.Contains('/'))
+                    throw new MalformedLineException(
+                        $"The address must not contain path separator '/' for the {protocol} protocol.");
             }
             else if (ipAddressOrUrl.StartsWith("udp://", StringComparison.OrdinalIgnoreCase))
             {
                 ipAddressOrUrl = ipAddressOrUrl.Remove(0, "udp://".Length);
                 protocol = ServiceProtocolType.UDP;
-                if (!ipAddressOrUrl.Contains(':')) throw new MalformedLineException($"The {protocol} protocol must contain a port number.");
-                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (!ipAddressOrUrl.Contains(':'))
+                    throw new MalformedLineException($"The {protocol} protocol must contain a port number.");
+                if (ipAddressOrUrl.Contains('/'))
+                    throw new MalformedLineException(
+                        $"The address must not contain path separator '/' for the {protocol} protocol.");
             }
             else if (ipAddressOrUrl.StartsWith("tls://", StringComparison.OrdinalIgnoreCase))
             {
                 ipAddressOrUrl = ipAddressOrUrl.Remove(0, "tls://".Length);
                 protocol = ServiceProtocolType.TLS;
-                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (ipAddressOrUrl.Contains('/'))
+                    throw new MalformedLineException(
+                        $"The address must not contain path separator '/' for the {protocol} protocol.");
             }
             else if (ipAddressOrUrl.StartsWith("dns://", StringComparison.OrdinalIgnoreCase))
             {
                 ipAddressOrUrl = ipAddressOrUrl.Remove(0, "dns://".Length);
                 protocol = ServiceProtocolType.DNS;
-                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (ipAddressOrUrl.Contains('/'))
+                    throw new MalformedLineException(
+                        $"The address must not contain path separator '/' for the {protocol} protocol.");
             }
             else if (ipAddressOrUrl.StartsWith("ntp://", StringComparison.OrdinalIgnoreCase))
             {
                 ipAddressOrUrl = ipAddressOrUrl.Remove(0, "ntp://".Length);
                 protocol = ServiceProtocolType.NTP;
-                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (ipAddressOrUrl.Contains('/'))
+                    throw new MalformedLineException(
+                        $"The address must not contain path separator '/' for the {protocol} protocol.");
             }
             else if (ipAddressOrUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
                      || ipAddressOrUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
@@ -1560,37 +1575,49 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
             {
                 ipAddressOrUrl = ipAddressOrUrl.Remove(0, "ssh://".Length);
                 protocol = ServiceProtocolType.SSH;
-                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (ipAddressOrUrl.Contains('/'))
+                    throw new MalformedLineException(
+                        $"The address must not contain path separator '/' for the {protocol} protocol.");
             }
             else if (ipAddressOrUrl.StartsWith("smtp://", StringComparison.OrdinalIgnoreCase))
             {
                 ipAddressOrUrl = ipAddressOrUrl.Remove(0, "smtp://".Length);
                 protocol = ServiceProtocolType.SMTP;
-                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (ipAddressOrUrl.Contains('/'))
+                    throw new MalformedLineException(
+                        $"The address must not contain path separator '/' for the {protocol} protocol.");
             }
             else if (ipAddressOrUrl.StartsWith("imap://", StringComparison.OrdinalIgnoreCase))
             {
                 ipAddressOrUrl = ipAddressOrUrl.Remove(0, "imap://".Length);
                 protocol = ServiceProtocolType.IMAP;
-                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (ipAddressOrUrl.Contains('/'))
+                    throw new MalformedLineException(
+                        $"The address must not contain path separator '/' for the {protocol} protocol.");
             }
             else if (ipAddressOrUrl.StartsWith("mqtt://", StringComparison.OrdinalIgnoreCase))
             {
                 ipAddressOrUrl = ipAddressOrUrl.Remove(0, "mqtt://".Length);
                 protocol = ServiceProtocolType.MQTT;
-                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (ipAddressOrUrl.Contains('/'))
+                    throw new MalformedLineException(
+                        $"The address must not contain path separator '/' for the {protocol} protocol.");
             }
             else if (ipAddressOrUrl.StartsWith("stun://", StringComparison.OrdinalIgnoreCase))
             {
                 ipAddressOrUrl = ipAddressOrUrl.Remove(0, "stun://".Length);
                 protocol = ServiceProtocolType.STUN;
-                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (ipAddressOrUrl.Contains('/'))
+                    throw new MalformedLineException(
+                        $"The address must not contain path separator '/' for the {protocol} protocol.");
             }
             else if (ipAddressOrUrl.StartsWith("sip://", StringComparison.OrdinalIgnoreCase))
             {
                 ipAddressOrUrl = ipAddressOrUrl.Remove(0, "sip://".Length);
                 protocol = ServiceProtocolType.SIP;
-                if (ipAddressOrUrl.Contains('/')) throw new MalformedLineException($"The address must not contain path separator '/' for the {protocol} protocol.");
+                if (ipAddressOrUrl.Contains('/'))
+                    throw new MalformedLineException(
+                        $"The address must not contain path separator '/' for the {protocol} protocol.");
             }
             else
             {
@@ -1600,19 +1627,24 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
         else
         {
             protocol = ServiceProtocolType.ICMP;
-            if (ipAddressOrUrl.Contains(':')) throw new MalformedLineException($"The {protocol} protocol must not contain a port number.");
+            if (ipAddressOrUrl.Contains(':'))
+                throw new MalformedLineException($"The {protocol} protocol must not contain a port number.");
         }
 
-        double pingEvery = pingSettings.Length >= 2
-            ? double.TryParse(pingSettings[1], CultureInfo.InvariantCulture, out var pingEveryResult) ? pingEveryResult : App.AppSettings.PingServices.DefaultPingEverySeconds
+        var pingEvery = pingSettings.Length >= 2
+            ? ParseExtensions.ParseLocalizedDoubleOrDefault(pingSettings[1],
+                App.AppSettings.PingServices.DefaultPingEverySeconds)
             : App.AppSettings.PingServices.DefaultPingEverySeconds;
 
-        double timeout = pingSettings.Length >= 3
-            ? double.TryParse(pingSettings[2], CultureInfo.InvariantCulture,  out var timeoutResult) ? timeoutResult : App.AppSettings.PingServices.DefaultTimeoutSeconds
+        var timeout = pingSettings.Length >= 3
+            ? ParseExtensions.ParseLocalizedDoubleOrDefault(pingSettings[2],
+                App.AppSettings.PingServices.DefaultTimeoutSeconds)
             : App.AppSettings.PingServices.DefaultTimeoutSeconds;
 
-        int bufferSize = pingSettings.Length >= 4
-            ? int.TryParse(pingSettings[3], out var bufferResult) ? bufferResult : App.AppSettings.PingServices.DefaultBufferSize
+        var bufferSize = pingSettings.Length >= 4
+            ? int.TryParse(pingSettings[3], out var bufferResult)
+                ? bufferResult
+                : App.AppSettings.PingServices.DefaultBufferSize
             : App.AppSettings.PingServices.DefaultBufferSize;
 
         return new PingableService(protocol, ipAddressOrUrl, description, group)
@@ -1623,9 +1655,8 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
             TimeoutSeconds = timeout,
             BufferSize = bufferSize
         };
-
-
     }
+
     public static List<PingableService> ParseFromText(string text)
     {
         var result = new List<PingableService>();
@@ -1635,6 +1666,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
             if (string.IsNullOrWhiteSpace(line)) continue;
             if (TryParseFromString(line, out var service)) result.Add(service);
         }
+
         return result;
     }
 

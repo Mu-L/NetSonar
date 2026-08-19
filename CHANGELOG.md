@@ -1,8 +1,14 @@
+# Unreleased
+
+- Add batch import of services for all supported protocols from tab- or pipe-separated clipboard data, including
+  explicit protocol schemes, default-port protocol inference, optional intervals, descriptions, groups, duplicate
+  reporting, and IPv6 support by @dearmb (#24)
+
 # v0.4.1 (05/08/2026)
 
-- Translate the application UI, dialogs, notifications, networking actions, and enum descriptions into German,
-  Spanish, French, Italian, Japanese, Korean, Dutch, Polish, Brazilian and European Portuguese, Russian, Turkish,
-  and Simplified Chinese (AI Translation) (closes #14)
+- Translate the application UI, dialogs, notifications, networking actions, and enum descriptions into German, Spanish,
+  French, Italian, Japanese, Korean, Dutch, Polish, Brazilian and European Portuguese, Russian, Turkish, and Simplified
+  Chinese (AI Translation) (closes #14)
 
 # v0.4.0 (01/08/2026)
 
@@ -136,8 +142,8 @@
 - Fix the issue where pingable services hostnames were not loaded between sessions
 - Fix changing the theme, the base color is reset
 - Ignore the following task exceptions to prevent the app from crashing: (#2)
-    - org.freedesktop.DBus.Error.ServiceUnknown
-    - org.freedesktop.DBus.Error.UnknownMethod
+  - org.freedesktop.DBus.Error.ServiceUnknown
+  - org.freedesktop.DBus.Error.UnknownMethod
 - Upgrade AvaloniaUI from 11.3.5 to 11.3.10
 - Upgrade .NET from 9.0.9 to 10.0.1
 

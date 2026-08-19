@@ -1,7 +1,7 @@
 <controls:UserControlBase x:Class="NetSonar.Avalonia.Views.Dialogs.AddPingServicesDialogView"
                           xmlns="https://github.com/avaloniaui"
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
+                          xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
                           xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                           xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
@@ -53,9 +53,13 @@
                     <SplitButton Classes="Flat Small"
                                  Command="{Binding AddEmptyCommand}"
                                  Content="{icon:MaterialIconExt Kind=Add}"
-                                 ToolTip.Tip="{localization:Translate Ui.AddNewServiceS}">
+                                 ToolTip.Tip="{localization:Translate Ui.AddNewServicesWithPasteHint}">
                         <SplitButton.Flyout>
                             <MenuFlyout Placement="Bottom">
+                                <MenuItem Command="{Binding PasteFromClipboardCommand}"
+                                          Header="{localization:Translate Ui.PasteFromClipboard}"
+                                          Icon="{icon:MaterialIconExt Kind=ContentPaste}"
+                                          ToolTip.Tip="{localization:Translate Ui.PasteFormatHint}" />
                                 <MenuItem Command="{Binding ImportFromJsonCommand}"
                                           Header="{localization:Translate Ui.ImportFromJSON}"
                                           Icon="{icon:MaterialIconExt Kind=CodeJson}" />
@@ -108,7 +112,7 @@
                                               CommandParameter="{x:Static network:ServiceProtocolType.SIP}"
                                               Header="SIP"
                                               Icon="{icon:MaterialIconExt Kind=PhoneVoip}" />
-                                    <Separator/>
+                                    <Separator />
                                     <MenuItem Command="{Binding ImportAllPublicProtocolHostsCommand}"
                                               Header="{localization:Translate Ui.ImportAll}"
                                               Icon="{icon:MaterialIconExt Kind=Import}" />
@@ -173,9 +177,10 @@
                     <DataGridCheckBoxColumn Binding="{Binding IsEnabled}"
                                             CellStyleClasses="center"
                                             Header="{localization:Translate Ui.Enable}" />
-                    <DataGridTemplateColumn ClipboardContentBinding="{Binding ProtocolType, DataType=models:NewPingService}"
-                                            Header="{localization:Translate Ui.Type}"
-                                            SortMemberPath="ProtocolType">
+                    <DataGridTemplateColumn
+                        ClipboardContentBinding="{Binding ProtocolType, DataType=models:NewPingService}"
+                        Header="{localization:Translate Ui.Type}"
+                        SortMemberPath="ProtocolType">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ComboBox HorizontalAlignment="Stretch"
@@ -193,9 +198,10 @@
                     <DataGridTextColumn Width="150"
                                         Binding="{Binding Group}"
                                         Header="{localization:Translate Ui.Group}" />
-                    <DataGridTemplateColumn ClipboardContentBinding="{Binding PingEverySeconds, DataType=network:PingableService}"
-                                            Header="{localization:Translate Ui.PingEveryS}"
-                                            SortMemberPath="PingEveryMilliseconds">
+                    <DataGridTemplateColumn
+                        ClipboardContentBinding="{Binding PingEverySeconds, DataType=network:PingableService}"
+                        Header="{localization:Translate Ui.PingEveryS}"
+                        SortMemberPath="PingEveryMilliseconds">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <NumericUpDown Width="130"
@@ -208,9 +214,10 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn ClipboardContentBinding="{Binding TimeoutSeconds, DataType=network:PingableService}"
-                                            Header="{localization:Translate Ui.TimeoutS}"
-                                            SortMemberPath="Timeout">
+                    <DataGridTemplateColumn
+                        ClipboardContentBinding="{Binding TimeoutSeconds, DataType=network:PingableService}"
+                        Header="{localization:Translate Ui.TimeoutS}"
+                        SortMemberPath="Timeout">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <NumericUpDown Width="130"
@@ -223,9 +230,10 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn ClipboardContentBinding="{Binding BufferSize, DataType=network:PingableService}"
-                                            Header="{localization:Translate Ui.BufferSize}"
-                                            SortMemberPath="BufferSize">
+                    <DataGridTemplateColumn
+                        ClipboardContentBinding="{Binding BufferSize, DataType=network:PingableService}"
+                        Header="{localization:Translate Ui.BufferSize}"
+                        SortMemberPath="BufferSize">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <NumericUpDown Width="90"
