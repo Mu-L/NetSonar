@@ -58,711 +58,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Navigation.Settings" xml:space="preserve">
-    <value>Ayarlar</value>
-  </data>
-  <data name="Settings.Theme" xml:space="preserve">
-    <value>Tema</value>
-  </data>
-  <data name="Settings.Language" xml:space="preserve">
-    <value>Dil</value>
-  </data>
-  <data name="Settings.Language.FollowSystem" xml:space="preserve">
-    <value>Sistem dilini kullan</value>
-  </data>
-  <data name="Settings.Language.Description" xml:space="preserve">
-    <value>Uygulamanın tamamında kullanılacak dili seçin.</value>
-  </data>
-  <data name="Ui.Show" xml:space="preserve">
-    <value>👁 Göster</value>
-  </data>
-  <data name="Ui.Options" xml:space="preserve">
-    <value>⚙️ Seçenekler</value>
-  </data>
-  <data name="Ui.StartWithSystem" xml:space="preserve">
-    <value>Sistemle birlikte başlat</value>
-  </data>
-  <data name="Ui.ThemeSystem" xml:space="preserve">
-    <value>🖌️ Tema: Sistem</value>
-  </data>
-  <data name="Ui.ThemeLight" xml:space="preserve">
-    <value>🖌️ Tema: Açık</value>
-  </data>
-  <data name="Ui.ThemeDark" xml:space="preserve">
-    <value>🖌️ Tema: Koyu</value>
-  </data>
-  <data name="Ui.Exit" xml:space="preserve">
-    <value>✖ Çıkış</value>
-  </data>
-  <data name="Ui.On" xml:space="preserve">
-    <value>Açık</value>
-  </data>
-  <data name="Ui.Off" xml:space="preserve">
-    <value>Kapalı</value>
-  </data>
-  <data name="Ui.OperativeSystem" xml:space="preserve">
-    <value>İşletim sistemi:</value>
-  </data>
-  <data name="Ui.GraphicCard" xml:space="preserve">
-    <value>Ekran kartı:</value>
-  </data>
-  <data name="Ui.Processor" xml:space="preserve">
-    <value>İşlemci:</value>
-  </data>
-  <data name="Ui.ProcessorCores" xml:space="preserve">
-    <value>İşlemci çekirdekleri:</value>
-  </data>
-  <data name="Ui.MemoryRAM" xml:space="preserve">
-    <value>RAM belleği:</value>
-  </data>
-  <data name="Ui.Framework" xml:space="preserve">
-    <value>Çalışma ortamı:</value>
-  </data>
-  <data name="Ui.AvaloniaUI" xml:space="preserve">
-    <value>AvaloniaUI:</value>
-  </data>
-  <data name="Ui.ScreensResolutionWorkingAreaUsableArea" xml:space="preserve">
-    <value>Ekranlar, çözünürlük, çalışma alanı, kullanılabilir alan:</value>
-  </data>
-  <data name="Ui.Description" xml:space="preserve">
-    <value>Açıklama</value>
-  </data>
-  <data name="Ui.Assemblies" xml:space="preserve">
-    <value>Yazılım derlemeleri</value>
-  </data>
-  <data name="Ui.TermsOfUse" xml:space="preserve">
-    <value>Kullanım koşulları</value>
-  </data>
-  <data name="Ui.Services" xml:space="preserve">
-    <value>Hizmetler</value>
-  </data>
-  <data name="Ui.AddNewServices" xml:space="preserve">
-    <value>Yeni hizmet ekle</value>
-  </data>
-  <data name="Ui.ImportFromJSON" xml:space="preserve">
-    <value>JSON'dan içe aktar</value>
-  </data>
-  <data name="Ui.PasteFromClipboard" xml:space="preserve">
-    <value>Panodan yapıştır</value>
-  </data>
-  <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>Sütun sırası: IP | Bağlantı noktası | Aralık | Açıklama | Grup&#10;Örnek: 192.168.1.10  80  30  Web sunucusu  LAN&#10;Örnek: 192.168.130:80|30|Web sunucusu|LAN&#10;Bilinen bağlantı noktaları protokolü seçer; bilinmeyenler TCP kullanır.</value>
-  </data>
-  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
-    <value>Ekle: ana düğme = boş satır, ok = içe aktar&#10;Yapıştırma biçimi: IP | Bağlantı noktası | Aralık | Açıklama | Grup&#10;Örnek: 192.168.1.10  80  30  Web sunucusu  LAN&#10;Örnek: 192.168.130:80|30|Web sunucusu|LAN&#10;Bilinen bağlantı noktaları protokolü seçer; bilinmeyenler TCP kullanır.</value>
-  </data>
-  <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
-    <value>Panodan yapıştırılamadı</value>
-  </data>
-  <data name="Import.Clipboard.NoData" xml:space="preserve">
-    <value>Pano boş veya kullanılabilir hizmet verisi içermiyor.</value>
-  </data>
-  <data name="Import.Clipboard.Summary" xml:space="preserve">
-    <value>{0} hizmet yapıştırıldı, {1} atlandı.</value>
-  </data>
-  <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
-    <value>Ağ geçitlerini içe aktar</value>
-  </data>
-  <data name="Ui.ImportPublicHosts" xml:space="preserve">
-    <value>Herkese açık ana bilgisayarları içe aktar</value>
-  </data>
-  <data name="Ui.ImportAll" xml:space="preserve">
-    <value>Tümünü içe aktar</value>
-  </data>
-  <data name="Ui.RemoveServiceS" xml:space="preserve">
-    <value>Hizmetleri kaldır</value>
-  </data>
-  <data name="Ui.RemoveAll" xml:space="preserve">
-    <value>Tümünü kaldır</value>
-  </data>
-  <data name="Ui.PleaseFixTheFollowingErrors" xml:space="preserve">
-    <value>Lütfen aşağıdaki hataları düzeltin:</value>
-  </data>
-  <data name="Ui.RemoveSelectedServiceS" xml:space="preserve">
-    <value>Seçili hizmetleri kaldır</value>
-  </data>
-  <data name="Ui.Enable" xml:space="preserve">
-    <value>Etkinleştir</value>
-  </data>
-  <data name="Ui.Type" xml:space="preserve">
-    <value>Tür</value>
-  </data>
-  <data name="Ui.IPAddressUrl" xml:space="preserve">
-    <value>IP adresi / URL</value>
-  </data>
-  <data name="Ui.Group" xml:space="preserve">
-    <value>Grup</value>
-  </data>
-  <data name="Ui.PingEveryS" xml:space="preserve">
-    <value>Aralık (sn.)</value>
-  </data>
-  <data name="Ui.TimeoutS" xml:space="preserve">
-    <value>Zaman aşımı (sn.)</value>
-  </data>
-  <data name="Ui.BufferSize" xml:space="preserve">
-    <value>Arabellek boyutu</value>
-  </data>
-  <data name="Ui.NoFrag" xml:space="preserve">
-    <value>Parçalama yapma</value>
-  </data>
-  <data name="Ui.Import" xml:space="preserve">
-    <value>İçe aktar</value>
-  </data>
-  <data name="Ui.Cancel" xml:space="preserve">
-    <value>İptal</value>
-  </data>
-  <data name="Ui.Megabytes" xml:space="preserve">
-    <value>Megabayt</value>
-  </data>
-  <data name="Ui.AutomaticIPAssignmentFromDHCP" xml:space="preserve">
-    <value>DHCP ile otomatik IP ataması</value>
-  </data>
-  <data name="Ui.ManualIPAssignment" xml:space="preserve">
-    <value>Elle IP ataması</value>
-  </data>
-  <data name="Ui.IPAddress" xml:space="preserve">
-    <value>IP adresi:</value>
-  </data>
-  <data name="Ui.SubnetMask" xml:space="preserve">
-    <value>Alt ağ maskesi:</value>
-  </data>
-  <data name="Ui.Gateway" xml:space="preserve">
-    <value>Ağ geçidi:</value>
-  </data>
-  <data name="Ui.ClearTheGatewayAddress" xml:space="preserve">
-    <value>Ağ geçidi adresini temizle</value>
-  </data>
-  <data name="Ui.AutomaticDNSAssignmentFromDHCP" xml:space="preserve">
-    <value>DHCP ile otomatik DNS ataması</value>
-  </data>
-  <data name="Ui.ManualDNSAssignment" xml:space="preserve">
-    <value>Elle DNS ataması</value>
-  </data>
-  <data name="Ui.Presets" xml:space="preserve">
-    <value>Hazır ayarlar</value>
-  </data>
-  <data name="Ui.PrimaryDNS" xml:space="preserve">
-    <value>Birincil DNS:</value>
-  </data>
-  <data name="Ui.SetTheDNSFromTheDefinedServerGateway" xml:space="preserve">
-    <value>DNS'yi tanımlanan sunucu ağ geçidine ayarla.</value>
-  </data>
-  <data name="Ui.ClearAddress" xml:space="preserve">
-    <value>Adresi temizle</value>
-  </data>
-  <data name="Ui.SecondaryDNS" xml:space="preserve">
-    <value>İkincil DNS:</value>
-  </data>
-  <data name="Ui.Apply" xml:space="preserve">
-    <value>Uygula</value>
-  </data>
-  <data name="Ui.Disable" xml:space="preserve">
-    <value>Devre dışı bırak</value>
-  </data>
-  <data name="Ui.ReleaseIP" xml:space="preserve">
-    <value>IP'yi serbest bırak</value>
-  </data>
-  <data name="Ui.RenewIP" xml:space="preserve">
-    <value>IP'yi yenile</value>
-  </data>
-  <data name="Ui.SetIP" xml:space="preserve">
-    <value>IP'yi ayarla</value>
-  </data>
-  <data name="Ui.ManualAssignment" xml:space="preserve">
-    <value>Elle atama</value>
-  </data>
-  <data name="Ui.ExportTo" xml:space="preserve">
-    <value>Dışa aktarma hedefi</value>
-  </data>
-  <data name="Ui.OpenInNewWindow" xml:space="preserve">
-    <value>Yeni pencerede aç</value>
-  </data>
-  <data name="Ui.PhysicalAddressMACAddress" xml:space="preserve">
-    <value>Fiziksel adres (MAC adresi)</value>
-  </data>
-  <data name="Ui.ConnectionSpeed" xml:space="preserve">
-    <value>Bağlantı hızı</value>
-  </data>
-  <data name="Ui.StaticIPv4" xml:space="preserve">
-    <value>Statik IPv4</value>
-  </data>
-  <data name="Ui.Downloaded" xml:space="preserve">
-    <value>İndirilen</value>
-  </data>
-  <data name="Ui.Uploaded" xml:space="preserve">
-    <value>Yüklenen</value>
-  </data>
-  <data name="Ui.Property" xml:space="preserve">
-    <value>Özellik</value>
-  </data>
-  <data name="Ui.Value" xml:space="preserve">
-    <value>Değer</value>
-  </data>
-  <data name="Ui.GraphOptions" xml:space="preserve">
-    <value>Grafik seçenekleri</value>
-  </data>
-  <data name="Ui.PingEvery" xml:space="preserve">
-    <value>Aralık:</value>
-  </data>
-  <data name="Ui.ChangesTheProbeIntervalForEveryServiceInThisGraph" xml:space="preserve">
-    <value>Bu grafikteki her hizmetin yoklama aralığını değiştirir</value>
-  </data>
-  <data name="Ui.Timeout" xml:space="preserve">
-    <value>Zaman aşımı:</value>
-  </data>
-  <data name="Ui.ChangesTheTimeoutForEveryServiceInThisGraph" xml:space="preserve">
-    <value>Bu grafikteki her hizmetin zaman aşımı süresini değiştirir</value>
-  </data>
-  <data name="Ui.RecentRepliesIncludedInTheGraphAndStatistics" xml:space="preserve">
-    <value>Grafiğe ve istatistiklere dahil edilen son yanıtlar</value>
-  </data>
-  <data name="Ui.ClickToToggleTopMenu" xml:space="preserve">
-    <value>Üst menüyü açıp kapatmak için tıklayın.</value>
-  </data>
-  <data name="Ui.About" xml:space="preserve">
-    <value>Hakkında</value>
-  </data>
-  <data name="Ui.Website" xml:space="preserve">
-    <value>Web sitesi</value>
-  </data>
-  <data name="Ui.CommunityForums" xml:space="preserve">
-    <value>Topluluk forumları</value>
-  </data>
-  <data name="Ui.Donate" xml:space="preserve">
-    <value>Bağış yap</value>
-  </data>
-  <data name="Ui.AskAQuestion" xml:space="preserve">
-    <value>Soru sor</value>
-  </data>
-  <data name="Ui.ReportAnIssue" xml:space="preserve">
-    <value>Sorun bildir</value>
-  </data>
-  <data name="Ui.SuggestAnImprovementOrFeature" xml:space="preserve">
-    <value>İyileştirme veya özellik öner</value>
-  </data>
-  <data name="Ui.OpenProfileFolder" xml:space="preserve">
-    <value>Profil klasörünü aç</value>
-  </data>
-  <data name="Ui.CheckForUpdates" xml:space="preserve">
-    <value>Güncellemeleri denetle</value>
-  </data>
-  <data name="Ui.Debug" xml:space="preserve">
-    <value>Hata ayıklama</value>
-  </data>
-  <data name="Ui.OpenExecutableFolder" xml:space="preserve">
-    <value>Program klasörünü aç</value>
-  </data>
-  <data name="Ui.TriggerNewUpdate" xml:space="preserve">
-    <value>Yeni güncellemeyi tetikle</value>
-  </data>
-  <data name="Ui.ThrowException" xml:space="preserve">
-    <value>Özel durum oluştur</value>
-  </data>
-  <data name="Ui.ToogleFullscreen" xml:space="preserve">
-    <value>Tam ekranı açıp kapat</value>
-  </data>
-  <data name="Ui.NetworkInterfaces" xml:space="preserve">
-    <value>Ağ arabirimleri</value>
-  </data>
-  <data name="Ui.Status" xml:space="preserve">
-    <value>Durum</value>
-  </data>
-  <data name="Ui.Others" xml:space="preserve">
-    <value>Diğer</value>
-  </data>
-  <data name="Ui.VirtualNetworks" xml:space="preserve">
-    <value>Sanal ağlar</value>
-  </data>
-  <data name="Ui.HavePhysicalAddress" xml:space="preserve">
-    <value>Fiziksel adresi var</value>
-  </data>
-  <data name="Ui.HaveIPAddress" xml:space="preserve">
-    <value>IP adresi var</value>
-  </data>
-  <data name="Ui.IsTransmittingData" xml:space="preserve">
-    <value>Veri aktarıyor</value>
-  </data>
-  <data name="Ui.FilterInterfacesByText" xml:space="preserve">
-    <value>Arabirimleri metne göre filtrele</value>
-  </data>
-  <data name="Ui.RefreshAllInterfaces" xml:space="preserve">
-    <value>Tüm arabirimleri yenile</value>
-  </data>
-  <data name="Ui.OpenSystemNetworkManager" xml:space="preserve">
-    <value>Sistem ağ yöneticisini aç</value>
-  </data>
-  <data name="Ui.NetworkInterfacesSettings" xml:space="preserve">
-    <value>Ağ arabirimi ayarları</value>
-  </data>
-  <data name="Ui.AutoRefresh" xml:space="preserve">
-    <value>Otomatik yenileme:</value>
-  </data>
-  <data name="Ui.CardWidth" xml:space="preserve">
-    <value>Kart genişliği:</value>
-  </data>
-  <data name="Ui.CardHeight" xml:space="preserve">
-    <value>Kart yüksekliği:</value>
-  </data>
-  <data name="Ui.FilterServicesByText" xml:space="preserve">
-    <value>Hizmetleri metne göre filtrele</value>
-  </data>
-  <data name="Ui.ResumeAll" xml:space="preserve">
-    <value>Tümünü sürdür</value>
-  </data>
-  <data name="Ui.PauseAll" xml:space="preserve">
-    <value>Tümünü duraklat</value>
-  </data>
-  <data name="Ui.GridViewOptions" xml:space="preserve">
-    <value>Tablo görünümü seçenekleri</value>
-  </data>
-  <data name="Ui.GroupBy" xml:space="preserve">
-    <value>Gruplandırma ölçütü:</value>
-  </data>
-  <data name="Ui.ResetColumnsOrder" xml:space="preserve">
-    <value>Sütun sırasını sıfırla</value>
-  </data>
-  <data name="Ui.DefaultPingOptions" xml:space="preserve">
-    <value>Varsayılan ping seçenekleri</value>
-  </data>
-  <data name="Ui.PingTimeout" xml:space="preserve">
-    <value>Ping zaman aşımı:</value>
-  </data>
-  <data name="Ui.BufferSize1DF49DCA" xml:space="preserve">
-    <value>Arabellek boyutu:</value>
-  </data>
-  <data name="Ui.TimeToLive" xml:space="preserve">
-    <value>TTL:</value>
-  </data>
-  <data name="Ui.DoNotFragment" xml:space="preserve">
-    <value>Parçalama yapma:</value>
-  </data>
-  <data name="Ui.PingCacheSize" xml:space="preserve">
-    <value>Ping önbelleği boyutu:</value>
-  </data>
-  <data name="Ui.GraphCacheSize" xml:space="preserve">
-    <value>Grafik önbelleği boyutu:</value>
-  </data>
-  <data name="Ui.PersistentPings" xml:space="preserve">
-    <value>Kalıcı pingler:</value>
-  </data>
-  <data name="Ui.SaveAndRestorePingRepliesAfterProgramRestart" xml:space="preserve">
-    <value>Program yeniden başlatıldığında ping yanıtlarını kaydet ve geri yükle</value>
-  </data>
-  <data name="Ui.PauseSelected" xml:space="preserve">
-    <value>Seçilenleri duraklat</value>
-  </data>
-  <data name="Ui.ResumeSelected" xml:space="preserve">
-    <value>Seçilenleri sürdür</value>
-  </data>
-  <data name="Ui.ResetSelectedStatistics" xml:space="preserve">
-    <value>Seçili istatistikleri sıfırla</value>
-  </data>
-  <data name="Ui.ResetAllStatistics" xml:space="preserve">
-    <value>Tüm istatistikleri sıfırla</value>
-  </data>
-  <data name="Ui.RemoveSelected" xml:space="preserve">
-    <value>Seçilenleri kaldır</value>
-  </data>
-  <data name="Ui.ExportSelectedToJSON" xml:space="preserve">
-    <value>Seçilenleri JSON'a aktar</value>
-  </data>
-  <data name="Ui.ExportAllToJSON" xml:space="preserve">
-    <value>Tümünü JSON'a aktar</value>
-  </data>
-  <data name="Ui.OpenInBrowser" xml:space="preserve">
-    <value>Tarayıcıda aç</value>
-  </data>
-  <data name="Ui.IPAddress3C3DE0C9" xml:space="preserve">
-    <value>IP adresi</value>
-  </data>
-  <data name="Ui.Time" xml:space="preserve">
-    <value>Süre</value>
-  </data>
-  <data name="Ui.MinTime" xml:space="preserve">
-    <value>En düşük gecikme</value>
-  </data>
-  <data name="Ui.AvgTime" xml:space="preserve">
-    <value>Ort. gecikme</value>
-  </data>
-  <data name="Ui.MaxTime" xml:space="preserve">
-    <value>En yüksek gecikme</value>
-  </data>
-  <data name="Ui.Pings" xml:space="preserve">
-    <value>Pingler</value>
-  </data>
-  <data name="Ui.Succeed" xml:space="preserve">
-    <value>Başarılı</value>
-  </data>
-  <data name="Ui.Failed" xml:space="preserve">
-    <value>Başarısız</value>
-  </data>
-  <data name="Ui.ConsecutiveSucceed" xml:space="preserve">
-    <value>Art arda başarı</value>
-  </data>
-  <data name="Ui.ConsecutiveFailed" xml:space="preserve">
-    <value>Art arda başarısızlık</value>
-  </data>
-  <data name="Ui.SucceedDate" xml:space="preserve">
-    <value>Son başarı</value>
-  </data>
-  <data name="Ui.FailedDate" xml:space="preserve">
-    <value>Son başarısızlık</value>
-  </data>
-  <data name="Ui.HostnameQuery" xml:space="preserve">
-    <value>Ana bilgisayar adı / Sorgu</value>
-  </data>
-  <data name="Ui.Order" xml:space="preserve">
-    <value>Sıra</value>
-  </data>
-  <data name="Ui.TotalPings" xml:space="preserve">
-    <value>Toplam ping</value>
-  </data>
-  <data name="Ui.SucceedPings" xml:space="preserve">
-    <value>Başarılı pingler</value>
-  </data>
-  <data name="Ui.FailedPings" xml:space="preserve">
-    <value>Başarısız pingler</value>
-  </data>
-  <data name="Ui.ClearStatistics" xml:space="preserve">
-    <value>İstatistikleri temizle</value>
-  </data>
-  <data name="Ui.Resume" xml:space="preserve">
-    <value>Sürdür</value>
-  </data>
-  <data name="Ui.Pause" xml:space="preserve">
-    <value>Duraklat</value>
-  </data>
-  <data name="Ui.ExportPings" xml:space="preserve">
-    <value>Pingleri dışa aktar</value>
-  </data>
-  <data name="Ui.ExportToCSV" xml:space="preserve">
-    <value>CSV'ye aktar</value>
-  </data>
-  <data name="Ui.ExportToJSON" xml:space="preserve">
-    <value>JSON'a aktar</value>
-  </data>
-  <data name="Ui.ReplyIPAddress" xml:space="preserve">
-    <value>Yanıt IP adresi</value>
-  </data>
-  <data name="Ui.SentOn" xml:space="preserve">
-    <value>Gönderilme zamanı</value>
-  </data>
-  <data name="Ui.ErrorMessage" xml:space="preserve">
-    <value>Hata iletisi</value>
-  </data>
-  <data name="Ui.ResponseTime" xml:space="preserve">
-    <value>Yanıt süresi</value>
-  </data>
-  <data name="Ui.LastReplyStatus" xml:space="preserve">
-    <value>Son yanıt durumu</value>
-  </data>
-  <data name="Ui.LatestReplyLatencyOrStatus" xml:space="preserve">
-    <value>Son yanıt gecikmesi veya durumu</value>
-  </data>
-  <data name="Ui.MedianLatencyInTheDisplayedWindow" xml:space="preserve">
-    <value>Görüntülenen aralıktaki ortanca gecikme</value>
-  </data>
-  <data name="Ui.95thPercentileLatencyInTheDisplayedWindow" xml:space="preserve">
-    <value>Görüntülenen aralıktaki gecikmenin 95. yüzdelik değeri</value>
-  </data>
-  <data name="Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies" xml:space="preserve">
-    <value>Art arda gelen başarılı yanıtlar arasındaki ortalama gecikme değişimi</value>
-  </data>
-  <data name="Ui.FailedRepliesInTheDisplayedWindow" xml:space="preserve">
-    <value>Görüntülenen aralıktaki başarısız yanıtlar</value>
-  </data>
-  <data name="Ui.OpenGraphInANewWindow" xml:space="preserve">
-    <value>Grafiği yeni pencerede aç</value>
-  </data>
-  <data name="Ui.SystemMode" xml:space="preserve">
-    <value>Sistem modu</value>
-  </data>
-  <data name="Ui.LightMode" xml:space="preserve">
-    <value>Açık mod</value>
-  </data>
-  <data name="Ui.DarkMode" xml:space="preserve">
-    <value>Koyu mod</value>
-  </data>
-  <data name="Ui.UIScale" xml:space="preserve">
-    <value>Arayüz ölçeği</value>
-  </data>
-  <data name="Ui.AdjustTheUIScaleToIncreaseOrDecreaseTheSizeOfTheInterfaceElements" xml:space="preserve">
-    <value>Arayüz öğelerinin boyutunu büyütmek veya küçültmek için arayüz ölçeğini ayarlayın.</value>
-  </data>
-  <data name="Ui.Background" xml:space="preserve">
-    <value>Arka plan</value>
-  </data>
-  <data name="Ui.AnimatedBackground" xml:space="preserve">
-    <value>Hareketli arka plan</value>
-  </data>
-  <data name="Ui.EnableDisableTheAnimationsForTheBackgroundWhichAreDrivenByTheCurrentlyAc" xml:space="preserve">
-    <value>Etkin efekt tarafından yönetilen arka plan animasyonlarını açın veya kapatın.</value>
-  </data>
-  <data name="Ui.BackgroundTransitions" xml:space="preserve">
-    <value>Arka plan geçişleri</value>
-  </data>
-  <data name="Ui.EnableDisableTheTransitionsForTheBackgroundTheseWillFadeBetweenTheActive" xml:space="preserve">
-    <value>Arka plan geçişlerini açın veya kapatın. Etkin efekt değiştiğinde efektler arasında yumuşak bir geçiş yapılır.</value>
-  </data>
-  <data name="Ui.BackgroundStyle" xml:space="preserve">
-    <value>Arka plan stili</value>
-  </data>
-  <data name="Ui.SelectFromTheIncludedBackgroundStyles" xml:space="preserve">
-    <value>Sunulan arka plan stillerinden birini seçin.</value>
-  </data>
-  <data name="Ui.CustomShaders" xml:space="preserve">
-    <value>Özel gölgelendiriciler</value>
-  </data>
-  <data name="Ui.ClickAnyOfTheButtonsBelowToEnableABackgroundShaderClickItAgainToDisableI" xml:space="preserve">
-    <value>Bir arka plan gölgelendiricisini etkinleştirmek için aşağıdaki düğmelerden birine tıklayın. Devre dışı bırakmak için yeniden tıklayın. Bunlar GPU'nuza önemli ölçüde yük bindirebilir ve yalnızca arka plan işleyicisinin özelliklerini göstermek ve sınamak için sunulur.</value>
-  </data>
-  <data name="Ui.General" xml:space="preserve">
-    <value>Genel</value>
-  </data>
-  <data name="Ui.StartTheApplicationAutomaticallyWhenTheSystemStarts" xml:space="preserve">
-    <value>Sistem başlatıldığında uygulamayı otomatik olarak başlatın.</value>
-  </data>
-  <data name="Ui.UseSystemTray" xml:space="preserve">
-    <value>Sistem tepsisini kullan</value>
-  </data>
-  <data name="Ui.ShowATrayIconInTheSystemNotificationAreaForQuickAccessWhenTheAppIsRunnin" xml:space="preserve">
-    <value>Uygulama çalışırken hızlı erişim için sistem bildirim alanında bir tepsi simgesi gösterin.</value>
-  </data>
-  <data name="Ui.CloseToSystemTray" xml:space="preserve">
-    <value>Sistem tepsisine kapat</value>
-  </data>
-  <data name="Ui.WhenClosingTheMainWindowKeepTheAppRunningInTheSystemTrayInsteadOfExiting" xml:space="preserve">
-    <value>Ana pencereyi kapatırken uygulamadan çıkmak yerine uygulamayı sistem tepsisinde çalışır durumda tutun.</value>
-  </data>
-  <data name="Ui.CheckForUpdatesOnStart" xml:space="preserve">
-    <value>Başlangıçta güncellemeleri denetle</value>
-  </data>
-  <data name="Ui.CheckForUpdatesOnApplicationStartIfAnUpdateIsAvailableItWillNotifyAndAdd" xml:space="preserve">
-    <value>Uygulama başlatılırken güncellemeleri denetleyin. Bir güncelleme varsa bildirim gösterilir ve yapacağınız işlem sorulur.</value>
-  </data>
-  <data name="Ui.SpeedTests" xml:space="preserve">
-    <value>Hız testleri</value>
-  </data>
-  <data name="Ui.NewSpeedTest" xml:space="preserve">
-    <value>Yeni hız testi</value>
-  </data>
-  <data name="Ui.StopSpeedTest" xml:space="preserve">
-    <value>Hız testini durdur</value>
-  </data>
-  <data name="Ui.SpeedTestSettings" xml:space="preserve">
-    <value>Hız testi ayarları</value>
-  </data>
-  <data name="Ui.AutoSpeedTest" xml:space="preserve">
-    <value>Otomatik testler:</value>
-  </data>
-  <data name="Ui.Server" xml:space="preserve">
-    <value>Sunucu:</value>
-  </data>
-  <data name="Ui.GaugeRange" xml:space="preserve">
-    <value>Gösterge aralığı:</value>
-  </data>
-  <data name="Ui.GaugeIncrement" xml:space="preserve">
-    <value>Gösterge artışı:</value>
-  </data>
-  <data name="Ui.OpenResult" xml:space="preserve">
-    <value>Sonucu aç</value>
-  </data>
-  <data name="Ui.DateTime" xml:space="preserve">
-    <value>Tarih ve saat</value>
-  </data>
-  <data name="Ui.Ping" xml:space="preserve">
-    <value>Gecikme</value>
-  </data>
-  <data name="Ui.Download" xml:space="preserve">
-    <value>İndirme</value>
-  </data>
-  <data name="Ui.Upload" xml:space="preserve">
-    <value>Yükleme</value>
-  </data>
-  <data name="Ui.PacketLoss" xml:space="preserve">
-    <value>Paket kaybı</value>
-  </data>
-  <data name="Ui.Interface" xml:space="preserve">
-    <value>Arabirim</value>
-  </data>
-  <data name="Ui.ServerAEF7DE28" xml:space="preserve">
-    <value>Sunucu</value>
-  </data>
-  <data name="Ui.SpeedtestDependencyWasNotFoundInTheSystem" xml:space="preserve">
-    <value>Speedtest bağımlılığı sistemde bulunamadı</value>
-  </data>
-  <data name="Ui.ThisModuleRequiresTheOoklaSpeedtestCLIBinaryYetWasNotFoundInTheSystemPle" xml:space="preserve">
-    <value>Bu modül Ookla Speedtest CLI programını gerektiriyor ancak program sistemde bulunamadı.
-Bağımlılığı yükleyip modülü yeniden yükleyin.</value>
-  </data>
-  <data name="Ui.Jitter" xml:space="preserve">
-    <value>Gecikme değişimi:</value>
-  </data>
-  <data name="Ui.Low" xml:space="preserve">
-    <value>Düşük:</value>
-  </data>
-  <data name="Ui.High" xml:space="preserve">
-    <value>Yüksek:</value>
-  </data>
-  <data name="Ui.PLoss" xml:space="preserve">
-    <value>Paket kaybı:</value>
-  </data>
-  <data name="Ui.IQM" xml:space="preserve">
-    <value>IQM:</value>
-  </data>
-  <data name="Ui.Name" xml:space="preserve">
-    <value>Ad:</value>
-  </data>
-  <data name="Ui.Location" xml:space="preserve">
-    <value>Konum:</value>
-  </data>
-  <data name="Ui.Host" xml:space="preserve">
-    <value>Ana bilgisayar:</value>
-  </data>
-  <data name="Ui.IP" xml:space="preserve">
-    <value>IP:</value>
-  </data>
-  <data name="Ui.Port" xml:space="preserve">
-    <value>Bağlantı noktası:</value>
-  </data>
-  <data name="Ui.ISP" xml:space="preserve">
-    <value>İnternet sağlayıcısı:</value>
-  </data>
-  <data name="Ui.Index" xml:space="preserve">
-    <value>Dizin</value>
-  </data>
-  <data name="Ui.NameDCD1D522" xml:space="preserve">
-    <value>Ad</value>
-  </data>
-  <data name="Navigation.Interfaces" xml:space="preserve">
-    <value>Arabirimler</value>
-  </data>
-  <data name="Navigation.Pings" xml:space="preserve">
-    <value>Pingler</value>
-  </data>
-  <data name="Navigation.SpeedTest" xml:space="preserve">
-    <value>Hız Testi</value>
-  </data>
-  <data name="Common.Yes" xml:space="preserve">
-    <value>Evet</value>
-  </data>
-  <data name="Common.No" xml:space="preserve">
-    <value>Hayır</value>
-  </data>
   <data name="Common.Cancel" xml:space="preserve">
     <value>İptal</value>
   </data>
-  <data name="Common.Unknown" xml:space="preserve">
-    <value>Bilinmiyor</value>
+  <data name="Common.Close" xml:space="preserve">
+    <value>Kapat</value>
   </data>
-  <data name="Common.View" xml:space="preserve">
-    <value>Görüntüle</value>
+  <data name="Common.Copied" xml:space="preserve">
+    <value>Kopyalandı</value>
+  </data>
+  <data name="Common.CopiedToClipboard" xml:space="preserve">
+    <value>Panoya kopyalandı</value>
+  </data>
+  <data name="Common.Copy" xml:space="preserve">
+    <value>Kopyala</value>
+  </data>
+  <data name="Common.Help" xml:space="preserve">
+    <value>Yardım</value>
   </data>
   <data name="Common.Ignore" xml:space="preserve">
     <value>Yoksay</value>
   </data>
-  <data name="Common.CopiedToClipboard" xml:space="preserve">
-    <value>Panoya kopyalandı</value>
+  <data name="Common.No" xml:space="preserve">
+    <value>Hayır</value>
   </data>
   <data name="Common.OpenFile" xml:space="preserve">
     <value>Dosya aç</value>
@@ -770,74 +88,28 @@ Bağımlılığı yükleyip modülü yeniden yükleyin.</value>
   <data name="Common.OpenFolder" xml:space="preserve">
     <value>Klasör aç</value>
   </data>
-  <data name="Dialog.About.Title" xml:space="preserve">
-    <value>{0} hakkında</value>
-  </data>
-  <data name="Update.TriggerUnavailable.Title" xml:space="preserve">
-    <value>Yeni güncelleme tetiklenemiyor</value>
-  </data>
-  <data name="Update.TriggerUnavailable.Message" xml:space="preserve">
-    <value>Yeni güncellemeyi tetiklemek için kullanılabilir bir sürüm yok.</value>
-  </data>
-  <data name="Update.None.Title" xml:space="preserve">
-    <value>Kullanılabilir güncelleme yok.</value>
-  </data>
-  <data name="Update.None.Message" xml:space="preserve">
-    <value>{0} en son sürümü kullanıyor.</value>
-  </data>
-  <data name="Update.CheckFailed" xml:space="preserve">
-    <value>Güncellemeler denetlenemiyor</value>
-  </data>
-  <data name="Update.Found.Title" xml:space="preserve">
-    <value>{0} güncellemesi bulundu</value>
-  </data>
-  <data name="Update.Found.Message" xml:space="preserve">
-    <value>Geçerli sürüm: {0}
-Yeni sürüm: {1}
-İlerideki sürüm sayısı: {2}
-Yayın tarihi: {3:f}</value>
-  </data>
-  <data name="Common.Copy" xml:space="preserve">
-    <value>Kopyala</value>
-  </data>
-  <data name="Common.Copied" xml:space="preserve">
-    <value>Kopyalandı</value>
-  </data>
-  <data name="Common.Close" xml:space="preserve">
-    <value>Kapat</value>
-  </data>
-  <data name="Common.Report" xml:space="preserve">
-    <value>Bildir</value>
-  </data>
-  <data name="Common.Help" xml:space="preserve">
-    <value>Yardım</value>
-  </data>
-  <data name="Common.Restart" xml:space="preserve">
-    <value>Yeniden başlat</value>
-  </data>
-  <data name="Common.Reload" xml:space="preserve">
-    <value>Yeniden yükle</value>
-  </data>
   <data name="Common.ProcessId" xml:space="preserve">
     <value>
 
 İşlem kimliği: {0}</value>
   </data>
-  <data name="Update.Auto" xml:space="preserve">
-    <value>Otomatik güncelleme</value>
+  <data name="Common.Reload" xml:space="preserve">
+    <value>Yeniden yükle</value>
   </data>
-  <data name="Update.Manual" xml:space="preserve">
-    <value>Elle güncelleme</value>
+  <data name="Common.Report" xml:space="preserve">
+    <value>Bildir</value>
   </data>
-  <data name="Window.CrashReport.Title" xml:space="preserve">
-    <value>{0} - Kilitlenme Raporu</value>
+  <data name="Common.Restart" xml:space="preserve">
+    <value>Yeniden başlat</value>
   </data>
-  <data name="Window.AlreadyRunning.Title" xml:space="preserve">
-    <value>{0} - Zaten çalışıyor</value>
+  <data name="Common.Unknown" xml:space="preserve">
+    <value>Bilinmiyor</value>
   </data>
-  <data name="InstanceAlreadyRunning.Message" xml:space="preserve">
-    <value>{0} uygulamasının başka bir örneği çalışıyor. Aynı anda yalnızca bir {0} örneği çalışabilir.
-Yeni bir örnek başlatmadan önce çalışan örneği bulup açın veya kapatın.</value>
+  <data name="Common.View" xml:space="preserve">
+    <value>Görüntüle</value>
+  </data>
+  <data name="Common.Yes" xml:space="preserve">
+    <value>Evet</value>
   </data>
   <data name="CrashReport.Header" xml:space="preserve">
     <value>{0}, beklenmeyen bir hata nedeniyle kilitlendi.
@@ -848,8 +120,316 @@ Ayrıntılı bilgiyi aşağıda bulabilirsiniz:</value>
     <value>Uygulama beklenmeyen bir hata nedeniyle kilitlendi, ancak ne yazık ki daha fazla ayrıntı yok.
 Kilitlenme raporu kaybolmuş veya kaydedilememiş olabilir.</value>
   </data>
-  <data name="Ping.ResetOne.Title" xml:space="preserve">
-    <value>Seçili ping hedefini sıfırlamak istediğinizden emin misiniz?</value>
+  <data name="Dialog.About.Title" xml:space="preserve">
+    <value>{0} hakkında</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Dark" xml:space="preserve">
+    <value>Koyu</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Default" xml:space="preserve">
+    <value>Sistem dilini kullan</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Light" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.Group" xml:space="preserve">
+    <value>Grup</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.LastStatus" xml:space="preserve">
+    <value>Son durum</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.None" xml:space="preserve">
+    <value>Gruplandırma yok</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.ProtocolType" xml:space="preserve">
+    <value>Protokol türü</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.DNS" xml:space="preserve">
+    <value>DNS: Alan Adı Sistemi</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.HTTP" xml:space="preserve">
+    <value>HTTP: Köprü Metni Aktarım Protokolü</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.ICMP" xml:space="preserve">
+    <value>ICMP: İnternet Kontrol İletisi Protokolü</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.IMAP" xml:space="preserve">
+    <value>IMAP: İnternet İleti Erişim Protokolü</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.MQTT" xml:space="preserve">
+    <value>MQTT: İleti Kuyruğu Telemetri Aktarımı</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.NTP" xml:space="preserve">
+    <value>NTP: Ağ Zaman Protokolü</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SIP" xml:space="preserve">
+    <value>SIP: Oturum Başlatma Protokolü</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SMTP" xml:space="preserve">
+    <value>SMTP: Basit Posta Aktarım Protokolü</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SSH" xml:space="preserve">
+    <value>SSH: Güvenli Kabuk Protokolü</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.STUN" xml:space="preserve">
+    <value>STUN: NAT için Oturum Geçişi Yardımcı Programları</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.TCP" xml:space="preserve">
+    <value>TCP: İletim Kontrol Protokolü</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.TLS" xml:space="preserve">
+    <value>TLS: Taşıma Katmanı Güvenliği</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.UDP" xml:space="preserve">
+    <value>UDP: Kullanıcı Datagram Protokolü</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.WebSocket" xml:space="preserve">
+    <value>WebSocket: Tam çift yönlü iletişim protokolü</value>
+  </data>
+  <data name="Export.Interface.Error" xml:space="preserve">
+    <value>Arabirim dışa aktarılırken hata oluştu:</value>
+  </data>
+  <data name="Export.Interface.Success" xml:space="preserve">
+    <value>"{0}" arabirimi "{1}" konumuna aktarıldı.</value>
+  </data>
+  <data name="Export.Interface.Title" xml:space="preserve">
+    <value>Arabirimi {0} biçiminde dışa aktar</value>
+  </data>
+  <data name="Export.Pings.CsvTitle" xml:space="preserve">
+    <value>Pingleri CSV'ye aktar</value>
+  </data>
+  <data name="Export.Pings.Error" xml:space="preserve">
+    <value>Pingler dışa aktarılırken hata oluştu:</value>
+  </data>
+  <data name="Export.Pings.JsonTitle" xml:space="preserve">
+    <value>Pingleri JSON'a aktar</value>
+  </data>
+  <data name="Export.Pings.Success" xml:space="preserve">
+    <value>"{1}" için pingler ({0}) "{2}" konumuna aktarıldı.</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>Pingleri TSV'ye aktar</value>
+  </data>
+  <data name="Export.Results.Error" xml:space="preserve">
+    <value>Sonuçlar dışa aktarılırken hata oluştu:</value>
+  </data>
+  <data name="Export.Results.Success" xml:space="preserve">
+    <value>Sonuçlar ({0}) "{1}" konumuna aktarıldı.</value>
+  </data>
+  <data name="Export.Results.Title" xml:space="preserve">
+    <value>Sonuçları JSON'a aktar</value>
+  </data>
+  <data name="Export.Services.Error" xml:space="preserve">
+    <value>Hizmetler dışa aktarılırken hata oluştu:</value>
+  </data>
+  <data name="Export.Services.Success" xml:space="preserve">
+    <value>Hizmetler ({0}) "{1}" konumuna aktarıldı.</value>
+  </data>
+  <data name="Export.Services.Title" xml:space="preserve">
+    <value>Hizmetleri JSON'a aktar</value>
+  </data>
+  <data name="Graph.AboveAutomaticScale" xml:space="preserve">
+    <value>Otomatik ölçeğin üstünde</value>
+  </data>
+  <data name="Graph.AboveScale" xml:space="preserve">
+    <value>Ölçek üstü</value>
+  </data>
+  <data name="Graph.AllSamples" xml:space="preserve">
+    <value>Tüm örnekler</value>
+  </data>
+  <data name="Graph.AutoScale" xml:space="preserve">
+    <value>Otomatik ölçek</value>
+  </data>
+  <data name="Graph.AutoScale.ToolTip" xml:space="preserve">
+    <value>Otomatik gecikme ölçeklendirmesini kullan</value>
+  </data>
+  <data name="Graph.Average" xml:space="preserve">
+    <value>Ortalama</value>
+  </data>
+  <data name="Graph.Current" xml:space="preserve">
+    <value>Güncel</value>
+  </data>
+  <data name="Graph.DisableAll.ToolTip" xml:space="preserve">
+    <value>Bu grafikteki tüm hizmetleri devre dışı bırak</value>
+  </data>
+  <data name="Graph.EnableAll.ToolTip" xml:space="preserve">
+    <value>Bu grafikteki tüm hizmetleri etkinleştir</value>
+  </data>
+  <data name="Graph.Failed" xml:space="preserve">
+    <value>Başarısız</value>
+  </data>
+  <data name="Graph.Failure" xml:space="preserve">
+    <value>Başarısızlık</value>
+  </data>
+  <data name="Graph.Freeze" xml:space="preserve">
+    <value>Dondur</value>
+  </data>
+  <data name="Graph.Freeze.ToolTip" xml:space="preserve">
+    <value>Denetimler sürerken grafiği dondur</value>
+  </data>
+  <data name="Graph.FullScale" xml:space="preserve">
+    <value>Tam ölçek</value>
+  </data>
+  <data name="Graph.FullScale.ToolTip" xml:space="preserve">
+    <value>Gecikme aralığının tamamını göster</value>
+  </data>
+  <data name="Graph.Jitter" xml:space="preserve">
+    <value>Gecikme değişimi</value>
+  </data>
+  <data name="Graph.Latency" xml:space="preserve">
+    <value>Gecikme</value>
+  </data>
+  <data name="Graph.Loss" xml:space="preserve">
+    <value>Kayıp</value>
+  </data>
+  <data name="Graph.Maximum" xml:space="preserve">
+    <value>En yüksek</value>
+  </data>
+  <data name="Graph.Minimum" xml:space="preserve">
+    <value>En düşük</value>
+  </data>
+  <data name="Graph.Resume.ToolTip" xml:space="preserve">
+    <value>Canlı grafik güncellemelerini sürdür</value>
+  </data>
+  <data name="Graph.RollingAverage" xml:space="preserve">
+    <value>Hareketli ortalama</value>
+  </data>
+  <data name="Graph.Samples" xml:space="preserve">
+    <value>{0} örnek</value>
+  </data>
+  <data name="Graph.Title" xml:space="preserve">
+    <value>Grafik</value>
+  </data>
+  <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
+    <value>Panodan yapıştırılamadı</value>
+  </data>
+  <data name="Import.Clipboard.NoData" xml:space="preserve">
+    <value>Pano boş veya kullanılabilir hizmet verisi içermiyor.</value>
+  </data>
+  <data name="Import.Clipboard.Summary" xml:space="preserve">
+    <value>{0} hizmet yapıştırıldı, {1} atlandı.</value>
+  </data>
+  <data name="Import.Json.ErrorMessage" xml:space="preserve">
+    <value>Sağlanan JSON dosyası geçersiz veya hatalı biçimlendirilmiş.</value>
+  </data>
+  <data name="Import.Json.ErrorTitle" xml:space="preserve">
+    <value>JSON'dan içe aktarılamıyor</value>
+  </data>
+  <data name="InstanceAlreadyRunning.Message" xml:space="preserve">
+    <value>{0} uygulamasının başka bir örneği çalışıyor. Aynı anda yalnızca bir {0} örneği çalışabilir.
+Yeni bir örnek başlatmadan önce çalışan örneği bulup açın veya kapatın.</value>
+  </data>
+  <data name="Navigation.Interfaces" xml:space="preserve">
+    <value>Arabirimler</value>
+  </data>
+  <data name="Navigation.Pings" xml:space="preserve">
+    <value>Pingler</value>
+  </data>
+  <data name="Navigation.Settings" xml:space="preserve">
+    <value>Ayarlar</value>
+  </data>
+  <data name="Navigation.SpeedTest" xml:space="preserve">
+    <value>Hız Testi</value>
+  </data>
+  <data name="Network.DhcpDns.Error" xml:space="preserve">
+    <value>DHCP DNS atanamıyor.</value>
+  </data>
+  <data name="Network.DhcpDns.Success" xml:space="preserve">
+    <value>DHCP DNS başarıyla atandı.</value>
+  </data>
+  <data name="Network.DhcpIp.Error" xml:space="preserve">
+    <value>"{1}" için DHCPv{0} ayarlanamıyor.</value>
+  </data>
+  <data name="Network.DhcpIp.Success" xml:space="preserve">
+    <value>IP adresi başarıyla DHCPv{0} olarak ayarlandı</value>
+  </data>
+  <data name="Network.Disable.Error" xml:space="preserve">
+    <value>"{0}" devre dışı bırakılamıyor.</value>
+  </data>
+  <data name="Network.Disable.Success" xml:space="preserve">
+    <value>"{0}" arabirimi başarıyla devre dışı bırakıldı.</value>
+  </data>
+  <data name="Network.Disable.Title" xml:space="preserve">
+    <value>Devre dışı bırak: {0}</value>
+  </data>
+  <data name="Network.Dns.Error" xml:space="preserve">
+    <value>DNS atanamıyor.</value>
+  </data>
+  <data name="Network.Dns.Success" xml:space="preserve">
+    <value>DNS sunucuları başarıyla atandı: {0} {1}</value>
+  </data>
+  <data name="Network.Dns.Title" xml:space="preserve">
+    <value>"{0}" için DNS ataması</value>
+  </data>
+  <data name="Network.Enable.Error" xml:space="preserve">
+    <value>"{0}" etkinleştirilemiyor.</value>
+  </data>
+  <data name="Network.Enable.Success" xml:space="preserve">
+    <value>"{0}" arabirimi başarıyla etkinleştirildi.</value>
+  </data>
+  <data name="Network.Enable.Title" xml:space="preserve">
+    <value>Etkinleştir: {0}</value>
+  </data>
+  <data name="Network.IpAssignment.Error" xml:space="preserve">
+    <value>IP atanamıyor.</value>
+  </data>
+  <data name="Network.IpAssignment.NoChanges" xml:space="preserve">
+    <value>Tanımlanan ayarlar önceki ayarlarla eşleştiği için değişiklik yapılmadı.</value>
+  </data>
+  <data name="Network.IpAssignment.Title" xml:space="preserve">
+    <value>"{0}" için IP ataması</value>
+  </data>
+  <data name="Network.Release.Error" xml:space="preserve">
+    <value>"{0}" serbest bırakılamıyor.</value>
+  </data>
+  <data name="Network.Release.Success" xml:space="preserve">
+    <value>IP adresi başarıyla serbest bırakıldı.</value>
+  </data>
+  <data name="Network.Release.Title" xml:space="preserve">
+    <value>Serbest bırak: {0}</value>
+  </data>
+  <data name="Network.Renew.Error" xml:space="preserve">
+    <value>"{0}" yenilenemiyor.</value>
+  </data>
+  <data name="Network.Renew.Success" xml:space="preserve">
+    <value>IP adresi başarıyla yenilendi.</value>
+  </data>
+  <data name="Network.Renew.Title" xml:space="preserve">
+    <value>Yenile: {0}</value>
+  </data>
+  <data name="Network.StaticIp.Error" xml:space="preserve">
+    <value>"{1}" için statik IPv{0} ayarlanamıyor.</value>
+  </data>
+  <data name="Network.StaticIp.Success" xml:space="preserve">
+    <value>IP adresi başarıyla {0} {1} {2} olarak ayarlandı</value>
+  </data>
+  <data name="Operation.Success" xml:space="preserve">
+    <value>İşlem başarıyla tamamlandı.</value>
+  </data>
+  <data name="Operation.SudoRequired" xml:space="preserve">
+    <value>Sudo erişimi gerektiği için işlem çalıştırılamıyor.
+pkexec bulunamadı. pkexec'i kurun veya uygulamayı sudo ile çalıştırın.</value>
+  </data>
+  <data name="Ping.RemoveAll.Message" xml:space="preserve">
+    <value>Tüm ping hedeflerini ({0}) kaldırmak üzeresiniz.
+Devam etmek istediğinizden emin misiniz?</value>
+  </data>
+  <data name="Ping.RemoveAll.Title" xml:space="preserve">
+    <value>Tüm ping hedeflerini ({0}) kaldırmak istediğinizden emin misiniz?</value>
+  </data>
+  <data name="Ping.RemoveSelected.Message" xml:space="preserve">
+    <value>Seçili ping hedeflerini ({0}) kaldırmak üzeresiniz.
+Devam etmek istediğinizden emin misiniz?</value>
+  </data>
+  <data name="Ping.RemoveSelected.Title" xml:space="preserve">
+    <value>Seçili ping hedeflerini ({0}) kaldırmak istediğinizden emin misiniz?</value>
+  </data>
+  <data name="Ping.ResetAll.Message" xml:space="preserve">
+    <value>Tüm ping hedeflerinin ({0}) istatistiklerini sıfırlamak üzeresiniz.
+Devam etmek istediğinizden emin misiniz?</value>
+  </data>
+  <data name="Ping.ResetAll.Title" xml:space="preserve">
+    <value>Tüm ping hedeflerini ({0}) sıfırlamak istediğinizden emin misiniz?</value>
   </data>
   <data name="Ping.ResetOne.Message" xml:space="preserve">
     <value>Seçili ping hedefinin istatistiklerini sıfırlamak üzeresiniz.
@@ -859,363 +439,83 @@ Ana bilgisayar: {1}
 
 Devam etmek istediğinizden emin misiniz?</value>
   </data>
-  <data name="Ping.ResetSelected.Title" xml:space="preserve">
-    <value>Seçili ping hedeflerini ({0}) sıfırlamak istediğinizden emin misiniz?</value>
+  <data name="Ping.ResetOne.Title" xml:space="preserve">
+    <value>Seçili ping hedefini sıfırlamak istediğinizden emin misiniz?</value>
   </data>
   <data name="Ping.ResetSelected.Message" xml:space="preserve">
     <value>Seçili ping hedeflerinin ({0}) istatistiklerini sıfırlamak üzeresiniz.
 Devam etmek istediğinizden emin misiniz?</value>
   </data>
-  <data name="Ping.ResetAll.Title" xml:space="preserve">
-    <value>Tüm ping hedeflerini ({0}) sıfırlamak istediğinizden emin misiniz?</value>
+  <data name="Ping.ResetSelected.Title" xml:space="preserve">
+    <value>Seçili ping hedeflerini ({0}) sıfırlamak istediğinizden emin misiniz?</value>
   </data>
-  <data name="Ping.ResetAll.Message" xml:space="preserve">
-    <value>Tüm ping hedeflerinin ({0}) istatistiklerini sıfırlamak üzeresiniz.
-Devam etmek istediğinizden emin misiniz?</value>
+  <data name="Settings.Language" xml:space="preserve">
+    <value>Dil</value>
   </data>
-  <data name="Ping.RemoveSelected.Title" xml:space="preserve">
-    <value>Seçili ping hedeflerini ({0}) kaldırmak istediğinizden emin misiniz?</value>
+  <data name="Settings.Language.Description" xml:space="preserve">
+    <value>Uygulamanın tamamında kullanılacak dili seçin.</value>
   </data>
-  <data name="Ping.RemoveSelected.Message" xml:space="preserve">
-    <value>Seçili ping hedeflerini ({0}) kaldırmak üzeresiniz.
-Devam etmek istediğinizden emin misiniz?</value>
+  <data name="Settings.Language.FollowSystem" xml:space="preserve">
+    <value>Sistem dilini kullan</value>
   </data>
-  <data name="Ping.RemoveAll.Title" xml:space="preserve">
-    <value>Tüm ping hedeflerini ({0}) kaldırmak istediğinizden emin misiniz?</value>
+  <data name="Settings.Theme" xml:space="preserve">
+    <value>Tema</value>
   </data>
-  <data name="Ping.RemoveAll.Message" xml:space="preserve">
-    <value>Tüm ping hedeflerini ({0}) kaldırmak üzeresiniz.
-Devam etmek istediğinizden emin misiniz?</value>
-  </data>
-  <data name="Export.Services.Title" xml:space="preserve">
-    <value>Hizmetleri JSON'a aktar</value>
-  </data>
-  <data name="Export.Services.Success" xml:space="preserve">
-    <value>Hizmetler ({0}) "{1}" konumuna aktarıldı.</value>
-  </data>
-  <data name="Export.Services.Error" xml:space="preserve">
-    <value>Hizmetler dışa aktarılırken hata oluştu:</value>
-  </data>
-  <data name="Export.Pings.CsvTitle" xml:space="preserve">
-    <value>Pingleri CSV'ye aktar</value>
-  </data>
-  <data name="Export.Pings.JsonTitle" xml:space="preserve">
-    <value>Pingleri JSON'a aktar</value>
-  </data>
-  <data name="Export.Pings.Success" xml:space="preserve">
-    <value>"{1}" için pingler ({0}) "{2}" konumuna aktarıldı.</value>
-  </data>
-  <data name="Export.Pings.Error" xml:space="preserve">
-    <value>Pingler dışa aktarılırken hata oluştu:</value>
-  </data>
-  <data name="SpeedTest.Install.Title" xml:space="preserve">
-    <value>Speedtest CLI kurulumu</value>
-  </data>
-  <data name="SpeedTest.Install.Success" xml:space="preserve">
-    <value>Speedtest CLI başarıyla kuruldu.</value>
-  </data>
-  <data name="SpeedTest.Install.Error" xml:space="preserve">
-    <value>Speedtest CLI kurulamadı. https://www.speedtest.net/apps/cli adresinden elle kurun</value>
+  <data name="SpeedTest.AutoInstall" xml:space="preserve">
+    <value>Otomatik kurulum</value>
   </data>
   <data name="SpeedTest.Error" xml:space="preserve">
     <value>Hız testi sırasında hata oluştu</value>
   </data>
-  <data name="Export.Results.Title" xml:space="preserve">
-    <value>Sonuçları JSON'a aktar</value>
+  <data name="SpeedTest.Install.Error" xml:space="preserve">
+    <value>Speedtest CLI kurulamadı. https://www.speedtest.net/apps/cli adresinden elle kurun</value>
   </data>
-  <data name="Export.Results.Success" xml:space="preserve">
-    <value>Sonuçlar ({0}) "{1}" konumuna aktarıldı.</value>
+  <data name="SpeedTest.Install.Success" xml:space="preserve">
+    <value>Speedtest CLI başarıyla kuruldu.</value>
   </data>
-  <data name="Export.Results.Error" xml:space="preserve">
-    <value>Sonuçlar dışa aktarılırken hata oluştu:</value>
+  <data name="SpeedTest.Install.Title" xml:space="preserve">
+    <value>Speedtest CLI kurulumu</value>
   </data>
-  <data name="SpeedTest.RemoveSelected.Title" xml:space="preserve">
-    <value>Seçili sonuçları ({0}) kaldırmak istediğinizden emin misiniz?</value>
-  </data>
-  <data name="SpeedTest.RemoveSelected.Message" xml:space="preserve">
-    <value>Seçili sonuçları ({0}) kaldırmak üzeresiniz.
-Devam etmek istediğinizden emin misiniz?</value>
-  </data>
-  <data name="SpeedTest.RemoveAll.Title" xml:space="preserve">
-    <value>Tüm sonuçları ({0}) kaldırmak istediğinizden emin misiniz?</value>
+  <data name="SpeedTest.ManualInstall" xml:space="preserve">
+    <value>Elle kurulum</value>
   </data>
   <data name="SpeedTest.RemoveAll.Message" xml:space="preserve">
     <value>Tüm sonuçları ({0}) kaldırmak üzeresiniz.
 Devam etmek istediğinizden emin misiniz?</value>
   </data>
-  <data name="SpeedTest.AutoInstall" xml:space="preserve">
-    <value>Otomatik kurulum</value>
+  <data name="SpeedTest.RemoveAll.Title" xml:space="preserve">
+    <value>Tüm sonuçları ({0}) kaldırmak istediğinizden emin misiniz?</value>
   </data>
-  <data name="SpeedTest.ManualInstall" xml:space="preserve">
-    <value>Elle kurulum</value>
+  <data name="SpeedTest.RemoveSelected.Message" xml:space="preserve">
+    <value>Seçili sonuçları ({0}) kaldırmak üzeresiniz.
+Devam etmek istediğinizden emin misiniz?</value>
   </data>
-  <data name="Network.Disable.Title" xml:space="preserve">
-    <value>Devre dışı bırak: {0}</value>
-  </data>
-  <data name="Network.Disable.Success" xml:space="preserve">
-    <value>"{0}" arabirimi başarıyla devre dışı bırakıldı.</value>
-  </data>
-  <data name="Network.Disable.Error" xml:space="preserve">
-    <value>"{0}" devre dışı bırakılamıyor.</value>
-  </data>
-  <data name="Network.Enable.Title" xml:space="preserve">
-    <value>Etkinleştir: {0}</value>
-  </data>
-  <data name="Network.Enable.Success" xml:space="preserve">
-    <value>"{0}" arabirimi başarıyla etkinleştirildi.</value>
-  </data>
-  <data name="Network.Enable.Error" xml:space="preserve">
-    <value>"{0}" etkinleştirilemiyor.</value>
-  </data>
-  <data name="Network.Release.Title" xml:space="preserve">
-    <value>Serbest bırak: {0}</value>
-  </data>
-  <data name="Network.Release.Success" xml:space="preserve">
-    <value>IP adresi başarıyla serbest bırakıldı.</value>
-  </data>
-  <data name="Network.Release.Error" xml:space="preserve">
-    <value>"{0}" serbest bırakılamıyor.</value>
-  </data>
-  <data name="Network.Renew.Title" xml:space="preserve">
-    <value>Yenile: {0}</value>
-  </data>
-  <data name="Network.Renew.Success" xml:space="preserve">
-    <value>IP adresi başarıyla yenilendi.</value>
-  </data>
-  <data name="Network.Renew.Error" xml:space="preserve">
-    <value>"{0}" yenilenemiyor.</value>
-  </data>
-  <data name="Network.StaticIp.Success" xml:space="preserve">
-    <value>IP adresi başarıyla {0} {1} {2} olarak ayarlandı</value>
-  </data>
-  <data name="Network.StaticIp.Error" xml:space="preserve">
-    <value>"{1}" için statik IPv{0} ayarlanamıyor.</value>
-  </data>
-  <data name="Network.DhcpIp.Success" xml:space="preserve">
-    <value>IP adresi başarıyla DHCPv{0} olarak ayarlandı</value>
-  </data>
-  <data name="Network.DhcpIp.Error" xml:space="preserve">
-    <value>"{1}" için DHCPv{0} ayarlanamıyor.</value>
-  </data>
-  <data name="Network.Dns.Title" xml:space="preserve">
-    <value>"{0}" için DNS ataması</value>
-  </data>
-  <data name="Network.Dns.Success" xml:space="preserve">
-    <value>DNS sunucuları başarıyla atandı: {0} {1}</value>
-  </data>
-  <data name="Network.Dns.Error" xml:space="preserve">
-    <value>DNS atanamıyor.</value>
-  </data>
-  <data name="Network.DhcpDns.Success" xml:space="preserve">
-    <value>DHCP DNS başarıyla atandı.</value>
-  </data>
-  <data name="Network.DhcpDns.Error" xml:space="preserve">
-    <value>DHCP DNS atanamıyor.</value>
-  </data>
-  <data name="Network.IpAssignment.Title" xml:space="preserve">
-    <value>"{0}" için IP ataması</value>
-  </data>
-  <data name="Network.IpAssignment.NoChanges" xml:space="preserve">
-    <value>Tanımlanan ayarlar önceki ayarlarla eşleştiği için değişiklik yapılmadı.</value>
-  </data>
-  <data name="Network.IpAssignment.Error" xml:space="preserve">
-    <value>IP atanamıyor.</value>
-  </data>
-  <data name="Export.Interface.Title" xml:space="preserve">
-    <value>Arabirimi {0} biçiminde dışa aktar</value>
-  </data>
-  <data name="Export.Interface.Success" xml:space="preserve">
-    <value>"{0}" arabirimi "{1}" konumuna aktarıldı.</value>
-  </data>
-  <data name="Export.Interface.Error" xml:space="preserve">
-    <value>Arabirim dışa aktarılırken hata oluştu:</value>
-  </data>
-  <data name="Enum.ApplicationTheme.Default" xml:space="preserve">
-    <value>Sistem dilini kullan</value>
-  </data>
-  <data name="Enum.ApplicationTheme.Light" xml:space="preserve">
-    <value>Açık</value>
-  </data>
-  <data name="Enum.ApplicationTheme.Dark" xml:space="preserve">
-    <value>Koyu</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.None" xml:space="preserve">
-    <value>Gruplandırma yok</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.ProtocolType" xml:space="preserve">
-    <value>Protokol türü</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.LastStatus" xml:space="preserve">
-    <value>Son durum</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.Group" xml:space="preserve">
-    <value>Grup</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.ICMP" xml:space="preserve">
-    <value>ICMP: İnternet Kontrol İletisi Protokolü</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.TCP" xml:space="preserve">
-    <value>TCP: İletim Kontrol Protokolü</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.UDP" xml:space="preserve">
-    <value>UDP: Kullanıcı Datagram Protokolü</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.TLS" xml:space="preserve">
-    <value>TLS: Taşıma Katmanı Güvenliği</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.DNS" xml:space="preserve">
-    <value>DNS: Alan Adı Sistemi</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.NTP" xml:space="preserve">
-    <value>NTP: Ağ Zaman Protokolü</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.HTTP" xml:space="preserve">
-    <value>HTTP: Köprü Metni Aktarım Protokolü</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.WebSocket" xml:space="preserve">
-    <value>WebSocket: Tam çift yönlü iletişim protokolü</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.SSH" xml:space="preserve">
-    <value>SSH: Güvenli Kabuk Protokolü</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.SMTP" xml:space="preserve">
-    <value>SMTP: Basit Posta Aktarım Protokolü</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.IMAP" xml:space="preserve">
-    <value>IMAP: İnternet İleti Erişim Protokolü</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.MQTT" xml:space="preserve">
-    <value>MQTT: İleti Kuyruğu Telemetri Aktarımı</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.STUN" xml:space="preserve">
-    <value>STUN: NAT için Oturum Geçişi Yardımcı Programları</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.SIP" xml:space="preserve">
-    <value>SIP: Oturum Başlatma Protokolü</value>
-  </data>
-  <data name="Operation.Success" xml:space="preserve">
-    <value>İşlem başarıyla tamamlandı.</value>
-  </data>
-  <data name="Operation.SudoRequired" xml:space="preserve">
-    <value>Sudo erişimi gerektiği için işlem çalıştırılamıyor.
-pkexec bulunamadı. pkexec'i kurun veya uygulamayı sudo ile çalıştırın.</value>
-  </data>
-  <data name="Import.Json.ErrorTitle" xml:space="preserve">
-    <value>JSON'dan içe aktarılamıyor</value>
-  </data>
-  <data name="Import.Json.ErrorMessage" xml:space="preserve">
-    <value>Sağlanan JSON dosyası geçersiz veya hatalı biçimlendirilmiş.</value>
+  <data name="SpeedTest.RemoveSelected.Title" xml:space="preserve">
+    <value>Seçili sonuçları ({0}) kaldırmak istediğinizden emin misiniz?</value>
   </data>
   <data name="SpeedTest.ServerList.Error" xml:space="preserve">
     <value>Sunucu listesi alınamıyor</value>
   </data>
-  <data name="Ui.ChangelogWithReleases" xml:space="preserve">
-    <value>{0} sürümün değişiklik günlüğü:</value>
+  <data name="Status.BadDestination" xml:space="preserve">
+    <value>Geçersiz hedef</value>
   </data>
-  <data name="Tray.PingsUp" xml:space="preserve">
-    <value>{0} çalışıyor</value>
+  <data name="Status.BadHeader" xml:space="preserve">
+    <value>Geçersiz üst bilgi</value>
   </data>
-  <data name="Tray.PingsDown" xml:space="preserve">
-    <value>{0} çalışmıyor</value>
+  <data name="Status.BadOption" xml:space="preserve">
+    <value>Geçersiz seçenek</value>
   </data>
-  <data name="Ui.Auto" xml:space="preserve">
-    <value>Otomatik</value>
+  <data name="Status.BadRoute" xml:space="preserve">
+    <value>Geçersiz rota</value>
   </data>
-  <data name="Ui.ServicesCount" xml:space="preserve">
-    <value>({0} hizmet)</value>
-  </data>
-  <data name="Ui.License" xml:space="preserve">
-    <value>Lisans ({0})</value>
-  </data>
-  <data name="Ui.LastUpdateCheck" xml:space="preserve">
-    <value>Son güncelleme denetimi: {0}</value>
-  </data>
-  <data name="Ui.Age" xml:space="preserve">
-    <value>Yaş: {0}</value>
-  </data>
-  <data name="Graph.Latency" xml:space="preserve">
-    <value>Gecikme</value>
-  </data>
-  <data name="Graph.AboveScale" xml:space="preserve">
-    <value>Ölçek üstü</value>
-  </data>
-  <data name="Graph.RollingAverage" xml:space="preserve">
-    <value>Hareketli ortalama</value>
-  </data>
-  <data name="Graph.Failure" xml:space="preserve">
-    <value>Başarısızlık</value>
-  </data>
-  <data name="Graph.Maximum" xml:space="preserve">
-    <value>En yüksek</value>
-  </data>
-  <data name="Graph.Average" xml:space="preserve">
-    <value>Ortalama</value>
-  </data>
-  <data name="Graph.Current" xml:space="preserve">
-    <value>Güncel</value>
-  </data>
-  <data name="Graph.Minimum" xml:space="preserve">
-    <value>En düşük</value>
-  </data>
-  <data name="Graph.Failed" xml:space="preserve">
-    <value>Başarısız</value>
-  </data>
-  <data name="Graph.DisableAll.ToolTip" xml:space="preserve">
-    <value>Bu grafikteki tüm hizmetleri devre dışı bırak</value>
-  </data>
-  <data name="Graph.EnableAll.ToolTip" xml:space="preserve">
-    <value>Bu grafikteki tüm hizmetleri etkinleştir</value>
-  </data>
-  <data name="Graph.FullScale" xml:space="preserve">
-    <value>Tam ölçek</value>
-  </data>
-  <data name="Graph.AutoScale" xml:space="preserve">
-    <value>Otomatik ölçek</value>
-  </data>
-  <data name="Graph.AutoScale.ToolTip" xml:space="preserve">
-    <value>Otomatik gecikme ölçeklendirmesini kullan</value>
-  </data>
-  <data name="Graph.FullScale.ToolTip" xml:space="preserve">
-    <value>Gecikme aralığının tamamını göster</value>
-  </data>
-  <data name="Graph.Freeze" xml:space="preserve">
-    <value>Dondur</value>
-  </data>
-  <data name="Graph.Freeze.ToolTip" xml:space="preserve">
-    <value>Denetimler sürerken grafiği dondur</value>
-  </data>
-  <data name="Graph.Resume.ToolTip" xml:space="preserve">
-    <value>Canlı grafik güncellemelerini sürdür</value>
-  </data>
-  <data name="Graph.Samples" xml:space="preserve">
-    <value>{0} örnek</value>
-  </data>
-  <data name="Graph.AllSamples" xml:space="preserve">
-    <value>Tüm örnekler</value>
-  </data>
-  <data name="Graph.AboveAutomaticScale" xml:space="preserve">
-    <value>Otomatik ölçeğin üstünde</value>
-  </data>
-  <data name="Graph.Jitter" xml:space="preserve">
-    <value>Gecikme değişimi</value>
-  </data>
-  <data name="Graph.Loss" xml:space="preserve">
-    <value>Kayıp</value>
-  </data>
-  <data name="Graph.Title" xml:space="preserve">
-    <value>Grafik</value>
-  </data>
-  <data name="Status.Success" xml:space="preserve">
-    <value>Başarılı</value>
-  </data>
-  <data name="Status.DestinationNetworkUnreachable" xml:space="preserve">
-    <value>Hedef ağa ulaşılamıyor</value>
+  <data name="Status.ConnectionReset" xml:space="preserve">
+    <value>Bağlantı sıfırlandı</value>
   </data>
   <data name="Status.DestinationHostUnreachable" xml:space="preserve">
     <value>Hedef ana bilgisayara ulaşılamıyor</value>
   </data>
-  <data name="Status.DestinationProtocolUnreachable" xml:space="preserve">
-    <value>Hedef protokole ulaşılamıyor</value>
+  <data name="Status.DestinationNetworkUnreachable" xml:space="preserve">
+    <value>Hedef ağa ulaşılamıyor</value>
   </data>
   <data name="Status.DestinationPortUnreachable" xml:space="preserve">
     <value>Hedef bağlantı noktasına ulaşılamıyor</value>
@@ -1223,20 +523,59 @@ pkexec bulunamadı. pkexec'i kurun veya uygulamayı sudo ile çalıştırın.</v
   <data name="Status.DestinationProhibited" xml:space="preserve">
     <value>Hedefe erişim yasak</value>
   </data>
-  <data name="Status.NoResources" xml:space="preserve">
-    <value>Yetersiz kaynak</value>
+  <data name="Status.DestinationProtocolUnreachable" xml:space="preserve">
+    <value>Hedef protokole ulaşılamıyor</value>
   </data>
-  <data name="Status.BadOption" xml:space="preserve">
-    <value>Geçersiz seçenek</value>
+  <data name="Status.DestinationScopeMismatch" xml:space="preserve">
+    <value>Hedef kapsamı uyuşmuyor</value>
+  </data>
+  <data name="Status.DestinationUnreachable" xml:space="preserve">
+    <value>Hedefe ulaşılamıyor</value>
+  </data>
+  <data name="Status.ErrorFallback" xml:space="preserve">
+    <value>Hata ({0})</value>
   </data>
   <data name="Status.HardwareError" xml:space="preserve">
     <value>Donanım hatası</value>
   </data>
+  <data name="Status.HttpFallback" xml:space="preserve">
+    <value>HTTP {0}</value>
+  </data>
+  <data name="Status.HttpRequestErrorFallback" xml:space="preserve">
+    <value>HTTP isteği hatası</value>
+  </data>
+  <data name="Status.IcmpError" xml:space="preserve">
+    <value>ICMP hatası</value>
+  </data>
+  <data name="Status.NoContent" xml:space="preserve">
+    <value>İçerik yok</value>
+  </data>
+  <data name="Status.NoResources" xml:space="preserve">
+    <value>Yetersiz kaynak</value>
+  </data>
+  <data name="Status.Open" xml:space="preserve">
+    <value>Açık</value>
+  </data>
   <data name="Status.PacketTooBig" xml:space="preserve">
     <value>Paket çok büyük</value>
   </data>
-  <data name="Status.BadRoute" xml:space="preserve">
-    <value>Geçersiz rota</value>
+  <data name="Status.ParameterProblem" xml:space="preserve">
+    <value>Parametre sorunu</value>
+  </data>
+  <data name="Status.SocketErrorFallback" xml:space="preserve">
+    <value>Soket hatası ({0})</value>
+  </data>
+  <data name="Status.SourceQuench" xml:space="preserve">
+    <value>Kaynak yavaşlatma</value>
+  </data>
+  <data name="Status.Success" xml:space="preserve">
+    <value>Başarılı</value>
+  </data>
+  <data name="Status.TimedOut" xml:space="preserve">
+    <value>Zaman aşımına uğradı</value>
+  </data>
+  <data name="Status.TimeExceeded" xml:space="preserve">
+    <value>Süre aşıldı</value>
   </data>
   <data name="Status.TtlExpired" xml:space="preserve">
     <value>TTL süresi doldu</value>
@@ -1244,94 +583,755 @@ pkexec bulunamadı. pkexec'i kurun veya uygulamayı sudo ile çalıştırın.</v
   <data name="Status.TtlReassemblyTimeExceeded" xml:space="preserve">
     <value>Yeniden birleştirme sırasında TTL süresi doldu</value>
   </data>
-  <data name="Status.ParameterProblem" xml:space="preserve">
-    <value>Parametre sorunu</value>
-  </data>
-  <data name="Status.SourceQuench" xml:space="preserve">
-    <value>Kaynak yavaşlatma</value>
-  </data>
-  <data name="Status.BadDestination" xml:space="preserve">
-    <value>Geçersiz hedef</value>
-  </data>
-  <data name="Status.DestinationUnreachable" xml:space="preserve">
-    <value>Hedefe ulaşılamıyor</value>
-  </data>
-  <data name="Status.TimeExceeded" xml:space="preserve">
-    <value>Süre aşıldı</value>
-  </data>
-  <data name="Status.BadHeader" xml:space="preserve">
-    <value>Geçersiz üst bilgi</value>
+  <data name="Status.Unknown" xml:space="preserve">
+    <value>Bilinmiyor</value>
   </data>
   <data name="Status.UnrecognizedNextHeader" xml:space="preserve">
     <value>Sonraki üst bilgi tanınmadı</value>
   </data>
-  <data name="Status.IcmpError" xml:space="preserve">
-    <value>ICMP hatası</value>
-  </data>
-  <data name="Status.DestinationScopeMismatch" xml:space="preserve">
-    <value>Hedef kapsamı uyuşmuyor</value>
-  </data>
-  <data name="Status.NoContent" xml:space="preserve">
-    <value>İçerik yok</value>
-  </data>
-  <data name="Status.ConnectionReset" xml:space="preserve">
-    <value>Bağlantı sıfırlandı</value>
-  </data>
-  <data name="Status.TimedOut" xml:space="preserve">
-    <value>Zaman aşımına uğradı</value>
-  </data>
-  <data name="Status.Unknown" xml:space="preserve">
-    <value>Bilinmiyor</value>
-  </data>
-  <data name="Status.Open" xml:space="preserve">
-    <value>Açık</value>
-  </data>
-  <data name="Status.SocketErrorFallback" xml:space="preserve">
-    <value>Soket hatası ({0})</value>
-  </data>
-  <data name="Status.HttpRequestErrorFallback" xml:space="preserve">
-    <value>HTTP isteği hatası</value>
-  </data>
   <data name="Status.WebSocketErrorFallback" xml:space="preserve">
     <value>WebSocket hatası</value>
   </data>
-  <data name="Status.HttpFallback" xml:space="preserve">
-    <value>HTTP {0}</value>
+  <data name="Tray.PingsDown" xml:space="preserve">
+    <value>{0} çalışmıyor</value>
   </data>
-  <data name="Status.ErrorFallback" xml:space="preserve">
-    <value>Hata ({0})</value>
+  <data name="Tray.PingsUp" xml:space="preserve">
+    <value>{0} çalışıyor</value>
   </data>
-  <data name="Ui.ServicesCountPlain" xml:space="preserve">
-    <value>{0} hizmet</value>
+  <data name="Ui.95thPercentileLatencyInTheDisplayedWindow" xml:space="preserve">
+    <value>Görüntülenen aralıktaki gecikmenin 95. yüzdelik değeri</value>
   </data>
-  <data name="Ui.EditService" xml:space="preserve">
-    <value>Hizmeti düzenle</value>
+  <data name="Ui.About" xml:space="preserve">
+    <value>Hakkında</value>
   </data>
-  <data name="Ui.Save" xml:space="preserve">
-    <value>Kaydet</value>
+  <data name="Ui.AddNewServices" xml:space="preserve">
+    <value>Yeni hizmet ekle</value>
   </data>
-  <data name="Ui.ServiceUpdated" xml:space="preserve">
-    <value>Hizmet başarıyla güncellendi.</value>
+  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
+    <value>Ekle: ana düğme = boş satır, ok = içe aktar&#10;Yapıştırma biçimi: IP | Bağlantı noktası | Aralık | Açıklama | Grup&#10;Örnek: 192.168.1.10  80  30  Web sunucusu  LAN&#10;Örnek: 192.168.130:80|30|Web sunucusu|LAN&#10;Bilinen bağlantı noktaları protokolü seçer; bilinmeyenler TCP kullanır.</value>
   </data>
-  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
-    <value>Aynı protokole ve adrese sahip bir hizmet zaten var.</value>
+  <data name="Ui.AdjustTheUIScaleToIncreaseOrDecreaseTheSizeOfTheInterfaceElements" xml:space="preserve">
+    <value>Arayüz öğelerinin boyutunu büyütmek veya küçültmek için arayüz ölçeğini ayarlayın.</value>
   </data>
-  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
-    <value>Seçili grafikleri aç (Yeni pencere)</value>
+  <data name="Ui.Age" xml:space="preserve">
+    <value>Yaş: {0}</value>
   </data>
-  <data name="Ui.EditServices" xml:space="preserve">
-    <value>Hizmetleri düzenle</value>
+  <data name="Ui.AnimatedBackground" xml:space="preserve">
+    <value>Hareketli arka plan</value>
+  </data>
+  <data name="Ui.Apply" xml:space="preserve">
+    <value>Uygula</value>
+  </data>
+  <data name="Ui.AskAQuestion" xml:space="preserve">
+    <value>Soru sor</value>
+  </data>
+  <data name="Ui.Assemblies" xml:space="preserve">
+    <value>Yazılım derlemeleri</value>
+  </data>
+  <data name="Ui.Auto" xml:space="preserve">
+    <value>Otomatik</value>
+  </data>
+  <data name="Ui.AutomaticDNSAssignmentFromDHCP" xml:space="preserve">
+    <value>DHCP ile otomatik DNS ataması</value>
+  </data>
+  <data name="Ui.AutomaticIPAssignmentFromDHCP" xml:space="preserve">
+    <value>DHCP ile otomatik IP ataması</value>
+  </data>
+  <data name="Ui.AutoRefresh" xml:space="preserve">
+    <value>Otomatik yenileme:</value>
+  </data>
+  <data name="Ui.AutoSpeedTest" xml:space="preserve">
+    <value>Otomatik testler:</value>
+  </data>
+  <data name="Ui.AvaloniaUI" xml:space="preserve">
+    <value>AvaloniaUI:</value>
+  </data>
+  <data name="Ui.AvgTime" xml:space="preserve">
+    <value>Ort. gecikme</value>
+  </data>
+  <data name="Ui.Background" xml:space="preserve">
+    <value>Arka plan</value>
+  </data>
+  <data name="Ui.BackgroundStyle" xml:space="preserve">
+    <value>Arka plan stili</value>
+  </data>
+  <data name="Ui.BackgroundTransitions" xml:space="preserve">
+    <value>Arka plan geçişleri</value>
+  </data>
+  <data name="Ui.BufferSize" xml:space="preserve">
+    <value>Arabellek boyutu</value>
+  </data>
+  <data name="Ui.BufferSize1DF49DCA" xml:space="preserve">
+    <value>Arabellek boyutu:</value>
+  </data>
+  <data name="Ui.Cancel" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="Ui.CardHeight" xml:space="preserve">
+    <value>Kart yüksekliği:</value>
+  </data>
+  <data name="Ui.CardWidth" xml:space="preserve">
+    <value>Kart genişliği:</value>
+  </data>
+  <data name="Ui.ChangelogWithReleases" xml:space="preserve">
+    <value>{0} sürümün değişiklik günlüğü:</value>
+  </data>
+  <data name="Ui.ChangesTheProbeIntervalForEveryServiceInThisGraph" xml:space="preserve">
+    <value>Bu grafikteki her hizmetin yoklama aralığını değiştirir</value>
+  </data>
+  <data name="Ui.ChangesTheTimeoutForEveryServiceInThisGraph" xml:space="preserve">
+    <value>Bu grafikteki her hizmetin zaman aşımı süresini değiştirir</value>
+  </data>
+  <data name="Ui.CheckForUpdates" xml:space="preserve">
+    <value>Güncellemeleri denetle</value>
+  </data>
+  <data name="Ui.CheckForUpdatesOnApplicationStartIfAnUpdateIsAvailableItWillNotifyAndAdd" xml:space="preserve">
+    <value>Uygulama başlatılırken güncellemeleri denetleyin. Bir güncelleme varsa bildirim gösterilir ve yapacağınız işlem sorulur.</value>
+  </data>
+  <data name="Ui.CheckForUpdatesOnStart" xml:space="preserve">
+    <value>Başlangıçta güncellemeleri denetle</value>
+  </data>
+  <data name="Ui.ClearAddress" xml:space="preserve">
+    <value>Adresi temizle</value>
+  </data>
+  <data name="Ui.ClearStatistics" xml:space="preserve">
+    <value>İstatistikleri temizle</value>
+  </data>
+  <data name="Ui.ClearTheGatewayAddress" xml:space="preserve">
+    <value>Ağ geçidi adresini temizle</value>
+  </data>
+  <data name="Ui.ClickAnyOfTheButtonsBelowToEnableABackgroundShaderClickItAgainToDisableI" xml:space="preserve">
+    <value>Bir arka plan gölgelendiricisini etkinleştirmek için aşağıdaki düğmelerden birine tıklayın. Devre dışı bırakmak için yeniden tıklayın. Bunlar GPU'nuza önemli ölçüde yük bindirebilir ve yalnızca arka plan işleyicisinin özelliklerini göstermek ve sınamak için sunulur.</value>
+  </data>
+  <data name="Ui.ClickToToggleTopMenu" xml:space="preserve">
+    <value>Üst menüyü açıp kapatmak için tıklayın.</value>
+  </data>
+  <data name="Ui.CloseToSystemTray" xml:space="preserve">
+    <value>Sistem tepsisine kapat</value>
+  </data>
+  <data name="Ui.CommunityForums" xml:space="preserve">
+    <value>Topluluk forumları</value>
+  </data>
+  <data name="Ui.ConnectionSpeed" xml:space="preserve">
+    <value>Bağlantı hızı</value>
+  </data>
+  <data name="Ui.ConsecutiveFailed" xml:space="preserve">
+    <value>Art arda başarısızlık</value>
+  </data>
+  <data name="Ui.ConsecutiveSucceed" xml:space="preserve">
+    <value>Art arda başarı</value>
+  </data>
+  <data name="Ui.CustomShaders" xml:space="preserve">
+    <value>Özel gölgelendiriciler</value>
+  </data>
+  <data name="Ui.DarkMode" xml:space="preserve">
+    <value>Koyu mod</value>
+  </data>
+  <data name="Ui.DateTime" xml:space="preserve">
+    <value>Tarih ve saat</value>
+  </data>
+  <data name="Ui.Debug" xml:space="preserve">
+    <value>Hata ayıklama</value>
+  </data>
+  <data name="Ui.DefaultPingOptions" xml:space="preserve">
+    <value>Varsayılan ping seçenekleri</value>
+  </data>
+  <data name="Ui.Description" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
+  <data name="Ui.Disable" xml:space="preserve">
+    <value>Devre dışı bırak</value>
+  </data>
+  <data name="Ui.Donate" xml:space="preserve">
+    <value>Bağış yap</value>
+  </data>
+  <data name="Ui.DoNotFragment" xml:space="preserve">
+    <value>Parçalama yapma:</value>
+  </data>
+  <data name="Ui.Download" xml:space="preserve">
+    <value>İndirme</value>
+  </data>
+  <data name="Ui.Downloaded" xml:space="preserve">
+    <value>İndirilen</value>
   </data>
   <data name="Ui.EditSelectedServices" xml:space="preserve">
     <value>Seçilenleri düzenle</value>
   </data>
-  <data name="Ui.ServicesUpdated" xml:space="preserve">
-    <value>{0} hizmet başarıyla güncellendi.</value>
+  <data name="Ui.EditService" xml:space="preserve">
+    <value>Hizmeti düzenle</value>
   </data>
-  <data name="Export.Pings.TsvTitle" xml:space="preserve">
-    <value>Pingleri TSV'ye aktar</value>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>Hizmetleri düzenle</value>
+  </data>
+  <data name="Ui.Enable" xml:space="preserve">
+    <value>Etkinleştir</value>
+  </data>
+  <data name="Ui.EnableDisableTheAnimationsForTheBackgroundWhichAreDrivenByTheCurrentlyAc" xml:space="preserve">
+    <value>Etkin efekt tarafından yönetilen arka plan animasyonlarını açın veya kapatın.</value>
+  </data>
+  <data name="Ui.EnableDisableTheTransitionsForTheBackgroundTheseWillFadeBetweenTheActive" xml:space="preserve">
+    <value>Arka plan geçişlerini açın veya kapatın. Etkin efekt değiştiğinde efektler arasında yumuşak bir geçiş yapılır.</value>
+  </data>
+  <data name="Ui.ErrorMessage" xml:space="preserve">
+    <value>Hata iletisi</value>
+  </data>
+  <data name="Ui.Exit" xml:space="preserve">
+    <value>✖ Çıkış</value>
+  </data>
+  <data name="Ui.ExportAllToJSON" xml:space="preserve">
+    <value>Tümünü JSON'a aktar</value>
+  </data>
+  <data name="Ui.ExportPings" xml:space="preserve">
+    <value>Pingleri dışa aktar</value>
+  </data>
+  <data name="Ui.ExportSelectedToJSON" xml:space="preserve">
+    <value>Seçilenleri JSON'a aktar</value>
+  </data>
+  <data name="Ui.ExportTo" xml:space="preserve">
+    <value>Dışa aktarma hedefi</value>
+  </data>
+  <data name="Ui.ExportToCSV" xml:space="preserve">
+    <value>CSV'ye aktar</value>
+  </data>
+  <data name="Ui.ExportToJSON" xml:space="preserve">
+    <value>JSON'a aktar</value>
   </data>
   <data name="Ui.ExportToTSV" xml:space="preserve">
     <value>TSV'ye aktar</value>
+  </data>
+  <data name="Ui.Failed" xml:space="preserve">
+    <value>Başarısız</value>
+  </data>
+  <data name="Ui.FailedDate" xml:space="preserve">
+    <value>Son başarısızlık</value>
+  </data>
+  <data name="Ui.FailedPings" xml:space="preserve">
+    <value>Başarısız pingler</value>
+  </data>
+  <data name="Ui.FailedRepliesInTheDisplayedWindow" xml:space="preserve">
+    <value>Görüntülenen aralıktaki başarısız yanıtlar</value>
+  </data>
+  <data name="Ui.FilterInterfacesByText" xml:space="preserve">
+    <value>Arabirimleri metne göre filtrele</value>
+  </data>
+  <data name="Ui.FilterServicesByText" xml:space="preserve">
+    <value>Hizmetleri metne göre filtrele</value>
+  </data>
+  <data name="Ui.Framework" xml:space="preserve">
+    <value>Çalışma ortamı:</value>
+  </data>
+  <data name="Ui.Gateway" xml:space="preserve">
+    <value>Ağ geçidi:</value>
+  </data>
+  <data name="Ui.GaugeIncrement" xml:space="preserve">
+    <value>Gösterge artışı:</value>
+  </data>
+  <data name="Ui.GaugeRange" xml:space="preserve">
+    <value>Gösterge aralığı:</value>
+  </data>
+  <data name="Ui.General" xml:space="preserve">
+    <value>Genel</value>
+  </data>
+  <data name="Ui.GraphCacheSize" xml:space="preserve">
+    <value>Grafik önbelleği boyutu:</value>
+  </data>
+  <data name="Ui.GraphicCard" xml:space="preserve">
+    <value>Ekran kartı:</value>
+  </data>
+  <data name="Ui.GraphOptions" xml:space="preserve">
+    <value>Grafik seçenekleri</value>
+  </data>
+  <data name="Ui.GridViewOptions" xml:space="preserve">
+    <value>Tablo görünümü seçenekleri</value>
+  </data>
+  <data name="Ui.Group" xml:space="preserve">
+    <value>Grup</value>
+  </data>
+  <data name="Ui.GroupBy" xml:space="preserve">
+    <value>Gruplandırma ölçütü:</value>
+  </data>
+  <data name="Ui.HaveIPAddress" xml:space="preserve">
+    <value>IP adresi var</value>
+  </data>
+  <data name="Ui.HavePhysicalAddress" xml:space="preserve">
+    <value>Fiziksel adresi var</value>
+  </data>
+  <data name="Ui.High" xml:space="preserve">
+    <value>Yüksek:</value>
+  </data>
+  <data name="Ui.Host" xml:space="preserve">
+    <value>Ana bilgisayar:</value>
+  </data>
+  <data name="Ui.HostnameQuery" xml:space="preserve">
+    <value>Ana bilgisayar adı / Sorgu</value>
+  </data>
+  <data name="Ui.Import" xml:space="preserve">
+    <value>İçe aktar</value>
+  </data>
+  <data name="Ui.ImportAll" xml:space="preserve">
+    <value>Tümünü içe aktar</value>
+  </data>
+  <data name="Ui.ImportFromJSON" xml:space="preserve">
+    <value>JSON'dan içe aktar</value>
+  </data>
+  <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
+    <value>Ağ geçitlerini içe aktar</value>
+  </data>
+  <data name="Ui.ImportPublicHosts" xml:space="preserve">
+    <value>Herkese açık ana bilgisayarları içe aktar</value>
+  </data>
+  <data name="Ui.Index" xml:space="preserve">
+    <value>Dizin</value>
+  </data>
+  <data name="Ui.Interface" xml:space="preserve">
+    <value>Arabirim</value>
+  </data>
+  <data name="Ui.IP" xml:space="preserve">
+    <value>IP:</value>
+  </data>
+  <data name="Ui.IPAddress" xml:space="preserve">
+    <value>IP adresi:</value>
+  </data>
+  <data name="Ui.IPAddress3C3DE0C9" xml:space="preserve">
+    <value>IP adresi</value>
+  </data>
+  <data name="Ui.IPAddressUrl" xml:space="preserve">
+    <value>IP adresi / URL</value>
+  </data>
+  <data name="Ui.IQM" xml:space="preserve">
+    <value>IQM:</value>
+  </data>
+  <data name="Ui.ISP" xml:space="preserve">
+    <value>İnternet sağlayıcısı:</value>
+  </data>
+  <data name="Ui.IsTransmittingData" xml:space="preserve">
+    <value>Veri aktarıyor</value>
+  </data>
+  <data name="Ui.Jitter" xml:space="preserve">
+    <value>Gecikme değişimi:</value>
+  </data>
+  <data name="Ui.LastReplyStatus" xml:space="preserve">
+    <value>Son yanıt durumu</value>
+  </data>
+  <data name="Ui.LastUpdateCheck" xml:space="preserve">
+    <value>Son güncelleme denetimi: {0}</value>
+  </data>
+  <data name="Ui.LatestReplyLatencyOrStatus" xml:space="preserve">
+    <value>Son yanıt gecikmesi veya durumu</value>
+  </data>
+  <data name="Ui.License" xml:space="preserve">
+    <value>Lisans ({0})</value>
+  </data>
+  <data name="Ui.LightMode" xml:space="preserve">
+    <value>Açık mod</value>
+  </data>
+  <data name="Ui.Location" xml:space="preserve">
+    <value>Konum:</value>
+  </data>
+  <data name="Ui.Low" xml:space="preserve">
+    <value>Düşük:</value>
+  </data>
+  <data name="Ui.ManualAssignment" xml:space="preserve">
+    <value>Elle atama</value>
+  </data>
+  <data name="Ui.ManualDNSAssignment" xml:space="preserve">
+    <value>Elle DNS ataması</value>
+  </data>
+  <data name="Ui.ManualIPAssignment" xml:space="preserve">
+    <value>Elle IP ataması</value>
+  </data>
+  <data name="Ui.MaxTime" xml:space="preserve">
+    <value>En yüksek gecikme</value>
+  </data>
+  <data name="Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies" xml:space="preserve">
+    <value>Art arda gelen başarılı yanıtlar arasındaki ortalama gecikme değişimi</value>
+  </data>
+  <data name="Ui.MedianLatencyInTheDisplayedWindow" xml:space="preserve">
+    <value>Görüntülenen aralıktaki ortanca gecikme</value>
+  </data>
+  <data name="Ui.Megabytes" xml:space="preserve">
+    <value>Megabayt</value>
+  </data>
+  <data name="Ui.MemoryRAM" xml:space="preserve">
+    <value>RAM belleği:</value>
+  </data>
+  <data name="Ui.MinTime" xml:space="preserve">
+    <value>En düşük gecikme</value>
+  </data>
+  <data name="Ui.Name" xml:space="preserve">
+    <value>Ad:</value>
+  </data>
+  <data name="Ui.NameDCD1D522" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Ui.NetworkInterfaces" xml:space="preserve">
+    <value>Ağ arabirimleri</value>
+  </data>
+  <data name="Ui.NetworkInterfacesSettings" xml:space="preserve">
+    <value>Ağ arabirimi ayarları</value>
+  </data>
+  <data name="Ui.NewSpeedTest" xml:space="preserve">
+    <value>Yeni hız testi</value>
+  </data>
+  <data name="Ui.NoFrag" xml:space="preserve">
+    <value>Parçalama yapma</value>
+  </data>
+  <data name="Ui.Off" xml:space="preserve">
+    <value>Kapalı</value>
+  </data>
+  <data name="Ui.On" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="Ui.OpenExecutableFolder" xml:space="preserve">
+    <value>Program klasörünü aç</value>
+  </data>
+  <data name="Ui.OpenGraphInANewWindow" xml:space="preserve">
+    <value>Grafiği yeni pencerede aç</value>
+  </data>
+  <data name="Ui.OpenInBrowser" xml:space="preserve">
+    <value>Tarayıcıda aç</value>
+  </data>
+  <data name="Ui.OpenInNewWindow" xml:space="preserve">
+    <value>Yeni pencerede aç</value>
+  </data>
+  <data name="Ui.OpenProfileFolder" xml:space="preserve">
+    <value>Profil klasörünü aç</value>
+  </data>
+  <data name="Ui.OpenResult" xml:space="preserve">
+    <value>Sonucu aç</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>Seçili grafikleri aç (Yeni pencere)</value>
+  </data>
+  <data name="Ui.OpenSystemNetworkManager" xml:space="preserve">
+    <value>Sistem ağ yöneticisini aç</value>
+  </data>
+  <data name="Ui.OperativeSystem" xml:space="preserve">
+    <value>İşletim sistemi:</value>
+  </data>
+  <data name="Ui.Options" xml:space="preserve">
+    <value>⚙️ Seçenekler</value>
+  </data>
+  <data name="Ui.Order" xml:space="preserve">
+    <value>Sıra</value>
+  </data>
+  <data name="Ui.Others" xml:space="preserve">
+    <value>Diğer</value>
+  </data>
+  <data name="Ui.PacketLoss" xml:space="preserve">
+    <value>Paket kaybı</value>
+  </data>
+  <data name="Ui.PasteFormatHint" xml:space="preserve">
+    <value>Sütun sırası: IP | Bağlantı noktası | Aralık | Açıklama | Grup&#10;Örnek: 192.168.1.10  80  30  Web sunucusu  LAN&#10;Örnek: 192.168.130:80|30|Web sunucusu|LAN&#10;Bilinen bağlantı noktaları protokolü seçer; bilinmeyenler TCP kullanır.</value>
+  </data>
+  <data name="Ui.PasteFromClipboard" xml:space="preserve">
+    <value>Panodan yapıştır</value>
+  </data>
+  <data name="Ui.Pause" xml:space="preserve">
+    <value>Duraklat</value>
+  </data>
+  <data name="Ui.PauseAll" xml:space="preserve">
+    <value>Tümünü duraklat</value>
+  </data>
+  <data name="Ui.PauseSelected" xml:space="preserve">
+    <value>Seçilenleri duraklat</value>
+  </data>
+  <data name="Ui.PersistentPings" xml:space="preserve">
+    <value>Kalıcı pingler:</value>
+  </data>
+  <data name="Ui.PhysicalAddressMACAddress" xml:space="preserve">
+    <value>Fiziksel adres (MAC adresi)</value>
+  </data>
+  <data name="Ui.Ping" xml:space="preserve">
+    <value>Gecikme</value>
+  </data>
+  <data name="Ui.PingCacheSize" xml:space="preserve">
+    <value>Ping önbelleği boyutu:</value>
+  </data>
+  <data name="Ui.PingEvery" xml:space="preserve">
+    <value>Aralık:</value>
+  </data>
+  <data name="Ui.PingEveryS" xml:space="preserve">
+    <value>Aralık (sn.)</value>
+  </data>
+  <data name="Ui.Pings" xml:space="preserve">
+    <value>Pingler</value>
+  </data>
+  <data name="Ui.PingTimeout" xml:space="preserve">
+    <value>Ping zaman aşımı:</value>
+  </data>
+  <data name="Ui.PleaseFixTheFollowingErrors" xml:space="preserve">
+    <value>Lütfen aşağıdaki hataları düzeltin:</value>
+  </data>
+  <data name="Ui.PLoss" xml:space="preserve">
+    <value>Paket kaybı:</value>
+  </data>
+  <data name="Ui.Port" xml:space="preserve">
+    <value>Bağlantı noktası:</value>
+  </data>
+  <data name="Ui.Presets" xml:space="preserve">
+    <value>Hazır ayarlar</value>
+  </data>
+  <data name="Ui.PrimaryDNS" xml:space="preserve">
+    <value>Birincil DNS:</value>
+  </data>
+  <data name="Ui.Processor" xml:space="preserve">
+    <value>İşlemci:</value>
+  </data>
+  <data name="Ui.ProcessorCores" xml:space="preserve">
+    <value>İşlemci çekirdekleri:</value>
+  </data>
+  <data name="Ui.Property" xml:space="preserve">
+    <value>Özellik</value>
+  </data>
+  <data name="Ui.RecentRepliesIncludedInTheGraphAndStatistics" xml:space="preserve">
+    <value>Grafiğe ve istatistiklere dahil edilen son yanıtlar</value>
+  </data>
+  <data name="Ui.RefreshAllInterfaces" xml:space="preserve">
+    <value>Tüm arabirimleri yenile</value>
+  </data>
+  <data name="Ui.ReleaseIP" xml:space="preserve">
+    <value>IP'yi serbest bırak</value>
+  </data>
+  <data name="Ui.RemoveAll" xml:space="preserve">
+    <value>Tümünü kaldır</value>
+  </data>
+  <data name="Ui.RemoveSelected" xml:space="preserve">
+    <value>Seçilenleri kaldır</value>
+  </data>
+  <data name="Ui.RemoveSelectedServiceS" xml:space="preserve">
+    <value>Seçili hizmetleri kaldır</value>
+  </data>
+  <data name="Ui.RemoveServiceS" xml:space="preserve">
+    <value>Hizmetleri kaldır</value>
+  </data>
+  <data name="Ui.RenewIP" xml:space="preserve">
+    <value>IP'yi yenile</value>
+  </data>
+  <data name="Ui.ReplyIPAddress" xml:space="preserve">
+    <value>Yanıt IP adresi</value>
+  </data>
+  <data name="Ui.ReportAnIssue" xml:space="preserve">
+    <value>Sorun bildir</value>
+  </data>
+  <data name="Ui.ResetAllStatistics" xml:space="preserve">
+    <value>Tüm istatistikleri sıfırla</value>
+  </data>
+  <data name="Ui.ResetColumnsOrder" xml:space="preserve">
+    <value>Sütun sırasını sıfırla</value>
+  </data>
+  <data name="Ui.ResetSelectedStatistics" xml:space="preserve">
+    <value>Seçili istatistikleri sıfırla</value>
+  </data>
+  <data name="Ui.ResponseTime" xml:space="preserve">
+    <value>Yanıt süresi</value>
+  </data>
+  <data name="Ui.Resume" xml:space="preserve">
+    <value>Sürdür</value>
+  </data>
+  <data name="Ui.ResumeAll" xml:space="preserve">
+    <value>Tümünü sürdür</value>
+  </data>
+  <data name="Ui.ResumeSelected" xml:space="preserve">
+    <value>Seçilenleri sürdür</value>
+  </data>
+  <data name="Ui.Save" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="Ui.SaveAndRestorePingRepliesAfterProgramRestart" xml:space="preserve">
+    <value>Program yeniden başlatıldığında ping yanıtlarını kaydet ve geri yükle</value>
+  </data>
+  <data name="Ui.ScreensResolutionWorkingAreaUsableArea" xml:space="preserve">
+    <value>Ekranlar, çözünürlük, çalışma alanı, kullanılabilir alan:</value>
+  </data>
+  <data name="Ui.SecondaryDNS" xml:space="preserve">
+    <value>İkincil DNS:</value>
+  </data>
+  <data name="Ui.SelectFromTheIncludedBackgroundStyles" xml:space="preserve">
+    <value>Sunulan arka plan stillerinden birini seçin.</value>
+  </data>
+  <data name="Ui.SentOn" xml:space="preserve">
+    <value>Gönderilme zamanı</value>
+  </data>
+  <data name="Ui.Server" xml:space="preserve">
+    <value>Sunucu:</value>
+  </data>
+  <data name="Ui.ServerAEF7DE28" xml:space="preserve">
+    <value>Sunucu</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>Aynı protokole ve adrese sahip bir hizmet zaten var.</value>
+  </data>
+  <data name="Ui.Services" xml:space="preserve">
+    <value>Hizmetler</value>
+  </data>
+  <data name="Ui.ServicesCount" xml:space="preserve">
+    <value>({0} hizmet)</value>
+  </data>
+  <data name="Ui.ServicesCountPlain" xml:space="preserve">
+    <value>{0} hizmet</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>{0} hizmet başarıyla güncellendi.</value>
+  </data>
+  <data name="Ui.ServiceUpdated" xml:space="preserve">
+    <value>Hizmet başarıyla güncellendi.</value>
+  </data>
+  <data name="Ui.SetIP" xml:space="preserve">
+    <value>IP'yi ayarla</value>
+  </data>
+  <data name="Ui.SetTheDNSFromTheDefinedServerGateway" xml:space="preserve">
+    <value>DNS'yi tanımlanan sunucu ağ geçidine ayarla.</value>
+  </data>
+  <data name="Ui.Show" xml:space="preserve">
+    <value>👁 Göster</value>
+  </data>
+  <data name="Ui.ShowATrayIconInTheSystemNotificationAreaForQuickAccessWhenTheAppIsRunnin" xml:space="preserve">
+    <value>Uygulama çalışırken hızlı erişim için sistem bildirim alanında bir tepsi simgesi gösterin.</value>
+  </data>
+  <data name="Ui.SpeedtestDependencyWasNotFoundInTheSystem" xml:space="preserve">
+    <value>Speedtest bağımlılığı sistemde bulunamadı</value>
+  </data>
+  <data name="Ui.SpeedTests" xml:space="preserve">
+    <value>Hız testleri</value>
+  </data>
+  <data name="Ui.SpeedTestSettings" xml:space="preserve">
+    <value>Hız testi ayarları</value>
+  </data>
+  <data name="Ui.StartTheApplicationAutomaticallyWhenTheSystemStarts" xml:space="preserve">
+    <value>Sistem başlatıldığında uygulamayı otomatik olarak başlatın.</value>
+  </data>
+  <data name="Ui.StartWithSystem" xml:space="preserve">
+    <value>Sistemle birlikte başlat</value>
+  </data>
+  <data name="Ui.StaticIPv4" xml:space="preserve">
+    <value>Statik IPv4</value>
+  </data>
+  <data name="Ui.Status" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="Ui.StopSpeedTest" xml:space="preserve">
+    <value>Hız testini durdur</value>
+  </data>
+  <data name="Ui.SubnetMask" xml:space="preserve">
+    <value>Alt ağ maskesi:</value>
+  </data>
+  <data name="Ui.Succeed" xml:space="preserve">
+    <value>Başarılı</value>
+  </data>
+  <data name="Ui.SucceedDate" xml:space="preserve">
+    <value>Son başarı</value>
+  </data>
+  <data name="Ui.SucceedPings" xml:space="preserve">
+    <value>Başarılı pingler</value>
+  </data>
+  <data name="Ui.SuggestAnImprovementOrFeature" xml:space="preserve">
+    <value>İyileştirme veya özellik öner</value>
+  </data>
+  <data name="Ui.SystemMode" xml:space="preserve">
+    <value>Sistem modu</value>
+  </data>
+  <data name="Ui.TermsOfUse" xml:space="preserve">
+    <value>Kullanım koşulları</value>
+  </data>
+  <data name="Ui.ThemeDark" xml:space="preserve">
+    <value>🖌️ Tema: Koyu</value>
+  </data>
+  <data name="Ui.ThemeLight" xml:space="preserve">
+    <value>🖌️ Tema: Açık</value>
+  </data>
+  <data name="Ui.ThemeSystem" xml:space="preserve">
+    <value>🖌️ Tema: Sistem</value>
+  </data>
+  <data name="Ui.ThisModuleRequiresTheOoklaSpeedtestCLIBinaryYetWasNotFoundInTheSystemPle" xml:space="preserve">
+    <value>Bu modül Ookla Speedtest CLI programını gerektiriyor ancak program sistemde bulunamadı.
+Bağımlılığı yükleyip modülü yeniden yükleyin.</value>
+  </data>
+  <data name="Ui.ThrowException" xml:space="preserve">
+    <value>Özel durum oluştur</value>
+  </data>
+  <data name="Ui.Time" xml:space="preserve">
+    <value>Süre</value>
+  </data>
+  <data name="Ui.Timeout" xml:space="preserve">
+    <value>Zaman aşımı:</value>
+  </data>
+  <data name="Ui.TimeoutS" xml:space="preserve">
+    <value>Zaman aşımı (sn.)</value>
+  </data>
+  <data name="Ui.TimeToLive" xml:space="preserve">
+    <value>TTL:</value>
+  </data>
+  <data name="Ui.ToogleFullscreen" xml:space="preserve">
+    <value>Tam ekranı açıp kapat</value>
+  </data>
+  <data name="Ui.TotalPings" xml:space="preserve">
+    <value>Toplam ping</value>
+  </data>
+  <data name="Ui.TriggerNewUpdate" xml:space="preserve">
+    <value>Yeni güncellemeyi tetikle</value>
+  </data>
+  <data name="Ui.Type" xml:space="preserve">
+    <value>Tür</value>
+  </data>
+  <data name="Ui.UIScale" xml:space="preserve">
+    <value>Arayüz ölçeği</value>
+  </data>
+  <data name="Ui.Upload" xml:space="preserve">
+    <value>Yükleme</value>
+  </data>
+  <data name="Ui.Uploaded" xml:space="preserve">
+    <value>Yüklenen</value>
+  </data>
+  <data name="Ui.UseSystemTray" xml:space="preserve">
+    <value>Sistem tepsisini kullan</value>
+  </data>
+  <data name="Ui.Value" xml:space="preserve">
+    <value>Değer</value>
+  </data>
+  <data name="Ui.VirtualNetworks" xml:space="preserve">
+    <value>Sanal ağlar</value>
+  </data>
+  <data name="Ui.Website" xml:space="preserve">
+    <value>Web sitesi</value>
+  </data>
+  <data name="Ui.WhenClosingTheMainWindowKeepTheAppRunningInTheSystemTrayInsteadOfExiting" xml:space="preserve">
+    <value>Ana pencereyi kapatırken uygulamadan çıkmak yerine uygulamayı sistem tepsisinde çalışır durumda tutun.</value>
+  </data>
+  <data name="Update.Auto" xml:space="preserve">
+    <value>Otomatik güncelleme</value>
+  </data>
+  <data name="Update.CheckFailed" xml:space="preserve">
+    <value>Güncellemeler denetlenemiyor</value>
+  </data>
+  <data name="Update.Found.Message" xml:space="preserve">
+    <value>Geçerli sürüm: {0}
+Yeni sürüm: {1}
+İlerideki sürüm sayısı: {2}
+Yayın tarihi: {3:f}</value>
+  </data>
+  <data name="Update.Found.Title" xml:space="preserve">
+    <value>{0} güncellemesi bulundu</value>
+  </data>
+  <data name="Update.Manual" xml:space="preserve">
+    <value>Elle güncelleme</value>
+  </data>
+  <data name="Update.None.Message" xml:space="preserve">
+    <value>{0} en son sürümü kullanıyor.</value>
+  </data>
+  <data name="Update.None.Title" xml:space="preserve">
+    <value>Kullanılabilir güncelleme yok.</value>
+  </data>
+  <data name="Update.TriggerUnavailable.Message" xml:space="preserve">
+    <value>Yeni güncellemeyi tetiklemek için kullanılabilir bir sürüm yok.</value>
+  </data>
+  <data name="Update.TriggerUnavailable.Title" xml:space="preserve">
+    <value>Yeni güncelleme tetiklenemiyor</value>
+  </data>
+  <data name="Window.AlreadyRunning.Title" xml:space="preserve">
+    <value>{0} - Zaten çalışıyor</value>
+  </data>
+  <data name="Window.CrashReport.Title" xml:space="preserve">
+    <value>{0} - Kilitlenme Raporu</value>
   </data>
 </root>

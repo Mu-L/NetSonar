@@ -42,12 +42,12 @@
         <PackageReference Include="StageKit" Version="0.2.4"/>
 
         <!-- UI Theme -->
-        <PackageReference Include="SukiUI" Version="7.0.2-nightly.20260820.38d9afa" />
-        <PackageReference Include="Svg.Controls.Avalonia" Version="12.0.0.15" />
+        <PackageReference Include="SukiUI" Version="7.0.2-nightly20260820.429"/>
+        <PackageReference Include="Svg.Controls.Avalonia" Version="12.0.0.15"/>
 
         <!-- Microsoft -->
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.11" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.11"/>
 
         <!-- Collections -->
         <PackageReference Include="ObservableCollections" Version="3.3.4"/>
@@ -63,8 +63,8 @@
         <PackageReference Include="ZLogger" Version="2.5.10"/>
 
         <!-- DotNext -->
-        <PackageReference Include="DotNext" Version="6.6.2" />
-        <PackageReference Include="DotNext.IO" Version="6.6.2" />
+        <PackageReference Include="DotNext" Version="6.6.2"/>
+        <PackageReference Include="DotNext.IO" Version="6.6.2"/>
     </ItemGroup>
 
 </Project>

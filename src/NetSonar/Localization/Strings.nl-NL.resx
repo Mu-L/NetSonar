@@ -58,711 +58,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Navigation.Settings" xml:space="preserve">
-    <value>Instellingen</value>
-  </data>
-  <data name="Settings.Theme" xml:space="preserve">
-    <value>Thema</value>
-  </data>
-  <data name="Settings.Language" xml:space="preserve">
-    <value>Taal</value>
-  </data>
-  <data name="Settings.Language.FollowSystem" xml:space="preserve">
-    <value>Systeem volgen</value>
-  </data>
-  <data name="Settings.Language.Description" xml:space="preserve">
-    <value>Kies de taal die in de hele toepassing wordt gebruikt.</value>
-  </data>
-  <data name="Ui.Show" xml:space="preserve">
-    <value>👁 Tonen</value>
-  </data>
-  <data name="Ui.Options" xml:space="preserve">
-    <value>⚙️ Opties</value>
-  </data>
-  <data name="Ui.StartWithSystem" xml:space="preserve">
-    <value>Starten met systeem</value>
-  </data>
-  <data name="Ui.ThemeSystem" xml:space="preserve">
-    <value>🖌️ Thema: Systeem</value>
-  </data>
-  <data name="Ui.ThemeLight" xml:space="preserve">
-    <value>🖌️ Thema: Licht</value>
-  </data>
-  <data name="Ui.ThemeDark" xml:space="preserve">
-    <value>🖌️ Thema: Donker</value>
-  </data>
-  <data name="Ui.Exit" xml:space="preserve">
-    <value>✖ Afsluiten</value>
-  </data>
-  <data name="Ui.On" xml:space="preserve">
-    <value>Aan</value>
-  </data>
-  <data name="Ui.Off" xml:space="preserve">
-    <value>Uit</value>
-  </data>
-  <data name="Ui.OperativeSystem" xml:space="preserve">
-    <value>Besturingssysteem:</value>
-  </data>
-  <data name="Ui.GraphicCard" xml:space="preserve">
-    <value>Grafische kaart:</value>
-  </data>
-  <data name="Ui.Processor" xml:space="preserve">
-    <value>CPU:</value>
-  </data>
-  <data name="Ui.ProcessorCores" xml:space="preserve">
-    <value>Processorkernen:</value>
-  </data>
-  <data name="Ui.MemoryRAM" xml:space="preserve">
-    <value>RAM-geheugen:</value>
-  </data>
-  <data name="Ui.Framework" xml:space="preserve">
-    <value>Runtimeomgeving:</value>
-  </data>
-  <data name="Ui.AvaloniaUI" xml:space="preserve">
-    <value>AvaloniaUI:</value>
-  </data>
-  <data name="Ui.ScreensResolutionWorkingAreaUsableArea" xml:space="preserve">
-    <value>Schermen, resolutie, werkgebied, bruikbaar gebied:</value>
-  </data>
-  <data name="Ui.Description" xml:space="preserve">
-    <value>Beschrijving</value>
-  </data>
-  <data name="Ui.Assemblies" xml:space="preserve">
-    <value>Softwareassemblies</value>
-  </data>
-  <data name="Ui.TermsOfUse" xml:space="preserve">
-    <value>Gebruiksvoorwaarden</value>
-  </data>
-  <data name="Ui.Services" xml:space="preserve">
-    <value>Diensten</value>
-  </data>
-  <data name="Ui.AddNewServices" xml:space="preserve">
-    <value>Nieuwe dienst(en) toevoegen</value>
-  </data>
-  <data name="Ui.ImportFromJSON" xml:space="preserve">
-    <value>Importeren uit JSON</value>
-  </data>
-  <data name="Ui.PasteFromClipboard" xml:space="preserve">
-    <value>Plakken vanaf klembord</value>
-  </data>
-  <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>Kolomvolgorde: IP | Poort | Interval | Beschrijving | Groep&#10;Voorbeeld: 192.168.1.10  80  30  Webserver  LAN&#10;Voorbeeld: 192.168.130:80|30|Webserver|LAN&#10;Bekende poorten bepalen het protocol; onbekende poorten gebruiken TCP.</value>
-  </data>
-  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
-    <value>Toevoegen: hoofdknop = lege rij, pijl = importeren&#10;Plakindeling: IP | Poort | Interval | Beschrijving | Groep&#10;Voorbeeld: 192.168.1.10  80  30  Webserver  LAN&#10;Voorbeeld: 192.168.130:80|30|Webserver|LAN&#10;Bekende poorten bepalen het protocol; onbekende poorten gebruiken TCP.</value>
-  </data>
-  <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
-    <value>Kan niet plakken vanaf het klembord</value>
-  </data>
-  <data name="Import.Clipboard.NoData" xml:space="preserve">
-    <value>Het klembord is leeg of bevat geen bruikbare servicegegevens.</value>
-  </data>
-  <data name="Import.Clipboard.Summary" xml:space="preserve">
-    <value>{0} service(s) geplakt, {1} overgeslagen.</value>
-  </data>
-  <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
-    <value>Netwerkgateway(s) importeren</value>
-  </data>
-  <data name="Ui.ImportPublicHosts" xml:space="preserve">
-    <value>Openbare hosts importeren</value>
-  </data>
-  <data name="Ui.ImportAll" xml:space="preserve">
-    <value>Alles importeren</value>
-  </data>
-  <data name="Ui.RemoveServiceS" xml:space="preserve">
-    <value>Dienst(en) verwijderen</value>
-  </data>
-  <data name="Ui.RemoveAll" xml:space="preserve">
-    <value>Alles verwijderen</value>
-  </data>
-  <data name="Ui.PleaseFixTheFollowingErrors" xml:space="preserve">
-    <value>Los de volgende fouten op:</value>
-  </data>
-  <data name="Ui.RemoveSelectedServiceS" xml:space="preserve">
-    <value>Geselecteerde dienst(en) verwijderen</value>
-  </data>
-  <data name="Ui.Enable" xml:space="preserve">
-    <value>Inschakelen</value>
-  </data>
-  <data name="Ui.Type" xml:space="preserve">
-    <value>Soort</value>
-  </data>
-  <data name="Ui.IPAddressUrl" xml:space="preserve">
-    <value>IP-adres / URL</value>
-  </data>
-  <data name="Ui.Group" xml:space="preserve">
-    <value>Groep</value>
-  </data>
-  <data name="Ui.PingEveryS" xml:space="preserve">
-    <value>Tijdsinterval (s)</value>
-  </data>
-  <data name="Ui.TimeoutS" xml:space="preserve">
-    <value>Time-out (s)</value>
-  </data>
-  <data name="Ui.BufferSize" xml:space="preserve">
-    <value>Buffergrootte</value>
-  </data>
-  <data name="Ui.NoFrag" xml:space="preserve">
-    <value>Niet fragmenteren</value>
-  </data>
-  <data name="Ui.Import" xml:space="preserve">
-    <value>Importeren</value>
-  </data>
-  <data name="Ui.Cancel" xml:space="preserve">
-    <value>Annuleren</value>
-  </data>
-  <data name="Ui.Megabytes" xml:space="preserve">
-    <value>MB</value>
-  </data>
-  <data name="Ui.AutomaticIPAssignmentFromDHCP" xml:space="preserve">
-    <value>Automatische IP-toewijzing via DHCP</value>
-  </data>
-  <data name="Ui.ManualIPAssignment" xml:space="preserve">
-    <value>Handmatige IP-toewijzing</value>
-  </data>
-  <data name="Ui.IPAddress" xml:space="preserve">
-    <value>IP-adres:</value>
-  </data>
-  <data name="Ui.SubnetMask" xml:space="preserve">
-    <value>Subnetmasker:</value>
-  </data>
-  <data name="Ui.Gateway" xml:space="preserve">
-    <value>Netwerkgateway:</value>
-  </data>
-  <data name="Ui.ClearTheGatewayAddress" xml:space="preserve">
-    <value>Gatewayadres wissen</value>
-  </data>
-  <data name="Ui.AutomaticDNSAssignmentFromDHCP" xml:space="preserve">
-    <value>Automatische DNS-toewijzing via DHCP</value>
-  </data>
-  <data name="Ui.ManualDNSAssignment" xml:space="preserve">
-    <value>Handmatige DNS-toewijzing</value>
-  </data>
-  <data name="Ui.Presets" xml:space="preserve">
-    <value>Voorinstellingen</value>
-  </data>
-  <data name="Ui.PrimaryDNS" xml:space="preserve">
-    <value>Primaire DNS:</value>
-  </data>
-  <data name="Ui.SetTheDNSFromTheDefinedServerGateway" xml:space="preserve">
-    <value>DNS instellen op de opgegeven servergateway.</value>
-  </data>
-  <data name="Ui.ClearAddress" xml:space="preserve">
-    <value>Adres wissen</value>
-  </data>
-  <data name="Ui.SecondaryDNS" xml:space="preserve">
-    <value>Secundaire DNS:</value>
-  </data>
-  <data name="Ui.Apply" xml:space="preserve">
-    <value>Toepassen</value>
-  </data>
-  <data name="Ui.Disable" xml:space="preserve">
-    <value>Uitschakelen</value>
-  </data>
-  <data name="Ui.ReleaseIP" xml:space="preserve">
-    <value>IP vrijgeven</value>
-  </data>
-  <data name="Ui.RenewIP" xml:space="preserve">
-    <value>IP vernieuwen</value>
-  </data>
-  <data name="Ui.SetIP" xml:space="preserve">
-    <value>IP instellen</value>
-  </data>
-  <data name="Ui.ManualAssignment" xml:space="preserve">
-    <value>Handmatige toewijzing</value>
-  </data>
-  <data name="Ui.ExportTo" xml:space="preserve">
-    <value>Exporteren naar</value>
-  </data>
-  <data name="Ui.OpenInNewWindow" xml:space="preserve">
-    <value>In nieuw venster openen</value>
-  </data>
-  <data name="Ui.PhysicalAddressMACAddress" xml:space="preserve">
-    <value>Fysiek adres (MAC-adres)</value>
-  </data>
-  <data name="Ui.ConnectionSpeed" xml:space="preserve">
-    <value>Verbindingssnelheid</value>
-  </data>
-  <data name="Ui.StaticIPv4" xml:space="preserve">
-    <value>Statisch IPv4</value>
-  </data>
-  <data name="Ui.Downloaded" xml:space="preserve">
-    <value>Gedownload</value>
-  </data>
-  <data name="Ui.Uploaded" xml:space="preserve">
-    <value>Geüpload</value>
-  </data>
-  <data name="Ui.Property" xml:space="preserve">
-    <value>Eigenschap</value>
-  </data>
-  <data name="Ui.Value" xml:space="preserve">
-    <value>Waarde</value>
-  </data>
-  <data name="Ui.GraphOptions" xml:space="preserve">
-    <value>Grafiekopties</value>
-  </data>
-  <data name="Ui.PingEvery" xml:space="preserve">
-    <value>Tijdsinterval:</value>
-  </data>
-  <data name="Ui.ChangesTheProbeIntervalForEveryServiceInThisGraph" xml:space="preserve">
-    <value>Wijzigt het controle-interval voor elke dienst in deze grafiek</value>
-  </data>
-  <data name="Ui.Timeout" xml:space="preserve">
-    <value>Time-out:</value>
-  </data>
-  <data name="Ui.ChangesTheTimeoutForEveryServiceInThisGraph" xml:space="preserve">
-    <value>Wijzigt de time-out voor elke dienst in deze grafiek</value>
-  </data>
-  <data name="Ui.RecentRepliesIncludedInTheGraphAndStatistics" xml:space="preserve">
-    <value>Recente antwoorden in de grafiek en statistieken</value>
-  </data>
-  <data name="Ui.ClickToToggleTopMenu" xml:space="preserve">
-    <value>Klik om het bovenmenu in of uit te schakelen.</value>
-  </data>
-  <data name="Ui.About" xml:space="preserve">
-    <value>Over</value>
-  </data>
-  <data name="Ui.Website" xml:space="preserve">
-    <value>Webpagina</value>
-  </data>
-  <data name="Ui.CommunityForums" xml:space="preserve">
-    <value>Communityforums</value>
-  </data>
-  <data name="Ui.Donate" xml:space="preserve">
-    <value>Doneren</value>
-  </data>
-  <data name="Ui.AskAQuestion" xml:space="preserve">
-    <value>Een vraag stellen</value>
-  </data>
-  <data name="Ui.ReportAnIssue" xml:space="preserve">
-    <value>Een probleem melden</value>
-  </data>
-  <data name="Ui.SuggestAnImprovementOrFeature" xml:space="preserve">
-    <value>Een verbetering of functie voorstellen</value>
-  </data>
-  <data name="Ui.OpenProfileFolder" xml:space="preserve">
-    <value>Profielmap openen</value>
-  </data>
-  <data name="Ui.CheckForUpdates" xml:space="preserve">
-    <value>Controleren op updates</value>
-  </data>
-  <data name="Ui.Debug" xml:space="preserve">
-    <value>Foutopsporing</value>
-  </data>
-  <data name="Ui.OpenExecutableFolder" xml:space="preserve">
-    <value>Programmamap openen</value>
-  </data>
-  <data name="Ui.TriggerNewUpdate" xml:space="preserve">
-    <value>Nieuwe update starten</value>
-  </data>
-  <data name="Ui.ThrowException" xml:space="preserve">
-    <value>Uitzondering genereren</value>
-  </data>
-  <data name="Ui.ToogleFullscreen" xml:space="preserve">
-    <value>Volledig scherm in-/uitschakelen</value>
-  </data>
-  <data name="Ui.NetworkInterfaces" xml:space="preserve">
-    <value>Netwerkinterfaces</value>
-  </data>
-  <data name="Ui.Status" xml:space="preserve">
-    <value>Toestand</value>
-  </data>
-  <data name="Ui.Others" xml:space="preserve">
-    <value>Overige</value>
-  </data>
-  <data name="Ui.VirtualNetworks" xml:space="preserve">
-    <value>Virtuele netwerken</value>
-  </data>
-  <data name="Ui.HavePhysicalAddress" xml:space="preserve">
-    <value>Heeft een fysiek adres</value>
-  </data>
-  <data name="Ui.HaveIPAddress" xml:space="preserve">
-    <value>Heeft een IP-adres</value>
-  </data>
-  <data name="Ui.IsTransmittingData" xml:space="preserve">
-    <value>Verzendt gegevens</value>
-  </data>
-  <data name="Ui.FilterInterfacesByText" xml:space="preserve">
-    <value>Interfaces filteren op tekst</value>
-  </data>
-  <data name="Ui.RefreshAllInterfaces" xml:space="preserve">
-    <value>Alle interfaces vernieuwen</value>
-  </data>
-  <data name="Ui.OpenSystemNetworkManager" xml:space="preserve">
-    <value>Systeemnetwerkbeheer openen</value>
-  </data>
-  <data name="Ui.NetworkInterfacesSettings" xml:space="preserve">
-    <value>Netwerkinterface-instellingen</value>
-  </data>
-  <data name="Ui.AutoRefresh" xml:space="preserve">
-    <value>Automatisch vernieuwen:</value>
-  </data>
-  <data name="Ui.CardWidth" xml:space="preserve">
-    <value>Kaartbreedte:</value>
-  </data>
-  <data name="Ui.CardHeight" xml:space="preserve">
-    <value>Kaarthoogte:</value>
-  </data>
-  <data name="Ui.FilterServicesByText" xml:space="preserve">
-    <value>Diensten filteren op tekst</value>
-  </data>
-  <data name="Ui.ResumeAll" xml:space="preserve">
-    <value>Alles hervatten</value>
-  </data>
-  <data name="Ui.PauseAll" xml:space="preserve">
-    <value>Alles pauzeren</value>
-  </data>
-  <data name="Ui.GridViewOptions" xml:space="preserve">
-    <value>Rasterweergaveopties</value>
-  </data>
-  <data name="Ui.GroupBy" xml:space="preserve">
-    <value>Groeperen op:</value>
-  </data>
-  <data name="Ui.ResetColumnsOrder" xml:space="preserve">
-    <value>Kolomvolgorde herstellen</value>
-  </data>
-  <data name="Ui.DefaultPingOptions" xml:space="preserve">
-    <value>Standaard pingopties</value>
-  </data>
-  <data name="Ui.PingTimeout" xml:space="preserve">
-    <value>Pingtime-out:</value>
-  </data>
-  <data name="Ui.BufferSize1DF49DCA" xml:space="preserve">
-    <value>Buffergrootte:</value>
-  </data>
-  <data name="Ui.TimeToLive" xml:space="preserve">
-    <value>TTL:</value>
-  </data>
-  <data name="Ui.DoNotFragment" xml:space="preserve">
-    <value>Niet fragmenteren:</value>
-  </data>
-  <data name="Ui.PingCacheSize" xml:space="preserve">
-    <value>Grootte pingcache:</value>
-  </data>
-  <data name="Ui.GraphCacheSize" xml:space="preserve">
-    <value>Grootte grafiekcache:</value>
-  </data>
-  <data name="Ui.PersistentPings" xml:space="preserve">
-    <value>Pings bewaren:</value>
-  </data>
-  <data name="Ui.SaveAndRestorePingRepliesAfterProgramRestart" xml:space="preserve">
-    <value>Pingantwoorden opslaan en herstellen nadat het programma opnieuw is gestart</value>
-  </data>
-  <data name="Ui.PauseSelected" xml:space="preserve">
-    <value>Geselecteerde pauzeren</value>
-  </data>
-  <data name="Ui.ResumeSelected" xml:space="preserve">
-    <value>Geselecteerde hervatten</value>
-  </data>
-  <data name="Ui.ResetSelectedStatistics" xml:space="preserve">
-    <value>Statistieken van geselecteerde items herstellen</value>
-  </data>
-  <data name="Ui.ResetAllStatistics" xml:space="preserve">
-    <value>Alle statistieken herstellen</value>
-  </data>
-  <data name="Ui.RemoveSelected" xml:space="preserve">
-    <value>Geselecteerde verwijderen</value>
-  </data>
-  <data name="Ui.ExportSelectedToJSON" xml:space="preserve">
-    <value>Geselecteerde naar JSON exporteren</value>
-  </data>
-  <data name="Ui.ExportAllToJSON" xml:space="preserve">
-    <value>Alles naar JSON exporteren</value>
-  </data>
-  <data name="Ui.OpenInBrowser" xml:space="preserve">
-    <value>In browser openen</value>
-  </data>
-  <data name="Ui.IPAddress3C3DE0C9" xml:space="preserve">
-    <value>IP-adres</value>
-  </data>
-  <data name="Ui.Time" xml:space="preserve">
-    <value>Tijd</value>
-  </data>
-  <data name="Ui.MinTime" xml:space="preserve">
-    <value>Min. latentie</value>
-  </data>
-  <data name="Ui.AvgTime" xml:space="preserve">
-    <value>Gem. latentie</value>
-  </data>
-  <data name="Ui.MaxTime" xml:space="preserve">
-    <value>Max. latentie</value>
-  </data>
-  <data name="Ui.Pings" xml:space="preserve">
-    <value>Pingresultaten</value>
-  </data>
-  <data name="Ui.Succeed" xml:space="preserve">
-    <value>Geslaagd</value>
-  </data>
-  <data name="Ui.Failed" xml:space="preserve">
-    <value>Mislukt</value>
-  </data>
-  <data name="Ui.ConsecutiveSucceed" xml:space="preserve">
-    <value>Opeenvolgende successen</value>
-  </data>
-  <data name="Ui.ConsecutiveFailed" xml:space="preserve">
-    <value>Opeenvolgende fouten</value>
-  </data>
-  <data name="Ui.SucceedDate" xml:space="preserve">
-    <value>Laatste succes</value>
-  </data>
-  <data name="Ui.FailedDate" xml:space="preserve">
-    <value>Laatste fout</value>
-  </data>
-  <data name="Ui.HostnameQuery" xml:space="preserve">
-    <value>Hostnaam / query</value>
-  </data>
-  <data name="Ui.Order" xml:space="preserve">
-    <value>Volgorde</value>
-  </data>
-  <data name="Ui.TotalPings" xml:space="preserve">
-    <value>Totaal aantal pings</value>
-  </data>
-  <data name="Ui.SucceedPings" xml:space="preserve">
-    <value>Geslaagde pings</value>
-  </data>
-  <data name="Ui.FailedPings" xml:space="preserve">
-    <value>Mislukte pings</value>
-  </data>
-  <data name="Ui.ClearStatistics" xml:space="preserve">
-    <value>Statistieken wissen</value>
-  </data>
-  <data name="Ui.Resume" xml:space="preserve">
-    <value>Hervatten</value>
-  </data>
-  <data name="Ui.Pause" xml:space="preserve">
-    <value>Pauzeren</value>
-  </data>
-  <data name="Ui.ExportPings" xml:space="preserve">
-    <value>Pings exporteren</value>
-  </data>
-  <data name="Ui.ExportToCSV" xml:space="preserve">
-    <value>Naar CSV exporteren</value>
-  </data>
-  <data name="Ui.ExportToJSON" xml:space="preserve">
-    <value>Naar JSON exporteren</value>
-  </data>
-  <data name="Ui.ReplyIPAddress" xml:space="preserve">
-    <value>IP-adres van antwoord</value>
-  </data>
-  <data name="Ui.SentOn" xml:space="preserve">
-    <value>Verzonden op</value>
-  </data>
-  <data name="Ui.ErrorMessage" xml:space="preserve">
-    <value>Foutbericht</value>
-  </data>
-  <data name="Ui.ResponseTime" xml:space="preserve">
-    <value>Reactietijd</value>
-  </data>
-  <data name="Ui.LastReplyStatus" xml:space="preserve">
-    <value>Status van laatste antwoord</value>
-  </data>
-  <data name="Ui.LatestReplyLatencyOrStatus" xml:space="preserve">
-    <value>Latentie of status van laatste antwoord</value>
-  </data>
-  <data name="Ui.MedianLatencyInTheDisplayedWindow" xml:space="preserve">
-    <value>Mediane latentie in het weergegeven venster</value>
-  </data>
-  <data name="Ui.95thPercentileLatencyInTheDisplayedWindow" xml:space="preserve">
-    <value>95e percentiel van de latentie in het weergegeven venster</value>
-  </data>
-  <data name="Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies" xml:space="preserve">
-    <value>Gemiddelde verandering in latentie tussen opeenvolgende geslaagde antwoorden</value>
-  </data>
-  <data name="Ui.FailedRepliesInTheDisplayedWindow" xml:space="preserve">
-    <value>Mislukte antwoorden in het weergegeven venster</value>
-  </data>
-  <data name="Ui.OpenGraphInANewWindow" xml:space="preserve">
-    <value>Grafiek in een nieuw venster openen</value>
-  </data>
-  <data name="Ui.SystemMode" xml:space="preserve">
-    <value>Systeemmodus</value>
-  </data>
-  <data name="Ui.LightMode" xml:space="preserve">
-    <value>Lichte modus</value>
-  </data>
-  <data name="Ui.DarkMode" xml:space="preserve">
-    <value>Donkere modus</value>
-  </data>
-  <data name="Ui.UIScale" xml:space="preserve">
-    <value>UI-schaal</value>
-  </data>
-  <data name="Ui.AdjustTheUIScaleToIncreaseOrDecreaseTheSizeOfTheInterfaceElements" xml:space="preserve">
-    <value>Pas de UI-schaal aan om de interface-elementen groter of kleiner te maken.</value>
-  </data>
-  <data name="Ui.Background" xml:space="preserve">
-    <value>Achtergrond</value>
-  </data>
-  <data name="Ui.AnimatedBackground" xml:space="preserve">
-    <value>Geanimeerde achtergrond</value>
-  </data>
-  <data name="Ui.EnableDisableTheAnimationsForTheBackgroundWhichAreDrivenByTheCurrentlyAc" xml:space="preserve">
-    <value>Schakel de achtergrondanimaties in of uit. Deze worden aangestuurd door het actieve effect.</value>
-  </data>
-  <data name="Ui.BackgroundTransitions" xml:space="preserve">
-    <value>Achtergrondovergangen</value>
-  </data>
-  <data name="Ui.EnableDisableTheTransitionsForTheBackgroundTheseWillFadeBetweenTheActive" xml:space="preserve">
-    <value>Schakel achtergrondovergangen in of uit. Bij een wijziging vloeien de actieve effecten in elkaar over.</value>
-  </data>
-  <data name="Ui.BackgroundStyle" xml:space="preserve">
-    <value>Achtergrondstijl</value>
-  </data>
-  <data name="Ui.SelectFromTheIncludedBackgroundStyles" xml:space="preserve">
-    <value>Kies een van de meegeleverde achtergrondstijlen.</value>
-  </data>
-  <data name="Ui.CustomShaders" xml:space="preserve">
-    <value>Aangepaste shaders</value>
-  </data>
-  <data name="Ui.ClickAnyOfTheButtonsBelowToEnableABackgroundShaderClickItAgainToDisableI" xml:space="preserve">
-    <value>Klik op een knop hieronder om een achtergrondshader in te schakelen. Klik opnieuw om deze uit te schakelen. Deze shaders kunnen uw GPU zwaar belasten en dienen alleen om de mogelijkheden van de achtergrondrenderer te demonstreren en te testen.</value>
-  </data>
-  <data name="Ui.General" xml:space="preserve">
-    <value>Algemeen</value>
-  </data>
-  <data name="Ui.StartTheApplicationAutomaticallyWhenTheSystemStarts" xml:space="preserve">
-    <value>Start de toepassing automatisch wanneer het systeem opstart.</value>
-  </data>
-  <data name="Ui.UseSystemTray" xml:space="preserve">
-    <value>Systeemvak gebruiken</value>
-  </data>
-  <data name="Ui.ShowATrayIconInTheSystemNotificationAreaForQuickAccessWhenTheAppIsRunnin" xml:space="preserve">
-    <value>Toon een pictogram in het systeemvak voor snelle toegang wanneer de toepassing actief is.</value>
-  </data>
-  <data name="Ui.CloseToSystemTray" xml:space="preserve">
-    <value>Sluiten naar systeemvak</value>
-  </data>
-  <data name="Ui.WhenClosingTheMainWindowKeepTheAppRunningInTheSystemTrayInsteadOfExiting" xml:space="preserve">
-    <value>Laat de toepassing bij het sluiten van het hoofdvenster actief in het systeemvak in plaats van af te sluiten.</value>
-  </data>
-  <data name="Ui.CheckForUpdatesOnStart" xml:space="preserve">
-    <value>Bij opstarten controleren op updates</value>
-  </data>
-  <data name="Ui.CheckForUpdatesOnApplicationStartIfAnUpdateIsAvailableItWillNotifyAndAdd" xml:space="preserve">
-    <value>Controleer bij het starten van de toepassing op updates. Als er een update beschikbaar is, ontvangt u een melding en wordt om actie gevraagd.</value>
-  </data>
-  <data name="Ui.SpeedTests" xml:space="preserve">
-    <value>Snelheidstests</value>
-  </data>
-  <data name="Ui.NewSpeedTest" xml:space="preserve">
-    <value>Nieuwe snelheidstest</value>
-  </data>
-  <data name="Ui.StopSpeedTest" xml:space="preserve">
-    <value>Snelheidstest stoppen</value>
-  </data>
-  <data name="Ui.SpeedTestSettings" xml:space="preserve">
-    <value>Instellingen voor snelheidstest</value>
-  </data>
-  <data name="Ui.AutoSpeedTest" xml:space="preserve">
-    <value>Automatische tests:</value>
-  </data>
-  <data name="Ui.Server" xml:space="preserve">
-    <value>Testserver:</value>
-  </data>
-  <data name="Ui.GaugeRange" xml:space="preserve">
-    <value>Meterbereik:</value>
-  </data>
-  <data name="Ui.GaugeIncrement" xml:space="preserve">
-    <value>Meterstap:</value>
-  </data>
-  <data name="Ui.OpenResult" xml:space="preserve">
-    <value>Resultaat openen</value>
-  </data>
-  <data name="Ui.DateTime" xml:space="preserve">
-    <value>Datum en tijd</value>
-  </data>
-  <data name="Ui.Ping" xml:space="preserve">
-    <value>Latentie</value>
-  </data>
-  <data name="Ui.Download" xml:space="preserve">
-    <value>Downloadsnelheid</value>
-  </data>
-  <data name="Ui.Upload" xml:space="preserve">
-    <value>Uploadsnelheid</value>
-  </data>
-  <data name="Ui.PacketLoss" xml:space="preserve">
-    <value>Pakketverlies</value>
-  </data>
-  <data name="Ui.Interface" xml:space="preserve">
-    <value>Netwerkinterface</value>
-  </data>
-  <data name="Ui.ServerAEF7DE28" xml:space="preserve">
-    <value>Testserver</value>
-  </data>
-  <data name="Ui.SpeedtestDependencyWasNotFoundInTheSystem" xml:space="preserve">
-    <value>De Speedtest-afhankelijkheid is niet op het systeem gevonden</value>
-  </data>
-  <data name="Ui.ThisModuleRequiresTheOoklaSpeedtestCLIBinaryYetWasNotFoundInTheSystemPle" xml:space="preserve">
-    <value>Deze module vereist het Ookla Speedtest CLI-programma, maar dit is niet op het systeem gevonden.
-Installeer de afhankelijkheid en laad de module opnieuw.</value>
-  </data>
-  <data name="Ui.Jitter" xml:space="preserve">
-    <value>Latentievariatie:</value>
-  </data>
-  <data name="Ui.Low" xml:space="preserve">
-    <value>Laag:</value>
-  </data>
-  <data name="Ui.High" xml:space="preserve">
-    <value>Hoog:</value>
-  </data>
-  <data name="Ui.PLoss" xml:space="preserve">
-    <value>Pakketverlies:</value>
-  </data>
-  <data name="Ui.IQM" xml:space="preserve">
-    <value>IQM:</value>
-  </data>
-  <data name="Ui.Name" xml:space="preserve">
-    <value>Naam:</value>
-  </data>
-  <data name="Ui.Location" xml:space="preserve">
-    <value>Locatie:</value>
-  </data>
-  <data name="Ui.Host" xml:space="preserve">
-    <value>Hostnaam:</value>
-  </data>
-  <data name="Ui.IP" xml:space="preserve">
-    <value>IP:</value>
-  </data>
-  <data name="Ui.Port" xml:space="preserve">
-    <value>Poort:</value>
-  </data>
-  <data name="Ui.ISP" xml:space="preserve">
-    <value>Internetprovider:</value>
-  </data>
-  <data name="Ui.Index" xml:space="preserve">
-    <value>Volgnummer</value>
-  </data>
-  <data name="Ui.NameDCD1D522" xml:space="preserve">
-    <value>Naam</value>
-  </data>
-  <data name="Navigation.Interfaces" xml:space="preserve">
-    <value>Netwerkinterfaces</value>
-  </data>
-  <data name="Navigation.Pings" xml:space="preserve">
-    <value>Pingmonitor</value>
-  </data>
-  <data name="Navigation.SpeedTest" xml:space="preserve">
-    <value>Snelheidstest</value>
-  </data>
-  <data name="Common.Yes" xml:space="preserve">
-    <value>Ja</value>
-  </data>
-  <data name="Common.No" xml:space="preserve">
-    <value>Nee</value>
-  </data>
   <data name="Common.Cancel" xml:space="preserve">
     <value>Annuleren</value>
   </data>
-  <data name="Common.Unknown" xml:space="preserve">
-    <value>Onbekend</value>
+  <data name="Common.Close" xml:space="preserve">
+    <value>Sluiten</value>
   </data>
-  <data name="Common.View" xml:space="preserve">
-    <value>Bekijken</value>
+  <data name="Common.Copied" xml:space="preserve">
+    <value>Gekopieerd</value>
+  </data>
+  <data name="Common.CopiedToClipboard" xml:space="preserve">
+    <value>Naar klembord gekopieerd</value>
+  </data>
+  <data name="Common.Copy" xml:space="preserve">
+    <value>Kopiëren</value>
+  </data>
+  <data name="Common.Help" xml:space="preserve">
+    <value>Hulp</value>
   </data>
   <data name="Common.Ignore" xml:space="preserve">
     <value>Negeren</value>
   </data>
-  <data name="Common.CopiedToClipboard" xml:space="preserve">
-    <value>Naar klembord gekopieerd</value>
+  <data name="Common.No" xml:space="preserve">
+    <value>Nee</value>
   </data>
   <data name="Common.OpenFile" xml:space="preserve">
     <value>Bestand openen</value>
@@ -770,74 +88,28 @@ Installeer de afhankelijkheid en laad de module opnieuw.</value>
   <data name="Common.OpenFolder" xml:space="preserve">
     <value>Map openen</value>
   </data>
-  <data name="Dialog.About.Title" xml:space="preserve">
-    <value>Over {0}</value>
-  </data>
-  <data name="Update.TriggerUnavailable.Title" xml:space="preserve">
-    <value>Nieuwe update kan niet worden gestart</value>
-  </data>
-  <data name="Update.TriggerUnavailable.Message" xml:space="preserve">
-    <value>Er zijn geen beschikbare releases waarmee de nieuwe update kan worden gestart.</value>
-  </data>
-  <data name="Update.None.Title" xml:space="preserve">
-    <value>Geen updates beschikbaar.</value>
-  </data>
-  <data name="Update.None.Message" xml:space="preserve">
-    <value>{0} gebruikt de nieuwste versie.</value>
-  </data>
-  <data name="Update.CheckFailed" xml:space="preserve">
-    <value>Kan niet controleren op updates</value>
-  </data>
-  <data name="Update.Found.Title" xml:space="preserve">
-    <value>Update voor {0} gevonden</value>
-  </data>
-  <data name="Update.Found.Message" xml:space="preserve">
-    <value>Huidige versie: {0}
-Nieuwe versie: {1}
-Aantal nieuwere releases: {2}
-Releasedatum: {3:f}</value>
-  </data>
-  <data name="Common.Copy" xml:space="preserve">
-    <value>Kopiëren</value>
-  </data>
-  <data name="Common.Copied" xml:space="preserve">
-    <value>Gekopieerd</value>
-  </data>
-  <data name="Common.Close" xml:space="preserve">
-    <value>Sluiten</value>
-  </data>
-  <data name="Common.Report" xml:space="preserve">
-    <value>Rapporteren</value>
-  </data>
-  <data name="Common.Help" xml:space="preserve">
-    <value>Hulp</value>
-  </data>
-  <data name="Common.Restart" xml:space="preserve">
-    <value>Opnieuw starten</value>
-  </data>
-  <data name="Common.Reload" xml:space="preserve">
-    <value>Opnieuw laden</value>
-  </data>
   <data name="Common.ProcessId" xml:space="preserve">
     <value>
 
 Proces-id: {0}</value>
   </data>
-  <data name="Update.Auto" xml:space="preserve">
-    <value>Automatisch bijwerken</value>
+  <data name="Common.Reload" xml:space="preserve">
+    <value>Opnieuw laden</value>
   </data>
-  <data name="Update.Manual" xml:space="preserve">
-    <value>Handmatig bijwerken</value>
+  <data name="Common.Report" xml:space="preserve">
+    <value>Rapporteren</value>
   </data>
-  <data name="Window.CrashReport.Title" xml:space="preserve">
-    <value>{0} - Crashrapport</value>
+  <data name="Common.Restart" xml:space="preserve">
+    <value>Opnieuw starten</value>
   </data>
-  <data name="Window.AlreadyRunning.Title" xml:space="preserve">
-    <value>{0} - Al actief</value>
+  <data name="Common.Unknown" xml:space="preserve">
+    <value>Onbekend</value>
   </data>
-  <data name="InstanceAlreadyRunning.Message" xml:space="preserve">
-    <value>Er is al een ander exemplaar van {0} actief. Er kan slechts één exemplaar van {0} tegelijk worden uitgevoerd.
-Zoek en open het actieve exemplaar of sluit het voordat u een nieuw exemplaar start.</value>
+  <data name="Common.View" xml:space="preserve">
+    <value>Bekijken</value>
+  </data>
+  <data name="Common.Yes" xml:space="preserve">
+    <value>Ja</value>
   </data>
   <data name="CrashReport.Header" xml:space="preserve">
     <value>{0} is vastgelopen door een onverwachte fout.
@@ -848,8 +120,316 @@ Meer informatie vindt u hieronder:</value>
     <value>De toepassing is vastgelopen door een onverwachte fout, maar er zijn helaas geen verdere gegevens beschikbaar.
 Het crashrapport is mogelijk verloren gegaan of kon niet worden opgeslagen.</value>
   </data>
-  <data name="Ping.ResetOne.Title" xml:space="preserve">
-    <value>Weet u zeker dat u de geselecteerde pinghost opnieuw wilt instellen?</value>
+  <data name="Dialog.About.Title" xml:space="preserve">
+    <value>Over {0}</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Dark" xml:space="preserve">
+    <value>Donker</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Default" xml:space="preserve">
+    <value>Systeem volgen</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Light" xml:space="preserve">
+    <value>Licht</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.Group" xml:space="preserve">
+    <value>Groep</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.LastStatus" xml:space="preserve">
+    <value>Laatste status</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.None" xml:space="preserve">
+    <value>Niet groeperen</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.ProtocolType" xml:space="preserve">
+    <value>Protocoltype</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.DNS" xml:space="preserve">
+    <value>DNS: domeinnaamsysteem</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.HTTP" xml:space="preserve">
+    <value>HTTP: hypertekstoverdrachtsprotocol</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.ICMP" xml:space="preserve">
+    <value>ICMP: protocol voor internetbesturingsberichten</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.IMAP" xml:space="preserve">
+    <value>IMAP: protocol voor toegang tot internetberichten</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.MQTT" xml:space="preserve">
+    <value>MQTT: telemetrietransport met berichtenwachtrij</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.NTP" xml:space="preserve">
+    <value>NTP: netwerktijdprotocol</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SIP" xml:space="preserve">
+    <value>SIP: protocol voor sessie-initiatie</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SMTP" xml:space="preserve">
+    <value>SMTP: eenvoudig e-mailoverdrachtsprotocol</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SSH" xml:space="preserve">
+    <value>SSH: beveiligd shellprotocol</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.STUN" xml:space="preserve">
+    <value>STUN: hulpprogramma's voor sessiedoorgang via NAT</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.TCP" xml:space="preserve">
+    <value>TCP: protocol voor transmissiebeheer</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.TLS" xml:space="preserve">
+    <value>TLS: transportlaagbeveiliging</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.UDP" xml:space="preserve">
+    <value>UDP: gebruikersdatagramprotocol</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.WebSocket" xml:space="preserve">
+    <value>WebSocket: protocol voor full-duplexcommunicatie</value>
+  </data>
+  <data name="Export.Interface.Error" xml:space="preserve">
+    <value>Fout bij het exporteren van de interface:</value>
+  </data>
+  <data name="Export.Interface.Success" xml:space="preserve">
+    <value>De interface "{0}" is geëxporteerd naar "{1}".</value>
+  </data>
+  <data name="Export.Interface.Title" xml:space="preserve">
+    <value>Interface exporteren naar {0}</value>
+  </data>
+  <data name="Export.Pings.CsvTitle" xml:space="preserve">
+    <value>Pings naar CSV exporteren</value>
+  </data>
+  <data name="Export.Pings.Error" xml:space="preserve">
+    <value>Fout bij het exporteren van pings:</value>
+  </data>
+  <data name="Export.Pings.JsonTitle" xml:space="preserve">
+    <value>Pings naar JSON exporteren</value>
+  </data>
+  <data name="Export.Pings.Success" xml:space="preserve">
+    <value>De {0} pings voor "{1}" zijn geëxporteerd naar "{2}".</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>Pings naar TSV exporteren</value>
+  </data>
+  <data name="Export.Results.Error" xml:space="preserve">
+    <value>Fout bij het exporteren van resultaten:</value>
+  </data>
+  <data name="Export.Results.Success" xml:space="preserve">
+    <value>De {0} resultaten zijn geëxporteerd naar "{1}".</value>
+  </data>
+  <data name="Export.Results.Title" xml:space="preserve">
+    <value>Resultaten naar JSON exporteren</value>
+  </data>
+  <data name="Export.Services.Error" xml:space="preserve">
+    <value>Fout bij het exporteren van diensten:</value>
+  </data>
+  <data name="Export.Services.Success" xml:space="preserve">
+    <value>De {0} diensten zijn geëxporteerd naar "{1}".</value>
+  </data>
+  <data name="Export.Services.Title" xml:space="preserve">
+    <value>Diensten naar JSON exporteren</value>
+  </data>
+  <data name="Graph.AboveAutomaticScale" xml:space="preserve">
+    <value>Boven de automatische schaal</value>
+  </data>
+  <data name="Graph.AboveScale" xml:space="preserve">
+    <value>Boven de schaal</value>
+  </data>
+  <data name="Graph.AllSamples" xml:space="preserve">
+    <value>Alle metingen</value>
+  </data>
+  <data name="Graph.AutoScale" xml:space="preserve">
+    <value>Automatische schaal</value>
+  </data>
+  <data name="Graph.AutoScale.ToolTip" xml:space="preserve">
+    <value>Automatische latentijschaal gebruiken</value>
+  </data>
+  <data name="Graph.Average" xml:space="preserve">
+    <value>Gemiddelde</value>
+  </data>
+  <data name="Graph.Current" xml:space="preserve">
+    <value>Huidig</value>
+  </data>
+  <data name="Graph.DisableAll.ToolTip" xml:space="preserve">
+    <value>Alle diensten in deze grafiek uitschakelen</value>
+  </data>
+  <data name="Graph.EnableAll.ToolTip" xml:space="preserve">
+    <value>Alle diensten in deze grafiek inschakelen</value>
+  </data>
+  <data name="Graph.Failed" xml:space="preserve">
+    <value>Mislukt</value>
+  </data>
+  <data name="Graph.Failure" xml:space="preserve">
+    <value>Fout</value>
+  </data>
+  <data name="Graph.Freeze" xml:space="preserve">
+    <value>Bevriezen</value>
+  </data>
+  <data name="Graph.Freeze.ToolTip" xml:space="preserve">
+    <value>Grafiek bevriezen terwijl de controles doorgaan</value>
+  </data>
+  <data name="Graph.FullScale" xml:space="preserve">
+    <value>Volledige schaal</value>
+  </data>
+  <data name="Graph.FullScale.ToolTip" xml:space="preserve">
+    <value>Volledig latentiebereik tonen</value>
+  </data>
+  <data name="Graph.Jitter" xml:space="preserve">
+    <value>Variatie</value>
+  </data>
+  <data name="Graph.Latency" xml:space="preserve">
+    <value>Latentie</value>
+  </data>
+  <data name="Graph.Loss" xml:space="preserve">
+    <value>Verlies</value>
+  </data>
+  <data name="Graph.Maximum" xml:space="preserve">
+    <value>Hoogste</value>
+  </data>
+  <data name="Graph.Minimum" xml:space="preserve">
+    <value>Laagste</value>
+  </data>
+  <data name="Graph.Resume.ToolTip" xml:space="preserve">
+    <value>Live-updates van de grafiek hervatten</value>
+  </data>
+  <data name="Graph.RollingAverage" xml:space="preserve">
+    <value>Voortschrijdend gemiddelde</value>
+  </data>
+  <data name="Graph.Samples" xml:space="preserve">
+    <value>{0} metingen</value>
+  </data>
+  <data name="Graph.Title" xml:space="preserve">
+    <value>Grafiek</value>
+  </data>
+  <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
+    <value>Kan niet plakken vanaf het klembord</value>
+  </data>
+  <data name="Import.Clipboard.NoData" xml:space="preserve">
+    <value>Het klembord is leeg of bevat geen bruikbare servicegegevens.</value>
+  </data>
+  <data name="Import.Clipboard.Summary" xml:space="preserve">
+    <value>{0} service(s) geplakt, {1} overgeslagen.</value>
+  </data>
+  <data name="Import.Json.ErrorMessage" xml:space="preserve">
+    <value>Het opgegeven JSON-bestand is ongeldig of onjuist opgebouwd.</value>
+  </data>
+  <data name="Import.Json.ErrorTitle" xml:space="preserve">
+    <value>Kan niet importeren uit JSON</value>
+  </data>
+  <data name="InstanceAlreadyRunning.Message" xml:space="preserve">
+    <value>Er is al een ander exemplaar van {0} actief. Er kan slechts één exemplaar van {0} tegelijk worden uitgevoerd.
+Zoek en open het actieve exemplaar of sluit het voordat u een nieuw exemplaar start.</value>
+  </data>
+  <data name="Navigation.Interfaces" xml:space="preserve">
+    <value>Netwerkinterfaces</value>
+  </data>
+  <data name="Navigation.Pings" xml:space="preserve">
+    <value>Pingmonitor</value>
+  </data>
+  <data name="Navigation.Settings" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="Navigation.SpeedTest" xml:space="preserve">
+    <value>Snelheidstest</value>
+  </data>
+  <data name="Network.DhcpDns.Error" xml:space="preserve">
+    <value>Kan DHCP-DNS niet toewijzen.</value>
+  </data>
+  <data name="Network.DhcpDns.Success" xml:space="preserve">
+    <value>DHCP-DNS is toegewezen.</value>
+  </data>
+  <data name="Network.DhcpIp.Error" xml:space="preserve">
+    <value>Kan DHCPv{0} niet instellen voor "{1}".</value>
+  </data>
+  <data name="Network.DhcpIp.Success" xml:space="preserve">
+    <value>IP-adres is ingesteld op DHCPv{0}</value>
+  </data>
+  <data name="Network.Disable.Error" xml:space="preserve">
+    <value>Kan "{0}" niet uitschakelen.</value>
+  </data>
+  <data name="Network.Disable.Success" xml:space="preserve">
+    <value>Interface "{0}" is uitgeschakeld.</value>
+  </data>
+  <data name="Network.Disable.Title" xml:space="preserve">
+    <value>{0} uitschakelen</value>
+  </data>
+  <data name="Network.Dns.Error" xml:space="preserve">
+    <value>Kan DNS niet toewijzen.</value>
+  </data>
+  <data name="Network.Dns.Success" xml:space="preserve">
+    <value>DNS-servers zijn toegewezen: {0} {1}</value>
+  </data>
+  <data name="Network.Dns.Title" xml:space="preserve">
+    <value>DNS-toewijzing voor "{0}"</value>
+  </data>
+  <data name="Network.Enable.Error" xml:space="preserve">
+    <value>Kan "{0}" niet inschakelen.</value>
+  </data>
+  <data name="Network.Enable.Success" xml:space="preserve">
+    <value>Interface "{0}" is ingeschakeld.</value>
+  </data>
+  <data name="Network.Enable.Title" xml:space="preserve">
+    <value>{0} inschakelen</value>
+  </data>
+  <data name="Network.IpAssignment.Error" xml:space="preserve">
+    <value>Kan IP niet toewijzen.</value>
+  </data>
+  <data name="Network.IpAssignment.NoChanges" xml:space="preserve">
+    <value>Er zijn geen wijzigingen aangebracht omdat de opgegeven instellingen overeenkomen met de vorige instellingen.</value>
+  </data>
+  <data name="Network.IpAssignment.Title" xml:space="preserve">
+    <value>IP-toewijzing voor "{0}"</value>
+  </data>
+  <data name="Network.Release.Error" xml:space="preserve">
+    <value>Kan "{0}" niet vrijgeven.</value>
+  </data>
+  <data name="Network.Release.Success" xml:space="preserve">
+    <value>IP-adres is vrijgegeven.</value>
+  </data>
+  <data name="Network.Release.Title" xml:space="preserve">
+    <value>{0} vrijgeven</value>
+  </data>
+  <data name="Network.Renew.Error" xml:space="preserve">
+    <value>Kan "{0}" niet vernieuwen.</value>
+  </data>
+  <data name="Network.Renew.Success" xml:space="preserve">
+    <value>IP-adres is vernieuwd.</value>
+  </data>
+  <data name="Network.Renew.Title" xml:space="preserve">
+    <value>{0} vernieuwen</value>
+  </data>
+  <data name="Network.StaticIp.Error" xml:space="preserve">
+    <value>Kan statisch IPv{0} niet instellen voor "{1}".</value>
+  </data>
+  <data name="Network.StaticIp.Success" xml:space="preserve">
+    <value>IP-adres is ingesteld op {0} {1} {2}</value>
+  </data>
+  <data name="Operation.Success" xml:space="preserve">
+    <value>Bewerking voltooid.</value>
+  </data>
+  <data name="Operation.SudoRequired" xml:space="preserve">
+    <value>De bewerking kan niet worden uitgevoerd omdat sudo-toegang vereist is.
+pkexec is niet gevonden. Installeer pkexec of voer de toepassing uit met sudo.</value>
+  </data>
+  <data name="Ping.RemoveAll.Message" xml:space="preserve">
+    <value>U staat op het punt alle {0} pinghosts te verwijderen.
+Weet u zeker dat u wilt doorgaan?</value>
+  </data>
+  <data name="Ping.RemoveAll.Title" xml:space="preserve">
+    <value>Weet u zeker dat u alle {0} pinghosts wilt verwijderen?</value>
+  </data>
+  <data name="Ping.RemoveSelected.Message" xml:space="preserve">
+    <value>U staat op het punt {0} geselecteerde pinghosts te verwijderen.
+Weet u zeker dat u wilt doorgaan?</value>
+  </data>
+  <data name="Ping.RemoveSelected.Title" xml:space="preserve">
+    <value>Weet u zeker dat u de {0} geselecteerde pinghosts wilt verwijderen?</value>
+  </data>
+  <data name="Ping.ResetAll.Message" xml:space="preserve">
+    <value>U staat op het punt de statistieken van alle {0} pinghosts opnieuw in te stellen.
+Weet u zeker dat u wilt doorgaan?</value>
+  </data>
+  <data name="Ping.ResetAll.Title" xml:space="preserve">
+    <value>Weet u zeker dat u alle {0} pinghosts opnieuw wilt instellen?</value>
   </data>
   <data name="Ping.ResetOne.Message" xml:space="preserve">
     <value>U staat op het punt de statistieken van de geselecteerde pinghost opnieuw in te stellen.
@@ -859,363 +439,83 @@ Host: {1}
 
 Weet u zeker dat u wilt doorgaan?</value>
   </data>
-  <data name="Ping.ResetSelected.Title" xml:space="preserve">
-    <value>Weet u zeker dat u de {0} geselecteerde pinghosts opnieuw wilt instellen?</value>
+  <data name="Ping.ResetOne.Title" xml:space="preserve">
+    <value>Weet u zeker dat u de geselecteerde pinghost opnieuw wilt instellen?</value>
   </data>
   <data name="Ping.ResetSelected.Message" xml:space="preserve">
     <value>U staat op het punt de statistieken van {0} geselecteerde pinghosts opnieuw in te stellen.
 Weet u zeker dat u wilt doorgaan?</value>
   </data>
-  <data name="Ping.ResetAll.Title" xml:space="preserve">
-    <value>Weet u zeker dat u alle {0} pinghosts opnieuw wilt instellen?</value>
+  <data name="Ping.ResetSelected.Title" xml:space="preserve">
+    <value>Weet u zeker dat u de {0} geselecteerde pinghosts opnieuw wilt instellen?</value>
   </data>
-  <data name="Ping.ResetAll.Message" xml:space="preserve">
-    <value>U staat op het punt de statistieken van alle {0} pinghosts opnieuw in te stellen.
-Weet u zeker dat u wilt doorgaan?</value>
+  <data name="Settings.Language" xml:space="preserve">
+    <value>Taal</value>
   </data>
-  <data name="Ping.RemoveSelected.Title" xml:space="preserve">
-    <value>Weet u zeker dat u de {0} geselecteerde pinghosts wilt verwijderen?</value>
+  <data name="Settings.Language.Description" xml:space="preserve">
+    <value>Kies de taal die in de hele toepassing wordt gebruikt.</value>
   </data>
-  <data name="Ping.RemoveSelected.Message" xml:space="preserve">
-    <value>U staat op het punt {0} geselecteerde pinghosts te verwijderen.
-Weet u zeker dat u wilt doorgaan?</value>
+  <data name="Settings.Language.FollowSystem" xml:space="preserve">
+    <value>Systeem volgen</value>
   </data>
-  <data name="Ping.RemoveAll.Title" xml:space="preserve">
-    <value>Weet u zeker dat u alle {0} pinghosts wilt verwijderen?</value>
+  <data name="Settings.Theme" xml:space="preserve">
+    <value>Thema</value>
   </data>
-  <data name="Ping.RemoveAll.Message" xml:space="preserve">
-    <value>U staat op het punt alle {0} pinghosts te verwijderen.
-Weet u zeker dat u wilt doorgaan?</value>
-  </data>
-  <data name="Export.Services.Title" xml:space="preserve">
-    <value>Diensten naar JSON exporteren</value>
-  </data>
-  <data name="Export.Services.Success" xml:space="preserve">
-    <value>De {0} diensten zijn geëxporteerd naar "{1}".</value>
-  </data>
-  <data name="Export.Services.Error" xml:space="preserve">
-    <value>Fout bij het exporteren van diensten:</value>
-  </data>
-  <data name="Export.Pings.CsvTitle" xml:space="preserve">
-    <value>Pings naar CSV exporteren</value>
-  </data>
-  <data name="Export.Pings.JsonTitle" xml:space="preserve">
-    <value>Pings naar JSON exporteren</value>
-  </data>
-  <data name="Export.Pings.Success" xml:space="preserve">
-    <value>De {0} pings voor "{1}" zijn geëxporteerd naar "{2}".</value>
-  </data>
-  <data name="Export.Pings.Error" xml:space="preserve">
-    <value>Fout bij het exporteren van pings:</value>
-  </data>
-  <data name="SpeedTest.Install.Title" xml:space="preserve">
-    <value>Installatie van Speedtest CLI</value>
-  </data>
-  <data name="SpeedTest.Install.Success" xml:space="preserve">
-    <value>Speedtest CLI is geïnstalleerd.</value>
-  </data>
-  <data name="SpeedTest.Install.Error" xml:space="preserve">
-    <value>Speedtest CLI kon niet worden geïnstalleerd. Installeer deze handmatig via https://www.speedtest.net/apps/cli</value>
+  <data name="SpeedTest.AutoInstall" xml:space="preserve">
+    <value>Automatisch installeren</value>
   </data>
   <data name="SpeedTest.Error" xml:space="preserve">
     <value>Fout tijdens de snelheidstest</value>
   </data>
-  <data name="Export.Results.Title" xml:space="preserve">
-    <value>Resultaten naar JSON exporteren</value>
+  <data name="SpeedTest.Install.Error" xml:space="preserve">
+    <value>Speedtest CLI kon niet worden geïnstalleerd. Installeer deze handmatig via https://www.speedtest.net/apps/cli</value>
   </data>
-  <data name="Export.Results.Success" xml:space="preserve">
-    <value>De {0} resultaten zijn geëxporteerd naar "{1}".</value>
+  <data name="SpeedTest.Install.Success" xml:space="preserve">
+    <value>Speedtest CLI is geïnstalleerd.</value>
   </data>
-  <data name="Export.Results.Error" xml:space="preserve">
-    <value>Fout bij het exporteren van resultaten:</value>
+  <data name="SpeedTest.Install.Title" xml:space="preserve">
+    <value>Installatie van Speedtest CLI</value>
   </data>
-  <data name="SpeedTest.RemoveSelected.Title" xml:space="preserve">
-    <value>Weet u zeker dat u de {0} geselecteerde resultaten wilt verwijderen?</value>
-  </data>
-  <data name="SpeedTest.RemoveSelected.Message" xml:space="preserve">
-    <value>U staat op het punt {0} geselecteerde resultaten te verwijderen.
-Weet u zeker dat u wilt doorgaan?</value>
-  </data>
-  <data name="SpeedTest.RemoveAll.Title" xml:space="preserve">
-    <value>Weet u zeker dat u alle {0} resultaten wilt verwijderen?</value>
+  <data name="SpeedTest.ManualInstall" xml:space="preserve">
+    <value>Handmatig installeren</value>
   </data>
   <data name="SpeedTest.RemoveAll.Message" xml:space="preserve">
     <value>U staat op het punt alle {0} resultaten te verwijderen.
 Weet u zeker dat u wilt doorgaan?</value>
   </data>
-  <data name="SpeedTest.AutoInstall" xml:space="preserve">
-    <value>Automatisch installeren</value>
+  <data name="SpeedTest.RemoveAll.Title" xml:space="preserve">
+    <value>Weet u zeker dat u alle {0} resultaten wilt verwijderen?</value>
   </data>
-  <data name="SpeedTest.ManualInstall" xml:space="preserve">
-    <value>Handmatig installeren</value>
+  <data name="SpeedTest.RemoveSelected.Message" xml:space="preserve">
+    <value>U staat op het punt {0} geselecteerde resultaten te verwijderen.
+Weet u zeker dat u wilt doorgaan?</value>
   </data>
-  <data name="Network.Disable.Title" xml:space="preserve">
-    <value>{0} uitschakelen</value>
-  </data>
-  <data name="Network.Disable.Success" xml:space="preserve">
-    <value>Interface "{0}" is uitgeschakeld.</value>
-  </data>
-  <data name="Network.Disable.Error" xml:space="preserve">
-    <value>Kan "{0}" niet uitschakelen.</value>
-  </data>
-  <data name="Network.Enable.Title" xml:space="preserve">
-    <value>{0} inschakelen</value>
-  </data>
-  <data name="Network.Enable.Success" xml:space="preserve">
-    <value>Interface "{0}" is ingeschakeld.</value>
-  </data>
-  <data name="Network.Enable.Error" xml:space="preserve">
-    <value>Kan "{0}" niet inschakelen.</value>
-  </data>
-  <data name="Network.Release.Title" xml:space="preserve">
-    <value>{0} vrijgeven</value>
-  </data>
-  <data name="Network.Release.Success" xml:space="preserve">
-    <value>IP-adres is vrijgegeven.</value>
-  </data>
-  <data name="Network.Release.Error" xml:space="preserve">
-    <value>Kan "{0}" niet vrijgeven.</value>
-  </data>
-  <data name="Network.Renew.Title" xml:space="preserve">
-    <value>{0} vernieuwen</value>
-  </data>
-  <data name="Network.Renew.Success" xml:space="preserve">
-    <value>IP-adres is vernieuwd.</value>
-  </data>
-  <data name="Network.Renew.Error" xml:space="preserve">
-    <value>Kan "{0}" niet vernieuwen.</value>
-  </data>
-  <data name="Network.StaticIp.Success" xml:space="preserve">
-    <value>IP-adres is ingesteld op {0} {1} {2}</value>
-  </data>
-  <data name="Network.StaticIp.Error" xml:space="preserve">
-    <value>Kan statisch IPv{0} niet instellen voor "{1}".</value>
-  </data>
-  <data name="Network.DhcpIp.Success" xml:space="preserve">
-    <value>IP-adres is ingesteld op DHCPv{0}</value>
-  </data>
-  <data name="Network.DhcpIp.Error" xml:space="preserve">
-    <value>Kan DHCPv{0} niet instellen voor "{1}".</value>
-  </data>
-  <data name="Network.Dns.Title" xml:space="preserve">
-    <value>DNS-toewijzing voor "{0}"</value>
-  </data>
-  <data name="Network.Dns.Success" xml:space="preserve">
-    <value>DNS-servers zijn toegewezen: {0} {1}</value>
-  </data>
-  <data name="Network.Dns.Error" xml:space="preserve">
-    <value>Kan DNS niet toewijzen.</value>
-  </data>
-  <data name="Network.DhcpDns.Success" xml:space="preserve">
-    <value>DHCP-DNS is toegewezen.</value>
-  </data>
-  <data name="Network.DhcpDns.Error" xml:space="preserve">
-    <value>Kan DHCP-DNS niet toewijzen.</value>
-  </data>
-  <data name="Network.IpAssignment.Title" xml:space="preserve">
-    <value>IP-toewijzing voor "{0}"</value>
-  </data>
-  <data name="Network.IpAssignment.NoChanges" xml:space="preserve">
-    <value>Er zijn geen wijzigingen aangebracht omdat de opgegeven instellingen overeenkomen met de vorige instellingen.</value>
-  </data>
-  <data name="Network.IpAssignment.Error" xml:space="preserve">
-    <value>Kan IP niet toewijzen.</value>
-  </data>
-  <data name="Export.Interface.Title" xml:space="preserve">
-    <value>Interface exporteren naar {0}</value>
-  </data>
-  <data name="Export.Interface.Success" xml:space="preserve">
-    <value>De interface "{0}" is geëxporteerd naar "{1}".</value>
-  </data>
-  <data name="Export.Interface.Error" xml:space="preserve">
-    <value>Fout bij het exporteren van de interface:</value>
-  </data>
-  <data name="Enum.ApplicationTheme.Default" xml:space="preserve">
-    <value>Systeem volgen</value>
-  </data>
-  <data name="Enum.ApplicationTheme.Light" xml:space="preserve">
-    <value>Licht</value>
-  </data>
-  <data name="Enum.ApplicationTheme.Dark" xml:space="preserve">
-    <value>Donker</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.None" xml:space="preserve">
-    <value>Niet groeperen</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.ProtocolType" xml:space="preserve">
-    <value>Protocoltype</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.LastStatus" xml:space="preserve">
-    <value>Laatste status</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.Group" xml:space="preserve">
-    <value>Groep</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.ICMP" xml:space="preserve">
-    <value>ICMP: protocol voor internetbesturingsberichten</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.TCP" xml:space="preserve">
-    <value>TCP: protocol voor transmissiebeheer</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.UDP" xml:space="preserve">
-    <value>UDP: gebruikersdatagramprotocol</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.TLS" xml:space="preserve">
-    <value>TLS: transportlaagbeveiliging</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.DNS" xml:space="preserve">
-    <value>DNS: domeinnaamsysteem</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.NTP" xml:space="preserve">
-    <value>NTP: netwerktijdprotocol</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.HTTP" xml:space="preserve">
-    <value>HTTP: hypertekstoverdrachtsprotocol</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.WebSocket" xml:space="preserve">
-    <value>WebSocket: protocol voor full-duplexcommunicatie</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.SSH" xml:space="preserve">
-    <value>SSH: beveiligd shellprotocol</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.SMTP" xml:space="preserve">
-    <value>SMTP: eenvoudig e-mailoverdrachtsprotocol</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.IMAP" xml:space="preserve">
-    <value>IMAP: protocol voor toegang tot internetberichten</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.MQTT" xml:space="preserve">
-    <value>MQTT: telemetrietransport met berichtenwachtrij</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.STUN" xml:space="preserve">
-    <value>STUN: hulpprogramma's voor sessiedoorgang via NAT</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.SIP" xml:space="preserve">
-    <value>SIP: protocol voor sessie-initiatie</value>
-  </data>
-  <data name="Operation.Success" xml:space="preserve">
-    <value>Bewerking voltooid.</value>
-  </data>
-  <data name="Operation.SudoRequired" xml:space="preserve">
-    <value>De bewerking kan niet worden uitgevoerd omdat sudo-toegang vereist is.
-pkexec is niet gevonden. Installeer pkexec of voer de toepassing uit met sudo.</value>
-  </data>
-  <data name="Import.Json.ErrorTitle" xml:space="preserve">
-    <value>Kan niet importeren uit JSON</value>
-  </data>
-  <data name="Import.Json.ErrorMessage" xml:space="preserve">
-    <value>Het opgegeven JSON-bestand is ongeldig of onjuist opgebouwd.</value>
+  <data name="SpeedTest.RemoveSelected.Title" xml:space="preserve">
+    <value>Weet u zeker dat u de {0} geselecteerde resultaten wilt verwijderen?</value>
   </data>
   <data name="SpeedTest.ServerList.Error" xml:space="preserve">
     <value>Kan serverlijst niet ophalen</value>
   </data>
-  <data name="Ui.ChangelogWithReleases" xml:space="preserve">
-    <value>Wijzigingslogboek voor {0} releases:</value>
+  <data name="Status.BadDestination" xml:space="preserve">
+    <value>Ongeldige bestemming</value>
   </data>
-  <data name="Tray.PingsUp" xml:space="preserve">
-    <value>{0} actief</value>
+  <data name="Status.BadHeader" xml:space="preserve">
+    <value>Ongeldige header</value>
   </data>
-  <data name="Tray.PingsDown" xml:space="preserve">
-    <value>{0} niet actief</value>
+  <data name="Status.BadOption" xml:space="preserve">
+    <value>Ongeldige optie</value>
   </data>
-  <data name="Ui.Auto" xml:space="preserve">
-    <value>Automatisch</value>
+  <data name="Status.BadRoute" xml:space="preserve">
+    <value>Ongeldige route</value>
   </data>
-  <data name="Ui.ServicesCount" xml:space="preserve">
-    <value>({0} diensten)</value>
-  </data>
-  <data name="Ui.License" xml:space="preserve">
-    <value>Licentie ({0})</value>
-  </data>
-  <data name="Ui.LastUpdateCheck" xml:space="preserve">
-    <value>Laatste updatecontrole: {0}</value>
-  </data>
-  <data name="Ui.Age" xml:space="preserve">
-    <value>Leeftijd: {0}</value>
-  </data>
-  <data name="Graph.Latency" xml:space="preserve">
-    <value>Latentie</value>
-  </data>
-  <data name="Graph.AboveScale" xml:space="preserve">
-    <value>Boven de schaal</value>
-  </data>
-  <data name="Graph.RollingAverage" xml:space="preserve">
-    <value>Voortschrijdend gemiddelde</value>
-  </data>
-  <data name="Graph.Failure" xml:space="preserve">
-    <value>Fout</value>
-  </data>
-  <data name="Graph.Maximum" xml:space="preserve">
-    <value>Hoogste</value>
-  </data>
-  <data name="Graph.Average" xml:space="preserve">
-    <value>Gemiddelde</value>
-  </data>
-  <data name="Graph.Current" xml:space="preserve">
-    <value>Huidig</value>
-  </data>
-  <data name="Graph.Minimum" xml:space="preserve">
-    <value>Laagste</value>
-  </data>
-  <data name="Graph.Failed" xml:space="preserve">
-    <value>Mislukt</value>
-  </data>
-  <data name="Graph.DisableAll.ToolTip" xml:space="preserve">
-    <value>Alle diensten in deze grafiek uitschakelen</value>
-  </data>
-  <data name="Graph.EnableAll.ToolTip" xml:space="preserve">
-    <value>Alle diensten in deze grafiek inschakelen</value>
-  </data>
-  <data name="Graph.FullScale" xml:space="preserve">
-    <value>Volledige schaal</value>
-  </data>
-  <data name="Graph.AutoScale" xml:space="preserve">
-    <value>Automatische schaal</value>
-  </data>
-  <data name="Graph.AutoScale.ToolTip" xml:space="preserve">
-    <value>Automatische latentijschaal gebruiken</value>
-  </data>
-  <data name="Graph.FullScale.ToolTip" xml:space="preserve">
-    <value>Volledig latentiebereik tonen</value>
-  </data>
-  <data name="Graph.Freeze" xml:space="preserve">
-    <value>Bevriezen</value>
-  </data>
-  <data name="Graph.Freeze.ToolTip" xml:space="preserve">
-    <value>Grafiek bevriezen terwijl de controles doorgaan</value>
-  </data>
-  <data name="Graph.Resume.ToolTip" xml:space="preserve">
-    <value>Live-updates van de grafiek hervatten</value>
-  </data>
-  <data name="Graph.Samples" xml:space="preserve">
-    <value>{0} metingen</value>
-  </data>
-  <data name="Graph.AllSamples" xml:space="preserve">
-    <value>Alle metingen</value>
-  </data>
-  <data name="Graph.AboveAutomaticScale" xml:space="preserve">
-    <value>Boven de automatische schaal</value>
-  </data>
-  <data name="Graph.Jitter" xml:space="preserve">
-    <value>Variatie</value>
-  </data>
-  <data name="Graph.Loss" xml:space="preserve">
-    <value>Verlies</value>
-  </data>
-  <data name="Graph.Title" xml:space="preserve">
-    <value>Grafiek</value>
-  </data>
-  <data name="Status.Success" xml:space="preserve">
-    <value>Geslaagd</value>
-  </data>
-  <data name="Status.DestinationNetworkUnreachable" xml:space="preserve">
-    <value>Doelnetwerk onbereikbaar</value>
+  <data name="Status.ConnectionReset" xml:space="preserve">
+    <value>Verbinding opnieuw ingesteld</value>
   </data>
   <data name="Status.DestinationHostUnreachable" xml:space="preserve">
     <value>Doelhost onbereikbaar</value>
   </data>
-  <data name="Status.DestinationProtocolUnreachable" xml:space="preserve">
-    <value>Doelprotocol onbereikbaar</value>
+  <data name="Status.DestinationNetworkUnreachable" xml:space="preserve">
+    <value>Doelnetwerk onbereikbaar</value>
   </data>
   <data name="Status.DestinationPortUnreachable" xml:space="preserve">
     <value>Doelpoort onbereikbaar</value>
@@ -1223,20 +523,59 @@ pkexec is niet gevonden. Installeer pkexec of voer de toepassing uit met sudo.</
   <data name="Status.DestinationProhibited" xml:space="preserve">
     <value>Bestemming verboden</value>
   </data>
-  <data name="Status.NoResources" xml:space="preserve">
-    <value>Onvoldoende bronnen</value>
+  <data name="Status.DestinationProtocolUnreachable" xml:space="preserve">
+    <value>Doelprotocol onbereikbaar</value>
   </data>
-  <data name="Status.BadOption" xml:space="preserve">
-    <value>Ongeldige optie</value>
+  <data name="Status.DestinationScopeMismatch" xml:space="preserve">
+    <value>Bereik van bestemming komt niet overeen</value>
+  </data>
+  <data name="Status.DestinationUnreachable" xml:space="preserve">
+    <value>Bestemming onbereikbaar</value>
+  </data>
+  <data name="Status.ErrorFallback" xml:space="preserve">
+    <value>Fout ({0})</value>
   </data>
   <data name="Status.HardwareError" xml:space="preserve">
     <value>Hardwarefout</value>
   </data>
+  <data name="Status.HttpFallback" xml:space="preserve">
+    <value>HTTP {0}</value>
+  </data>
+  <data name="Status.HttpRequestErrorFallback" xml:space="preserve">
+    <value>Fout bij HTTP-verzoek</value>
+  </data>
+  <data name="Status.IcmpError" xml:space="preserve">
+    <value>ICMP-fout</value>
+  </data>
+  <data name="Status.NoContent" xml:space="preserve">
+    <value>Geen inhoud</value>
+  </data>
+  <data name="Status.NoResources" xml:space="preserve">
+    <value>Onvoldoende bronnen</value>
+  </data>
+  <data name="Status.Open" xml:space="preserve">
+    <value>Geopend</value>
+  </data>
   <data name="Status.PacketTooBig" xml:space="preserve">
     <value>Pakket te groot</value>
   </data>
-  <data name="Status.BadRoute" xml:space="preserve">
-    <value>Ongeldige route</value>
+  <data name="Status.ParameterProblem" xml:space="preserve">
+    <value>Parameterprobleem</value>
+  </data>
+  <data name="Status.SocketErrorFallback" xml:space="preserve">
+    <value>Socketfout ({0})</value>
+  </data>
+  <data name="Status.SourceQuench" xml:space="preserve">
+    <value>Bronafremming</value>
+  </data>
+  <data name="Status.Success" xml:space="preserve">
+    <value>Geslaagd</value>
+  </data>
+  <data name="Status.TimedOut" xml:space="preserve">
+    <value>Time-out</value>
+  </data>
+  <data name="Status.TimeExceeded" xml:space="preserve">
+    <value>Tijdslimiet overschreden</value>
   </data>
   <data name="Status.TtlExpired" xml:space="preserve">
     <value>TTL verlopen</value>
@@ -1244,94 +583,755 @@ pkexec is niet gevonden. Installeer pkexec of voer de toepassing uit met sudo.</
   <data name="Status.TtlReassemblyTimeExceeded" xml:space="preserve">
     <value>TTL verlopen tijdens opnieuw samenstellen</value>
   </data>
-  <data name="Status.ParameterProblem" xml:space="preserve">
-    <value>Parameterprobleem</value>
-  </data>
-  <data name="Status.SourceQuench" xml:space="preserve">
-    <value>Bronafremming</value>
-  </data>
-  <data name="Status.BadDestination" xml:space="preserve">
-    <value>Ongeldige bestemming</value>
-  </data>
-  <data name="Status.DestinationUnreachable" xml:space="preserve">
-    <value>Bestemming onbereikbaar</value>
-  </data>
-  <data name="Status.TimeExceeded" xml:space="preserve">
-    <value>Tijdslimiet overschreden</value>
-  </data>
-  <data name="Status.BadHeader" xml:space="preserve">
-    <value>Ongeldige header</value>
+  <data name="Status.Unknown" xml:space="preserve">
+    <value>Onbekend</value>
   </data>
   <data name="Status.UnrecognizedNextHeader" xml:space="preserve">
     <value>Volgende header niet herkend</value>
   </data>
-  <data name="Status.IcmpError" xml:space="preserve">
-    <value>ICMP-fout</value>
-  </data>
-  <data name="Status.DestinationScopeMismatch" xml:space="preserve">
-    <value>Bereik van bestemming komt niet overeen</value>
-  </data>
-  <data name="Status.NoContent" xml:space="preserve">
-    <value>Geen inhoud</value>
-  </data>
-  <data name="Status.ConnectionReset" xml:space="preserve">
-    <value>Verbinding opnieuw ingesteld</value>
-  </data>
-  <data name="Status.TimedOut" xml:space="preserve">
-    <value>Time-out</value>
-  </data>
-  <data name="Status.Unknown" xml:space="preserve">
-    <value>Onbekend</value>
-  </data>
-  <data name="Status.Open" xml:space="preserve">
-    <value>Geopend</value>
-  </data>
-  <data name="Status.SocketErrorFallback" xml:space="preserve">
-    <value>Socketfout ({0})</value>
-  </data>
-  <data name="Status.HttpRequestErrorFallback" xml:space="preserve">
-    <value>Fout bij HTTP-verzoek</value>
-  </data>
   <data name="Status.WebSocketErrorFallback" xml:space="preserve">
     <value>WebSocket-fout</value>
   </data>
-  <data name="Status.HttpFallback" xml:space="preserve">
-    <value>HTTP {0}</value>
+  <data name="Tray.PingsDown" xml:space="preserve">
+    <value>{0} niet actief</value>
   </data>
-  <data name="Status.ErrorFallback" xml:space="preserve">
-    <value>Fout ({0})</value>
+  <data name="Tray.PingsUp" xml:space="preserve">
+    <value>{0} actief</value>
   </data>
-  <data name="Ui.ServicesCountPlain" xml:space="preserve">
-    <value>{0} diensten</value>
+  <data name="Ui.95thPercentileLatencyInTheDisplayedWindow" xml:space="preserve">
+    <value>95e percentiel van de latentie in het weergegeven venster</value>
   </data>
-  <data name="Ui.EditService" xml:space="preserve">
-    <value>Service bewerken</value>
+  <data name="Ui.About" xml:space="preserve">
+    <value>Over</value>
   </data>
-  <data name="Ui.Save" xml:space="preserve">
-    <value>Opslaan</value>
+  <data name="Ui.AddNewServices" xml:space="preserve">
+    <value>Nieuwe dienst(en) toevoegen</value>
   </data>
-  <data name="Ui.ServiceUpdated" xml:space="preserve">
-    <value>Service is bijgewerkt.</value>
+  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
+    <value>Toevoegen: hoofdknop = lege rij, pijl = importeren&#10;Plakindeling: IP | Poort | Interval | Beschrijving | Groep&#10;Voorbeeld: 192.168.1.10  80  30  Webserver  LAN&#10;Voorbeeld: 192.168.130:80|30|Webserver|LAN&#10;Bekende poorten bepalen het protocol; onbekende poorten gebruiken TCP.</value>
   </data>
-  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
-    <value>Er bestaat al een service met hetzelfde protocol en adres.</value>
+  <data name="Ui.AdjustTheUIScaleToIncreaseOrDecreaseTheSizeOfTheInterfaceElements" xml:space="preserve">
+    <value>Pas de UI-schaal aan om de interface-elementen groter of kleiner te maken.</value>
   </data>
-  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
-    <value>Geselecteerde grafieken openen (Nieuw venster)</value>
+  <data name="Ui.Age" xml:space="preserve">
+    <value>Leeftijd: {0}</value>
   </data>
-  <data name="Ui.EditServices" xml:space="preserve">
-    <value>Services bewerken</value>
+  <data name="Ui.AnimatedBackground" xml:space="preserve">
+    <value>Geanimeerde achtergrond</value>
+  </data>
+  <data name="Ui.Apply" xml:space="preserve">
+    <value>Toepassen</value>
+  </data>
+  <data name="Ui.AskAQuestion" xml:space="preserve">
+    <value>Een vraag stellen</value>
+  </data>
+  <data name="Ui.Assemblies" xml:space="preserve">
+    <value>Softwareassemblies</value>
+  </data>
+  <data name="Ui.Auto" xml:space="preserve">
+    <value>Automatisch</value>
+  </data>
+  <data name="Ui.AutomaticDNSAssignmentFromDHCP" xml:space="preserve">
+    <value>Automatische DNS-toewijzing via DHCP</value>
+  </data>
+  <data name="Ui.AutomaticIPAssignmentFromDHCP" xml:space="preserve">
+    <value>Automatische IP-toewijzing via DHCP</value>
+  </data>
+  <data name="Ui.AutoRefresh" xml:space="preserve">
+    <value>Automatisch vernieuwen:</value>
+  </data>
+  <data name="Ui.AutoSpeedTest" xml:space="preserve">
+    <value>Automatische tests:</value>
+  </data>
+  <data name="Ui.AvaloniaUI" xml:space="preserve">
+    <value>AvaloniaUI:</value>
+  </data>
+  <data name="Ui.AvgTime" xml:space="preserve">
+    <value>Gem. latentie</value>
+  </data>
+  <data name="Ui.Background" xml:space="preserve">
+    <value>Achtergrond</value>
+  </data>
+  <data name="Ui.BackgroundStyle" xml:space="preserve">
+    <value>Achtergrondstijl</value>
+  </data>
+  <data name="Ui.BackgroundTransitions" xml:space="preserve">
+    <value>Achtergrondovergangen</value>
+  </data>
+  <data name="Ui.BufferSize" xml:space="preserve">
+    <value>Buffergrootte</value>
+  </data>
+  <data name="Ui.BufferSize1DF49DCA" xml:space="preserve">
+    <value>Buffergrootte:</value>
+  </data>
+  <data name="Ui.Cancel" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="Ui.CardHeight" xml:space="preserve">
+    <value>Kaarthoogte:</value>
+  </data>
+  <data name="Ui.CardWidth" xml:space="preserve">
+    <value>Kaartbreedte:</value>
+  </data>
+  <data name="Ui.ChangelogWithReleases" xml:space="preserve">
+    <value>Wijzigingslogboek voor {0} releases:</value>
+  </data>
+  <data name="Ui.ChangesTheProbeIntervalForEveryServiceInThisGraph" xml:space="preserve">
+    <value>Wijzigt het controle-interval voor elke dienst in deze grafiek</value>
+  </data>
+  <data name="Ui.ChangesTheTimeoutForEveryServiceInThisGraph" xml:space="preserve">
+    <value>Wijzigt de time-out voor elke dienst in deze grafiek</value>
+  </data>
+  <data name="Ui.CheckForUpdates" xml:space="preserve">
+    <value>Controleren op updates</value>
+  </data>
+  <data name="Ui.CheckForUpdatesOnApplicationStartIfAnUpdateIsAvailableItWillNotifyAndAdd" xml:space="preserve">
+    <value>Controleer bij het starten van de toepassing op updates. Als er een update beschikbaar is, ontvangt u een melding en wordt om actie gevraagd.</value>
+  </data>
+  <data name="Ui.CheckForUpdatesOnStart" xml:space="preserve">
+    <value>Bij opstarten controleren op updates</value>
+  </data>
+  <data name="Ui.ClearAddress" xml:space="preserve">
+    <value>Adres wissen</value>
+  </data>
+  <data name="Ui.ClearStatistics" xml:space="preserve">
+    <value>Statistieken wissen</value>
+  </data>
+  <data name="Ui.ClearTheGatewayAddress" xml:space="preserve">
+    <value>Gatewayadres wissen</value>
+  </data>
+  <data name="Ui.ClickAnyOfTheButtonsBelowToEnableABackgroundShaderClickItAgainToDisableI" xml:space="preserve">
+    <value>Klik op een knop hieronder om een achtergrondshader in te schakelen. Klik opnieuw om deze uit te schakelen. Deze shaders kunnen uw GPU zwaar belasten en dienen alleen om de mogelijkheden van de achtergrondrenderer te demonstreren en te testen.</value>
+  </data>
+  <data name="Ui.ClickToToggleTopMenu" xml:space="preserve">
+    <value>Klik om het bovenmenu in of uit te schakelen.</value>
+  </data>
+  <data name="Ui.CloseToSystemTray" xml:space="preserve">
+    <value>Sluiten naar systeemvak</value>
+  </data>
+  <data name="Ui.CommunityForums" xml:space="preserve">
+    <value>Communityforums</value>
+  </data>
+  <data name="Ui.ConnectionSpeed" xml:space="preserve">
+    <value>Verbindingssnelheid</value>
+  </data>
+  <data name="Ui.ConsecutiveFailed" xml:space="preserve">
+    <value>Opeenvolgende fouten</value>
+  </data>
+  <data name="Ui.ConsecutiveSucceed" xml:space="preserve">
+    <value>Opeenvolgende successen</value>
+  </data>
+  <data name="Ui.CustomShaders" xml:space="preserve">
+    <value>Aangepaste shaders</value>
+  </data>
+  <data name="Ui.DarkMode" xml:space="preserve">
+    <value>Donkere modus</value>
+  </data>
+  <data name="Ui.DateTime" xml:space="preserve">
+    <value>Datum en tijd</value>
+  </data>
+  <data name="Ui.Debug" xml:space="preserve">
+    <value>Foutopsporing</value>
+  </data>
+  <data name="Ui.DefaultPingOptions" xml:space="preserve">
+    <value>Standaard pingopties</value>
+  </data>
+  <data name="Ui.Description" xml:space="preserve">
+    <value>Beschrijving</value>
+  </data>
+  <data name="Ui.Disable" xml:space="preserve">
+    <value>Uitschakelen</value>
+  </data>
+  <data name="Ui.Donate" xml:space="preserve">
+    <value>Doneren</value>
+  </data>
+  <data name="Ui.DoNotFragment" xml:space="preserve">
+    <value>Niet fragmenteren:</value>
+  </data>
+  <data name="Ui.Download" xml:space="preserve">
+    <value>Downloadsnelheid</value>
+  </data>
+  <data name="Ui.Downloaded" xml:space="preserve">
+    <value>Gedownload</value>
   </data>
   <data name="Ui.EditSelectedServices" xml:space="preserve">
     <value>Geselecteerde bewerken</value>
   </data>
-  <data name="Ui.ServicesUpdated" xml:space="preserve">
-    <value>{0} services zijn bijgewerkt.</value>
+  <data name="Ui.EditService" xml:space="preserve">
+    <value>Service bewerken</value>
   </data>
-  <data name="Export.Pings.TsvTitle" xml:space="preserve">
-    <value>Pings naar TSV exporteren</value>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>Services bewerken</value>
+  </data>
+  <data name="Ui.Enable" xml:space="preserve">
+    <value>Inschakelen</value>
+  </data>
+  <data name="Ui.EnableDisableTheAnimationsForTheBackgroundWhichAreDrivenByTheCurrentlyAc" xml:space="preserve">
+    <value>Schakel de achtergrondanimaties in of uit. Deze worden aangestuurd door het actieve effect.</value>
+  </data>
+  <data name="Ui.EnableDisableTheTransitionsForTheBackgroundTheseWillFadeBetweenTheActive" xml:space="preserve">
+    <value>Schakel achtergrondovergangen in of uit. Bij een wijziging vloeien de actieve effecten in elkaar over.</value>
+  </data>
+  <data name="Ui.ErrorMessage" xml:space="preserve">
+    <value>Foutbericht</value>
+  </data>
+  <data name="Ui.Exit" xml:space="preserve">
+    <value>✖ Afsluiten</value>
+  </data>
+  <data name="Ui.ExportAllToJSON" xml:space="preserve">
+    <value>Alles naar JSON exporteren</value>
+  </data>
+  <data name="Ui.ExportPings" xml:space="preserve">
+    <value>Pings exporteren</value>
+  </data>
+  <data name="Ui.ExportSelectedToJSON" xml:space="preserve">
+    <value>Geselecteerde naar JSON exporteren</value>
+  </data>
+  <data name="Ui.ExportTo" xml:space="preserve">
+    <value>Exporteren naar</value>
+  </data>
+  <data name="Ui.ExportToCSV" xml:space="preserve">
+    <value>Naar CSV exporteren</value>
+  </data>
+  <data name="Ui.ExportToJSON" xml:space="preserve">
+    <value>Naar JSON exporteren</value>
   </data>
   <data name="Ui.ExportToTSV" xml:space="preserve">
     <value>Naar TSV exporteren</value>
+  </data>
+  <data name="Ui.Failed" xml:space="preserve">
+    <value>Mislukt</value>
+  </data>
+  <data name="Ui.FailedDate" xml:space="preserve">
+    <value>Laatste fout</value>
+  </data>
+  <data name="Ui.FailedPings" xml:space="preserve">
+    <value>Mislukte pings</value>
+  </data>
+  <data name="Ui.FailedRepliesInTheDisplayedWindow" xml:space="preserve">
+    <value>Mislukte antwoorden in het weergegeven venster</value>
+  </data>
+  <data name="Ui.FilterInterfacesByText" xml:space="preserve">
+    <value>Interfaces filteren op tekst</value>
+  </data>
+  <data name="Ui.FilterServicesByText" xml:space="preserve">
+    <value>Diensten filteren op tekst</value>
+  </data>
+  <data name="Ui.Framework" xml:space="preserve">
+    <value>Runtimeomgeving:</value>
+  </data>
+  <data name="Ui.Gateway" xml:space="preserve">
+    <value>Netwerkgateway:</value>
+  </data>
+  <data name="Ui.GaugeIncrement" xml:space="preserve">
+    <value>Meterstap:</value>
+  </data>
+  <data name="Ui.GaugeRange" xml:space="preserve">
+    <value>Meterbereik:</value>
+  </data>
+  <data name="Ui.General" xml:space="preserve">
+    <value>Algemeen</value>
+  </data>
+  <data name="Ui.GraphCacheSize" xml:space="preserve">
+    <value>Grootte grafiekcache:</value>
+  </data>
+  <data name="Ui.GraphicCard" xml:space="preserve">
+    <value>Grafische kaart:</value>
+  </data>
+  <data name="Ui.GraphOptions" xml:space="preserve">
+    <value>Grafiekopties</value>
+  </data>
+  <data name="Ui.GridViewOptions" xml:space="preserve">
+    <value>Rasterweergaveopties</value>
+  </data>
+  <data name="Ui.Group" xml:space="preserve">
+    <value>Groep</value>
+  </data>
+  <data name="Ui.GroupBy" xml:space="preserve">
+    <value>Groeperen op:</value>
+  </data>
+  <data name="Ui.HaveIPAddress" xml:space="preserve">
+    <value>Heeft een IP-adres</value>
+  </data>
+  <data name="Ui.HavePhysicalAddress" xml:space="preserve">
+    <value>Heeft een fysiek adres</value>
+  </data>
+  <data name="Ui.High" xml:space="preserve">
+    <value>Hoog:</value>
+  </data>
+  <data name="Ui.Host" xml:space="preserve">
+    <value>Hostnaam:</value>
+  </data>
+  <data name="Ui.HostnameQuery" xml:space="preserve">
+    <value>Hostnaam / query</value>
+  </data>
+  <data name="Ui.Import" xml:space="preserve">
+    <value>Importeren</value>
+  </data>
+  <data name="Ui.ImportAll" xml:space="preserve">
+    <value>Alles importeren</value>
+  </data>
+  <data name="Ui.ImportFromJSON" xml:space="preserve">
+    <value>Importeren uit JSON</value>
+  </data>
+  <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
+    <value>Netwerkgateway(s) importeren</value>
+  </data>
+  <data name="Ui.ImportPublicHosts" xml:space="preserve">
+    <value>Openbare hosts importeren</value>
+  </data>
+  <data name="Ui.Index" xml:space="preserve">
+    <value>Volgnummer</value>
+  </data>
+  <data name="Ui.Interface" xml:space="preserve">
+    <value>Netwerkinterface</value>
+  </data>
+  <data name="Ui.IP" xml:space="preserve">
+    <value>IP:</value>
+  </data>
+  <data name="Ui.IPAddress" xml:space="preserve">
+    <value>IP-adres:</value>
+  </data>
+  <data name="Ui.IPAddress3C3DE0C9" xml:space="preserve">
+    <value>IP-adres</value>
+  </data>
+  <data name="Ui.IPAddressUrl" xml:space="preserve">
+    <value>IP-adres / URL</value>
+  </data>
+  <data name="Ui.IQM" xml:space="preserve">
+    <value>IQM:</value>
+  </data>
+  <data name="Ui.ISP" xml:space="preserve">
+    <value>Internetprovider:</value>
+  </data>
+  <data name="Ui.IsTransmittingData" xml:space="preserve">
+    <value>Verzendt gegevens</value>
+  </data>
+  <data name="Ui.Jitter" xml:space="preserve">
+    <value>Latentievariatie:</value>
+  </data>
+  <data name="Ui.LastReplyStatus" xml:space="preserve">
+    <value>Status van laatste antwoord</value>
+  </data>
+  <data name="Ui.LastUpdateCheck" xml:space="preserve">
+    <value>Laatste updatecontrole: {0}</value>
+  </data>
+  <data name="Ui.LatestReplyLatencyOrStatus" xml:space="preserve">
+    <value>Latentie of status van laatste antwoord</value>
+  </data>
+  <data name="Ui.License" xml:space="preserve">
+    <value>Licentie ({0})</value>
+  </data>
+  <data name="Ui.LightMode" xml:space="preserve">
+    <value>Lichte modus</value>
+  </data>
+  <data name="Ui.Location" xml:space="preserve">
+    <value>Locatie:</value>
+  </data>
+  <data name="Ui.Low" xml:space="preserve">
+    <value>Laag:</value>
+  </data>
+  <data name="Ui.ManualAssignment" xml:space="preserve">
+    <value>Handmatige toewijzing</value>
+  </data>
+  <data name="Ui.ManualDNSAssignment" xml:space="preserve">
+    <value>Handmatige DNS-toewijzing</value>
+  </data>
+  <data name="Ui.ManualIPAssignment" xml:space="preserve">
+    <value>Handmatige IP-toewijzing</value>
+  </data>
+  <data name="Ui.MaxTime" xml:space="preserve">
+    <value>Max. latentie</value>
+  </data>
+  <data name="Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies" xml:space="preserve">
+    <value>Gemiddelde verandering in latentie tussen opeenvolgende geslaagde antwoorden</value>
+  </data>
+  <data name="Ui.MedianLatencyInTheDisplayedWindow" xml:space="preserve">
+    <value>Mediane latentie in het weergegeven venster</value>
+  </data>
+  <data name="Ui.Megabytes" xml:space="preserve">
+    <value>MB</value>
+  </data>
+  <data name="Ui.MemoryRAM" xml:space="preserve">
+    <value>RAM-geheugen:</value>
+  </data>
+  <data name="Ui.MinTime" xml:space="preserve">
+    <value>Min. latentie</value>
+  </data>
+  <data name="Ui.Name" xml:space="preserve">
+    <value>Naam:</value>
+  </data>
+  <data name="Ui.NameDCD1D522" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="Ui.NetworkInterfaces" xml:space="preserve">
+    <value>Netwerkinterfaces</value>
+  </data>
+  <data name="Ui.NetworkInterfacesSettings" xml:space="preserve">
+    <value>Netwerkinterface-instellingen</value>
+  </data>
+  <data name="Ui.NewSpeedTest" xml:space="preserve">
+    <value>Nieuwe snelheidstest</value>
+  </data>
+  <data name="Ui.NoFrag" xml:space="preserve">
+    <value>Niet fragmenteren</value>
+  </data>
+  <data name="Ui.Off" xml:space="preserve">
+    <value>Uit</value>
+  </data>
+  <data name="Ui.On" xml:space="preserve">
+    <value>Aan</value>
+  </data>
+  <data name="Ui.OpenExecutableFolder" xml:space="preserve">
+    <value>Programmamap openen</value>
+  </data>
+  <data name="Ui.OpenGraphInANewWindow" xml:space="preserve">
+    <value>Grafiek in een nieuw venster openen</value>
+  </data>
+  <data name="Ui.OpenInBrowser" xml:space="preserve">
+    <value>In browser openen</value>
+  </data>
+  <data name="Ui.OpenInNewWindow" xml:space="preserve">
+    <value>In nieuw venster openen</value>
+  </data>
+  <data name="Ui.OpenProfileFolder" xml:space="preserve">
+    <value>Profielmap openen</value>
+  </data>
+  <data name="Ui.OpenResult" xml:space="preserve">
+    <value>Resultaat openen</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>Geselecteerde grafieken openen (Nieuw venster)</value>
+  </data>
+  <data name="Ui.OpenSystemNetworkManager" xml:space="preserve">
+    <value>Systeemnetwerkbeheer openen</value>
+  </data>
+  <data name="Ui.OperativeSystem" xml:space="preserve">
+    <value>Besturingssysteem:</value>
+  </data>
+  <data name="Ui.Options" xml:space="preserve">
+    <value>⚙️ Opties</value>
+  </data>
+  <data name="Ui.Order" xml:space="preserve">
+    <value>Volgorde</value>
+  </data>
+  <data name="Ui.Others" xml:space="preserve">
+    <value>Overige</value>
+  </data>
+  <data name="Ui.PacketLoss" xml:space="preserve">
+    <value>Pakketverlies</value>
+  </data>
+  <data name="Ui.PasteFormatHint" xml:space="preserve">
+    <value>Kolomvolgorde: IP | Poort | Interval | Beschrijving | Groep&#10;Voorbeeld: 192.168.1.10  80  30  Webserver  LAN&#10;Voorbeeld: 192.168.130:80|30|Webserver|LAN&#10;Bekende poorten bepalen het protocol; onbekende poorten gebruiken TCP.</value>
+  </data>
+  <data name="Ui.PasteFromClipboard" xml:space="preserve">
+    <value>Plakken vanaf klembord</value>
+  </data>
+  <data name="Ui.Pause" xml:space="preserve">
+    <value>Pauzeren</value>
+  </data>
+  <data name="Ui.PauseAll" xml:space="preserve">
+    <value>Alles pauzeren</value>
+  </data>
+  <data name="Ui.PauseSelected" xml:space="preserve">
+    <value>Geselecteerde pauzeren</value>
+  </data>
+  <data name="Ui.PersistentPings" xml:space="preserve">
+    <value>Pings bewaren:</value>
+  </data>
+  <data name="Ui.PhysicalAddressMACAddress" xml:space="preserve">
+    <value>Fysiek adres (MAC-adres)</value>
+  </data>
+  <data name="Ui.Ping" xml:space="preserve">
+    <value>Latentie</value>
+  </data>
+  <data name="Ui.PingCacheSize" xml:space="preserve">
+    <value>Grootte pingcache:</value>
+  </data>
+  <data name="Ui.PingEvery" xml:space="preserve">
+    <value>Tijdsinterval:</value>
+  </data>
+  <data name="Ui.PingEveryS" xml:space="preserve">
+    <value>Tijdsinterval (s)</value>
+  </data>
+  <data name="Ui.Pings" xml:space="preserve">
+    <value>Pingresultaten</value>
+  </data>
+  <data name="Ui.PingTimeout" xml:space="preserve">
+    <value>Pingtime-out:</value>
+  </data>
+  <data name="Ui.PleaseFixTheFollowingErrors" xml:space="preserve">
+    <value>Los de volgende fouten op:</value>
+  </data>
+  <data name="Ui.PLoss" xml:space="preserve">
+    <value>Pakketverlies:</value>
+  </data>
+  <data name="Ui.Port" xml:space="preserve">
+    <value>Poort:</value>
+  </data>
+  <data name="Ui.Presets" xml:space="preserve">
+    <value>Voorinstellingen</value>
+  </data>
+  <data name="Ui.PrimaryDNS" xml:space="preserve">
+    <value>Primaire DNS:</value>
+  </data>
+  <data name="Ui.Processor" xml:space="preserve">
+    <value>CPU:</value>
+  </data>
+  <data name="Ui.ProcessorCores" xml:space="preserve">
+    <value>Processorkernen:</value>
+  </data>
+  <data name="Ui.Property" xml:space="preserve">
+    <value>Eigenschap</value>
+  </data>
+  <data name="Ui.RecentRepliesIncludedInTheGraphAndStatistics" xml:space="preserve">
+    <value>Recente antwoorden in de grafiek en statistieken</value>
+  </data>
+  <data name="Ui.RefreshAllInterfaces" xml:space="preserve">
+    <value>Alle interfaces vernieuwen</value>
+  </data>
+  <data name="Ui.ReleaseIP" xml:space="preserve">
+    <value>IP vrijgeven</value>
+  </data>
+  <data name="Ui.RemoveAll" xml:space="preserve">
+    <value>Alles verwijderen</value>
+  </data>
+  <data name="Ui.RemoveSelected" xml:space="preserve">
+    <value>Geselecteerde verwijderen</value>
+  </data>
+  <data name="Ui.RemoveSelectedServiceS" xml:space="preserve">
+    <value>Geselecteerde dienst(en) verwijderen</value>
+  </data>
+  <data name="Ui.RemoveServiceS" xml:space="preserve">
+    <value>Dienst(en) verwijderen</value>
+  </data>
+  <data name="Ui.RenewIP" xml:space="preserve">
+    <value>IP vernieuwen</value>
+  </data>
+  <data name="Ui.ReplyIPAddress" xml:space="preserve">
+    <value>IP-adres van antwoord</value>
+  </data>
+  <data name="Ui.ReportAnIssue" xml:space="preserve">
+    <value>Een probleem melden</value>
+  </data>
+  <data name="Ui.ResetAllStatistics" xml:space="preserve">
+    <value>Alle statistieken herstellen</value>
+  </data>
+  <data name="Ui.ResetColumnsOrder" xml:space="preserve">
+    <value>Kolomvolgorde herstellen</value>
+  </data>
+  <data name="Ui.ResetSelectedStatistics" xml:space="preserve">
+    <value>Statistieken van geselecteerde items herstellen</value>
+  </data>
+  <data name="Ui.ResponseTime" xml:space="preserve">
+    <value>Reactietijd</value>
+  </data>
+  <data name="Ui.Resume" xml:space="preserve">
+    <value>Hervatten</value>
+  </data>
+  <data name="Ui.ResumeAll" xml:space="preserve">
+    <value>Alles hervatten</value>
+  </data>
+  <data name="Ui.ResumeSelected" xml:space="preserve">
+    <value>Geselecteerde hervatten</value>
+  </data>
+  <data name="Ui.Save" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="Ui.SaveAndRestorePingRepliesAfterProgramRestart" xml:space="preserve">
+    <value>Pingantwoorden opslaan en herstellen nadat het programma opnieuw is gestart</value>
+  </data>
+  <data name="Ui.ScreensResolutionWorkingAreaUsableArea" xml:space="preserve">
+    <value>Schermen, resolutie, werkgebied, bruikbaar gebied:</value>
+  </data>
+  <data name="Ui.SecondaryDNS" xml:space="preserve">
+    <value>Secundaire DNS:</value>
+  </data>
+  <data name="Ui.SelectFromTheIncludedBackgroundStyles" xml:space="preserve">
+    <value>Kies een van de meegeleverde achtergrondstijlen.</value>
+  </data>
+  <data name="Ui.SentOn" xml:space="preserve">
+    <value>Verzonden op</value>
+  </data>
+  <data name="Ui.Server" xml:space="preserve">
+    <value>Testserver:</value>
+  </data>
+  <data name="Ui.ServerAEF7DE28" xml:space="preserve">
+    <value>Testserver</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>Er bestaat al een service met hetzelfde protocol en adres.</value>
+  </data>
+  <data name="Ui.Services" xml:space="preserve">
+    <value>Diensten</value>
+  </data>
+  <data name="Ui.ServicesCount" xml:space="preserve">
+    <value>({0} diensten)</value>
+  </data>
+  <data name="Ui.ServicesCountPlain" xml:space="preserve">
+    <value>{0} diensten</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>{0} services zijn bijgewerkt.</value>
+  </data>
+  <data name="Ui.ServiceUpdated" xml:space="preserve">
+    <value>Service is bijgewerkt.</value>
+  </data>
+  <data name="Ui.SetIP" xml:space="preserve">
+    <value>IP instellen</value>
+  </data>
+  <data name="Ui.SetTheDNSFromTheDefinedServerGateway" xml:space="preserve">
+    <value>DNS instellen op de opgegeven servergateway.</value>
+  </data>
+  <data name="Ui.Show" xml:space="preserve">
+    <value>👁 Tonen</value>
+  </data>
+  <data name="Ui.ShowATrayIconInTheSystemNotificationAreaForQuickAccessWhenTheAppIsRunnin" xml:space="preserve">
+    <value>Toon een pictogram in het systeemvak voor snelle toegang wanneer de toepassing actief is.</value>
+  </data>
+  <data name="Ui.SpeedtestDependencyWasNotFoundInTheSystem" xml:space="preserve">
+    <value>De Speedtest-afhankelijkheid is niet op het systeem gevonden</value>
+  </data>
+  <data name="Ui.SpeedTests" xml:space="preserve">
+    <value>Snelheidstests</value>
+  </data>
+  <data name="Ui.SpeedTestSettings" xml:space="preserve">
+    <value>Instellingen voor snelheidstest</value>
+  </data>
+  <data name="Ui.StartTheApplicationAutomaticallyWhenTheSystemStarts" xml:space="preserve">
+    <value>Start de toepassing automatisch wanneer het systeem opstart.</value>
+  </data>
+  <data name="Ui.StartWithSystem" xml:space="preserve">
+    <value>Starten met systeem</value>
+  </data>
+  <data name="Ui.StaticIPv4" xml:space="preserve">
+    <value>Statisch IPv4</value>
+  </data>
+  <data name="Ui.Status" xml:space="preserve">
+    <value>Toestand</value>
+  </data>
+  <data name="Ui.StopSpeedTest" xml:space="preserve">
+    <value>Snelheidstest stoppen</value>
+  </data>
+  <data name="Ui.SubnetMask" xml:space="preserve">
+    <value>Subnetmasker:</value>
+  </data>
+  <data name="Ui.Succeed" xml:space="preserve">
+    <value>Geslaagd</value>
+  </data>
+  <data name="Ui.SucceedDate" xml:space="preserve">
+    <value>Laatste succes</value>
+  </data>
+  <data name="Ui.SucceedPings" xml:space="preserve">
+    <value>Geslaagde pings</value>
+  </data>
+  <data name="Ui.SuggestAnImprovementOrFeature" xml:space="preserve">
+    <value>Een verbetering of functie voorstellen</value>
+  </data>
+  <data name="Ui.SystemMode" xml:space="preserve">
+    <value>Systeemmodus</value>
+  </data>
+  <data name="Ui.TermsOfUse" xml:space="preserve">
+    <value>Gebruiksvoorwaarden</value>
+  </data>
+  <data name="Ui.ThemeDark" xml:space="preserve">
+    <value>🖌️ Thema: Donker</value>
+  </data>
+  <data name="Ui.ThemeLight" xml:space="preserve">
+    <value>🖌️ Thema: Licht</value>
+  </data>
+  <data name="Ui.ThemeSystem" xml:space="preserve">
+    <value>🖌️ Thema: Systeem</value>
+  </data>
+  <data name="Ui.ThisModuleRequiresTheOoklaSpeedtestCLIBinaryYetWasNotFoundInTheSystemPle" xml:space="preserve">
+    <value>Deze module vereist het Ookla Speedtest CLI-programma, maar dit is niet op het systeem gevonden.
+Installeer de afhankelijkheid en laad de module opnieuw.</value>
+  </data>
+  <data name="Ui.ThrowException" xml:space="preserve">
+    <value>Uitzondering genereren</value>
+  </data>
+  <data name="Ui.Time" xml:space="preserve">
+    <value>Tijd</value>
+  </data>
+  <data name="Ui.Timeout" xml:space="preserve">
+    <value>Time-out:</value>
+  </data>
+  <data name="Ui.TimeoutS" xml:space="preserve">
+    <value>Time-out (s)</value>
+  </data>
+  <data name="Ui.TimeToLive" xml:space="preserve">
+    <value>TTL:</value>
+  </data>
+  <data name="Ui.ToogleFullscreen" xml:space="preserve">
+    <value>Volledig scherm in-/uitschakelen</value>
+  </data>
+  <data name="Ui.TotalPings" xml:space="preserve">
+    <value>Totaal aantal pings</value>
+  </data>
+  <data name="Ui.TriggerNewUpdate" xml:space="preserve">
+    <value>Nieuwe update starten</value>
+  </data>
+  <data name="Ui.Type" xml:space="preserve">
+    <value>Soort</value>
+  </data>
+  <data name="Ui.UIScale" xml:space="preserve">
+    <value>UI-schaal</value>
+  </data>
+  <data name="Ui.Upload" xml:space="preserve">
+    <value>Uploadsnelheid</value>
+  </data>
+  <data name="Ui.Uploaded" xml:space="preserve">
+    <value>Geüpload</value>
+  </data>
+  <data name="Ui.UseSystemTray" xml:space="preserve">
+    <value>Systeemvak gebruiken</value>
+  </data>
+  <data name="Ui.Value" xml:space="preserve">
+    <value>Waarde</value>
+  </data>
+  <data name="Ui.VirtualNetworks" xml:space="preserve">
+    <value>Virtuele netwerken</value>
+  </data>
+  <data name="Ui.Website" xml:space="preserve">
+    <value>Webpagina</value>
+  </data>
+  <data name="Ui.WhenClosingTheMainWindowKeepTheAppRunningInTheSystemTrayInsteadOfExiting" xml:space="preserve">
+    <value>Laat de toepassing bij het sluiten van het hoofdvenster actief in het systeemvak in plaats van af te sluiten.</value>
+  </data>
+  <data name="Update.Auto" xml:space="preserve">
+    <value>Automatisch bijwerken</value>
+  </data>
+  <data name="Update.CheckFailed" xml:space="preserve">
+    <value>Kan niet controleren op updates</value>
+  </data>
+  <data name="Update.Found.Message" xml:space="preserve">
+    <value>Huidige versie: {0}
+Nieuwe versie: {1}
+Aantal nieuwere releases: {2}
+Releasedatum: {3:f}</value>
+  </data>
+  <data name="Update.Found.Title" xml:space="preserve">
+    <value>Update voor {0} gevonden</value>
+  </data>
+  <data name="Update.Manual" xml:space="preserve">
+    <value>Handmatig bijwerken</value>
+  </data>
+  <data name="Update.None.Message" xml:space="preserve">
+    <value>{0} gebruikt de nieuwste versie.</value>
+  </data>
+  <data name="Update.None.Title" xml:space="preserve">
+    <value>Geen updates beschikbaar.</value>
+  </data>
+  <data name="Update.TriggerUnavailable.Message" xml:space="preserve">
+    <value>Er zijn geen beschikbare releases waarmee de nieuwe update kan worden gestart.</value>
+  </data>
+  <data name="Update.TriggerUnavailable.Title" xml:space="preserve">
+    <value>Nieuwe update kan niet worden gestart</value>
+  </data>
+  <data name="Window.AlreadyRunning.Title" xml:space="preserve">
+    <value>{0} - Al actief</value>
+  </data>
+  <data name="Window.CrashReport.Title" xml:space="preserve">
+    <value>{0} - Crashrapport</value>
   </data>
 </root>
