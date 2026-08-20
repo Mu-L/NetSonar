@@ -58,711 +58,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Navigation.Settings" xml:space="preserve">
-    <value>설정</value>
-  </data>
-  <data name="Settings.Theme" xml:space="preserve">
-    <value>테마</value>
-  </data>
-  <data name="Settings.Language" xml:space="preserve">
-    <value>언어</value>
-  </data>
-  <data name="Settings.Language.FollowSystem" xml:space="preserve">
-    <value>시스템 언어 사용</value>
-  </data>
-  <data name="Settings.Language.Description" xml:space="preserve">
-    <value>애플리케이션 전체에서 사용되는 언어를 선택하세요.</value>
-  </data>
-  <data name="Ui.Show" xml:space="preserve">
-    <value>👁 쇼</value>
-  </data>
-  <data name="Ui.Options" xml:space="preserve">
-    <value>⚙️ 옵션</value>
-  </data>
-  <data name="Ui.StartWithSystem" xml:space="preserve">
-    <value>시스템 시작 시 실행</value>
-  </data>
-  <data name="Ui.ThemeSystem" xml:space="preserve">
-    <value>🖌️ 테마: 시스템</value>
-  </data>
-  <data name="Ui.ThemeLight" xml:space="preserve">
-    <value>🖌️ 테마: 밝게</value>
-  </data>
-  <data name="Ui.ThemeDark" xml:space="preserve">
-    <value>🖌️ 테마: 어둡게</value>
-  </data>
-  <data name="Ui.Exit" xml:space="preserve">
-    <value>✖ 나가기</value>
-  </data>
-  <data name="Ui.On" xml:space="preserve">
-    <value>켜짐</value>
-  </data>
-  <data name="Ui.Off" xml:space="preserve">
-    <value>끄기</value>
-  </data>
-  <data name="Ui.OperativeSystem" xml:space="preserve">
-    <value>운영 체제:</value>
-  </data>
-  <data name="Ui.GraphicCard" xml:space="preserve">
-    <value>그래픽 카드:</value>
-  </data>
-  <data name="Ui.Processor" xml:space="preserve">
-    <value>프로세서:</value>
-  </data>
-  <data name="Ui.ProcessorCores" xml:space="preserve">
-    <value>프로세서 코어:</value>
-  </data>
-  <data name="Ui.MemoryRAM" xml:space="preserve">
-    <value>메모리 RAM:</value>
-  </data>
-  <data name="Ui.Framework" xml:space="preserve">
-    <value>프레임워크:</value>
-  </data>
-  <data name="Ui.AvaloniaUI" xml:space="preserve">
-    <value>AvaloniaUI:</value>
-  </data>
-  <data name="Ui.ScreensResolutionWorkingAreaUsableArea" xml:space="preserve">
-    <value>화면, 해상도, 작업 영역, 사용 가능한 영역:</value>
-  </data>
-  <data name="Ui.Description" xml:space="preserve">
-    <value>설명</value>
-  </data>
-  <data name="Ui.Assemblies" xml:space="preserve">
-    <value>어셈블리</value>
-  </data>
-  <data name="Ui.TermsOfUse" xml:space="preserve">
-    <value>이용약관</value>
-  </data>
-  <data name="Ui.Services" xml:space="preserve">
-    <value>서비스</value>
-  </data>
-  <data name="Ui.AddNewServices" xml:space="preserve">
-    <value>새 서비스 추가</value>
-  </data>
-  <data name="Ui.ImportFromJSON" xml:space="preserve">
-    <value>JSON에서 가져오기</value>
-  </data>
-  <data name="Ui.PasteFromClipboard" xml:space="preserve">
-    <value>클립보드에서 붙여넣기</value>
-  </data>
-  <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>열 순서: IP | 포트 | 간격 | 설명 | 그룹&#10;예: 192.168.1.10  80  30  웹 서버  LAN&#10;예: 192.168.130:80|30|웹 서버|LAN&#10;알려진 포트는 프로토콜을 선택하고 알 수 없는 포트는 TCP를 사용합니다.</value>
-  </data>
-  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
-    <value>추가: 기본 버튼 = 빈 행, 화살표 = 가져오기&#10;붙여넣기 형식: IP | 포트 | 간격 | 설명 | 그룹&#10;예: 192.168.1.10  80  30  웹 서버  LAN&#10;예: 192.168.130:80|30|웹 서버|LAN&#10;알려진 포트는 프로토콜을 선택하고 알 수 없는 포트는 TCP를 사용합니다.</value>
-  </data>
-  <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
-    <value>클립보드에서 붙여넣을 수 없음</value>
-  </data>
-  <data name="Import.Clipboard.NoData" xml:space="preserve">
-    <value>클립보드가 비어 있거나 사용할 수 있는 서비스 데이터가 없습니다.</value>
-  </data>
-  <data name="Import.Clipboard.Summary" xml:space="preserve">
-    <value>서비스 {0}개를 붙여넣고 {1}개를 건너뛰었습니다.</value>
-  </data>
-  <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
-    <value>네트워크 게이트웨이 가져오기</value>
-  </data>
-  <data name="Ui.ImportPublicHosts" xml:space="preserve">
-    <value>공개 호스트 가져오기</value>
-  </data>
-  <data name="Ui.ImportAll" xml:space="preserve">
-    <value>모두 가져오기</value>
-  </data>
-  <data name="Ui.RemoveServiceS" xml:space="preserve">
-    <value>서비스 제거</value>
-  </data>
-  <data name="Ui.RemoveAll" xml:space="preserve">
-    <value>모두 제거</value>
-  </data>
-  <data name="Ui.PleaseFixTheFollowingErrors" xml:space="preserve">
-    <value>다음 오류를 수정하세요.</value>
-  </data>
-  <data name="Ui.RemoveSelectedServiceS" xml:space="preserve">
-    <value>선택한 서비스 제거</value>
-  </data>
-  <data name="Ui.Enable" xml:space="preserve">
-    <value>활성화</value>
-  </data>
-  <data name="Ui.Type" xml:space="preserve">
-    <value>유형</value>
-  </data>
-  <data name="Ui.IPAddressUrl" xml:space="preserve">
-    <value>IP 주소 / URL</value>
-  </data>
-  <data name="Ui.Group" xml:space="preserve">
-    <value>그룹</value>
-  </data>
-  <data name="Ui.PingEveryS" xml:space="preserve">
-    <value>간격(초)</value>
-  </data>
-  <data name="Ui.TimeoutS" xml:space="preserve">
-    <value>시간 제한(초)</value>
-  </data>
-  <data name="Ui.BufferSize" xml:space="preserve">
-    <value>버퍼 크기</value>
-  </data>
-  <data name="Ui.NoFrag" xml:space="preserve">
-    <value>조각화 안 함</value>
-  </data>
-  <data name="Ui.Import" xml:space="preserve">
-    <value>가져오기</value>
-  </data>
-  <data name="Ui.Cancel" xml:space="preserve">
-    <value>취소</value>
-  </data>
-  <data name="Ui.Megabytes" xml:space="preserve">
-    <value>메가바이트</value>
-  </data>
-  <data name="Ui.AutomaticIPAssignmentFromDHCP" xml:space="preserve">
-    <value>DHCP로 IP 자동 할당</value>
-  </data>
-  <data name="Ui.ManualIPAssignment" xml:space="preserve">
-    <value>수동 IP 할당</value>
-  </data>
-  <data name="Ui.IPAddress" xml:space="preserve">
-    <value>IP 주소:</value>
-  </data>
-  <data name="Ui.SubnetMask" xml:space="preserve">
-    <value>서브넷 마스크:</value>
-  </data>
-  <data name="Ui.Gateway" xml:space="preserve">
-    <value>게이트웨이:</value>
-  </data>
-  <data name="Ui.ClearTheGatewayAddress" xml:space="preserve">
-    <value>게이트웨이 주소 지우기</value>
-  </data>
-  <data name="Ui.AutomaticDNSAssignmentFromDHCP" xml:space="preserve">
-    <value>DHCP로 DNS 자동 할당</value>
-  </data>
-  <data name="Ui.ManualDNSAssignment" xml:space="preserve">
-    <value>수동 DNS 할당</value>
-  </data>
-  <data name="Ui.Presets" xml:space="preserve">
-    <value>사전 설정</value>
-  </data>
-  <data name="Ui.PrimaryDNS" xml:space="preserve">
-    <value>기본 DNS:</value>
-  </data>
-  <data name="Ui.SetTheDNSFromTheDefinedServerGateway" xml:space="preserve">
-    <value>정의된 서버 게이트웨이에서 DNS를 설정합니다.</value>
-  </data>
-  <data name="Ui.ClearAddress" xml:space="preserve">
-    <value>주소 지우기</value>
-  </data>
-  <data name="Ui.SecondaryDNS" xml:space="preserve">
-    <value>보조 DNS:</value>
-  </data>
-  <data name="Ui.Apply" xml:space="preserve">
-    <value>적용</value>
-  </data>
-  <data name="Ui.Disable" xml:space="preserve">
-    <value>비활성화</value>
-  </data>
-  <data name="Ui.ReleaseIP" xml:space="preserve">
-    <value>IP 해제</value>
-  </data>
-  <data name="Ui.RenewIP" xml:space="preserve">
-    <value>IP 갱신</value>
-  </data>
-  <data name="Ui.SetIP" xml:space="preserve">
-    <value>IP 설정</value>
-  </data>
-  <data name="Ui.ManualAssignment" xml:space="preserve">
-    <value>수동 할당</value>
-  </data>
-  <data name="Ui.ExportTo" xml:space="preserve">
-    <value>다음으로 내보내기</value>
-  </data>
-  <data name="Ui.OpenInNewWindow" xml:space="preserve">
-    <value>새 창에서 열기</value>
-  </data>
-  <data name="Ui.PhysicalAddressMACAddress" xml:space="preserve">
-    <value>물리적 주소(MAC 주소)</value>
-  </data>
-  <data name="Ui.ConnectionSpeed" xml:space="preserve">
-    <value>연결 속도</value>
-  </data>
-  <data name="Ui.StaticIPv4" xml:space="preserve">
-    <value>정적 IPv4</value>
-  </data>
-  <data name="Ui.Downloaded" xml:space="preserve">
-    <value>다운로드됨</value>
-  </data>
-  <data name="Ui.Uploaded" xml:space="preserve">
-    <value>업로드됨</value>
-  </data>
-  <data name="Ui.Property" xml:space="preserve">
-    <value>재산</value>
-  </data>
-  <data name="Ui.Value" xml:space="preserve">
-    <value>가치</value>
-  </data>
-  <data name="Ui.GraphOptions" xml:space="preserve">
-    <value>그래프 옵션</value>
-  </data>
-  <data name="Ui.PingEvery" xml:space="preserve">
-    <value>간격:</value>
-  </data>
-  <data name="Ui.ChangesTheProbeIntervalForEveryServiceInThisGraph" xml:space="preserve">
-    <value>이 그래프의 모든 서비스에 대한 프로브 간격을 변경합니다.</value>
-  </data>
-  <data name="Ui.Timeout" xml:space="preserve">
-    <value>시간 초과:</value>
-  </data>
-  <data name="Ui.ChangesTheTimeoutForEveryServiceInThisGraph" xml:space="preserve">
-    <value>이 그래프의 모든 서비스에 대한 시간 초과를 변경합니다.</value>
-  </data>
-  <data name="Ui.RecentRepliesIncludedInTheGraphAndStatistics" xml:space="preserve">
-    <value>그래프와 통계에 최근 답변이 포함됩니다.</value>
-  </data>
-  <data name="Ui.ClickToToggleTopMenu" xml:space="preserve">
-    <value>상단 메뉴를 전환하려면 클릭하세요.</value>
-  </data>
-  <data name="Ui.About" xml:space="preserve">
-    <value>소개</value>
-  </data>
-  <data name="Ui.Website" xml:space="preserve">
-    <value>웹사이트</value>
-  </data>
-  <data name="Ui.CommunityForums" xml:space="preserve">
-    <value>커뮤니티 포럼</value>
-  </data>
-  <data name="Ui.Donate" xml:space="preserve">
-    <value>기부</value>
-  </data>
-  <data name="Ui.AskAQuestion" xml:space="preserve">
-    <value>질문하기</value>
-  </data>
-  <data name="Ui.ReportAnIssue" xml:space="preserve">
-    <value>문제 신고</value>
-  </data>
-  <data name="Ui.SuggestAnImprovementOrFeature" xml:space="preserve">
-    <value>개선 사항이나 기능 제안</value>
-  </data>
-  <data name="Ui.OpenProfileFolder" xml:space="preserve">
-    <value>프로필 폴더 열기</value>
-  </data>
-  <data name="Ui.CheckForUpdates" xml:space="preserve">
-    <value>업데이트 확인</value>
-  </data>
-  <data name="Ui.Debug" xml:space="preserve">
-    <value>디버그</value>
-  </data>
-  <data name="Ui.OpenExecutableFolder" xml:space="preserve">
-    <value>실행 가능한 폴더 열기</value>
-  </data>
-  <data name="Ui.TriggerNewUpdate" xml:space="preserve">
-    <value>새 업데이트 트리거</value>
-  </data>
-  <data name="Ui.ThrowException" xml:space="preserve">
-    <value>예외 발생</value>
-  </data>
-  <data name="Ui.ToogleFullscreen" xml:space="preserve">
-    <value>전체 화면 전환</value>
-  </data>
-  <data name="Ui.NetworkInterfaces" xml:space="preserve">
-    <value>네트워크 인터페이스</value>
-  </data>
-  <data name="Ui.Status" xml:space="preserve">
-    <value>상태</value>
-  </data>
-  <data name="Ui.Others" xml:space="preserve">
-    <value>기타</value>
-  </data>
-  <data name="Ui.VirtualNetworks" xml:space="preserve">
-    <value>가상 네트워크</value>
-  </data>
-  <data name="Ui.HavePhysicalAddress" xml:space="preserve">
-    <value>물리 주소 있음</value>
-  </data>
-  <data name="Ui.HaveIPAddress" xml:space="preserve">
-    <value>IP 주소 있음</value>
-  </data>
-  <data name="Ui.IsTransmittingData" xml:space="preserve">
-    <value>데이터 전송 중</value>
-  </data>
-  <data name="Ui.FilterInterfacesByText" xml:space="preserve">
-    <value>텍스트로 인터페이스 필터링</value>
-  </data>
-  <data name="Ui.RefreshAllInterfaces" xml:space="preserve">
-    <value>모든 인터페이스 새로 고침</value>
-  </data>
-  <data name="Ui.OpenSystemNetworkManager" xml:space="preserve">
-    <value>시스템 네트워크 관리자 열기</value>
-  </data>
-  <data name="Ui.NetworkInterfacesSettings" xml:space="preserve">
-    <value>네트워크 인터페이스 설정</value>
-  </data>
-  <data name="Ui.AutoRefresh" xml:space="preserve">
-    <value>자동 새로고침:</value>
-  </data>
-  <data name="Ui.CardWidth" xml:space="preserve">
-    <value>카드 너비:</value>
-  </data>
-  <data name="Ui.CardHeight" xml:space="preserve">
-    <value>카드 높이:</value>
-  </data>
-  <data name="Ui.FilterServicesByText" xml:space="preserve">
-    <value>텍스트로 서비스 필터링</value>
-  </data>
-  <data name="Ui.ResumeAll" xml:space="preserve">
-    <value>모두 재개</value>
-  </data>
-  <data name="Ui.PauseAll" xml:space="preserve">
-    <value>모두 일시중지</value>
-  </data>
-  <data name="Ui.GridViewOptions" xml:space="preserve">
-    <value>그리드 보기 옵션</value>
-  </data>
-  <data name="Ui.GroupBy" xml:space="preserve">
-    <value>그룹화 기준:</value>
-  </data>
-  <data name="Ui.ResetColumnsOrder" xml:space="preserve">
-    <value>열 순서 재설정</value>
-  </data>
-  <data name="Ui.DefaultPingOptions" xml:space="preserve">
-    <value>기본 핑 옵션</value>
-  </data>
-  <data name="Ui.PingTimeout" xml:space="preserve">
-    <value>시간 제한:</value>
-  </data>
-  <data name="Ui.BufferSize1DF49DCA" xml:space="preserve">
-    <value>버퍼 크기:</value>
-  </data>
-  <data name="Ui.TimeToLive" xml:space="preserve">
-    <value>유효 시간(TTL):</value>
-  </data>
-  <data name="Ui.DoNotFragment" xml:space="preserve">
-    <value>조각화 안 함:</value>
-  </data>
-  <data name="Ui.PingCacheSize" xml:space="preserve">
-    <value>핑 캐시 크기:</value>
-  </data>
-  <data name="Ui.GraphCacheSize" xml:space="preserve">
-    <value>그래프 캐시 크기:</value>
-  </data>
-  <data name="Ui.PersistentPings" xml:space="preserve">
-    <value>지속적인 핑:</value>
-  </data>
-  <data name="Ui.SaveAndRestorePingRepliesAfterProgramRestart" xml:space="preserve">
-    <value>프로그램 재시작 후 ping 응답 저장 및 복원</value>
-  </data>
-  <data name="Ui.PauseSelected" xml:space="preserve">
-    <value>일시중지가 선택됨</value>
-  </data>
-  <data name="Ui.ResumeSelected" xml:space="preserve">
-    <value>선택 항목 재개</value>
-  </data>
-  <data name="Ui.ResetSelectedStatistics" xml:space="preserve">
-    <value>선택한 통계 재설정</value>
-  </data>
-  <data name="Ui.ResetAllStatistics" xml:space="preserve">
-    <value>모든 통계 재설정</value>
-  </data>
-  <data name="Ui.RemoveSelected" xml:space="preserve">
-    <value>선택 항목 제거</value>
-  </data>
-  <data name="Ui.ExportSelectedToJSON" xml:space="preserve">
-    <value>선택한 항목을 JSON으로 내보내기</value>
-  </data>
-  <data name="Ui.ExportAllToJSON" xml:space="preserve">
-    <value>모두 JSON으로 내보내기</value>
-  </data>
-  <data name="Ui.OpenInBrowser" xml:space="preserve">
-    <value>브라우저에서 열기</value>
-  </data>
-  <data name="Ui.IPAddress3C3DE0C9" xml:space="preserve">
-    <value>IP 주소</value>
-  </data>
-  <data name="Ui.Time" xml:space="preserve">
-    <value>시간</value>
-  </data>
-  <data name="Ui.MinTime" xml:space="preserve">
-    <value>최소 지연</value>
-  </data>
-  <data name="Ui.AvgTime" xml:space="preserve">
-    <value>평균 지연</value>
-  </data>
-  <data name="Ui.MaxTime" xml:space="preserve">
-    <value>최대 지연</value>
-  </data>
-  <data name="Ui.Pings" xml:space="preserve">
-    <value>핑</value>
-  </data>
-  <data name="Ui.Succeed" xml:space="preserve">
-    <value>성공</value>
-  </data>
-  <data name="Ui.Failed" xml:space="preserve">
-    <value>실패</value>
-  </data>
-  <data name="Ui.ConsecutiveSucceed" xml:space="preserve">
-    <value>연속 성공</value>
-  </data>
-  <data name="Ui.ConsecutiveFailed" xml:space="preserve">
-    <value>연속 실패</value>
-  </data>
-  <data name="Ui.SucceedDate" xml:space="preserve">
-    <value>마지막 성공</value>
-  </data>
-  <data name="Ui.FailedDate" xml:space="preserve">
-    <value>마지막 실패</value>
-  </data>
-  <data name="Ui.HostnameQuery" xml:space="preserve">
-    <value>호스트 이름/쿼리</value>
-  </data>
-  <data name="Ui.Order" xml:space="preserve">
-    <value>순서</value>
-  </data>
-  <data name="Ui.TotalPings" xml:space="preserve">
-    <value>총 핑</value>
-  </data>
-  <data name="Ui.SucceedPings" xml:space="preserve">
-    <value>성공한 Ping</value>
-  </data>
-  <data name="Ui.FailedPings" xml:space="preserve">
-    <value>실패한 Ping</value>
-  </data>
-  <data name="Ui.ClearStatistics" xml:space="preserve">
-    <value>통계 지우기</value>
-  </data>
-  <data name="Ui.Resume" xml:space="preserve">
-    <value>재개</value>
-  </data>
-  <data name="Ui.Pause" xml:space="preserve">
-    <value>일시중지</value>
-  </data>
-  <data name="Ui.ExportPings" xml:space="preserve">
-    <value>핑 내보내기</value>
-  </data>
-  <data name="Ui.ExportToCSV" xml:space="preserve">
-    <value>CSV로 내보내기</value>
-  </data>
-  <data name="Ui.ExportToJSON" xml:space="preserve">
-    <value>JSON으로 내보내기</value>
-  </data>
-  <data name="Ui.ReplyIPAddress" xml:space="preserve">
-    <value>응답 IP 주소</value>
-  </data>
-  <data name="Ui.SentOn" xml:space="preserve">
-    <value>보낸 날짜</value>
-  </data>
-  <data name="Ui.ErrorMessage" xml:space="preserve">
-    <value>오류 메시지</value>
-  </data>
-  <data name="Ui.ResponseTime" xml:space="preserve">
-    <value>응답 시간</value>
-  </data>
-  <data name="Ui.LastReplyStatus" xml:space="preserve">
-    <value>마지막 답변 상태</value>
-  </data>
-  <data name="Ui.LatestReplyLatencyOrStatus" xml:space="preserve">
-    <value>최신 응답 대기 시간 또는 상태</value>
-  </data>
-  <data name="Ui.MedianLatencyInTheDisplayedWindow" xml:space="preserve">
-    <value>표시된 창의 평균 대기 시간</value>
-  </data>
-  <data name="Ui.95thPercentileLatencyInTheDisplayedWindow" xml:space="preserve">
-    <value>표시된 창의 95번째 백분위수 대기 시간</value>
-  </data>
-  <data name="Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies" xml:space="preserve">
-    <value>인접한 성공적인 응답 간의 평균 대기 시간 변화</value>
-  </data>
-  <data name="Ui.FailedRepliesInTheDisplayedWindow" xml:space="preserve">
-    <value>표시된 창에 실패한 응답이 표시됨</value>
-  </data>
-  <data name="Ui.OpenGraphInANewWindow" xml:space="preserve">
-    <value>새 창에서 그래프 열기</value>
-  </data>
-  <data name="Ui.SystemMode" xml:space="preserve">
-    <value>시스템 모드</value>
-  </data>
-  <data name="Ui.LightMode" xml:space="preserve">
-    <value>라이트 모드</value>
-  </data>
-  <data name="Ui.DarkMode" xml:space="preserve">
-    <value>다크 모드</value>
-  </data>
-  <data name="Ui.UIScale" xml:space="preserve">
-    <value>UI 규모</value>
-  </data>
-  <data name="Ui.AdjustTheUIScaleToIncreaseOrDecreaseTheSizeOfTheInterfaceElements" xml:space="preserve">
-    <value>UI 크기를 조정하여 인터페이스 요소의 크기를 늘리거나 줄입니다.</value>
-  </data>
-  <data name="Ui.Background" xml:space="preserve">
-    <value>배경</value>
-  </data>
-  <data name="Ui.AnimatedBackground" xml:space="preserve">
-    <value>애니메이션 배경</value>
-  </data>
-  <data name="Ui.EnableDisableTheAnimationsForTheBackgroundWhichAreDrivenByTheCurrentlyAc" xml:space="preserve">
-    <value>현재 활성화된 효과에 의해 구동되는 배경의 애니메이션을 활성화/비활성화합니다.</value>
-  </data>
-  <data name="Ui.BackgroundTransitions" xml:space="preserve">
-    <value>배경 전환</value>
-  </data>
-  <data name="Ui.EnableDisableTheTransitionsForTheBackgroundTheseWillFadeBetweenTheActive" xml:space="preserve">
-    <value>배경에 대한 전환을 활성화/비활성화합니다. 변경되면 활성 효과 사이에서 페이드됩니다.</value>
-  </data>
-  <data name="Ui.BackgroundStyle" xml:space="preserve">
-    <value>배경 스타일</value>
-  </data>
-  <data name="Ui.SelectFromTheIncludedBackgroundStyles" xml:space="preserve">
-    <value>포함된 배경 스타일 중에서 선택하세요.</value>
-  </data>
-  <data name="Ui.CustomShaders" xml:space="preserve">
-    <value>커스텀 셰이더</value>
-  </data>
-  <data name="Ui.ClickAnyOfTheButtonsBelowToEnableABackgroundShaderClickItAgainToDisableI" xml:space="preserve">
-    <value>배경 셰이더를 활성화하려면 아래 버튼 중 하나를 클릭하세요. 비활성화하려면 다시 클릭하세요. 이는 GPU에 상당한 부하를 줄 수 있으며 순전히 배경 렌더러의 기능을 시연하고 테스트하기 위한 것입니다.</value>
-  </data>
-  <data name="Ui.General" xml:space="preserve">
-    <value>일반</value>
-  </data>
-  <data name="Ui.StartTheApplicationAutomaticallyWhenTheSystemStarts" xml:space="preserve">
-    <value>시스템이 시작되면 자동으로 애플리케이션을 시작합니다.</value>
-  </data>
-  <data name="Ui.UseSystemTray" xml:space="preserve">
-    <value>시스템 트레이 사용</value>
-  </data>
-  <data name="Ui.ShowATrayIconInTheSystemNotificationAreaForQuickAccessWhenTheAppIsRunnin" xml:space="preserve">
-    <value>앱 실행 시 빠른 접근을 위해 시스템 알림 영역에 트레이 아이콘을 표시합니다.</value>
-  </data>
-  <data name="Ui.CloseToSystemTray" xml:space="preserve">
-    <value>시스템 트레이에 가깝습니다.</value>
-  </data>
-  <data name="Ui.WhenClosingTheMainWindowKeepTheAppRunningInTheSystemTrayInsteadOfExiting" xml:space="preserve">
-    <value>메인 창을 닫을 때 종료하는 대신 시스템 트레이에서 앱을 계속 실행하세요.</value>
-  </data>
-  <data name="Ui.CheckForUpdatesOnStart" xml:space="preserve">
-    <value>시작 시 업데이트 확인</value>
-  </data>
-  <data name="Ui.CheckForUpdatesOnApplicationStartIfAnUpdateIsAvailableItWillNotifyAndAdd" xml:space="preserve">
-    <value>애플리케이션 시작 시 업데이트를 확인하세요. 업데이트가 있으면 이를 알리고 추가로 조치를 취하라는 메시지를 표시합니다.</value>
-  </data>
-  <data name="Ui.SpeedTests" xml:space="preserve">
-    <value>속도 테스트</value>
-  </data>
-  <data name="Ui.NewSpeedTest" xml:space="preserve">
-    <value>새로운 속도 테스트</value>
-  </data>
-  <data name="Ui.StopSpeedTest" xml:space="preserve">
-    <value>속도 테스트 중지</value>
-  </data>
-  <data name="Ui.SpeedTestSettings" xml:space="preserve">
-    <value>속도 테스트 설정</value>
-  </data>
-  <data name="Ui.AutoSpeedTest" xml:space="preserve">
-    <value>자동 테스트:</value>
-  </data>
-  <data name="Ui.Server" xml:space="preserve">
-    <value>서버:</value>
-  </data>
-  <data name="Ui.GaugeRange" xml:space="preserve">
-    <value>게이지 범위:</value>
-  </data>
-  <data name="Ui.GaugeIncrement" xml:space="preserve">
-    <value>게이지 증분:</value>
-  </data>
-  <data name="Ui.OpenResult" xml:space="preserve">
-    <value>결과 열기</value>
-  </data>
-  <data name="Ui.DateTime" xml:space="preserve">
-    <value>날짜 시간</value>
-  </data>
-  <data name="Ui.Ping" xml:space="preserve">
-    <value>Ping 지연</value>
-  </data>
-  <data name="Ui.Download" xml:space="preserve">
-    <value>다운로드</value>
-  </data>
-  <data name="Ui.Upload" xml:space="preserve">
-    <value>업로드</value>
-  </data>
-  <data name="Ui.PacketLoss" xml:space="preserve">
-    <value>패킷 손실</value>
-  </data>
-  <data name="Ui.Interface" xml:space="preserve">
-    <value>인터페이스</value>
-  </data>
-  <data name="Ui.ServerAEF7DE28" xml:space="preserve">
-    <value>서버</value>
-  </data>
-  <data name="Ui.SpeedtestDependencyWasNotFoundInTheSystem" xml:space="preserve">
-    <value>시스템에서 Speedtest 종속성을 찾을 수 없습니다.</value>
-  </data>
-  <data name="Ui.ThisModuleRequiresTheOoklaSpeedtestCLIBinaryYetWasNotFoundInTheSystemPle" xml:space="preserve">
-    <value>이 모듈에는 Ookla Speedtest CLI 바이너리가 필요하지만 시스템에서 찾을 수 없습니다.
-종속성을 설치하고 모듈을 다시 로드하십시오.</value>
-  </data>
-  <data name="Ui.Jitter" xml:space="preserve">
-    <value>지터:</value>
-  </data>
-  <data name="Ui.Low" xml:space="preserve">
-    <value>낮음:</value>
-  </data>
-  <data name="Ui.High" xml:space="preserve">
-    <value>높음:</value>
-  </data>
-  <data name="Ui.PLoss" xml:space="preserve">
-    <value>손실:</value>
-  </data>
-  <data name="Ui.IQM" xml:space="preserve">
-    <value>사분위 평균(IQM):</value>
-  </data>
-  <data name="Ui.Name" xml:space="preserve">
-    <value>이름:</value>
-  </data>
-  <data name="Ui.Location" xml:space="preserve">
-    <value>위치:</value>
-  </data>
-  <data name="Ui.Host" xml:space="preserve">
-    <value>호스트:</value>
-  </data>
-  <data name="Ui.IP" xml:space="preserve">
-    <value>IP 주소:</value>
-  </data>
-  <data name="Ui.Port" xml:space="preserve">
-    <value>포트:</value>
-  </data>
-  <data name="Ui.ISP" xml:space="preserve">
-    <value>인터넷 서비스 제공업체:</value>
-  </data>
-  <data name="Ui.Index" xml:space="preserve">
-    <value>색인</value>
-  </data>
-  <data name="Ui.NameDCD1D522" xml:space="preserve">
-    <value>이름</value>
-  </data>
-  <data name="Navigation.Interfaces" xml:space="preserve">
-    <value>인터페이스</value>
-  </data>
-  <data name="Navigation.Pings" xml:space="preserve">
-    <value>핑</value>
-  </data>
-  <data name="Navigation.SpeedTest" xml:space="preserve">
-    <value>속도 테스트</value>
-  </data>
-  <data name="Common.Yes" xml:space="preserve">
-    <value>예</value>
-  </data>
-  <data name="Common.No" xml:space="preserve">
-    <value>아니요</value>
-  </data>
   <data name="Common.Cancel" xml:space="preserve">
     <value>취소</value>
   </data>
-  <data name="Common.Unknown" xml:space="preserve">
-    <value>알 수 없음</value>
+  <data name="Common.Close" xml:space="preserve">
+    <value>닫기</value>
   </data>
-  <data name="Common.View" xml:space="preserve">
-    <value>보기</value>
+  <data name="Common.Copied" xml:space="preserve">
+    <value>복사됨</value>
+  </data>
+  <data name="Common.CopiedToClipboard" xml:space="preserve">
+    <value>클립보드에 복사됨</value>
+  </data>
+  <data name="Common.Copy" xml:space="preserve">
+    <value>복사</value>
+  </data>
+  <data name="Common.Help" xml:space="preserve">
+    <value>도움말</value>
   </data>
   <data name="Common.Ignore" xml:space="preserve">
     <value>무시</value>
   </data>
-  <data name="Common.CopiedToClipboard" xml:space="preserve">
-    <value>클립보드에 복사됨</value>
+  <data name="Common.No" xml:space="preserve">
+    <value>아니요</value>
   </data>
   <data name="Common.OpenFile" xml:space="preserve">
     <value>파일 열기</value>
@@ -770,74 +88,28 @@
   <data name="Common.OpenFolder" xml:space="preserve">
     <value>폴더 열기</value>
   </data>
-  <data name="Dialog.About.Title" xml:space="preserve">
-    <value>{0} 소개</value>
-  </data>
-  <data name="Update.TriggerUnavailable.Title" xml:space="preserve">
-    <value>새 업데이트를 실행할 수 없습니다.</value>
-  </data>
-  <data name="Update.TriggerUnavailable.Message" xml:space="preserve">
-    <value>새 업데이트를 트리거할 수 있는 릴리스가 없습니다.</value>
-  </data>
-  <data name="Update.None.Title" xml:space="preserve">
-    <value>사용 가능한 업데이트가 없습니다.</value>
-  </data>
-  <data name="Update.None.Message" xml:space="preserve">
-    <value>{0}은(는) 최신 버전을 실행 중입니다.</value>
-  </data>
-  <data name="Update.CheckFailed" xml:space="preserve">
-    <value>업데이트를 확인할 수 없습니다</value>
-  </data>
-  <data name="Update.Found.Title" xml:space="preserve">
-    <value>{0} 업데이트를 찾았습니다.</value>
-  </data>
-  <data name="Update.Found.Message" xml:space="preserve">
-    <value>현재 버전: {0}
-새 버전: {1}
-앞으로 출시될 버전: {2}
-출시일: {3:f}</value>
-  </data>
-  <data name="Common.Copy" xml:space="preserve">
-    <value>복사</value>
-  </data>
-  <data name="Common.Copied" xml:space="preserve">
-    <value>복사됨</value>
-  </data>
-  <data name="Common.Close" xml:space="preserve">
-    <value>닫기</value>
-  </data>
-  <data name="Common.Report" xml:space="preserve">
-    <value>신고</value>
-  </data>
-  <data name="Common.Help" xml:space="preserve">
-    <value>도움말</value>
-  </data>
-  <data name="Common.Restart" xml:space="preserve">
-    <value>다시 시작</value>
-  </data>
-  <data name="Common.Reload" xml:space="preserve">
-    <value>새로고침</value>
-  </data>
   <data name="Common.ProcessId" xml:space="preserve">
     <value>
 
 프로세스 ID: {0}</value>
   </data>
-  <data name="Update.Auto" xml:space="preserve">
-    <value>자동 업데이트</value>
+  <data name="Common.Reload" xml:space="preserve">
+    <value>새로고침</value>
   </data>
-  <data name="Update.Manual" xml:space="preserve">
-    <value>수동 업데이트</value>
+  <data name="Common.Report" xml:space="preserve">
+    <value>신고</value>
   </data>
-  <data name="Window.CrashReport.Title" xml:space="preserve">
-    <value>{0} - 충돌 보고서</value>
+  <data name="Common.Restart" xml:space="preserve">
+    <value>다시 시작</value>
   </data>
-  <data name="Window.AlreadyRunning.Title" xml:space="preserve">
-    <value>{0} - 이미 실행 중</value>
+  <data name="Common.Unknown" xml:space="preserve">
+    <value>알 수 없음</value>
   </data>
-  <data name="InstanceAlreadyRunning.Message" xml:space="preserve">
-    <value>{0}의 다른 인스턴스가 실행 중입니다. 한 번에 하나의 {0} 인스턴스만 실행할 수 있습니다.
-실행 중인 인스턴스를 찾아서 열거나 새 인스턴스를 시작하기 전에 닫으십시오.</value>
+  <data name="Common.View" xml:space="preserve">
+    <value>보기</value>
+  </data>
+  <data name="Common.Yes" xml:space="preserve">
+    <value>예</value>
   </data>
   <data name="CrashReport.Header" xml:space="preserve">
     <value>예상치 못한 오류로 인해 {0}이(가) 충돌했습니다.
@@ -848,8 +120,316 @@
     <value>예상치 못한 오류로 인해 애플리케이션이 충돌했지만 안타깝게도 더 이상 자세한 내용을 확인할 수 없습니다.
 충돌 보고서가 손실되었거나 저장되지 않았을 수 있습니다.</value>
   </data>
-  <data name="Ping.ResetOne.Title" xml:space="preserve">
-    <value>선택한 ping 호스트를 재설정하시겠습니까?</value>
+  <data name="Dialog.About.Title" xml:space="preserve">
+    <value>{0} 소개</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Dark" xml:space="preserve">
+    <value>어둡게</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Default" xml:space="preserve">
+    <value>시스템 설정</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Light" xml:space="preserve">
+    <value>밝게</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.Group" xml:space="preserve">
+    <value>그룹</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.LastStatus" xml:space="preserve">
+    <value>최근 상태</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.None" xml:space="preserve">
+    <value>그룹화 안 함</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.ProtocolType" xml:space="preserve">
+    <value>프로토콜 유형</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.DNS" xml:space="preserve">
+    <value>DNS: 도메인 이름 시스템</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.HTTP" xml:space="preserve">
+    <value>HTTP: 하이퍼텍스트 전송 프로토콜</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.ICMP" xml:space="preserve">
+    <value>ICMP: 인터넷 제어 메시지 프로토콜</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.IMAP" xml:space="preserve">
+    <value>IMAP: 인터넷 메시지 액세스 프로토콜</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.MQTT" xml:space="preserve">
+    <value>MQTT: 메시지 큐 원격 측정 전송</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.NTP" xml:space="preserve">
+    <value>NTP: 네트워크 시간 프로토콜</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SIP" xml:space="preserve">
+    <value>SIP: 세션 시작 프로토콜</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SMTP" xml:space="preserve">
+    <value>SMTP: 단순 메일 전송 프로토콜</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SSH" xml:space="preserve">
+    <value>SSH: 보안 셸 프로토콜</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.STUN" xml:space="preserve">
+    <value>STUN: NAT용 세션 탐색 유틸리티</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.TCP" xml:space="preserve">
+    <value>TCP: 전송 제어 프로토콜</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.TLS" xml:space="preserve">
+    <value>TLS: 전송 계층 보안</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.UDP" xml:space="preserve">
+    <value>UDP: 사용자 데이터그램 프로토콜</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.WebSocket" xml:space="preserve">
+    <value>WebSocket: 전이중 통신 프로토콜</value>
+  </data>
+  <data name="Export.Interface.Error" xml:space="preserve">
+    <value>인터페이스를 내보내는 중 오류가 발생했습니다.</value>
+  </data>
+  <data name="Export.Interface.Success" xml:space="preserve">
+    <value>"{0}" 인터페이스를 "{1}"(으)로 내보냈습니다.</value>
+  </data>
+  <data name="Export.Interface.Title" xml:space="preserve">
+    <value>인터페이스를 {0}(으)로 내보내기</value>
+  </data>
+  <data name="Export.Pings.CsvTitle" xml:space="preserve">
+    <value>핑을 CSV로 내보내기</value>
+  </data>
+  <data name="Export.Pings.Error" xml:space="preserve">
+    <value>핑을 내보내는 중 오류 발생:</value>
+  </data>
+  <data name="Export.Pings.JsonTitle" xml:space="preserve">
+    <value>핑을 JSON으로 내보내기</value>
+  </data>
+  <data name="Export.Pings.Success" xml:space="preserve">
+    <value>"{1}"에 대한 {0} 핑을 "{2}"(으)로 내보냈습니다.</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>핑을 TSV로 내보내기</value>
+  </data>
+  <data name="Export.Results.Error" xml:space="preserve">
+    <value>결과를 내보내는 중 오류가 발생했습니다:</value>
+  </data>
+  <data name="Export.Results.Success" xml:space="preserve">
+    <value>{0} 결과를 "{1}"로 내보냈습니다.</value>
+  </data>
+  <data name="Export.Results.Title" xml:space="preserve">
+    <value>결과를 JSON으로 내보내기</value>
+  </data>
+  <data name="Export.Services.Error" xml:space="preserve">
+    <value>서비스를 내보내는 중 오류가 발생했습니다.</value>
+  </data>
+  <data name="Export.Services.Success" xml:space="preserve">
+    <value>{0} 서비스를 "{1}"(으)로 내보냈습니다.</value>
+  </data>
+  <data name="Export.Services.Title" xml:space="preserve">
+    <value>서비스를 JSON으로 내보내기</value>
+  </data>
+  <data name="Graph.AboveAutomaticScale" xml:space="preserve">
+    <value>자동 배율 초과</value>
+  </data>
+  <data name="Graph.AboveScale" xml:space="preserve">
+    <value>눈금 초과</value>
+  </data>
+  <data name="Graph.AllSamples" xml:space="preserve">
+    <value>모든 샘플</value>
+  </data>
+  <data name="Graph.AutoScale" xml:space="preserve">
+    <value>자동 배율</value>
+  </data>
+  <data name="Graph.AutoScale.ToolTip" xml:space="preserve">
+    <value>지연 시간 자동 배율 사용</value>
+  </data>
+  <data name="Graph.Average" xml:space="preserve">
+    <value>평균</value>
+  </data>
+  <data name="Graph.Current" xml:space="preserve">
+    <value>현재</value>
+  </data>
+  <data name="Graph.DisableAll.ToolTip" xml:space="preserve">
+    <value>이 그래프의 모든 서비스를 비활성화</value>
+  </data>
+  <data name="Graph.EnableAll.ToolTip" xml:space="preserve">
+    <value>이 그래프의 모든 서비스를 활성화</value>
+  </data>
+  <data name="Graph.Failed" xml:space="preserve">
+    <value>실패</value>
+  </data>
+  <data name="Graph.Failure" xml:space="preserve">
+    <value>실패</value>
+  </data>
+  <data name="Graph.Freeze" xml:space="preserve">
+    <value>고정</value>
+  </data>
+  <data name="Graph.Freeze.ToolTip" xml:space="preserve">
+    <value>검사를 계속하면서 그래프 고정</value>
+  </data>
+  <data name="Graph.FullScale" xml:space="preserve">
+    <value>전체 범위</value>
+  </data>
+  <data name="Graph.FullScale.ToolTip" xml:space="preserve">
+    <value>전체 지연 시간 범위 표시</value>
+  </data>
+  <data name="Graph.Jitter" xml:space="preserve">
+    <value>지터</value>
+  </data>
+  <data name="Graph.Latency" xml:space="preserve">
+    <value>지연 시간</value>
+  </data>
+  <data name="Graph.Loss" xml:space="preserve">
+    <value>손실</value>
+  </data>
+  <data name="Graph.Maximum" xml:space="preserve">
+    <value>최대</value>
+  </data>
+  <data name="Graph.Minimum" xml:space="preserve">
+    <value>최소</value>
+  </data>
+  <data name="Graph.Resume.ToolTip" xml:space="preserve">
+    <value>실시간 그래프 업데이트 재개</value>
+  </data>
+  <data name="Graph.RollingAverage" xml:space="preserve">
+    <value>이동 평균</value>
+  </data>
+  <data name="Graph.Samples" xml:space="preserve">
+    <value>{0}개 샘플</value>
+  </data>
+  <data name="Graph.Title" xml:space="preserve">
+    <value>그래프</value>
+  </data>
+  <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
+    <value>클립보드에서 붙여넣을 수 없음</value>
+  </data>
+  <data name="Import.Clipboard.NoData" xml:space="preserve">
+    <value>클립보드가 비어 있거나 사용할 수 있는 서비스 데이터가 없습니다.</value>
+  </data>
+  <data name="Import.Clipboard.Summary" xml:space="preserve">
+    <value>서비스 {0}개를 붙여넣고 {1}개를 건너뛰었습니다.</value>
+  </data>
+  <data name="Import.Json.ErrorMessage" xml:space="preserve">
+    <value>제공된 JSON 파일이 잘못되었거나 형식이 잘못되었습니다.</value>
+  </data>
+  <data name="Import.Json.ErrorTitle" xml:space="preserve">
+    <value>JSON에서 가져올 수 없습니다.</value>
+  </data>
+  <data name="InstanceAlreadyRunning.Message" xml:space="preserve">
+    <value>{0}의 다른 인스턴스가 실행 중입니다. 한 번에 하나의 {0} 인스턴스만 실행할 수 있습니다.
+실행 중인 인스턴스를 찾아서 열거나 새 인스턴스를 시작하기 전에 닫으십시오.</value>
+  </data>
+  <data name="Navigation.Interfaces" xml:space="preserve">
+    <value>인터페이스</value>
+  </data>
+  <data name="Navigation.Pings" xml:space="preserve">
+    <value>핑</value>
+  </data>
+  <data name="Navigation.Settings" xml:space="preserve">
+    <value>설정</value>
+  </data>
+  <data name="Navigation.SpeedTest" xml:space="preserve">
+    <value>속도 테스트</value>
+  </data>
+  <data name="Network.DhcpDns.Error" xml:space="preserve">
+    <value>DHCP DNS를 할당할 수 없습니다.</value>
+  </data>
+  <data name="Network.DhcpDns.Success" xml:space="preserve">
+    <value>DHCP DNS가 성공적으로 할당되었습니다.</value>
+  </data>
+  <data name="Network.DhcpIp.Error" xml:space="preserve">
+    <value>"{1}"에 대해 DHCPv{0}를 설정할 수 없습니다.</value>
+  </data>
+  <data name="Network.DhcpIp.Success" xml:space="preserve">
+    <value>IP 주소가 DHCPv로 설정되었습니다.{0}</value>
+  </data>
+  <data name="Network.Disable.Error" xml:space="preserve">
+    <value>"{0}"을(를) 비활성화할 수 없습니다.</value>
+  </data>
+  <data name="Network.Disable.Success" xml:space="preserve">
+    <value>인터페이스 "{0}"이(가) 성공적으로 비활성화되었습니다.</value>
+  </data>
+  <data name="Network.Disable.Title" xml:space="preserve">
+    <value>{0} 비활성화</value>
+  </data>
+  <data name="Network.Dns.Error" xml:space="preserve">
+    <value>DNS를 할당할 수 없습니다.</value>
+  </data>
+  <data name="Network.Dns.Success" xml:space="preserve">
+    <value>DNS 서버가 성공적으로 할당되었습니다: {0} {1}</value>
+  </data>
+  <data name="Network.Dns.Title" xml:space="preserve">
+    <value>"{0}"에 대한 DNS 할당</value>
+  </data>
+  <data name="Network.Enable.Error" xml:space="preserve">
+    <value>"{0}"을(를) 활성화할 수 없습니다.</value>
+  </data>
+  <data name="Network.Enable.Success" xml:space="preserve">
+    <value>인터페이스 "{0}"이(가) 성공적으로 활성화되었습니다.</value>
+  </data>
+  <data name="Network.Enable.Title" xml:space="preserve">
+    <value>{0} 활성화</value>
+  </data>
+  <data name="Network.IpAssignment.Error" xml:space="preserve">
+    <value>IP를 할당할 수 없습니다.</value>
+  </data>
+  <data name="Network.IpAssignment.NoChanges" xml:space="preserve">
+    <value>정의된 설정이 이전 설정과 일치하므로 변경된 사항이 없습니다.</value>
+  </data>
+  <data name="Network.IpAssignment.Title" xml:space="preserve">
+    <value>"{0}"에 대한 IP 할당</value>
+  </data>
+  <data name="Network.Release.Error" xml:space="preserve">
+    <value>"{0}"을(를) 해제할 수 없습니다.</value>
+  </data>
+  <data name="Network.Release.Success" xml:space="preserve">
+    <value>IP 주소가 성공적으로 해제되었습니다.</value>
+  </data>
+  <data name="Network.Release.Title" xml:space="preserve">
+    <value>릴리스 {0}</value>
+  </data>
+  <data name="Network.Renew.Error" xml:space="preserve">
+    <value>"{0}"을(를) 갱신할 수 없습니다.</value>
+  </data>
+  <data name="Network.Renew.Success" xml:space="preserve">
+    <value>IP 주소가 성공적으로 갱신되었습니다.</value>
+  </data>
+  <data name="Network.Renew.Title" xml:space="preserve">
+    <value>{0} 갱신</value>
+  </data>
+  <data name="Network.StaticIp.Error" xml:space="preserve">
+    <value>"{1}"에 대해 고정 IPv{0}을(를) 설정할 수 없습니다.</value>
+  </data>
+  <data name="Network.StaticIp.Success" xml:space="preserve">
+    <value>IP 주소가 {0} {1} {2}(으)로 설정되었습니다.</value>
+  </data>
+  <data name="Operation.Success" xml:space="preserve">
+    <value>작업이 성공적으로 완료되었습니다.</value>
+  </data>
+  <data name="Operation.SudoRequired" xml:space="preserve">
+    <value>sudo 액세스가 필요하므로 작업을 실행할 수 없습니다.
+pkexec를 찾을 수 없습니다. pkexec를 설치하거나 sudo를 사용하여 애플리케이션을 실행합니다.</value>
+  </data>
+  <data name="Ping.RemoveAll.Message" xml:space="preserve">
+    <value>모든 {0}개의 핑 호스트를 제거하려고 합니다.
+계속하시겠습니까?</value>
+  </data>
+  <data name="Ping.RemoveAll.Title" xml:space="preserve">
+    <value>{0}개의 핑 호스트를 모두 제거하시겠습니까?</value>
+  </data>
+  <data name="Ping.RemoveSelected.Message" xml:space="preserve">
+    <value>선택한 핑 호스트 {0}개를 제거하려고 합니다.
+계속하시겠습니까?</value>
+  </data>
+  <data name="Ping.RemoveSelected.Title" xml:space="preserve">
+    <value>선택한 {0}개의 ping 호스트를 제거하시겠습니까?</value>
+  </data>
+  <data name="Ping.ResetAll.Message" xml:space="preserve">
+    <value>모든 {0} ping 호스트에 대한 통계를 재설정하려고 합니다.
+계속하시겠습니까?</value>
+  </data>
+  <data name="Ping.ResetAll.Title" xml:space="preserve">
+    <value>모든 {0} 핑 호스트를 재설정하시겠습니까?</value>
   </data>
   <data name="Ping.ResetOne.Message" xml:space="preserve">
     <value>선택한 ping 호스트 통계를 재설정하려고 합니다.
@@ -859,363 +439,83 @@ IP 주소: {0}
 
 계속하시겠습니까?</value>
   </data>
-  <data name="Ping.ResetSelected.Title" xml:space="preserve">
-    <value>선택한 {0}개의 ping 호스트를 재설정하시겠습니까?</value>
+  <data name="Ping.ResetOne.Title" xml:space="preserve">
+    <value>선택한 ping 호스트를 재설정하시겠습니까?</value>
   </data>
   <data name="Ping.ResetSelected.Message" xml:space="preserve">
     <value>선택한 {0}개의 ping 호스트에 대한 통계를 재설정하려고 합니다.
 계속하시겠습니까?</value>
   </data>
-  <data name="Ping.ResetAll.Title" xml:space="preserve">
-    <value>모든 {0} 핑 호스트를 재설정하시겠습니까?</value>
+  <data name="Ping.ResetSelected.Title" xml:space="preserve">
+    <value>선택한 {0}개의 ping 호스트를 재설정하시겠습니까?</value>
   </data>
-  <data name="Ping.ResetAll.Message" xml:space="preserve">
-    <value>모든 {0} ping 호스트에 대한 통계를 재설정하려고 합니다.
-계속하시겠습니까?</value>
+  <data name="Settings.Language" xml:space="preserve">
+    <value>언어</value>
   </data>
-  <data name="Ping.RemoveSelected.Title" xml:space="preserve">
-    <value>선택한 {0}개의 ping 호스트를 제거하시겠습니까?</value>
+  <data name="Settings.Language.Description" xml:space="preserve">
+    <value>애플리케이션 전체에서 사용되는 언어를 선택하세요.</value>
   </data>
-  <data name="Ping.RemoveSelected.Message" xml:space="preserve">
-    <value>선택한 핑 호스트 {0}개를 제거하려고 합니다.
-계속하시겠습니까?</value>
+  <data name="Settings.Language.FollowSystem" xml:space="preserve">
+    <value>시스템 언어 사용</value>
   </data>
-  <data name="Ping.RemoveAll.Title" xml:space="preserve">
-    <value>{0}개의 핑 호스트를 모두 제거하시겠습니까?</value>
+  <data name="Settings.Theme" xml:space="preserve">
+    <value>테마</value>
   </data>
-  <data name="Ping.RemoveAll.Message" xml:space="preserve">
-    <value>모든 {0}개의 핑 호스트를 제거하려고 합니다.
-계속하시겠습니까?</value>
-  </data>
-  <data name="Export.Services.Title" xml:space="preserve">
-    <value>서비스를 JSON으로 내보내기</value>
-  </data>
-  <data name="Export.Services.Success" xml:space="preserve">
-    <value>{0} 서비스를 "{1}"(으)로 내보냈습니다.</value>
-  </data>
-  <data name="Export.Services.Error" xml:space="preserve">
-    <value>서비스를 내보내는 중 오류가 발생했습니다.</value>
-  </data>
-  <data name="Export.Pings.CsvTitle" xml:space="preserve">
-    <value>핑을 CSV로 내보내기</value>
-  </data>
-  <data name="Export.Pings.JsonTitle" xml:space="preserve">
-    <value>핑을 JSON으로 내보내기</value>
-  </data>
-  <data name="Export.Pings.Success" xml:space="preserve">
-    <value>"{1}"에 대한 {0} 핑을 "{2}"(으)로 내보냈습니다.</value>
-  </data>
-  <data name="Export.Pings.Error" xml:space="preserve">
-    <value>핑을 내보내는 중 오류 발생:</value>
-  </data>
-  <data name="SpeedTest.Install.Title" xml:space="preserve">
-    <value>속도 테스트 CLI 설치</value>
-  </data>
-  <data name="SpeedTest.Install.Success" xml:space="preserve">
-    <value>Speedtest CLI가 성공적으로 설치되었습니다.</value>
-  </data>
-  <data name="SpeedTest.Install.Error" xml:space="preserve">
-    <value>Speedtest CLI를 설치하지 못했습니다. https://www.speedtest.net/apps/cli에서 수동으로 설치하세요.</value>
+  <data name="SpeedTest.AutoInstall" xml:space="preserve">
+    <value>자동 설치</value>
   </data>
   <data name="SpeedTest.Error" xml:space="preserve">
     <value>속도 테스트 중 오류 발생</value>
   </data>
-  <data name="Export.Results.Title" xml:space="preserve">
-    <value>결과를 JSON으로 내보내기</value>
+  <data name="SpeedTest.Install.Error" xml:space="preserve">
+    <value>Speedtest CLI를 설치하지 못했습니다. https://www.speedtest.net/apps/cli에서 수동으로 설치하세요.</value>
   </data>
-  <data name="Export.Results.Success" xml:space="preserve">
-    <value>{0} 결과를 "{1}"로 내보냈습니다.</value>
+  <data name="SpeedTest.Install.Success" xml:space="preserve">
+    <value>Speedtest CLI가 성공적으로 설치되었습니다.</value>
   </data>
-  <data name="Export.Results.Error" xml:space="preserve">
-    <value>결과를 내보내는 중 오류가 발생했습니다:</value>
+  <data name="SpeedTest.Install.Title" xml:space="preserve">
+    <value>속도 테스트 CLI 설치</value>
   </data>
-  <data name="SpeedTest.RemoveSelected.Title" xml:space="preserve">
-    <value>선택한 {0}개의 결과를 삭제하시겠습니까?</value>
-  </data>
-  <data name="SpeedTest.RemoveSelected.Message" xml:space="preserve">
-    <value>선택한 결과 {0}개를 삭제하려고 합니다.
-계속하시겠습니까?</value>
-  </data>
-  <data name="SpeedTest.RemoveAll.Title" xml:space="preserve">
-    <value>모든 {0} 결과를 삭제하시겠습니까?</value>
+  <data name="SpeedTest.ManualInstall" xml:space="preserve">
+    <value>수동 설치</value>
   </data>
   <data name="SpeedTest.RemoveAll.Message" xml:space="preserve">
     <value>모든 {0} 결과를 제거하려고 합니다.
 계속하시겠습니까?</value>
   </data>
-  <data name="SpeedTest.AutoInstall" xml:space="preserve">
-    <value>자동 설치</value>
+  <data name="SpeedTest.RemoveAll.Title" xml:space="preserve">
+    <value>모든 {0} 결과를 삭제하시겠습니까?</value>
   </data>
-  <data name="SpeedTest.ManualInstall" xml:space="preserve">
-    <value>수동 설치</value>
+  <data name="SpeedTest.RemoveSelected.Message" xml:space="preserve">
+    <value>선택한 결과 {0}개를 삭제하려고 합니다.
+계속하시겠습니까?</value>
   </data>
-  <data name="Network.Disable.Title" xml:space="preserve">
-    <value>{0} 비활성화</value>
-  </data>
-  <data name="Network.Disable.Success" xml:space="preserve">
-    <value>인터페이스 "{0}"이(가) 성공적으로 비활성화되었습니다.</value>
-  </data>
-  <data name="Network.Disable.Error" xml:space="preserve">
-    <value>"{0}"을(를) 비활성화할 수 없습니다.</value>
-  </data>
-  <data name="Network.Enable.Title" xml:space="preserve">
-    <value>{0} 활성화</value>
-  </data>
-  <data name="Network.Enable.Success" xml:space="preserve">
-    <value>인터페이스 "{0}"이(가) 성공적으로 활성화되었습니다.</value>
-  </data>
-  <data name="Network.Enable.Error" xml:space="preserve">
-    <value>"{0}"을(를) 활성화할 수 없습니다.</value>
-  </data>
-  <data name="Network.Release.Title" xml:space="preserve">
-    <value>릴리스 {0}</value>
-  </data>
-  <data name="Network.Release.Success" xml:space="preserve">
-    <value>IP 주소가 성공적으로 해제되었습니다.</value>
-  </data>
-  <data name="Network.Release.Error" xml:space="preserve">
-    <value>"{0}"을(를) 해제할 수 없습니다.</value>
-  </data>
-  <data name="Network.Renew.Title" xml:space="preserve">
-    <value>{0} 갱신</value>
-  </data>
-  <data name="Network.Renew.Success" xml:space="preserve">
-    <value>IP 주소가 성공적으로 갱신되었습니다.</value>
-  </data>
-  <data name="Network.Renew.Error" xml:space="preserve">
-    <value>"{0}"을(를) 갱신할 수 없습니다.</value>
-  </data>
-  <data name="Network.StaticIp.Success" xml:space="preserve">
-    <value>IP 주소가 {0} {1} {2}(으)로 설정되었습니다.</value>
-  </data>
-  <data name="Network.StaticIp.Error" xml:space="preserve">
-    <value>"{1}"에 대해 고정 IPv{0}을(를) 설정할 수 없습니다.</value>
-  </data>
-  <data name="Network.DhcpIp.Success" xml:space="preserve">
-    <value>IP 주소가 DHCPv로 설정되었습니다.{0}</value>
-  </data>
-  <data name="Network.DhcpIp.Error" xml:space="preserve">
-    <value>"{1}"에 대해 DHCPv{0}를 설정할 수 없습니다.</value>
-  </data>
-  <data name="Network.Dns.Title" xml:space="preserve">
-    <value>"{0}"에 대한 DNS 할당</value>
-  </data>
-  <data name="Network.Dns.Success" xml:space="preserve">
-    <value>DNS 서버가 성공적으로 할당되었습니다: {0} {1}</value>
-  </data>
-  <data name="Network.Dns.Error" xml:space="preserve">
-    <value>DNS를 할당할 수 없습니다.</value>
-  </data>
-  <data name="Network.DhcpDns.Success" xml:space="preserve">
-    <value>DHCP DNS가 성공적으로 할당되었습니다.</value>
-  </data>
-  <data name="Network.DhcpDns.Error" xml:space="preserve">
-    <value>DHCP DNS를 할당할 수 없습니다.</value>
-  </data>
-  <data name="Network.IpAssignment.Title" xml:space="preserve">
-    <value>"{0}"에 대한 IP 할당</value>
-  </data>
-  <data name="Network.IpAssignment.NoChanges" xml:space="preserve">
-    <value>정의된 설정이 이전 설정과 일치하므로 변경된 사항이 없습니다.</value>
-  </data>
-  <data name="Network.IpAssignment.Error" xml:space="preserve">
-    <value>IP를 할당할 수 없습니다.</value>
-  </data>
-  <data name="Export.Interface.Title" xml:space="preserve">
-    <value>인터페이스를 {0}(으)로 내보내기</value>
-  </data>
-  <data name="Export.Interface.Success" xml:space="preserve">
-    <value>"{0}" 인터페이스를 "{1}"(으)로 내보냈습니다.</value>
-  </data>
-  <data name="Export.Interface.Error" xml:space="preserve">
-    <value>인터페이스를 내보내는 중 오류가 발생했습니다.</value>
-  </data>
-  <data name="Enum.ApplicationTheme.Default" xml:space="preserve">
-    <value>시스템 설정</value>
-  </data>
-  <data name="Enum.ApplicationTheme.Light" xml:space="preserve">
-    <value>밝게</value>
-  </data>
-  <data name="Enum.ApplicationTheme.Dark" xml:space="preserve">
-    <value>어둡게</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.None" xml:space="preserve">
-    <value>그룹화 안 함</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.ProtocolType" xml:space="preserve">
-    <value>프로토콜 유형</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.LastStatus" xml:space="preserve">
-    <value>최근 상태</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.Group" xml:space="preserve">
-    <value>그룹</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.ICMP" xml:space="preserve">
-    <value>ICMP: 인터넷 제어 메시지 프로토콜</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.TCP" xml:space="preserve">
-    <value>TCP: 전송 제어 프로토콜</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.UDP" xml:space="preserve">
-    <value>UDP: 사용자 데이터그램 프로토콜</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.TLS" xml:space="preserve">
-    <value>TLS: 전송 계층 보안</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.DNS" xml:space="preserve">
-    <value>DNS: 도메인 이름 시스템</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.NTP" xml:space="preserve">
-    <value>NTP: 네트워크 시간 프로토콜</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.HTTP" xml:space="preserve">
-    <value>HTTP: 하이퍼텍스트 전송 프로토콜</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.WebSocket" xml:space="preserve">
-    <value>WebSocket: 전이중 통신 프로토콜</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.SSH" xml:space="preserve">
-    <value>SSH: 보안 셸 프로토콜</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.SMTP" xml:space="preserve">
-    <value>SMTP: 단순 메일 전송 프로토콜</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.IMAP" xml:space="preserve">
-    <value>IMAP: 인터넷 메시지 액세스 프로토콜</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.MQTT" xml:space="preserve">
-    <value>MQTT: 메시지 큐 원격 측정 전송</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.STUN" xml:space="preserve">
-    <value>STUN: NAT용 세션 탐색 유틸리티</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.SIP" xml:space="preserve">
-    <value>SIP: 세션 시작 프로토콜</value>
-  </data>
-  <data name="Operation.Success" xml:space="preserve">
-    <value>작업이 성공적으로 완료되었습니다.</value>
-  </data>
-  <data name="Operation.SudoRequired" xml:space="preserve">
-    <value>sudo 액세스가 필요하므로 작업을 실행할 수 없습니다.
-pkexec를 찾을 수 없습니다. pkexec를 설치하거나 sudo를 사용하여 애플리케이션을 실행합니다.</value>
-  </data>
-  <data name="Import.Json.ErrorTitle" xml:space="preserve">
-    <value>JSON에서 가져올 수 없습니다.</value>
-  </data>
-  <data name="Import.Json.ErrorMessage" xml:space="preserve">
-    <value>제공된 JSON 파일이 잘못되었거나 형식이 잘못되었습니다.</value>
+  <data name="SpeedTest.RemoveSelected.Title" xml:space="preserve">
+    <value>선택한 {0}개의 결과를 삭제하시겠습니까?</value>
   </data>
   <data name="SpeedTest.ServerList.Error" xml:space="preserve">
     <value>서버 목록을 가져올 수 없습니다.</value>
   </data>
-  <data name="Ui.ServicesCount" xml:space="preserve">
-    <value>(서비스 {0}개)</value>
+  <data name="Status.BadDestination" xml:space="preserve">
+    <value>잘못된 대상</value>
   </data>
-  <data name="Ui.Auto" xml:space="preserve">
-    <value>자동</value>
+  <data name="Status.BadHeader" xml:space="preserve">
+    <value>잘못된 헤더</value>
   </data>
-  <data name="Tray.PingsUp" xml:space="preserve">
-    <value>{0} 정상</value>
+  <data name="Status.BadOption" xml:space="preserve">
+    <value>잘못된 옵션</value>
   </data>
-  <data name="Ui.LastUpdateCheck" xml:space="preserve">
-    <value>마지막 업데이트 확인: {0}</value>
+  <data name="Status.BadRoute" xml:space="preserve">
+    <value>잘못된 경로</value>
   </data>
-  <data name="Ui.ChangelogWithReleases" xml:space="preserve">
-    <value>{0}개 릴리스 변경 내역:</value>
-  </data>
-  <data name="Tray.PingsDown" xml:space="preserve">
-    <value>{0} 중단</value>
-  </data>
-  <data name="Ui.License" xml:space="preserve">
-    <value>라이선스({0})</value>
-  </data>
-  <data name="Ui.Age" xml:space="preserve">
-    <value>경과 기간: {0}</value>
-  </data>
-  <data name="Graph.Latency" xml:space="preserve">
-    <value>지연 시간</value>
-  </data>
-  <data name="Graph.AboveScale" xml:space="preserve">
-    <value>눈금 초과</value>
-  </data>
-  <data name="Graph.RollingAverage" xml:space="preserve">
-    <value>이동 평균</value>
-  </data>
-  <data name="Graph.Failure" xml:space="preserve">
-    <value>실패</value>
-  </data>
-  <data name="Graph.Maximum" xml:space="preserve">
-    <value>최대</value>
-  </data>
-  <data name="Graph.Average" xml:space="preserve">
-    <value>평균</value>
-  </data>
-  <data name="Graph.Current" xml:space="preserve">
-    <value>현재</value>
-  </data>
-  <data name="Graph.Minimum" xml:space="preserve">
-    <value>최소</value>
-  </data>
-  <data name="Graph.Failed" xml:space="preserve">
-    <value>실패</value>
-  </data>
-  <data name="Graph.DisableAll.ToolTip" xml:space="preserve">
-    <value>이 그래프의 모든 서비스를 비활성화</value>
-  </data>
-  <data name="Graph.EnableAll.ToolTip" xml:space="preserve">
-    <value>이 그래프의 모든 서비스를 활성화</value>
-  </data>
-  <data name="Graph.FullScale" xml:space="preserve">
-    <value>전체 범위</value>
-  </data>
-  <data name="Graph.AutoScale" xml:space="preserve">
-    <value>자동 배율</value>
-  </data>
-  <data name="Graph.AutoScale.ToolTip" xml:space="preserve">
-    <value>지연 시간 자동 배율 사용</value>
-  </data>
-  <data name="Graph.FullScale.ToolTip" xml:space="preserve">
-    <value>전체 지연 시간 범위 표시</value>
-  </data>
-  <data name="Graph.Freeze" xml:space="preserve">
-    <value>고정</value>
-  </data>
-  <data name="Graph.Freeze.ToolTip" xml:space="preserve">
-    <value>검사를 계속하면서 그래프 고정</value>
-  </data>
-  <data name="Graph.Resume.ToolTip" xml:space="preserve">
-    <value>실시간 그래프 업데이트 재개</value>
-  </data>
-  <data name="Graph.Samples" xml:space="preserve">
-    <value>{0}개 샘플</value>
-  </data>
-  <data name="Graph.AllSamples" xml:space="preserve">
-    <value>모든 샘플</value>
-  </data>
-  <data name="Graph.AboveAutomaticScale" xml:space="preserve">
-    <value>자동 배율 초과</value>
-  </data>
-  <data name="Graph.Jitter" xml:space="preserve">
-    <value>지터</value>
-  </data>
-  <data name="Graph.Loss" xml:space="preserve">
-    <value>손실</value>
-  </data>
-  <data name="Graph.Title" xml:space="preserve">
-    <value>그래프</value>
-  </data>
-  <data name="Status.Success" xml:space="preserve">
-    <value>성공</value>
-  </data>
-  <data name="Status.DestinationNetworkUnreachable" xml:space="preserve">
-    <value>대상 네트워크에 연결할 수 없음</value>
+  <data name="Status.ConnectionReset" xml:space="preserve">
+    <value>연결이 재설정됨</value>
   </data>
   <data name="Status.DestinationHostUnreachable" xml:space="preserve">
     <value>대상 호스트에 연결할 수 없음</value>
   </data>
-  <data name="Status.DestinationProtocolUnreachable" xml:space="preserve">
-    <value>대상 프로토콜에 연결할 수 없음</value>
+  <data name="Status.DestinationNetworkUnreachable" xml:space="preserve">
+    <value>대상 네트워크에 연결할 수 없음</value>
   </data>
   <data name="Status.DestinationPortUnreachable" xml:space="preserve">
     <value>대상 포트에 연결할 수 없음</value>
@@ -1223,20 +523,59 @@ pkexec를 찾을 수 없습니다. pkexec를 설치하거나 sudo를 사용하�
   <data name="Status.DestinationProhibited" xml:space="preserve">
     <value>대상 연결이 금지됨</value>
   </data>
-  <data name="Status.NoResources" xml:space="preserve">
-    <value>리소스 부족</value>
+  <data name="Status.DestinationProtocolUnreachable" xml:space="preserve">
+    <value>대상 프로토콜에 연결할 수 없음</value>
   </data>
-  <data name="Status.BadOption" xml:space="preserve">
-    <value>잘못된 옵션</value>
+  <data name="Status.DestinationScopeMismatch" xml:space="preserve">
+    <value>대상 범위 불일치</value>
+  </data>
+  <data name="Status.DestinationUnreachable" xml:space="preserve">
+    <value>대상에 연결할 수 없음</value>
+  </data>
+  <data name="Status.ErrorFallback" xml:space="preserve">
+    <value>오류 ({0})</value>
   </data>
   <data name="Status.HardwareError" xml:space="preserve">
     <value>하드웨어 오류</value>
   </data>
+  <data name="Status.HttpFallback" xml:space="preserve">
+    <value>HTTP {0}</value>
+  </data>
+  <data name="Status.HttpRequestErrorFallback" xml:space="preserve">
+    <value>HTTP 요청 오류</value>
+  </data>
+  <data name="Status.IcmpError" xml:space="preserve">
+    <value>ICMP 오류</value>
+  </data>
+  <data name="Status.NoContent" xml:space="preserve">
+    <value>콘텐츠 없음</value>
+  </data>
+  <data name="Status.NoResources" xml:space="preserve">
+    <value>리소스 부족</value>
+  </data>
+  <data name="Status.Open" xml:space="preserve">
+    <value>열림</value>
+  </data>
   <data name="Status.PacketTooBig" xml:space="preserve">
     <value>패킷이 너무 큼</value>
   </data>
-  <data name="Status.BadRoute" xml:space="preserve">
-    <value>잘못된 경로</value>
+  <data name="Status.ParameterProblem" xml:space="preserve">
+    <value>매개 변수 문제</value>
+  </data>
+  <data name="Status.SocketErrorFallback" xml:space="preserve">
+    <value>소켓 오류 ({0})</value>
+  </data>
+  <data name="Status.SourceQuench" xml:space="preserve">
+    <value>송신원 억제</value>
+  </data>
+  <data name="Status.Success" xml:space="preserve">
+    <value>성공</value>
+  </data>
+  <data name="Status.TimedOut" xml:space="preserve">
+    <value>시간 초과</value>
+  </data>
+  <data name="Status.TimeExceeded" xml:space="preserve">
+    <value>시간 초과</value>
   </data>
   <data name="Status.TtlExpired" xml:space="preserve">
     <value>TTL 만료</value>
@@ -1244,94 +583,755 @@ pkexec를 찾을 수 없습니다. pkexec를 설치하거나 sudo를 사용하�
   <data name="Status.TtlReassemblyTimeExceeded" xml:space="preserve">
     <value>재조립 중 TTL 만료</value>
   </data>
-  <data name="Status.ParameterProblem" xml:space="preserve">
-    <value>매개 변수 문제</value>
-  </data>
-  <data name="Status.SourceQuench" xml:space="preserve">
-    <value>송신원 억제</value>
-  </data>
-  <data name="Status.BadDestination" xml:space="preserve">
-    <value>잘못된 대상</value>
-  </data>
-  <data name="Status.DestinationUnreachable" xml:space="preserve">
-    <value>대상에 연결할 수 없음</value>
-  </data>
-  <data name="Status.TimeExceeded" xml:space="preserve">
-    <value>시간 초과</value>
-  </data>
-  <data name="Status.BadHeader" xml:space="preserve">
-    <value>잘못된 헤더</value>
+  <data name="Status.Unknown" xml:space="preserve">
+    <value>알 수 없음</value>
   </data>
   <data name="Status.UnrecognizedNextHeader" xml:space="preserve">
     <value>다음 헤더를 인식할 수 없음</value>
   </data>
-  <data name="Status.IcmpError" xml:space="preserve">
-    <value>ICMP 오류</value>
-  </data>
-  <data name="Status.DestinationScopeMismatch" xml:space="preserve">
-    <value>대상 범위 불일치</value>
-  </data>
-  <data name="Status.NoContent" xml:space="preserve">
-    <value>콘텐츠 없음</value>
-  </data>
-  <data name="Status.ConnectionReset" xml:space="preserve">
-    <value>연결이 재설정됨</value>
-  </data>
-  <data name="Status.TimedOut" xml:space="preserve">
-    <value>시간 초과</value>
-  </data>
-  <data name="Status.Unknown" xml:space="preserve">
-    <value>알 수 없음</value>
-  </data>
-  <data name="Status.Open" xml:space="preserve">
-    <value>열림</value>
-  </data>
-  <data name="Status.SocketErrorFallback" xml:space="preserve">
-    <value>소켓 오류 ({0})</value>
-  </data>
-  <data name="Status.HttpRequestErrorFallback" xml:space="preserve">
-    <value>HTTP 요청 오류</value>
-  </data>
   <data name="Status.WebSocketErrorFallback" xml:space="preserve">
     <value>WebSocket 오류</value>
   </data>
-  <data name="Status.HttpFallback" xml:space="preserve">
-    <value>HTTP {0}</value>
+  <data name="Tray.PingsDown" xml:space="preserve">
+    <value>{0} 중단</value>
   </data>
-  <data name="Status.ErrorFallback" xml:space="preserve">
-    <value>오류 ({0})</value>
+  <data name="Tray.PingsUp" xml:space="preserve">
+    <value>{0} 정상</value>
   </data>
-  <data name="Ui.ServicesCountPlain" xml:space="preserve">
-    <value>서비스 {0}개</value>
+  <data name="Ui.95thPercentileLatencyInTheDisplayedWindow" xml:space="preserve">
+    <value>표시된 창의 95번째 백분위수 대기 시간</value>
   </data>
-  <data name="Ui.EditService" xml:space="preserve">
-    <value>서비스 편집</value>
+  <data name="Ui.About" xml:space="preserve">
+    <value>소개</value>
   </data>
-  <data name="Ui.Save" xml:space="preserve">
-    <value>저장</value>
+  <data name="Ui.AddNewServices" xml:space="preserve">
+    <value>새 서비스 추가</value>
   </data>
-  <data name="Ui.ServiceUpdated" xml:space="preserve">
-    <value>서비스가 업데이트되었습니다.</value>
+  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
+    <value>추가: 기본 버튼 = 빈 행, 화살표 = 가져오기&#10;붙여넣기 형식: IP | 포트 | 간격 | 설명 | 그룹&#10;예: 192.168.1.10  80  30  웹 서버  LAN&#10;예: 192.168.130:80|30|웹 서버|LAN&#10;알려진 포트는 프로토콜을 선택하고 알 수 없는 포트는 TCP를 사용합니다.</value>
   </data>
-  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
-    <value>동일한 프로토콜과 주소를 사용하는 서비스가 이미 있습니다.</value>
+  <data name="Ui.AdjustTheUIScaleToIncreaseOrDecreaseTheSizeOfTheInterfaceElements" xml:space="preserve">
+    <value>UI 크기를 조정하여 인터페이스 요소의 크기를 늘리거나 줄입니다.</value>
   </data>
-  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
-    <value>선택한 그래프 열기(새 창)</value>
+  <data name="Ui.Age" xml:space="preserve">
+    <value>경과 기간: {0}</value>
   </data>
-  <data name="Ui.EditServices" xml:space="preserve">
-    <value>서비스 편집</value>
+  <data name="Ui.AnimatedBackground" xml:space="preserve">
+    <value>애니메이션 배경</value>
+  </data>
+  <data name="Ui.Apply" xml:space="preserve">
+    <value>적용</value>
+  </data>
+  <data name="Ui.AskAQuestion" xml:space="preserve">
+    <value>질문하기</value>
+  </data>
+  <data name="Ui.Assemblies" xml:space="preserve">
+    <value>어셈블리</value>
+  </data>
+  <data name="Ui.Auto" xml:space="preserve">
+    <value>자동</value>
+  </data>
+  <data name="Ui.AutomaticDNSAssignmentFromDHCP" xml:space="preserve">
+    <value>DHCP로 DNS 자동 할당</value>
+  </data>
+  <data name="Ui.AutomaticIPAssignmentFromDHCP" xml:space="preserve">
+    <value>DHCP로 IP 자동 할당</value>
+  </data>
+  <data name="Ui.AutoRefresh" xml:space="preserve">
+    <value>자동 새로고침:</value>
+  </data>
+  <data name="Ui.AutoSpeedTest" xml:space="preserve">
+    <value>자동 테스트:</value>
+  </data>
+  <data name="Ui.AvaloniaUI" xml:space="preserve">
+    <value>AvaloniaUI:</value>
+  </data>
+  <data name="Ui.AvgTime" xml:space="preserve">
+    <value>평균 지연</value>
+  </data>
+  <data name="Ui.Background" xml:space="preserve">
+    <value>배경</value>
+  </data>
+  <data name="Ui.BackgroundStyle" xml:space="preserve">
+    <value>배경 스타일</value>
+  </data>
+  <data name="Ui.BackgroundTransitions" xml:space="preserve">
+    <value>배경 전환</value>
+  </data>
+  <data name="Ui.BufferSize" xml:space="preserve">
+    <value>버퍼 크기</value>
+  </data>
+  <data name="Ui.BufferSize1DF49DCA" xml:space="preserve">
+    <value>버퍼 크기:</value>
+  </data>
+  <data name="Ui.Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="Ui.CardHeight" xml:space="preserve">
+    <value>카드 높이:</value>
+  </data>
+  <data name="Ui.CardWidth" xml:space="preserve">
+    <value>카드 너비:</value>
+  </data>
+  <data name="Ui.ChangelogWithReleases" xml:space="preserve">
+    <value>{0}개 릴리스 변경 내역:</value>
+  </data>
+  <data name="Ui.ChangesTheProbeIntervalForEveryServiceInThisGraph" xml:space="preserve">
+    <value>이 그래프의 모든 서비스에 대한 프로브 간격을 변경합니다.</value>
+  </data>
+  <data name="Ui.ChangesTheTimeoutForEveryServiceInThisGraph" xml:space="preserve">
+    <value>이 그래프의 모든 서비스에 대한 시간 초과를 변경합니다.</value>
+  </data>
+  <data name="Ui.CheckForUpdates" xml:space="preserve">
+    <value>업데이트 확인</value>
+  </data>
+  <data name="Ui.CheckForUpdatesOnApplicationStartIfAnUpdateIsAvailableItWillNotifyAndAdd" xml:space="preserve">
+    <value>애플리케이션 시작 시 업데이트를 확인하세요. 업데이트가 있으면 이를 알리고 추가로 조치를 취하라는 메시지를 표시합니다.</value>
+  </data>
+  <data name="Ui.CheckForUpdatesOnStart" xml:space="preserve">
+    <value>시작 시 업데이트 확인</value>
+  </data>
+  <data name="Ui.ClearAddress" xml:space="preserve">
+    <value>주소 지우기</value>
+  </data>
+  <data name="Ui.ClearStatistics" xml:space="preserve">
+    <value>통계 지우기</value>
+  </data>
+  <data name="Ui.ClearTheGatewayAddress" xml:space="preserve">
+    <value>게이트웨이 주소 지우기</value>
+  </data>
+  <data name="Ui.ClickAnyOfTheButtonsBelowToEnableABackgroundShaderClickItAgainToDisableI" xml:space="preserve">
+    <value>배경 셰이더를 활성화하려면 아래 버튼 중 하나를 클릭하세요. 비활성화하려면 다시 클릭하세요. 이는 GPU에 상당한 부하를 줄 수 있으며 순전히 배경 렌더러의 기능을 시연하고 테스트하기 위한 것입니다.</value>
+  </data>
+  <data name="Ui.ClickToToggleTopMenu" xml:space="preserve">
+    <value>상단 메뉴를 전환하려면 클릭하세요.</value>
+  </data>
+  <data name="Ui.CloseToSystemTray" xml:space="preserve">
+    <value>시스템 트레이에 가깝습니다.</value>
+  </data>
+  <data name="Ui.CommunityForums" xml:space="preserve">
+    <value>커뮤니티 포럼</value>
+  </data>
+  <data name="Ui.ConnectionSpeed" xml:space="preserve">
+    <value>연결 속도</value>
+  </data>
+  <data name="Ui.ConsecutiveFailed" xml:space="preserve">
+    <value>연속 실패</value>
+  </data>
+  <data name="Ui.ConsecutiveSucceed" xml:space="preserve">
+    <value>연속 성공</value>
+  </data>
+  <data name="Ui.CustomShaders" xml:space="preserve">
+    <value>커스텀 셰이더</value>
+  </data>
+  <data name="Ui.DarkMode" xml:space="preserve">
+    <value>다크 모드</value>
+  </data>
+  <data name="Ui.DateTime" xml:space="preserve">
+    <value>날짜 시간</value>
+  </data>
+  <data name="Ui.Debug" xml:space="preserve">
+    <value>디버그</value>
+  </data>
+  <data name="Ui.DefaultPingOptions" xml:space="preserve">
+    <value>기본 핑 옵션</value>
+  </data>
+  <data name="Ui.Description" xml:space="preserve">
+    <value>설명</value>
+  </data>
+  <data name="Ui.Disable" xml:space="preserve">
+    <value>비활성화</value>
+  </data>
+  <data name="Ui.Donate" xml:space="preserve">
+    <value>기부</value>
+  </data>
+  <data name="Ui.DoNotFragment" xml:space="preserve">
+    <value>조각화 안 함:</value>
+  </data>
+  <data name="Ui.Download" xml:space="preserve">
+    <value>다운로드</value>
+  </data>
+  <data name="Ui.Downloaded" xml:space="preserve">
+    <value>다운로드됨</value>
   </data>
   <data name="Ui.EditSelectedServices" xml:space="preserve">
     <value>선택 항목 편집</value>
   </data>
-  <data name="Ui.ServicesUpdated" xml:space="preserve">
-    <value>서비스 {0}개가 업데이트되었습니다.</value>
+  <data name="Ui.EditService" xml:space="preserve">
+    <value>서비스 편집</value>
   </data>
-  <data name="Export.Pings.TsvTitle" xml:space="preserve">
-    <value>핑을 TSV로 내보내기</value>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>서비스 편집</value>
+  </data>
+  <data name="Ui.Enable" xml:space="preserve">
+    <value>활성화</value>
+  </data>
+  <data name="Ui.EnableDisableTheAnimationsForTheBackgroundWhichAreDrivenByTheCurrentlyAc" xml:space="preserve">
+    <value>현재 활성화된 효과에 의해 구동되는 배경의 애니메이션을 활성화/비활성화합니다.</value>
+  </data>
+  <data name="Ui.EnableDisableTheTransitionsForTheBackgroundTheseWillFadeBetweenTheActive" xml:space="preserve">
+    <value>배경에 대한 전환을 활성화/비활성화합니다. 변경되면 활성 효과 사이에서 페이드됩니다.</value>
+  </data>
+  <data name="Ui.ErrorMessage" xml:space="preserve">
+    <value>오류 메시지</value>
+  </data>
+  <data name="Ui.Exit" xml:space="preserve">
+    <value>✖ 나가기</value>
+  </data>
+  <data name="Ui.ExportAllToJSON" xml:space="preserve">
+    <value>모두 JSON으로 내보내기</value>
+  </data>
+  <data name="Ui.ExportPings" xml:space="preserve">
+    <value>핑 내보내기</value>
+  </data>
+  <data name="Ui.ExportSelectedToJSON" xml:space="preserve">
+    <value>선택한 항목을 JSON으로 내보내기</value>
+  </data>
+  <data name="Ui.ExportTo" xml:space="preserve">
+    <value>다음으로 내보내기</value>
+  </data>
+  <data name="Ui.ExportToCSV" xml:space="preserve">
+    <value>CSV로 내보내기</value>
+  </data>
+  <data name="Ui.ExportToJSON" xml:space="preserve">
+    <value>JSON으로 내보내기</value>
   </data>
   <data name="Ui.ExportToTSV" xml:space="preserve">
     <value>TSV로 내보내기</value>
+  </data>
+  <data name="Ui.Failed" xml:space="preserve">
+    <value>실패</value>
+  </data>
+  <data name="Ui.FailedDate" xml:space="preserve">
+    <value>마지막 실패</value>
+  </data>
+  <data name="Ui.FailedPings" xml:space="preserve">
+    <value>실패한 Ping</value>
+  </data>
+  <data name="Ui.FailedRepliesInTheDisplayedWindow" xml:space="preserve">
+    <value>표시된 창에 실패한 응답이 표시됨</value>
+  </data>
+  <data name="Ui.FilterInterfacesByText" xml:space="preserve">
+    <value>텍스트로 인터페이스 필터링</value>
+  </data>
+  <data name="Ui.FilterServicesByText" xml:space="preserve">
+    <value>텍스트로 서비스 필터링</value>
+  </data>
+  <data name="Ui.Framework" xml:space="preserve">
+    <value>프레임워크:</value>
+  </data>
+  <data name="Ui.Gateway" xml:space="preserve">
+    <value>게이트웨이:</value>
+  </data>
+  <data name="Ui.GaugeIncrement" xml:space="preserve">
+    <value>게이지 증분:</value>
+  </data>
+  <data name="Ui.GaugeRange" xml:space="preserve">
+    <value>게이지 범위:</value>
+  </data>
+  <data name="Ui.General" xml:space="preserve">
+    <value>일반</value>
+  </data>
+  <data name="Ui.GraphCacheSize" xml:space="preserve">
+    <value>그래프 캐시 크기:</value>
+  </data>
+  <data name="Ui.GraphicCard" xml:space="preserve">
+    <value>그래픽 카드:</value>
+  </data>
+  <data name="Ui.GraphOptions" xml:space="preserve">
+    <value>그래프 옵션</value>
+  </data>
+  <data name="Ui.GridViewOptions" xml:space="preserve">
+    <value>그리드 보기 옵션</value>
+  </data>
+  <data name="Ui.Group" xml:space="preserve">
+    <value>그룹</value>
+  </data>
+  <data name="Ui.GroupBy" xml:space="preserve">
+    <value>그룹화 기준:</value>
+  </data>
+  <data name="Ui.HaveIPAddress" xml:space="preserve">
+    <value>IP 주소 있음</value>
+  </data>
+  <data name="Ui.HavePhysicalAddress" xml:space="preserve">
+    <value>물리 주소 있음</value>
+  </data>
+  <data name="Ui.High" xml:space="preserve">
+    <value>높음:</value>
+  </data>
+  <data name="Ui.Host" xml:space="preserve">
+    <value>호스트:</value>
+  </data>
+  <data name="Ui.HostnameQuery" xml:space="preserve">
+    <value>호스트 이름/쿼리</value>
+  </data>
+  <data name="Ui.Import" xml:space="preserve">
+    <value>가져오기</value>
+  </data>
+  <data name="Ui.ImportAll" xml:space="preserve">
+    <value>모두 가져오기</value>
+  </data>
+  <data name="Ui.ImportFromJSON" xml:space="preserve">
+    <value>JSON에서 가져오기</value>
+  </data>
+  <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
+    <value>네트워크 게이트웨이 가져오기</value>
+  </data>
+  <data name="Ui.ImportPublicHosts" xml:space="preserve">
+    <value>공개 호스트 가져오기</value>
+  </data>
+  <data name="Ui.Index" xml:space="preserve">
+    <value>색인</value>
+  </data>
+  <data name="Ui.Interface" xml:space="preserve">
+    <value>인터페이스</value>
+  </data>
+  <data name="Ui.IP" xml:space="preserve">
+    <value>IP 주소:</value>
+  </data>
+  <data name="Ui.IPAddress" xml:space="preserve">
+    <value>IP 주소:</value>
+  </data>
+  <data name="Ui.IPAddress3C3DE0C9" xml:space="preserve">
+    <value>IP 주소</value>
+  </data>
+  <data name="Ui.IPAddressUrl" xml:space="preserve">
+    <value>IP 주소 / URL</value>
+  </data>
+  <data name="Ui.IQM" xml:space="preserve">
+    <value>사분위 평균(IQM):</value>
+  </data>
+  <data name="Ui.ISP" xml:space="preserve">
+    <value>인터넷 서비스 제공업체:</value>
+  </data>
+  <data name="Ui.IsTransmittingData" xml:space="preserve">
+    <value>데이터 전송 중</value>
+  </data>
+  <data name="Ui.Jitter" xml:space="preserve">
+    <value>지터:</value>
+  </data>
+  <data name="Ui.LastReplyStatus" xml:space="preserve">
+    <value>마지막 답변 상태</value>
+  </data>
+  <data name="Ui.LastUpdateCheck" xml:space="preserve">
+    <value>마지막 업데이트 확인: {0}</value>
+  </data>
+  <data name="Ui.LatestReplyLatencyOrStatus" xml:space="preserve">
+    <value>최신 응답 대기 시간 또는 상태</value>
+  </data>
+  <data name="Ui.License" xml:space="preserve">
+    <value>라이선스({0})</value>
+  </data>
+  <data name="Ui.LightMode" xml:space="preserve">
+    <value>라이트 모드</value>
+  </data>
+  <data name="Ui.Location" xml:space="preserve">
+    <value>위치:</value>
+  </data>
+  <data name="Ui.Low" xml:space="preserve">
+    <value>낮음:</value>
+  </data>
+  <data name="Ui.ManualAssignment" xml:space="preserve">
+    <value>수동 할당</value>
+  </data>
+  <data name="Ui.ManualDNSAssignment" xml:space="preserve">
+    <value>수동 DNS 할당</value>
+  </data>
+  <data name="Ui.ManualIPAssignment" xml:space="preserve">
+    <value>수동 IP 할당</value>
+  </data>
+  <data name="Ui.MaxTime" xml:space="preserve">
+    <value>최대 지연</value>
+  </data>
+  <data name="Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies" xml:space="preserve">
+    <value>인접한 성공적인 응답 간의 평균 대기 시간 변화</value>
+  </data>
+  <data name="Ui.MedianLatencyInTheDisplayedWindow" xml:space="preserve">
+    <value>표시된 창의 평균 대기 시간</value>
+  </data>
+  <data name="Ui.Megabytes" xml:space="preserve">
+    <value>메가바이트</value>
+  </data>
+  <data name="Ui.MemoryRAM" xml:space="preserve">
+    <value>메모리 RAM:</value>
+  </data>
+  <data name="Ui.MinTime" xml:space="preserve">
+    <value>최소 지연</value>
+  </data>
+  <data name="Ui.Name" xml:space="preserve">
+    <value>이름:</value>
+  </data>
+  <data name="Ui.NameDCD1D522" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="Ui.NetworkInterfaces" xml:space="preserve">
+    <value>네트워크 인터페이스</value>
+  </data>
+  <data name="Ui.NetworkInterfacesSettings" xml:space="preserve">
+    <value>네트워크 인터페이스 설정</value>
+  </data>
+  <data name="Ui.NewSpeedTest" xml:space="preserve">
+    <value>새로운 속도 테스트</value>
+  </data>
+  <data name="Ui.NoFrag" xml:space="preserve">
+    <value>조각화 안 함</value>
+  </data>
+  <data name="Ui.Off" xml:space="preserve">
+    <value>끄기</value>
+  </data>
+  <data name="Ui.On" xml:space="preserve">
+    <value>켜짐</value>
+  </data>
+  <data name="Ui.OpenExecutableFolder" xml:space="preserve">
+    <value>실행 가능한 폴더 열기</value>
+  </data>
+  <data name="Ui.OpenGraphInANewWindow" xml:space="preserve">
+    <value>새 창에서 그래프 열기</value>
+  </data>
+  <data name="Ui.OpenInBrowser" xml:space="preserve">
+    <value>브라우저에서 열기</value>
+  </data>
+  <data name="Ui.OpenInNewWindow" xml:space="preserve">
+    <value>새 창에서 열기</value>
+  </data>
+  <data name="Ui.OpenProfileFolder" xml:space="preserve">
+    <value>프로필 폴더 열기</value>
+  </data>
+  <data name="Ui.OpenResult" xml:space="preserve">
+    <value>결과 열기</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>선택한 그래프 열기(새 창)</value>
+  </data>
+  <data name="Ui.OpenSystemNetworkManager" xml:space="preserve">
+    <value>시스템 네트워크 관리자 열기</value>
+  </data>
+  <data name="Ui.OperativeSystem" xml:space="preserve">
+    <value>운영 체제:</value>
+  </data>
+  <data name="Ui.Options" xml:space="preserve">
+    <value>⚙️ 옵션</value>
+  </data>
+  <data name="Ui.Order" xml:space="preserve">
+    <value>순서</value>
+  </data>
+  <data name="Ui.Others" xml:space="preserve">
+    <value>기타</value>
+  </data>
+  <data name="Ui.PacketLoss" xml:space="preserve">
+    <value>패킷 손실</value>
+  </data>
+  <data name="Ui.PasteFormatHint" xml:space="preserve">
+    <value>열 순서: IP | 포트 | 간격 | 설명 | 그룹&#10;예: 192.168.1.10  80  30  웹 서버  LAN&#10;예: 192.168.130:80|30|웹 서버|LAN&#10;알려진 포트는 프로토콜을 선택하고 알 수 없는 포트는 TCP를 사용합니다.</value>
+  </data>
+  <data name="Ui.PasteFromClipboard" xml:space="preserve">
+    <value>클립보드에서 붙여넣기</value>
+  </data>
+  <data name="Ui.Pause" xml:space="preserve">
+    <value>일시중지</value>
+  </data>
+  <data name="Ui.PauseAll" xml:space="preserve">
+    <value>모두 일시중지</value>
+  </data>
+  <data name="Ui.PauseSelected" xml:space="preserve">
+    <value>일시중지가 선택됨</value>
+  </data>
+  <data name="Ui.PersistentPings" xml:space="preserve">
+    <value>지속적인 핑:</value>
+  </data>
+  <data name="Ui.PhysicalAddressMACAddress" xml:space="preserve">
+    <value>물리적 주소(MAC 주소)</value>
+  </data>
+  <data name="Ui.Ping" xml:space="preserve">
+    <value>Ping 지연</value>
+  </data>
+  <data name="Ui.PingCacheSize" xml:space="preserve">
+    <value>핑 캐시 크기:</value>
+  </data>
+  <data name="Ui.PingEvery" xml:space="preserve">
+    <value>간격:</value>
+  </data>
+  <data name="Ui.PingEveryS" xml:space="preserve">
+    <value>간격(초)</value>
+  </data>
+  <data name="Ui.Pings" xml:space="preserve">
+    <value>핑</value>
+  </data>
+  <data name="Ui.PingTimeout" xml:space="preserve">
+    <value>시간 제한:</value>
+  </data>
+  <data name="Ui.PleaseFixTheFollowingErrors" xml:space="preserve">
+    <value>다음 오류를 수정하세요.</value>
+  </data>
+  <data name="Ui.PLoss" xml:space="preserve">
+    <value>손실:</value>
+  </data>
+  <data name="Ui.Port" xml:space="preserve">
+    <value>포트:</value>
+  </data>
+  <data name="Ui.Presets" xml:space="preserve">
+    <value>사전 설정</value>
+  </data>
+  <data name="Ui.PrimaryDNS" xml:space="preserve">
+    <value>기본 DNS:</value>
+  </data>
+  <data name="Ui.Processor" xml:space="preserve">
+    <value>프로세서:</value>
+  </data>
+  <data name="Ui.ProcessorCores" xml:space="preserve">
+    <value>프로세서 코어:</value>
+  </data>
+  <data name="Ui.Property" xml:space="preserve">
+    <value>재산</value>
+  </data>
+  <data name="Ui.RecentRepliesIncludedInTheGraphAndStatistics" xml:space="preserve">
+    <value>그래프와 통계에 최근 답변이 포함됩니다.</value>
+  </data>
+  <data name="Ui.RefreshAllInterfaces" xml:space="preserve">
+    <value>모든 인터페이스 새로 고침</value>
+  </data>
+  <data name="Ui.ReleaseIP" xml:space="preserve">
+    <value>IP 해제</value>
+  </data>
+  <data name="Ui.RemoveAll" xml:space="preserve">
+    <value>모두 제거</value>
+  </data>
+  <data name="Ui.RemoveSelected" xml:space="preserve">
+    <value>선택 항목 제거</value>
+  </data>
+  <data name="Ui.RemoveSelectedServiceS" xml:space="preserve">
+    <value>선택한 서비스 제거</value>
+  </data>
+  <data name="Ui.RemoveServiceS" xml:space="preserve">
+    <value>서비스 제거</value>
+  </data>
+  <data name="Ui.RenewIP" xml:space="preserve">
+    <value>IP 갱신</value>
+  </data>
+  <data name="Ui.ReplyIPAddress" xml:space="preserve">
+    <value>응답 IP 주소</value>
+  </data>
+  <data name="Ui.ReportAnIssue" xml:space="preserve">
+    <value>문제 신고</value>
+  </data>
+  <data name="Ui.ResetAllStatistics" xml:space="preserve">
+    <value>모든 통계 재설정</value>
+  </data>
+  <data name="Ui.ResetColumnsOrder" xml:space="preserve">
+    <value>열 순서 재설정</value>
+  </data>
+  <data name="Ui.ResetSelectedStatistics" xml:space="preserve">
+    <value>선택한 통계 재설정</value>
+  </data>
+  <data name="Ui.ResponseTime" xml:space="preserve">
+    <value>응답 시간</value>
+  </data>
+  <data name="Ui.Resume" xml:space="preserve">
+    <value>재개</value>
+  </data>
+  <data name="Ui.ResumeAll" xml:space="preserve">
+    <value>모두 재개</value>
+  </data>
+  <data name="Ui.ResumeSelected" xml:space="preserve">
+    <value>선택 항목 재개</value>
+  </data>
+  <data name="Ui.Save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="Ui.SaveAndRestorePingRepliesAfterProgramRestart" xml:space="preserve">
+    <value>프로그램 재시작 후 ping 응답 저장 및 복원</value>
+  </data>
+  <data name="Ui.ScreensResolutionWorkingAreaUsableArea" xml:space="preserve">
+    <value>화면, 해상도, 작업 영역, 사용 가능한 영역:</value>
+  </data>
+  <data name="Ui.SecondaryDNS" xml:space="preserve">
+    <value>보조 DNS:</value>
+  </data>
+  <data name="Ui.SelectFromTheIncludedBackgroundStyles" xml:space="preserve">
+    <value>포함된 배경 스타일 중에서 선택하세요.</value>
+  </data>
+  <data name="Ui.SentOn" xml:space="preserve">
+    <value>보낸 날짜</value>
+  </data>
+  <data name="Ui.Server" xml:space="preserve">
+    <value>서버:</value>
+  </data>
+  <data name="Ui.ServerAEF7DE28" xml:space="preserve">
+    <value>서버</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>동일한 프로토콜과 주소를 사용하는 서비스가 이미 있습니다.</value>
+  </data>
+  <data name="Ui.Services" xml:space="preserve">
+    <value>서비스</value>
+  </data>
+  <data name="Ui.ServicesCount" xml:space="preserve">
+    <value>(서비스 {0}개)</value>
+  </data>
+  <data name="Ui.ServicesCountPlain" xml:space="preserve">
+    <value>서비스 {0}개</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>서비스 {0}개가 업데이트되었습니다.</value>
+  </data>
+  <data name="Ui.ServiceUpdated" xml:space="preserve">
+    <value>서비스가 업데이트되었습니다.</value>
+  </data>
+  <data name="Ui.SetIP" xml:space="preserve">
+    <value>IP 설정</value>
+  </data>
+  <data name="Ui.SetTheDNSFromTheDefinedServerGateway" xml:space="preserve">
+    <value>정의된 서버 게이트웨이에서 DNS를 설정합니다.</value>
+  </data>
+  <data name="Ui.Show" xml:space="preserve">
+    <value>👁 쇼</value>
+  </data>
+  <data name="Ui.ShowATrayIconInTheSystemNotificationAreaForQuickAccessWhenTheAppIsRunnin" xml:space="preserve">
+    <value>앱 실행 시 빠른 접근을 위해 시스템 알림 영역에 트레이 아이콘을 표시합니다.</value>
+  </data>
+  <data name="Ui.SpeedtestDependencyWasNotFoundInTheSystem" xml:space="preserve">
+    <value>시스템에서 Speedtest 종속성을 찾을 수 없습니다.</value>
+  </data>
+  <data name="Ui.SpeedTests" xml:space="preserve">
+    <value>속도 테스트</value>
+  </data>
+  <data name="Ui.SpeedTestSettings" xml:space="preserve">
+    <value>속도 테스트 설정</value>
+  </data>
+  <data name="Ui.StartTheApplicationAutomaticallyWhenTheSystemStarts" xml:space="preserve">
+    <value>시스템이 시작되면 자동으로 애플리케이션을 시작합니다.</value>
+  </data>
+  <data name="Ui.StartWithSystem" xml:space="preserve">
+    <value>시스템 시작 시 실행</value>
+  </data>
+  <data name="Ui.StaticIPv4" xml:space="preserve">
+    <value>정적 IPv4</value>
+  </data>
+  <data name="Ui.Status" xml:space="preserve">
+    <value>상태</value>
+  </data>
+  <data name="Ui.StopSpeedTest" xml:space="preserve">
+    <value>속도 테스트 중지</value>
+  </data>
+  <data name="Ui.SubnetMask" xml:space="preserve">
+    <value>서브넷 마스크:</value>
+  </data>
+  <data name="Ui.Succeed" xml:space="preserve">
+    <value>성공</value>
+  </data>
+  <data name="Ui.SucceedDate" xml:space="preserve">
+    <value>마지막 성공</value>
+  </data>
+  <data name="Ui.SucceedPings" xml:space="preserve">
+    <value>성공한 Ping</value>
+  </data>
+  <data name="Ui.SuggestAnImprovementOrFeature" xml:space="preserve">
+    <value>개선 사항이나 기능 제안</value>
+  </data>
+  <data name="Ui.SystemMode" xml:space="preserve">
+    <value>시스템 모드</value>
+  </data>
+  <data name="Ui.TermsOfUse" xml:space="preserve">
+    <value>이용약관</value>
+  </data>
+  <data name="Ui.ThemeDark" xml:space="preserve">
+    <value>🖌️ 테마: 어둡게</value>
+  </data>
+  <data name="Ui.ThemeLight" xml:space="preserve">
+    <value>🖌️ 테마: 밝게</value>
+  </data>
+  <data name="Ui.ThemeSystem" xml:space="preserve">
+    <value>🖌️ 테마: 시스템</value>
+  </data>
+  <data name="Ui.ThisModuleRequiresTheOoklaSpeedtestCLIBinaryYetWasNotFoundInTheSystemPle" xml:space="preserve">
+    <value>이 모듈에는 Ookla Speedtest CLI 바이너리가 필요하지만 시스템에서 찾을 수 없습니다.
+종속성을 설치하고 모듈을 다시 로드하십시오.</value>
+  </data>
+  <data name="Ui.ThrowException" xml:space="preserve">
+    <value>예외 발생</value>
+  </data>
+  <data name="Ui.Time" xml:space="preserve">
+    <value>시간</value>
+  </data>
+  <data name="Ui.Timeout" xml:space="preserve">
+    <value>시간 초과:</value>
+  </data>
+  <data name="Ui.TimeoutS" xml:space="preserve">
+    <value>시간 제한(초)</value>
+  </data>
+  <data name="Ui.TimeToLive" xml:space="preserve">
+    <value>유효 시간(TTL):</value>
+  </data>
+  <data name="Ui.ToogleFullscreen" xml:space="preserve">
+    <value>전체 화면 전환</value>
+  </data>
+  <data name="Ui.TotalPings" xml:space="preserve">
+    <value>총 핑</value>
+  </data>
+  <data name="Ui.TriggerNewUpdate" xml:space="preserve">
+    <value>새 업데이트 트리거</value>
+  </data>
+  <data name="Ui.Type" xml:space="preserve">
+    <value>유형</value>
+  </data>
+  <data name="Ui.UIScale" xml:space="preserve">
+    <value>UI 규모</value>
+  </data>
+  <data name="Ui.Upload" xml:space="preserve">
+    <value>업로드</value>
+  </data>
+  <data name="Ui.Uploaded" xml:space="preserve">
+    <value>업로드됨</value>
+  </data>
+  <data name="Ui.UseSystemTray" xml:space="preserve">
+    <value>시스템 트레이 사용</value>
+  </data>
+  <data name="Ui.Value" xml:space="preserve">
+    <value>가치</value>
+  </data>
+  <data name="Ui.VirtualNetworks" xml:space="preserve">
+    <value>가상 네트워크</value>
+  </data>
+  <data name="Ui.Website" xml:space="preserve">
+    <value>웹사이트</value>
+  </data>
+  <data name="Ui.WhenClosingTheMainWindowKeepTheAppRunningInTheSystemTrayInsteadOfExiting" xml:space="preserve">
+    <value>메인 창을 닫을 때 종료하는 대신 시스템 트레이에서 앱을 계속 실행하세요.</value>
+  </data>
+  <data name="Update.Auto" xml:space="preserve">
+    <value>자동 업데이트</value>
+  </data>
+  <data name="Update.CheckFailed" xml:space="preserve">
+    <value>업데이트를 확인할 수 없습니다</value>
+  </data>
+  <data name="Update.Found.Message" xml:space="preserve">
+    <value>현재 버전: {0}
+새 버전: {1}
+앞으로 출시될 버전: {2}
+출시일: {3:f}</value>
+  </data>
+  <data name="Update.Found.Title" xml:space="preserve">
+    <value>{0} 업데이트를 찾았습니다.</value>
+  </data>
+  <data name="Update.Manual" xml:space="preserve">
+    <value>수동 업데이트</value>
+  </data>
+  <data name="Update.None.Message" xml:space="preserve">
+    <value>{0}은(는) 최신 버전을 실행 중입니다.</value>
+  </data>
+  <data name="Update.None.Title" xml:space="preserve">
+    <value>사용 가능한 업데이트가 없습니다.</value>
+  </data>
+  <data name="Update.TriggerUnavailable.Message" xml:space="preserve">
+    <value>새 업데이트를 트리거할 수 있는 릴리스가 없습니다.</value>
+  </data>
+  <data name="Update.TriggerUnavailable.Title" xml:space="preserve">
+    <value>새 업데이트를 실행할 수 없습니다.</value>
+  </data>
+  <data name="Window.AlreadyRunning.Title" xml:space="preserve">
+    <value>{0} - 이미 실행 중</value>
+  </data>
+  <data name="Window.CrashReport.Title" xml:space="preserve">
+    <value>{0} - 충돌 보고서</value>
   </data>
 </root>

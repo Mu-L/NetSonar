@@ -58,711 +58,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Navigation.Settings" xml:space="preserve">
-    <value>Настройки</value>
-  </data>
-  <data name="Settings.Theme" xml:space="preserve">
-    <value>Тема</value>
-  </data>
-  <data name="Settings.Language" xml:space="preserve">
-    <value>Язык</value>
-  </data>
-  <data name="Settings.Language.FollowSystem" xml:space="preserve">
-    <value>Использовать язык системы</value>
-  </data>
-  <data name="Settings.Language.Description" xml:space="preserve">
-    <value>Выберите язык, используемый во всем приложении.</value>
-  </data>
-  <data name="Ui.Show" xml:space="preserve">
-    <value>👁 Шоу</value>
-  </data>
-  <data name="Ui.Options" xml:space="preserve">
-    <value>⚙️ Опции</value>
-  </data>
-  <data name="Ui.StartWithSystem" xml:space="preserve">
-    <value>Запускать вместе с системой</value>
-  </data>
-  <data name="Ui.ThemeSystem" xml:space="preserve">
-    <value>🖌️ Тема: Система</value>
-  </data>
-  <data name="Ui.ThemeLight" xml:space="preserve">
-    <value>🖌️ Тема: Светлая</value>
-  </data>
-  <data name="Ui.ThemeDark" xml:space="preserve">
-    <value>🖌️ Тема: Темная.</value>
-  </data>
-  <data name="Ui.Exit" xml:space="preserve">
-    <value>✖ Выход</value>
-  </data>
-  <data name="Ui.On" xml:space="preserve">
-    <value>Вкл.</value>
-  </data>
-  <data name="Ui.Off" xml:space="preserve">
-    <value>Выкл.</value>
-  </data>
-  <data name="Ui.OperativeSystem" xml:space="preserve">
-    <value>Операционная система:</value>
-  </data>
-  <data name="Ui.GraphicCard" xml:space="preserve">
-    <value>Видеокарта:</value>
-  </data>
-  <data name="Ui.Processor" xml:space="preserve">
-    <value>Процессор:</value>
-  </data>
-  <data name="Ui.ProcessorCores" xml:space="preserve">
-    <value>Ядра процессора:</value>
-  </data>
-  <data name="Ui.MemoryRAM" xml:space="preserve">
-    <value>Память ОЗУ:</value>
-  </data>
-  <data name="Ui.Framework" xml:space="preserve">
-    <value>Фреймворк:</value>
-  </data>
-  <data name="Ui.AvaloniaUI" xml:space="preserve">
-    <value>AvaloniaUI:</value>
-  </data>
-  <data name="Ui.ScreensResolutionWorkingAreaUsableArea" xml:space="preserve">
-    <value>Экраны, разрешение, рабочая область, полезная площадь:</value>
-  </data>
-  <data name="Ui.Description" xml:space="preserve">
-    <value>Описание</value>
-  </data>
-  <data name="Ui.Assemblies" xml:space="preserve">
-    <value>Сборки</value>
-  </data>
-  <data name="Ui.TermsOfUse" xml:space="preserve">
-    <value>Условия использования</value>
-  </data>
-  <data name="Ui.Services" xml:space="preserve">
-    <value>Услуги</value>
-  </data>
-  <data name="Ui.AddNewServices" xml:space="preserve">
-    <value>Добавить новую услугу(ы)</value>
-  </data>
-  <data name="Ui.ImportFromJSON" xml:space="preserve">
-    <value>Импорт из JSON</value>
-  </data>
-  <data name="Ui.PasteFromClipboard" xml:space="preserve">
-    <value>Вставить из буфера обмена</value>
-  </data>
-  <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>Порядок столбцов: IP | Порт | Интервал | Описание | Группа&#10;Пример: 192.168.1.10  80  30  Веб-сервер  LAN&#10;Пример: 192.168.130:80|30|Веб-сервер|LAN&#10;Известные порты выбирают протокол; неизвестные используют TCP.</value>
-  </data>
-  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
-    <value>Добавить: основная кнопка = пустая строка, стрелка = импорт&#10;Формат вставки: IP | Порт | Интервал | Описание | Группа&#10;Пример: 192.168.1.10  80  30  Веб-сервер  LAN&#10;Пример: 192.168.130:80|30|Веб-сервер|LAN&#10;Известные порты выбирают протокол; неизвестные используют TCP.</value>
-  </data>
-  <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
-    <value>Не удалось вставить из буфера обмена</value>
-  </data>
-  <data name="Import.Clipboard.NoData" xml:space="preserve">
-    <value>Буфер обмена пуст или не содержит пригодных данных служб.</value>
-  </data>
-  <data name="Import.Clipboard.Summary" xml:space="preserve">
-    <value>Вставлено служб: {0}, пропущено: {1}.</value>
-  </data>
-  <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
-    <value>Импортировать сетевые шлюзы</value>
-  </data>
-  <data name="Ui.ImportPublicHosts" xml:space="preserve">
-    <value>Импортировать общедоступные хосты</value>
-  </data>
-  <data name="Ui.ImportAll" xml:space="preserve">
-    <value>Импортировать все</value>
-  </data>
-  <data name="Ui.RemoveServiceS" xml:space="preserve">
-    <value>Удалить сервис(ы)</value>
-  </data>
-  <data name="Ui.RemoveAll" xml:space="preserve">
-    <value>Удалить все</value>
-  </data>
-  <data name="Ui.PleaseFixTheFollowingErrors" xml:space="preserve">
-    <value>Пожалуйста, исправьте следующие ошибки:</value>
-  </data>
-  <data name="Ui.RemoveSelectedServiceS" xml:space="preserve">
-    <value>Удалить выбранные услуги</value>
-  </data>
-  <data name="Ui.Enable" xml:space="preserve">
-    <value>Включить</value>
-  </data>
-  <data name="Ui.Type" xml:space="preserve">
-    <value>Тип</value>
-  </data>
-  <data name="Ui.IPAddressUrl" xml:space="preserve">
-    <value>IP-адрес / URL</value>
-  </data>
-  <data name="Ui.Group" xml:space="preserve">
-    <value>Группа</value>
-  </data>
-  <data name="Ui.PingEveryS" xml:space="preserve">
-    <value>Интервал (с)</value>
-  </data>
-  <data name="Ui.TimeoutS" xml:space="preserve">
-    <value>Тайм-аут (с)</value>
-  </data>
-  <data name="Ui.BufferSize" xml:space="preserve">
-    <value>Размер буфера</value>
-  </data>
-  <data name="Ui.NoFrag" xml:space="preserve">
-    <value>Не фрагментировать</value>
-  </data>
-  <data name="Ui.Import" xml:space="preserve">
-    <value>Импорт</value>
-  </data>
-  <data name="Ui.Cancel" xml:space="preserve">
-    <value>Отмена</value>
-  </data>
-  <data name="Ui.Megabytes" xml:space="preserve">
-    <value>Мегабайты</value>
-  </data>
-  <data name="Ui.AutomaticIPAssignmentFromDHCP" xml:space="preserve">
-    <value>Автоматическое назначение IP по DHCP</value>
-  </data>
-  <data name="Ui.ManualIPAssignment" xml:space="preserve">
-    <value>Назначение IP вручную</value>
-  </data>
-  <data name="Ui.IPAddress" xml:space="preserve">
-    <value>IP-адрес:</value>
-  </data>
-  <data name="Ui.SubnetMask" xml:space="preserve">
-    <value>Маска подсети:</value>
-  </data>
-  <data name="Ui.Gateway" xml:space="preserve">
-    <value>Шлюз:</value>
-  </data>
-  <data name="Ui.ClearTheGatewayAddress" xml:space="preserve">
-    <value>Очистить адрес шлюза</value>
-  </data>
-  <data name="Ui.AutomaticDNSAssignmentFromDHCP" xml:space="preserve">
-    <value>Автоматическое назначение DNS по DHCP</value>
-  </data>
-  <data name="Ui.ManualDNSAssignment" xml:space="preserve">
-    <value>Назначение DNS вручную</value>
-  </data>
-  <data name="Ui.Presets" xml:space="preserve">
-    <value>Пресеты</value>
-  </data>
-  <data name="Ui.PrimaryDNS" xml:space="preserve">
-    <value>Первичный DNS:</value>
-  </data>
-  <data name="Ui.SetTheDNSFromTheDefinedServerGateway" xml:space="preserve">
-    <value>Установите DNS с определенного шлюза сервера.</value>
-  </data>
-  <data name="Ui.ClearAddress" xml:space="preserve">
-    <value>Очистить адрес</value>
-  </data>
-  <data name="Ui.SecondaryDNS" xml:space="preserve">
-    <value>Вторичный DNS:</value>
-  </data>
-  <data name="Ui.Apply" xml:space="preserve">
-    <value>Применить</value>
-  </data>
-  <data name="Ui.Disable" xml:space="preserve">
-    <value>Отключить</value>
-  </data>
-  <data name="Ui.ReleaseIP" xml:space="preserve">
-    <value>Освободить IP</value>
-  </data>
-  <data name="Ui.RenewIP" xml:space="preserve">
-    <value>Продлить IP</value>
-  </data>
-  <data name="Ui.SetIP" xml:space="preserve">
-    <value>Установить IP</value>
-  </data>
-  <data name="Ui.ManualAssignment" xml:space="preserve">
-    <value>Назначение вручную</value>
-  </data>
-  <data name="Ui.ExportTo" xml:space="preserve">
-    <value>Экспортировать в</value>
-  </data>
-  <data name="Ui.OpenInNewWindow" xml:space="preserve">
-    <value>Открыть в новом окне</value>
-  </data>
-  <data name="Ui.PhysicalAddressMACAddress" xml:space="preserve">
-    <value>Физический адрес (MAC-адрес)</value>
-  </data>
-  <data name="Ui.ConnectionSpeed" xml:space="preserve">
-    <value>Скорость соединения</value>
-  </data>
-  <data name="Ui.StaticIPv4" xml:space="preserve">
-    <value>Статический IPv4</value>
-  </data>
-  <data name="Ui.Downloaded" xml:space="preserve">
-    <value>Скачано</value>
-  </data>
-  <data name="Ui.Uploaded" xml:space="preserve">
-    <value>Загружено</value>
-  </data>
-  <data name="Ui.Property" xml:space="preserve">
-    <value>Недвижимость</value>
-  </data>
-  <data name="Ui.Value" xml:space="preserve">
-    <value>Значение</value>
-  </data>
-  <data name="Ui.GraphOptions" xml:space="preserve">
-    <value>Параметры графика</value>
-  </data>
-  <data name="Ui.PingEvery" xml:space="preserve">
-    <value>Интервал:</value>
-  </data>
-  <data name="Ui.ChangesTheProbeIntervalForEveryServiceInThisGraph" xml:space="preserve">
-    <value>Изменяет интервал проверки для каждой службы на этом графике.</value>
-  </data>
-  <data name="Ui.Timeout" xml:space="preserve">
-    <value>Тайм-аут:</value>
-  </data>
-  <data name="Ui.ChangesTheTimeoutForEveryServiceInThisGraph" xml:space="preserve">
-    <value>Изменяет тайм-аут для каждой службы на этом графике.</value>
-  </data>
-  <data name="Ui.RecentRepliesIncludedInTheGraphAndStatistics" xml:space="preserve">
-    <value>Последние ответы включены в график и статистику</value>
-  </data>
-  <data name="Ui.ClickToToggleTopMenu" xml:space="preserve">
-    <value>Нажмите, чтобы переключить верхнее меню.</value>
-  </data>
-  <data name="Ui.About" xml:space="preserve">
-    <value>О</value>
-  </data>
-  <data name="Ui.Website" xml:space="preserve">
-    <value>Веб-сайт</value>
-  </data>
-  <data name="Ui.CommunityForums" xml:space="preserve">
-    <value>Форумы сообщества</value>
-  </data>
-  <data name="Ui.Donate" xml:space="preserve">
-    <value>Пожертвовать</value>
-  </data>
-  <data name="Ui.AskAQuestion" xml:space="preserve">
-    <value>Задать вопрос</value>
-  </data>
-  <data name="Ui.ReportAnIssue" xml:space="preserve">
-    <value>Сообщить о проблеме</value>
-  </data>
-  <data name="Ui.SuggestAnImprovementOrFeature" xml:space="preserve">
-    <value>Предложить улучшение или функцию</value>
-  </data>
-  <data name="Ui.OpenProfileFolder" xml:space="preserve">
-    <value>Открыть папку профиля</value>
-  </data>
-  <data name="Ui.CheckForUpdates" xml:space="preserve">
-    <value>Проверить обновления</value>
-  </data>
-  <data name="Ui.Debug" xml:space="preserve">
-    <value>Отладка</value>
-  </data>
-  <data name="Ui.OpenExecutableFolder" xml:space="preserve">
-    <value>Открыть папку с исполняемым файлом</value>
-  </data>
-  <data name="Ui.TriggerNewUpdate" xml:space="preserve">
-    <value>Запустить новое обновление</value>
-  </data>
-  <data name="Ui.ThrowException" xml:space="preserve">
-    <value>Выбросить исключение</value>
-  </data>
-  <data name="Ui.ToogleFullscreen" xml:space="preserve">
-    <value>Полноэкранный режим</value>
-  </data>
-  <data name="Ui.NetworkInterfaces" xml:space="preserve">
-    <value>Сетевые интерфейсы</value>
-  </data>
-  <data name="Ui.Status" xml:space="preserve">
-    <value>Статус</value>
-  </data>
-  <data name="Ui.Others" xml:space="preserve">
-    <value>Другие</value>
-  </data>
-  <data name="Ui.VirtualNetworks" xml:space="preserve">
-    <value>Виртуальные сети</value>
-  </data>
-  <data name="Ui.HavePhysicalAddress" xml:space="preserve">
-    <value>С физическим адресом</value>
-  </data>
-  <data name="Ui.HaveIPAddress" xml:space="preserve">
-    <value>С IP-адресом</value>
-  </data>
-  <data name="Ui.IsTransmittingData" xml:space="preserve">
-    <value>Передаёт данные</value>
-  </data>
-  <data name="Ui.FilterInterfacesByText" xml:space="preserve">
-    <value>Фильтровать интерфейсы по тексту</value>
-  </data>
-  <data name="Ui.RefreshAllInterfaces" xml:space="preserve">
-    <value>Обновить все интерфейсы</value>
-  </data>
-  <data name="Ui.OpenSystemNetworkManager" xml:space="preserve">
-    <value>Открыть системные настройки сети</value>
-  </data>
-  <data name="Ui.NetworkInterfacesSettings" xml:space="preserve">
-    <value>Настройки сетевых интерфейсов</value>
-  </data>
-  <data name="Ui.AutoRefresh" xml:space="preserve">
-    <value>Автоматическое обновление:</value>
-  </data>
-  <data name="Ui.CardWidth" xml:space="preserve">
-    <value>Ширина карты:</value>
-  </data>
-  <data name="Ui.CardHeight" xml:space="preserve">
-    <value>Высота карты:</value>
-  </data>
-  <data name="Ui.FilterServicesByText" xml:space="preserve">
-    <value>Фильтровать услуги по тексту</value>
-  </data>
-  <data name="Ui.ResumeAll" xml:space="preserve">
-    <value>Возобновить все</value>
-  </data>
-  <data name="Ui.PauseAll" xml:space="preserve">
-    <value>Приостановить все</value>
-  </data>
-  <data name="Ui.GridViewOptions" xml:space="preserve">
-    <value>Параметры просмотра сетки</value>
-  </data>
-  <data name="Ui.GroupBy" xml:space="preserve">
-    <value>Группировать по:</value>
-  </data>
-  <data name="Ui.ResetColumnsOrder" xml:space="preserve">
-    <value>Сбросить порядок столбцов</value>
-  </data>
-  <data name="Ui.DefaultPingOptions" xml:space="preserve">
-    <value>Параметры пинга по умолчанию</value>
-  </data>
-  <data name="Ui.PingTimeout" xml:space="preserve">
-    <value>Тайм-аут:</value>
-  </data>
-  <data name="Ui.BufferSize1DF49DCA" xml:space="preserve">
-    <value>Размер буфера:</value>
-  </data>
-  <data name="Ui.TimeToLive" xml:space="preserve">
-    <value>Время жизни (TTL):</value>
-  </data>
-  <data name="Ui.DoNotFragment" xml:space="preserve">
-    <value>Не фрагментировать:</value>
-  </data>
-  <data name="Ui.PingCacheSize" xml:space="preserve">
-    <value>Размер кэша Ping:</value>
-  </data>
-  <data name="Ui.GraphCacheSize" xml:space="preserve">
-    <value>Размер кэша графа:</value>
-  </data>
-  <data name="Ui.PersistentPings" xml:space="preserve">
-    <value>Постоянные пинги:</value>
-  </data>
-  <data name="Ui.SaveAndRestorePingRepliesAfterProgramRestart" xml:space="preserve">
-    <value>Сохранять и восстанавливать ответы на пинг после перезапуска программы</value>
-  </data>
-  <data name="Ui.PauseSelected" xml:space="preserve">
-    <value>Приостановить выбранное</value>
-  </data>
-  <data name="Ui.ResumeSelected" xml:space="preserve">
-    <value>Возобновить выбранные</value>
-  </data>
-  <data name="Ui.ResetSelectedStatistics" xml:space="preserve">
-    <value>Сбросить выбранную статистику</value>
-  </data>
-  <data name="Ui.ResetAllStatistics" xml:space="preserve">
-    <value>Сбросить всю статистику</value>
-  </data>
-  <data name="Ui.RemoveSelected" xml:space="preserve">
-    <value>Удалить выбранное</value>
-  </data>
-  <data name="Ui.ExportSelectedToJSON" xml:space="preserve">
-    <value>Экспортировать выбранное в JSON</value>
-  </data>
-  <data name="Ui.ExportAllToJSON" xml:space="preserve">
-    <value>Экспортировать все в JSON</value>
-  </data>
-  <data name="Ui.OpenInBrowser" xml:space="preserve">
-    <value>Открыть в браузере</value>
-  </data>
-  <data name="Ui.IPAddress3C3DE0C9" xml:space="preserve">
-    <value>IP-адрес</value>
-  </data>
-  <data name="Ui.Time" xml:space="preserve">
-    <value>Время</value>
-  </data>
-  <data name="Ui.MinTime" xml:space="preserve">
-    <value>Мин. задержка</value>
-  </data>
-  <data name="Ui.AvgTime" xml:space="preserve">
-    <value>Средняя задержка</value>
-  </data>
-  <data name="Ui.MaxTime" xml:space="preserve">
-    <value>Макс. задержка</value>
-  </data>
-  <data name="Ui.Pings" xml:space="preserve">
-    <value>Пинги</value>
-  </data>
-  <data name="Ui.Succeed" xml:space="preserve">
-    <value>Успешно</value>
-  </data>
-  <data name="Ui.Failed" xml:space="preserve">
-    <value>Не удалось</value>
-  </data>
-  <data name="Ui.ConsecutiveSucceed" xml:space="preserve">
-    <value>Успехов подряд</value>
-  </data>
-  <data name="Ui.ConsecutiveFailed" xml:space="preserve">
-    <value>Ошибок подряд</value>
-  </data>
-  <data name="Ui.SucceedDate" xml:space="preserve">
-    <value>Последний успех</value>
-  </data>
-  <data name="Ui.FailedDate" xml:space="preserve">
-    <value>Последняя ошибка</value>
-  </data>
-  <data name="Ui.HostnameQuery" xml:space="preserve">
-    <value>Имя хоста/запрос</value>
-  </data>
-  <data name="Ui.Order" xml:space="preserve">
-    <value>Порядок</value>
-  </data>
-  <data name="Ui.TotalPings" xml:space="preserve">
-    <value>Всего пингов</value>
-  </data>
-  <data name="Ui.SucceedPings" xml:space="preserve">
-    <value>Успешные пинги</value>
-  </data>
-  <data name="Ui.FailedPings" xml:space="preserve">
-    <value>Неудачные пинги</value>
-  </data>
-  <data name="Ui.ClearStatistics" xml:space="preserve">
-    <value>Очистить статистику</value>
-  </data>
-  <data name="Ui.Resume" xml:space="preserve">
-    <value>Возобновить</value>
-  </data>
-  <data name="Ui.Pause" xml:space="preserve">
-    <value>Пауза</value>
-  </data>
-  <data name="Ui.ExportPings" xml:space="preserve">
-    <value>Экспортировать пинги</value>
-  </data>
-  <data name="Ui.ExportToCSV" xml:space="preserve">
-    <value>Экспорт в CSV</value>
-  </data>
-  <data name="Ui.ExportToJSON" xml:space="preserve">
-    <value>Экспорт в JSON</value>
-  </data>
-  <data name="Ui.ReplyIPAddress" xml:space="preserve">
-    <value>IP-адрес ответа</value>
-  </data>
-  <data name="Ui.SentOn" xml:space="preserve">
-    <value>Отправлено</value>
-  </data>
-  <data name="Ui.ErrorMessage" xml:space="preserve">
-    <value>Сообщение об ошибке</value>
-  </data>
-  <data name="Ui.ResponseTime" xml:space="preserve">
-    <value>Время ответа</value>
-  </data>
-  <data name="Ui.LastReplyStatus" xml:space="preserve">
-    <value>Статус последнего ответа</value>
-  </data>
-  <data name="Ui.LatestReplyLatencyOrStatus" xml:space="preserve">
-    <value>Последняя задержка ответа или статус</value>
-  </data>
-  <data name="Ui.MedianLatencyInTheDisplayedWindow" xml:space="preserve">
-    <value>Медианная задержка в отображаемом окне</value>
-  </data>
-  <data name="Ui.95thPercentileLatencyInTheDisplayedWindow" xml:space="preserve">
-    <value>Задержка 95-го процентиля в отображаемом окне</value>
-  </data>
-  <data name="Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies" xml:space="preserve">
-    <value>Среднее изменение задержки между соседними успешными ответами</value>
-  </data>
-  <data name="Ui.FailedRepliesInTheDisplayedWindow" xml:space="preserve">
-    <value>Неудачные ответы в отображаемом окне</value>
-  </data>
-  <data name="Ui.OpenGraphInANewWindow" xml:space="preserve">
-    <value>Открыть график в новом окне</value>
-  </data>
-  <data name="Ui.SystemMode" xml:space="preserve">
-    <value>Системный режим</value>
-  </data>
-  <data name="Ui.LightMode" xml:space="preserve">
-    <value>Светлый режим</value>
-  </data>
-  <data name="Ui.DarkMode" xml:space="preserve">
-    <value>Темный режим</value>
-  </data>
-  <data name="Ui.UIScale" xml:space="preserve">
-    <value>Масштаб пользовательского интерфейса</value>
-  </data>
-  <data name="Ui.AdjustTheUIScaleToIncreaseOrDecreaseTheSizeOfTheInterfaceElements" xml:space="preserve">
-    <value>Отрегулируйте масштаб пользовательского интерфейса, чтобы увеличить или уменьшить размер элементов интерфейса.</value>
-  </data>
-  <data name="Ui.Background" xml:space="preserve">
-    <value>Фон</value>
-  </data>
-  <data name="Ui.AnimatedBackground" xml:space="preserve">
-    <value>Анимированный фон</value>
-  </data>
-  <data name="Ui.EnableDisableTheAnimationsForTheBackgroundWhichAreDrivenByTheCurrentlyAc" xml:space="preserve">
-    <value>Включите/отключите анимацию фона, которая управляется текущим активным эффектом.</value>
-  </data>
-  <data name="Ui.BackgroundTransitions" xml:space="preserve">
-    <value>Фоновые переходы</value>
-  </data>
-  <data name="Ui.EnableDisableTheTransitionsForTheBackgroundTheseWillFadeBetweenTheActive" xml:space="preserve">
-    <value>Включите/отключите переходы для фона. При изменении они будут исчезать между активными эффектами.</value>
-  </data>
-  <data name="Ui.BackgroundStyle" xml:space="preserve">
-    <value>Стиль фона</value>
-  </data>
-  <data name="Ui.SelectFromTheIncludedBackgroundStyles" xml:space="preserve">
-    <value>Выберите один из включенных стилей фона.</value>
-  </data>
-  <data name="Ui.CustomShaders" xml:space="preserve">
-    <value>Пользовательские шейдеры</value>
-  </data>
-  <data name="Ui.ClickAnyOfTheButtonsBelowToEnableABackgroundShaderClickItAgainToDisableI" xml:space="preserve">
-    <value>Нажмите любую из кнопок ниже, чтобы включить фоновый шейдер. Нажмите на нее еще раз, чтобы отключить ее. Они, вероятно, создадут значительную нагрузку на ваш графический процессор и предназначены исключительно для демонстрации и проверки возможностей фонового рендеринга.</value>
-  </data>
-  <data name="Ui.General" xml:space="preserve">
-    <value>Общий</value>
-  </data>
-  <data name="Ui.StartTheApplicationAutomaticallyWhenTheSystemStarts" xml:space="preserve">
-    <value>Запускайте приложение автоматически при запуске системы.</value>
-  </data>
-  <data name="Ui.UseSystemTray" xml:space="preserve">
-    <value>Использовать системный трей</value>
-  </data>
-  <data name="Ui.ShowATrayIconInTheSystemNotificationAreaForQuickAccessWhenTheAppIsRunnin" xml:space="preserve">
-    <value>Показывать значок на панели задач в области системных уведомлений для быстрого доступа, когда приложение работает.</value>
-  </data>
-  <data name="Ui.CloseToSystemTray" xml:space="preserve">
-    <value>Рядом с системным лотком</value>
-  </data>
-  <data name="Ui.WhenClosingTheMainWindowKeepTheAppRunningInTheSystemTrayInsteadOfExiting" xml:space="preserve">
-    <value>При закрытии главного окна оставляйте приложение работающим на панели задач, а не закрывайте его.</value>
-  </data>
-  <data name="Ui.CheckForUpdatesOnStart" xml:space="preserve">
-    <value>Проверка обновлений при запуске</value>
-  </data>
-  <data name="Ui.CheckForUpdatesOnApplicationStartIfAnUpdateIsAvailableItWillNotifyAndAdd" xml:space="preserve">
-    <value>Проверьте наличие обновлений при запуске приложения. Если обновление доступно, оно уведомит вас об этом и дополнительно предложит вам выполнить действие.</value>
-  </data>
-  <data name="Ui.SpeedTests" xml:space="preserve">
-    <value>Тесты скорости</value>
-  </data>
-  <data name="Ui.NewSpeedTest" xml:space="preserve">
-    <value>Новый тест скорости</value>
-  </data>
-  <data name="Ui.StopSpeedTest" xml:space="preserve">
-    <value>Остановить тест скорости</value>
-  </data>
-  <data name="Ui.SpeedTestSettings" xml:space="preserve">
-    <value>Настройки теста скорости</value>
-  </data>
-  <data name="Ui.AutoSpeedTest" xml:space="preserve">
-    <value>Автоматические тесты:</value>
-  </data>
-  <data name="Ui.Server" xml:space="preserve">
-    <value>Сервер:</value>
-  </data>
-  <data name="Ui.GaugeRange" xml:space="preserve">
-    <value>Диапазон измерения:</value>
-  </data>
-  <data name="Ui.GaugeIncrement" xml:space="preserve">
-    <value>Приращение манометра:</value>
-  </data>
-  <data name="Ui.OpenResult" xml:space="preserve">
-    <value>Открыть результат</value>
-  </data>
-  <data name="Ui.DateTime" xml:space="preserve">
-    <value>Дата время</value>
-  </data>
-  <data name="Ui.Ping" xml:space="preserve">
-    <value>Пинг</value>
-  </data>
-  <data name="Ui.Download" xml:space="preserve">
-    <value>Скачать</value>
-  </data>
-  <data name="Ui.Upload" xml:space="preserve">
-    <value>Загрузить</value>
-  </data>
-  <data name="Ui.PacketLoss" xml:space="preserve">
-    <value>Потеря пакетов</value>
-  </data>
-  <data name="Ui.Interface" xml:space="preserve">
-    <value>Интерфейс</value>
-  </data>
-  <data name="Ui.ServerAEF7DE28" xml:space="preserve">
-    <value>Сервер</value>
-  </data>
-  <data name="Ui.SpeedtestDependencyWasNotFoundInTheSystem" xml:space="preserve">
-    <value>Зависимость Speedtest не найдена в системе</value>
-  </data>
-  <data name="Ui.ThisModuleRequiresTheOoklaSpeedtestCLIBinaryYetWasNotFoundInTheSystemPle" xml:space="preserve">
-    <value>Для этого модуля требуется двоичный файл CLI Ookla Speedtest, но он не найден в системе.
-Пожалуйста, установите зависимость и перезагрузите модуль.</value>
-  </data>
-  <data name="Ui.Jitter" xml:space="preserve">
-    <value>Джиттер:</value>
-  </data>
-  <data name="Ui.Low" xml:space="preserve">
-    <value>Низкий:</value>
-  </data>
-  <data name="Ui.High" xml:space="preserve">
-    <value>Высокий:</value>
-  </data>
-  <data name="Ui.PLoss" xml:space="preserve">
-    <value>Потери:</value>
-  </data>
-  <data name="Ui.IQM" xml:space="preserve">
-    <value>ИКМ:</value>
-  </data>
-  <data name="Ui.Name" xml:space="preserve">
-    <value>Имя:</value>
-  </data>
-  <data name="Ui.Location" xml:space="preserve">
-    <value>Местоположение:</value>
-  </data>
-  <data name="Ui.Host" xml:space="preserve">
-    <value>Хост:</value>
-  </data>
-  <data name="Ui.IP" xml:space="preserve">
-    <value>IP-адрес:</value>
-  </data>
-  <data name="Ui.Port" xml:space="preserve">
-    <value>Порт:</value>
-  </data>
-  <data name="Ui.ISP" xml:space="preserve">
-    <value>Интернет-провайдер:</value>
-  </data>
-  <data name="Ui.Index" xml:space="preserve">
-    <value>Индекс</value>
-  </data>
-  <data name="Ui.NameDCD1D522" xml:space="preserve">
-    <value>Имя</value>
-  </data>
-  <data name="Navigation.Interfaces" xml:space="preserve">
-    <value>Интерфейсы</value>
-  </data>
-  <data name="Navigation.Pings" xml:space="preserve">
-    <value>Пинги</value>
-  </data>
-  <data name="Navigation.SpeedTest" xml:space="preserve">
-    <value>Тест скорости</value>
-  </data>
-  <data name="Common.Yes" xml:space="preserve">
-    <value>Да</value>
-  </data>
-  <data name="Common.No" xml:space="preserve">
-    <value>Нет</value>
-  </data>
   <data name="Common.Cancel" xml:space="preserve">
     <value>Отмена</value>
   </data>
-  <data name="Common.Unknown" xml:space="preserve">
-    <value>Неизвестно</value>
+  <data name="Common.Close" xml:space="preserve">
+    <value>Закрыть</value>
   </data>
-  <data name="Common.View" xml:space="preserve">
-    <value>Посмотреть</value>
+  <data name="Common.Copied" xml:space="preserve">
+    <value>Скопировано</value>
+  </data>
+  <data name="Common.CopiedToClipboard" xml:space="preserve">
+    <value>Скопировано в буфер обмена</value>
+  </data>
+  <data name="Common.Copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="Common.Help" xml:space="preserve">
+    <value>Помощь</value>
   </data>
   <data name="Common.Ignore" xml:space="preserve">
     <value>игнорировать</value>
   </data>
-  <data name="Common.CopiedToClipboard" xml:space="preserve">
-    <value>Скопировано в буфер обмена</value>
+  <data name="Common.No" xml:space="preserve">
+    <value>Нет</value>
   </data>
   <data name="Common.OpenFile" xml:space="preserve">
     <value>Открыть файл</value>
@@ -770,74 +88,28 @@
   <data name="Common.OpenFolder" xml:space="preserve">
     <value>Открыть папку</value>
   </data>
-  <data name="Dialog.About.Title" xml:space="preserve">
-    <value>О {0}</value>
-  </data>
-  <data name="Update.TriggerUnavailable.Title" xml:space="preserve">
-    <value>Невозможно запустить новое обновление</value>
-  </data>
-  <data name="Update.TriggerUnavailable.Message" xml:space="preserve">
-    <value>Нет доступных выпусков, для запуска нового обновления.</value>
-  </data>
-  <data name="Update.None.Title" xml:space="preserve">
-    <value>Нет доступных обновлений.</value>
-  </data>
-  <data name="Update.None.Message" xml:space="preserve">
-    <value>{0} использует последнюю версию.</value>
-  </data>
-  <data name="Update.CheckFailed" xml:space="preserve">
-    <value>Невозможно проверить наличие обновлений</value>
-  </data>
-  <data name="Update.Found.Title" xml:space="preserve">
-    <value>Найдено обновление {0}</value>
-  </data>
-  <data name="Update.Found.Message" xml:space="preserve">
-    <value>Текущая версия: {0}
-Новая версия: {1}
-Предстоящие выпуски: {2}
-Дата выпуска: {3:f}</value>
-  </data>
-  <data name="Common.Copy" xml:space="preserve">
-    <value>Копировать</value>
-  </data>
-  <data name="Common.Copied" xml:space="preserve">
-    <value>Скопировано</value>
-  </data>
-  <data name="Common.Close" xml:space="preserve">
-    <value>Закрыть</value>
-  </data>
-  <data name="Common.Report" xml:space="preserve">
-    <value>Отчет</value>
-  </data>
-  <data name="Common.Help" xml:space="preserve">
-    <value>Помощь</value>
-  </data>
-  <data name="Common.Restart" xml:space="preserve">
-    <value>Перезапустить</value>
-  </data>
-  <data name="Common.Reload" xml:space="preserve">
-    <value>Перезагрузить</value>
-  </data>
   <data name="Common.ProcessId" xml:space="preserve">
     <value>
 
 Идентификатор процесса: {0}</value>
   </data>
-  <data name="Update.Auto" xml:space="preserve">
-    <value>Автоматическое обновление</value>
+  <data name="Common.Reload" xml:space="preserve">
+    <value>Перезагрузить</value>
   </data>
-  <data name="Update.Manual" xml:space="preserve">
-    <value>Обновление вручную</value>
+  <data name="Common.Report" xml:space="preserve">
+    <value>Отчет</value>
   </data>
-  <data name="Window.CrashReport.Title" xml:space="preserve">
-    <value>{0} – отчет о сбое</value>
+  <data name="Common.Restart" xml:space="preserve">
+    <value>Перезапустить</value>
   </data>
-  <data name="Window.AlreadyRunning.Title" xml:space="preserve">
-    <value>{0} – уже работает</value>
+  <data name="Common.Unknown" xml:space="preserve">
+    <value>Неизвестно</value>
   </data>
-  <data name="InstanceAlreadyRunning.Message" xml:space="preserve">
-    <value>Выполняется еще один экземпляр {0}. Одновременно может выполняться только один экземпляр {0}.
-Пожалуйста, найдите и откройте работающий экземпляр или закройте его перед запуском нового.</value>
+  <data name="Common.View" xml:space="preserve">
+    <value>Посмотреть</value>
+  </data>
+  <data name="Common.Yes" xml:space="preserve">
+    <value>Да</value>
   </data>
   <data name="CrashReport.Header" xml:space="preserve">
     <value>{0} аварийно завершился из-за непредвиденной ошибки.
@@ -848,8 +120,316 @@
     <value>Приложение вылетело из-за неожиданной ошибки, но, к сожалению, более подробной информации нет.
 Отчет о сбое мог быть утерян или не удалось сохранить.</value>
   </data>
-  <data name="Ping.ResetOne.Title" xml:space="preserve">
-    <value>Вы уверены, что хотите сбросить выбранный хост ping?</value>
+  <data name="Dialog.About.Title" xml:space="preserve">
+    <value>О {0}</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Dark" xml:space="preserve">
+    <value>Тёмная</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Default" xml:space="preserve">
+    <value>Как в системе</value>
+  </data>
+  <data name="Enum.ApplicationTheme.Light" xml:space="preserve">
+    <value>Светлая</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.Group" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.LastStatus" xml:space="preserve">
+    <value>Последний статус</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.None" xml:space="preserve">
+    <value>Без группировки</value>
+  </data>
+  <data name="Enum.PingServicesGroupBy.ProtocolType" xml:space="preserve">
+    <value>Тип протокола</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.DNS" xml:space="preserve">
+    <value>DNS: система доменных имен</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.HTTP" xml:space="preserve">
+    <value>HTTP: протокол передачи гипертекста</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.ICMP" xml:space="preserve">
+    <value>ICMP: протокол управляющих сообщений Интернета</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.IMAP" xml:space="preserve">
+    <value>IMAP: протокол доступа к сообщениям в Интернете</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.MQTT" xml:space="preserve">
+    <value>MQTT: транспорт телеметрии очереди сообщений</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.NTP" xml:space="preserve">
+    <value>NTP: протокол сетевого времени</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SIP" xml:space="preserve">
+    <value>SIP: протокол инициации сеанса</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SMTP" xml:space="preserve">
+    <value>SMTP: простой протокол передачи почты</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.SSH" xml:space="preserve">
+    <value>SSH: протокол безопасной оболочки</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.STUN" xml:space="preserve">
+    <value>STUN: утилиты обхода сеанса для NAT</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.TCP" xml:space="preserve">
+    <value>TCP: протокол управления передачей</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.TLS" xml:space="preserve">
+    <value>TLS: безопасность транспортного уровня</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.UDP" xml:space="preserve">
+    <value>UDP: протокол пользовательских дейтаграмм</value>
+  </data>
+  <data name="Enum.ServiceProtocolType.WebSocket" xml:space="preserve">
+    <value>WebSocket: протокол полнодуплексной связи</value>
+  </data>
+  <data name="Export.Interface.Error" xml:space="preserve">
+    <value>Ошибка при попытке экспорта интерфейса:</value>
+  </data>
+  <data name="Export.Interface.Success" xml:space="preserve">
+    <value>Интерфейс «{0}» был экспортирован в «{1}».</value>
+  </data>
+  <data name="Export.Interface.Title" xml:space="preserve">
+    <value>Экспортировать интерфейс в {0}</value>
+  </data>
+  <data name="Export.Pings.CsvTitle" xml:space="preserve">
+    <value>Экспортировать пинги в CSV</value>
+  </data>
+  <data name="Export.Pings.Error" xml:space="preserve">
+    <value>Ошибка при попытке экспорта пингов:</value>
+  </data>
+  <data name="Export.Pings.JsonTitle" xml:space="preserve">
+    <value>Экспортировать пинги в JSON</value>
+  </data>
+  <data name="Export.Pings.Success" xml:space="preserve">
+    <value>Эхо-запросы {0} для "{1}" были экспортированы в "{2}".</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>Экспортировать пинги в TSV</value>
+  </data>
+  <data name="Export.Results.Error" xml:space="preserve">
+    <value>Ошибка при попытке экспорта результатов:</value>
+  </data>
+  <data name="Export.Results.Success" xml:space="preserve">
+    <value>Результаты {0} были экспортированы в "{1}".</value>
+  </data>
+  <data name="Export.Results.Title" xml:space="preserve">
+    <value>Экспортировать результаты в JSON</value>
+  </data>
+  <data name="Export.Services.Error" xml:space="preserve">
+    <value>Ошибка при попытке экспорта сервисов:</value>
+  </data>
+  <data name="Export.Services.Success" xml:space="preserve">
+    <value>Службы {0} были экспортированы в "{1}".</value>
+  </data>
+  <data name="Export.Services.Title" xml:space="preserve">
+    <value>Экспорт сервисов в JSON</value>
+  </data>
+  <data name="Graph.AboveAutomaticScale" xml:space="preserve">
+    <value>Выше автоматической шкалы</value>
+  </data>
+  <data name="Graph.AboveScale" xml:space="preserve">
+    <value>Выше шкалы</value>
+  </data>
+  <data name="Graph.AllSamples" xml:space="preserve">
+    <value>Все отсчёты</value>
+  </data>
+  <data name="Graph.AutoScale" xml:space="preserve">
+    <value>Автомасштаб</value>
+  </data>
+  <data name="Graph.AutoScale.ToolTip" xml:space="preserve">
+    <value>Использовать автоматическое масштабирование задержки</value>
+  </data>
+  <data name="Graph.Average" xml:space="preserve">
+    <value>Среднее</value>
+  </data>
+  <data name="Graph.Current" xml:space="preserve">
+    <value>Текущее</value>
+  </data>
+  <data name="Graph.DisableAll.ToolTip" xml:space="preserve">
+    <value>Отключить все службы на этом графике</value>
+  </data>
+  <data name="Graph.EnableAll.ToolTip" xml:space="preserve">
+    <value>Включить все службы на этом графике</value>
+  </data>
+  <data name="Graph.Failed" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="Graph.Failure" xml:space="preserve">
+    <value>Сбой</value>
+  </data>
+  <data name="Graph.Freeze" xml:space="preserve">
+    <value>Заморозить</value>
+  </data>
+  <data name="Graph.Freeze.ToolTip" xml:space="preserve">
+    <value>Заморозить график, не останавливая проверки</value>
+  </data>
+  <data name="Graph.FullScale" xml:space="preserve">
+    <value>Полная шкала</value>
+  </data>
+  <data name="Graph.FullScale.ToolTip" xml:space="preserve">
+    <value>Показать полный диапазон задержки</value>
+  </data>
+  <data name="Graph.Jitter" xml:space="preserve">
+    <value>Джиттер</value>
+  </data>
+  <data name="Graph.Latency" xml:space="preserve">
+    <value>Задержка</value>
+  </data>
+  <data name="Graph.Loss" xml:space="preserve">
+    <value>Потери</value>
+  </data>
+  <data name="Graph.Maximum" xml:space="preserve">
+    <value>Максимум</value>
+  </data>
+  <data name="Graph.Minimum" xml:space="preserve">
+    <value>Минимум</value>
+  </data>
+  <data name="Graph.Resume.ToolTip" xml:space="preserve">
+    <value>Возобновить обновление графика в реальном времени</value>
+  </data>
+  <data name="Graph.RollingAverage" xml:space="preserve">
+    <value>Скользящее среднее</value>
+  </data>
+  <data name="Graph.Samples" xml:space="preserve">
+    <value>{0} отсчётов</value>
+  </data>
+  <data name="Graph.Title" xml:space="preserve">
+    <value>График</value>
+  </data>
+  <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
+    <value>Не удалось вставить из буфера обмена</value>
+  </data>
+  <data name="Import.Clipboard.NoData" xml:space="preserve">
+    <value>Буфер обмена пуст или не содержит пригодных данных служб.</value>
+  </data>
+  <data name="Import.Clipboard.Summary" xml:space="preserve">
+    <value>Вставлено служб: {0}, пропущено: {1}.</value>
+  </data>
+  <data name="Import.Json.ErrorMessage" xml:space="preserve">
+    <value>Предоставленный файл JSON недействителен или имеет неправильный формат.</value>
+  </data>
+  <data name="Import.Json.ErrorTitle" xml:space="preserve">
+    <value>Невозможно импортировать из JSON</value>
+  </data>
+  <data name="InstanceAlreadyRunning.Message" xml:space="preserve">
+    <value>Выполняется еще один экземпляр {0}. Одновременно может выполняться только один экземпляр {0}.
+Пожалуйста, найдите и откройте работающий экземпляр или закройте его перед запуском нового.</value>
+  </data>
+  <data name="Navigation.Interfaces" xml:space="preserve">
+    <value>Интерфейсы</value>
+  </data>
+  <data name="Navigation.Pings" xml:space="preserve">
+    <value>Пинги</value>
+  </data>
+  <data name="Navigation.Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Navigation.SpeedTest" xml:space="preserve">
+    <value>Тест скорости</value>
+  </data>
+  <data name="Network.DhcpDns.Error" xml:space="preserve">
+    <value>Невозможно назначить DHCP DNS.</value>
+  </data>
+  <data name="Network.DhcpDns.Success" xml:space="preserve">
+    <value>DHCP DNS успешно назначен.</value>
+  </data>
+  <data name="Network.DhcpIp.Error" xml:space="preserve">
+    <value>Невозможно установить DHCPv{0} для «{1}».</value>
+  </data>
+  <data name="Network.DhcpIp.Success" xml:space="preserve">
+    <value>IP-адрес успешно настроен на DHCPv{0}</value>
+  </data>
+  <data name="Network.Disable.Error" xml:space="preserve">
+    <value>Невозможно отключить "{0}".</value>
+  </data>
+  <data name="Network.Disable.Success" xml:space="preserve">
+    <value>Интерфейс «{0}» успешно отключен.</value>
+  </data>
+  <data name="Network.Disable.Title" xml:space="preserve">
+    <value>Отключить {0}</value>
+  </data>
+  <data name="Network.Dns.Error" xml:space="preserve">
+    <value>Невозможно назначить DNS.</value>
+  </data>
+  <data name="Network.Dns.Success" xml:space="preserve">
+    <value>DNS-серверы успешно назначены: {0} {1}</value>
+  </data>
+  <data name="Network.Dns.Title" xml:space="preserve">
+    <value>Назначение DNS для "{0}"</value>
+  </data>
+  <data name="Network.Enable.Error" xml:space="preserve">
+    <value>Невозможно включить "{0}".</value>
+  </data>
+  <data name="Network.Enable.Success" xml:space="preserve">
+    <value>Интерфейс «{0}» успешно включен.</value>
+  </data>
+  <data name="Network.Enable.Title" xml:space="preserve">
+    <value>Включить {0}</value>
+  </data>
+  <data name="Network.IpAssignment.Error" xml:space="preserve">
+    <value>Невозможно присвоить IP.</value>
+  </data>
+  <data name="Network.IpAssignment.NoChanges" xml:space="preserve">
+    <value>Никаких изменений не было сделано, поскольку определенные настройки соответствуют предыдущим настройкам.</value>
+  </data>
+  <data name="Network.IpAssignment.Title" xml:space="preserve">
+    <value>Назначение IP для "{0}"</value>
+  </data>
+  <data name="Network.Release.Error" xml:space="preserve">
+    <value>Невозможно освободить "{0}".</value>
+  </data>
+  <data name="Network.Release.Success" xml:space="preserve">
+    <value>IP-адрес успешно освобожден.</value>
+  </data>
+  <data name="Network.Release.Title" xml:space="preserve">
+    <value>Выпуск {0}</value>
+  </data>
+  <data name="Network.Renew.Error" xml:space="preserve">
+    <value>Невозможно продлить "{0}".</value>
+  </data>
+  <data name="Network.Renew.Success" xml:space="preserve">
+    <value>IP-адрес успешно продлен.</value>
+  </data>
+  <data name="Network.Renew.Title" xml:space="preserve">
+    <value>Продлить {0}</value>
+  </data>
+  <data name="Network.StaticIp.Error" xml:space="preserve">
+    <value>Невозможно установить статический IPv{0} для "{1}".</value>
+  </data>
+  <data name="Network.StaticIp.Success" xml:space="preserve">
+    <value>IP-адрес успешно установлен: {0} {1} {2}</value>
+  </data>
+  <data name="Operation.Success" xml:space="preserve">
+    <value>Операция завершена успешно.</value>
+  </data>
+  <data name="Operation.SudoRequired" xml:space="preserve">
+    <value>Невозможно выполнить операцию, поскольку требуется доступ sudo.
+pkexec не найден. Установите pkexec или запустите приложение с помощью sudo.</value>
+  </data>
+  <data name="Ping.RemoveAll.Message" xml:space="preserve">
+    <value>Вы собираетесь удалить все {0} хостов ping.
+Вы уверены, что хотите продолжить?</value>
+  </data>
+  <data name="Ping.RemoveAll.Title" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить все {0} хостов ping?</value>
+  </data>
+  <data name="Ping.RemoveSelected.Message" xml:space="preserve">
+    <value>Вы собираетесь удалить {0} выбранных хостов ping.
+Вы уверены, что хотите продолжить?</value>
+  </data>
+  <data name="Ping.RemoveSelected.Title" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить {0} выбранных хостов ping?</value>
+  </data>
+  <data name="Ping.ResetAll.Message" xml:space="preserve">
+    <value>Вы собираетесь сбросить статистику для всех хостов ping ({0}).
+Вы уверены, что хотите продолжить?</value>
+  </data>
+  <data name="Ping.ResetAll.Title" xml:space="preserve">
+    <value>Вы уверены, что хотите сбросить все хосты ping ({0})?</value>
   </data>
   <data name="Ping.ResetOne.Message" xml:space="preserve">
     <value>Вы собираетесь сбросить выбранную статистику проверки связи с хостом.
@@ -859,363 +439,83 @@ IP-адрес: {0}
 
 Вы уверены, что хотите продолжить?</value>
   </data>
-  <data name="Ping.ResetSelected.Title" xml:space="preserve">
-    <value>Вы уверены, что хотите сбросить {0} выбранных хостов ping?</value>
+  <data name="Ping.ResetOne.Title" xml:space="preserve">
+    <value>Вы уверены, что хотите сбросить выбранный хост ping?</value>
   </data>
   <data name="Ping.ResetSelected.Message" xml:space="preserve">
     <value>Вы собираетесь сбросить статистику для {0} выбранных хостов ping.
 Вы уверены, что хотите продолжить?</value>
   </data>
-  <data name="Ping.ResetAll.Title" xml:space="preserve">
-    <value>Вы уверены, что хотите сбросить все хосты ping ({0})?</value>
+  <data name="Ping.ResetSelected.Title" xml:space="preserve">
+    <value>Вы уверены, что хотите сбросить {0} выбранных хостов ping?</value>
   </data>
-  <data name="Ping.ResetAll.Message" xml:space="preserve">
-    <value>Вы собираетесь сбросить статистику для всех хостов ping ({0}).
-Вы уверены, что хотите продолжить?</value>
+  <data name="Settings.Language" xml:space="preserve">
+    <value>Язык</value>
   </data>
-  <data name="Ping.RemoveSelected.Title" xml:space="preserve">
-    <value>Вы уверены, что хотите удалить {0} выбранных хостов ping?</value>
+  <data name="Settings.Language.Description" xml:space="preserve">
+    <value>Выберите язык, используемый во всем приложении.</value>
   </data>
-  <data name="Ping.RemoveSelected.Message" xml:space="preserve">
-    <value>Вы собираетесь удалить {0} выбранных хостов ping.
-Вы уверены, что хотите продолжить?</value>
+  <data name="Settings.Language.FollowSystem" xml:space="preserve">
+    <value>Использовать язык системы</value>
   </data>
-  <data name="Ping.RemoveAll.Title" xml:space="preserve">
-    <value>Вы уверены, что хотите удалить все {0} хостов ping?</value>
+  <data name="Settings.Theme" xml:space="preserve">
+    <value>Тема</value>
   </data>
-  <data name="Ping.RemoveAll.Message" xml:space="preserve">
-    <value>Вы собираетесь удалить все {0} хостов ping.
-Вы уверены, что хотите продолжить?</value>
-  </data>
-  <data name="Export.Services.Title" xml:space="preserve">
-    <value>Экспорт сервисов в JSON</value>
-  </data>
-  <data name="Export.Services.Success" xml:space="preserve">
-    <value>Службы {0} были экспортированы в "{1}".</value>
-  </data>
-  <data name="Export.Services.Error" xml:space="preserve">
-    <value>Ошибка при попытке экспорта сервисов:</value>
-  </data>
-  <data name="Export.Pings.CsvTitle" xml:space="preserve">
-    <value>Экспортировать пинги в CSV</value>
-  </data>
-  <data name="Export.Pings.JsonTitle" xml:space="preserve">
-    <value>Экспортировать пинги в JSON</value>
-  </data>
-  <data name="Export.Pings.Success" xml:space="preserve">
-    <value>Эхо-запросы {0} для "{1}" были экспортированы в "{2}".</value>
-  </data>
-  <data name="Export.Pings.Error" xml:space="preserve">
-    <value>Ошибка при попытке экспорта пингов:</value>
-  </data>
-  <data name="SpeedTest.Install.Title" xml:space="preserve">
-    <value>Установка Speedtest CLI</value>
-  </data>
-  <data name="SpeedTest.Install.Success" xml:space="preserve">
-    <value>Интерфейс командной строки Speedtest установлен успешно.</value>
-  </data>
-  <data name="SpeedTest.Install.Error" xml:space="preserve">
-    <value>Не удалось установить интерфейс командной строки Speedtest. Пожалуйста, установите его вручную с https://www.speedtest.net/apps/cli.</value>
+  <data name="SpeedTest.AutoInstall" xml:space="preserve">
+    <value>Автоматическая установка</value>
   </data>
   <data name="SpeedTest.Error" xml:space="preserve">
     <value>Ошибка при тестировании скорости</value>
   </data>
-  <data name="Export.Results.Title" xml:space="preserve">
-    <value>Экспортировать результаты в JSON</value>
+  <data name="SpeedTest.Install.Error" xml:space="preserve">
+    <value>Не удалось установить интерфейс командной строки Speedtest. Пожалуйста, установите его вручную с https://www.speedtest.net/apps/cli.</value>
   </data>
-  <data name="Export.Results.Success" xml:space="preserve">
-    <value>Результаты {0} были экспортированы в "{1}".</value>
+  <data name="SpeedTest.Install.Success" xml:space="preserve">
+    <value>Интерфейс командной строки Speedtest установлен успешно.</value>
   </data>
-  <data name="Export.Results.Error" xml:space="preserve">
-    <value>Ошибка при попытке экспорта результатов:</value>
+  <data name="SpeedTest.Install.Title" xml:space="preserve">
+    <value>Установка Speedtest CLI</value>
   </data>
-  <data name="SpeedTest.RemoveSelected.Title" xml:space="preserve">
-    <value>Вы уверены, что хотите удалить выбранные результаты ({0})?</value>
-  </data>
-  <data name="SpeedTest.RemoveSelected.Message" xml:space="preserve">
-    <value>Вы собираетесь удалить {0} выбранных результатов.
-Вы уверены, что хотите продолжить?</value>
-  </data>
-  <data name="SpeedTest.RemoveAll.Title" xml:space="preserve">
-    <value>Вы уверены, что хотите удалить все результаты {0}?</value>
+  <data name="SpeedTest.ManualInstall" xml:space="preserve">
+    <value>Ручная установка</value>
   </data>
   <data name="SpeedTest.RemoveAll.Message" xml:space="preserve">
     <value>Вы собираетесь удалить все результаты {0}.
 Вы уверены, что хотите продолжить?</value>
   </data>
-  <data name="SpeedTest.AutoInstall" xml:space="preserve">
-    <value>Автоматическая установка</value>
+  <data name="SpeedTest.RemoveAll.Title" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить все результаты {0}?</value>
   </data>
-  <data name="SpeedTest.ManualInstall" xml:space="preserve">
-    <value>Ручная установка</value>
+  <data name="SpeedTest.RemoveSelected.Message" xml:space="preserve">
+    <value>Вы собираетесь удалить {0} выбранных результатов.
+Вы уверены, что хотите продолжить?</value>
   </data>
-  <data name="Network.Disable.Title" xml:space="preserve">
-    <value>Отключить {0}</value>
-  </data>
-  <data name="Network.Disable.Success" xml:space="preserve">
-    <value>Интерфейс «{0}» успешно отключен.</value>
-  </data>
-  <data name="Network.Disable.Error" xml:space="preserve">
-    <value>Невозможно отключить "{0}".</value>
-  </data>
-  <data name="Network.Enable.Title" xml:space="preserve">
-    <value>Включить {0}</value>
-  </data>
-  <data name="Network.Enable.Success" xml:space="preserve">
-    <value>Интерфейс «{0}» успешно включен.</value>
-  </data>
-  <data name="Network.Enable.Error" xml:space="preserve">
-    <value>Невозможно включить "{0}".</value>
-  </data>
-  <data name="Network.Release.Title" xml:space="preserve">
-    <value>Выпуск {0}</value>
-  </data>
-  <data name="Network.Release.Success" xml:space="preserve">
-    <value>IP-адрес успешно освобожден.</value>
-  </data>
-  <data name="Network.Release.Error" xml:space="preserve">
-    <value>Невозможно освободить "{0}".</value>
-  </data>
-  <data name="Network.Renew.Title" xml:space="preserve">
-    <value>Продлить {0}</value>
-  </data>
-  <data name="Network.Renew.Success" xml:space="preserve">
-    <value>IP-адрес успешно продлен.</value>
-  </data>
-  <data name="Network.Renew.Error" xml:space="preserve">
-    <value>Невозможно продлить "{0}".</value>
-  </data>
-  <data name="Network.StaticIp.Success" xml:space="preserve">
-    <value>IP-адрес успешно установлен: {0} {1} {2}</value>
-  </data>
-  <data name="Network.StaticIp.Error" xml:space="preserve">
-    <value>Невозможно установить статический IPv{0} для "{1}".</value>
-  </data>
-  <data name="Network.DhcpIp.Success" xml:space="preserve">
-    <value>IP-адрес успешно настроен на DHCPv{0}</value>
-  </data>
-  <data name="Network.DhcpIp.Error" xml:space="preserve">
-    <value>Невозможно установить DHCPv{0} для «{1}».</value>
-  </data>
-  <data name="Network.Dns.Title" xml:space="preserve">
-    <value>Назначение DNS для "{0}"</value>
-  </data>
-  <data name="Network.Dns.Success" xml:space="preserve">
-    <value>DNS-серверы успешно назначены: {0} {1}</value>
-  </data>
-  <data name="Network.Dns.Error" xml:space="preserve">
-    <value>Невозможно назначить DNS.</value>
-  </data>
-  <data name="Network.DhcpDns.Success" xml:space="preserve">
-    <value>DHCP DNS успешно назначен.</value>
-  </data>
-  <data name="Network.DhcpDns.Error" xml:space="preserve">
-    <value>Невозможно назначить DHCP DNS.</value>
-  </data>
-  <data name="Network.IpAssignment.Title" xml:space="preserve">
-    <value>Назначение IP для "{0}"</value>
-  </data>
-  <data name="Network.IpAssignment.NoChanges" xml:space="preserve">
-    <value>Никаких изменений не было сделано, поскольку определенные настройки соответствуют предыдущим настройкам.</value>
-  </data>
-  <data name="Network.IpAssignment.Error" xml:space="preserve">
-    <value>Невозможно присвоить IP.</value>
-  </data>
-  <data name="Export.Interface.Title" xml:space="preserve">
-    <value>Экспортировать интерфейс в {0}</value>
-  </data>
-  <data name="Export.Interface.Success" xml:space="preserve">
-    <value>Интерфейс «{0}» был экспортирован в «{1}».</value>
-  </data>
-  <data name="Export.Interface.Error" xml:space="preserve">
-    <value>Ошибка при попытке экспорта интерфейса:</value>
-  </data>
-  <data name="Enum.ApplicationTheme.Default" xml:space="preserve">
-    <value>Как в системе</value>
-  </data>
-  <data name="Enum.ApplicationTheme.Light" xml:space="preserve">
-    <value>Светлая</value>
-  </data>
-  <data name="Enum.ApplicationTheme.Dark" xml:space="preserve">
-    <value>Тёмная</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.None" xml:space="preserve">
-    <value>Без группировки</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.ProtocolType" xml:space="preserve">
-    <value>Тип протокола</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.LastStatus" xml:space="preserve">
-    <value>Последний статус</value>
-  </data>
-  <data name="Enum.PingServicesGroupBy.Group" xml:space="preserve">
-    <value>Группа</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.ICMP" xml:space="preserve">
-    <value>ICMP: протокол управляющих сообщений Интернета</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.TCP" xml:space="preserve">
-    <value>TCP: протокол управления передачей</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.UDP" xml:space="preserve">
-    <value>UDP: протокол пользовательских дейтаграмм</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.TLS" xml:space="preserve">
-    <value>TLS: безопасность транспортного уровня</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.DNS" xml:space="preserve">
-    <value>DNS: система доменных имен</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.NTP" xml:space="preserve">
-    <value>NTP: протокол сетевого времени</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.HTTP" xml:space="preserve">
-    <value>HTTP: протокол передачи гипертекста</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.WebSocket" xml:space="preserve">
-    <value>WebSocket: протокол полнодуплексной связи</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.SSH" xml:space="preserve">
-    <value>SSH: протокол безопасной оболочки</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.SMTP" xml:space="preserve">
-    <value>SMTP: простой протокол передачи почты</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.IMAP" xml:space="preserve">
-    <value>IMAP: протокол доступа к сообщениям в Интернете</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.MQTT" xml:space="preserve">
-    <value>MQTT: транспорт телеметрии очереди сообщений</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.STUN" xml:space="preserve">
-    <value>STUN: утилиты обхода сеанса для NAT</value>
-  </data>
-  <data name="Enum.ServiceProtocolType.SIP" xml:space="preserve">
-    <value>SIP: протокол инициации сеанса</value>
-  </data>
-  <data name="Operation.Success" xml:space="preserve">
-    <value>Операция завершена успешно.</value>
-  </data>
-  <data name="Operation.SudoRequired" xml:space="preserve">
-    <value>Невозможно выполнить операцию, поскольку требуется доступ sudo.
-pkexec не найден. Установите pkexec или запустите приложение с помощью sudo.</value>
-  </data>
-  <data name="Import.Json.ErrorTitle" xml:space="preserve">
-    <value>Невозможно импортировать из JSON</value>
-  </data>
-  <data name="Import.Json.ErrorMessage" xml:space="preserve">
-    <value>Предоставленный файл JSON недействителен или имеет неправильный формат.</value>
+  <data name="SpeedTest.RemoveSelected.Title" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить выбранные результаты ({0})?</value>
   </data>
   <data name="SpeedTest.ServerList.Error" xml:space="preserve">
     <value>Не удалось получить список серверов</value>
   </data>
-  <data name="Ui.LastUpdateCheck" xml:space="preserve">
-    <value>Последняя проверка обновлений: {0}</value>
+  <data name="Status.BadDestination" xml:space="preserve">
+    <value>Недопустимое назначение</value>
   </data>
-  <data name="Ui.License" xml:space="preserve">
-    <value>Лицензия ({0})</value>
+  <data name="Status.BadHeader" xml:space="preserve">
+    <value>Недопустимый заголовок</value>
   </data>
-  <data name="Ui.ChangelogWithReleases" xml:space="preserve">
-    <value>Изменения в {0} выпусках:</value>
+  <data name="Status.BadOption" xml:space="preserve">
+    <value>Недопустимый параметр IP</value>
   </data>
-  <data name="Ui.Age" xml:space="preserve">
-    <value>Возраст: {0}</value>
+  <data name="Status.BadRoute" xml:space="preserve">
+    <value>Недопустимый маршрут</value>
   </data>
-  <data name="Tray.PingsUp" xml:space="preserve">
-    <value>{0} доступно</value>
-  </data>
-  <data name="Ui.ServicesCount" xml:space="preserve">
-    <value>({0} служб)</value>
-  </data>
-  <data name="Ui.Auto" xml:space="preserve">
-    <value>Автоматически</value>
-  </data>
-  <data name="Tray.PingsDown" xml:space="preserve">
-    <value>{0} недоступно</value>
-  </data>
-  <data name="Graph.Latency" xml:space="preserve">
-    <value>Задержка</value>
-  </data>
-  <data name="Graph.AboveScale" xml:space="preserve">
-    <value>Выше шкалы</value>
-  </data>
-  <data name="Graph.RollingAverage" xml:space="preserve">
-    <value>Скользящее среднее</value>
-  </data>
-  <data name="Graph.Failure" xml:space="preserve">
-    <value>Сбой</value>
-  </data>
-  <data name="Graph.Maximum" xml:space="preserve">
-    <value>Максимум</value>
-  </data>
-  <data name="Graph.Average" xml:space="preserve">
-    <value>Среднее</value>
-  </data>
-  <data name="Graph.Current" xml:space="preserve">
-    <value>Текущее</value>
-  </data>
-  <data name="Graph.Minimum" xml:space="preserve">
-    <value>Минимум</value>
-  </data>
-  <data name="Graph.Failed" xml:space="preserve">
-    <value>Ошибка</value>
-  </data>
-  <data name="Graph.DisableAll.ToolTip" xml:space="preserve">
-    <value>Отключить все службы на этом графике</value>
-  </data>
-  <data name="Graph.EnableAll.ToolTip" xml:space="preserve">
-    <value>Включить все службы на этом графике</value>
-  </data>
-  <data name="Graph.FullScale" xml:space="preserve">
-    <value>Полная шкала</value>
-  </data>
-  <data name="Graph.AutoScale" xml:space="preserve">
-    <value>Автомасштаб</value>
-  </data>
-  <data name="Graph.AutoScale.ToolTip" xml:space="preserve">
-    <value>Использовать автоматическое масштабирование задержки</value>
-  </data>
-  <data name="Graph.FullScale.ToolTip" xml:space="preserve">
-    <value>Показать полный диапазон задержки</value>
-  </data>
-  <data name="Graph.Freeze" xml:space="preserve">
-    <value>Заморозить</value>
-  </data>
-  <data name="Graph.Freeze.ToolTip" xml:space="preserve">
-    <value>Заморозить график, не останавливая проверки</value>
-  </data>
-  <data name="Graph.Resume.ToolTip" xml:space="preserve">
-    <value>Возобновить обновление графика в реальном времени</value>
-  </data>
-  <data name="Graph.Samples" xml:space="preserve">
-    <value>{0} отсчётов</value>
-  </data>
-  <data name="Graph.AllSamples" xml:space="preserve">
-    <value>Все отсчёты</value>
-  </data>
-  <data name="Graph.AboveAutomaticScale" xml:space="preserve">
-    <value>Выше автоматической шкалы</value>
-  </data>
-  <data name="Graph.Jitter" xml:space="preserve">
-    <value>Джиттер</value>
-  </data>
-  <data name="Graph.Loss" xml:space="preserve">
-    <value>Потери</value>
-  </data>
-  <data name="Graph.Title" xml:space="preserve">
-    <value>График</value>
-  </data>
-  <data name="Status.Success" xml:space="preserve">
-    <value>Успешно</value>
-  </data>
-  <data name="Status.DestinationNetworkUnreachable" xml:space="preserve">
-    <value>Сеть назначения недоступна</value>
+  <data name="Status.ConnectionReset" xml:space="preserve">
+    <value>Соединение сброшено</value>
   </data>
   <data name="Status.DestinationHostUnreachable" xml:space="preserve">
     <value>Узел назначения недоступен</value>
   </data>
-  <data name="Status.DestinationProtocolUnreachable" xml:space="preserve">
-    <value>Протокол назначения недоступен</value>
+  <data name="Status.DestinationNetworkUnreachable" xml:space="preserve">
+    <value>Сеть назначения недоступна</value>
   </data>
   <data name="Status.DestinationPortUnreachable" xml:space="preserve">
     <value>Порт назначения недоступен</value>
@@ -1223,20 +523,59 @@ pkexec не найден. Установите pkexec или запустите 
   <data name="Status.DestinationProhibited" xml:space="preserve">
     <value>Назначение запрещено</value>
   </data>
-  <data name="Status.NoResources" xml:space="preserve">
-    <value>Недостаточно ресурсов</value>
+  <data name="Status.DestinationProtocolUnreachable" xml:space="preserve">
+    <value>Протокол назначения недоступен</value>
   </data>
-  <data name="Status.BadOption" xml:space="preserve">
-    <value>Недопустимый параметр IP</value>
+  <data name="Status.DestinationScopeMismatch" xml:space="preserve">
+    <value>Несоответствие области назначения</value>
+  </data>
+  <data name="Status.DestinationUnreachable" xml:space="preserve">
+    <value>Назначение недоступно</value>
+  </data>
+  <data name="Status.ErrorFallback" xml:space="preserve">
+    <value>Ошибка ({0})</value>
   </data>
   <data name="Status.HardwareError" xml:space="preserve">
     <value>Аппаратная ошибка</value>
   </data>
+  <data name="Status.HttpFallback" xml:space="preserve">
+    <value>HTTP {0}</value>
+  </data>
+  <data name="Status.HttpRequestErrorFallback" xml:space="preserve">
+    <value>Ошибка HTTP-запроса</value>
+  </data>
+  <data name="Status.IcmpError" xml:space="preserve">
+    <value>Ошибка ICMP</value>
+  </data>
+  <data name="Status.NoContent" xml:space="preserve">
+    <value>Нет содержимого</value>
+  </data>
+  <data name="Status.NoResources" xml:space="preserve">
+    <value>Недостаточно ресурсов</value>
+  </data>
+  <data name="Status.Open" xml:space="preserve">
+    <value>Открыто</value>
+  </data>
   <data name="Status.PacketTooBig" xml:space="preserve">
     <value>Пакет слишком велик</value>
   </data>
-  <data name="Status.BadRoute" xml:space="preserve">
-    <value>Недопустимый маршрут</value>
+  <data name="Status.ParameterProblem" xml:space="preserve">
+    <value>Ошибка параметра</value>
+  </data>
+  <data name="Status.SocketErrorFallback" xml:space="preserve">
+    <value>Ошибка сокета ({0})</value>
+  </data>
+  <data name="Status.SourceQuench" xml:space="preserve">
+    <value>Подавление источника</value>
+  </data>
+  <data name="Status.Success" xml:space="preserve">
+    <value>Успешно</value>
+  </data>
+  <data name="Status.TimedOut" xml:space="preserve">
+    <value>Истекло время ожидания</value>
+  </data>
+  <data name="Status.TimeExceeded" xml:space="preserve">
+    <value>Превышено время ожидания</value>
   </data>
   <data name="Status.TtlExpired" xml:space="preserve">
     <value>Время жизни TTL истекло</value>
@@ -1244,94 +583,755 @@ pkexec не найден. Установите pkexec или запустите 
   <data name="Status.TtlReassemblyTimeExceeded" xml:space="preserve">
     <value>TTL истек при сборке пакета</value>
   </data>
-  <data name="Status.ParameterProblem" xml:space="preserve">
-    <value>Ошибка параметра</value>
-  </data>
-  <data name="Status.SourceQuench" xml:space="preserve">
-    <value>Подавление источника</value>
-  </data>
-  <data name="Status.BadDestination" xml:space="preserve">
-    <value>Недопустимое назначение</value>
-  </data>
-  <data name="Status.DestinationUnreachable" xml:space="preserve">
-    <value>Назначение недоступно</value>
-  </data>
-  <data name="Status.TimeExceeded" xml:space="preserve">
-    <value>Превышено время ожидания</value>
-  </data>
-  <data name="Status.BadHeader" xml:space="preserve">
-    <value>Недопустимый заголовок</value>
+  <data name="Status.Unknown" xml:space="preserve">
+    <value>Неизвестно</value>
   </data>
   <data name="Status.UnrecognizedNextHeader" xml:space="preserve">
     <value>Следующий заголовок не распознан</value>
   </data>
-  <data name="Status.IcmpError" xml:space="preserve">
-    <value>Ошибка ICMP</value>
-  </data>
-  <data name="Status.DestinationScopeMismatch" xml:space="preserve">
-    <value>Несоответствие области назначения</value>
-  </data>
-  <data name="Status.NoContent" xml:space="preserve">
-    <value>Нет содержимого</value>
-  </data>
-  <data name="Status.ConnectionReset" xml:space="preserve">
-    <value>Соединение сброшено</value>
-  </data>
-  <data name="Status.TimedOut" xml:space="preserve">
-    <value>Истекло время ожидания</value>
-  </data>
-  <data name="Status.Unknown" xml:space="preserve">
-    <value>Неизвестно</value>
-  </data>
-  <data name="Status.Open" xml:space="preserve">
-    <value>Открыто</value>
-  </data>
-  <data name="Status.SocketErrorFallback" xml:space="preserve">
-    <value>Ошибка сокета ({0})</value>
-  </data>
-  <data name="Status.HttpRequestErrorFallback" xml:space="preserve">
-    <value>Ошибка HTTP-запроса</value>
-  </data>
   <data name="Status.WebSocketErrorFallback" xml:space="preserve">
     <value>Ошибка WebSocket</value>
   </data>
-  <data name="Status.HttpFallback" xml:space="preserve">
-    <value>HTTP {0}</value>
+  <data name="Tray.PingsDown" xml:space="preserve">
+    <value>{0} недоступно</value>
   </data>
-  <data name="Status.ErrorFallback" xml:space="preserve">
-    <value>Ошибка ({0})</value>
+  <data name="Tray.PingsUp" xml:space="preserve">
+    <value>{0} доступно</value>
   </data>
-  <data name="Ui.ServicesCountPlain" xml:space="preserve">
-    <value>{0} служб</value>
+  <data name="Ui.95thPercentileLatencyInTheDisplayedWindow" xml:space="preserve">
+    <value>Задержка 95-го процентиля в отображаемом окне</value>
   </data>
-  <data name="Ui.EditService" xml:space="preserve">
-    <value>Изменить службу</value>
+  <data name="Ui.About" xml:space="preserve">
+    <value>О</value>
   </data>
-  <data name="Ui.Save" xml:space="preserve">
-    <value>Сохранить</value>
+  <data name="Ui.AddNewServices" xml:space="preserve">
+    <value>Добавить новую услугу(ы)</value>
   </data>
-  <data name="Ui.ServiceUpdated" xml:space="preserve">
-    <value>Служба успешно обновлена.</value>
+  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
+    <value>Добавить: основная кнопка = пустая строка, стрелка = импорт&#10;Формат вставки: IP | Порт | Интервал | Описание | Группа&#10;Пример: 192.168.1.10  80  30  Веб-сервер  LAN&#10;Пример: 192.168.130:80|30|Веб-сервер|LAN&#10;Известные порты выбирают протокол; неизвестные используют TCP.</value>
   </data>
-  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
-    <value>Служба с таким же протоколом и адресом уже существует.</value>
+  <data name="Ui.AdjustTheUIScaleToIncreaseOrDecreaseTheSizeOfTheInterfaceElements" xml:space="preserve">
+    <value>Отрегулируйте масштаб пользовательского интерфейса, чтобы увеличить или уменьшить размер элементов интерфейса.</value>
   </data>
-  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
-    <value>Открыть выбранные графики (Новое окно)</value>
+  <data name="Ui.Age" xml:space="preserve">
+    <value>Возраст: {0}</value>
   </data>
-  <data name="Ui.EditServices" xml:space="preserve">
-    <value>Изменить службы</value>
+  <data name="Ui.AnimatedBackground" xml:space="preserve">
+    <value>Анимированный фон</value>
+  </data>
+  <data name="Ui.Apply" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="Ui.AskAQuestion" xml:space="preserve">
+    <value>Задать вопрос</value>
+  </data>
+  <data name="Ui.Assemblies" xml:space="preserve">
+    <value>Сборки</value>
+  </data>
+  <data name="Ui.Auto" xml:space="preserve">
+    <value>Автоматически</value>
+  </data>
+  <data name="Ui.AutomaticDNSAssignmentFromDHCP" xml:space="preserve">
+    <value>Автоматическое назначение DNS по DHCP</value>
+  </data>
+  <data name="Ui.AutomaticIPAssignmentFromDHCP" xml:space="preserve">
+    <value>Автоматическое назначение IP по DHCP</value>
+  </data>
+  <data name="Ui.AutoRefresh" xml:space="preserve">
+    <value>Автоматическое обновление:</value>
+  </data>
+  <data name="Ui.AutoSpeedTest" xml:space="preserve">
+    <value>Автоматические тесты:</value>
+  </data>
+  <data name="Ui.AvaloniaUI" xml:space="preserve">
+    <value>AvaloniaUI:</value>
+  </data>
+  <data name="Ui.AvgTime" xml:space="preserve">
+    <value>Средняя задержка</value>
+  </data>
+  <data name="Ui.Background" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="Ui.BackgroundStyle" xml:space="preserve">
+    <value>Стиль фона</value>
+  </data>
+  <data name="Ui.BackgroundTransitions" xml:space="preserve">
+    <value>Фоновые переходы</value>
+  </data>
+  <data name="Ui.BufferSize" xml:space="preserve">
+    <value>Размер буфера</value>
+  </data>
+  <data name="Ui.BufferSize1DF49DCA" xml:space="preserve">
+    <value>Размер буфера:</value>
+  </data>
+  <data name="Ui.Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Ui.CardHeight" xml:space="preserve">
+    <value>Высота карты:</value>
+  </data>
+  <data name="Ui.CardWidth" xml:space="preserve">
+    <value>Ширина карты:</value>
+  </data>
+  <data name="Ui.ChangelogWithReleases" xml:space="preserve">
+    <value>Изменения в {0} выпусках:</value>
+  </data>
+  <data name="Ui.ChangesTheProbeIntervalForEveryServiceInThisGraph" xml:space="preserve">
+    <value>Изменяет интервал проверки для каждой службы на этом графике.</value>
+  </data>
+  <data name="Ui.ChangesTheTimeoutForEveryServiceInThisGraph" xml:space="preserve">
+    <value>Изменяет тайм-аут для каждой службы на этом графике.</value>
+  </data>
+  <data name="Ui.CheckForUpdates" xml:space="preserve">
+    <value>Проверить обновления</value>
+  </data>
+  <data name="Ui.CheckForUpdatesOnApplicationStartIfAnUpdateIsAvailableItWillNotifyAndAdd" xml:space="preserve">
+    <value>Проверьте наличие обновлений при запуске приложения. Если обновление доступно, оно уведомит вас об этом и дополнительно предложит вам выполнить действие.</value>
+  </data>
+  <data name="Ui.CheckForUpdatesOnStart" xml:space="preserve">
+    <value>Проверка обновлений при запуске</value>
+  </data>
+  <data name="Ui.ClearAddress" xml:space="preserve">
+    <value>Очистить адрес</value>
+  </data>
+  <data name="Ui.ClearStatistics" xml:space="preserve">
+    <value>Очистить статистику</value>
+  </data>
+  <data name="Ui.ClearTheGatewayAddress" xml:space="preserve">
+    <value>Очистить адрес шлюза</value>
+  </data>
+  <data name="Ui.ClickAnyOfTheButtonsBelowToEnableABackgroundShaderClickItAgainToDisableI" xml:space="preserve">
+    <value>Нажмите любую из кнопок ниже, чтобы включить фоновый шейдер. Нажмите на нее еще раз, чтобы отключить ее. Они, вероятно, создадут значительную нагрузку на ваш графический процессор и предназначены исключительно для демонстрации и проверки возможностей фонового рендеринга.</value>
+  </data>
+  <data name="Ui.ClickToToggleTopMenu" xml:space="preserve">
+    <value>Нажмите, чтобы переключить верхнее меню.</value>
+  </data>
+  <data name="Ui.CloseToSystemTray" xml:space="preserve">
+    <value>Рядом с системным лотком</value>
+  </data>
+  <data name="Ui.CommunityForums" xml:space="preserve">
+    <value>Форумы сообщества</value>
+  </data>
+  <data name="Ui.ConnectionSpeed" xml:space="preserve">
+    <value>Скорость соединения</value>
+  </data>
+  <data name="Ui.ConsecutiveFailed" xml:space="preserve">
+    <value>Ошибок подряд</value>
+  </data>
+  <data name="Ui.ConsecutiveSucceed" xml:space="preserve">
+    <value>Успехов подряд</value>
+  </data>
+  <data name="Ui.CustomShaders" xml:space="preserve">
+    <value>Пользовательские шейдеры</value>
+  </data>
+  <data name="Ui.DarkMode" xml:space="preserve">
+    <value>Темный режим</value>
+  </data>
+  <data name="Ui.DateTime" xml:space="preserve">
+    <value>Дата время</value>
+  </data>
+  <data name="Ui.Debug" xml:space="preserve">
+    <value>Отладка</value>
+  </data>
+  <data name="Ui.DefaultPingOptions" xml:space="preserve">
+    <value>Параметры пинга по умолчанию</value>
+  </data>
+  <data name="Ui.Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Ui.Disable" xml:space="preserve">
+    <value>Отключить</value>
+  </data>
+  <data name="Ui.Donate" xml:space="preserve">
+    <value>Пожертвовать</value>
+  </data>
+  <data name="Ui.DoNotFragment" xml:space="preserve">
+    <value>Не фрагментировать:</value>
+  </data>
+  <data name="Ui.Download" xml:space="preserve">
+    <value>Скачать</value>
+  </data>
+  <data name="Ui.Downloaded" xml:space="preserve">
+    <value>Скачано</value>
   </data>
   <data name="Ui.EditSelectedServices" xml:space="preserve">
     <value>Изменить выбранные</value>
   </data>
-  <data name="Ui.ServicesUpdated" xml:space="preserve">
-    <value>Успешно обновлено служб: {0}.</value>
+  <data name="Ui.EditService" xml:space="preserve">
+    <value>Изменить службу</value>
   </data>
-  <data name="Export.Pings.TsvTitle" xml:space="preserve">
-    <value>Экспортировать пинги в TSV</value>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>Изменить службы</value>
+  </data>
+  <data name="Ui.Enable" xml:space="preserve">
+    <value>Включить</value>
+  </data>
+  <data name="Ui.EnableDisableTheAnimationsForTheBackgroundWhichAreDrivenByTheCurrentlyAc" xml:space="preserve">
+    <value>Включите/отключите анимацию фона, которая управляется текущим активным эффектом.</value>
+  </data>
+  <data name="Ui.EnableDisableTheTransitionsForTheBackgroundTheseWillFadeBetweenTheActive" xml:space="preserve">
+    <value>Включите/отключите переходы для фона. При изменении они будут исчезать между активными эффектами.</value>
+  </data>
+  <data name="Ui.ErrorMessage" xml:space="preserve">
+    <value>Сообщение об ошибке</value>
+  </data>
+  <data name="Ui.Exit" xml:space="preserve">
+    <value>✖ Выход</value>
+  </data>
+  <data name="Ui.ExportAllToJSON" xml:space="preserve">
+    <value>Экспортировать все в JSON</value>
+  </data>
+  <data name="Ui.ExportPings" xml:space="preserve">
+    <value>Экспортировать пинги</value>
+  </data>
+  <data name="Ui.ExportSelectedToJSON" xml:space="preserve">
+    <value>Экспортировать выбранное в JSON</value>
+  </data>
+  <data name="Ui.ExportTo" xml:space="preserve">
+    <value>Экспортировать в</value>
+  </data>
+  <data name="Ui.ExportToCSV" xml:space="preserve">
+    <value>Экспорт в CSV</value>
+  </data>
+  <data name="Ui.ExportToJSON" xml:space="preserve">
+    <value>Экспорт в JSON</value>
   </data>
   <data name="Ui.ExportToTSV" xml:space="preserve">
     <value>Экспорт в TSV</value>
+  </data>
+  <data name="Ui.Failed" xml:space="preserve">
+    <value>Не удалось</value>
+  </data>
+  <data name="Ui.FailedDate" xml:space="preserve">
+    <value>Последняя ошибка</value>
+  </data>
+  <data name="Ui.FailedPings" xml:space="preserve">
+    <value>Неудачные пинги</value>
+  </data>
+  <data name="Ui.FailedRepliesInTheDisplayedWindow" xml:space="preserve">
+    <value>Неудачные ответы в отображаемом окне</value>
+  </data>
+  <data name="Ui.FilterInterfacesByText" xml:space="preserve">
+    <value>Фильтровать интерфейсы по тексту</value>
+  </data>
+  <data name="Ui.FilterServicesByText" xml:space="preserve">
+    <value>Фильтровать услуги по тексту</value>
+  </data>
+  <data name="Ui.Framework" xml:space="preserve">
+    <value>Фреймворк:</value>
+  </data>
+  <data name="Ui.Gateway" xml:space="preserve">
+    <value>Шлюз:</value>
+  </data>
+  <data name="Ui.GaugeIncrement" xml:space="preserve">
+    <value>Приращение манометра:</value>
+  </data>
+  <data name="Ui.GaugeRange" xml:space="preserve">
+    <value>Диапазон измерения:</value>
+  </data>
+  <data name="Ui.General" xml:space="preserve">
+    <value>Общий</value>
+  </data>
+  <data name="Ui.GraphCacheSize" xml:space="preserve">
+    <value>Размер кэша графа:</value>
+  </data>
+  <data name="Ui.GraphicCard" xml:space="preserve">
+    <value>Видеокарта:</value>
+  </data>
+  <data name="Ui.GraphOptions" xml:space="preserve">
+    <value>Параметры графика</value>
+  </data>
+  <data name="Ui.GridViewOptions" xml:space="preserve">
+    <value>Параметры просмотра сетки</value>
+  </data>
+  <data name="Ui.Group" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="Ui.GroupBy" xml:space="preserve">
+    <value>Группировать по:</value>
+  </data>
+  <data name="Ui.HaveIPAddress" xml:space="preserve">
+    <value>С IP-адресом</value>
+  </data>
+  <data name="Ui.HavePhysicalAddress" xml:space="preserve">
+    <value>С физическим адресом</value>
+  </data>
+  <data name="Ui.High" xml:space="preserve">
+    <value>Высокий:</value>
+  </data>
+  <data name="Ui.Host" xml:space="preserve">
+    <value>Хост:</value>
+  </data>
+  <data name="Ui.HostnameQuery" xml:space="preserve">
+    <value>Имя хоста/запрос</value>
+  </data>
+  <data name="Ui.Import" xml:space="preserve">
+    <value>Импорт</value>
+  </data>
+  <data name="Ui.ImportAll" xml:space="preserve">
+    <value>Импортировать все</value>
+  </data>
+  <data name="Ui.ImportFromJSON" xml:space="preserve">
+    <value>Импорт из JSON</value>
+  </data>
+  <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
+    <value>Импортировать сетевые шлюзы</value>
+  </data>
+  <data name="Ui.ImportPublicHosts" xml:space="preserve">
+    <value>Импортировать общедоступные хосты</value>
+  </data>
+  <data name="Ui.Index" xml:space="preserve">
+    <value>Индекс</value>
+  </data>
+  <data name="Ui.Interface" xml:space="preserve">
+    <value>Интерфейс</value>
+  </data>
+  <data name="Ui.IP" xml:space="preserve">
+    <value>IP-адрес:</value>
+  </data>
+  <data name="Ui.IPAddress" xml:space="preserve">
+    <value>IP-адрес:</value>
+  </data>
+  <data name="Ui.IPAddress3C3DE0C9" xml:space="preserve">
+    <value>IP-адрес</value>
+  </data>
+  <data name="Ui.IPAddressUrl" xml:space="preserve">
+    <value>IP-адрес / URL</value>
+  </data>
+  <data name="Ui.IQM" xml:space="preserve">
+    <value>ИКМ:</value>
+  </data>
+  <data name="Ui.ISP" xml:space="preserve">
+    <value>Интернет-провайдер:</value>
+  </data>
+  <data name="Ui.IsTransmittingData" xml:space="preserve">
+    <value>Передаёт данные</value>
+  </data>
+  <data name="Ui.Jitter" xml:space="preserve">
+    <value>Джиттер:</value>
+  </data>
+  <data name="Ui.LastReplyStatus" xml:space="preserve">
+    <value>Статус последнего ответа</value>
+  </data>
+  <data name="Ui.LastUpdateCheck" xml:space="preserve">
+    <value>Последняя проверка обновлений: {0}</value>
+  </data>
+  <data name="Ui.LatestReplyLatencyOrStatus" xml:space="preserve">
+    <value>Последняя задержка ответа или статус</value>
+  </data>
+  <data name="Ui.License" xml:space="preserve">
+    <value>Лицензия ({0})</value>
+  </data>
+  <data name="Ui.LightMode" xml:space="preserve">
+    <value>Светлый режим</value>
+  </data>
+  <data name="Ui.Location" xml:space="preserve">
+    <value>Местоположение:</value>
+  </data>
+  <data name="Ui.Low" xml:space="preserve">
+    <value>Низкий:</value>
+  </data>
+  <data name="Ui.ManualAssignment" xml:space="preserve">
+    <value>Назначение вручную</value>
+  </data>
+  <data name="Ui.ManualDNSAssignment" xml:space="preserve">
+    <value>Назначение DNS вручную</value>
+  </data>
+  <data name="Ui.ManualIPAssignment" xml:space="preserve">
+    <value>Назначение IP вручную</value>
+  </data>
+  <data name="Ui.MaxTime" xml:space="preserve">
+    <value>Макс. задержка</value>
+  </data>
+  <data name="Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies" xml:space="preserve">
+    <value>Среднее изменение задержки между соседними успешными ответами</value>
+  </data>
+  <data name="Ui.MedianLatencyInTheDisplayedWindow" xml:space="preserve">
+    <value>Медианная задержка в отображаемом окне</value>
+  </data>
+  <data name="Ui.Megabytes" xml:space="preserve">
+    <value>Мегабайты</value>
+  </data>
+  <data name="Ui.MemoryRAM" xml:space="preserve">
+    <value>Память ОЗУ:</value>
+  </data>
+  <data name="Ui.MinTime" xml:space="preserve">
+    <value>Мин. задержка</value>
+  </data>
+  <data name="Ui.Name" xml:space="preserve">
+    <value>Имя:</value>
+  </data>
+  <data name="Ui.NameDCD1D522" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="Ui.NetworkInterfaces" xml:space="preserve">
+    <value>Сетевые интерфейсы</value>
+  </data>
+  <data name="Ui.NetworkInterfacesSettings" xml:space="preserve">
+    <value>Настройки сетевых интерфейсов</value>
+  </data>
+  <data name="Ui.NewSpeedTest" xml:space="preserve">
+    <value>Новый тест скорости</value>
+  </data>
+  <data name="Ui.NoFrag" xml:space="preserve">
+    <value>Не фрагментировать</value>
+  </data>
+  <data name="Ui.Off" xml:space="preserve">
+    <value>Выкл.</value>
+  </data>
+  <data name="Ui.On" xml:space="preserve">
+    <value>Вкл.</value>
+  </data>
+  <data name="Ui.OpenExecutableFolder" xml:space="preserve">
+    <value>Открыть папку с исполняемым файлом</value>
+  </data>
+  <data name="Ui.OpenGraphInANewWindow" xml:space="preserve">
+    <value>Открыть график в новом окне</value>
+  </data>
+  <data name="Ui.OpenInBrowser" xml:space="preserve">
+    <value>Открыть в браузере</value>
+  </data>
+  <data name="Ui.OpenInNewWindow" xml:space="preserve">
+    <value>Открыть в новом окне</value>
+  </data>
+  <data name="Ui.OpenProfileFolder" xml:space="preserve">
+    <value>Открыть папку профиля</value>
+  </data>
+  <data name="Ui.OpenResult" xml:space="preserve">
+    <value>Открыть результат</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>Открыть выбранные графики (Новое окно)</value>
+  </data>
+  <data name="Ui.OpenSystemNetworkManager" xml:space="preserve">
+    <value>Открыть системные настройки сети</value>
+  </data>
+  <data name="Ui.OperativeSystem" xml:space="preserve">
+    <value>Операционная система:</value>
+  </data>
+  <data name="Ui.Options" xml:space="preserve">
+    <value>⚙️ Опции</value>
+  </data>
+  <data name="Ui.Order" xml:space="preserve">
+    <value>Порядок</value>
+  </data>
+  <data name="Ui.Others" xml:space="preserve">
+    <value>Другие</value>
+  </data>
+  <data name="Ui.PacketLoss" xml:space="preserve">
+    <value>Потеря пакетов</value>
+  </data>
+  <data name="Ui.PasteFormatHint" xml:space="preserve">
+    <value>Порядок столбцов: IP | Порт | Интервал | Описание | Группа&#10;Пример: 192.168.1.10  80  30  Веб-сервер  LAN&#10;Пример: 192.168.130:80|30|Веб-сервер|LAN&#10;Известные порты выбирают протокол; неизвестные используют TCP.</value>
+  </data>
+  <data name="Ui.PasteFromClipboard" xml:space="preserve">
+    <value>Вставить из буфера обмена</value>
+  </data>
+  <data name="Ui.Pause" xml:space="preserve">
+    <value>Пауза</value>
+  </data>
+  <data name="Ui.PauseAll" xml:space="preserve">
+    <value>Приостановить все</value>
+  </data>
+  <data name="Ui.PauseSelected" xml:space="preserve">
+    <value>Приостановить выбранное</value>
+  </data>
+  <data name="Ui.PersistentPings" xml:space="preserve">
+    <value>Постоянные пинги:</value>
+  </data>
+  <data name="Ui.PhysicalAddressMACAddress" xml:space="preserve">
+    <value>Физический адрес (MAC-адрес)</value>
+  </data>
+  <data name="Ui.Ping" xml:space="preserve">
+    <value>Пинг</value>
+  </data>
+  <data name="Ui.PingCacheSize" xml:space="preserve">
+    <value>Размер кэша Ping:</value>
+  </data>
+  <data name="Ui.PingEvery" xml:space="preserve">
+    <value>Интервал:</value>
+  </data>
+  <data name="Ui.PingEveryS" xml:space="preserve">
+    <value>Интервал (с)</value>
+  </data>
+  <data name="Ui.Pings" xml:space="preserve">
+    <value>Пинги</value>
+  </data>
+  <data name="Ui.PingTimeout" xml:space="preserve">
+    <value>Тайм-аут:</value>
+  </data>
+  <data name="Ui.PleaseFixTheFollowingErrors" xml:space="preserve">
+    <value>Пожалуйста, исправьте следующие ошибки:</value>
+  </data>
+  <data name="Ui.PLoss" xml:space="preserve">
+    <value>Потери:</value>
+  </data>
+  <data name="Ui.Port" xml:space="preserve">
+    <value>Порт:</value>
+  </data>
+  <data name="Ui.Presets" xml:space="preserve">
+    <value>Пресеты</value>
+  </data>
+  <data name="Ui.PrimaryDNS" xml:space="preserve">
+    <value>Первичный DNS:</value>
+  </data>
+  <data name="Ui.Processor" xml:space="preserve">
+    <value>Процессор:</value>
+  </data>
+  <data name="Ui.ProcessorCores" xml:space="preserve">
+    <value>Ядра процессора:</value>
+  </data>
+  <data name="Ui.Property" xml:space="preserve">
+    <value>Недвижимость</value>
+  </data>
+  <data name="Ui.RecentRepliesIncludedInTheGraphAndStatistics" xml:space="preserve">
+    <value>Последние ответы включены в график и статистику</value>
+  </data>
+  <data name="Ui.RefreshAllInterfaces" xml:space="preserve">
+    <value>Обновить все интерфейсы</value>
+  </data>
+  <data name="Ui.ReleaseIP" xml:space="preserve">
+    <value>Освободить IP</value>
+  </data>
+  <data name="Ui.RemoveAll" xml:space="preserve">
+    <value>Удалить все</value>
+  </data>
+  <data name="Ui.RemoveSelected" xml:space="preserve">
+    <value>Удалить выбранное</value>
+  </data>
+  <data name="Ui.RemoveSelectedServiceS" xml:space="preserve">
+    <value>Удалить выбранные услуги</value>
+  </data>
+  <data name="Ui.RemoveServiceS" xml:space="preserve">
+    <value>Удалить сервис(ы)</value>
+  </data>
+  <data name="Ui.RenewIP" xml:space="preserve">
+    <value>Продлить IP</value>
+  </data>
+  <data name="Ui.ReplyIPAddress" xml:space="preserve">
+    <value>IP-адрес ответа</value>
+  </data>
+  <data name="Ui.ReportAnIssue" xml:space="preserve">
+    <value>Сообщить о проблеме</value>
+  </data>
+  <data name="Ui.ResetAllStatistics" xml:space="preserve">
+    <value>Сбросить всю статистику</value>
+  </data>
+  <data name="Ui.ResetColumnsOrder" xml:space="preserve">
+    <value>Сбросить порядок столбцов</value>
+  </data>
+  <data name="Ui.ResetSelectedStatistics" xml:space="preserve">
+    <value>Сбросить выбранную статистику</value>
+  </data>
+  <data name="Ui.ResponseTime" xml:space="preserve">
+    <value>Время ответа</value>
+  </data>
+  <data name="Ui.Resume" xml:space="preserve">
+    <value>Возобновить</value>
+  </data>
+  <data name="Ui.ResumeAll" xml:space="preserve">
+    <value>Возобновить все</value>
+  </data>
+  <data name="Ui.ResumeSelected" xml:space="preserve">
+    <value>Возобновить выбранные</value>
+  </data>
+  <data name="Ui.Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Ui.SaveAndRestorePingRepliesAfterProgramRestart" xml:space="preserve">
+    <value>Сохранять и восстанавливать ответы на пинг после перезапуска программы</value>
+  </data>
+  <data name="Ui.ScreensResolutionWorkingAreaUsableArea" xml:space="preserve">
+    <value>Экраны, разрешение, рабочая область, полезная площадь:</value>
+  </data>
+  <data name="Ui.SecondaryDNS" xml:space="preserve">
+    <value>Вторичный DNS:</value>
+  </data>
+  <data name="Ui.SelectFromTheIncludedBackgroundStyles" xml:space="preserve">
+    <value>Выберите один из включенных стилей фона.</value>
+  </data>
+  <data name="Ui.SentOn" xml:space="preserve">
+    <value>Отправлено</value>
+  </data>
+  <data name="Ui.Server" xml:space="preserve">
+    <value>Сервер:</value>
+  </data>
+  <data name="Ui.ServerAEF7DE28" xml:space="preserve">
+    <value>Сервер</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>Служба с таким же протоколом и адресом уже существует.</value>
+  </data>
+  <data name="Ui.Services" xml:space="preserve">
+    <value>Услуги</value>
+  </data>
+  <data name="Ui.ServicesCount" xml:space="preserve">
+    <value>({0} служб)</value>
+  </data>
+  <data name="Ui.ServicesCountPlain" xml:space="preserve">
+    <value>{0} служб</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>Успешно обновлено служб: {0}.</value>
+  </data>
+  <data name="Ui.ServiceUpdated" xml:space="preserve">
+    <value>Служба успешно обновлена.</value>
+  </data>
+  <data name="Ui.SetIP" xml:space="preserve">
+    <value>Установить IP</value>
+  </data>
+  <data name="Ui.SetTheDNSFromTheDefinedServerGateway" xml:space="preserve">
+    <value>Установите DNS с определенного шлюза сервера.</value>
+  </data>
+  <data name="Ui.Show" xml:space="preserve">
+    <value>👁 Шоу</value>
+  </data>
+  <data name="Ui.ShowATrayIconInTheSystemNotificationAreaForQuickAccessWhenTheAppIsRunnin" xml:space="preserve">
+    <value>Показывать значок на панели задач в области системных уведомлений для быстрого доступа, когда приложение работает.</value>
+  </data>
+  <data name="Ui.SpeedtestDependencyWasNotFoundInTheSystem" xml:space="preserve">
+    <value>Зависимость Speedtest не найдена в системе</value>
+  </data>
+  <data name="Ui.SpeedTests" xml:space="preserve">
+    <value>Тесты скорости</value>
+  </data>
+  <data name="Ui.SpeedTestSettings" xml:space="preserve">
+    <value>Настройки теста скорости</value>
+  </data>
+  <data name="Ui.StartTheApplicationAutomaticallyWhenTheSystemStarts" xml:space="preserve">
+    <value>Запускайте приложение автоматически при запуске системы.</value>
+  </data>
+  <data name="Ui.StartWithSystem" xml:space="preserve">
+    <value>Запускать вместе с системой</value>
+  </data>
+  <data name="Ui.StaticIPv4" xml:space="preserve">
+    <value>Статический IPv4</value>
+  </data>
+  <data name="Ui.Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Ui.StopSpeedTest" xml:space="preserve">
+    <value>Остановить тест скорости</value>
+  </data>
+  <data name="Ui.SubnetMask" xml:space="preserve">
+    <value>Маска подсети:</value>
+  </data>
+  <data name="Ui.Succeed" xml:space="preserve">
+    <value>Успешно</value>
+  </data>
+  <data name="Ui.SucceedDate" xml:space="preserve">
+    <value>Последний успех</value>
+  </data>
+  <data name="Ui.SucceedPings" xml:space="preserve">
+    <value>Успешные пинги</value>
+  </data>
+  <data name="Ui.SuggestAnImprovementOrFeature" xml:space="preserve">
+    <value>Предложить улучшение или функцию</value>
+  </data>
+  <data name="Ui.SystemMode" xml:space="preserve">
+    <value>Системный режим</value>
+  </data>
+  <data name="Ui.TermsOfUse" xml:space="preserve">
+    <value>Условия использования</value>
+  </data>
+  <data name="Ui.ThemeDark" xml:space="preserve">
+    <value>🖌️ Тема: Темная.</value>
+  </data>
+  <data name="Ui.ThemeLight" xml:space="preserve">
+    <value>🖌️ Тема: Светлая</value>
+  </data>
+  <data name="Ui.ThemeSystem" xml:space="preserve">
+    <value>🖌️ Тема: Система</value>
+  </data>
+  <data name="Ui.ThisModuleRequiresTheOoklaSpeedtestCLIBinaryYetWasNotFoundInTheSystemPle" xml:space="preserve">
+    <value>Для этого модуля требуется двоичный файл CLI Ookla Speedtest, но он не найден в системе.
+Пожалуйста, установите зависимость и перезагрузите модуль.</value>
+  </data>
+  <data name="Ui.ThrowException" xml:space="preserve">
+    <value>Выбросить исключение</value>
+  </data>
+  <data name="Ui.Time" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="Ui.Timeout" xml:space="preserve">
+    <value>Тайм-аут:</value>
+  </data>
+  <data name="Ui.TimeoutS" xml:space="preserve">
+    <value>Тайм-аут (с)</value>
+  </data>
+  <data name="Ui.TimeToLive" xml:space="preserve">
+    <value>Время жизни (TTL):</value>
+  </data>
+  <data name="Ui.ToogleFullscreen" xml:space="preserve">
+    <value>Полноэкранный режим</value>
+  </data>
+  <data name="Ui.TotalPings" xml:space="preserve">
+    <value>Всего пингов</value>
+  </data>
+  <data name="Ui.TriggerNewUpdate" xml:space="preserve">
+    <value>Запустить новое обновление</value>
+  </data>
+  <data name="Ui.Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="Ui.UIScale" xml:space="preserve">
+    <value>Масштаб пользовательского интерфейса</value>
+  </data>
+  <data name="Ui.Upload" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  <data name="Ui.Uploaded" xml:space="preserve">
+    <value>Загружено</value>
+  </data>
+  <data name="Ui.UseSystemTray" xml:space="preserve">
+    <value>Использовать системный трей</value>
+  </data>
+  <data name="Ui.Value" xml:space="preserve">
+    <value>Значение</value>
+  </data>
+  <data name="Ui.VirtualNetworks" xml:space="preserve">
+    <value>Виртуальные сети</value>
+  </data>
+  <data name="Ui.Website" xml:space="preserve">
+    <value>Веб-сайт</value>
+  </data>
+  <data name="Ui.WhenClosingTheMainWindowKeepTheAppRunningInTheSystemTrayInsteadOfExiting" xml:space="preserve">
+    <value>При закрытии главного окна оставляйте приложение работающим на панели задач, а не закрывайте его.</value>
+  </data>
+  <data name="Update.Auto" xml:space="preserve">
+    <value>Автоматическое обновление</value>
+  </data>
+  <data name="Update.CheckFailed" xml:space="preserve">
+    <value>Невозможно проверить наличие обновлений</value>
+  </data>
+  <data name="Update.Found.Message" xml:space="preserve">
+    <value>Текущая версия: {0}
+Новая версия: {1}
+Предстоящие выпуски: {2}
+Дата выпуска: {3:f}</value>
+  </data>
+  <data name="Update.Found.Title" xml:space="preserve">
+    <value>Найдено обновление {0}</value>
+  </data>
+  <data name="Update.Manual" xml:space="preserve">
+    <value>Обновление вручную</value>
+  </data>
+  <data name="Update.None.Message" xml:space="preserve">
+    <value>{0} использует последнюю версию.</value>
+  </data>
+  <data name="Update.None.Title" xml:space="preserve">
+    <value>Нет доступных обновлений.</value>
+  </data>
+  <data name="Update.TriggerUnavailable.Message" xml:space="preserve">
+    <value>Нет доступных выпусков, для запуска нового обновления.</value>
+  </data>
+  <data name="Update.TriggerUnavailable.Title" xml:space="preserve">
+    <value>Невозможно запустить новое обновление</value>
+  </data>
+  <data name="Window.AlreadyRunning.Title" xml:space="preserve">
+    <value>{0} – уже работает</value>
+  </data>
+  <data name="Window.CrashReport.Title" xml:space="preserve">
+    <value>{0} – отчет о сбое</value>
   </data>
 </root>
