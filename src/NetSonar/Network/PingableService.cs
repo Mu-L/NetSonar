@@ -179,20 +179,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
         IsEnabled = service.IsEnabled;
         PingEverySeconds = service.PingEverySeconds;
         TimeoutSeconds = service.TimeoutSeconds;
-        BufferSize = ProtocolType switch
-        {
-            ServiceProtocolType.TLS => 0,
-            ServiceProtocolType.DNS => DnsPacketLength,
-            ServiceProtocolType.NTP => NtpPacketLength,
-            ServiceProtocolType.WebSocket => 0,
-            ServiceProtocolType.SSH
-                or ServiceProtocolType.SMTP
-                or ServiceProtocolType.IMAP => 0,
-            ServiceProtocolType.MQTT => MqttConnectPacketLength,
-            ServiceProtocolType.STUN => StunPacketLength,
-            ServiceProtocolType.SIP => 0,
-            _ => service.BufferSize
-        };
+        BufferSize = GetProtocolBufferSize(ProtocolType, service.BufferSize);
         Ttl = service.Ttl;
         DontFragment = service.DontFragment;
     }
@@ -239,7 +226,13 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
         };
     }
 
-    private static int GetProtocolBufferSize(ServiceProtocolType protocolType, int configuredSize)
+    /// <summary>
+    /// Coerces a configured buffer size into the size required by the given protocol.
+    /// </summary>
+    /// <param name="protocolType">The protocol the buffer is built for.</param>
+    /// <param name="configuredSize">The user configured buffer size.</param>
+    /// <returns>The buffer size to use, which is fixed for protocols with a well-known packet layout.</returns>
+    public static int GetProtocolBufferSize(ServiceProtocolType protocolType, int configuredSize)
     {
         return protocolType switch
         {
@@ -1328,7 +1321,7 @@ public partial class PingableService : BasePingableCollectionObject<PingableServ
                     bufferLength = await ReceiveAndValidateImapAsync(
                         socket,
                         GetDnsLookupTarget(),
-                remotePort == Protocols.DefaultImapTlsPort,
+                        remotePort == Protocols.DefaultImapTlsPort,
                         timeoutCts.Token);
                 }
                 else if (ProtocolType == ServiceProtocolType.MQTT)

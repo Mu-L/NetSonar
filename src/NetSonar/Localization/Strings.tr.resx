@@ -136,7 +136,7 @@
   <data name="Ui.Services" xml:space="preserve">
     <value>Hizmetler</value>
   </data>
-  <data name="Ui.AddNewServiceS" xml:space="preserve">
+  <data name="Ui.AddNewServices" xml:space="preserve">
     <value>Yeni hizmet ekle</value>
   </data>
   <data name="Ui.ImportFromJSON" xml:space="preserve">
@@ -1303,5 +1303,35 @@ pkexec bulunamadı. pkexec'i kurun veya uygulamayı sudo ile çalıştırın.</v
   </data>
   <data name="Ui.ServicesCountPlain" xml:space="preserve">
     <value>{0} hizmet</value>
+  </data>
+  <data name="Ui.EditService" xml:space="preserve">
+    <value>Hizmeti düzenle</value>
+  </data>
+  <data name="Ui.Save" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="Ui.ServiceUpdated" xml:space="preserve">
+    <value>Hizmet başarıyla güncellendi.</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>Aynı protokole ve adrese sahip bir hizmet zaten var.</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>Seçili grafikleri aç (Yeni pencere)</value>
+  </data>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>Hizmetleri düzenle</value>
+  </data>
+  <data name="Ui.EditSelectedServices" xml:space="preserve">
+    <value>Seçilenleri düzenle</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>{0} hizmet başarıyla güncellendi.</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>Pingleri TSV'ye aktar</value>
+  </data>
+  <data name="Ui.ExportToTSV" xml:space="preserve">
+    <value>TSV'ye aktar</value>
   </data>
 </root>

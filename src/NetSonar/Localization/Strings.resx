@@ -136,7 +136,7 @@
   <data name="Ui.Services" xml:space="preserve">
     <value>Services</value>
   </data>
-  <data name="Ui.AddNewServiceS" xml:space="preserve">
+  <data name="Ui.AddNewServices" xml:space="preserve">
     <value>Add new service(s)</value>
   </data>
   <data name="Ui.ImportFromJSON" xml:space="preserve">
@@ -1304,16 +1304,34 @@ pkexec was not found. Install pkexec or run the application with sudo.</value>
   <data name="Ui.ServicesCountPlain" xml:space="preserve">
     <value>{0} services</value>
   </data>
-  <data name="Ui.Edit" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="Ui.EditServiceS" xml:space="preserve">
-    <value>Edit service(s)</value>
+  <data name="Ui.EditService" xml:space="preserve">
+    <value>Edit service</value>
   </data>
   <data name="Ui.Save" xml:space="preserve">
     <value>Save</value>
   </data>
   <data name="Ui.ServiceUpdated" xml:space="preserve">
     <value>Service updated successfully.</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>A service with the same protocol and address already exists.</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>Open selected graphs (New window)</value>
+  </data>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>Edit services</value>
+  </data>
+  <data name="Ui.EditSelectedServices" xml:space="preserve">
+    <value>Edit selected</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>{0} services updated successfully.</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>Export pings to TSV</value>
+  </data>
+  <data name="Ui.ExportToTSV" xml:space="preserve">
+    <value>Export to TSV</value>
   </data>
 </root>

@@ -136,7 +136,7 @@
   <data name="Ui.Services" xml:space="preserve">
     <value>Dienstleistungen</value>
   </data>
-  <data name="Ui.AddNewServiceS" xml:space="preserve">
+  <data name="Ui.AddNewServices" xml:space="preserve">
     <value>Neue(n) Dienst(e) hinzufügen</value>
   </data>
   <data name="Ui.ImportFromJSON" xml:space="preserve">
@@ -1303,5 +1303,35 @@ pkexec wurde nicht gefunden. Installieren Sie pkexec oder führen Sie die Anwend
   </data>
   <data name="Ui.ServicesCountPlain" xml:space="preserve">
     <value>{0} Dienste</value>
+  </data>
+  <data name="Ui.EditService" xml:space="preserve">
+    <value>Dienst bearbeiten</value>
+  </data>
+  <data name="Ui.Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="Ui.ServiceUpdated" xml:space="preserve">
+    <value>Dienst erfolgreich aktualisiert.</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>Ein Dienst mit demselben Protokoll und derselben Adresse ist bereits vorhanden.</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>Ausgewählte Diagramme öffnen (Neues Fenster)</value>
+  </data>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>Dienste bearbeiten</value>
+  </data>
+  <data name="Ui.EditSelectedServices" xml:space="preserve">
+    <value>Ausgewählte bearbeiten</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>{0} Dienste erfolgreich aktualisiert.</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>Pings in TSV exportieren</value>
+  </data>
+  <data name="Ui.ExportToTSV" xml:space="preserve">
+    <value>Als TSV exportieren</value>
   </data>
 </root>

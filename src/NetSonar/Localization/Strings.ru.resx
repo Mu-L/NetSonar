@@ -136,7 +136,7 @@
   <data name="Ui.Services" xml:space="preserve">
     <value>Услуги</value>
   </data>
-  <data name="Ui.AddNewServiceS" xml:space="preserve">
+  <data name="Ui.AddNewServices" xml:space="preserve">
     <value>Добавить новую услугу(ы)</value>
   </data>
   <data name="Ui.ImportFromJSON" xml:space="preserve">
@@ -1303,5 +1303,35 @@ pkexec не найден. Установите pkexec или запустите 
   </data>
   <data name="Ui.ServicesCountPlain" xml:space="preserve">
     <value>{0} служб</value>
+  </data>
+  <data name="Ui.EditService" xml:space="preserve">
+    <value>Изменить службу</value>
+  </data>
+  <data name="Ui.Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Ui.ServiceUpdated" xml:space="preserve">
+    <value>Служба успешно обновлена.</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>Служба с таким же протоколом и адресом уже существует.</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>Открыть выбранные графики (Новое окно)</value>
+  </data>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>Изменить службы</value>
+  </data>
+  <data name="Ui.EditSelectedServices" xml:space="preserve">
+    <value>Изменить выбранные</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>Успешно обновлено служб: {0}.</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>Экспортировать пинги в TSV</value>
+  </data>
+  <data name="Ui.ExportToTSV" xml:space="preserve">
+    <value>Экспорт в TSV</value>
   </data>
 </root>
