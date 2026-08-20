@@ -18,7 +18,8 @@ $intentionalSameValues = @(
     'es|Status.ErrorFallback',
     'fr|Ui.ServicesCountPlain',
     'fr|Ui.Type',
-    'it|Common.No'
+    'it|Common.No',
+    'zh-Hans|Ui.Ping'
 )
 
 function Read-ResourceCatalog([string] $Path) {
