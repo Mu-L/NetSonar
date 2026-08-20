@@ -1,5 +1,5 @@
-﻿using System.Text.RegularExpressions;
-using Nuke.Common.Tooling;
+using System.Text.RegularExpressions;
+using Fallout.Common.Tooling;
 
 namespace build;
 

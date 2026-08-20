@@ -459,6 +459,7 @@ $RECYCLE.BIN/
 
 # nuke
 .nuke/temp/
+.fallout/temp/
 
 # secrets
 build/secret/
