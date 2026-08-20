@@ -136,7 +136,7 @@
   <data name="Ui.Services" xml:space="preserve">
     <value>서비스</value>
   </data>
-  <data name="Ui.AddNewServiceS" xml:space="preserve">
+  <data name="Ui.AddNewServices" xml:space="preserve">
     <value>새 서비스 추가</value>
   </data>
   <data name="Ui.ImportFromJSON" xml:space="preserve">
@@ -1303,5 +1303,35 @@ pkexec를 찾을 수 없습니다. pkexec를 설치하거나 sudo를 사용하�
   </data>
   <data name="Ui.ServicesCountPlain" xml:space="preserve">
     <value>서비스 {0}개</value>
+  </data>
+  <data name="Ui.EditService" xml:space="preserve">
+    <value>서비스 편집</value>
+  </data>
+  <data name="Ui.Save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="Ui.ServiceUpdated" xml:space="preserve">
+    <value>서비스가 업데이트되었습니다.</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>동일한 프로토콜과 주소를 사용하는 서비스가 이미 있습니다.</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>선택한 그래프 열기(새 창)</value>
+  </data>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>서비스 편집</value>
+  </data>
+  <data name="Ui.EditSelectedServices" xml:space="preserve">
+    <value>선택 항목 편집</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>서비스 {0}개가 업데이트되었습니다.</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>핑을 TSV로 내보내기</value>
+  </data>
+  <data name="Ui.ExportToTSV" xml:space="preserve">
+    <value>TSV로 내보내기</value>
   </data>
 </root>

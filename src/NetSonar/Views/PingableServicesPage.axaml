@@ -16,6 +16,29 @@
                           d:DesignWidth="1000"
                           x:DataType="viewModels:PingableServicesPageModel"
                           mc:Ignorable="d">
+    <controls:UserControlBase.KeyBindings>
+        <KeyBinding Command="{Binding EditSelectedServicesCommand}"
+                    Gesture="{OnPlatform macOS=Meta + E, Default=Ctrl + E}" />
+
+        <KeyBinding Command="{Binding PauseSelectedServicesCommand}"
+                    Gesture="{OnPlatform macOS=Meta + P, Default=Ctrl + P}" />
+
+        <KeyBinding Command="{Binding ResumeSelectedServicesCommand}"
+                    Gesture="{OnPlatform macOS=Meta + R, Default=Ctrl + R}" />
+
+        <KeyBinding Command="{Binding ToggleEnabledSelectedServiceCommand}"
+                    Gesture="{OnPlatform macOS=Meta + Pause, Default=Ctrl + Pause}" />
+        <KeyBinding Command="{Binding ToggleEnabledAllServicesCommand}"
+                    Gesture="{OnPlatform macOS=Meta + Shift + Pause, Default=Ctrl + Shift + Pause}" />
+
+        <KeyBinding Command="{Binding ResetServiceStatisticsForSelectedItemsCommand}"
+                    Gesture="{OnPlatform macOS=Meta + OemPeriod, Default=Ctrl + OemPeriod}" />
+        <KeyBinding Command="{Binding ResetAllServicesStatisticsCommand}"
+                    Gesture="{OnPlatform macOS=Meta + Shift + OemPeriod, Default=Ctrl + Shift + OemPeriod}" />
+
+        <KeyBinding Command="{Binding OpenSelectedGraphInNewWindowCommand}"
+                    Gesture="{OnPlatform macOS=Meta + G, Default=Ctrl + G}" />
+    </controls:UserControlBase.KeyBindings>
     <Grid ColumnDefinitions="*"
           RowDefinitions="*,Auto,*">
 
@@ -60,10 +83,10 @@
                                         Content="{Binding ServicesFailedCount}" />
 
                                 <controls:StatusBadge MinWidth="45"
-                                                Padding="15,5"
-                                                VerticalAlignment="Center"
-                                                Appearance="Warning"
-                                                Content="{Binding ServicesViewCollection.Count}" />
+                                                      Padding="15,5"
+                                                      VerticalAlignment="Center"
+                                                      Appearance="Warning"
+                                                      Content="{Binding ServicesViewCollection.Count}" />
                             </StackPanel>
 
                             <TextBox Width="300"
@@ -82,19 +105,40 @@
                                     Classes="Flat"
                                     Command="{Binding AddServicesCommand}"
                                     Content="{icon:MaterialIconExt Kind=Add}"
-                                    ToolTip.Tip="{localization:Translate Ui.AddNewServiceS}" />
+                                    HotKey="{OnPlatform macOS=Meta + N, Default=Ctrl + N}">
+                                <ToolTip.Tip>
+                                    <MultiBinding StringFormat="{}{0} ({1})">
+                                        <localization:TranslateExtension Key="Ui.AddNewServices" />
+                                        <Binding Path="$self.HotKey" />
+                                    </MultiBinding>
+                                </ToolTip.Tip>
+                            </Button>
 
                             <Button Padding="10,8"
                                     Command="{Binding ResumeAllServicesCommand}"
                                     Content="{icon:MaterialIconExt Kind=PlayCircleOutline}"
-                                    IsEnabled="{Binding ServicesViewCollection.Count}"
-                                    ToolTip.Tip="{localization:Translate Ui.ResumeAll}" />
+                                    HotKey="{OnPlatform macOS=Meta + Shift + R, Default=Ctrl + Shift + R}"
+                                    IsEnabled="{Binding ServicesViewCollection.Count}">
+                                <ToolTip.Tip>
+                                    <MultiBinding StringFormat="{}{0} ({1})">
+                                        <localization:TranslateExtension Key="Ui.ResumeAll" />
+                                        <Binding Path="$self.HotKey" />
+                                    </MultiBinding>
+                                </ToolTip.Tip>
+                            </Button>
 
                             <Button Padding="10,8"
                                     Command="{Binding PauseAllServicesCommand}"
                                     Content="{icon:MaterialIconExt Kind=PauseCircleOutline}"
-                                    IsEnabled="{Binding ServicesViewCollection.Count}"
-                                    ToolTip.Tip="{localization:Translate Ui.PauseAll}" />
+                                    HotKey="{OnPlatform macOS=Meta + Shift + P, Default=Ctrl + Shift + P}"
+                                    IsEnabled="{Binding ServicesViewCollection.Count}">
+                                <ToolTip.Tip>
+                                    <MultiBinding StringFormat="{}{0} ({1})">
+                                        <localization:TranslateExtension Key="Ui.PauseAll" />
+                                        <Binding Path="$self.HotKey" />
+                                    </MultiBinding>
+                                </ToolTip.Tip>
+                            </Button>
 
                             <Button Classes="AppIcon">
                                 <icon:MaterialIcon Foreground="{DynamicResource SukiText}"
@@ -118,7 +162,8 @@
                                                     <suki:GlassCard Padding="15"
                                                                     CornerRadius="15">
                                                         <StackPanel Spacing="10">
-                                                            <suki:GroupBox Header="{localization:Translate Ui.GridViewOptions}">
+                                                            <suki:GroupBox
+                                                                Header="{localization:Translate Ui.GridViewOptions}">
                                                                 <Grid ColumnDefinitions="Auto,*"
                                                                       ColumnSpacing="10"
                                                                       RowDefinitions="Auto,Auto"
@@ -141,7 +186,8 @@
                                                                             Content="{localization:Translate Ui.ResetColumnsOrder}" />
                                                                 </Grid>
                                                             </suki:GroupBox>
-                                                            <suki:GroupBox Header="{localization:Translate Ui.DefaultPingOptions}">
+                                                            <suki:GroupBox
+                                                                Header="{localization:Translate Ui.DefaultPingOptions}">
                                                                 <Grid ColumnDefinitions="Auto,*"
                                                                       ColumnSpacing="10"
                                                                       RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
@@ -295,47 +341,63 @@
                     !-->
                     <DataGrid.ContextMenu>
                         <ContextMenu>
+                            <MenuItem Command="{Binding EditSelectedServicesCommand}"
+                                      Header="{localization:Translate Ui.EditSelectedServices}"
+                                      Icon="{icon:MaterialIconExt Kind=Pencil}"
+                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                      InputGesture="{OnPlatform macOS=Meta + E, Default=Ctrl + E}" />
+
+                            <Separator />
+
                             <MenuItem Command="{Binding PauseSelectedServicesCommand}"
                                       Header="{localization:Translate Ui.PauseSelected}"
                                       Icon="{icon:MaterialIconExt Kind=Pause}"
-                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                      InputGesture="{OnPlatform macOS=Meta + P, Default=Ctrl + P}" />
                             <MenuItem Command="{Binding PauseAllServicesCommand}"
                                       Header="{localization:Translate Ui.PauseAll}"
                                       Icon="{icon:MaterialIconExt Kind=PauseCircleOutline}"
-                                      IsEnabled="{Binding ServicesViewCollection.Count}" />
+                                      IsEnabled="{Binding ServicesViewCollection.Count}"
+                                      InputGesture="{OnPlatform macOS=Meta + Shift + P, Default=Ctrl + Shift + P}" />
 
                             <Separator />
 
                             <MenuItem Command="{Binding ResumeSelectedServicesCommand}"
                                       Header="{localization:Translate Ui.ResumeSelected}"
                                       Icon="{icon:MaterialIconExt Kind=Play}"
-                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                      InputGesture="{OnPlatform macOS=Meta + R, Default=Ctrl + R}" />
                             <MenuItem Command="{Binding ResumeAllServicesCommand}"
                                       Header="{localization:Translate Ui.ResumeAll}"
                                       Icon="{icon:MaterialIconExt Kind=PlayCircleOutline}"
-                                      IsEnabled="{Binding ServicesViewCollection.Count}" />
+                                      IsEnabled="{Binding ServicesViewCollection.Count}"
+                                      InputGesture="{OnPlatform macOS=Meta + Shift + R, Default=Ctrl + Shift + R}" />
 
                             <Separator />
 
                             <MenuItem Command="{Binding ResetServiceStatisticsForSelectedItemsCommand}"
                                       Header="{localization:Translate Ui.ResetSelectedStatistics}"
                                       Icon="{icon:MaterialIconExt Kind=Restart}"
-                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                      InputGesture="{OnPlatform macOS=Meta + OemPeriod, Default=Ctrl + OemPeriod}" />
                             <MenuItem Command="{Binding ResetAllServicesStatisticsCommand}"
                                       Header="{localization:Translate Ui.ResetAllStatistics}"
                                       Icon="{icon:MaterialIconExt Kind=RestartAlert}"
-                                      IsEnabled="{Binding ServicesViewCollection.Count}" />
+                                      IsEnabled="{Binding ServicesViewCollection.Count}"
+                                      InputGesture="{OnPlatform macOS=Meta + Shift + OemPeriod, Default=Ctrl + Shift + OemPeriod}" />
 
                             <Separator />
 
                             <MenuItem Command="{Binding RemoveSelectedServicesCommand}"
                                       Header="{localization:Translate Ui.RemoveSelected}"
                                       Icon="{icon:MaterialIconExt Kind=TrashCan}"
-                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                      InputGesture="{OnPlatform macOS=Shift + Delete, Default=Shift + Delete}" />
                             <MenuItem Command="{Binding RemoveAllServicesCommand}"
                                       Header="{localization:Translate Ui.RemoveAll}"
                                       Icon="{icon:MaterialIconExt Kind=TrashCanCircleOutline}"
-                                      IsEnabled="{Binding ServicesViewCollection.Count}" />
+                                      IsEnabled="{Binding ServicesViewCollection.Count}"
+                                      InputGesture="{OnPlatform macOS=Meta + Shift + Delete, Default=Shift + Shift + Delete}" />
 
                             <Separator />
                             <MenuItem Command="{Binding ExportSelectedServicesToJsonCommand}"
@@ -348,12 +410,20 @@
                                       IsEnabled="{Binding ServicesViewCollection.Count}" />
                             <Separator />
 
+                            <MenuItem Command="{Binding OpenSelectedGraphInNewWindowCommand}"
+                                      Header="{localization:Translate Ui.OpenSelectedGraphsNewWindow}"
+                                      Icon="{icon:MaterialIconExt Kind=ChartBoxOutline}"
+                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                      InputGesture="{OnPlatform macOS=Meta + G, Default=Ctrl + G}" />
+
                             <MenuItem Command="{Binding LaunchUriCommand}"
                                       CommandParameter="{Binding SelectedService.IpAddressOrUrl, FallbackValue={x:Null}}"
                                       Header="{localization:Translate Ui.OpenInBrowser}"
                                       Icon="{icon:MaterialIconExt Kind=Web}"
                                       IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                      ToolTip.Tip="{Binding SelectedService.IpAddressOrUrl, FallbackValue={x:Null}}" />
+                                      ToolTip.Tip="{Binding SelectedService.IpAddressOrUrl, FallbackValue={x:Null}}"
+                                      InputGesture="{OnPlatform macOS=Meta + Enter, Default=Ctrl + Enter}"
+                                      HotKey="{Binding $self.InputGesture}" />
 
                         </ContextMenu>
                     </DataGrid.ContextMenu>
@@ -665,20 +735,20 @@
                                                        Classes="SubTitle" />
 
                                 <controls:StatusBadge MinWidth="45"
-                                                Margin="5,0,0,0"
-                                                Padding="15,5"
-                                                VerticalAlignment="Center"
-                                                Appearance="Information"
-                                                Content="{Binding SelectedService.SentCount, FallbackValue=0}"
-                                                IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                                ToolTip.Tip="{localization:Translate Ui.TotalPings}" />
+                                                      Margin="5,0,0,0"
+                                                      Padding="15,5"
+                                                      VerticalAlignment="Center"
+                                                      Appearance="Information"
+                                                      Content="{Binding SelectedService.SentCount, FallbackValue=0}"
+                                                      IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                                      ToolTip.Tip="{localization:Translate Ui.TotalPings}" />
 
                                 <controls:StatusBadge MinWidth="45"
-                                                Padding="15,5"
-                                                VerticalAlignment="Center"
-                                                Appearance="Success"
-                                                IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                                ToolTip.Tip="{localization:Translate Ui.SucceedPings}">
+                                                      Padding="15,5"
+                                                      VerticalAlignment="Center"
+                                                      Appearance="Success"
+                                                      IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                                      ToolTip.Tip="{localization:Translate Ui.SucceedPings}">
                                     <TextBlock>
                                         <Run
                                             Text="{Binding SelectedService.SucceedCount, Mode=OneWay, FallbackValue=0}" />
@@ -688,11 +758,11 @@
                                 </controls:StatusBadge>
 
                                 <controls:StatusBadge MinWidth="45"
-                                                Padding="15,5"
-                                                VerticalAlignment="Center"
-                                                Appearance="Danger"
-                                                IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                                ToolTip.Tip="{localization:Translate Ui.FailedPings}">
+                                                      Padding="15,5"
+                                                      VerticalAlignment="Center"
+                                                      Appearance="Danger"
+                                                      IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                                      ToolTip.Tip="{localization:Translate Ui.FailedPings}">
                                     <TextBlock>
                                         <Run Text="{Binding SelectedService.FailedCount, Mode=OneWay, FallbackValue=0}" />
                                         <Run
@@ -737,6 +807,9 @@
                                             <MenuItem Command="{Binding ExportCurrentPingsToCsvCommand}"
                                                       Header="{localization:Translate Ui.ExportToCSV}"
                                                       Icon="{icon:MaterialIconExt Kind=FileCsvOutline}" />
+                                            <MenuItem Command="{Binding ExportCurrentPingsToTabularCommand}"
+                                                      Header="{localization:Translate Ui.ExportToTSV}"
+                                                      Icon="{icon:MaterialIconExt Kind=TableLarge}" />
                                             <MenuItem Command="{Binding ExportCurrentPingsToJsonCommand}"
                                                       Header="{localization:Translate Ui.ExportToJSON}"
                                                       Icon="{icon:MaterialIconExt Kind=CodeJson}" />
@@ -800,18 +873,22 @@
                                             <Panel>
                                                 <TextBlock IsVisible="{Binding IsSucceeded, Mode=OneWay}">
                                                     <TextBlock.Text>
-                                                        <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
+                                                        <MultiBinding
+                                                            Converter="{StaticResource LocalizedStatusConverter}">
                                                             <Binding Path="Status" />
-                                                            <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
+                                                            <Binding Source="{x:Static app:App.Localization}"
+                                                                     Path="Culture" />
                                                         </MultiBinding>
                                                     </TextBlock.Text>
                                                 </TextBlock>
                                                 <TextBlock Classes="Danger extraBold"
                                                            IsVisible="{Binding IsFailed, Mode=OneWay}">
                                                     <TextBlock.Text>
-                                                        <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
+                                                        <MultiBinding
+                                                            Converter="{StaticResource LocalizedStatusConverter}">
                                                             <Binding Path="Status" />
-                                                            <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
+                                                            <Binding Source="{x:Static app:App.Localization}"
+                                                                     Path="Culture" />
                                                         </MultiBinding>
                                                     </TextBlock.Text>
                                                 </TextBlock>
@@ -850,12 +927,13 @@
                                                        Text="{localization:Translate Ui.ResponseTime}"
                                                        Classes="SubTitle" />
 
-                                <Panel VerticalAlignment="Center" IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}">
+                                <Panel VerticalAlignment="Center"
+                                       IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}">
                                     <controls:StatusBadge MinWidth="45"
-                                                    Padding="10,4"
-                                                    Appearance="Success"
-                                                    IsVisible="{Binding !SelectedService.WasLastPingFailed, FallbackValue=True}"
-                                                    ToolTip.Tip="{localization:Translate Ui.LastReplyStatus}">
+                                                          Padding="10,4"
+                                                          Appearance="Success"
+                                                          IsVisible="{Binding !SelectedService.WasLastPingFailed, FallbackValue=True}"
+                                                          ToolTip.Tip="{localization:Translate Ui.LastReplyStatus}">
                                         <controls:StatusBadge.Content>
                                             <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
                                                 <Binding Path="SelectedService.LastStatus" />
@@ -864,10 +942,10 @@
                                         </controls:StatusBadge.Content>
                                     </controls:StatusBadge>
                                     <controls:StatusBadge MinWidth="45"
-                                                    Padding="10,4"
-                                                    Appearance="Danger"
-                                                    IsVisible="{Binding SelectedService.WasLastPingFailed, FallbackValue=False}"
-                                                    ToolTip.Tip="{localization:Translate Ui.LastReplyStatus}">
+                                                          Padding="10,4"
+                                                          Appearance="Danger"
+                                                          IsVisible="{Binding SelectedService.WasLastPingFailed, FallbackValue=False}"
+                                                          ToolTip.Tip="{localization:Translate Ui.LastReplyStatus}">
                                         <controls:StatusBadge.Content>
                                             <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
                                                 <Binding Path="SelectedService.LastStatus" />
@@ -899,39 +977,39 @@
                                        LineSpacing="5"
                                        Orientation="Horizontal">
                                 <controls:StatusBadge MinWidth="45"
-                                                Padding="10,4"
-                                                VerticalAlignment="Center"
-                                                Appearance="Information"
-                                                Content="{Binding PingGraphModel.CurrentTimeText}"
-                                                ToolTip.Tip="{localization:Translate Ui.LatestReplyLatencyOrStatus}" />
+                                                      Padding="10,4"
+                                                      VerticalAlignment="Center"
+                                                      Appearance="Information"
+                                                      Content="{Binding PingGraphModel.CurrentTimeText}"
+                                                      ToolTip.Tip="{localization:Translate Ui.LatestReplyLatencyOrStatus}" />
 
                                 <controls:StatusBadge MinWidth="45"
-                                                Padding="10,4"
-                                                VerticalAlignment="Center"
-                                                Appearance="Success"
-                                                Content="{Binding PingGraphModel.MedianTimeText}"
-                                                ToolTip.Tip="{localization:Translate Ui.MedianLatencyInTheDisplayedWindow}" />
+                                                      Padding="10,4"
+                                                      VerticalAlignment="Center"
+                                                      Appearance="Success"
+                                                      Content="{Binding PingGraphModel.MedianTimeText}"
+                                                      ToolTip.Tip="{localization:Translate Ui.MedianLatencyInTheDisplayedWindow}" />
 
                                 <controls:StatusBadge MinWidth="45"
-                                                Padding="10,4"
-                                                VerticalAlignment="Center"
-                                                Appearance="Warning"
-                                                Content="{Binding PingGraphModel.P95TimeText}"
-                                                ToolTip.Tip="{localization:Translate Ui.95thPercentileLatencyInTheDisplayedWindow}" />
+                                                      Padding="10,4"
+                                                      VerticalAlignment="Center"
+                                                      Appearance="Warning"
+                                                      Content="{Binding PingGraphModel.P95TimeText}"
+                                                      ToolTip.Tip="{localization:Translate Ui.95thPercentileLatencyInTheDisplayedWindow}" />
 
                                 <controls:StatusBadge MinWidth="45"
-                                                Padding="10,4"
-                                                VerticalAlignment="Center"
-                                                Appearance="Information"
-                                                Content="{Binding PingGraphModel.JitterText}"
-                                                ToolTip.Tip="{localization:Translate Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies}" />
+                                                      Padding="10,4"
+                                                      VerticalAlignment="Center"
+                                                      Appearance="Information"
+                                                      Content="{Binding PingGraphModel.JitterText}"
+                                                      ToolTip.Tip="{localization:Translate Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies}" />
 
                                 <controls:StatusBadge MinWidth="45"
-                                                Padding="10,4"
-                                                VerticalAlignment="Center"
-                                                Appearance="Danger"
-                                                Content="{Binding PingGraphModel.WindowLossText}"
-                                                ToolTip.Tip="{localization:Translate Ui.FailedRepliesInTheDisplayedWindow}" />
+                                                      Padding="10,4"
+                                                      VerticalAlignment="Center"
+                                                      Appearance="Danger"
+                                                      Content="{Binding PingGraphModel.WindowLossText}"
+                                                      ToolTip.Tip="{localization:Translate Ui.FailedRepliesInTheDisplayedWindow}" />
                             </WrapPanel>
 
                             <WrapPanel Grid.Row="0"
@@ -977,7 +1055,14 @@
                                         Command="{Binding OpenGraphInNewWindowCommand}"
                                         Content="{icon:MaterialIconExt Kind=ChartBoxOutline}"
                                         IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                        ToolTip.Tip="{localization:Translate Ui.OpenGraphInANewWindow}" />
+                                        HotKey="{OnPlatform macOS='Meta+Shift+G', Default='Ctrl+Shift+G'}">
+                                    <ToolTip.Tip>
+                                        <MultiBinding StringFormat="{}{0} ({1})">
+                                            <localization:TranslateExtension Key="Ui.OpenGraphInANewWindow" />
+                                            <Binding Path="$self.HotKey" />
+                                        </MultiBinding>
+                                    </ToolTip.Tip>
+                                </Button>
                             </WrapPanel>
                         </Grid>
 

@@ -9,11 +9,24 @@ namespace NetSonar.Avalonia.Localization;
 /// <summary>
 /// Creates a one-way binding to a localized resource key.
 /// </summary>
-public sealed class TranslateExtension(string key) : MarkupExtension
+public sealed class TranslateExtension : MarkupExtension
 {
     private static readonly IValueConverter Converter = new TranslationConverter();
 
-    public string Key { get; } = key;
+    public TranslateExtension()
+    {
+    }
+
+    public TranslateExtension(string key)
+    {
+        Key = key;
+    }
+
+    /// <summary>
+    /// Gets or sets the resource key to translate. Settable so the extension can also be used in element
+    /// form, e.g. as a child of a <see cref="Avalonia.Data.MultiBinding"/>.
+    /// </summary>
+    public string Key { get; set; } = string.Empty;
 
     public override object ProvideValue(IServiceProvider serviceProvider)
     {
