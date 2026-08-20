@@ -1,34 +1,34 @@
 ﻿using System;
-using System.Threading.Tasks;
-using System.Timers;
-using Avalonia.Controls;
-using Avalonia.Controls.Notifications;
-using Avalonia.Input;
-using CommunityToolkit.Mvvm.Input;
-using NetSonar.Avalonia.Extensions;
-using NetSonar.Avalonia.Network;
-using Avalonia.Platform.Storage;
-using Avalonia.Threading;
-using Material.Icons;
-using NetSonar.Avalonia.ViewModels.Dialogs;
-using SukiUI.Dialogs;
-using Timer = System.Timers.Timer;
+using System.Collections.Concurrent;
+using System.ComponentModel;
 using System.IO;
 using System.Text.Json;
-using System.Collections.Concurrent;
+using System.Threading.Tasks;
+using System.Timers;
+using Avalonia;
 using Avalonia.Collections;
+using Avalonia.Controls;
+using Avalonia.Controls.Notifications;
+using Avalonia.Controls.Presenters;
+using Avalonia.Input;
+using Avalonia.Platform.Storage;
+using Avalonia.Threading;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Material.Icons;
 using NetSonar.Avalonia.Controls;
+using NetSonar.Avalonia.Extensions;
 using NetSonar.Avalonia.Localization;
+using NetSonar.Avalonia.Network;
 using NetSonar.Avalonia.Settings;
 using NetSonar.Avalonia.SystemOS;
-using ObservableCollections;
-using CommunityToolkit.Mvvm.ComponentModel;
-using System.ComponentModel;
-using Avalonia;
-using Avalonia.Controls.Presenters;
+using NetSonar.Avalonia.ViewModels.Dialogs;
 using NetSonar.Avalonia.ViewModels.Fragments;
 using NetSonar.Avalonia.Views;
+using ObservableCollections;
+using SukiUI.Dialogs;
 using ZLinq;
+using Timer = System.Timers.Timer;
 
 namespace NetSonar.Avalonia.ViewModels;
 
@@ -37,12 +37,51 @@ public partial class PingableServicesPageModel : PageViewModelBase
     public const string NumericUpDownTimeFormat = "#,#0.##";
     public const double NumericUpDownPingIncrement = 0.50;
     public const double NumericUpDownTimeoutIncrement = 0.50;
+    private readonly ConcurrentDictionary<Guid, byte> _activePings = new();
+
+    private readonly Timer _timer = new(500);
+
+
+    private DataGrid _servicesDataGrid = null!;
+    private DataGrid _servicesPingsDataGrid = null!;
+
+
+    public PingableServicesPageModel()
+    {
+        ServicesView = Services.CreateWritableView(service => service);
+        ServicesViewCollection =
+            ServicesView.ToWritableNotifyCollectionChanged(SynchronizationContextCollectionEventDispatcher.Current);
+
+        ServicesGroupView = new DataGridCollectionView(ServicesViewCollection);
+
+        /*App.Theme.OnColorThemeChanged += theme =>
+        {
+            if (RepliesGraphSeries.Length == 0) return;
+            if (RepliesGraphSeries[0] is ColumnSeries<double> column)
+            {
+                column.Fill = new SolidColorPaint(new SKColor(
+                    theme.Primary.R,
+                    theme.Primary.G,
+                    theme.Primary.B));
+            }
+        };*/
+
+        Services.CollectionChanged += (in args) => { OnPropertyChanged(nameof(ServicesCount)); };
+
+        AppSettings.PingServices.PropertyChanged += (sender, args) =>
+        {
+            if (args.PropertyName == nameof(PingServicesSettings.GridGroupBy))
+            {
+                RegroupServicesGrid();
+            }
+        };
+
+        App.Localization.PropertyChanged += LocalizationOnPropertyChanged;
+    }
+
     public override int Index => 0;
     public override string DisplayName => App.Localization["Navigation.Pings"];
     public override MaterialIconKind Icon => MaterialIconKind.Radar;
-
-    private readonly Timer _timer = new(500);
-    private readonly ConcurrentDictionary<Guid, byte> _activePings = new();
 
     public static int ServicesCount => Services.Count;
     [ObservableProperty] public partial int ServicesFailedCount { get; private set; }
@@ -66,7 +105,8 @@ public partial class PingableServicesPageModel : PageViewModelBase
         {
             if (!SetProperty(ref field, value)) return;
             //_pingRepliesSortColumn.Sort(ListSortDirection.Descending);
-            SelectedServicePingReplies = value?.Pings.ToNotifyCollectionChangedSlim(SynchronizationContextCollectionEventDispatcher.Current);
+            SelectedServicePingReplies =
+                value?.Pings.ToNotifyCollectionChangedSlim(SynchronizationContextCollectionEventDispatcher.Current);
             PingGraphModel.Services = _servicesDataGrid.SelectedItems.AsValueEnumerable<PingableService>().ToArray();
         }
     }
@@ -82,47 +122,7 @@ public partial class PingableServicesPageModel : PageViewModelBase
         }
     }
 
-
-    private DataGrid _servicesDataGrid = null!;
-    private DataGrid _servicesPingsDataGrid = null!;
-
     public PingableServiceGraphFragmentModel PingGraphModel { get; } = new();
-
-
-    public PingableServicesPageModel()
-    {
-        ServicesView = Services.CreateWritableView(service => service);
-        ServicesViewCollection = ServicesView.ToWritableNotifyCollectionChanged(SynchronizationContextCollectionEventDispatcher.Current);
-
-        ServicesGroupView = new DataGridCollectionView(ServicesViewCollection);
-
-        /*App.Theme.OnColorThemeChanged += theme =>
-        {
-            if (RepliesGraphSeries.Length == 0) return;
-            if (RepliesGraphSeries[0] is ColumnSeries<double> column)
-            {
-                column.Fill = new SolidColorPaint(new SKColor(
-                    theme.Primary.R,
-                    theme.Primary.G,
-                    theme.Primary.B));
-            }
-        };*/
-
-        Services.CollectionChanged += (in args) =>
-        {
-            OnPropertyChanged(nameof(ServicesCount));
-        };
-
-        AppSettings.PingServices.PropertyChanged += (sender, args) =>
-        {
-            if (args.PropertyName == nameof(PingServicesSettings.GridGroupBy))
-            {
-                RegroupServicesGrid();
-            }
-        };
-
-        App.Localization.PropertyChanged += LocalizationOnPropertyChanged;
-    }
 
     protected internal override void OnInitialized()
     {
@@ -147,14 +147,13 @@ public partial class PingableServicesPageModel : PageViewModelBase
         _timer.Elapsed += Timer_Elapsed;
         DispatcherTimer.RunOnce(_timer.Start, TimeSpan.FromSeconds(2), DispatcherPriority.ApplicationIdle);
         //Dispatcher.UIThread.Post(_timer.Start, DispatcherPriority.ApplicationIdle);
-
-
     }
 
     private void ServicesDataGridOnColumnDisplayIndexChanged(object? sender, DataGridColumnEventArgs e)
     {
         e.Handled = true;
-        AppSettings.PingServices.GridColumnOrder[e.Column.Header?.ToString() ?? string.Empty] = Math.Clamp(e.Column.DisplayIndex, 0, _servicesDataGrid.Columns.Count - 1);
+        AppSettings.PingServices.GridColumnOrder[e.Column.Header?.ToString() ?? string.Empty] =
+            Math.Clamp(e.Column.DisplayIndex, 0, _servicesDataGrid.Columns.Count - 1);
         AppSettings.DebouncedSave();
     }
 
@@ -171,6 +170,7 @@ public partial class PingableServicesPageModel : PageViewModelBase
         {
             ReAttachFilters();
         }
+
         base.OnPropertyChanged(e);
     }
 
@@ -282,6 +282,7 @@ public partial class PingableServicesPageModel : PageViewModelBase
                 e.Handled = true;
                 return;
             }
+
             return;
         }
     }
@@ -301,7 +302,8 @@ public partial class PingableServicesPageModel : PageViewModelBase
             case PingServicesSettings.PingServicesGroupBy.None:
                 break;
             default:
-                ServicesGroupView.GroupDescriptions.Add(new DataGridPathGroupDescription(AppSettings.PingServices.GridGroupBy.ToString()));
+                ServicesGroupView.GroupDescriptions.Add(
+                    new DataGridPathGroupDescription(AppSettings.PingServices.GridGroupBy.ToString()));
                 break;
         }
     }
@@ -316,7 +318,8 @@ public partial class PingableServicesPageModel : PageViewModelBase
 
         ServicesView.AttachFilter(service =>
         {
-            var splitText = FilterText.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+            var splitText =
+                FilterText.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
             foreach (var word in splitText)
             {
                 if (word.Equals("status:ok", StringComparison.OrdinalIgnoreCase) ||
@@ -331,14 +334,15 @@ public partial class PingableServicesPageModel : PageViewModelBase
                     return service.WasLastPingFailed;
                 }
 
-                if (StatusLocalization.GetText(service.LastStatus).Contains(word, StringComparison.CurrentCultureIgnoreCase)) return true;
+                if (StatusLocalization.GetText(service.LastStatus)
+                    .Contains(word, StringComparison.CurrentCultureIgnoreCase)) return true;
                 if (service.LastStatusStr.Contains(word, StringComparison.OrdinalIgnoreCase)) return true;
                 if (service.ProtocolType.ToString().Contains(word, StringComparison.OrdinalIgnoreCase)) return true;
-                if (service.IpAddresses.AsValueEnumerable().Any(ipAddress => ipAddress.ToString().Contains(word, StringComparison.OrdinalIgnoreCase))) return true;
+                if (service.IpAddresses.AsValueEnumerable().Any(ipAddress =>
+                        ipAddress.ToString().Contains(word, StringComparison.OrdinalIgnoreCase))) return true;
                 if (service.HostName.Contains(word, StringComparison.OrdinalIgnoreCase)) return true;
                 if (service.Group.Contains(word, StringComparison.OrdinalIgnoreCase)) return true;
                 if (service.Description.Contains(word, StringComparison.OrdinalIgnoreCase)) return true;
-
             }
 
             return false;
@@ -396,15 +400,48 @@ public partial class PingableServicesPageModel : PageViewModelBase
     }
 
     [RelayCommand]
-    public void EditSelectedService()
+    public void EditSelectedServices()
+    {
+        if (_servicesDataGrid.SelectedIndex == -1) return;
+        var selectedServices = _servicesDataGrid.SelectedItems.AsValueEnumerable<PingableService>().ToArray();
+        if (selectedServices.Length == 0) return;
+
+        var dialog = DialogManager
+            .CreateDialog()
+            .WithViewModel(dialog =>
+            {
+                var model = new AddPingServicesDialogModel(dialog, selectedServices);
+                // Changing the protocol or the address rebuilds the service, so follow it with the selection.
+                model.ServiceReplaced += (replaced, replacement) =>
+                {
+                    var selectedItems = _servicesDataGrid.SelectedItems;
+                    var index = selectedItems.IndexOf(replaced);
+                    if (index >= 0) selectedItems.RemoveAt(index);
+                    selectedItems.Add(replacement);
+                };
+                return model;
+            });
+        dialog.TryShow();
+    }
+
+    [RelayCommand]
+    public void ToggleEnabledSelectedService()
     {
         if (_servicesDataGrid.SelectedIndex == -1) return;
         if (_servicesDataGrid.SelectedItem is not PingableService service) return;
-        var dialog = DialogManager
-            .CreateDialog()
-            .WithViewModel(dialog => new AddPingServicesDialogModel(dialog, service));
-        dialog.TryShow();
+        service.IsEnabled = !service.IsEnabled;
     }
+
+    [RelayCommand]
+    public void ToggleEnabledAllServices()
+    {
+        if (Services.Count == 0) return;
+        foreach (var service in Services)
+        {
+            service.IsEnabled = !service.IsEnabled;
+        }
+    }
+
 
     [RelayCommand]
     public void PauseSelectedService()
@@ -466,16 +503,14 @@ public partial class PingableServicesPageModel : PageViewModelBase
     [RelayCommand]
     public void ResetServiceStatisticsForSelectedItem()
     {
-        if (_servicesDataGrid.SelectedIndex == -1 || _servicesDataGrid.SelectedItem is not PingableService service) return;
+        if (_servicesDataGrid.SelectedIndex == -1 ||
+            _servicesDataGrid.SelectedItem is not PingableService service) return;
 
         CreateMessageBoxYesNo(NotificationType.Warning,
                 App.Localization["Ping.ResetOne.Title"],
-                App.Localization.Format("Ping.ResetOne.Message", service.IpEndPoint, service.HostName), _ =>
-                {
-                    service.Clear();
-                })
+                App.Localization.Format("Ping.ResetOne.Message", service.IpEndPoint, service.HostName),
+                _ => { service.Clear(); })
             .TryShow();
-
     }
 
     [RelayCommand]
@@ -492,7 +527,6 @@ public partial class PingableServicesPageModel : PageViewModelBase
                     }
                 })
             .TryShow();
-
     }
 
     [RelayCommand]
@@ -509,7 +543,6 @@ public partial class PingableServicesPageModel : PageViewModelBase
                     }
                 })
             .TryShow();
-
     }
 
     [RelayCommand]
@@ -521,7 +554,6 @@ public partial class PingableServicesPageModel : PageViewModelBase
                 App.Localization.Format("Ping.RemoveSelected.Message", _servicesDataGrid.SelectedItems.Count),
                 _ => Services.RemoveRange(_servicesDataGrid.SelectedItems))
             .TryShow();
-
     }
 
     [RelayCommand]
@@ -532,7 +564,6 @@ public partial class PingableServicesPageModel : PageViewModelBase
                 App.Localization.Format("Ping.RemoveAll.Title", Services.Count),
                 App.Localization.Format("Ping.RemoveAll.Message", Services.Count), _ => Services.Clear())
             .TryShow();
-
     }
 
     [RelayCommand]
@@ -542,7 +573,9 @@ public partial class PingableServicesPageModel : PageViewModelBase
         using var file = await TopLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
             ShowOverwritePrompt = true,
-            SuggestedFileName = StringExtensions.GetSafeFilename($"services#{_servicesDataGrid.SelectedItems.Count}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.json"),
+            SuggestedFileName =
+                StringExtensions.GetSafeFilename(
+                    $"services#{_servicesDataGrid.SelectedItems.Count}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.json"),
             DefaultExtension = "json",
             FileTypeChoices = AvaloniaExtensions.FilePickerJson
         });
@@ -558,14 +591,16 @@ public partial class PingableServicesPageModel : PageViewModelBase
             App.ShowToast(NotificationType.Success,
                 App.Localization["Export.Services.Title"],
                 App.Localization.Format("Export.Services.Success", _servicesDataGrid.SelectedItems.Count, file.Name),
-                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { SystemAware.StartProcess(filePath); }),
-                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { SystemAware.SelectFileOnExplorer(filePath); })
+                new ToastActionButton(App.Localization["Common.OpenFile"],
+                    toast => { SystemAware.StartProcess(filePath); }),
+                new ToastActionButton(App.Localization["Common.OpenFolder"],
+                    toast => { SystemAware.SelectFileOnExplorer(filePath); })
             );
-
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, App.Localization["Export.Services.Title"], App.Localization["Export.Services.Error"]);
+            App.ShowExceptionToast(e, App.Localization["Export.Services.Title"],
+                App.Localization["Export.Services.Error"]);
         }
     }
 
@@ -576,7 +611,8 @@ public partial class PingableServicesPageModel : PageViewModelBase
         using var file = await TopLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
             ShowOverwritePrompt = true,
-            SuggestedFileName = StringExtensions.GetSafeFilename($"services#{Services.Count}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.json"),
+            SuggestedFileName =
+                StringExtensions.GetSafeFilename($"services#{Services.Count}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.json"),
             DefaultExtension = "json",
             FileTypeChoices = AvaloniaExtensions.FilePickerJson
         });
@@ -592,14 +628,16 @@ public partial class PingableServicesPageModel : PageViewModelBase
             App.ShowToast(NotificationType.Success,
                 App.Localization["Export.Services.Title"],
                 App.Localization.Format("Export.Services.Success", Services.Count, file.Name),
-                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { SystemAware.StartProcess(filePath); }),
-                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { SystemAware.SelectFileOnExplorer(filePath); })
+                new ToastActionButton(App.Localization["Common.OpenFile"],
+                    toast => { SystemAware.StartProcess(filePath); }),
+                new ToastActionButton(App.Localization["Common.OpenFolder"],
+                    toast => { SystemAware.SelectFileOnExplorer(filePath); })
             );
-
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, App.Localization["Export.Services.Title"], App.Localization["Export.Services.Error"]);
+            App.ShowExceptionToast(e, App.Localization["Export.Services.Title"],
+                App.Localization["Export.Services.Error"]);
         }
     }
 
@@ -611,7 +649,8 @@ public partial class PingableServicesPageModel : PageViewModelBase
         using var file = await TopLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
             ShowOverwritePrompt = true,
-            SuggestedFileName = StringExtensions.GetSafeFilename($"{SelectedService.ProtocolType.ToString().ToLowerInvariant()}-{SelectedService.HostName}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.csv"),
+            SuggestedFileName = StringExtensions.GetSafeFilename(
+                $"{SelectedService.ProtocolType.ToString().ToLowerInvariant()}-{SelectedService.HostName}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.csv"),
             DefaultExtension = "csv",
             FileTypeChoices = AvaloniaExtensions.FilePickerCsv
         });
@@ -654,13 +693,83 @@ public partial class PingableServicesPageModel : PageViewModelBase
             App.ShowToast(NotificationType.Success,
                 App.Localization["Export.Pings.CsvTitle"],
                 App.Localization.Format("Export.Pings.Success", count, SelectedService.HostName, file.Name),
-                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { SystemAware.StartProcess(filePath); }),
-                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { SystemAware.SelectFileOnExplorer(filePath); })
-                );
+                new ToastActionButton(App.Localization["Common.OpenFile"],
+                    toast => { SystemAware.StartProcess(filePath); }),
+                new ToastActionButton(App.Localization["Common.OpenFolder"],
+                    toast => { SystemAware.SelectFileOnExplorer(filePath); })
+            );
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, App.Localization["Export.Pings.CsvTitle"], App.Localization["Export.Pings.Error"]);
+            App.ShowExceptionToast(e, App.Localization["Export.Pings.CsvTitle"],
+                App.Localization["Export.Pings.Error"]);
+        }
+    }
+
+    /// <summary>
+    /// Exports the pings of the selected service as tab separated values, ready to paste into a spreadsheet.
+    /// </summary>
+    [RelayCommand]
+    public async Task ExportCurrentPingsToTabular()
+    {
+        if (SelectedService is null || !TopLevel.StorageProvider.CanSave || SelectedService.Pings.Count == 0) return;
+        using var file = await TopLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            ShowOverwritePrompt = true,
+            SuggestedFileName = StringExtensions.GetSafeFilename(
+                $"{SelectedService.ProtocolType.ToString().ToLowerInvariant()}-{SelectedService.HostName}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.tsv"),
+            DefaultExtension = "tsv",
+            FileTypeChoices = AvaloniaExtensions.FilePickerTsv
+        });
+
+        if (file is null) return;
+
+        try
+        {
+            var filePath = file.TryGetLocalPath();
+            if (filePath is null) return;
+            await using var stream = await file.OpenWriteAsync();
+            await using var textWriter = new StreamWriter(stream);
+            await textWriter.WriteLineAsync(string.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}",
+                nameof(PingableServiceReply.IsSucceeded),
+                nameof(PingableServiceReply.Status),
+                nameof(PingableServiceReply.StatusCode),
+                nameof(PingableServiceReply.IpEndPoint),
+                nameof(PingableServiceReply.SentDateTime),
+                nameof(PingableServiceReply.Time),
+                nameof(PingableServiceReply.Ttl),
+                nameof(PingableServiceReply.BufferLength)
+            ));
+
+            var count = SelectedService.Pings.Count;
+            for (var i = 0; i < SelectedService.Pings.Count; i++)
+            {
+                var reply = SelectedService.Pings[i];
+                await textWriter.WriteLineAsync(string.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}",
+                    reply.IsSucceeded,
+                    reply.Status,
+                    reply.StatusCode,
+                    reply.IpEndPoint,
+                    reply.SentDateTime,
+                    reply.Time,
+                    reply.Ttl,
+                    reply.BufferLength
+                ));
+            }
+
+            App.ShowToast(NotificationType.Success,
+                App.Localization["Export.Pings.TsvTitle"],
+                App.Localization.Format("Export.Pings.Success", count, SelectedService.HostName, file.Name),
+                new ToastActionButton(App.Localization["Common.OpenFile"],
+                    toast => { SystemAware.StartProcess(filePath); }),
+                new ToastActionButton(App.Localization["Common.OpenFolder"],
+                    toast => { SystemAware.SelectFileOnExplorer(filePath); })
+            );
+        }
+        catch (Exception e)
+        {
+            App.ShowExceptionToast(e, App.Localization["Export.Pings.TsvTitle"],
+                App.Localization["Export.Pings.Error"]);
         }
     }
 
@@ -671,7 +780,8 @@ public partial class PingableServicesPageModel : PageViewModelBase
         using var file = await TopLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
             ShowOverwritePrompt = true,
-            SuggestedFileName = StringExtensions.GetSafeFilename($"{SelectedService.ProtocolType.ToString().ToLowerInvariant()}-{SelectedService.HostName}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.json"),
+            SuggestedFileName = StringExtensions.GetSafeFilename(
+                $"{SelectedService.ProtocolType.ToString().ToLowerInvariant()}-{SelectedService.HostName}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.json"),
             DefaultExtension = "json",
             FileTypeChoices = AvaloniaExtensions.FilePickerJson
         });
@@ -688,14 +798,37 @@ public partial class PingableServicesPageModel : PageViewModelBase
             App.ShowToast(NotificationType.Success,
                 App.Localization["Export.Pings.JsonTitle"],
                 App.Localization.Format("Export.Pings.Success", count, SelectedService.HostName, file.Name),
-                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { SystemAware.StartProcess(filePath); }),
-                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { SystemAware.SelectFileOnExplorer(filePath); })
-                );
-
+                new ToastActionButton(App.Localization["Common.OpenFile"],
+                    toast => { SystemAware.StartProcess(filePath); }),
+                new ToastActionButton(App.Localization["Common.OpenFolder"],
+                    toast => { SystemAware.SelectFileOnExplorer(filePath); })
+            );
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, App.Localization["Export.Pings.JsonTitle"], App.Localization["Export.Pings.Error"]);
+            App.ShowExceptionToast(e, App.Localization["Export.Pings.JsonTitle"],
+                App.Localization["Export.Pings.Error"]);
+        }
+    }
+
+    [RelayCommand]
+    public void OpenSelectedGraphInNewWindow()
+    {
+        if (_servicesDataGrid.SelectedIndex == -1) return;
+
+        foreach (PingableService selectedItem in _servicesDataGrid.SelectedItems)
+        {
+            GenericWindow window = new()
+            {
+                Title = $"{App.SoftwareWithVersion}  {App.Localization["Graph.Title"]}",
+                CanPin = true,
+                Content = new ContentPresenter
+                {
+                    Margin = new Thickness(20),
+                    Content = new PingableServiceGraphFragmentModel(selectedItem, true)
+                }
+            };
+            window.Show(App.MainWindow);
         }
     }
 
@@ -713,19 +846,21 @@ public partial class PingableServicesPageModel : PageViewModelBase
                 Margin = new Thickness(20),
                 Content = new PingableServiceGraphFragmentModel(
                     _servicesDataGrid.SelectedItems.AsValueEnumerable<PingableService>().ToArray(),
-                    showGraphOptions: true)
+                    true)
             }
         };
 
         if (_servicesDataGrid.SelectedItems.Count == 1)
         {
-            var label = string.IsNullOrWhiteSpace(SelectedService.HostName) ? SelectedService.IpAddressOrUrl : $"{SelectedService.HostName} ({SelectedService.IpEndPointStr}) [{SelectedService.ProtocolType}]";
+            var label = string.IsNullOrWhiteSpace(SelectedService.HostName)
+                ? SelectedService.IpAddressOrUrl
+                : $"{SelectedService.HostName} ({SelectedService.IpEndPointStr}) [{SelectedService.ProtocolType}]";
             window.Title += $" - {label}";
         }
         else
         {
-            window.Title += $" - {App.Localization.Format("Ui.ServicesCountPlain", _servicesDataGrid.SelectedItems.Count)}";
-
+            window.Title +=
+                $" - {App.Localization.Format("Ui.ServicesCountPlain", _servicesDataGrid.SelectedItems.Count)}";
         }
 
         window.Show(App.MainWindow);
@@ -735,7 +870,7 @@ public partial class PingableServicesPageModel : PageViewModelBase
     {
         _servicesDataGrid = servicesDataGrid;
         _servicesPingsDataGrid = pingRepliesDataGrid;
-        _servicesDataGrid.ExtendDataGridShortcuts();
-        _servicesPingsDataGrid.ExtendDataGridShortcuts();
+        _servicesDataGrid.ExtendDataGridShortcuts(_ => RemoveSelectedServices(), _ => RemoveAllServices());
+        _servicesPingsDataGrid.ExtendDataGridShortcuts(_ => ResetServiceStatisticsForSelectedItem());
     }
 }

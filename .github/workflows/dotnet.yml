@@ -1,29 +1,50 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
+  merge_group:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dotnet-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_NOLOGO: true
 
 jobs:
-  build:
-
+  build-and-test:
+    name: Build and test
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 10.0.x
-    - name: Validate localization resources
-      shell: pwsh
-      run: ./scripts/Validate-LocalizationResources.ps1
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Validate localization resources
+        shell: pwsh
+        run: ./scripts/Validate-LocalizationResources.ps1
+
+      - name: Restore dependencies
+        run: |
+          dotnet restore src/NetSonar.Desktop/NetSonar.Desktop.csproj
+          dotnet restore tests/NetSonar.Tests/NetSonar.Tests.csproj
+
+      - name: Build application
+        run: dotnet build src/NetSonar.Desktop/NetSonar.Desktop.csproj --configuration Release --no-restore
+
+      - name: Run tests
+        run: dotnet test tests/NetSonar.Tests/NetSonar.Tests.csproj --configuration Release --no-restore

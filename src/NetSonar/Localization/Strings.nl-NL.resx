@@ -136,11 +136,29 @@
   <data name="Ui.Services" xml:space="preserve">
     <value>Diensten</value>
   </data>
-  <data name="Ui.AddNewServiceS" xml:space="preserve">
+  <data name="Ui.AddNewServices" xml:space="preserve">
     <value>Nieuwe dienst(en) toevoegen</value>
   </data>
   <data name="Ui.ImportFromJSON" xml:space="preserve">
     <value>Importeren uit JSON</value>
+  </data>
+  <data name="Ui.PasteFromClipboard" xml:space="preserve">
+    <value>Plakken vanaf klembord</value>
+  </data>
+  <data name="Ui.PasteFormatHint" xml:space="preserve">
+    <value>Kolomvolgorde: IP | Poort | Interval | Beschrijving | Groep&#10;Voorbeeld: 192.168.1.10  80  30  Webserver  LAN&#10;Voorbeeld: 192.168.130:80|30|Webserver|LAN&#10;Bekende poorten bepalen het protocol; onbekende poorten gebruiken TCP.</value>
+  </data>
+  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
+    <value>Toevoegen: hoofdknop = lege rij, pijl = importeren&#10;Plakindeling: IP | Poort | Interval | Beschrijving | Groep&#10;Voorbeeld: 192.168.1.10  80  30  Webserver  LAN&#10;Voorbeeld: 192.168.130:80|30|Webserver|LAN&#10;Bekende poorten bepalen het protocol; onbekende poorten gebruiken TCP.</value>
+  </data>
+  <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
+    <value>Kan niet plakken vanaf het klembord</value>
+  </data>
+  <data name="Import.Clipboard.NoData" xml:space="preserve">
+    <value>Het klembord is leeg of bevat geen bruikbare servicegegevens.</value>
+  </data>
+  <data name="Import.Clipboard.Summary" xml:space="preserve">
+    <value>{0} service(s) geplakt, {1} overgeslagen.</value>
   </data>
   <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
     <value>Netwerkgateway(s) importeren</value>
@@ -1285,5 +1303,35 @@ pkexec is niet gevonden. Installeer pkexec of voer de toepassing uit met sudo.</
   </data>
   <data name="Ui.ServicesCountPlain" xml:space="preserve">
     <value>{0} diensten</value>
+  </data>
+  <data name="Ui.EditService" xml:space="preserve">
+    <value>Service bewerken</value>
+  </data>
+  <data name="Ui.Save" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="Ui.ServiceUpdated" xml:space="preserve">
+    <value>Service is bijgewerkt.</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>Er bestaat al een service met hetzelfde protocol en adres.</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>Geselecteerde grafieken openen (Nieuw venster)</value>
+  </data>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>Services bewerken</value>
+  </data>
+  <data name="Ui.EditSelectedServices" xml:space="preserve">
+    <value>Geselecteerde bewerken</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>{0} services zijn bijgewerkt.</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>Pings naar TSV exporteren</value>
+  </data>
+  <data name="Ui.ExportToTSV" xml:space="preserve">
+    <value>Naar TSV exporteren</value>
   </data>
 </root>

@@ -1,39 +1,69 @@
-﻿using Avalonia.Controls.Notifications;
-using Avalonia.Input;
-using Avalonia.Platform.Storage;
-using CommunityToolkit.Mvvm.Input;
-using Material.Icons;
-using NetSonar.Avalonia.Extensions;
-using NetSonar.Avalonia.Models;
-using NetSonar.Avalonia.Network;
-using NetSonar.Avalonia.Settings;
-using StageKit;
-using SukiUI.Dialogs;
-using SukiUI.Toasts;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Avalonia.Controls.Notifications;
+using Avalonia.Input;
+using Avalonia.Platform.Storage;
+using CommunityToolkit.Mvvm.Input;
+using Material.Icons;
+using NetSonar.Avalonia.Extensions;
+using NetSonar.Avalonia.Localization;
+using NetSonar.Avalonia.Models;
+using NetSonar.Avalonia.Network;
+using NetSonar.Avalonia.Settings;
 using ObservableCollections;
+using StageKit;
+using SukiUI.Dialogs;
+using SukiUI.Toasts;
 using ZLinq;
 
 namespace NetSonar.Avalonia.ViewModels.Dialogs;
 
 public partial class AddPingServicesDialogModel : DialogViewModelBase
 {
+    private readonly PingableService[] _editingServices;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AddPingServicesDialogModel"/> class.
+    /// </summary>
+    /// <param name="dialog">The hosting dialog.</param>
+    /// <param name="servicesToEdit">The services to edit, or <c>null</c>/empty to import new services.</param>
+    public AddPingServicesDialogModel(ISukiDialog dialog, IEnumerable<PingableService>? servicesToEdit = null)
+        : base(dialog)
+    {
+        ServicesView =
+            Services.ToWritableNotifyCollectionChanged(SynchronizationContextCollectionEventDispatcher.Current);
+        _editingServices = servicesToEdit?.ToArray() ?? [];
+
+        if (_editingServices.Length == 0) AddEmpty();
+        else Services.AddRange(_editingServices.Select(service => new NewPingService(service)));
+
+        App.Localization.PropertyChanged += LocalizationOnPropertyChanged;
+    }
+
+    /// <summary>
+    /// Raised when the edited service had to be rebuilt, carrying the replaced and the replacement instances.
+    /// </summary>
+    public event Action<PingableService, PingableService>? ServiceReplaced;
+
     public ObservableList<NewPingService> Services { get; } = [];
 
     public NotifyCollectionChangedSynchronizedViewList<NewPingService> ServicesView { get; }
 
-    private readonly PingableService? _editingService;
+    /// <summary>
+    /// Gets a value indicating whether the dialog edits existing services instead of importing new ones.
+    /// </summary>
+    public bool IsEditing => _editingServices.Length > 0;
 
-    public bool IsEditing => _editingService is not null;
-
-    public string HeaderText => App.Localization[IsEditing ? "Ui.EditServiceS" : "Ui.Services"];
+    public string HeaderText => IsEditing
+        ? App.Localization[_editingServices.Length > 1 ? "Ui.EditServices" : "Ui.EditService"]
+        : App.Localization["Ui.Services"];
 
     public string ApplyButtonText => App.Localization[IsEditing ? "Ui.Save" : "Ui.Import"];
 
@@ -42,27 +72,21 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
     protected internal override void OnUnloaded()
     {
         base.OnUnloaded();
+        App.Localization.PropertyChanged -= LocalizationOnPropertyChanged;
         ServicesView.Dispose();
     }
 
-    public AddPingServicesDialogModel(ISukiDialog dialog, PingableService? serviceToEdit = null) : base(dialog)
+    private void LocalizationOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        ServicesView = Services.ToWritableNotifyCollectionChanged(SynchronizationContextCollectionEventDispatcher.Current);
-        _editingService = serviceToEdit;
-        if (serviceToEdit is not null)
-        {
-            Services.Add(new NewPingService(serviceToEdit));
-        }
-        else
-        {
-            AddEmpty();
-        }
+        if (e.PropertyName != nameof(ILocalizationService.Culture)) return;
+        OnPropertyChanged(nameof(HeaderText));
+        OnPropertyChanged(nameof(ApplyButtonText));
     }
-
 
     [RelayCommand]
     public void Clear()
     {
+        if (IsEditing) return;
         Services.Clear();
         AddEmpty();
     }
@@ -76,10 +100,10 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
     [RelayCommand]
     public async Task ImportFromJson()
     {
-        var files = await TopLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions()
+        var files = await TopLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
         {
             AllowMultiple = true,
-            FileTypeFilter = AvaloniaExtensions.FilePickerJson,
+            FileTypeFilter = AvaloniaExtensions.FilePickerJson
         });
 
         if (files.Count == 0) return;
@@ -89,7 +113,8 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
             try
             {
                 await using var stream = await file.OpenReadAsync();
-                var services = await JsonSerializer.DeserializeAsync<PingableService[]>(stream,  App.JsonSerializerOptions);
+                var services =
+                    await JsonSerializer.DeserializeAsync<PingableService[]>(stream, App.JsonSerializerOptions);
                 if (services is null) continue;
                 PurgeEmptyRecords();
                 AddUniques(services.Select(service => new NewPingService(service)));
@@ -100,7 +125,6 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
                     App.Localization["Import.Json.ErrorMessage"]);
                 UnhandledExceptions.HandleSafeException(e, "Import service from json");
             }
-
         }
     }
 
@@ -154,7 +178,8 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
             foreach (var address in network.GetIPProperties().GatewayAddresses)
             {
                 if (address.Address.AddressFamily != AddressFamily.InterNetwork || !address.Address.IsValid()) continue;
-                cache.Add(new NewPingService(ServiceProtocolType.ICMP, address.Address, $"Gateway {++gatewayCount}", "Network Gateway"));
+                cache.Add(new NewPingService(ServiceProtocolType.ICMP, address.Address, $"Gateway {++gatewayCount}",
+                    "Network Gateway"));
             }
         }
 
@@ -166,6 +191,7 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
     [RelayCommand]
     public void RemoveServices(IList list)
     {
+        if (IsEditing) return;
         Services.RemoveRange(list.Cast<NewPingService>());
     }
 
@@ -176,7 +202,7 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
         var clipboard = TopLevel.Clipboard;
         if (clipboard is null) return;
         var data = await clipboard.TryGetDataAsync();
-        var text = data is null ? null : await AsyncDataTransferExtensions.TryGetTextAsync(data);
+        var text = data is null ? null : await data.TryGetTextAsync();
 
         if (string.IsNullOrWhiteSpace(text))
         {
@@ -189,19 +215,15 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
         var result = ClipboardPasteParser.Parse(text);
         if (result.Services.Count == 0)
         {
-            App.ShowToast(NotificationType.Warning,
-                App.Localization["Import.Clipboard.ErrorTitle"],
-                App.Localization["Import.Clipboard.NoData"]);
+            ShowPasteSummary(0, result.SkippedCount);
             return;
         }
 
         PurgeEmptyRecords();
-        AddUniques(result.Services);
+        var addedCount = AddUniques(result.Services);
+        var duplicateCount = result.Services.Count - addedCount;
 
-        ToastManager.CreateSimpleInfoToast()
-            .WithContent(App.Localization.Format("Import.Clipboard.Summary",
-                result.Services.Count, result.SkippedCount))
-            .Queue();
+        ShowPasteSummary(addedCount, result.SkippedCount + duplicateCount);
     }
 
     private void PurgeEmptyRecords()
@@ -212,9 +234,19 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
         }
     }
 
-    private void AddUniques(IEnumerable<NewPingService> services)
+    private int AddUniques(IEnumerable<NewPingService> services)
     {
-        Services.AddRange(services.Where(service => !Services.Contains(service)));
+        using var servicesPool =
+            services.AsValueEnumerable().Distinct().Where(service => !Services.Contains(service)).ToArrayPool();
+        Services.AddRange(servicesPool.Span);
+        return servicesPool.Size;
+    }
+
+    private static void ShowPasteSummary(int addedCount, int skippedCount)
+    {
+        ToastManager.CreateSimpleInfoToast()
+            .WithContent(App.Localization.Format("Import.Clipboard.Summary", addedCount, skippedCount))
+            .Queue();
     }
 
     protected override bool ValidateInternal()
@@ -232,9 +264,12 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
     {
         if (IsEditing)
         {
-            ApplyEdit();
+            if (!ApplyEdit()) return Task.FromResult(false);
+
             ToastManager.CreateSimpleInfoToast()
-                .WithContent(App.Localization["Ui.ServiceUpdated"])
+                .WithContent(_editingServices.Length > 1
+                    ? App.Localization.Format("Ui.ServicesUpdated", _editingServices.Length)
+                    : App.Localization["Ui.ServiceUpdated"])
                 .Queue();
             return base.ApplyInternal();
         }
@@ -265,33 +300,98 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
         return base.ApplyInternal();
     }
 
-    private void ApplyEdit()
+    /// <summary>
+    /// Applies the edited values back to the services being edited.
+    /// </summary>
+    /// <returns><c>true</c> when every service was updated; otherwise <c>false</c> and the dialog stays open.</returns>
+    private bool ApplyEdit()
     {
-        if (_editingService is null || Services.Count == 0) return;
-        var edited = Services[0];
-        var target = _editingService;
-        var identityChanged = edited.ProtocolType != target.ProtocolType
-                              || !string.Equals(edited.IpAddressOrUrl, target.IpAddressOrUrl, StringComparison.Ordinal);
-        if (identityChanged)
+        if (_editingServices.Length == 0 || Services.Count != _editingServices.Length) return false;
+
+        var services = PingableServicesFile.Instance;
+
+        // Validate all identities up-front so a rejected entry never leaves a half-applied edit behind.
+        for (var i = 0; i < Services.Count; i++)
         {
-            var order = target.Order;
-            var items = PingableServicesFile.Instance.Items;
-            var index = items.IndexOf(target);
-            items.Remove(target);
-            var replacement = new PingableService(edited) { Order = order };
-            if (index >= 0) items.Insert(Math.Min(index, items.Count), replacement);
-            else items.Add(replacement);
+            var edited = Services[i];
+
+            // Two edited rows must not end up with the same identity.
+            for (var j = 0; j < i; j++)
+            {
+                if (!HasSameIdentity(Services[j], edited)) continue;
+                ShowDuplicateWarning();
+                return false;
+            }
+
+            // Nor may an edited row collide with a service that is not part of this edit.
+            foreach (var service in services)
+            {
+                if (IsUnderEdit(service) || !HasSameIdentity(edited, service)) continue;
+                ShowDuplicateWarning();
+                return false;
+            }
         }
-        else
+
+        for (var i = 0; i < Services.Count; i++)
         {
-            target.Description = edited.Description;
-            target.Group = edited.Group;
-            target.IsEnabled = edited.IsEnabled;
-            target.PingEverySeconds = edited.PingEverySeconds;
-            target.TimeoutSeconds = edited.TimeoutSeconds;
-            target.BufferSize = edited.BufferSize;
-            target.Ttl = edited.Ttl;
-            target.DontFragment = edited.DontFragment;
+            var edited = Services[i];
+            var target = _editingServices[i];
+
+            if (HasSameIdentity(edited, target))
+            {
+                target.Description = edited.Description;
+                target.Group = edited.Group;
+                target.IsEnabled = edited.IsEnabled;
+                target.PingEverySeconds = edited.PingEverySeconds;
+                target.TimeoutSeconds = edited.TimeoutSeconds;
+                target.BufferSize = PingableService.GetProtocolBufferSize(target.ProtocolType, edited.BufferSize);
+                target.Ttl = edited.Ttl;
+                target.DontFragment = edited.DontFragment;
+                continue;
+            }
+
+            // ProtocolType and IpAddressOrUrl are init-only, so the service has to be rebuilt in place.
+            var index = services.IndexOf(target);
+            var replacement = new PingableService(edited) { Order = target.Order };
+
+            services.Remove(target);
+            if (index >= 0) services.Insert(index, replacement);
+            else services.Add(replacement);
+
+            _editingServices[i] = replacement;
+            ServiceReplaced?.Invoke(target, replacement);
         }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Checks whether a service is one of the services this dialog is editing.
+    /// </summary>
+    private bool IsUnderEdit(PingableService service)
+    {
+        foreach (var editing in _editingServices)
+        {
+            if (ReferenceEquals(editing, service)) return true;
+        }
+
+        return false;
+    }
+
+    private static bool HasSameIdentity(NewPingService edited, PingableService service)
+    {
+        return edited.ProtocolType == service.ProtocolType
+               && string.Equals(edited.IpAddressOrUrl, service.IpAddressOrUrl, StringComparison.Ordinal);
+    }
+
+    private static bool HasSameIdentity(NewPingService left, NewPingService right)
+    {
+        return left.ProtocolType == right.ProtocolType
+               && string.Equals(left.IpAddressOrUrl, right.IpAddressOrUrl, StringComparison.Ordinal);
+    }
+
+    private void ShowDuplicateWarning()
+    {
+        App.ShowToast(NotificationType.Warning, HeaderText, App.Localization["Ui.ServiceAlreadyExists"]);
     }
 }

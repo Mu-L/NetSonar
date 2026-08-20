@@ -136,7 +136,7 @@
   <data name="Ui.Services" xml:space="preserve">
     <value>服务</value>
   </data>
-  <data name="Ui.AddNewServiceS" xml:space="preserve">
+  <data name="Ui.AddNewServices" xml:space="preserve">
     <value>添加服务</value>
   </data>
   <data name="Ui.ImportFromJSON" xml:space="preserve">
@@ -146,10 +146,10 @@
     <value>从剪贴板粘贴</value>
   </data>
   <data name="Ui.PasteFormatHint" xml:space="preserve">
-    <value>粘贴格式：IP | 端口 | 间隔 | 描述 | 分组&#10;例：192.168.1.10  80  30  Web服务器  内网</value>
+    <value>粘贴格式：IP | 端口 | 间隔 | 描述 | 分组&#10;例：192.168.1.10  80  30  Web服务器  内网&#10;例：192.168.130:80|30|Web服务器|内网&#10;已知端口会选择相应协议；未知端口使用 TCP。</value>
   </data>
-  <data name="Ui.AddNewServiceSWithPasteHint" xml:space="preserve">
-    <value>添加服务：主按钮=加空行，下拉=导入&#10;粘贴格式：IP | 端口 | 间隔 | 描述 | 分组&#10;例：192.168.1.10  80  30  Web服务器  内网</value>
+  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
+    <value>添加服务：主按钮=加空行，下拉=导入&#10;粘贴格式：IP | 端口 | 间隔 | 描述 | 分组&#10;例：192.168.1.10  80  30  Web服务器  内网&#10;例：192.168.130:80|30|Web服务器|内网&#10;已知端口会选择相应协议；未知端口使用 TCP。</value>
   </data>
   <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
     <value>无法从剪贴板粘贴</value>
@@ -1304,10 +1304,7 @@ IP 地址：{0}
   <data name="Ui.ServicesCountPlain" xml:space="preserve">
     <value>{0} 个服务</value>
   </data>
-  <data name="Ui.Edit" xml:space="preserve">
-    <value>编辑</value>
-  </data>
-  <data name="Ui.EditServiceS" xml:space="preserve">
+  <data name="Ui.EditService" xml:space="preserve">
     <value>编辑服务</value>
   </data>
   <data name="Ui.Save" xml:space="preserve">
@@ -1315,5 +1312,26 @@ IP 地址：{0}
   </data>
   <data name="Ui.ServiceUpdated" xml:space="preserve">
     <value>服务已成功更新。</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>已存在使用相同协议和地址的服务。</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>打开所选图表（新窗口）</value>
+  </data>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>编辑服务</value>
+  </data>
+  <data name="Ui.EditSelectedServices" xml:space="preserve">
+    <value>编辑所选</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>已成功更新 {0} 个服务。</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>将 ping 导出到 TSV</value>
+  </data>
+  <data name="Ui.ExportToTSV" xml:space="preserve">
+    <value>导出为 TSV</value>
   </data>
 </root>

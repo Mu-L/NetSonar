@@ -1,7 +1,4 @@
-using Avalonia.Controls;
-using Avalonia.Interactivity;
 using NetSonar.Avalonia.Controls;
-using NetSonar.Avalonia.Network;
 using NetSonar.Avalonia.ViewModels;
 
 namespace NetSonar.Avalonia.Views;
@@ -24,12 +21,5 @@ public partial class PingableServicesPage : UserControlBase
         }
 
         base.OnInitialized();
-    }
-
-    private void OnServicesGridDoubleTapped(object? sender, RoutedEventArgs e)
-    {
-        if (sender is not DataGrid { SelectedItem: PingableService } grid) return;
-        if (DataContext is not PingableServicesPageModel vm) return;
-        if (vm.EditSelectedServiceCommand.CanExecute(null)) vm.EditSelectedServiceCommand.Execute(null);
     }
 }

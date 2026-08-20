@@ -136,11 +136,29 @@
   <data name="Ui.Services" xml:space="preserve">
     <value>Dienstleistungen</value>
   </data>
-  <data name="Ui.AddNewServiceS" xml:space="preserve">
+  <data name="Ui.AddNewServices" xml:space="preserve">
     <value>Neue(n) Dienst(e) hinzufügen</value>
   </data>
   <data name="Ui.ImportFromJSON" xml:space="preserve">
     <value>Import aus JSON</value>
+  </data>
+  <data name="Ui.PasteFromClipboard" xml:space="preserve">
+    <value>Aus Zwischenablage einfügen</value>
+  </data>
+  <data name="Ui.PasteFormatHint" xml:space="preserve">
+    <value>Spaltenreihenfolge: IP | Port | Intervall | Beschreibung | Gruppe&#10;Beispiel: 192.168.1.10  80  30  Webserver  LAN&#10;Beispiel: 192.168.130:80|30|Webserver|LAN&#10;Bekannte Ports wählen das Protokoll; unbekannte Ports verwenden TCP.</value>
+  </data>
+  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
+    <value>Hinzufügen: Hauptschaltfläche = leere Zeile, Pfeil = importieren&#10;Einfügeformat: IP | Port | Intervall | Beschreibung | Gruppe&#10;Beispiel: 192.168.1.10  80  30  Webserver  LAN&#10;Beispiel: 192.168.130:80|30|Webserver|LAN&#10;Bekannte Ports wählen das Protokoll; unbekannte Ports verwenden TCP.</value>
+  </data>
+  <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
+    <value>Einfügen aus der Zwischenablage nicht möglich</value>
+  </data>
+  <data name="Import.Clipboard.NoData" xml:space="preserve">
+    <value>Die Zwischenablage ist leer oder enthält keine verwendbaren Dienstdaten.</value>
+  </data>
+  <data name="Import.Clipboard.Summary" xml:space="preserve">
+    <value>{0} Dienst(e) eingefügt, {1} übersprungen.</value>
   </data>
   <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
     <value>Netzwerk-Gateway(s) importieren</value>
@@ -1285,5 +1303,35 @@ pkexec wurde nicht gefunden. Installieren Sie pkexec oder führen Sie die Anwend
   </data>
   <data name="Ui.ServicesCountPlain" xml:space="preserve">
     <value>{0} Dienste</value>
+  </data>
+  <data name="Ui.EditService" xml:space="preserve">
+    <value>Dienst bearbeiten</value>
+  </data>
+  <data name="Ui.Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="Ui.ServiceUpdated" xml:space="preserve">
+    <value>Dienst erfolgreich aktualisiert.</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>Ein Dienst mit demselben Protokoll und derselben Adresse ist bereits vorhanden.</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>Ausgewählte Diagramme öffnen (Neues Fenster)</value>
+  </data>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>Dienste bearbeiten</value>
+  </data>
+  <data name="Ui.EditSelectedServices" xml:space="preserve">
+    <value>Ausgewählte bearbeiten</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>{0} Dienste erfolgreich aktualisiert.</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>Pings in TSV exportieren</value>
+  </data>
+  <data name="Ui.ExportToTSV" xml:space="preserve">
+    <value>Als TSV exportieren</value>
   </data>
 </root>

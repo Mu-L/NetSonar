@@ -1,37 +1,39 @@
-using NetSonar.Avalonia.Network;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using NetSonar.Avalonia.Extensions;
+using NetSonar.Avalonia.Network;
 
 namespace NetSonar.Avalonia.Models;
 
 /// <summary>
 /// Parses clipboard text copied from Excel (or any tab-separated / line-based source)
 /// into a list of <see cref="NewPingService"/> entries.
-/// Pure IP (no port) becomes an ICMP ping; IP:port or a separate numeric port column becomes a TCP probe.
+/// Pure IP (no port) becomes an ICMP ping; known ports infer their service protocol and unknown ports use TCP.
+/// A supported URI scheme explicitly selects the service protocol.
 /// Column layout: IP | port | interval(seconds) | description | group — every column after the
-/// address is optional. If any row in a paste carries a numeric value right after its port slot,
-/// that whole paste is read as including an interval column (blank interval cells keep the default).
+/// address is optional. Rows may independently use the fixed layout or a compact layout.
 /// </summary>
 public static class ClipboardPasteParser
 {
-    private static readonly HashSet<string> HeaderTokens = new(StringComparer.OrdinalIgnoreCase)
-    {
+    private static readonly HashSet<string> HeaderTokens =
+    [
+        with(StringComparer.OrdinalIgnoreCase),
         "ip", "address", "host", "hostname", "url", "server", "target", "destination",
-        "endpoint", "ipaddress", "name", "serveraddress", "地址", "服务器", "主机",
-    };
+        "endpoint", "ipaddress", "name", "serveraddress", "地址", "服务器", "主机"
+    ];
 
-    private static readonly HashSet<string> IntervalHeaderTokens = new(StringComparer.OrdinalIgnoreCase)
-    {
-        "interval", "pinginterval", "间隔", "间隔时间", "周期",
-    };
+    private static readonly HashSet<string> IntervalHeaderTokens =
+    [
+        with(StringComparer.OrdinalIgnoreCase),
+        "interval", "pinginterval", "间隔", "间隔时间", "周期"
+    ];
 
     public static ClipboardPasteResult Parse(string? text)
     {
-        if (string.IsNullOrWhiteSpace(text)) return new([], 0);
+        if (string.IsNullOrWhiteSpace(text)) return new ClipboardPasteResult([], 0);
 
         var rawRows = new List<string[]>();
         string[]? headerCells = null;
@@ -44,7 +46,7 @@ public static class ClipboardPasteParser
             var line = rawLine.TrimEnd('\r');
             if (string.IsNullOrWhiteSpace(line)) continue;
 
-            var cells = line.Split('\t').Select(cell => cell.Trim()).ToArray();
+            var cells = line.Split('\t', '|').Select(cell => cell.Trim()).ToArray();
             if (cells.Length == 0 || string.IsNullOrWhiteSpace(cells[0]))
             {
                 skipped++;
@@ -58,6 +60,7 @@ public static class ClipboardPasteParser
                 firstRow = false;
                 continue;
             }
+
             firstRow = false;
 
             // Address containing internal whitespace is not a usable target (e.g. "foo bar").
@@ -67,10 +70,12 @@ public static class ClipboardPasteParser
                 continue;
             }
 
-            // A clearly numeric second column that is out of port range is a malformed port row → skip.
+            // A clearly numeric second column out of port range is a malformed port row when
+            // the address does not already contain a port. Otherwise, it may be a valid interval.
             if (cells.Length >= 2
+                && !AddressUsesCompactLayout(cells[0])
                 && int.TryParse(cells[1], out var numericCell)
-                && numericCell is < 1 or > 65535)
+                && numericCell is < IPEndPoint.MinPort or > IPEndPoint.MaxPort)
             {
                 skipped++;
                 continue;
@@ -79,15 +84,18 @@ public static class ClipboardPasteParser
             rawRows.Add(cells);
         }
 
-        // An interval column is present when any data row has a numeric value in the cell right after
-        // its port slot, or when the header explicitly names such a column.
-        var hasIntervalColumn = headerCells?.Any(c => IntervalHeaderTokens.Contains(c)) == true
-            || rawRows.Any(row => TryParseInterval(IntervalCell(row)) is not null);
+        var headerHasIntervalColumn = headerCells?.Any(c => IntervalHeaderTokens.Contains(c)) == true;
 
         var services = new List<NewPingService>();
         foreach (var cells in rawRows)
         {
-            if (TryCreateService(cells, hasIntervalColumn, out var service) && service is not null) services.Add(service);
+            // Headerless pastes may mix compact rows with and without intervals. Do not let a numeric
+            // interval in one row force descriptions in unrelated rows to be parsed as numbers.
+            var rowHasIntervalColumn = headerHasIntervalColumn
+                                       || HasExplicitIntervalSlot(cells)
+                                       || TryParseInterval(IntervalCell(cells)) is not null;
+            if (TryCreateService(cells, rowHasIntervalColumn, out var service) && service is not null)
+                services.Add(service);
             else skipped++;
         }
 
@@ -98,41 +106,49 @@ public static class ClipboardPasteParser
     {
         service = null;
         var addr = cells[0];
-        int port = 0;
-        var hasSeparatePort = cells.Length >= 2 && TryParsePort(cells[1], out port);
+        var hasExplicitProtocol = TryParseProtocolAddress(addr, out var protocol, out var protocolAddr);
+        if (!hasExplicitProtocol && addr.Contains("://", StringComparison.Ordinal)) return false;
+
+        var port = 0;
+        var hasSeparatePortColumn = !hasExplicitProtocol
+                                    && cells.Length >= 2
+                                    && TryParsePort(cells[1], out port);
         var addrHasPort = AddressHasPort(addr);
-        var (description, group, interval) = ExtractTail(cells, hasSeparatePort, addrHasPort, hasIntervalColumn);
-
-        ServiceProtocolType protocol;
-        string protocolAddr;
-
-        if (hasSeparatePort && !addrHasPort)
+        var usesCompactLayout = hasExplicitProtocol || addrHasPort;
+        if (!TryExtractTail(cells, hasSeparatePortColumn, usesCompactLayout, hasIntervalColumn,
+                out var description, out var group, out var interval))
         {
-            // Primary layout: "IP | port [| interval | description | group]" → append the port.
-            protocol = ServiceProtocolType.TCP;
+            return false;
+        }
+
+        if (!hasExplicitProtocol && hasSeparatePortColumn && port > IPEndPoint.MinPort && !addrHasPort)
+        {
+            protocol = GuessProtocol(port);
             protocolAddr = FormatAddressWithPort(addr, port);
         }
-        else if (addrHasPort)
+        else if (!hasExplicitProtocol && addrHasPort)
         {
-            // Address already carries a port: "IP:port" / "host:port" / "[v6]:port".
-            protocol = ServiceProtocolType.TCP;
-            protocolAddr = addr;
+            if (!TryGetAddressPort(addr, out var embeddedPort, out var host)) return false;
+
+            protocol = GuessProtocol(embeddedPort);
+            protocolAddr = embeddedPort == IPEndPoint.MinPort
+                ? NormalizeIpLiteral(host)
+                : addr;
         }
-        else if (IPAddress.TryParse(addr, out _) || !addr.Contains(':'))
+        else if (!hasExplicitProtocol
+                 && (IPAddressExtensions.TryParseLiteral(addr, out var ipAddress) || !addr.Contains(':')))
         {
             // Bare IP (IPv4 or IPv6) or hostname without a port → ICMP ping.
-            protocol = ServiceProtocolType.ICMP;
-            protocolAddr = addr.StartsWith('[') && addr.EndsWith(']') ? addr[1..^1] : addr;
+            protocol = GuessProtocol(IPEndPoint.MinPort);
+            protocolAddr = ipAddress?.ToString() ?? addr;
         }
-        else
+        else if (!hasExplicitProtocol)
         {
-            // Colon but not a parseable endpoint (e.g. "host:http") → TCP; the validation gate rejects malformed ones.
-            protocol = ServiceProtocolType.TCP;
-            protocolAddr = addr;
+            return false;
         }
 
         var candidate = new NewPingService(protocol, protocolAddr, description, group);
-        if (interval is double intervalSeconds) candidate.PingEverySeconds = intervalSeconds;
+        if (interval is { } intervalSeconds) candidate.PingEverySeconds = intervalSeconds;
         if (!candidate.Validate()) return false;
         service = candidate;
         return true;
@@ -144,40 +160,184 @@ public static class ClipboardPasteParser
     /// </summary>
     private static bool AddressHasPort(string addr)
     {
-        if (addr.StartsWith('[')) return addr.Contains("]:", StringComparison.Ordinal);
-        return addr.Contains(':') && !IPAddress.TryParse(addr, out _);
+        if (IPAddressExtensions.TryParseLiteral(addr, out _)) return false;
+        if (!addr.StartsWith('[')) return addr.Contains(':');
+
+        var closingBracket = addr.IndexOf(']');
+        return closingBracket >= 0
+               && closingBracket + 1 < addr.Length
+               && addr[closingBracket + 1] == ':';
+    }
+
+    private static bool AddressUsesCompactLayout(string addr)
+    {
+        return TryParseProtocolAddress(addr, out _, out _) || AddressHasPort(addr);
+    }
+
+    private static ServiceProtocolType GuessProtocol(int port)
+    {
+        return Protocols.ProtocolsByDefaultPort.GetValueOrDefault(port, ServiceProtocolType.TCP);
+    }
+
+    private static bool TryGetAddressPort(string address, out int port, out string host)
+    {
+        port = IPEndPoint.MinPort;
+        host = address;
+        int separatorIndex;
+        if (address.StartsWith('['))
+        {
+            var closingBracket = address.IndexOf(']');
+            separatorIndex = closingBracket >= 0 && closingBracket + 1 < address.Length
+                                                 && address[closingBracket + 1] == ':'
+                ? closingBracket + 1
+                : -1;
+        }
+        else
+        {
+            separatorIndex = address.LastIndexOf(':');
+        }
+
+        if (separatorIndex < 0
+            || !int.TryParse(address.AsSpan(separatorIndex + 1), out port)
+            || port is < IPEndPoint.MinPort or > IPEndPoint.MaxPort)
+        {
+            return false;
+        }
+
+        host = address[..separatorIndex];
+        return true;
+    }
+
+    private static string NormalizeIpLiteral(string address)
+    {
+        return IPAddressExtensions.TryParseLiteral(address, out var ipAddress)
+            ? ipAddress?.ToString() ?? address
+            : address;
+    }
+
+    private static bool TryParseProtocolAddress(
+        string address,
+        out ServiceProtocolType protocol,
+        out string protocolAddress)
+    {
+        protocol = default;
+        protocolAddress = address;
+
+        var separatorIndex = address.IndexOf("://", StringComparison.Ordinal);
+        if (separatorIndex <= 0 || separatorIndex + 3 >= address.Length) return false;
+
+        var scheme = address.AsSpan(0, separatorIndex);
+        var preserveScheme = false;
+        if (scheme.Equals("icmp", StringComparison.OrdinalIgnoreCase))
+            protocol = ServiceProtocolType.ICMP;
+        else if (scheme.Equals("tcp", StringComparison.OrdinalIgnoreCase))
+            protocol = ServiceProtocolType.TCP;
+        else if (scheme.Equals("udp", StringComparison.OrdinalIgnoreCase))
+            protocol = ServiceProtocolType.UDP;
+        else if (scheme.Equals("tls", StringComparison.OrdinalIgnoreCase))
+            protocol = ServiceProtocolType.TLS;
+        else if (scheme.Equals("dns", StringComparison.OrdinalIgnoreCase))
+            protocol = ServiceProtocolType.DNS;
+        else if (scheme.Equals("ntp", StringComparison.OrdinalIgnoreCase))
+            protocol = ServiceProtocolType.NTP;
+        else if (scheme.Equals("http", StringComparison.OrdinalIgnoreCase)
+                 || scheme.Equals("https", StringComparison.OrdinalIgnoreCase))
+        {
+            protocol = ServiceProtocolType.HTTP;
+            preserveScheme = true;
+        }
+        else if (scheme.Equals("ws", StringComparison.OrdinalIgnoreCase)
+                 || scheme.Equals("wss", StringComparison.OrdinalIgnoreCase))
+        {
+            protocol = ServiceProtocolType.WebSocket;
+            preserveScheme = true;
+        }
+        else if (scheme.Equals("ssh", StringComparison.OrdinalIgnoreCase))
+            protocol = ServiceProtocolType.SSH;
+        else if (scheme.Equals("smtp", StringComparison.OrdinalIgnoreCase))
+            protocol = ServiceProtocolType.SMTP;
+        else if (scheme.Equals("imap", StringComparison.OrdinalIgnoreCase))
+            protocol = ServiceProtocolType.IMAP;
+        else if (scheme.Equals("mqtt", StringComparison.OrdinalIgnoreCase))
+            protocol = ServiceProtocolType.MQTT;
+        else if (scheme.Equals("stun", StringComparison.OrdinalIgnoreCase))
+            protocol = ServiceProtocolType.STUN;
+        else if (scheme.Equals("sip", StringComparison.OrdinalIgnoreCase))
+            protocol = ServiceProtocolType.SIP;
+        else
+            return false;
+
+        if (preserveScheme) return true;
+
+        protocolAddress = address[(separatorIndex + 3)..];
+        if (protocol == ServiceProtocolType.ICMP
+            && IPAddressExtensions.TryParseLiteral(protocolAddress, out var ipAddress))
+        {
+            protocolAddress = ipAddress?.ToString() ?? protocolAddress;
+        }
+
+        return true;
     }
 
     /// <summary>Index of the interval column for a given row: right after its port slot.</summary>
-    private static int IntervalIndexFor(bool hasSeparatePort, bool addrHasPort)
-        => hasSeparatePort && !addrHasPort ? 2 : addrHasPort ? 1 : 2;
+    private static int IntervalIndexFor(string[] cells, bool addrHasPort)
+    {
+        // An embedded port can use the compact "host:port | interval" form. When column 2 is blank,
+        // preserve the documented fixed layout: "host:port | [port] | interval".
+        return addrHasPort && (cells.Length < 2 || !string.IsNullOrWhiteSpace(cells[1])) ? 1 : 2;
+    }
 
     private static string? IntervalCell(string[] cells)
     {
         var addr = cells[0];
-        var index = IntervalIndexFor(cells.Length >= 2 && TryParsePort(cells[1], out _), AddressHasPort(addr));
+        var index = IntervalIndexFor(cells, AddressUsesCompactLayout(addr));
         return index < cells.Length ? cells[index] : null;
     }
 
-    /// <summary>
-    /// Maps the columns after the address to Interval (seconds), Description and Group.
-    /// When the paste uses an interval column (<paramref name="hasIntervalColumn"/>), the interval slot
-    /// is always consumed and blank cells keep the default; otherwise the classic
-    /// "port | description | group" layout maps as before, with a blank port slot letting the
-    /// description fall through so Excel rows with an empty port line up correctly.
-    /// </summary>
-    private static (string Description, string Group, double? IntervalSeconds) ExtractTail(
-        string[] cells, bool hasSeparatePort, bool addrHasPort, bool hasIntervalColumn)
+    private static bool HasExplicitIntervalSlot(string[] cells)
     {
-        var intervalIndex = IntervalIndexFor(hasSeparatePort, addrHasPort);
-        double? interval = null;
+        // Five columns are the complete-documented layout. A blank second column also reserves the
+        // port slot, so the following cell is unambiguously the interval even when it is malformed.
+        return cells.Length >= 5
+               || (cells.Length >= 3 && string.IsNullOrWhiteSpace(cells[1]));
+    }
+
+    /// <summary>
+    /// Maps the columns after the address to Interval (seconds), Description, and Group.
+    /// When the paste uses an interval column (<paramref name="hasIntervalColumn"/>), the interval slot
+    /// is always consumed, and blank cells keep the default; otherwise the compact
+    /// "port | description | group" layout maps as before.
+    /// </summary>
+    private static bool TryExtractTail(
+        string[] cells,
+        bool hasSeparatePortColumn,
+        bool addrHasPort,
+        bool hasIntervalColumn,
+        out string description,
+        out string group,
+        out double? interval)
+    {
+        var intervalIndex = IntervalIndexFor(cells, addrHasPort);
+        interval = null;
         if (hasIntervalColumn && intervalIndex < cells.Length)
-            interval = TryParseInterval(cells[intervalIndex]);
+        {
+            var intervalCell = cells[intervalIndex];
+            if (!string.IsNullOrWhiteSpace(intervalCell))
+            {
+                interval = TryParseInterval(intervalCell);
+                if (interval is null)
+                {
+                    description = string.Empty;
+                    group = string.Empty;
+                    return false;
+                }
+            }
+        }
 
         int tailStart;
         if (hasIntervalColumn)
             tailStart = intervalIndex + 1;
-        else if (hasSeparatePort && !addrHasPort)
+        else if (hasSeparatePortColumn && !addrHasPort)
             tailStart = 2;
         else if (addrHasPort)
             tailStart = 1;
@@ -186,18 +346,22 @@ public static class ClipboardPasteParser
         else
             tailStart = 2;
 
-        var description = cells.Length > tailStart ? cells[tailStart] : string.Empty;
-        var group = cells.Length > tailStart + 1 ? cells[tailStart + 1] : string.Empty;
-        return (description, group, interval);
+        description = cells.Length > tailStart ? cells[tailStart] : string.Empty;
+        group = cells.Length > tailStart + 1 ? cells[tailStart + 1] : string.Empty;
+        return true;
     }
 
     /// <summary>Parses a cell as a ping interval in seconds, within the app's valid range.</summary>
     private static double? TryParseInterval(string? cell)
     {
-        return double.TryParse(cell, NumberStyles.Float, CultureInfo.InvariantCulture, out var value)
-            && value >= PingableService.MinPingEverySeconds && value <= PingableService.MaxPingEverySeconds
-                ? value
-                : null;
+        if (!ParseExtensions.TryParseLocalizedDouble(cell, out var value))
+        {
+            return null;
+        }
+
+        return value is >= PingableService.MinPingEverySeconds and <= PingableService.MaxPingEverySeconds
+            ? value
+            : null;
     }
 
     /// <summary>
@@ -214,7 +378,7 @@ public static class ClipboardPasteParser
     private static bool TryParsePort(string? cell, out int port)
     {
         port = 0;
-        return int.TryParse(cell, out port) && port is >= 1 and <= 65535;
+        return int.TryParse(cell, out port) && port is >= IPEndPoint.MinPort and <= IPEndPoint.MaxPort;
     }
 
     private static string FormatAddressWithPort(string addr, int port)
@@ -224,6 +388,7 @@ public static class ClipboardPasteParser
         {
             return $"[{addr}]:{port}";
         }
+
         return $"{addr}:{port}";
     }
 }

@@ -136,11 +136,29 @@
   <data name="Ui.Services" xml:space="preserve">
     <value>サービス</value>
   </data>
-  <data name="Ui.AddNewServiceS" xml:space="preserve">
+  <data name="Ui.AddNewServices" xml:space="preserve">
     <value>新しいサービスを追加する</value>
   </data>
   <data name="Ui.ImportFromJSON" xml:space="preserve">
     <value>JSONからインポート</value>
+  </data>
+  <data name="Ui.PasteFromClipboard" xml:space="preserve">
+    <value>クリップボードから貼り付け</value>
+  </data>
+  <data name="Ui.PasteFormatHint" xml:space="preserve">
+    <value>列の順序: IP | ポート | 間隔 | 説明 | グループ&#10;例: 192.168.1.10  80  30  Web サーバー  LAN&#10;例: 192.168.130:80|30|Web サーバー|LAN&#10;既知のポートではプロトコルを選択し、不明なポートでは TCP を使用します。</value>
+  </data>
+  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
+    <value>追加: メイン ボタン = 空の行、矢印 = インポート&#10;貼り付け形式: IP | ポート | 間隔 | 説明 | グループ&#10;例: 192.168.1.10  80  30  Web サーバー  LAN&#10;例: 192.168.130:80|30|Web サーバー|LAN&#10;既知のポートではプロトコルを選択し、不明なポートでは TCP を使用します。</value>
+  </data>
+  <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
+    <value>クリップボードから貼り付けできません</value>
+  </data>
+  <data name="Import.Clipboard.NoData" xml:space="preserve">
+    <value>クリップボードが空か、使用可能なサービス データがありません。</value>
+  </data>
+  <data name="Import.Clipboard.Summary" xml:space="preserve">
+    <value>{0} 件のサービスを貼り付け、{1} 件をスキップしました。</value>
   </data>
   <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
     <value>ネットワークゲートウェイをインポートする</value>
@@ -1285,5 +1303,35 @@ pkexec が見つかりませんでした。 pkexec をインストールする�
   </data>
   <data name="Ui.ServicesCountPlain" xml:space="preserve">
     <value>サービス {0} 件</value>
+  </data>
+  <data name="Ui.EditService" xml:space="preserve">
+    <value>サービスを編集</value>
+  </data>
+  <data name="Ui.Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Ui.ServiceUpdated" xml:space="preserve">
+    <value>サービスを更新しました。</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>同じプロトコルとアドレスのサービスが既に存在します。</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>選択したグラフを開く (新しいウィンドウ)</value>
+  </data>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>サービスを編集</value>
+  </data>
+  <data name="Ui.EditSelectedServices" xml:space="preserve">
+    <value>選択項目を編集</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>{0} 件のサービスを更新しました。</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>ping を TSV にエクスポート</value>
+  </data>
+  <data name="Ui.ExportToTSV" xml:space="preserve">
+    <value>TSVにエクスポート</value>
   </data>
 </root>

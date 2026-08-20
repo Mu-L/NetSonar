@@ -136,11 +136,29 @@
   <data name="Ui.Services" xml:space="preserve">
     <value>Serviços</value>
   </data>
-  <data name="Ui.AddNewServiceS" xml:space="preserve">
+  <data name="Ui.AddNewServices" xml:space="preserve">
     <value>Adicionar serviço(s)</value>
   </data>
   <data name="Ui.ImportFromJSON" xml:space="preserve">
     <value>Importar de JSON</value>
+  </data>
+  <data name="Ui.PasteFromClipboard" xml:space="preserve">
+    <value>Colar da área de transferência</value>
+  </data>
+  <data name="Ui.PasteFormatHint" xml:space="preserve">
+    <value>Ordem das colunas: IP | Porta | Intervalo | Descrição | Grupo&#10;Exemplo: 192.168.1.10  80  30  Servidor Web  LAN&#10;Exemplo: 192.168.130:80|30|Servidor Web|LAN&#10;As portas conhecidas selecionam o protocolo; as desconhecidas usam TCP.</value>
+  </data>
+  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
+    <value>Adicionar: botão principal = linha vazia, seta = importar&#10;Formato de colagem: IP | Porta | Intervalo | Descrição | Grupo&#10;Exemplo: 192.168.1.10  80  30  Servidor Web  LAN&#10;Exemplo: 192.168.130:80|30|Servidor Web|LAN&#10;As portas conhecidas selecionam o protocolo; as desconhecidas usam TCP.</value>
+  </data>
+  <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
+    <value>Não foi possível colar da área de transferência</value>
+  </data>
+  <data name="Import.Clipboard.NoData" xml:space="preserve">
+    <value>A área de transferência está vazia ou não contém dados de serviços utilizáveis.</value>
+  </data>
+  <data name="Import.Clipboard.Summary" xml:space="preserve">
+    <value>{0} serviço(s) colado(s), {1} ignorado(s).</value>
   </data>
   <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
     <value>Importar gateway(s) de rede</value>
@@ -1285,5 +1303,35 @@ pkexec não foi encontrado. Instale o pkexec ou execute a aplicação com sudo.<
   </data>
   <data name="Ui.ServicesCountPlain" xml:space="preserve">
     <value>{0} serviços</value>
+  </data>
+  <data name="Ui.EditService" xml:space="preserve">
+    <value>Editar serviço</value>
+  </data>
+  <data name="Ui.Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="Ui.ServiceUpdated" xml:space="preserve">
+    <value>Serviço atualizado com sucesso.</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>Já existe um serviço com o mesmo protocolo e endereço.</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>Abrir gráficos selecionados (Nova janela)</value>
+  </data>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>Editar serviços</value>
+  </data>
+  <data name="Ui.EditSelectedServices" xml:space="preserve">
+    <value>Editar selecionados</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>{0} serviços atualizados com sucesso.</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>Exportar pings para TSV</value>
+  </data>
+  <data name="Ui.ExportToTSV" xml:space="preserve">
+    <value>Exportar para TSV</value>
   </data>
 </root>

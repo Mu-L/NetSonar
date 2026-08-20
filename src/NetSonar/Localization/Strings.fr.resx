@@ -136,11 +136,29 @@
   <data name="Ui.Services" xml:space="preserve">
     <value>Prestations</value>
   </data>
-  <data name="Ui.AddNewServiceS" xml:space="preserve">
+  <data name="Ui.AddNewServices" xml:space="preserve">
     <value>Ajouter de nouveaux services</value>
   </data>
   <data name="Ui.ImportFromJSON" xml:space="preserve">
     <value>Importer depuis JSON</value>
+  </data>
+  <data name="Ui.PasteFromClipboard" xml:space="preserve">
+    <value>Coller depuis le presse-papiers</value>
+  </data>
+  <data name="Ui.PasteFormatHint" xml:space="preserve">
+    <value>Ordre des colonnes : IP | Port | Intervalle | Description | Groupe&#10;Exemple : 192.168.1.10  80  30  Serveur web  LAN&#10;Exemple : 192.168.130:80|30|Serveur web|LAN&#10;Les ports connus sélectionnent le protocole ; les ports inconnus utilisent TCP.</value>
+  </data>
+  <data name="Ui.AddNewServicesWithPasteHint" xml:space="preserve">
+    <value>Ajouter : bouton principal = ligne vide, flèche = importer&#10;Format de collage : IP | Port | Intervalle | Description | Groupe&#10;Exemple : 192.168.1.10  80  30  Serveur web  LAN&#10;Exemple : 192.168.130:80|30|Serveur web|LAN&#10;Les ports connus sélectionnent le protocole ; les ports inconnus utilisent TCP.</value>
+  </data>
+  <data name="Import.Clipboard.ErrorTitle" xml:space="preserve">
+    <value>Impossible de coller depuis le presse-papiers</value>
+  </data>
+  <data name="Import.Clipboard.NoData" xml:space="preserve">
+    <value>Le presse-papiers est vide ou ne contient aucune donnée de service utilisable.</value>
+  </data>
+  <data name="Import.Clipboard.Summary" xml:space="preserve">
+    <value>{0} service(s) collé(s), {1} ignoré(s).</value>
   </data>
   <data name="Ui.ImportNetworkGatewayS" xml:space="preserve">
     <value>Importer des passerelles réseau</value>
@@ -1285,5 +1303,35 @@ pkexec n'a pas été trouvé. Installez pkexec ou exécutez l'application avec s
   </data>
   <data name="Ui.ServicesCountPlain" xml:space="preserve">
     <value>{0} services</value>
+  </data>
+  <data name="Ui.EditService" xml:space="preserve">
+    <value>Modifier le service</value>
+  </data>
+  <data name="Ui.Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="Ui.ServiceUpdated" xml:space="preserve">
+    <value>Service mis à jour avec succès.</value>
+  </data>
+  <data name="Ui.ServiceAlreadyExists" xml:space="preserve">
+    <value>Un service avec le même protocole et la même adresse existe déjà.</value>
+  </data>
+  <data name="Ui.OpenSelectedGraphsNewWindow" xml:space="preserve">
+    <value>Ouvrir les graphiques sélectionnés (Nouvelle fenêtre)</value>
+  </data>
+  <data name="Ui.EditServices" xml:space="preserve">
+    <value>Modifier les services</value>
+  </data>
+  <data name="Ui.EditSelectedServices" xml:space="preserve">
+    <value>Modifier la sélection</value>
+  </data>
+  <data name="Ui.ServicesUpdated" xml:space="preserve">
+    <value>{0} services mis à jour avec succès.</value>
+  </data>
+  <data name="Export.Pings.TsvTitle" xml:space="preserve">
+    <value>Exporter les pings au format TSV</value>
+  </data>
+  <data name="Ui.ExportToTSV" xml:space="preserve">
+    <value>Exporter au format TSV</value>
   </data>
 </root>

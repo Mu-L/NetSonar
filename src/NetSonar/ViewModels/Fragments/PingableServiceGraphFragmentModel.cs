@@ -247,14 +247,15 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
         OnColorThemeChanged(App.Theme.ActiveColorTheme);
     }
 
-    public PingableServiceGraphFragmentModel(PingableService[] services) : this(services, false)
-    {
-    }
-
-    public PingableServiceGraphFragmentModel(PingableService[] services, bool showGraphOptions) : this()
+    public PingableServiceGraphFragmentModel(PingableService[] services, bool showGraphOptions = false) : this()
     {
         ShowGraphOptions = showGraphOptions;
         Services = services;
+    }
+
+    public PingableServiceGraphFragmentModel(PingableService service, bool showGraphOptions = false) : this([service],
+        showGraphOptions)
+    {
     }
 
     public PingableService[] Services
@@ -405,11 +406,17 @@ public partial class PingableServiceGraphFragmentModel : ViewModelBase, IDisposa
     [ObservableProperty]
     public partial Paint ThemePaint { get; set; } = new SolidColorPaint(new SKColor(255, 255, 255));
 
-    [ObservableProperty] public partial string CurrentTimeText { get; private set; } = $"{App.Localization["Ui.Ping"]}: -";
+    [ObservableProperty]
+    public partial string CurrentTimeText { get; private set; } = $"{App.Localization["Ui.Ping"]}: -";
+
     [ObservableProperty] public partial string MedianTimeText { get; private set; } = "P50: -";
     [ObservableProperty] public partial string P95TimeText { get; private set; } = "P95: -";
-    [ObservableProperty] public partial string JitterText { get; private set; } = $"{App.Localization["Graph.Jitter"]}: -";
-    [ObservableProperty] public partial string WindowLossText { get; private set; } = $"{App.Localization["Graph.Loss"]}: -";
+
+    [ObservableProperty]
+    public partial string JitterText { get; private set; } = $"{App.Localization["Graph.Jitter"]}: -";
+
+    [ObservableProperty]
+    public partial string WindowLossText { get; private set; } = $"{App.Localization["Graph.Loss"]}: -";
 
     [ObservableProperty] public partial bool IsFullScale { get; set; }
 
