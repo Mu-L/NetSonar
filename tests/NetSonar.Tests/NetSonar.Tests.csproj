@@ -5,8 +5,8 @@
         <!-- Use the VSTest runner instead of Microsoft.Testing.Platform so IDE test discovery works. -->
         <UseVSTest>true</UseVSTest>
         <!-- Override the package versions MSTest.Sdk injects; adding PackageReference items here would duplicate them (NU1504). -->
-        <MicrosoftNETTestSdkVersion>18.10.0</MicrosoftNETTestSdkVersion>
-        <MSTestVersion>4.4.0</MSTestVersion>
+        <MicrosoftNETTestSdkVersion>18.10.1</MicrosoftNETTestSdkVersion>
+        <MSTestVersion>4.4.1</MSTestVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -18,15 +18,15 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Update="Microsoft.NET.Test.Sdk">
-        <Version>18.10.1</Version>
-      </PackageReference>
-      <PackageReference Update="MSTest.TestAdapter">
-        <Version>4.4.1</Version>
-      </PackageReference>
-      <PackageReference Update="MSTest.TestFramework">
-        <Version>4.4.1</Version>
-      </PackageReference>
+        <PackageReference Update="Microsoft.NET.Test.Sdk">
+            <Version>18.10.1</Version>
+        </PackageReference>
+        <PackageReference Update="MSTest.TestAdapter">
+            <Version>4.4.1</Version>
+        </PackageReference>
+        <PackageReference Update="MSTest.TestFramework">
+            <Version>4.4.1</Version>
+        </PackageReference>
     </ItemGroup>
 
 </Project>

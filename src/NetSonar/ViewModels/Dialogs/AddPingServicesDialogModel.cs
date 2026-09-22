@@ -47,10 +47,16 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
         App.Localization.PropertyChanged += LocalizationOnPropertyChanged;
     }
 
-    /// <summary>
-    /// Raised when the edited service had to be rebuilt, carrying the replaced and the replacement instances.
-    /// </summary>
-    public event Action<PingableService, PingableService>? ServiceReplaced;
+    private AddPingServicesDialogModel(ISukiDialog dialog, IEnumerable<NewPingService> servicesToImport)
+        : base(dialog)
+    {
+        ServicesView =
+            Services.ToWritableNotifyCollectionChanged(SynchronizationContextCollectionEventDispatcher.Current);
+        _editingServices = [];
+        Services.AddRange(servicesToImport);
+        if (Services.Count == 0) AddEmpty();
+        App.Localization.PropertyChanged += LocalizationOnPropertyChanged;
+    }
 
     public ObservableList<NewPingService> Services { get; } = [];
 
@@ -68,6 +74,16 @@ public partial class AddPingServicesDialogModel : DialogViewModelBase
     public string ApplyButtonText => App.Localization[IsEditing ? "Ui.Save" : "Ui.Import"];
 
     public MaterialIconKind ApplyButtonIcon => IsEditing ? MaterialIconKind.ContentSave : MaterialIconKind.Import;
+
+    public static AddPingServicesDialogModel CreateForImport(ISukiDialog dialog, IEnumerable<NewPingService> services)
+    {
+        return new AddPingServicesDialogModel(dialog, services);
+    }
+
+    /// <summary>
+    /// Raised when the edited service had to be rebuilt, carrying the replaced and the replacement instances.
+    /// </summary>
+    public event Action<PingableService, PingableService>? ServiceReplaced;
 
     protected internal override void OnUnloaded()
     {

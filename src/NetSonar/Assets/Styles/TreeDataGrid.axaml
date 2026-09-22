@@ -1,0 +1,63 @@
+<Styles
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+>
+  <Style Selector="TreeDataGrid.Suki">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="{DynamicResource SukiControlBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="8" />
+    <Setter Property="Foreground" Value="{DynamicResource SukiText}" />
+    <Setter Property="ClipToBounds" Value="True" />
+  </Style>
+
+  <Style Selector="TreeDataGrid.Suki /template/ Border#ColumnHeadersPresenterBorder">
+    <Setter Property="Background" Value="{DynamicResource SukiStrongBackground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource SukiControlBorderBrush}" />
+  </Style>
+
+  <Style Selector="TreeDataGrid.Suki TreeDataGridColumnHeader">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource SukiText}" />
+    <Setter Property="MinHeight" Value="38" />
+    <Setter Property="Padding" Value="12,8" />
+    <Setter Property="FontWeight" Value="DemiBold" />
+  </Style>
+  <Style Selector="TreeDataGrid.Suki TreeDataGridColumnHeader:pointerover /template/ Border#DataGridBorder">
+    <Setter Property="Background" Value="{DynamicResource SukiControlTouchBackground}" />
+    <Setter Property="TextBlock.Foreground" Value="{DynamicResource SukiText}" />
+  </Style>
+  <Style Selector="TreeDataGrid.Suki TreeDataGridColumnHeader:pressed /template/ Border#DataGridBorder">
+    <Setter Property="Background" Value="{DynamicResource SukiPrimaryColor25}" />
+    <Setter Property="TextBlock.Foreground" Value="{DynamicResource SukiText}" />
+  </Style>
+  <Style Selector="TreeDataGrid.Suki TreeDataGridColumnHeader /template/ Rectangle">
+    <Setter Property="Fill" Value="{DynamicResource SukiControlBorderBrush}" />
+  </Style>
+
+  <Style Selector="TreeDataGrid.Suki TreeDataGridRow">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource SukiText}" />
+    <Setter Property="MinHeight" Value="36" />
+  </Style>
+  <Style Selector="TreeDataGrid.Suki TreeDataGridRow:pointerover /template/ TreeDataGridCellsPresenter#PART_CellsPresenter">
+    <Setter Property="Background" Value="{DynamicResource SukiControlTouchBackground}" />
+  </Style>
+  <Style Selector="TreeDataGrid.Suki TreeDataGridRow:selected /template/ TreeDataGridCellsPresenter#PART_CellsPresenter">
+    <Setter Property="Background" Value="{DynamicResource SukiPrimaryColor25}" />
+  </Style>
+
+  <Style Selector="TreeDataGrid.Suki TreeDataGridTextCell">
+    <Setter Property="Padding" Value="12,7" />
+    <Setter Property="Foreground" Value="{DynamicResource SukiText}" />
+  </Style>
+  <Style Selector="TreeDataGrid.Suki TreeDataGridCheckBoxCell">
+    <Setter Property="Padding" Value="12,7" />
+  </Style>
+  <Style Selector="TreeDataGrid.Suki TreeDataGridExpanderCell">
+    <Setter Property="Foreground" Value="{DynamicResource SukiMutedText}" />
+  </Style>
+  <Style Selector="TreeDataGrid.Suki TreeDataGridExpanderCell:pointerover">
+    <Setter Property="Foreground" Value="{DynamicResource SukiPrimaryColor}" />
+  </Style>
+</Styles>

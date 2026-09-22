@@ -52,7 +52,7 @@ public partial class SpeedTestPageModel : PageViewModelBase
         }
     }
 
-    public override int Index => 2;
+    public override int Index => 3;
     public override string DisplayName => App.Localization["Navigation.SpeedTest"];
     public override MaterialIconKind Icon => MaterialIconKind.SpeedometerMedium;
 

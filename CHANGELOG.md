@@ -1,6 +1,9 @@
-# v0.5.2 (/09/2026)
+# v0.6.0 (/09/2026)
 
+- Add a Network Scanner module backed by nmap, with local-network target discovery, host and common-port scanning,
+  monitoring import, and cross-platform dependency installation
 - Fix the update-check cross-thread exception
+- Upgrade AvaloniaUI from 12.1.2 to 12.1.3
 
 # v0.5.1 (11/09/2026)
 

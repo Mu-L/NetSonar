@@ -15,7 +15,7 @@ public partial class App
 {
     public readonly ServiceCollection Services = new();
     public ServiceProvider ServicesProvider { get; private set; } = null!;
-    public AppViews Views { get; private set;} = null!;
+    public AppViews Views { get; private set; } = null!;
 
     private void SetupViews()
     {
@@ -34,12 +34,12 @@ public partial class App
                 // Add pages
                 .AddView<PingableServicesPage, PingableServicesPageModel>(services)
                 .AddView<NetworkInterfacesPage, NetworkInterfacesPageModel>(services)
+                .AddView<NetworkScannerPage, NetworkScannerPageModel>(services)
                 .AddView<SpeedTestPage, SpeedTestPageModel>(services)
                 .AddView<SettingsPage, SettingsPageModel>(services)
 
                 // Fragments
                 .AddView<PingableServiceGraphFragment, PingableServiceGraphFragmentModel>(services)
-
 
                 // Add additional views
                 //.AddView<DialogView, DialogViewModel>(services)
@@ -61,5 +61,4 @@ public partial class App
 
         return services.BuildServiceProvider();
     }
-
 }

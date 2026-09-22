@@ -1,70 +1,77 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <NeutralLanguage>en</NeutralLanguage>
-    </PropertyGroup>
+  <PropertyGroup>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <AvaloniaResource Include="Assets\**"/>
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
 
-        <AvaloniaResource Include="..\..\LICENSE" Link="Assets\LICENSE">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </AvaloniaResource>
+    <AvaloniaResource Include="..\..\LICENSE" Link="Assets\LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AvaloniaResource>
 
-        <AvaloniaResource Include="..\..\TermsOfUse.md" Link="Assets\TermsOfUse.md">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </AvaloniaResource>
+    <AvaloniaResource Include="..\..\TermsOfUse.md" Link="Assets\TermsOfUse.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AvaloniaResource>
 
-        <AvaloniaResource Include="..\..\media\NetSonar.ico" Link="Assets\NetSonar.ico">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </AvaloniaResource>
+    <AvaloniaResource Include="..\..\media\NetSonar.ico" Link="Assets\NetSonar.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AvaloniaResource>
 
-        <AvaloniaResource Include="..\..\media\NetSonar.svg" Link="Assets\NetSonar.svg">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </AvaloniaResource>
-    </ItemGroup>
+    <AvaloniaResource Include="..\..\media\NetSonar.svg" Link="Assets\NetSonar.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AvaloniaResource>
+  </ItemGroup>
 
-    <ItemGroup>
-        <!-- Avalonia -->
-        <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)"/>
-        <PackageReference Include="Avalonia.Themes.Simple" Version="$(AvaloniaVersion)"/>
-        <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)"/>
-        <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)"/>
-        <PackageReference Include="Avalonia.Controls.DataGrid" Version="12.1.2"/>
-        <!--<PackageReference Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" Condition="'$(Configuration)' == 'Debug'" />-->
-        <PackageReference Include="Avalonia.Controls.ItemsRepeater" Version="12.0.0"/>
-        <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3" Condition="'$(Configuration)' == 'Debug'"/>
-        <PackageReference Include="CommunityToolkit.Common" Version="8.4.2"/>
+  <ItemGroup>
+    <!-- Avalonia -->
+    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Themes.Simple" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="12.1.2" />
+    <!--<PackageReference Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" Condition="'$(Configuration)' == 'Debug'" />-->
+    <PackageReference Include="Avalonia.Controls.ItemsRepeater" Version="12.0.0" />
+    <PackageReference
+      Include="AvaloniaUI.DiagnosticsSupport"
+      Version="2.2.3"
+      Condition="'$(Configuration)' == 'Debug'"
+    />
+    <PackageReference Include="CommunityToolkit.Common" Version="8.4.2" />
 
-        <!-- UI Components -->
-        <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.1.0-dev-798"/>
-        <PackageReference Include="MarkView.Avalonia" Version="12.2.1" />
-        <PackageReference Include="Material.Icons.Avalonia" Version="3.0.2"/>
-        <PackageReference Include="StageKit" Version="0.4.0" />
-        <PackageReference Include="StageKit.Updatum" Version="0.4.0" />
+    <!-- UI Components -->
+    <PackageReference Include="TreeDataGrid" Version="12.0.0.7" />
 
-        <!-- UI Theme -->
-        <PackageReference Include="SukiUI" Version="7.0.2-nightly20260905.448"/>
-        <PackageReference Include="Svg.Controls.Avalonia" Version="12.0.0.17"/>
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.1.0-dev-798" />
+    <PackageReference Include="MarkView.Avalonia" Version="12.2.1" />
+    <PackageReference Include="Material.Icons.Avalonia" Version="3.0.2" />
 
-        <!-- Microsoft -->
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.12"/>
+    <!-- UI Theme -->
+    <PackageReference Include="SukiUI" Version="7.0.2-nightly20260902.445" />
+    <PackageReference Include="Svg.Controls.Avalonia" Version="12.0.0.17" />
 
-        <!-- Collections -->
-        <PackageReference Include="ObservableCollections" Version="3.3.4"/>
+    <!-- Microsoft -->
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.12" />
 
-        <!-- Github -->
-        <PackageReference Include="Octokit" Version="14.0.0"/>
+    <!-- StageKit -->
+    <PackageReference Include="StageKit" Version="0.4.0" />
+    <PackageReference Include="StageKit.Updatum" Version="0.4.0" />
 
-        <!-- Cysharp -->
-        <PackageReference Include="ProcessX" Version="1.5.6"/>
-        <PackageReference Include="Utf8StringInterpolation" Version="1.3.2"/>
-        <PackageReference Include="ZLinq" Version="1.5.6"/>
-        <PackageReference Include="ZLogger" Version="2.5.10"/>
+    <!-- Collections -->
+    <PackageReference Include="ObservableCollections" Version="3.3.4" />
 
-        <!-- DotNext -->
-        <PackageReference Include="DotNext" Version="6.7.2"/>
-        <PackageReference Include="DotNext.IO" Version="6.7.2"/>
-    </ItemGroup>
+    <!-- Github -->
+    <PackageReference Include="Octokit" Version="14.0.0" />
 
+    <!-- Cysharp -->
+    <PackageReference Include="ProcessX" Version="1.5.6" />
+    <PackageReference Include="Utf8StringInterpolation" Version="1.3.2" />
+    <PackageReference Include="ZLinq" Version="1.5.6" />
+    <PackageReference Include="ZLogger" Version="2.5.10" />
+
+    <!-- DotNext -->
+    <PackageReference Include="DotNext" Version="6.8.0" />
+    <PackageReference Include="DotNext.IO" Version="6.8.0" />
+  </ItemGroup>
 </Project>

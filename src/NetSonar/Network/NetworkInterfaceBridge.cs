@@ -1,23 +1,4 @@
-﻿using Avalonia;
-using Avalonia.Collections;
-using Avalonia.Controls;
-using Avalonia.Controls.Notifications;
-using Avalonia.Platform.Storage;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using Cysharp.Diagnostics;
-using Material.Icons;
-using NetSonar.Avalonia.Controls;
-using NetSonar.Avalonia.Extensions;
-using NetSonar.Avalonia.Models;
-using NetSonar.Avalonia.Settings;
-using NetSonar.Avalonia.SystemOS;
-using NetSonar.Avalonia.ViewModels.Dialogs;
-using NetSonar.Avalonia.Views;
-using NetSonar.Avalonia.Views.Fragments;
-using ObservableCollections;
-using SukiUI.Dialogs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
@@ -28,8 +9,25 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Avalonia;
+using Avalonia.Collections;
+using Avalonia.Controls;
+using Avalonia.Controls.Notifications;
+using Avalonia.Platform.Storage;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Material.Icons;
+using NetSonar.Avalonia.Controls;
+using NetSonar.Avalonia.Extensions;
+using NetSonar.Avalonia.Models;
+using NetSonar.Avalonia.Settings;
+using NetSonar.Avalonia.ViewModels.Dialogs;
+using NetSonar.Avalonia.Views;
+using NetSonar.Avalonia.Views.Fragments;
+using ObservableCollections;
 using StageKit.Primitives;
 using StageKit.Primitives.System;
+using SukiUI.Dialogs;
 using ZLinq;
 using ZLogger;
 
@@ -37,6 +35,20 @@ namespace NetSonar.Avalonia.Network;
 
 public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
 {
+    [SetsRequiredMembers]
+    public NetworkInterfaceBridge(NetworkInterface network)
+    {
+        Interface = network;
+
+        TabularDataView = TabularData.ToNotifyCollectionChanged(
+            SynchronizationContextCollectionEventDispatcher.Current
+        );
+        TabularDataGroupView = new DataGridCollectionView(TabularDataView);
+        TabularDataGroupView.GroupDescriptions.Add(
+            new DataGridPathGroupDescription($"Value.{nameof(GroupNameValue.Group)}")
+        );
+    }
+
     public bool IsDisposed { get; private set; }
 
     [ObservableProperty]
@@ -65,7 +77,6 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
     [NotifyPropertyChangedFor(nameof(BytesSent))]
     [NotifyPropertyChangedFor(nameof(TypeIcon))]
     [NotifyPropertyChangedFor(nameof(StatusIcon))]
-
     [NotifyCanExecuteChangedFor(nameof(DisableCommand))]
     [NotifyCanExecuteChangedFor(nameof(EnableCommand))]
     [NotifyCanExecuteChangedFor(nameof(ReleaseIpCommand))]
@@ -75,7 +86,8 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
     /// <summary>
     /// Gets a value that indicates whether the network interface is disabled.
     /// </summary>
-    public bool IsDisabled => Interface.OperationalStatus is OperationalStatus.Down && !HaveIPAddress;
+    public bool IsDisabled =>
+        Interface.OperationalStatus is OperationalStatus.Down && !HaveIPAddress;
 
     /// <summary>
     /// Gets a value that indicates whether the network interface is enabled.
@@ -85,7 +97,8 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
     /// <summary>
     /// Gets a value that indicates whether the network interface is active.
     /// </summary>
-    public bool IsActive => Interface.OperationalStatus is OperationalStatus.Up or OperationalStatus.Testing;
+    public bool IsActive =>
+        Interface.OperationalStatus is OperationalStatus.Up or OperationalStatus.Testing;
 
     /// <summary>
     /// Gets a value that indicates whether the network interface has a physical address.
@@ -96,8 +109,13 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
     /// Gets the physical address of this network interface
     /// </summary>
     /// <returns>The interface's physical address.</returns>
-    public string PhysicalAddressString => Interface.GetPhysicalAddress().GetAddressBytes()
-        .AsValueEnumerable().Select(x => x.ToString("X2")).JoinToString(':');
+    public string PhysicalAddressString =>
+        Interface
+            .GetPhysicalAddress()
+            .GetAddressBytes()
+            .AsValueEnumerable()
+            .Select(x => x.ToString("X2"))
+            .JoinToString(':');
 
     /// <summary>
     /// Gets the IP properties for this network interface.
@@ -142,26 +160,31 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
     /// <summary>
     /// Gets the IP addresses that are associated with the current network interface.
     /// </summary>
-    public string IPAddressesStr => Properties.UnicastAddresses
-        .AsValueEnumerable()
-        .Select(ip => ip.Address.ToString())
-        .JoinToString('\n');
+    public string IPAddressesStr =>
+        Properties
+            .UnicastAddresses.AsValueEnumerable()
+            .Select(ip => ip.Address.ToString())
+            .JoinToString('\n');
 
     /// <summary>
     /// Gets the IPv4 address information that is associated with the current network interface.
     /// </summary>
-    public IPAddress? IPv4Address => Properties.UnicastAddresses
-        .AsValueEnumerable()
-        .Where(ip => ip.Address.AddressFamily == AddressFamily.InterNetwork)
-        .Select(ip => ip.Address).LastOrDefault();
+    public IPAddress? IPv4Address =>
+        Properties
+            .UnicastAddresses.AsValueEnumerable()
+            .Where(ip => ip.Address.AddressFamily == AddressFamily.InterNetwork)
+            .Select(ip => ip.Address)
+            .LastOrDefault();
 
     /// <summary>
     /// Gets the IPv6 address information that is associated with the current network interface.
     /// </summary>
-    public IPAddress? IPv6Address => Properties.UnicastAddresses
-        .AsValueEnumerable()
-        .Where(ip => ip.Address.AddressFamily == AddressFamily.InterNetworkV6)
-        .Select(ip => ip.Address).LastOrDefault();
+    public IPAddress? IPv6Address =>
+        Properties
+            .UnicastAddresses.AsValueEnumerable()
+            .Where(ip => ip.Address.AddressFamily == AddressFamily.InterNetworkV6)
+            .Select(ip => ip.Address)
+            .LastOrDefault();
 
     /// <summary>
     /// Gets a value that indicates whether the network interface supports Internet Protocol version 4 (IPv4).
@@ -186,8 +209,10 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
     {
         get
         {
-            if (!SupportsIPv4) return false;
-            if (OperatingSystem.IsWindows()) return IPv4Properties.IsDhcpEnabled;
+            if (!SupportsIPv4)
+                return false;
+            if (OperatingSystem.IsWindows())
+                return IPv4Properties.IsDhcpEnabled;
             return false;
         }
     }
@@ -201,7 +226,7 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
     /// <summary>
     /// Gets a value that indicates whether the network interface is transmitting data.
     /// </summary>
-    public bool IsTransmittingData => IsActive && BytesReceived > 0 || BytesSent > 0;
+    public bool IsTransmittingData => (IsActive && BytesReceived > 0) || BytesSent > 0;
 
     /// <summary>
     /// Gets the number of bytes received on the interface.
@@ -249,10 +274,11 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
         }
     }
 
-
     public ObservableDictionary<string, GroupNameValue> TabularData { get; } = [];
 
-    public INotifyCollectionChangedSynchronizedViewList<KeyValuePair<string, GroupNameValue>> TabularDataView { get; private set; }
+    public INotifyCollectionChangedSynchronizedViewList<
+        KeyValuePair<string, GroupNameValue>
+    > TabularDataView { get; private set; }
 
     public DataGridCollectionView TabularDataGroupView { get; init; }
 
@@ -260,14 +286,28 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
 
     public MaterialIconKind StatusIcon => GetStatusIcon(Interface.OperationalStatus);
 
-    [SetsRequiredMembers]
-    public NetworkInterfaceBridge(NetworkInterface network)
+    public static NetworkInterfaceBridge? PrimaryInterface
     {
-        Interface = network;
+        get
+        {
+            var networkInterface = NetworkInterface
+                .GetAllNetworkInterfaces()
+                .AsValueEnumerable()
+                .FirstOrDefault(@interface =>
+                    @interface.NetworkInterfaceType
+                        is NetworkInterfaceType.Ethernet
+                            or NetworkInterfaceType.Wireless80211
+                    && @interface.OperationalStatus == OperationalStatus.Up
+                    && !@interface.Name.StartsWith("vEthernet")
+                );
+            return networkInterface is null ? null : new NetworkInterfaceBridge(networkInterface);
+        }
+    }
 
-        TabularDataView = TabularData.ToNotifyCollectionChanged(SynchronizationContextCollectionEventDispatcher.Current);
-        TabularDataGroupView = new DataGridCollectionView(TabularDataView);
-        TabularDataGroupView.GroupDescriptions.Add(new DataGridPathGroupDescription($"Value.{nameof(GroupNameValue.Group)}"));
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
     }
 
     ~NetworkInterfaceBridge()
@@ -281,6 +321,7 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
         {
             Refresh();
         }
+
         base.OnPropertyChanged(e);
     }
 
@@ -290,11 +331,13 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
     [RelayCommand]
     public void Reset()
     {
-        var adapter = NetworkInterface.GetAllNetworkInterfaces()
+        var adapter = NetworkInterface
+            .GetAllNetworkInterfaces()
             .AsValueEnumerable()
             .FirstOrDefault(adapter => adapter.Id == Interface.Id);
 
-        if (adapter is null) return;
+        if (adapter is null)
+            return;
         Interface = adapter;
     }
 
@@ -305,9 +348,21 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
     public void Refresh()
     {
         var key = $"{nameof(Interface)}.{nameof(PhysicalAddress)}";
-        if (TabularData.TryGetValue(key, out var macValueGroup)) macValueGroup.Value = PhysicalAddressString;
-        else TabularData.Add(key, new GroupNameValue(nameof(PhysicalAddress), PhysicalAddressString, nameof(Interface)));
-        TabularData.TryAdd($"{nameof(Interface)}.{nameof(PhysicalAddress)}", new GroupNameValue(nameof(PhysicalAddress), PhysicalAddressString, "Interface"));
+        if (TabularData.TryGetValue(key, out var macValueGroup))
+            macValueGroup.Value = PhysicalAddressString;
+        else
+            TabularData.Add(
+                key,
+                new GroupNameValue(
+                    nameof(PhysicalAddress),
+                    PhysicalAddressString,
+                    nameof(Interface)
+                )
+            );
+        TabularData.TryAdd(
+            $"{nameof(Interface)}.{nameof(PhysicalAddress)}",
+            new GroupNameValue(nameof(PhysicalAddress), PhysicalAddressString, "Interface")
+        );
         ReflectionExtensions.BuildTabularData(TabularData, Interface, nameof(Interface));
         ReflectionExtensions.BuildTabularData(TabularData, Properties, nameof(Properties));
         if (Interface.Supports(NetworkInterfaceComponent.IPv4))
@@ -336,133 +391,178 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
     [RelayCommand(CanExecute = nameof(IsEnabled))]
     public async Task Disable()
     {
-        if (IsDisabled) return;
+        if (IsDisabled)
+            return;
 
         var toast = new ProcessXToast
         {
             Title = App.Localization.Format("Network.Disable.Title", Interface.Description),
-            SuccessGenericMessage = App.Localization.Format("Network.Disable.Success", Interface.Name),
-            ErrorGenericMessage = App.Localization.Format("Network.Disable.Error", Interface.Name)
+            SuccessGenericMessage = App.Localization.Format(
+                "Network.Disable.Success",
+                Interface.Name
+            ),
+            ErrorGenericMessage = App.Localization.Format("Network.Disable.Error", Interface.Name),
         };
 
         bool success;
         if (OperatingSystem.IsWindows())
         {
-            success = await ProcessXExtensions.ExecuteHandled($"netsh interface set interface \"{Interface.Name}\" disable", toast, true);
+            success = await ProcessXExtensions.ExecuteHandled(
+                $"netsh interface set interface \"{Interface.Name}\" disable",
+                toast,
+                true
+            );
         }
         else if (OperatingSystem.IsMacOS())
         {
-            success = await ProcessXExtensions.ExecuteHandled($"ifconfig \"{Interface.Name}\" down", toast, true);
+            success = await ProcessXExtensions.ExecuteHandled(
+                $"ifconfig \"{Interface.Name}\" down",
+                toast,
+                true
+            );
         }
         else
         {
-            success = await ProcessXExtensions.ExecuteHandled($"ip link set \"{Interface.Name}\" down", toast, true);
+            success = await ProcessXExtensions.ExecuteHandled(
+                $"ip link set \"{Interface.Name}\" down",
+                toast,
+                true
+            );
         }
 
-        if (success) Reset();
+        if (success)
+            Reset();
     }
 
     [RelayCommand(CanExecute = nameof(IsDisabled))]
     public async Task Enable()
     {
-        if (IsEnabled) return;
+        if (IsEnabled)
+            return;
 
         var toast = new ProcessXToast
         {
             Title = App.Localization.Format("Network.Enable.Title", Interface.Description),
-            SuccessGenericMessage = App.Localization.Format("Network.Enable.Success", Interface.Name),
-            ErrorGenericMessage = App.Localization.Format("Network.Enable.Error", Interface.Name)
+            SuccessGenericMessage = App.Localization.Format(
+                "Network.Enable.Success",
+                Interface.Name
+            ),
+            ErrorGenericMessage = App.Localization.Format("Network.Enable.Error", Interface.Name),
         };
 
         bool success;
         if (OperatingSystem.IsWindows())
         {
-            success = await ProcessXExtensions.ExecuteHandled($"netsh interface set interface \"{Interface.Name}\" enable", toast, true);
+            success = await ProcessXExtensions.ExecuteHandled(
+                $"netsh interface set interface \"{Interface.Name}\" enable",
+                toast,
+                true
+            );
         }
         else if (OperatingSystem.IsMacOS())
         {
-            success = await ProcessXExtensions.ExecuteHandled($"ifconfig \"{Interface.Name}\" up", toast, true);
+            success = await ProcessXExtensions.ExecuteHandled(
+                $"ifconfig \"{Interface.Name}\" up",
+                toast,
+                true
+            );
         }
         else
         {
-            success = await ProcessXExtensions.ExecuteHandled($"nmcli device up \"{Interface.Name}\"", toast);
+            success = await ProcessXExtensions.ExecuteHandled(
+                $"nmcli device up \"{Interface.Name}\"",
+                toast
+            );
         }
 
-        if (success) Reset();
+        if (success)
+            Reset();
     }
-
 
     [RelayCommand(CanExecute = nameof(IsActive))]
     public async Task ReleaseIp()
     {
-        if (!IsActive || !HaveIPAddress) return;
+        if (!IsActive || !HaveIPAddress)
+            return;
 
         var toast = new ProcessXToast
         {
             Title = App.Localization.Format("Network.Release.Title", Interface.Description),
             SuccessGenericMessage = App.Localization["Network.Release.Success"],
-            ErrorGenericMessage = App.Localization.Format("Network.Release.Error", Interface.Name)
+            ErrorGenericMessage = App.Localization.Format("Network.Release.Error", Interface.Name),
         };
 
         bool success;
         if (OperatingSystem.IsWindows())
         {
-            success = await ProcessXExtensions.ExecuteHandled($"ipconfig /release \"{Interface.Name}\"", toast);
+            success = await ProcessXExtensions.ExecuteHandled(
+                $"ipconfig /release \"{Interface.Name}\"",
+                toast
+            );
         }
         else
         {
-            success = await ProcessXExtensions.ExecuteHandled($"nmcli connection down \"{Interface.Name}\"", toast);
+            success = await ProcessXExtensions.ExecuteHandled(
+                $"nmcli connection down \"{Interface.Name}\"",
+                toast
+            );
         }
 
-        if (success) Reset();
+        if (success)
+            Reset();
     }
 
     [RelayCommand(CanExecute = nameof(IsActive))]
     public async Task RenewIp()
     {
-        if (!IsActive) return;
+        if (!IsActive)
+            return;
 
         var toast = new ProcessXToast
         {
             Title = App.Localization.Format("Network.Renew.Title", Interface.Description),
             SuccessGenericMessage = App.Localization["Network.Renew.Success"],
-            ErrorGenericMessage = App.Localization.Format("Network.Renew.Error", Interface.Name)
+            ErrorGenericMessage = App.Localization.Format("Network.Renew.Error", Interface.Name),
         };
 
         bool success;
         if (OperatingSystem.IsWindows())
         {
             success = await ProcessXExtensions.ExecuteHandled(
-            [
-                        $"ipconfig /release \"{Interface.Name}\"",
-                        $"ipconfig /renew \"{Interface.Name}\""
-            ], toast);
+                [
+                    $"ipconfig /release \"{Interface.Name}\"",
+                    $"ipconfig /renew \"{Interface.Name}\"",
+                ],
+                toast
+            );
         }
         else if (OperatingSystem.IsMacOS())
         {
             success = await ProcessXExtensions.ExecuteHandled(
-            [
-                $"ifconfig \"{Interface.Name}\" down",
-                $"ifconfig \"{Interface.Name}\" up"
-            ], toast);
+                [$"ifconfig \"{Interface.Name}\" down", $"ifconfig \"{Interface.Name}\" up"],
+                toast
+            );
         }
         else
         {
             success = await ProcessXExtensions.ExecuteHandled(
-            [
-                $"nmcli device disconnect \"{Interface.Name}\"",
-                $"nmcli device connect \"{Interface.Name}\""
-            ], toast);
+                [
+                    $"nmcli device disconnect \"{Interface.Name}\"",
+                    $"nmcli device connect \"{Interface.Name}\"",
+                ],
+                toast
+            );
         }
 
-        if (success) Reset();
+        if (success)
+            Reset();
     }
 
     [RelayCommand]
     public void ShowManualAssignmentIPDialog()
     {
-        var dialog = App.DialogManager
-            .CreateDialog()
+        var dialog = App
+            .DialogManager.CreateDialog()
             .WithViewModel(dialog => new SetInterfaceIPDialogModel(dialog, this));
         dialog.TryShow();
     }
@@ -474,7 +574,8 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
             App.Logger.ZLogError($"Invalid IP address format: {ipaddress}");
             return;
         }
-        if(!IPAddress.TryParse(subnetMask, out var mask))
+
+        if (!IPAddress.TryParse(subnetMask, out var mask))
         {
             App.Logger.ZLogError($"Invalid subnet mask format: {subnetMask}");
             return;
@@ -486,27 +587,41 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
             return;
         }
 
-        bool isIPv4 = ipaddress.AddressFamily == AddressFamily.InterNetwork;
-        int version = isIPv4 ? 4 : 6;
+        var isIPv4 = ipaddress.AddressFamily == AddressFamily.InterNetwork;
+        var version = isIPv4 ? 4 : 6;
 
         var toast = new ProcessXToast
         {
             Title = Interface.Description,
-            SuccessGenericMessage = App.Localization.Format("Network.StaticIp.Success", ipAddress, subnetMask, gateway),
-            ErrorGenericMessage = App.Localization.Format("Network.StaticIp.Error", version, Interface.Name)
+            SuccessGenericMessage = App.Localization.Format(
+                "Network.StaticIp.Success",
+                ipAddress,
+                subnetMask,
+                gateway
+            ),
+            ErrorGenericMessage = App.Localization.Format(
+                "Network.StaticIp.Error",
+                version,
+                Interface.Name
+            ),
         };
 
         if (OperatingSystem.IsWindows())
         {
             var ipVersion = isIPv4 ? "ipv4" : "ipv6";
-            await ProcessXExtensions.ExecuteHandled($"netsh interface {ipVersion} set address name=\"{Interface.Name}\" static {ipAddress} {subnetMask} {gateway}", toast, true);
+            await ProcessXExtensions.ExecuteHandled(
+                $"netsh interface {ipVersion} set address name=\"{Interface.Name}\" static {ipAddress} {subnetMask} {gateway}",
+                toast,
+                true
+            );
         }
         else if (OperatingSystem.IsLinux())
         {
-
             var maskCidr = IPAddressExtensions.MaskToCidr(mask);
-            await ProcessXExtensions.ExecuteHandled($"nmcli device modify \"{Interface.Name}\" ipv4.addresses {IPv4Address}/{maskCidr} ipv4.gateway \"{gateway}\" ipv4.method manual", toast);
-
+            await ProcessXExtensions.ExecuteHandled(
+                $"nmcli device modify \"{Interface.Name}\" ipv4.addresses {IPv4Address}/{maskCidr} ipv4.gateway \"{gateway}\" ipv4.method manual",
+                toast
+            );
         }
     }
 
@@ -518,7 +633,7 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
             IPVersion.V4 => [4],
             IPVersion.V6 => [6],
             IPVersion.V4_V6 => [4, 6],
-            _ => throw new ArgumentOutOfRangeException(nameof(ipVersion), ipVersion, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(ipVersion), ipVersion, null),
         };
 
         var versionStr = versions.AsValueEnumerable().JoinToString('+');
@@ -527,7 +642,11 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
         {
             Title = Interface.Description,
             SuccessGenericMessage = App.Localization.Format("Network.DhcpIp.Success", versionStr),
-            ErrorGenericMessage = App.Localization.Format("Network.DhcpIp.Error", versionStr, Interface.Name)
+            ErrorGenericMessage = App.Localization.Format(
+                "Network.DhcpIp.Error",
+                versionStr,
+                Interface.Name
+            ),
         };
 
         List<string> commands = [];
@@ -538,44 +657,45 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
             if (OperatingSystem.IsWindows())
             {
                 requireAdminRights = true;
-                if (version == 4) commands.Add($"netsh interface ipv{version} set address name=\"{Interface.Name}\" source=dhcp");
+                if (version == 4)
+                    commands.Add(
+                        $"netsh interface ipv{version} set address name=\"{Interface.Name}\" source=dhcp"
+                    );
                 else if (version == 6)
                 {
                     commands.AddRange([
                         $"netsh interface ipv6 set interface \"{Interface.Name}\" dhcp=enabled",
-                        $"netsh interface ipv6 set interface \"{Interface.Name}\" routerdiscovery=enabled"
+                        $"netsh interface ipv6 set interface \"{Interface.Name}\" routerdiscovery=enabled",
                     ]);
                 }
             }
             else if (OperatingSystem.IsMacOS())
             {
                 requireAdminRights = true;
-                if (version == 4) commands.Add($"networksetup -setdhcp \"{Interface.Name}\"");
-                else if (version == 6) commands.Add($"networksetup -setv6automatic \"{Interface.Name}\"");
+                if (version == 4)
+                    commands.Add($"networksetup -setdhcp \"{Interface.Name}\"");
+                else if (version == 6)
+                    commands.Add($"networksetup -setv6automatic \"{Interface.Name}\"");
             }
             else if (OperatingSystem.IsLinux())
             {
                 commands.AddRange([
                     $"nmcli device modify \"{Interface.Name}\" ipv{version}.method auto",
                     $"nmcli device modify \"{Interface.Name}\" ipv{version}.gateway \"\"",
-                    $"nmcli device modify \"{Interface.Name}\" ipv{version}.address \"\""
+                    $"nmcli device modify \"{Interface.Name}\" ipv{version}.address \"\"",
                 ]);
-
             }
         }
 
         await ProcessXExtensions.ExecuteHandled(commands, toast, requireAdminRights);
 
         Reset();
-
     }
-
 
     public async Task SetStaticDns(string dnsAddress1, string? dnsAddress2 = null)
     {
         var ipaddress1 = IPAddress.Parse(dnsAddress1);
         var ipVersion = ipaddress1.GetIPVersion();
-
 
         if (dnsAddress2 is not null)
         {
@@ -583,57 +703,78 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
         }
 
         var commands = new List<string>();
-        bool requireAdminRights = false;
+        var requireAdminRights = false;
 
         if (OperatingSystem.IsWindows())
         {
-            commands.Add($"netsh interface ipv{ipVersion} set dnsservers name=\"{Interface.Name}\" static {dnsAddress1} validate=no");
+            commands.Add(
+                $"netsh interface ipv{ipVersion} set dnsservers name=\"{Interface.Name}\" static {dnsAddress1} validate=no"
+            );
             requireAdminRights = true;
         }
         else if (OperatingSystem.IsMacOS())
         {
-            commands.Add($"networksetup -setdnsservers \"{Interface.Name}\" {dnsAddress1} {dnsAddress2}");
+            commands.Add(
+                $"networksetup -setdnsservers \"{Interface.Name}\" {dnsAddress1} {dnsAddress2}"
+            );
             requireAdminRights = true;
         }
         else if (OperatingSystem.IsLinux())
         {
-            commands.Add($"nmcli device modify \"{Interface.Name}\" ipv{ipVersion}.dns \"{dnsAddress1} {dnsAddress2}\"");
-            commands.Add($"nmcli device modify \"{Interface.Name}\" ipv{ipVersion}.ignore-auto-dns yes");
+            commands.Add(
+                $"nmcli device modify \"{Interface.Name}\" ipv{ipVersion}.dns \"{dnsAddress1} {dnsAddress2}\""
+            );
+            commands.Add(
+                $"nmcli device modify \"{Interface.Name}\" ipv{ipVersion}.ignore-auto-dns yes"
+            );
         }
-
 
         if (dnsAddress2 is not null)
         {
             if (OperatingSystem.IsWindows())
             {
-                commands.Add($"netsh interface ipv4 add dnsservers name=\"{Interface.Name}\" {dnsAddress2} validate=no");
+                commands.Add(
+                    $"netsh interface ipv4 add dnsservers name=\"{Interface.Name}\" {dnsAddress2} validate=no"
+                );
             }
         }
 
-        await ProcessXExtensions.ExecuteHandled(commands, new ProcessXToast()
-        {
-            Title = App.Localization.Format("Network.Dns.Title", Interface.Name),
-            SuccessGenericMessage = App.Localization.Format("Network.Dns.Success", dnsAddress1, dnsAddress2),
-            ErrorGenericMessage = App.Localization["Network.Dns.Error"],
-        }, requireAdminRights);
+        await ProcessXExtensions.ExecuteHandled(
+            commands,
+            new ProcessXToast
+            {
+                Title = App.Localization.Format("Network.Dns.Title", Interface.Name),
+                SuccessGenericMessage = App.Localization.Format(
+                    "Network.Dns.Success",
+                    dnsAddress1,
+                    dnsAddress2
+                ),
+                ErrorGenericMessage = App.Localization["Network.Dns.Error"],
+            },
+            requireAdminRights
+        );
     }
-
 
     [RelayCommand]
     public async Task SetDhcpDns(IPVersion ipVersion)
     {
         var commands = new List<string>();
-        bool requireAdminRights = false;
+        var requireAdminRights = false;
 
         if (OperatingSystem.IsWindows())
         {
             if (ipVersion is IPVersion.V4 or IPVersion.V4_V6)
             {
-                commands.Add($"netsh interface ipv4 set dnsservers name=\"{Interface.Name}\" source=dhcp");
+                commands.Add(
+                    $"netsh interface ipv4 set dnsservers name=\"{Interface.Name}\" source=dhcp"
+                );
             }
+
             if (ipVersion is IPVersion.V6 or IPVersion.V4_V6)
             {
-                commands.Add($"netsh interface ipv6 set dnsservers name=\"{Interface.Name}\" source=dhcp");
+                commands.Add(
+                    $"netsh interface ipv6 set dnsservers name=\"{Interface.Name}\" source=dhcp"
+                );
             }
 
             requireAdminRights = true;
@@ -654,6 +795,7 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
                 commands.Add($"nmcli device modify \"{Interface.Name}\" ipv4.ignore-auto-dns no");
                 commands.Add($"nmcli device modify \"{Interface.Name}\" ipv4.dns \"\"");
             }
+
             if (ipVersion is IPVersion.V6 or IPVersion.V4_V6)
             {
                 commands.Add($"nmcli device modify \"{Interface.Name}\" ipv6.ignore-auto-dns no");
@@ -661,137 +803,215 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
             }
         }
 
-        await ProcessXExtensions.ExecuteHandled(commands, new ProcessXToast()
-        {
-            Title = App.Localization.Format("Network.Dns.Title", Interface.Name),
-            SuccessGenericMessage = App.Localization["Network.DhcpDns.Success"],
-            ErrorGenericMessage = App.Localization["Network.DhcpDns.Error"],
-        }, requireAdminRights);
+        await ProcessXExtensions.ExecuteHandled(
+            commands,
+            new ProcessXToast
+            {
+                Title = App.Localization.Format("Network.Dns.Title", Interface.Name),
+                SuccessGenericMessage = App.Localization["Network.DhcpDns.Success"],
+                ErrorGenericMessage = App.Localization["Network.DhcpDns.Error"],
+            },
+            requireAdminRights
+        );
     }
 
     [RelayCommand]
     public async Task ExportToCsv()
     {
-        using var file = await App.TopLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
-        {
-            ShowOverwritePrompt = true,
-            SuggestedFileName = FileUtilities.SanitizeFileName($"{Interface.Name}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.csv"),
-            DefaultExtension = "csv",
-            FileTypeChoices = AvaloniaExtensions.FilePickerCsv
-        });
+        using var file = await App.TopLevel.StorageProvider.SaveFilePickerAsync(
+            new FilePickerSaveOptions
+            {
+                ShowOverwritePrompt = true,
+                SuggestedFileName = FileUtilities.SanitizeFileName(
+                    $"{Interface.Name}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.csv"
+                ),
+                DefaultExtension = "csv",
+                FileTypeChoices = AvaloniaExtensions.FilePickerCsv,
+            }
+        );
 
-        if (file is null) return;
+        if (file is null)
+            return;
 
         try
         {
             var filePath = file.TryGetLocalPath();
-            if (filePath is null) return;
+            if (filePath is null)
+                return;
             await using var stream = await file.OpenWriteAsync();
             await using var textWriter = new StreamWriter(stream);
-            await textWriter.WriteLineAsync(string.Format("{0};{1};{2}",
-                nameof(GroupNameValue.Group),
-                nameof(GroupNameValue.Name),
-                nameof(GroupNameValue.Value)
-            ));
+            await textWriter.WriteLineAsync(
+                string.Format(
+                    "{0};{1};{2}",
+                    nameof(GroupNameValue.Group),
+                    nameof(GroupNameValue.Name),
+                    nameof(GroupNameValue.Value)
+                )
+            );
 
             foreach (var nameValueGroup in TabularData)
             {
-                await textWriter.WriteLineAsync(string.Format("{0};{1};{2}",
-                    nameValueGroup.Value.Group,
-                    nameValueGroup.Value.Name,
-                    nameValueGroup.Value.Value.ReplaceLineEndings("|")
-                ));
+                await textWriter.WriteLineAsync(
+                    string.Format(
+                        "{0};{1};{2}",
+                        nameValueGroup.Value.Group,
+                        nameValueGroup.Value.Name,
+                        nameValueGroup.Value.Value.ReplaceLineEndings("|")
+                    )
+                );
             }
 
-            App.ShowToast(NotificationType.Success,
+            App.ShowToast(
+                NotificationType.Success,
                 App.Localization.Format("Export.Interface.Title", "CSV"),
                 App.Localization.Format("Export.Interface.Success", Interface.Name, file.Name),
-                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { HostSystem.OpenFile(filePath); }),
-                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { HostSystem.ShowFileInFileManager(filePath); })
-                );
+                new ToastActionButton(
+                    App.Localization["Common.OpenFile"],
+                    toast =>
+                    {
+                        HostSystem.OpenFile(filePath);
+                    }
+                ),
+                new ToastActionButton(
+                    App.Localization["Common.OpenFolder"],
+                    toast =>
+                    {
+                        HostSystem.ShowFileInFileManager(filePath);
+                    }
+                )
+            );
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, App.Localization.Format("Export.Interface.Title", "CSV"),
-                App.Localization["Export.Interface.Error"]);
+            App.ShowExceptionToast(
+                e,
+                App.Localization.Format("Export.Interface.Title", "CSV"),
+                App.Localization["Export.Interface.Error"]
+            );
         }
     }
 
     [RelayCommand]
     public async Task ExportToJson()
     {
-        using var file = await App.TopLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
-        {
-            ShowOverwritePrompt = true,
-            SuggestedFileName = FileUtilities.SanitizeFileName($"{Interface.Name}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.json"),
-            DefaultExtension = "json",
-            FileTypeChoices = AvaloniaExtensions.FilePickerJson
-        });
+        using var file = await App.TopLevel.StorageProvider.SaveFilePickerAsync(
+            new FilePickerSaveOptions
+            {
+                ShowOverwritePrompt = true,
+                SuggestedFileName = FileUtilities.SanitizeFileName(
+                    $"{Interface.Name}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.json"
+                ),
+                DefaultExtension = "json",
+                FileTypeChoices = AvaloniaExtensions.FilePickerJson,
+            }
+        );
 
-        if (file is null) return;
+        if (file is null)
+            return;
 
         try
         {
             var filePath = file.TryGetLocalPath();
-            if (filePath is null) return;
+            if (filePath is null)
+                return;
             await using var stream = File.Create(filePath);
             await JsonSerializer.SerializeAsync(stream, TabularData, App.JsonSerializerOptions);
-            App.ShowToast(NotificationType.Success,
+            App.ShowToast(
+                NotificationType.Success,
                 App.Localization.Format("Export.Interface.Title", "JSON"),
                 App.Localization.Format("Export.Interface.Success", Interface.Name, file.Name),
-                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { HostSystem.OpenFile(filePath); }),
-                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { HostSystem.ShowFileInFileManager(filePath); })
-                );
+                new ToastActionButton(
+                    App.Localization["Common.OpenFile"],
+                    toast =>
+                    {
+                        HostSystem.OpenFile(filePath);
+                    }
+                ),
+                new ToastActionButton(
+                    App.Localization["Common.OpenFolder"],
+                    toast =>
+                    {
+                        HostSystem.ShowFileInFileManager(filePath);
+                    }
+                )
+            );
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, App.Localization.Format("Export.Interface.Title", "JSON"),
-                App.Localization["Export.Interface.Error"]);
+            App.ShowExceptionToast(
+                e,
+                App.Localization.Format("Export.Interface.Title", "JSON"),
+                App.Localization["Export.Interface.Error"]
+            );
         }
     }
 
     [RelayCommand]
     public async Task ExportToIni()
     {
-        using var file = await App.TopLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
-        {
-            ShowOverwritePrompt = true,
-            SuggestedFileName = FileUtilities.SanitizeFileName($"{Interface.Name}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.ini"),
-            DefaultExtension = "ini",
-            FileTypeChoices = AvaloniaExtensions.FilePickerIni
-        });
+        using var file = await App.TopLevel.StorageProvider.SaveFilePickerAsync(
+            new FilePickerSaveOptions
+            {
+                ShowOverwritePrompt = true,
+                SuggestedFileName = FileUtilities.SanitizeFileName(
+                    $"{Interface.Name}-{DateTime.Now:dd-MM-yyyy-HH-mm-ss}.ini"
+                ),
+                DefaultExtension = "ini",
+                FileTypeChoices = AvaloniaExtensions.FilePickerIni,
+            }
+        );
 
-        if (file is null) return;
+        if (file is null)
+            return;
 
         try
         {
             var filePath = file.TryGetLocalPath();
-            if (filePath is null) return;
+            if (filePath is null)
+                return;
             await using var stream = await file.OpenWriteAsync();
             await using var textWriter = new StreamWriter(stream);
 
             foreach (var group in TabularData.GroupBy(pair => pair.Value.Group))
             {
-
                 await textWriter.WriteLineAsync($"[{group.Key}]");
                 foreach (var nameValueGroup in group)
                 {
-                    await textWriter.WriteLineAsync($"{nameValueGroup.Value.Name}={nameValueGroup.Value.Value.ReplaceLineEndings("|")}");
+                    await textWriter.WriteLineAsync(
+                        $"{nameValueGroup.Value.Name}={nameValueGroup.Value.Value.ReplaceLineEndings("|")}"
+                    );
                 }
+
                 await textWriter.WriteLineAsync();
             }
 
-            App.ShowToast(NotificationType.Success,
+            App.ShowToast(
+                NotificationType.Success,
                 App.Localization.Format("Export.Interface.Title", "INI"),
                 App.Localization.Format("Export.Interface.Success", Interface.Name, file.Name),
-                new ToastActionButton(App.Localization["Common.OpenFile"], toast => { HostSystem.OpenFile(filePath); }),
-                new ToastActionButton(App.Localization["Common.OpenFolder"], toast => { HostSystem.ShowFileInFileManager(filePath); })
-                );
+                new ToastActionButton(
+                    App.Localization["Common.OpenFile"],
+                    toast =>
+                    {
+                        HostSystem.OpenFile(filePath);
+                    }
+                ),
+                new ToastActionButton(
+                    App.Localization["Common.OpenFolder"],
+                    toast =>
+                    {
+                        HostSystem.ShowFileInFileManager(filePath);
+                    }
+                )
+            );
         }
         catch (Exception e)
         {
-            App.ShowExceptionToast(e, App.Localization.Format("Export.Interface.Title", "INI"),
-                App.Localization["Export.Interface.Error"]);
+            App.ShowExceptionToast(
+                e,
+                App.Localization.Format("Export.Interface.Title", "INI"),
+                App.Localization["Export.Interface.Error"]
+            );
         }
     }
 
@@ -801,17 +1021,15 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
         const int margin = 15;
         var window = new GenericWindow
         {
-            Title = $"{App.SoftwareWithVersion} - {Interface.Description} ({Interface.NetworkInterfaceType})",
+            Title =
+                $"{App.SoftwareWithVersion} - {Interface.Description} ({Interface.NetworkInterfaceType})",
             CanPin = true,
             SizeToContent = SizeToContent.Width,
             MinWidth = AppSettings.Instance.NetworkInterfaces.CardWidth + margin * 2,
             Content = new Border
             {
                 Margin = new Thickness(margin),
-                Child = new NetworkInterfaceFragment
-                {
-                    DataContext = this
-                }
+                Child = new NetworkInterfaceFragment { DataContext = this },
             },
         };
 
@@ -820,7 +1038,8 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
 
     private void Dispose(bool disposing)
     {
-        if (IsDisposed) return;
+        if (IsDisposed)
+            return;
 
         if (disposing)
         {
@@ -831,12 +1050,6 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
         // Set large fields to null.
 
         IsDisposed = true;
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
     }
 
     public static MaterialIconKind GetNetworkInterfaceTypeIcon(NetworkInterfaceType type)
@@ -872,7 +1085,7 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
             NetworkInterfaceType.Wwanpp => MaterialIconKind.Antenna,
             NetworkInterfaceType.Wwanpp2 => MaterialIconKind.Antenna,
             (NetworkInterfaceType)53 => MaterialIconKind.VirtualPrivateNetwork, // // Proprietary virtual/internal
-            _ => MaterialIconKind.QuestionMarkRhombusOutline
+            _ => MaterialIconKind.QuestionMarkRhombusOutline,
         };
     }
 
@@ -887,25 +1100,8 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
             OperationalStatus.Dormant => MaterialIconKind.Sleep,
             OperationalStatus.NotPresent => MaterialIconKind.CloseNetworkOutline,
             OperationalStatus.LowerLayerDown => MaterialIconKind.CloseCircle,
-            _ => MaterialIconKind.QuestionNetwork
+            _ => MaterialIconKind.QuestionNetwork,
         };
-    }
-
-    public static NetworkInterfaceBridge? PrimaryInterface
-    {
-        get
-        {
-            var networkInterface = NetworkInterface.GetAllNetworkInterfaces()
-                .AsValueEnumerable()
-                .FirstOrDefault(@interface =>
-                @interface.NetworkInterfaceType
-                    is NetworkInterfaceType.Ethernet
-                    or NetworkInterfaceType.Wireless80211
-                && @interface.OperationalStatus == OperationalStatus.Up
-                && !@interface.Name.StartsWith("vEthernet"));
-            return networkInterface is null ? null : new NetworkInterfaceBridge(networkInterface);
-        }
-
     }
 
     /// <summary>
@@ -914,11 +1110,23 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
     /// </summary>
     public static NetworkInterfaceBridge[] GetActiveRealInterfaces()
     {
-        return NetworkInterface.GetAllNetworkInterfaces()
+        return NetworkInterface
+            .GetAllNetworkInterfaces()
             .AsValueEnumerable()
             .Where(IsRealActiveInterface)
             .Select(@interface => new NetworkInterfaceBridge(@interface))
             .ToArray();
+    }
+
+    /// <summary>
+    /// Returns true when the IP address is a link-local address (169.254.x.x).
+    /// </summary>
+    /// <param name="address">The IP address to check.</param>
+    /// <returns>True if the address is link-local; otherwise, false.</returns>
+    public static bool IsLinkLocal(IPAddress address)
+    {
+        var bytes = address.GetAddressBytes();
+        return bytes[0] == 169 && bytes[1] == 254;
     }
 
     /// <summary>
@@ -927,9 +1135,12 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
     /// </summary>
     public static bool IsRealActiveInterface(NetworkInterface @interface)
     {
-        if (@interface.OperationalStatus != OperationalStatus.Up) return false;
+        if (@interface.OperationalStatus != OperationalStatus.Up)
+            return false;
 
-        if (@interface.NetworkInterfaceType is not (
+        if (
+            @interface.NetworkInterfaceType
+            is not (
                 NetworkInterfaceType.Ethernet
                 or NetworkInterfaceType.GigabitEthernet
                 or NetworkInterfaceType.FastEthernetT
@@ -937,10 +1148,13 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
                 or NetworkInterfaceType.Ethernet3Megabit
                 or NetworkInterfaceType.Wireless80211
                 or NetworkInterfaceType.Wwanpp
-                or NetworkInterfaceType.Wwanpp2))
+                or NetworkInterfaceType.Wwanpp2
+            )
+        )
             return false;
 
-        if (IsVirtualInterface(@interface)) return false;
+        if (IsVirtualInterface(@interface))
+            return false;
 
         return @interface.GetIPProperties().UnicastAddresses.Count > 0;
     }
@@ -952,14 +1166,14 @@ public partial class NetworkInterfaceBridge : ObservableObject, IDisposable
     public static bool IsVirtualInterface(NetworkInterface @interface)
     {
         return @interface.Name.StartsWith("vEthernet", StringComparison.OrdinalIgnoreCase)
-               || @interface.Name.StartsWith("vSwitch", StringComparison.OrdinalIgnoreCase)
-               || @interface.Name.StartsWith("Hyper-V", StringComparison.OrdinalIgnoreCase)
-               || @interface.Name.StartsWith("VMware", StringComparison.OrdinalIgnoreCase)
-               || @interface.Name.StartsWith("VirtualBox", StringComparison.OrdinalIgnoreCase)
-               || @interface.Name.Contains("Filter", StringComparison.OrdinalIgnoreCase)
-               || @interface.Name.Contains("QoS", StringComparison.OrdinalIgnoreCase)
-               || @interface.Description.StartsWith("WAN Miniport", StringComparison.OrdinalIgnoreCase)
-               || @interface.Description.Contains(" Virtual ", StringComparison.OrdinalIgnoreCase)
-               || @interface.Description.Contains(" Debug ", StringComparison.OrdinalIgnoreCase);
+            || @interface.Name.StartsWith("vSwitch", StringComparison.OrdinalIgnoreCase)
+            || @interface.Name.StartsWith("Hyper-V", StringComparison.OrdinalIgnoreCase)
+            || @interface.Name.StartsWith("VMware", StringComparison.OrdinalIgnoreCase)
+            || @interface.Name.StartsWith("VirtualBox", StringComparison.OrdinalIgnoreCase)
+            || @interface.Name.Contains("Filter", StringComparison.OrdinalIgnoreCase)
+            || @interface.Name.Contains("QoS", StringComparison.OrdinalIgnoreCase)
+            || @interface.Description.StartsWith("WAN Miniport", StringComparison.OrdinalIgnoreCase)
+            || @interface.Description.Contains(" Virtual ", StringComparison.OrdinalIgnoreCase)
+            || @interface.Description.Contains(" Debug ", StringComparison.OrdinalIgnoreCase);
     }
 }

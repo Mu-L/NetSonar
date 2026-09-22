@@ -1,0 +1,127 @@
+<controls:UserControlBase
+  x:Class="NetSonar.Avalonia.Views.NetworkScannerPage"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
+  xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+  xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
+  xmlns:suki="https://github.com/kikipoulet/SukiUI"
+  xmlns:viewModels="clr-namespace:NetSonar.Avalonia.ViewModels"
+  x:DataType="viewModels:NetworkScannerPageModel"
+>
+  <Grid Margin="15" RowDefinitions="Auto,*" RowSpacing="10">
+    <suki:GlassCard>
+      <suki:GroupBox Header="{Binding DisplayName}">
+        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+          <ComboBox
+            Grid.Column="0"
+            IsEditable="True"
+            ItemsSource="{Binding TargetsView}"
+            PlaceholderText="192.168.1.0/24"
+            Text="{Binding Target}"
+          />
+          <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="5">
+            <Button
+              Command="{Binding RefreshTargetsCommand}"
+              Content="{icon:MaterialIconExt Kind=Refresh}"
+            />
+            <Button
+              Command="{Binding ScanNetworkCommand}"
+              IsVisible="{Binding !IsScanning}"
+              Content="{icon:MaterialIconTextExt Kind=Radar, Text={localization:Translate NetworkScanner.Scan}}"
+              Classes="Flat"
+            />
+            <Button
+              Command="{Binding CancelScanCommand}"
+              IsVisible="{Binding IsScanning}"
+              Content="{icon:MaterialIconTextExt Kind=StopCircleOutline, Text={localization:Translate Common.Cancel}}"
+              Classes="Danger"
+            />
+          </StackPanel>
+        </Grid>
+      </suki:GroupBox>
+    </suki:GlassCard>
+
+    <Panel Grid.Row="1">
+      <Grid IsVisible="{Binding IsExecutableAvailable}">
+        <suki:GlassCard>
+          <Grid RowDefinitions="Auto,Auto,*" RowSpacing="10">
+            <StackPanel Orientation="Horizontal" Spacing="5">
+              <Button
+                Command="{Binding ScanSelectedPortsCommand}"
+                IsEnabled="{Binding HasSelectedHosts}"
+              >
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                  <icon:MaterialIcon Kind="LanConnect" />
+                  <TextBlock Text="{localization:Translate NetworkScanner.ScanPorts}" />
+                </StackPanel>
+              </Button>
+              <Button
+                Command="{Binding AddSelectedToMonitoringCommand}"
+                IsEnabled="{Binding HasSelectedHosts}"
+              >
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                  <icon:MaterialIcon Kind="Plus" />
+                  <TextBlock Text="{localization:Translate NetworkScanner.AddToMonitoring}" />
+                </StackPanel>
+              </Button>
+              <Button Classes="Flat" Command="{Binding ClearResultsCommand}">
+                <icon:MaterialIcon Kind="DeleteSweep" />
+              </Button>
+            </StackPanel>
+            <ProgressBar
+              Grid.Row="1"
+              Classes="Information"
+              IsIndeterminate="True"
+              IsVisible="{Binding IsScanning}"
+            />
+            <TreeDataGrid Grid.Row="2" Classes="Suki" Source="{Binding HostsSource}" />
+          </Grid>
+        </suki:GlassCard>
+      </Grid>
+
+      <Border
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        IsVisible="{Binding !IsExecutableAvailable}"
+      >
+        <suki:SukiMessageBoxHost
+          Header="{localization:Translate NetworkScanner.Dependency.Title}"
+          IconPreset="Error"
+        >
+          <SelectableTextBlock
+            Text="{localization:Translate NetworkScanner.Dependency.Message}"
+            TextWrapping="Wrap"
+          />
+          <suki:SukiMessageBoxHost.ActionButtonsSource>
+            <Button
+              Command="{Binding AutoInstallDependencyCommand}"
+              IsVisible="{Binding CanAutoInstall}"
+              suki:ButtonExtensions.ShowProgress="{Binding IsInstalling}"
+            >
+              <StackPanel Orientation="Horizontal" Spacing="5">
+                <icon:MaterialIcon Kind="AutoDownload" />
+                <TextBlock Text="{localization:Translate SpeedTest.AutoInstall}" />
+              </StackPanel>
+            </Button>
+            <Button
+              Command="{Binding LaunchUriCommand}"
+              CommandParameter="https://nmap.org/download.html"
+            >
+              <StackPanel Orientation="Horizontal" Spacing="5">
+                <icon:MaterialIcon Kind="Download" />
+                <TextBlock Text="{localization:Translate SpeedTest.ManualInstall}" />
+              </StackPanel>
+            </Button>
+            <Button Classes="Flat" Command="{Binding ReloadDependencyCommand}">
+              <StackPanel Orientation="Horizontal" Spacing="5">
+                <icon:MaterialIcon Kind="Refresh" />
+                <TextBlock Text="{localization:Translate Common.Reload}" />
+              </StackPanel>
+            </Button>
+          </suki:SukiMessageBoxHost.ActionButtonsSource>
+        </suki:SukiMessageBoxHost>
+      </Border>
+    </Panel>
+  </Grid>
+</controls:UserControlBase>
