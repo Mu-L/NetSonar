@@ -1,3 +1,7 @@
+# v0.5.2 (/09/2026)
+
+- Fix the update-check cross-thread exception
+
 # v0.5.1 (11/09/2026)
 
 - Fix speedtest not working on linux and macOS systems

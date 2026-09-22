@@ -8,8 +8,8 @@
                           xmlns:dialogs="clr-namespace:NetSonar.Avalonia.ViewModels.Dialogs"
                           xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                          xmlns:md="clr-namespace:MarkdownViewer.Core.Controls;assembly=MarkdownViewer.Core"
                           xmlns:suki="https://github.com/kikipoulet/SukiUI"
+                          xmlns:md="clr-namespace:MarkView.Avalonia;assembly=MarkView.Avalonia"
                           d:DesignHeight="450"
                           d:DesignWidth="800"
                           x:DataType="dialogs:AppUpdateDialogModel"
@@ -22,7 +22,7 @@
                 <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
             </MultiBinding>
         </suki:SukiMessageBoxHost.Header>
-        <md:MarkdownViewer MarkdownText="{Binding Changelog}" />
+        <md:MarkdownViewer Markdown="{Binding Changelog}" />
         <suki:SukiMessageBoxHost.FooterLeftItemsSource>
             <Border IsVisible="{Binding IsDownloading}">
                 <StackPanel Orientation="Vertical">

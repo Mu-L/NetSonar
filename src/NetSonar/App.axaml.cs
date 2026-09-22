@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Avalonia.Threading;
 using NetSonar.Avalonia.ViewModels;
 using NetSonar.Avalonia.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +14,9 @@ using NetSonar.Avalonia.ViewModels.Dialogs;
 using NetSonar.Avalonia.Views.Dialogs;
 using ZLogger;
 using System.Globalization;
+using MarkView.Avalonia;
 using StageKit;
+using StageKit.Primitives.System;
 using ZLinq;
 
 namespace NetSonar.Avalonia;
@@ -84,6 +87,14 @@ public partial class App : Application
         SetupLogger();
         SetupLocalization();
         SetupTheme();
+        
+        MarkdownViewer.LinkClickedEvent.AddClassHandler<MarkdownViewer>((_, e) =>
+            HostSystem.OpenUrl(e.Url)
+        );
+        
+        // AppUpdater is created before Avalonia's UI synchronization context exists.
+        // Ensure its events, including UpdateFound, are dispatched to the UI thread.
+        AppUpdater.EventSynchronizationContext = AvaloniaSynchronizationContext.Current;
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopCheck)
         {
@@ -91,6 +102,7 @@ public partial class App : Application
             {
                 ApplicationKit.ApplicationArgs = desktopCheck.Args;
             }
+
             if (ApplicationKit.ApplicationArgs?.Length >= 1)
             {
                 if (Array.IndexOf(ApplicationKit.ApplicationArgs, "--minimized") >= 0)
@@ -122,7 +134,8 @@ public partial class App : Application
             }
             else
             {
-                Logger.ZLogCritical($"{crashReport?.FormattedMessage ?? "The application crashed due an unexpected exception. (Unable to present the information in the UI"}.");
+                Logger.ZLogCritical(
+                    $"{crashReport?.FormattedMessage ?? "The application crashed due an unexpected exception. (Unable to present the information in the UI"}.");
                 Environment.Exit(0);
             }
         }
@@ -132,7 +145,7 @@ public partial class App : Application
             // Without this line you will get duplicate validations from both Avalonia and CT
             //BindingPlugins.DataValidators.RemoveAt(0);
 #if DEBUG
-            if(true)
+            if (true)
 #else
             _appInstanceGuard = ApplicationInstanceGuard.AcquirePerUser();
             if (Design.IsDesignMode || _appInstanceGuard.IsPrimary)
@@ -167,6 +180,7 @@ public partial class App : Application
                         MainWindow.ShowInTaskbar = false;
                         MainWindow.Opened += MainWindowOnOpenedOnAutoStartup;
                     }
+
                     desktop.MainWindow = MainWindow;
                     desktop.Exit += DesktopOnExit;
                     AppUpdater.UpdateFound += AppUpdaterOnUpdateFound;
@@ -207,9 +221,9 @@ public partial class App : Application
                 else
                 {
                     Logger.ZLogInformation($"""
-                                There is another instance of {Software} running. Only one instance of {Software} can run at a time.
-                                Please find and open the running instance or close it before starting a new one. (Unable to present this information in the UI).
-                                """);
+                                            There is another instance of {Software} running. Only one instance of {Software} can run at a time.
+                                            Please find and open the running instance or close it before starting a new one. (Unable to present this information in the UI).
+                                            """);
                     Environment.Exit(0);
                 }
 #pragma warning restore CS0162 // Unreachable code detected
