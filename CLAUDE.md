@@ -21,7 +21,7 @@ The repo uses Nuke. Top-level scripts bootstrap a local dotnet if needed and for
 - Targets (`build/Build.cs`): `Print`, `Clean`, `Restore`, `Compile` (default), `Publish`.
 - For day-to-day dev just use `dotnet build` / `dotnet run --project src/NetSonar.Desktop` against the solution.
 - `Publish` produces zips/MSI/.app/AppImage per RID into `artifacts/publish/`. Defaults to all six RIDs (`win-x64 win-arm64 osx-x64 osx-arm64 linux-x64 linux-arm64`); override with `--rids "win-x64"`. Other params: `--configuration`, `--create-bundles`, `--keep-only-bundles`, `--bundle-all-arch`. MSI requires Windows host; AppImage requires Linux host; macOS `.app` codesigns only on macOS. Skipped silently otherwise.
-- There is **no test project** in the solution.
+- `tests/NetSonar.Tests/` is an MSTest project (`MSTest.Sdk`, VSTest runner) covering the pure logic: probe parsing, clipboard parsing, scanner parsing/expansion, and localization catalog parity. Run with `dotnet test tests/NetSonar.Tests`. Anything needing an Avalonia app instance is out of scope there.
 
 Runtime args (handled via `ApplicationKit`): `--portable [level]`, `--profile-path <path>`, `--minimized`, `--crash-report <index>`.
 
@@ -72,13 +72,24 @@ Pattern lives in `Common/AppViews.cs` + `Common/ViewLocator.cs`:
 - `Network/BaseProvider.cs` + `DnsProvider.cs` hold the public-endpoint catalogues imported from the Add Ping Services dialog.
 - `Network/NetworkInterfaceBridge.cs` wraps interface enumeration/config; `SpeedTestService.cs` shells the bundled `speedtest` CLI via ProcessX.
 
+### Network scanner
+
+Separate from the probe stack. `Network/NetworkScannerService.cs` is the facade: it picks the engine and both engines return a `NetworkScanResult`.
+
+- `Network/NetworkScanModels.cs` — `NetworkScannerHost`/`NetworkScannerPort` (init-only; merge with `WithPortScan` after a port scan and `WithCarriedPorts` after a rediscovery), options records, `NetworkScanProgress`, and `NetworkScanDiff.Compare` which tags hosts New/PortsChanged/Gone.
+- `Network/NmapScannerService.cs` — builds nmap arguments, streams `-oX -` through `ProcessX.GetDualAsyncEnumerable` to report `<taskprogress>` percentages, and batches hosts (`HostsPerInvocation`). Elevated and normal runs take the same path: `ProcessXExtensions.CreateStartInfo` wraps the command in gsudo (Windows), `pkexec` (Linux), or `osascript` (macOS), all of which keep the output capturable — only macOS delays it to the end. Port scans must keep `-Pn`. Targets wider than `MinimumTargetPrefixLength` are never produced by `GetLocalTargets`. The network layer must not touch `App`; the elevation prompt arrives through `NetworkScanOptions.ElevationPrompt`.
+- Host discovery is a live probe, so it flaps: an unprivileged nmap cannot ARP-ping and falls back to TCP connect pings. Two guards keep the list stable — `Network/NeighbourCacheMerge.cs` folds the ARP cache into an unprivileged nmap result (an elevated run ARP-pings itself, so it is skipped there), and `NetworkScanRetention.KeepRecentlySeen` keeps a host for `DefaultGraceScans` misses, marking it `Gone`/`down` via `MissedScans` instead of dropping it. The diff ignores hosts that are already missing, so a gone host is reported once.
+- `Network/BuiltinNetworkScanner.cs` — the nmap-free engine: ICMP sweep + `ArpTable` + TCP connect probes. `Network/NetworkPortCatalog.cs` owns the top-100 port set, well-known service names, port-spec parsing, and the port → `ServiceProtocolType` mapping used by the monitoring import. `Network/MacVendorLookup.cs` reads nmap's `nmap-mac-prefixes` when present.
+- State lives in `AppSettings.NetworkScanner` (`Settings/NetworkScannerSettings.cs`) and `NetworkScansFile` (`network_scans.json`, newest first, used for the diff and to restore the last result).
+- `NetworkScannerPageModel` rebuilds its `HierarchicalTreeDataGridSource` on culture change, because TreeDataGrid column headers are plain strings captured at construction.
+
 ### Collections
 
 Uses Cysharp `ObservableCollections`, not `System.Collections.ObjectModel` (the old `FastObservableCollection` and MintPlayer deps are gone). Backing stores are `ObservableList<T>`/`ObservableListExtended<T>`; UI-bound views are created with `.ToNotifyCollectionChanged(...)` / `.ToNotifyCollectionChangedSlim(SynchronizationContextCollectionEventDispatcher.Current)`. Prefer `ZLinq`'s `.AsValueEnumerable()` over LINQ in hot/enumeration-heavy paths.
 
 ### Settings persistence
 
-Three independent JSON files, each a StageKit settings singleton: `AppSettings` (composed of `SubSettings` partials — `PingServicesSettings`, `NetworkInterfacesSettings`, `SpeedTestSettings`), `PingableServicesFile` (services + optional resilient ping-reply history, gated on `AppSettings.Instance.PingServices.ResilientReplies`), and `SpeedTestsFile`. `App.PanicSaveSettings()` saves all four stores and is invoked from `DesktopOnExit` and `UnhandledExceptions.BeforeForcedExit` — UI code that already triggers a normal shutdown should **not** also call it (double-save). Exit via `IClassicDesktopStyleApplicationLifetime.Shutdown()` rather than `Environment.Exit` so this path runs.
+Four independent JSON files, each a StageKit settings singleton: `AppSettings` (composed of `SubSettings` partials — `PingServicesSettings`, `NetworkInterfacesSettings`, `SpeedTestSettings`, `NetworkScannerSettings`), `PingableServicesFile` (services + optional resilient ping-reply history, gated on `AppSettings.Instance.PingServices.ResilientReplies`), `SpeedTestsFile`, and `NetworkScansFile`. `App.PanicSaveSettings()` saves all of them and is invoked from `DesktopOnExit` and `UnhandledExceptions.BeforeForcedExit` — UI code that already triggers a normal shutdown should **not** also call it (double-save). Exit via `IClassicDesktopStyleApplicationLifetime.Shutdown()` rather than `Environment.Exit` so this path runs.
 
 ### Crash reports
 

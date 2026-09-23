@@ -1345,11 +1345,8 @@ IP アドレス: {0}
     <data name="Navigation.NetworkScanner" xml:space="preserve">
     <value>ネットワークスキャナー</value>
   </data>
-    <data name="NetworkScanner.Dependency.Title" xml:space="preserve">
-    <value>nmap 依存関係が見つかりません</value>
-  </data>
     <data name="NetworkScanner.Dependency.Message" xml:space="preserve">
-    <value>このモジュールには nmap が必要ですが、このシステムで見つかりませんでした。</value>
+    <value>nmap が見つかりません。内蔵スキャナーを使用します。ホストと開いている TCP ポートを検出しますが、サービスバージョン、UDP、OS 検出はありません。</value>
   </data>
     <data name="NetworkScanner.Scan" xml:space="preserve">
     <value>スキャン</value>
@@ -1392,5 +1389,154 @@ IP アドレス: {0}
   </data>
     <data name="Ui.ScannerVersion" xml:space="preserve">
     <value>バージョン</value>
+  </data>
+    <data name="NetworkScanner.RefreshTargets" xml:space="preserve">
+    <value>検出したネットワークを更新</value>
+  </data>
+    <data name="NetworkScanner.Options" xml:space="preserve">
+    <value>スキャン オプション</value>
+  </data>
+    <data name="NetworkScanner.Options.UseNmap" xml:space="preserve">
+    <value>利用可能なときは nmap を使う</value>
+  </data>
+    <data name="NetworkScanner.Options.ResolveDns" xml:space="preserve">
+    <value>ホスト名を解決する</value>
+  </data>
+    <data name="NetworkScanner.Options.ServiceDetection" xml:space="preserve">
+    <value>サービスのバージョンを検出する</value>
+  </data>
+    <data name="NetworkScanner.Options.Elevated" xml:space="preserve">
+    <value>管理者権限で実行する</value>
+  </data>
+    <data name="NetworkScanner.Options.Elevated.Tip" xml:space="preserve">
+    <value>管理者権限のスキャンは MAC アドレスとベンダーを報告し、UDP と OS のオプションを有効にします。開始時に承認を求めます。macOS では出力はスキャン完了後にまとめて届きます。</value>
+  </data>
+    <data name="NetworkScanner.Options.UdpScan" xml:space="preserve">
+    <value>UDP ポートをスキャンする</value>
+  </data>
+    <data name="NetworkScanner.Options.OsDetection" xml:space="preserve">
+    <value>オペレーティング システムを検出する</value>
+  </data>
+    <data name="NetworkScanner.Options.NotifyChanges" xml:space="preserve">
+    <value>ネットワークの変化を通知する</value>
+  </data>
+    <data name="NetworkScanner.Options.PortRange" xml:space="preserve">
+    <value>ポート範囲:</value>
+  </data>
+    <data name="NetworkScanner.Options.CustomPorts" xml:space="preserve">
+    <value>カスタム ポート:</value>
+  </data>
+    <data name="NetworkScanner.Options.Timing" xml:space="preserve">
+    <value>タイミング テンプレート (0-5):</value>
+  </data>
+    <data name="NetworkScanner.Options.HostTimeout" xml:space="preserve">
+    <value>ホストのタイムアウト:</value>
+  </data>
+    <data name="NetworkScanner.Options.ProbeTimeout" xml:space="preserve">
+    <value>プローブのタイムアウト:</value>
+  </data>
+    <data name="NetworkScanner.Options.MaxHosts" xml:space="preserve">
+    <value>1 回のスキャンの最大ホスト数:</value>
+  </data>
+    <data name="NetworkScanner.Options.AutoRescan" xml:space="preserve">
+    <value>自動再スキャン:</value>
+  </data>
+    <data name="NetworkScanner.ScanAllPorts" xml:space="preserve">
+    <value>すべてのホストのポートをスキャン</value>
+  </data>
+    <data name="NetworkScanner.AddPortsToMonitoring" xml:space="preserve">
+    <value>開いているポートを監視に追加</value>
+  </data>
+    <data name="NetworkScanner.Export.Json" xml:space="preserve">
+    <value>結果を JSON にエクスポート</value>
+  </data>
+    <data name="NetworkScanner.Export.Csv" xml:space="preserve">
+    <value>結果を CSV にエクスポート</value>
+  </data>
+    <data name="NetworkScanner.Export.RawXml" xml:space="preserve">
+    <value>nmap の生レポートを保存</value>
+  </data>
+    <data name="NetworkScanner.ClearResults" xml:space="preserve">
+    <value>結果をクリア</value>
+  </data>
+    <data name="NetworkScanner.Filter" xml:space="preserve">
+    <value>ホスト、ポート、サービスを絞り込む</value>
+  </data>
+    <data name="NetworkScanner.CopyAddress" xml:space="preserve">
+    <value>アドレスをコピー</value>
+  </data>
+    <data name="NetworkScanner.CopyMacAddress" xml:space="preserve">
+    <value>MAC アドレスをコピー</value>
+  </data>
+    <data name="NetworkScanner.OpenInBrowser" xml:space="preserve">
+    <value>ブラウザーで開く</value>
+  </data>
+    <data name="NetworkScanner.RescanHost" xml:space="preserve">
+    <value>ポートを再スキャン</value>
+  </data>
+    <data name="NetworkScanner.RemoveHost" xml:space="preserve">
+    <value>一覧から削除</value>
+  </data>
+    <data name="NetworkScanner.Progress" xml:space="preserve">
+    <value>{0} - {1}%</value>
+  </data>
+    <data name="NetworkScanner.Summary" xml:space="preserve">
+    <value>{0} ホスト - {1} 個の開放ポート - {2} 件表示</value>
+  </data>
+    <data name="NetworkScanner.LastScan" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
+    <data name="NetworkScanner.Engine.Nmap" xml:space="preserve">
+    <value>nmap</value>
+  </data>
+    <data name="NetworkScanner.Engine.Builtin" xml:space="preserve">
+    <value>内蔵スキャナー</value>
+  </data>
+    <data name="NetworkScanner.Changes.Title" xml:space="preserve">
+    <value>ネットワークの変化</value>
+  </data>
+    <data name="NetworkScanner.Changes.Message" xml:space="preserve">
+    <value>新規 {0}、消失 {1}、ポート変化 {2}</value>
+  </data>
+    <data name="NetworkScanner.Change.New" xml:space="preserve">
+    <value>新規</value>
+  </data>
+    <data name="NetworkScanner.Change.PortsChanged" xml:space="preserve">
+    <value>ポート変化</value>
+  </data>
+    <data name="NetworkScanner.Change.Gone" xml:space="preserve">
+    <value>消失</value>
+  </data>
+    <data name="Ui.ScannerChange" xml:space="preserve">
+    <value>変化</value>
+  </data>
+    <data name="Ui.ScannerOperatingSystem" xml:space="preserve">
+    <value>オペレーティング システム</value>
+  </data>
+    <data name="Unit.SecondsShort" xml:space="preserve">
+    <value>秒</value>
+  </data>
+    <data name="Unit.MillisecondsShort" xml:space="preserve">
+    <value>ミリ秒</value>
+  </data>
+    <data name="Unit.MinutesShort" xml:space="preserve">
+    <value>分</value>
+  </data>
+    <data name="NetworkScanner.RemoveSelected.Title" xml:space="preserve">
+    <value>選択した {0} 台のホストを削除してもよろしいですか?</value>
+  </data>
+    <data name="NetworkScanner.RemoveSelected.Message" xml:space="preserve">
+    <value>スキャン結果から選択した {0} 台のホストを削除しようとしています。
+続行してもよろしいですか?</value>
+  </data>
+    <data name="NetworkScanner.ClearResults.Title" xml:space="preserve">
+    <value>スキャンした {0} 台のホストをすべて消去してもよろしいですか?</value>
+  </data>
+    <data name="NetworkScanner.ClearResults.Message" xml:space="preserve">
+    <value>スキャン結果からすべての {0} 台のホストを消去しようとしています。
+続行してもよろしいですか?</value>
+  </data>
+    <data name="NetworkScanner.ProgressEta" xml:space="preserve">
+    <value>{0} - {1}% - 残り {2}</value>
   </data>
 </root>

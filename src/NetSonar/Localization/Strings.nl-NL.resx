@@ -1345,11 +1345,8 @@ Releasedatum: {3:f}</value>
     <data name="Navigation.NetworkScanner" xml:space="preserve">
     <value>Netwerkscanner</value>
   </data>
-    <data name="NetworkScanner.Dependency.Title" xml:space="preserve">
-    <value>nmap-afhankelijkheid niet gevonden</value>
-  </data>
     <data name="NetworkScanner.Dependency.Message" xml:space="preserve">
-    <value>Deze module vereist nmap, maar dit is niet gevonden op dit systeem.</value>
+    <value>nmap is niet gevonden. De ingebouwde scanner wordt gebruikt: die vindt hosts en open TCP-poorten, zonder serviceversies, UDP of OS-detectie.</value>
   </data>
     <data name="NetworkScanner.Scan" xml:space="preserve">
     <value>Scannen</value>
@@ -1392,5 +1389,154 @@ Releasedatum: {3:f}</value>
   </data>
     <data name="Ui.ScannerVersion" xml:space="preserve">
     <value>Versie</value>
+  </data>
+    <data name="NetworkScanner.RefreshTargets" xml:space="preserve">
+    <value>Gedetecteerde netwerken vernieuwen</value>
+  </data>
+    <data name="NetworkScanner.Options" xml:space="preserve">
+    <value>Scanopties</value>
+  </data>
+    <data name="NetworkScanner.Options.UseNmap" xml:space="preserve">
+    <value>nmap gebruiken indien beschikbaar</value>
+  </data>
+    <data name="NetworkScanner.Options.ResolveDns" xml:space="preserve">
+    <value>Hostnamen omzetten</value>
+  </data>
+    <data name="NetworkScanner.Options.ServiceDetection" xml:space="preserve">
+    <value>Serviceversies detecteren</value>
+  </data>
+    <data name="NetworkScanner.Options.Elevated" xml:space="preserve">
+    <value>Met beheerdersrechten uitvoeren</value>
+  </data>
+    <data name="NetworkScanner.Options.Elevated.Tip" xml:space="preserve">
+    <value>Een scan met beheerdersrechten meldt MAC-adressen en fabrikanten en schakelt de UDP- en OS-opties in. Bij de start wordt om toestemming gevraagd; op macOS komt de uitvoer pas als de scan klaar is.</value>
+  </data>
+    <data name="NetworkScanner.Options.UdpScan" xml:space="preserve">
+    <value>UDP-poorten scannen</value>
+  </data>
+    <data name="NetworkScanner.Options.OsDetection" xml:space="preserve">
+    <value>Besturingssysteem detecteren</value>
+  </data>
+    <data name="NetworkScanner.Options.NotifyChanges" xml:space="preserve">
+    <value>Netwerkwijzigingen melden</value>
+  </data>
+    <data name="NetworkScanner.Options.PortRange" xml:space="preserve">
+    <value>Poortbereik:</value>
+  </data>
+    <data name="NetworkScanner.Options.CustomPorts" xml:space="preserve">
+    <value>Aangepaste poorten:</value>
+  </data>
+    <data name="NetworkScanner.Options.Timing" xml:space="preserve">
+    <value>Timingsjabloon (0-5):</value>
+  </data>
+    <data name="NetworkScanner.Options.HostTimeout" xml:space="preserve">
+    <value>Hosttime-out:</value>
+  </data>
+    <data name="NetworkScanner.Options.ProbeTimeout" xml:space="preserve">
+    <value>Probetime-out:</value>
+  </data>
+    <data name="NetworkScanner.Options.MaxHosts" xml:space="preserve">
+    <value>Maximum aantal hosts per scan:</value>
+  </data>
+    <data name="NetworkScanner.Options.AutoRescan" xml:space="preserve">
+    <value>Automatisch opnieuw scannen:</value>
+  </data>
+    <data name="NetworkScanner.ScanAllPorts" xml:space="preserve">
+    <value>Poorten van alle hosts scannen</value>
+  </data>
+    <data name="NetworkScanner.AddPortsToMonitoring" xml:space="preserve">
+    <value>Open poorten aan bewaking toevoegen</value>
+  </data>
+    <data name="NetworkScanner.Export.Json" xml:space="preserve">
+    <value>Resultaten naar JSON exporteren</value>
+  </data>
+    <data name="NetworkScanner.Export.Csv" xml:space="preserve">
+    <value>Resultaten naar CSV exporteren</value>
+  </data>
+    <data name="NetworkScanner.Export.RawXml" xml:space="preserve">
+    <value>Onbewerkt nmap-rapport opslaan</value>
+  </data>
+    <data name="NetworkScanner.ClearResults" xml:space="preserve">
+    <value>Resultaten wissen</value>
+  </data>
+    <data name="NetworkScanner.Filter" xml:space="preserve">
+    <value>Hosts, poorten en services filteren</value>
+  </data>
+    <data name="NetworkScanner.CopyAddress" xml:space="preserve">
+    <value>Adres kopiëren</value>
+  </data>
+    <data name="NetworkScanner.CopyMacAddress" xml:space="preserve">
+    <value>MAC-adres kopiëren</value>
+  </data>
+    <data name="NetworkScanner.OpenInBrowser" xml:space="preserve">
+    <value>In browser openen</value>
+  </data>
+    <data name="NetworkScanner.RescanHost" xml:space="preserve">
+    <value>Poorten opnieuw scannen</value>
+  </data>
+    <data name="NetworkScanner.RemoveHost" xml:space="preserve">
+    <value>Uit de lijst verwijderen</value>
+  </data>
+    <data name="NetworkScanner.Progress" xml:space="preserve">
+    <value>{0} - {1}%</value>
+  </data>
+    <data name="NetworkScanner.Summary" xml:space="preserve">
+    <value>{0} hosts - {1} open poorten - {2} getoond</value>
+  </data>
+    <data name="NetworkScanner.LastScan" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
+    <data name="NetworkScanner.Engine.Nmap" xml:space="preserve">
+    <value>nmap</value>
+  </data>
+    <data name="NetworkScanner.Engine.Builtin" xml:space="preserve">
+    <value>Ingebouwde scanner</value>
+  </data>
+    <data name="NetworkScanner.Changes.Title" xml:space="preserve">
+    <value>Netwerkwijzigingen</value>
+  </data>
+    <data name="NetworkScanner.Changes.Message" xml:space="preserve">
+    <value>{0} nieuw, {1} verdwenen, {2} met poortwijzigingen</value>
+  </data>
+    <data name="NetworkScanner.Change.New" xml:space="preserve">
+    <value>Nieuw</value>
+  </data>
+    <data name="NetworkScanner.Change.PortsChanged" xml:space="preserve">
+    <value>Poorten gewijzigd</value>
+  </data>
+    <data name="NetworkScanner.Change.Gone" xml:space="preserve">
+    <value>Verdwenen</value>
+  </data>
+    <data name="Ui.ScannerChange" xml:space="preserve">
+    <value>Wijziging</value>
+  </data>
+    <data name="Ui.ScannerOperatingSystem" xml:space="preserve">
+    <value>Besturingssysteem</value>
+  </data>
+    <data name="Unit.SecondsShort" xml:space="preserve">
+    <value>s</value>
+  </data>
+    <data name="Unit.MillisecondsShort" xml:space="preserve">
+    <value>ms</value>
+  </data>
+    <data name="Unit.MinutesShort" xml:space="preserve">
+    <value>min</value>
+  </data>
+    <data name="NetworkScanner.RemoveSelected.Title" xml:space="preserve">
+    <value>Weet u zeker dat u de {0} geselecteerde hosts wilt verwijderen?</value>
+  </data>
+    <data name="NetworkScanner.RemoveSelected.Message" xml:space="preserve">
+    <value>U staat op het punt {0} geselecteerde hosts uit de scanresultaten te verwijderen.
+Weet u zeker dat u wilt doorgaan?</value>
+  </data>
+    <data name="NetworkScanner.ClearResults.Title" xml:space="preserve">
+    <value>Weet u zeker dat u alle {0} gescande hosts wilt wissen?</value>
+  </data>
+    <data name="NetworkScanner.ClearResults.Message" xml:space="preserve">
+    <value>U staat op het punt alle {0} hosts uit de scanresultaten te wissen.
+Weet u zeker dat u wilt doorgaan?</value>
+  </data>
+    <data name="NetworkScanner.ProgressEta" xml:space="preserve">
+    <value>{0} - {1}% - ETA {2}</value>
   </data>
 </root>

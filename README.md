@@ -51,6 +51,8 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/sn4k3/NetSonar/main/scri
 - **Response-Time Analysis**: Compare live single-service and multi-service charts with rolling averages, percentiles,
   jitter, loss, failures, scaling, and selectable sample windows.
 - **Interface Management**: View and manage network interfaces, including IP configuration and statistics.
+- **Network Scanner**: Discover the hosts of a local network, list their open ports and services, track what changed
+  since the previous scan, and import any of it into monitoring.
 - **Speed Test**: Run manual or scheduled internet speed tests with latency, download, and upload results.
 - **Cross-Platform**: Built with [C# dotnet](https://dotnet.microsoft.com/en-us/), runs on Windows, macOS, and Linux.
 - **Modern UI**: Built with [Avalonia](https://avaloniaui.net) and [SukiUI](https://github.com/kikipoulet/SukiUI),
@@ -131,6 +133,39 @@ The Add Ping Services dialog provides a separate public-host import for TLS, DNS
 MQTT, STUN, and SIP. DNS and NTP use specialized provider catalogues; the other protocols use the shared public-host
 catalogue. These endpoints are connectivity examples and external-service checks, so availability and access policies
 remain controlled by each provider.
+
+## 🛰️ Network scanner
+
+The scanner discovers the hosts of a target network, then optionally probes their ports. The target defaults to the
+IPv4 networks of the active interfaces; manually typed targets are remembered. Networks wider than `/16` are never
+offered as automatic targets, and a target that expands beyond the configured host limit is rejected.
+
+Two engines are available:
+
+| Engine | Requires | Host discovery | Port scan | Extras |
+| --- | --- | --- | --- | --- |
+| **nmap** | nmap installed and enabled in the options | `nmap -sn` | `-Pn` with `-sT` (or `-sS` when elevated), `--open`, top 100/top 1000/all/custom ports | Service and version detection (`-sV`), UDP (`-sU`) and OS detection (`-O`) when elevated, live progress and ETA, raw XML report |
+| **Built-in** | Nothing | ICMP sweep plus the operating system neighbour (ARP) cache, so hosts that drop ICMP are still found | TCP connect probes over the same port presets | Service names from the well-known port catalogue; no versions, UDP, or OS detection |
+
+Port scans always run with `-Pn`, because the hosts are already known to be up; without it an unprivileged nmap
+repeats host discovery and can report no ports at all. An elevated scan is launched through the bundled gsudo on
+Windows, `pkexec` on Linux, and `osascript` on macOS, so its output is still captured; only macOS delivers that output
+at the end instead of streaming it. MAC addresses and vendors are only reported by an elevated or
+root scan; vendors missing from nmap output are resolved from the `nmap-mac-prefixes` database when nmap is installed.
+
+Host discovery is a live probe, so a device in power save, a slow responder, or an unprivileged scan that can only
+use TCP connect pings can be missed by one run without having left the network. A missed host therefore stays in the
+table, flagged as gone, for three scans before it is dropped, and an unprivileged nmap discovery is completed with the
+operating system neighbour (ARP) cache — which also supplies the MAC address and vendor that such a scan cannot see.
+An elevated scan skips that merge, because it ARP-pings by itself.
+
+Each scan is stored and compared against the previous scan of the same target, so new hosts, hosts that disappeared,
+and hosts whose open ports changed are flagged in the grid and reported in a toast. Results can be exported to JSON or
+CSV, and the raw nmap report can be saved. An automatic rescan interval turns the page into a passive network monitor.
+
+Selected hosts can be imported into monitoring. Importing a host creates an ICMP probe; importing its open ports maps
+each port to the closest probe, for example `22` to SSH, `443` to an HTTPS probe, `53` to DNS, `1883` to MQTT, and
+anything unmapped to a TCP probe.
 
 ## 📊 Response-time charts
 

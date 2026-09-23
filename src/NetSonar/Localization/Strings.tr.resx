@@ -1345,11 +1345,8 @@ Yayın tarihi: {3:f}</value>
     <data name="Navigation.NetworkScanner" xml:space="preserve">
     <value>Ağ tarayıcısı</value>
   </data>
-    <data name="NetworkScanner.Dependency.Title" xml:space="preserve">
-    <value>nmap bağımlılığı bulunamadı</value>
-  </data>
     <data name="NetworkScanner.Dependency.Message" xml:space="preserve">
-    <value>Bu modül nmap gerektiriyor, ancak sistemde bulunamadı.</value>
+    <value>nmap bulunamadı. Yerleşik tarayıcı kullanılıyor: ana makineleri ve açık TCP bağlantı noktalarını bulur; hizmet sürümü, UDP veya işletim sistemi algılama yoktur.</value>
   </data>
     <data name="NetworkScanner.Scan" xml:space="preserve">
     <value>Tara</value>
@@ -1392,5 +1389,154 @@ Yayın tarihi: {3:f}</value>
   </data>
     <data name="Ui.ScannerVersion" xml:space="preserve">
     <value>Sürüm</value>
+  </data>
+    <data name="NetworkScanner.RefreshTargets" xml:space="preserve">
+    <value>Algılanan ağları yenile</value>
+  </data>
+    <data name="NetworkScanner.Options" xml:space="preserve">
+    <value>Tarama seçenekleri</value>
+  </data>
+    <data name="NetworkScanner.Options.UseNmap" xml:space="preserve">
+    <value>Varsa nmap kullan</value>
+  </data>
+    <data name="NetworkScanner.Options.ResolveDns" xml:space="preserve">
+    <value>Ana makine adlarını çöz</value>
+  </data>
+    <data name="NetworkScanner.Options.ServiceDetection" xml:space="preserve">
+    <value>Hizmet sürümlerini algıla</value>
+  </data>
+    <data name="NetworkScanner.Options.Elevated" xml:space="preserve">
+    <value>Yönetici ayrıcalıklarıyla çalıştır</value>
+  </data>
+    <data name="NetworkScanner.Options.Elevated.Tip" xml:space="preserve">
+    <value>Yükseltilmiş tarama MAC adreslerini ve üreticileri bildirir, UDP ve işletim sistemi seçeneklerini etkinleştirir. Başlarken yetki ister; macOS'ta çıktısı yalnızca tarama bitince gelir.</value>
+  </data>
+    <data name="NetworkScanner.Options.UdpScan" xml:space="preserve">
+    <value>UDP bağlantı noktalarını tara</value>
+  </data>
+    <data name="NetworkScanner.Options.OsDetection" xml:space="preserve">
+    <value>İşletim sistemini algıla</value>
+  </data>
+    <data name="NetworkScanner.Options.NotifyChanges" xml:space="preserve">
+    <value>Ağ değişikliklerini bildir</value>
+  </data>
+    <data name="NetworkScanner.Options.PortRange" xml:space="preserve">
+    <value>Bağlantı noktası aralığı:</value>
+  </data>
+    <data name="NetworkScanner.Options.CustomPorts" xml:space="preserve">
+    <value>Özel bağlantı noktaları:</value>
+  </data>
+    <data name="NetworkScanner.Options.Timing" xml:space="preserve">
+    <value>Zamanlama şablonu (0-5):</value>
+  </data>
+    <data name="NetworkScanner.Options.HostTimeout" xml:space="preserve">
+    <value>Ana makine zaman aşımı:</value>
+  </data>
+    <data name="NetworkScanner.Options.ProbeTimeout" xml:space="preserve">
+    <value>Yoklama zaman aşımı:</value>
+  </data>
+    <data name="NetworkScanner.Options.MaxHosts" xml:space="preserve">
+    <value>Tarama başına en fazla ana makine:</value>
+  </data>
+    <data name="NetworkScanner.Options.AutoRescan" xml:space="preserve">
+    <value>Otomatik yeniden tarama:</value>
+  </data>
+    <data name="NetworkScanner.ScanAllPorts" xml:space="preserve">
+    <value>Tüm ana makinelerin bağlantı noktalarını tara</value>
+  </data>
+    <data name="NetworkScanner.AddPortsToMonitoring" xml:space="preserve">
+    <value>Açık bağlantı noktalarını izlemeye ekle</value>
+  </data>
+    <data name="NetworkScanner.Export.Json" xml:space="preserve">
+    <value>Sonuçları JSON olarak dışa aktar</value>
+  </data>
+    <data name="NetworkScanner.Export.Csv" xml:space="preserve">
+    <value>Sonuçları CSV olarak dışa aktar</value>
+  </data>
+    <data name="NetworkScanner.Export.RawXml" xml:space="preserve">
+    <value>Ham nmap raporunu kaydet</value>
+  </data>
+    <data name="NetworkScanner.ClearResults" xml:space="preserve">
+    <value>Sonuçları temizle</value>
+  </data>
+    <data name="NetworkScanner.Filter" xml:space="preserve">
+    <value>Ana makineleri, bağlantı noktalarını ve hizmetleri filtrele</value>
+  </data>
+    <data name="NetworkScanner.CopyAddress" xml:space="preserve">
+    <value>Adresi kopyala</value>
+  </data>
+    <data name="NetworkScanner.CopyMacAddress" xml:space="preserve">
+    <value>MAC adresini kopyala</value>
+  </data>
+    <data name="NetworkScanner.OpenInBrowser" xml:space="preserve">
+    <value>Tarayıcıda aç</value>
+  </data>
+    <data name="NetworkScanner.RescanHost" xml:space="preserve">
+    <value>Bağlantı noktalarını yeniden tara</value>
+  </data>
+    <data name="NetworkScanner.RemoveHost" xml:space="preserve">
+    <value>Listeden kaldır</value>
+  </data>
+    <data name="NetworkScanner.Progress" xml:space="preserve">
+    <value>{0} - %{1}</value>
+  </data>
+    <data name="NetworkScanner.Summary" xml:space="preserve">
+    <value>{0} ana makine - {1} açık bağlantı noktası - {2} gösteriliyor</value>
+  </data>
+    <data name="NetworkScanner.LastScan" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
+    <data name="NetworkScanner.Engine.Nmap" xml:space="preserve">
+    <value>nmap</value>
+  </data>
+    <data name="NetworkScanner.Engine.Builtin" xml:space="preserve">
+    <value>Yerleşik tarayıcı</value>
+  </data>
+    <data name="NetworkScanner.Changes.Title" xml:space="preserve">
+    <value>Ağ değişiklikleri</value>
+  </data>
+    <data name="NetworkScanner.Changes.Message" xml:space="preserve">
+    <value>{0} yeni, {1} kayıp, {2} bağlantı noktası değişikliği</value>
+  </data>
+    <data name="NetworkScanner.Change.New" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+    <data name="NetworkScanner.Change.PortsChanged" xml:space="preserve">
+    <value>Bağlantı noktaları değişti</value>
+  </data>
+    <data name="NetworkScanner.Change.Gone" xml:space="preserve">
+    <value>Kayıp</value>
+  </data>
+    <data name="Ui.ScannerChange" xml:space="preserve">
+    <value>Değişiklik</value>
+  </data>
+    <data name="Ui.ScannerOperatingSystem" xml:space="preserve">
+    <value>İşletim sistemi</value>
+  </data>
+    <data name="Unit.SecondsShort" xml:space="preserve">
+    <value>sn</value>
+  </data>
+    <data name="Unit.MillisecondsShort" xml:space="preserve">
+    <value>ms</value>
+  </data>
+    <data name="Unit.MinutesShort" xml:space="preserve">
+    <value>dk</value>
+  </data>
+    <data name="NetworkScanner.RemoveSelected.Title" xml:space="preserve">
+    <value>Seçili ana makineleri ({0}) kaldırmak istediğinizden emin misiniz?</value>
+  </data>
+    <data name="NetworkScanner.RemoveSelected.Message" xml:space="preserve">
+    <value>Tarama sonuçlarından seçili {0} ana makineyi kaldırmak üzeresiniz.
+Devam etmek istediğinizden emin misiniz?</value>
+  </data>
+    <data name="NetworkScanner.ClearResults.Title" xml:space="preserve">
+    <value>Taranan tüm ana makineleri ({0}) temizlemek istediğinizden emin misiniz?</value>
+  </data>
+    <data name="NetworkScanner.ClearResults.Message" xml:space="preserve">
+    <value>Tarama sonuçlarındaki tüm ana makineleri ({0}) temizlemek üzeresiniz.
+Devam etmek istediğinizden emin misiniz?</value>
+  </data>
+    <data name="NetworkScanner.ProgressEta" xml:space="preserve">
+    <value>{0} - %{1} - Kalan {2}</value>
   </data>
 </root>

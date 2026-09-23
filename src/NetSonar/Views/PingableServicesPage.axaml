@@ -1,335 +1,404 @@
-<controls:UserControlBase x:Class="NetSonar.Avalonia.Views.PingableServicesPage"
-                          xmlns="https://github.com/avaloniaui"
-                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                          xmlns:app="clr-namespace:NetSonar.Avalonia"
-                          xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
-                          xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
-                          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                          xmlns:fragments="clr-namespace:NetSonar.Avalonia.Views.Fragments"
-                          xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
-                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                          xmlns:network="clr-namespace:NetSonar.Avalonia.Network"
-                          xmlns:suki="https://github.com/kikipoulet/SukiUI"
-                          xmlns:sys="clr-namespace:System;assembly=System.Runtime"
-                          xmlns:viewModels="clr-namespace:NetSonar.Avalonia.ViewModels"
-                          d:DesignHeight="700"
-                          d:DesignWidth="1000"
-                          x:DataType="viewModels:PingableServicesPageModel"
-                          mc:Ignorable="d">
-    <controls:UserControlBase.KeyBindings>
-        <KeyBinding Command="{Binding EditSelectedServicesCommand}"
-                    Gesture="{OnPlatform macOS=Meta + E, Default=Ctrl + E}" />
+<controls:UserControlBase
+  x:Class="NetSonar.Avalonia.Views.PingableServicesPage"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:app="clr-namespace:NetSonar.Avalonia"
+  xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
+  xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:fragments="clr-namespace:NetSonar.Avalonia.Views.Fragments"
+  xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:network="clr-namespace:NetSonar.Avalonia.Network"
+  xmlns:suki="https://github.com/kikipoulet/SukiUI"
+  xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+  xmlns:viewModels="clr-namespace:NetSonar.Avalonia.ViewModels"
+  d:DesignHeight="700"
+  d:DesignWidth="1000"
+  x:DataType="viewModels:PingableServicesPageModel"
+  mc:Ignorable="d"
+>
+  <controls:UserControlBase.KeyBindings>
+    <KeyBinding
+      Command="{Binding EditSelectedServicesCommand}"
+      Gesture="{OnPlatform macOS=Meta + E, Default=Ctrl + E}"
+    />
 
-        <KeyBinding Command="{Binding PauseSelectedServicesCommand}"
-                    Gesture="{OnPlatform macOS=Meta + P, Default=Ctrl + P}" />
+    <KeyBinding
+      Command="{Binding PauseSelectedServicesCommand}"
+      Gesture="{OnPlatform macOS=Meta + P, Default=Ctrl + P}"
+    />
 
-        <KeyBinding Command="{Binding ResumeSelectedServicesCommand}"
-                    Gesture="{OnPlatform macOS=Meta + R, Default=Ctrl + R}" />
+    <KeyBinding
+      Command="{Binding ResumeSelectedServicesCommand}"
+      Gesture="{OnPlatform macOS=Meta + R, Default=Ctrl + R}"
+    />
 
-        <KeyBinding Command="{Binding ToggleEnabledSelectedServiceCommand}"
-                    Gesture="{OnPlatform macOS=Meta + Pause, Default=Ctrl + Pause}" />
-        <KeyBinding Command="{Binding ToggleEnabledAllServicesCommand}"
-                    Gesture="{OnPlatform macOS=Meta + Shift + Pause, Default=Ctrl + Shift + Pause}" />
+    <KeyBinding
+      Command="{Binding ToggleEnabledSelectedServiceCommand}"
+      Gesture="{OnPlatform macOS=Meta + Pause, Default=Ctrl + Pause}"
+    />
+    <KeyBinding
+      Command="{Binding ToggleEnabledAllServicesCommand}"
+      Gesture="{OnPlatform macOS=Meta + Shift + Pause, Default=Ctrl + Shift + Pause}"
+    />
 
-        <KeyBinding Command="{Binding ResetServiceStatisticsForSelectedItemsCommand}"
-                    Gesture="{OnPlatform macOS=Meta + OemPeriod, Default=Ctrl + OemPeriod}" />
-        <KeyBinding Command="{Binding ResetAllServicesStatisticsCommand}"
-                    Gesture="{OnPlatform macOS=Meta + Shift + OemPeriod, Default=Ctrl + Shift + OemPeriod}" />
+    <KeyBinding
+      Command="{Binding ResetServiceStatisticsForSelectedItemsCommand}"
+      Gesture="{OnPlatform macOS=Meta + OemPeriod, Default=Ctrl + OemPeriod}"
+    />
+    <KeyBinding
+      Command="{Binding ResetAllServicesStatisticsCommand}"
+      Gesture="{OnPlatform macOS=Meta + Shift + OemPeriod, Default=Ctrl + Shift + OemPeriod}"
+    />
 
-        <KeyBinding Command="{Binding OpenSelectedGraphInNewWindowCommand}"
-                    Gesture="{OnPlatform macOS=Meta + G, Default=Ctrl + G}" />
-    </controls:UserControlBase.KeyBindings>
-    <Grid ColumnDefinitions="*"
-          RowDefinitions="*,Auto,*">
+    <KeyBinding
+      Command="{Binding OpenSelectedGraphInNewWindowCommand}"
+      Gesture="{OnPlatform macOS=Meta + G, Default=Ctrl + G}"
+    />
+  </controls:UserControlBase.KeyBindings>
+  <Grid ColumnDefinitions="*" RowDefinitions="*,Auto,*">
+    <suki:GlassCard Grid.Row="0" Margin="15,15,15,10">
+      <suki:GroupBox>
+        <suki:GroupBox.Header>
+          <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto">
+            <WrapPanel
+              Grid.Row="0"
+              Grid.Column="0"
+              ItemSpacing="10"
+              LineSpacing="5"
+              Orientation="Horizontal"
+            >
+              <icon:MaterialIconText
+                Kind="Web"
+                Text="{localization:Translate Ui.Services}"
+                Classes="Title"
+              />
 
-        <suki:GlassCard Grid.Row="0"
-                        Margin="15,15,15,10">
-            <suki:GroupBox>
-                <suki:GroupBox.Header>
-                    <Grid ColumnDefinitions="*,Auto"
-                          RowDefinitions="Auto">
-                        <WrapPanel Grid.Row="0"
-                                   Grid.Column="0"
-                                   ItemSpacing="10"
-                                   LineSpacing="5"
-                                   Orientation="Horizontal">
+              <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="5">
+                <Button
+                  MinWidth="45"
+                  Padding="15,5"
+                  VerticalAlignment="Center"
+                  Classes="Information Rounded"
+                  Command="{Binding ClearFiltersCommand}"
+                  Content="{Binding ServicesCount}"
+                />
 
-                            <icon:MaterialIconText Kind="Web"
-                                                   Text="{localization:Translate Ui.Services}"
-                                                   Classes="Title" />
+                <Button
+                  MinWidth="45"
+                  Padding="15,5"
+                  VerticalAlignment="Center"
+                  Classes="Success Rounded"
+                  Command="{Binding AttachStatusSucceedFilterCommand}"
+                  Content="{Binding ServicesSucceededCount}"
+                />
 
-                            <StackPanel VerticalAlignment="Center"
-                                        Orientation="Horizontal"
-                                        Spacing="5">
-                                <Button MinWidth="45"
-                                        Padding="15,5"
-                                        VerticalAlignment="Center"
-                                        Classes="Information Rounded"
-                                        Command="{Binding ClearFiltersCommand}"
-                                        Content="{Binding ServicesCount}" />
+                <Button
+                  MinWidth="45"
+                  Padding="15,5"
+                  VerticalAlignment="Center"
+                  Classes="Danger Rounded"
+                  Command="{Binding AttachStatusFailedFilterCommand}"
+                  Content="{Binding ServicesFailedCount}"
+                />
 
-                                <Button MinWidth="45"
-                                        Padding="15,5"
-                                        VerticalAlignment="Center"
-                                        Classes="Success Rounded"
-                                        Command="{Binding AttachStatusSucceedFilterCommand}"
-                                        Content="{Binding ServicesSucceededCount}" />
+                <controls:StatusBadge
+                  MinWidth="45"
+                  Padding="15,5"
+                  VerticalAlignment="Center"
+                  Appearance="Warning"
+                  Content="{Binding ServicesViewCollection.Count}"
+                />
+              </StackPanel>
 
-                                <Button MinWidth="45"
-                                        Padding="15,5"
-                                        VerticalAlignment="Center"
-                                        Classes="Danger Rounded"
-                                        Command="{Binding AttachStatusFailedFilterCommand}"
-                                        Content="{Binding ServicesFailedCount}" />
+              <TextBox
+                Width="300"
+                VerticalAlignment="Center"
+                suki:TextBoxExtensions.Prefix="{icon:MaterialIconExt Kind=Magnify}"
+                suki:TextBoxExtensions.AddDeleteButton="True"
+                Text="{Binding FilterText, Delay=500}"
+                PlaceholderText="{localization:Translate Ui.FilterServicesByText}"
+              />
+            </WrapPanel>
 
-                                <controls:StatusBadge MinWidth="45"
-                                                      Padding="15,5"
-                                                      VerticalAlignment="Center"
-                                                      Appearance="Warning"
-                                                      Content="{Binding ServicesViewCollection.Count}" />
+            <WrapPanel
+              Grid.Column="1"
+              HorizontalAlignment="Right"
+              ItemSpacing="5"
+              LineSpacing="5"
+              Orientation="Horizontal"
+            >
+              <Button
+                Padding="10,8"
+                Classes="Flat"
+                Command="{Binding AddServicesCommand}"
+                Content="{icon:MaterialIconExt Kind=Add}"
+                HotKey="{OnPlatform macOS=Meta + N, Default=Ctrl + N}"
+              >
+                <ToolTip.Tip>
+                  <MultiBinding StringFormat="{}{0} ({1})">
+                    <localization:TranslateExtension Key="Ui.AddNewServices" />
+                    <Binding Path="$self.HotKey" />
+                  </MultiBinding>
+                </ToolTip.Tip>
+              </Button>
+
+              <Button
+                Padding="10,8"
+                Command="{Binding ResumeAllServicesCommand}"
+                Content="{icon:MaterialIconExt Kind=PlayCircleOutline}"
+                HotKey="{OnPlatform macOS=Meta + Shift + R, Default=Ctrl + Shift + R}"
+                IsEnabled="{Binding ServicesViewCollection.Count}"
+              >
+                <ToolTip.Tip>
+                  <MultiBinding StringFormat="{}{0} ({1})">
+                    <localization:TranslateExtension Key="Ui.ResumeAll" />
+                    <Binding Path="$self.HotKey" />
+                  </MultiBinding>
+                </ToolTip.Tip>
+              </Button>
+
+              <Button
+                Padding="10,8"
+                Command="{Binding PauseAllServicesCommand}"
+                Content="{icon:MaterialIconExt Kind=PauseCircleOutline}"
+                HotKey="{OnPlatform macOS=Meta + Shift + P, Default=Ctrl + Shift + P}"
+                IsEnabled="{Binding ServicesViewCollection.Count}"
+              >
+                <ToolTip.Tip>
+                  <MultiBinding StringFormat="{}{0} ({1})">
+                    <localization:TranslateExtension Key="Ui.PauseAll" />
+                    <Binding Path="$self.HotKey" />
+                  </MultiBinding>
+                </ToolTip.Tip>
+              </Button>
+
+              <Button Classes="AppIcon">
+                <icon:MaterialIcon Foreground="{DynamicResource SukiText}" Kind="Cog" />
+                <Button.Flyout>
+                  <Flyout>
+                    <Panel Width="450">
+                      <Border
+                        Margin="20"
+                        BoxShadow="{DynamicResource SukiPopupShadow}"
+                        CornerRadius="20"
+                      />
+
+                      <Border
+                        Margin="20"
+                        Background="{DynamicResource SukiCardBackground}"
+                        BorderBrush="{DynamicResource SukiLightBorderBrush}"
+                        BorderThickness="1"
+                        ClipToBounds="True"
+                        CornerRadius="15"
+                      >
+                        <Border Padding="15" Background="{DynamicResource PopupGradientBrush}">
+                          <suki:GlassCard Padding="15" CornerRadius="15">
+                            <StackPanel Spacing="10">
+                              <suki:GroupBox Header="{localization:Translate Ui.GridViewOptions}">
+                                <Grid
+                                  ColumnDefinitions="Auto,*"
+                                  ColumnSpacing="10"
+                                  RowDefinitions="Auto,Auto"
+                                  RowSpacing="10"
+                                >
+                                  <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    Text="{localization:Translate Ui.GroupBy}"
+                                  />
+
+                                  <ComboBox
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Stretch"
+                                    ItemsSource="{Binding AppSettings.PingServices.GridGroupBy, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                                    SelectedItem="{Binding AppSettings.PingServices.GridGroupBy, Converter={StaticResource FromValueDescriptionToEnumConverter}}"
+                                  />
+
+                                  <Button
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Command="{Binding ResetColumnsOrderCommand}"
+                                    Content="{localization:Translate Ui.ResetColumnsOrder}"
+                                  />
+                                </Grid>
+                              </suki:GroupBox>
+                              <suki:GroupBox Header="{localization:Translate Ui.DefaultPingOptions}">
+                                <Grid
+                                  ColumnDefinitions="Auto,*"
+                                  ColumnSpacing="10"
+                                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                                  RowSpacing="10"
+                                >
+                                  <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    Text="{localization:Translate Ui.PingEvery}"
+                                  />
+                                  <NumericUpDown
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    suki:NumericUpDownExtensions.Unit="s"
+                                    FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
+                                    Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownPingIncrement}}"
+                                    Maximum="{Binding Source={x:Static network:PingableService.MaxPingEverySeconds}}"
+                                    Minimum="{Binding Source={x:Static network:PingableService.MinPingEverySeconds}}"
+                                    Value="{Binding AppSettings.PingServices.DefaultPingEverySeconds}"
+                                  />
+
+                                  <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    Text="{localization:Translate Ui.PingTimeout}"
+                                  />
+                                  <NumericUpDown
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    suki:NumericUpDownExtensions.Unit="s"
+                                    FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
+                                    Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeoutIncrement}}"
+                                    Maximum="{Binding Source={x:Static network:PingableService.MaxTimeoutSeconds}}"
+                                    Minimum="{Binding Source={x:Static network:PingableService.MinTimeoutSeconds}}"
+                                    Value="{Binding AppSettings.PingServices.DefaultTimeoutSeconds}"
+                                  />
+
+                                  <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    Text="{localization:Translate Ui.BufferSize1DF49DCA}"
+                                  />
+                                  <NumericUpDown
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    suki:NumericUpDownExtensions.Unit="bytes"
+                                    FormatString="N0"
+                                    Increment="8"
+                                    Maximum="{Binding Source={x:Static network:PingableService.MaxBufferSize}}"
+                                    Minimum="{Binding Source={x:Static network:PingableService.MinBufferSize}}"
+                                    Value="{Binding AppSettings.PingServices.DefaultBufferSize}"
+                                  />
+
+                                  <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    Text="{localization:Translate Ui.TimeToLive}"
+                                  />
+                                  <NumericUpDown
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    suki:NumericUpDownExtensions.Unit="TTL"
+                                    FormatString="N0"
+                                    Increment="1"
+                                    Maximum="{Binding Source={x:Static sys:Byte.MaxValue}}"
+                                    Minimum="{Binding Source={x:Static sys:Byte.MinValue}}"
+                                    Value="{Binding AppSettings.PingServices.DefaultTtl}"
+                                  />
+
+                                  <TextBlock
+                                    Grid.Row="4"
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    Text="{localization:Translate Ui.DoNotFragment}"
+                                  />
+                                  <ToggleSwitch
+                                    Grid.Row="4"
+                                    Grid.Column="1"
+                                    IsChecked="{Binding AppSettings.PingServices.DefaultDontFragment}"
+                                  />
+
+                                  <Separator Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" />
+
+                                  <TextBlock
+                                    Grid.Row="6"
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    Text="{localization:Translate Ui.PingCacheSize}"
+                                  />
+                                  <NumericUpDown
+                                    Grid.Row="6"
+                                    Grid.Column="1"
+                                    FormatString="N0"
+                                    Increment="100"
+                                    Maximum="1000000"
+                                    Minimum="0"
+                                    Value="{Binding AppSettings.PingServices.MaxRepliesCache}"
+                                  />
+
+                                  <TextBlock
+                                    Grid.Row="7"
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    Text="{localization:Translate Ui.GraphCacheSize}"
+                                  />
+                                  <NumericUpDown
+                                    Grid.Row="7"
+                                    Grid.Column="1"
+                                    FormatString="N0"
+                                    Increment="10"
+                                    Maximum="1000"
+                                    Minimum="0"
+                                    Value="{Binding AppSettings.PingServices.MaxRepliesGraphCache}"
+                                  />
+                                  <TextBlock
+                                    Grid.Row="8"
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    Text="{localization:Translate Ui.PersistentPings}"
+                                    ToolTip.Tip="{localization:Translate Ui.SaveAndRestorePingRepliesAfterProgramRestart}"
+                                  />
+                                  <ToggleSwitch
+                                    Grid.Row="8"
+                                    Grid.Column="1"
+                                    IsChecked="{Binding AppSettings.PingServices.ResilientReplies}"
+                                    ToolTip.Tip="{localization:Translate Ui.SaveAndRestorePingRepliesAfterProgramRestart}"
+                                  />
+                                </Grid>
+                              </suki:GroupBox>
                             </StackPanel>
+                          </suki:GlassCard>
+                        </Border>
+                      </Border>
+                    </Panel>
+                  </Flyout>
+                </Button.Flyout>
+              </Button>
+            </WrapPanel>
+          </Grid>
+        </suki:GroupBox.Header>
 
-                            <TextBox Width="300"
-                                     VerticalAlignment="Center"
-                                     suki:TextBoxExtensions.AddDeleteButton="True"
-                                     Text="{Binding FilterText, Delay=500}"
-                                     PlaceholderText="{localization:Translate Ui.FilterServicesByText}" />
-                        </WrapPanel>
-
-                        <WrapPanel Grid.Column="1"
-                                   HorizontalAlignment="Right"
-                                   ItemSpacing="5"
-                                   LineSpacing="5"
-                                   Orientation="Horizontal">
-                            <Button Padding="10,8"
-                                    Classes="Flat"
-                                    Command="{Binding AddServicesCommand}"
-                                    Content="{icon:MaterialIconExt Kind=Add}"
-                                    HotKey="{OnPlatform macOS=Meta + N, Default=Ctrl + N}">
-                                <ToolTip.Tip>
-                                    <MultiBinding StringFormat="{}{0} ({1})">
-                                        <localization:TranslateExtension Key="Ui.AddNewServices" />
-                                        <Binding Path="$self.HotKey" />
-                                    </MultiBinding>
-                                </ToolTip.Tip>
-                            </Button>
-
-                            <Button Padding="10,8"
-                                    Command="{Binding ResumeAllServicesCommand}"
-                                    Content="{icon:MaterialIconExt Kind=PlayCircleOutline}"
-                                    HotKey="{OnPlatform macOS=Meta + Shift + R, Default=Ctrl + Shift + R}"
-                                    IsEnabled="{Binding ServicesViewCollection.Count}">
-                                <ToolTip.Tip>
-                                    <MultiBinding StringFormat="{}{0} ({1})">
-                                        <localization:TranslateExtension Key="Ui.ResumeAll" />
-                                        <Binding Path="$self.HotKey" />
-                                    </MultiBinding>
-                                </ToolTip.Tip>
-                            </Button>
-
-                            <Button Padding="10,8"
-                                    Command="{Binding PauseAllServicesCommand}"
-                                    Content="{icon:MaterialIconExt Kind=PauseCircleOutline}"
-                                    HotKey="{OnPlatform macOS=Meta + Shift + P, Default=Ctrl + Shift + P}"
-                                    IsEnabled="{Binding ServicesViewCollection.Count}">
-                                <ToolTip.Tip>
-                                    <MultiBinding StringFormat="{}{0} ({1})">
-                                        <localization:TranslateExtension Key="Ui.PauseAll" />
-                                        <Binding Path="$self.HotKey" />
-                                    </MultiBinding>
-                                </ToolTip.Tip>
-                            </Button>
-
-                            <Button Classes="AppIcon">
-                                <icon:MaterialIcon Foreground="{DynamicResource SukiText}"
-                                                   Kind="Cog" />
-                                <Button.Flyout>
-                                    <Flyout>
-                                        <Panel Width="450">
-
-                                            <Border Margin="20"
-                                                    BoxShadow="{DynamicResource SukiPopupShadow}"
-                                                    CornerRadius="20" />
-
-                                            <Border Margin="20"
-                                                    Background="{DynamicResource SukiCardBackground}"
-                                                    BorderBrush="{DynamicResource SukiLightBorderBrush}"
-                                                    BorderThickness="1"
-                                                    ClipToBounds="True"
-                                                    CornerRadius="15">
-                                                <Border Padding="15"
-                                                        Background="{DynamicResource PopupGradientBrush}">
-                                                    <suki:GlassCard Padding="15"
-                                                                    CornerRadius="15">
-                                                        <StackPanel Spacing="10">
-                                                            <suki:GroupBox
-                                                                Header="{localization:Translate Ui.GridViewOptions}">
-                                                                <Grid ColumnDefinitions="Auto,*"
-                                                                      ColumnSpacing="10"
-                                                                      RowDefinitions="Auto,Auto"
-                                                                      RowSpacing="10">
-                                                                    <TextBlock Grid.Row="0"
-                                                                               Grid.Column="0"
-                                                                               VerticalAlignment="Center"
-                                                                               Text="{localization:Translate Ui.GroupBy}" />
-
-                                                                    <ComboBox Grid.Row="0"
-                                                                              Grid.Column="1"
-                                                                              HorizontalAlignment="Stretch"
-                                                                              ItemsSource="{Binding AppSettings.PingServices.GridGroupBy, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
-                                                                              SelectedItem="{Binding AppSettings.PingServices.GridGroupBy, Converter={StaticResource FromValueDescriptionToEnumConverter}}" />
-
-                                                                    <Button Grid.Row="1"
-                                                                            Grid.Column="0"
-                                                                            Grid.ColumnSpan="2"
-                                                                            Command="{Binding ResetColumnsOrderCommand}"
-                                                                            Content="{localization:Translate Ui.ResetColumnsOrder}" />
-                                                                </Grid>
-                                                            </suki:GroupBox>
-                                                            <suki:GroupBox
-                                                                Header="{localization:Translate Ui.DefaultPingOptions}">
-                                                                <Grid ColumnDefinitions="Auto,*"
-                                                                      ColumnSpacing="10"
-                                                                      RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
-                                                                      RowSpacing="10">
-
-                                                                    <TextBlock Grid.Row="0"
-                                                                               Grid.Column="0"
-                                                                               VerticalAlignment="Center"
-                                                                               Text="{localization:Translate Ui.PingEvery}" />
-                                                                    <NumericUpDown Grid.Row="0"
-                                                                            Grid.Column="1"
-                                                                            suki:NumericUpDownExtensions.Unit="s"
-                                                                            FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
-                                                                            Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownPingIncrement}}"
-                                                                            Maximum="{Binding Source={x:Static network:PingableService.MaxPingEverySeconds}}"
-                                                                            Minimum="{Binding Source={x:Static network:PingableService.MinPingEverySeconds}}"
-                                                                            Value="{Binding AppSettings.PingServices.DefaultPingEverySeconds}" />
-
-                                                                    <TextBlock Grid.Row="1"
-                                                                               Grid.Column="0"
-                                                                               VerticalAlignment="Center"
-                                                                               Text="{localization:Translate Ui.PingTimeout}" />
-                                                                    <NumericUpDown Grid.Row="1"
-                                                                            Grid.Column="1"
-                                                                            suki:NumericUpDownExtensions.Unit="s"
-                                                                            FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
-                                                                            Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeoutIncrement}}"
-                                                                            Maximum="{Binding Source={x:Static network:PingableService.MaxTimeoutSeconds}}"
-                                                                            Minimum="{Binding Source={x:Static network:PingableService.MinTimeoutSeconds}}"
-                                                                            Value="{Binding AppSettings.PingServices.DefaultTimeoutSeconds}" />
-
-                                                                    <TextBlock Grid.Row="2"
-                                                                               Grid.Column="0"
-                                                                               VerticalAlignment="Center"
-                                                                               Text="{localization:Translate Ui.BufferSize1DF49DCA}" />
-                                                                    <NumericUpDown Grid.Row="2"
-                                                                            Grid.Column="1"
-                                                                            suki:NumericUpDownExtensions.Unit="bytes"
-                                                                            FormatString="N0"
-                                                                            Increment="8"
-                                                                            Maximum="{Binding Source={x:Static network:PingableService.MaxBufferSize}}"
-                                                                            Minimum="{Binding Source={x:Static network:PingableService.MinBufferSize}}"
-                                                                            Value="{Binding AppSettings.PingServices.DefaultBufferSize}" />
-
-
-                                                                    <TextBlock Grid.Row="3"
-                                                                               Grid.Column="0"
-                                                                               VerticalAlignment="Center"
-                                                                               Text="{localization:Translate Ui.TimeToLive}" />
-                                                                    <NumericUpDown Grid.Row="3"
-                                                                            Grid.Column="1"
-                                                                            suki:NumericUpDownExtensions.Unit="TTL"
-                                                                            FormatString="N0"
-                                                                            Increment="1"
-                                                                            Maximum="{Binding Source={x:Static sys:Byte.MaxValue}}"
-                                                                            Minimum="{Binding Source={x:Static sys:Byte.MinValue}}"
-                                                                            Value="{Binding AppSettings.PingServices.DefaultTtl}" />
-
-                                                                    <TextBlock Grid.Row="4"
-                                                                               Grid.Column="0"
-                                                                               VerticalAlignment="Center"
-                                                                               Text="{localization:Translate Ui.DoNotFragment}" />
-                                                                    <ToggleSwitch Grid.Row="4"
-                                                                            Grid.Column="1"
-                                                                            IsChecked="{Binding AppSettings.PingServices.DefaultDontFragment}" />
-
-                                                                    <Separator Grid.Row="5"
-                                                                               Grid.Column="0"
-                                                                               Grid.ColumnSpan="2" />
-
-                                                                    <TextBlock Grid.Row="6"
-                                                                               Grid.Column="0"
-                                                                               VerticalAlignment="Center"
-                                                                               Text="{localization:Translate Ui.PingCacheSize}" />
-                                                                    <NumericUpDown Grid.Row="6"
-                                                                            Grid.Column="1"
-                                                                            FormatString="N0"
-                                                                            Increment="100"
-                                                                            Maximum="1000000"
-                                                                            Minimum="0"
-                                                                            Value="{Binding AppSettings.PingServices.MaxRepliesCache}" />
-
-                                                                    <TextBlock Grid.Row="7"
-                                                                               Grid.Column="0"
-                                                                               VerticalAlignment="Center"
-                                                                               Text="{localization:Translate Ui.GraphCacheSize}" />
-                                                                    <NumericUpDown Grid.Row="7"
-                                                                            Grid.Column="1"
-                                                                            FormatString="N0"
-                                                                            Increment="10"
-                                                                            Maximum="1000"
-                                                                            Minimum="0"
-                                                                            Value="{Binding AppSettings.PingServices.MaxRepliesGraphCache}" />
-                                                                    <TextBlock Grid.Row="8"
-                                                                               Grid.Column="0"
-                                                                               VerticalAlignment="Center"
-                                                                               Text="{localization:Translate Ui.PersistentPings}"
-                                                                               ToolTip.Tip="{localization:Translate Ui.SaveAndRestorePingRepliesAfterProgramRestart}" />
-                                                                    <ToggleSwitch Grid.Row="8"
-                                                                            Grid.Column="1"
-                                                                            IsChecked="{Binding AppSettings.PingServices.ResilientReplies}"
-                                                                            ToolTip.Tip="{localization:Translate Ui.SaveAndRestorePingRepliesAfterProgramRestart}" />
-                                                                </Grid>
-                                                            </suki:GroupBox>
-                                                        </StackPanel>
-
-
-                                                    </suki:GlassCard>
-                                                </Border>
-                                            </Border>
-                                        </Panel>
-                                    </Flyout>
-                                </Button.Flyout>
-                            </Button>
-
-                        </WrapPanel>
-                    </Grid>
-                </suki:GroupBox.Header>
-
-                <DataGrid Name="ServicesGrid"
-                          CanUserReorderColumns="True"
-                          CanUserResizeColumns="True"
-                          CanUserSortColumns="True"
-                          ClipboardCopyMode="IncludeHeader"
-                          HeadersVisibility="All"
-                          IsReadOnly="False"
-                          ItemsSource="{Binding ServicesViewCollection}"
-                          SelectedItem="{Binding SelectedService}">
-                    <DataGrid.Styles>
-                        <Style Selector="DataGridRow">
-                            <Setter Property="Header" Value="{Binding $self.Index}" />
-                        </Style>
-                        <Style Selector="DataGridRowGroupHeader">
-                            <Setter Property="IsItemCountVisible" Value="True" />
-                        </Style>
-                        <!--
+        <DataGrid
+          Name="ServicesGrid"
+          CanUserReorderColumns="True"
+          CanUserResizeColumns="True"
+          CanUserSortColumns="True"
+          ClipboardCopyMode="IncludeHeader"
+          HeadersVisibility="All"
+          IsReadOnly="False"
+          ItemsSource="{Binding ServicesViewCollection}"
+          SelectedItem="{Binding SelectedService}"
+        >
+          <DataGrid.Styles>
+            <Style Selector="DataGridRow">
+              <Setter Property="Header" Value="{Binding $self.Index}" />
+            </Style>
+            <Style Selector="DataGridRowGroupHeader">
+              <Setter Property="IsItemCountVisible" Value="True" />
+            </Style>
+            <!--
                         <Style Selector="DataGridRow">
                             <Setter Property="Background" Value="DarkRed" />
                         </Style>
                         !-->
-                    </DataGrid.Styles>
-                    <!--
+          </DataGrid.Styles>
+          <!--
                     <DataGrid.RowTheme>
                         <ControlTheme
                             x:DataType="network:PingableService"
@@ -339,742 +408,890 @@
                         </ControlTheme>
                     </DataGrid.RowTheme>
                     !-->
-                    <DataGrid.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Command="{Binding EditSelectedServicesCommand}"
-                                      Header="{localization:Translate Ui.EditSelectedServices}"
-                                      Icon="{icon:MaterialIconExt Kind=Pencil}"
-                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                      InputGesture="{OnPlatform macOS=Meta + E, Default=Ctrl + E}" />
+          <DataGrid.ContextMenu>
+            <ContextMenu>
+              <MenuItem
+                Command="{Binding EditSelectedServicesCommand}"
+                Header="{localization:Translate Ui.EditSelectedServices}"
+                Icon="{icon:MaterialIconExt Kind=Pencil}"
+                IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                InputGesture="{OnPlatform macOS=Meta + E, Default=Ctrl + E}"
+              />
 
-                            <Separator />
+              <Separator />
 
-                            <MenuItem Command="{Binding PauseSelectedServicesCommand}"
-                                      Header="{localization:Translate Ui.PauseSelected}"
-                                      Icon="{icon:MaterialIconExt Kind=Pause}"
-                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                      InputGesture="{OnPlatform macOS=Meta + P, Default=Ctrl + P}" />
-                            <MenuItem Command="{Binding PauseAllServicesCommand}"
-                                      Header="{localization:Translate Ui.PauseAll}"
-                                      Icon="{icon:MaterialIconExt Kind=PauseCircleOutline}"
-                                      IsEnabled="{Binding ServicesViewCollection.Count}"
-                                      InputGesture="{OnPlatform macOS=Meta + Shift + P, Default=Ctrl + Shift + P}" />
+              <MenuItem
+                Command="{Binding PauseSelectedServicesCommand}"
+                Header="{localization:Translate Ui.PauseSelected}"
+                Icon="{icon:MaterialIconExt Kind=Pause}"
+                IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                InputGesture="{OnPlatform macOS=Meta + P, Default=Ctrl + P}"
+              />
+              <MenuItem
+                Command="{Binding PauseAllServicesCommand}"
+                Header="{localization:Translate Ui.PauseAll}"
+                Icon="{icon:MaterialIconExt Kind=PauseCircleOutline}"
+                IsEnabled="{Binding ServicesViewCollection.Count}"
+                InputGesture="{OnPlatform macOS=Meta + Shift + P, Default=Ctrl + Shift + P}"
+              />
 
-                            <Separator />
+              <Separator />
 
-                            <MenuItem Command="{Binding ResumeSelectedServicesCommand}"
-                                      Header="{localization:Translate Ui.ResumeSelected}"
-                                      Icon="{icon:MaterialIconExt Kind=Play}"
-                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                      InputGesture="{OnPlatform macOS=Meta + R, Default=Ctrl + R}" />
-                            <MenuItem Command="{Binding ResumeAllServicesCommand}"
-                                      Header="{localization:Translate Ui.ResumeAll}"
-                                      Icon="{icon:MaterialIconExt Kind=PlayCircleOutline}"
-                                      IsEnabled="{Binding ServicesViewCollection.Count}"
-                                      InputGesture="{OnPlatform macOS=Meta + Shift + R, Default=Ctrl + Shift + R}" />
+              <MenuItem
+                Command="{Binding ResumeSelectedServicesCommand}"
+                Header="{localization:Translate Ui.ResumeSelected}"
+                Icon="{icon:MaterialIconExt Kind=Play}"
+                IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                InputGesture="{OnPlatform macOS=Meta + R, Default=Ctrl + R}"
+              />
+              <MenuItem
+                Command="{Binding ResumeAllServicesCommand}"
+                Header="{localization:Translate Ui.ResumeAll}"
+                Icon="{icon:MaterialIconExt Kind=PlayCircleOutline}"
+                IsEnabled="{Binding ServicesViewCollection.Count}"
+                InputGesture="{OnPlatform macOS=Meta + Shift + R, Default=Ctrl + Shift + R}"
+              />
 
-                            <Separator />
+              <Separator />
 
-                            <MenuItem Command="{Binding ResetServiceStatisticsForSelectedItemsCommand}"
-                                      Header="{localization:Translate Ui.ResetSelectedStatistics}"
-                                      Icon="{icon:MaterialIconExt Kind=Restart}"
-                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                      InputGesture="{OnPlatform macOS=Meta + OemPeriod, Default=Ctrl + OemPeriod}" />
-                            <MenuItem Command="{Binding ResetAllServicesStatisticsCommand}"
-                                      Header="{localization:Translate Ui.ResetAllStatistics}"
-                                      Icon="{icon:MaterialIconExt Kind=RestartAlert}"
-                                      IsEnabled="{Binding ServicesViewCollection.Count}"
-                                      InputGesture="{OnPlatform macOS=Meta + Shift + OemPeriod, Default=Ctrl + Shift + OemPeriod}" />
+              <MenuItem
+                Command="{Binding ResetServiceStatisticsForSelectedItemsCommand}"
+                Header="{localization:Translate Ui.ResetSelectedStatistics}"
+                Icon="{icon:MaterialIconExt Kind=Restart}"
+                IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                InputGesture="{OnPlatform macOS=Meta + OemPeriod, Default=Ctrl + OemPeriod}"
+              />
+              <MenuItem
+                Command="{Binding ResetAllServicesStatisticsCommand}"
+                Header="{localization:Translate Ui.ResetAllStatistics}"
+                Icon="{icon:MaterialIconExt Kind=RestartAlert}"
+                IsEnabled="{Binding ServicesViewCollection.Count}"
+                InputGesture="{OnPlatform macOS=Meta + Shift + OemPeriod, Default=Ctrl + Shift + OemPeriod}"
+              />
 
-                            <Separator />
+              <Separator />
 
-                            <MenuItem Command="{Binding RemoveSelectedServicesCommand}"
-                                      Header="{localization:Translate Ui.RemoveSelected}"
-                                      Icon="{icon:MaterialIconExt Kind=TrashCan}"
-                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                      InputGesture="{OnPlatform macOS=Shift + Delete, Default=Shift + Delete}" />
-                            <MenuItem Command="{Binding RemoveAllServicesCommand}"
-                                      Header="{localization:Translate Ui.RemoveAll}"
-                                      Icon="{icon:MaterialIconExt Kind=TrashCanCircleOutline}"
-                                      IsEnabled="{Binding ServicesViewCollection.Count}"
-                                      InputGesture="{OnPlatform macOS=Meta + Shift + Delete, Default=Shift + Shift + Delete}" />
+              <MenuItem
+                Command="{Binding RemoveSelectedServicesCommand}"
+                Header="{localization:Translate Ui.RemoveSelected}"
+                Icon="{icon:MaterialIconExt Kind=TrashCan}"
+                IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                InputGesture="{OnPlatform macOS=Shift + Delete, Default=Shift + Delete}"
+              />
+              <MenuItem
+                Command="{Binding RemoveAllServicesCommand}"
+                Header="{localization:Translate Ui.RemoveAll}"
+                Icon="{icon:MaterialIconExt Kind=TrashCanCircleOutline}"
+                IsEnabled="{Binding ServicesViewCollection.Count}"
+                InputGesture="{OnPlatform macOS=Meta + Shift + Delete, Default=Shift + Shift + Delete}"
+              />
 
-                            <Separator />
-                            <MenuItem Command="{Binding ExportSelectedServicesToJsonCommand}"
-                                      Header="{localization:Translate Ui.ExportSelectedToJSON}"
-                                      Icon="{icon:MaterialIconExt Kind=CodeJson}"
-                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}" />
-                            <MenuItem Command="{Binding ExportAllServicesToJsonCommand}"
-                                      Header="{localization:Translate Ui.ExportAllToJSON}"
-                                      Icon="{icon:MaterialIconExt Kind=CodeJson}"
-                                      IsEnabled="{Binding ServicesViewCollection.Count}" />
-                            <Separator />
+              <Separator />
+              <MenuItem
+                Command="{Binding ExportSelectedServicesToJsonCommand}"
+                Header="{localization:Translate Ui.ExportSelectedToJSON}"
+                Icon="{icon:MaterialIconExt Kind=CodeJson}"
+                IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+              />
+              <MenuItem
+                Command="{Binding ExportAllServicesToJsonCommand}"
+                Header="{localization:Translate Ui.ExportAllToJSON}"
+                Icon="{icon:MaterialIconExt Kind=CodeJson}"
+                IsEnabled="{Binding ServicesViewCollection.Count}"
+              />
+              <Separator />
 
-                            <MenuItem Command="{Binding OpenSelectedGraphInNewWindowCommand}"
-                                      Header="{localization:Translate Ui.OpenSelectedGraphsNewWindow}"
-                                      Icon="{icon:MaterialIconExt Kind=ChartBoxOutline}"
-                                      IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                      InputGesture="{OnPlatform macOS=Meta + G, Default=Ctrl + G}" />
+              <MenuItem
+                Command="{Binding OpenSelectedGraphInNewWindowCommand}"
+                Header="{localization:Translate Ui.OpenSelectedGraphsNewWindow}"
+                Icon="{icon:MaterialIconExt Kind=ChartBoxOutline}"
+                IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                InputGesture="{OnPlatform macOS=Meta + G, Default=Ctrl + G}"
+              />
 
-                            <MenuItem Command="{Binding OpenSelectedInBrowserCommand}"
-                                      Header="{localization:Translate Ui.OpenInBrowser}"
-                                      Icon="{icon:MaterialIconExt Kind=Web}"
-                                      ToolTip.Tip="{Binding SelectedService.IpAddressOrUrl, FallbackValue={x:Null}}"
-                                      InputGesture="{OnPlatform macOS=Meta + Enter, Default=Ctrl + Enter}"
-                                      HotKey="{Binding $self.InputGesture}"
-                                      IsEnabled="{Binding CanOpenAnyInBrowser}"/>
+              <MenuItem
+                Command="{Binding OpenSelectedInBrowserCommand}"
+                Header="{localization:Translate Ui.OpenInBrowser}"
+                Icon="{icon:MaterialIconExt Kind=Web}"
+                ToolTip.Tip="{Binding SelectedService.IpAddressOrUrl, FallbackValue={x:Null}}"
+                InputGesture="{OnPlatform macOS=Meta + Enter, Default=Ctrl + Enter}"
+                HotKey="{Binding $self.InputGesture}"
+                IsEnabled="{Binding CanOpenAnyInBrowser}"
+              />
+            </ContextMenu>
+          </DataGrid.ContextMenu>
+          <DataGrid.Columns>
+            <DataGridCheckBoxColumn
+              Binding="{Binding IsEnabled}"
+              CellStyleClasses="center"
+              Header="{localization:Translate Ui.Enable}"
+            />
+            <DataGridTemplateColumn
+              CellStyleClasses="center"
+              ClipboardContentBinding="{Binding LastStatus, Converter={StaticResource LocalizedStatusConverter}, DataType=network:PingableService}"
+              Header="{localization:Translate Ui.Status}"
+              IsReadOnly="True"
+              CustomSortComparer="{StaticResource LocalizedStatusComparer}"
+              SortMemberPath="LastStatusStr"
+            >
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <Panel>
+                    <TextBlock
+                      Classes="Success extraBold"
+                      IsVisible="{Binding WasLastPingSucceeded}"
+                    >
+                      <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
+                          <Binding Path="LastStatus" />
+                          <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
+                        </MultiBinding>
+                      </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Classes="Danger extraBold" IsVisible="{Binding WasLastPingFailed}">
+                      <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
+                          <Binding Path="LastStatus" />
+                          <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
+                        </MultiBinding>
+                      </TextBlock.Text>
+                    </TextBlock>
+                  </Panel>
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTextColumn
+              Binding="{Binding IpEndPointAndSecondaryIpAddressStr, Mode=OneWay}"
+              Header="{localization:Translate Ui.IPAddress3C3DE0C9}"
+              IsReadOnly="True"
+            />
+            <DataGridTextColumn
+              Binding="{Binding Description}"
+              Header="{localization:Translate Ui.Description}"
+            />
+            <DataGridTemplateColumn
+              CellStyleClasses="center"
+              ClipboardContentBinding="{Binding LastTime, DataType=network:PingableService}"
+              Header="{localization:Translate Ui.Time}"
+              IsReadOnly="True"
+              SortMemberPath="LastTime"
+            >
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <Panel>
+                    <TextBlock
+                      IsVisible="{Binding WasLastPingSucceeded, Mode=OneWay}"
+                      Text="{Binding LastTime, StringFormat='{}{0:#,#0.##}ms'}"
+                    />
+                    <TextBlock
+                      Classes="Danger extraBold"
+                      IsVisible="{Binding WasLastPingFailed, Mode=OneWay}"
+                      Text="{Binding LastTime, StringFormat='{}{0}ms'}"
+                    />
+                  </Panel>
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTextColumn
+              Binding="{Binding MinimumTime, StringFormat='{}{0}ms', Mode=OneWay}"
+              CellStyleClasses="center"
+              Header="{localization:Translate Ui.MinTime}"
+              IsReadOnly="True"
+            />
+            <DataGridTemplateColumn
+              Width="120"
+              ClipboardContentBinding="{Binding AverageTime, DataType=network:PingableService}"
+              Header="{localization:Translate Ui.AvgTime}"
+              IsReadOnly="True"
+              SortMemberPath="AverageTime"
+            >
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <StackPanel>
+                    <TextBlock
+                      HorizontalAlignment="Center"
+                      Text="{Binding AverageTime, StringFormat='{}{0:#,#0.##}ms', Mode=OneWay}"
+                    />
 
-                        </ContextMenu>
-                    </DataGrid.ContextMenu>
-                    <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Binding="{Binding IsEnabled}"
-                                                CellStyleClasses="center"
-                                                Header="{localization:Translate Ui.Enable}" />
-                        <DataGridTemplateColumn CellStyleClasses="center"
-                                                ClipboardContentBinding="{Binding LastStatus, Converter={StaticResource LocalizedStatusConverter}, DataType=network:PingableService}"
-                                                Header="{localization:Translate Ui.Status}"
-                                                IsReadOnly="True"
-                                                CustomSortComparer="{StaticResource LocalizedStatusComparer}"
-                                                SortMemberPath="LastStatusStr">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Panel>
-                                        <TextBlock Classes="Success extraBold"
-                                                   IsVisible="{Binding WasLastPingSucceeded}">
-                                            <TextBlock.Text>
-                                                <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
-                                                    <Binding Path="LastStatus" />
-                                                    <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-                                        <TextBlock Classes="Danger extraBold"
-                                                   IsVisible="{Binding WasLastPingFailed}">
-                                            <TextBlock.Text>
-                                                <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
-                                                    <Binding Path="LastStatus" />
-                                                    <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-                                    </Panel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Binding="{Binding IpEndPointAndSecondaryIpAddressStr, Mode=OneWay}"
-                                            Header="{localization:Translate Ui.IPAddress3C3DE0C9}"
-                                            IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Description}"
-                                            Header="{localization:Translate Ui.Description}" />
-                        <DataGridTemplateColumn CellStyleClasses="center"
-                                                ClipboardContentBinding="{Binding LastTime, DataType=network:PingableService}"
-                                                Header="{localization:Translate Ui.Time}"
-                                                IsReadOnly="True"
-                                                SortMemberPath="LastTime">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Panel>
-                                        <TextBlock IsVisible="{Binding WasLastPingSucceeded, Mode=OneWay}"
-                                                   Text="{Binding LastTime, StringFormat='{}{0:#,#0.##}ms'}" />
-                                        <TextBlock Classes="Danger extraBold"
-                                                   IsVisible="{Binding WasLastPingFailed, Mode=OneWay}"
-                                                   Text="{Binding LastTime, StringFormat='{}{0}ms'}" />
-                                    </Panel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Binding="{Binding MinimumTime, StringFormat='{}{0}ms', Mode=OneWay}"
-                                            CellStyleClasses="center"
-                                            Header="{localization:Translate Ui.MinTime}"
-                                            IsReadOnly="True" />
-                        <DataGridTemplateColumn Width="120"
-                                                ClipboardContentBinding="{Binding AverageTime, DataType=network:PingableService}"
-                                                Header="{localization:Translate Ui.AvgTime}"
-                                                IsReadOnly="True"
-                                                SortMemberPath="AverageTime">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock HorizontalAlignment="Center"
-                                                   Text="{Binding AverageTime, StringFormat='{}{0:#,#0.##}ms', Mode=OneWay}" />
+                    <ProgressBar
+                      MinWidth="50"
+                      Margin="5,0"
+                      HorizontalAlignment="Stretch"
+                      Classes="Information"
+                      Maximum="{Binding MaximumTime}"
+                      Minimum="{Binding MinimumTime}"
+                      Value="{Binding AverageTime, Mode=OneWay}"
+                    />
+                  </StackPanel>
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <!--<DataGridTextColumn Header="{localization:Translate Ui.AvgTime}" Binding="{Binding AverageTime, StringFormat='{}{0}ms'}" IsReadOnly="True" />-->
+            <DataGridTextColumn
+              Binding="{Binding MaximumTime, StringFormat='{}{0:#,#0.##}ms', Mode=OneWay}"
+              CellStyleClasses="center"
+              Header="{localization:Translate Ui.MaxTime}"
+              IsReadOnly="True"
+            />
+            <DataGridTextColumn
+              Binding="{Binding SentCount, Mode=OneWay}"
+              CellStyleClasses="center"
+              Header="{localization:Translate Ui.Pings}"
+              IsReadOnly="True"
+            />
 
-                                        <ProgressBar MinWidth="50"
-                                                     Margin="5,0"
-                                                     HorizontalAlignment="Stretch"
-                                                     Classes="Information"
-                                                     Maximum="{Binding MaximumTime}"
-                                                     Minimum="{Binding MinimumTime}"
-                                                     Value="{Binding AverageTime, Mode=OneWay}" />
+            <DataGridTemplateColumn
+              Width="120"
+              ClipboardContentBinding="{Binding SucceedCount, DataType=network:PingableService}"
+              Header="{localization:Translate Ui.Succeed}"
+              IsReadOnly="True"
+              SortMemberPath="SucceedCount"
+            >
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <StackPanel>
+                    <TextBlock
+                      HorizontalAlignment="Center"
+                      Text="{Binding SucceedCountRepresentation}"
+                    />
 
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <!--<DataGridTextColumn Header="{localization:Translate Ui.AvgTime}" Binding="{Binding AverageTime, StringFormat='{}{0}ms'}" IsReadOnly="True" />-->
-                        <DataGridTextColumn
-                            Binding="{Binding MaximumTime, StringFormat='{}{0:#,#0.##}ms', Mode=OneWay}"
-                            CellStyleClasses="center"
-                            Header="{localization:Translate Ui.MaxTime}"
-                            IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding SentCount, Mode=OneWay}"
-                                            CellStyleClasses="center"
-                                            Header="{localization:Translate Ui.Pings}"
-                                            IsReadOnly="True" />
+                    <ProgressBar
+                      MinWidth="50"
+                      Margin="5,0"
+                      HorizontalAlignment="Stretch"
+                      Classes="Success"
+                      Maximum="100"
+                      Minimum="0"
+                      Value="{Binding SucceedPercentage, Mode=OneWay}"
+                    />
+                  </StackPanel>
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn
+              Width="120"
+              ClipboardContentBinding="{Binding FailedCount, DataType=network:PingableService}"
+              Header="{localization:Translate Ui.Failed}"
+              IsReadOnly="True"
+              SortMemberPath="FailedCount"
+            >
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <StackPanel>
+                    <TextBlock
+                      HorizontalAlignment="Center"
+                      Text="{Binding FailedCountRepresentation}"
+                    />
 
-                        <DataGridTemplateColumn Width="120"
-                                                ClipboardContentBinding="{Binding SucceedCount, DataType=network:PingableService}"
-                                                Header="{localization:Translate Ui.Succeed}"
-                                                IsReadOnly="True"
-                                                SortMemberPath="SucceedCount">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock HorizontalAlignment="Center"
-                                                   Text="{Binding SucceedCountRepresentation}" />
+                    <ProgressBar
+                      MinWidth="50"
+                      Margin="5,0"
+                      HorizontalAlignment="Stretch"
+                      Classes="Danger"
+                      Maximum="100"
+                      Minimum="0"
+                      Value="{Binding FailedPercentage, Mode=OneWay}"
+                    />
+                  </StackPanel>
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
 
-                                        <ProgressBar MinWidth="50"
-                                                     Margin="5,0"
-                                                     HorizontalAlignment="Stretch"
-                                                     Classes="Success"
-                                                     Maximum="100"
-                                                     Minimum="0"
-                                                     Value="{Binding SucceedPercentage, Mode=OneWay}" />
+            <DataGridTemplateColumn
+              CellStyleClasses="center"
+              ClipboardContentBinding="{Binding ConsecutiveSucceedCount, DataType=network:PingableService}"
+              Header="{localization:Translate Ui.ConsecutiveSucceed}"
+              IsReadOnly="True"
+              SortMemberPath="MaxConsecutiveSucceedCount"
+            >
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <TextBlock>
+                    <Run Text="{Binding ConsecutiveSucceedCount, Mode=OneWay}" />
+                    <Run Text="{Binding MaxConsecutiveSucceedCount, StringFormat='/ {0}', Mode=OneWay}" />
+                  </TextBlock>
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn
+              CellStyleClasses="center"
+              ClipboardContentBinding="{Binding ConsecutiveFailedCount, DataType=network:PingableService}"
+              Header="{localization:Translate Ui.ConsecutiveFailed}"
+              IsReadOnly="True"
+              SortMemberPath="MaxConsecutiveFailedCount"
+            >
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <TextBlock>
+                    <Run Text="{Binding ConsecutiveFailedCount, Mode=OneWay}" />
+                    <Run Text="{Binding MaxConsecutiveFailedCount, StringFormat='/ {0}', Mode=OneWay}" />
+                  </TextBlock>
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
 
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Width="120"
-                                                ClipboardContentBinding="{Binding FailedCount, DataType=network:PingableService}"
-                                                Header="{localization:Translate Ui.Failed}"
-                                                IsReadOnly="True"
-                                                SortMemberPath="FailedCount">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock HorizontalAlignment="Center"
-                                                   Text="{Binding FailedCountRepresentation}" />
+            <DataGridTextColumn
+              Binding="{Binding LastSucceedDateTime, Mode=OneWay}"
+              Header="{localization:Translate Ui.SucceedDate}"
+              IsReadOnly="True"
+            />
+            <DataGridTextColumn
+              Binding="{Binding LastFailedDateTime, Mode=OneWay}"
+              Header="{localization:Translate Ui.FailedDate}"
+              IsReadOnly="True"
+            />
+            <DataGridTextColumn
+              Binding="{Binding HostNameAndQuery, Mode=OneWay}"
+              Header="{localization:Translate Ui.HostnameQuery}"
+              IsReadOnly="True"
+            />
+            <DataGridTextColumn
+              Binding="{Binding ProtocolType, Mode=OneWay}"
+              CellStyleClasses="center"
+              Header="{localization:Translate Ui.Type}"
+              IsReadOnly="True"
+            />
+            <DataGridTextColumn
+              Binding="{Binding Group}"
+              Header="{localization:Translate Ui.Group}"
+            />
+            <DataGridTemplateColumn
+              ClipboardContentBinding="{Binding Order, DataType=network:PingableService}"
+              Header="{localization:Translate Ui.Order}"
+              SortMemberPath="Order"
+            >
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <NumericUpDown
+                    Width="90"
+                    FormatString="N0"
+                    Maximum="1000"
+                    Minimum="-1000"
+                    Value="{Binding Order}"
+                  />
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn
+              ClipboardContentBinding="{Binding PingEverySeconds, DataType=network:PingableService}"
+              Header="{localization:Translate Ui.PingEveryS}"
+              SortMemberPath="PingEveryMilliseconds"
+            >
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <NumericUpDown
+                    Width="130"
+                    suki:NumericUpDownExtensions.Unit="s"
+                    FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
+                    Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownPingIncrement}}"
+                    Maximum="{Binding Source={x:Static network:PingableService.MaxPingEverySeconds}}"
+                    Minimum="{Binding Source={x:Static network:PingableService.MinPingEverySeconds}}"
+                    Value="{Binding PingEverySeconds}"
+                  />
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn
+              ClipboardContentBinding="{Binding TimeoutSeconds, DataType=network:PingableService}"
+              Header="{localization:Translate Ui.TimeoutS}"
+              SortMemberPath="Timeout"
+            >
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <NumericUpDown
+                    Width="130"
+                    suki:NumericUpDownExtensions.Unit="s"
+                    FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
+                    Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeoutIncrement}}"
+                    Maximum="{Binding Source={x:Static network:PingableService.MaxTimeoutSeconds}}"
+                    Minimum="{Binding Source={x:Static network:PingableService.MinTimeoutSeconds}}"
+                    Value="{Binding TimeoutSeconds}"
+                  />
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn
+              ClipboardContentBinding="{Binding BufferSize, DataType=network:PingableService}"
+              Header="{localization:Translate Ui.BufferSize}"
+              SortMemberPath="BufferSize"
+            >
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <NumericUpDown
+                    Width="90"
+                    FormatString="N0"
+                    IsVisible="{Binding CanUseBufferSize}"
+                    Maximum="{Binding Source={x:Static network:PingableService.MaxBufferSize}}"
+                    Minimum="{Binding Source={x:Static network:PingableService.MinBufferSize}}"
+                    Value="{Binding BufferSize}"
+                  />
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn
+              ClipboardContentBinding="{Binding Ttl, DataType=network:PingableService}"
+              Header="TTL"
+              SortMemberPath="TTL"
+            >
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <NumericUpDown
+                    Width="90"
+                    FormatString="N0"
+                    IsVisible="{Binding CanUseTtl}"
+                    Maximum="{Binding Source={x:Static sys:Byte.MaxValue}}"
+                    Minimum="{Binding Source={x:Static sys:Byte.MinValue}}"
+                    Value="{Binding Ttl}"
+                  />
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn
+              CellStyleClasses="center"
+              ClipboardContentBinding="{Binding DontFragment, DataType=network:PingableService}"
+              Header="{localization:Translate Ui.NoFrag}"
+              SortMemberPath="DontFragment"
+            >
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <CheckBox
+                    IsChecked="{Binding DontFragment}"
+                    IsVisible="{Binding CanUseDontFragment}"
+                  />
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+          </DataGrid.Columns>
+        </DataGrid>
+      </suki:GroupBox>
+    </suki:GlassCard>
 
-                                        <ProgressBar MinWidth="50"
-                                                     Margin="5,0"
-                                                     HorizontalAlignment="Stretch"
-                                                     Classes="Danger"
-                                                     Maximum="100"
-                                                     Minimum="0"
-                                                     Value="{Binding FailedPercentage, Mode=OneWay}" />
+    <GridSplitter Grid.Row="1" Margin="30,0" />
 
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+    <!--  Pings  -->
+    <!--  Pings  -->
+    <!--  Pings  -->
+    <Grid Grid.Row="2" ColumnDefinitions="*,Auto,*" RowDefinitions="*">
+      <suki:GlassCard Grid.Row="0" Grid.Column="0" Margin="15,10,10,15">
+        <suki:GroupBox>
+          <suki:GroupBox.Header>
+            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto">
+              <WrapPanel Grid.Column="0" ItemSpacing="5" LineSpacing="5" Orientation="Horizontal">
+                <icon:MaterialIconText
+                  Kind="Radar"
+                  Text="{localization:Translate Ui.Pings}"
+                  Classes="SubTitle"
+                />
 
-                        <DataGridTemplateColumn CellStyleClasses="center"
-                                                ClipboardContentBinding="{Binding ConsecutiveSucceedCount, DataType=network:PingableService}"
-                                                Header="{localization:Translate Ui.ConsecutiveSucceed}"
-                                                IsReadOnly="True"
-                                                SortMemberPath="MaxConsecutiveSucceedCount">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock>
-                                        <Run Text="{Binding ConsecutiveSucceedCount, Mode=OneWay}" />
-                                        <Run
-                                            Text="{Binding MaxConsecutiveSucceedCount, StringFormat='/ {0}', Mode=OneWay}" />
-                                    </TextBlock>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn CellStyleClasses="center"
-                                                ClipboardContentBinding="{Binding ConsecutiveFailedCount, DataType=network:PingableService}"
-                                                Header="{localization:Translate Ui.ConsecutiveFailed}"
-                                                IsReadOnly="True"
-                                                SortMemberPath="MaxConsecutiveFailedCount">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock>
-                                        <Run Text="{Binding ConsecutiveFailedCount, Mode=OneWay}" />
-                                        <Run
-                                            Text="{Binding MaxConsecutiveFailedCount, StringFormat='/ {0}', Mode=OneWay}" />
-                                    </TextBlock>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                <controls:StatusBadge
+                  MinWidth="45"
+                  Margin="5,0,0,0"
+                  Padding="15,5"
+                  VerticalAlignment="Center"
+                  Appearance="Information"
+                  Content="{Binding SelectedService.SentCount, FallbackValue=0}"
+                  IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                  ToolTip.Tip="{localization:Translate Ui.TotalPings}"
+                />
 
-                        <DataGridTextColumn Binding="{Binding LastSucceedDateTime, Mode=OneWay}"
-                                            Header="{localization:Translate Ui.SucceedDate}"
-                                            IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding LastFailedDateTime, Mode=OneWay}"
-                                            Header="{localization:Translate Ui.FailedDate}"
-                                            IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding HostNameAndQuery, Mode=OneWay}"
-                                            Header="{localization:Translate Ui.HostnameQuery}"
-                                            IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding ProtocolType, Mode=OneWay}"
-                                            CellStyleClasses="center"
-                                            Header="{localization:Translate Ui.Type}"
-                                            IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Group}"
-                                            Header="{localization:Translate Ui.Group}" />
-                        <DataGridTemplateColumn
-                            ClipboardContentBinding="{Binding Order, DataType=network:PingableService}"
-                            Header="{localization:Translate Ui.Order}"
-                            SortMemberPath="Order">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <NumericUpDown Width="90"
-                                                   FormatString="N0"
-                                                   Maximum="1000"
-                                                   Minimum="-1000"
-                                                   Value="{Binding Order}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn
-                            ClipboardContentBinding="{Binding PingEverySeconds, DataType=network:PingableService}"
-                            Header="{localization:Translate Ui.PingEveryS}"
-                            SortMemberPath="PingEveryMilliseconds">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <NumericUpDown Width="130"
-                                                   suki:NumericUpDownExtensions.Unit="s"
-                                                   FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
-                                                   Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownPingIncrement}}"
-                                                   Maximum="{Binding Source={x:Static network:PingableService.MaxPingEverySeconds}}"
-                                                   Minimum="{Binding Source={x:Static network:PingableService.MinPingEverySeconds}}"
-                                                   Value="{Binding PingEverySeconds}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn
-                            ClipboardContentBinding="{Binding TimeoutSeconds, DataType=network:PingableService}"
-                            Header="{localization:Translate Ui.TimeoutS}"
-                            SortMemberPath="Timeout">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <NumericUpDown Width="130"
-                                                   suki:NumericUpDownExtensions.Unit="s"
-                                                   FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
-                                                   Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeoutIncrement}}"
-                                                   Maximum="{Binding Source={x:Static network:PingableService.MaxTimeoutSeconds}}"
-                                                   Minimum="{Binding Source={x:Static network:PingableService.MinTimeoutSeconds}}"
-                                                   Value="{Binding TimeoutSeconds}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn
-                            ClipboardContentBinding="{Binding BufferSize, DataType=network:PingableService}"
-                            Header="{localization:Translate Ui.BufferSize}"
-                            SortMemberPath="BufferSize">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <NumericUpDown Width="90"
-                                                   FormatString="N0"
-                                                   IsVisible="{Binding CanUseBufferSize}"
-                                                   Maximum="{Binding Source={x:Static network:PingableService.MaxBufferSize}}"
-                                                   Minimum="{Binding Source={x:Static network:PingableService.MinBufferSize}}"
-                                                   Value="{Binding BufferSize}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn
-                            ClipboardContentBinding="{Binding Ttl, DataType=network:PingableService}"
-                            Header="TTL"
-                            SortMemberPath="TTL">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <NumericUpDown Width="90"
-                                                   FormatString="N0"
-                                                   IsVisible="{Binding CanUseTtl}"
-                                                   Maximum="{Binding Source={x:Static sys:Byte.MaxValue}}"
-                                                   Minimum="{Binding Source={x:Static sys:Byte.MinValue}}"
-                                                   Value="{Binding Ttl}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn CellStyleClasses="center"
-                                                ClipboardContentBinding="{Binding DontFragment, DataType=network:PingableService}"
-                                                Header="{localization:Translate Ui.NoFrag}"
-                                                SortMemberPath="DontFragment">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <CheckBox IsChecked="{Binding DontFragment}"
-                                              IsVisible="{Binding CanUseDontFragment}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </suki:GroupBox>
-        </suki:GlassCard>
+                <controls:StatusBadge
+                  MinWidth="45"
+                  Padding="15,5"
+                  VerticalAlignment="Center"
+                  Appearance="Success"
+                  IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                  ToolTip.Tip="{localization:Translate Ui.SucceedPings}"
+                >
+                  <TextBlock>
+                    <Run Text="{Binding SelectedService.SucceedCount, Mode=OneWay, FallbackValue=0}" />
+                    <Run Text="{Binding SelectedService.SucceedPercentage, Mode=OneWay, StringFormat='({0}%)', FallbackValue='(0%)'}" />
+                  </TextBlock>
+                </controls:StatusBadge>
 
+                <controls:StatusBadge
+                  MinWidth="45"
+                  Padding="15,5"
+                  VerticalAlignment="Center"
+                  Appearance="Danger"
+                  IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                  ToolTip.Tip="{localization:Translate Ui.FailedPings}"
+                >
+                  <TextBlock>
+                    <Run Text="{Binding SelectedService.FailedCount, Mode=OneWay, FallbackValue=0}" />
+                    <Run Text="{Binding SelectedService.FailedPercentage, Mode=OneWay, StringFormat='({0}%)', FallbackValue='(0%)'}" />
+                  </TextBlock>
+                </controls:StatusBadge>
+              </WrapPanel>
 
-        <GridSplitter Grid.Row="1"
-                      Margin="30,0" />
+              <WrapPanel
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                ItemSpacing="5"
+                LineSpacing="5"
+                Orientation="Horizontal"
+              >
+                <Button
+                  Padding="10,8"
+                  Command="{Binding ResetServiceStatisticsForSelectedItemCommand}"
+                  Content="{icon:MaterialIconExt Kind=Eraser}"
+                  IsEnabled="{Binding SelectedService.Pings.Count, FallbackValue={x:False}}"
+                  ToolTip.Tip="{localization:Translate Ui.ClearStatistics}"
+                />
 
-        <!--  Pings  -->
-        <!--  Pings  -->
-        <!--  Pings  -->
-        <Grid Grid.Row="2"
-              ColumnDefinitions="*,Auto,*"
-              RowDefinitions="*">
+                <Button
+                  Padding="10,8"
+                  Command="{Binding ResumeSelectedServiceCommand}"
+                  Content="{icon:MaterialIconExt Kind=Play}"
+                  IsEnabled="{Binding !SelectedService.IsEnabled}"
+                  IsVisible="{Binding !SelectedService.IsEnabled}"
+                  ToolTip.Tip="{localization:Translate Ui.Resume}"
+                />
 
-            <suki:GlassCard Grid.Row="0"
-                            Grid.Column="0"
-                            Margin="15,10,10,15">
-                <suki:GroupBox>
-                    <suki:GroupBox.Header>
-                        <Grid ColumnDefinitions="*,Auto"
-                              RowDefinitions="Auto">
-                            <WrapPanel Grid.Column="0"
-                                       ItemSpacing="5"
-                                       LineSpacing="5"
-                                       Orientation="Horizontal">
+                <Button
+                  Padding="10,8"
+                  Command="{Binding PauseSelectedServiceCommand}"
+                  Content="{icon:MaterialIconExt Kind=Pause}"
+                  IsEnabled="{Binding SelectedService.IsEnabled, FallbackValue={x:False}}"
+                  IsVisible="{Binding SelectedService.IsEnabled, FallbackValue={x:False}}"
+                  ToolTip.Tip="{localization:Translate Ui.Pause}"
+                />
 
-                                <icon:MaterialIconText Kind="Radar"
-                                                       Text="{localization:Translate Ui.Pings}"
-                                                       Classes="SubTitle" />
+                <Button
+                  Padding="10,8"
+                  Content="{icon:MaterialIconExt Kind=Export}"
+                  IsEnabled="{Binding SelectedService.Pings.Count, FallbackValue={x:False}}"
+                  ToolTip.Tip="{localization:Translate Ui.ExportPings}"
+                >
+                  <Button.Flyout>
+                    <MenuFlyout>
+                      <MenuItem
+                        Command="{Binding ExportCurrentPingsToCsvCommand}"
+                        Header="{localization:Translate Ui.ExportToCSV}"
+                        Icon="{icon:MaterialIconExt Kind=FileCsvOutline}"
+                      />
+                      <MenuItem
+                        Command="{Binding ExportCurrentPingsToTabularCommand}"
+                        Header="{localization:Translate Ui.ExportToTSV}"
+                        Icon="{icon:MaterialIconExt Kind=TableLarge}"
+                      />
+                      <MenuItem
+                        Command="{Binding ExportCurrentPingsToJsonCommand}"
+                        Header="{localization:Translate Ui.ExportToJSON}"
+                        Icon="{icon:MaterialIconExt Kind=CodeJson}"
+                      />
+                    </MenuFlyout>
+                  </Button.Flyout>
+                </Button>
+              </WrapPanel>
+            </Grid>
+          </suki:GroupBox.Header>
+          <Panel>
+            <DataGrid
+              Name="PingRepliesGrid"
+              CanUserReorderColumns="True"
+              CanUserResizeColumns="True"
+              CanUserSortColumns="True"
+              ClipboardCopyMode="IncludeHeader"
+              HeadersVisibility="All"
+              IsReadOnly="True"
+              ItemsSource="{Binding SelectedServicePingReplies, FallbackValue={x:Null}}"
+            >
+              <DataGrid.Styles>
+                <Style Selector="DataGridRow">
+                  <Setter Property="Header" Value="{Binding $self.Index}" />
+                </Style>
+              </DataGrid.Styles>
+              <DataGrid.Columns>
+                <DataGridTextColumn
+                  Binding="{Binding IpAddressStr, Mode=OneWay}"
+                  Header="{localization:Translate Ui.ReplyIPAddress}"
+                />
+                <DataGridTemplateColumn
+                  CellStyleClasses="center"
+                  Header="{localization:Translate Ui.Time}"
+                  IsReadOnly="True"
+                  SortMemberPath="Time"
+                >
+                  <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                      <Panel>
+                        <TextBlock
+                          IsVisible="{Binding IsSucceeded}"
+                          Text="{Binding Time, StringFormat='{}{0:#,#0.##}ms', Mode=OneWay}"
+                        />
+                        <TextBlock
+                          Classes="Danger extraBold"
+                          IsVisible="{Binding IsFailed, Mode=OneWay}"
+                          Text="{Binding Time}"
+                        />
+                      </Panel>
+                    </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn
+                  Binding="{Binding Ttl, Mode=OneWay}"
+                  CellStyleClasses="center"
+                  Header="TTL"
+                />
+                <DataGridTextColumn
+                  Binding="{Binding BufferLength, Mode=OneWay}"
+                  CellStyleClasses="center"
+                  Header="{localization:Translate Ui.BufferSize}"
+                />
+                <DataGridTextColumn
+                  Binding="{Binding SentDateTime, Mode=OneWay}"
+                  Header="{localization:Translate Ui.SentOn}"
+                />
+                <DataGridTemplateColumn
+                  CellStyleClasses="center"
+                  ClipboardContentBinding="{Binding Status, Converter={StaticResource LocalizedStatusConverter}, DataType=network:PingableServiceReply}"
+                  Header="{localization:Translate Ui.Status}"
+                  IsReadOnly="True"
+                  CustomSortComparer="{StaticResource LocalizedStatusComparer}"
+                  SortMemberPath="StatusStr"
+                >
+                  <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                      <Panel>
+                        <TextBlock IsVisible="{Binding IsSucceeded, Mode=OneWay}">
+                          <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
+                              <Binding Path="Status" />
+                              <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
+                            </MultiBinding>
+                          </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock
+                          Classes="Danger extraBold"
+                          IsVisible="{Binding IsFailed, Mode=OneWay}"
+                        >
+                          <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
+                              <Binding Path="Status" />
+                              <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
+                            </MultiBinding>
+                          </TextBlock.Text>
+                        </TextBlock>
+                      </Panel>
+                    </DataTemplate>
+                  </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn
+                  Binding="{Binding ErrorMessage, Mode=OneWay}"
+                  Header="{localization:Translate Ui.ErrorMessage}"
+                />
+              </DataGrid.Columns>
+            </DataGrid>
+          </Panel>
+        </suki:GroupBox>
+      </suki:GlassCard>
 
-                                <controls:StatusBadge MinWidth="45"
-                                                      Margin="5,0,0,0"
-                                                      Padding="15,5"
-                                                      VerticalAlignment="Center"
-                                                      Appearance="Information"
-                                                      Content="{Binding SelectedService.SentCount, FallbackValue=0}"
-                                                      IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                                      ToolTip.Tip="{localization:Translate Ui.TotalPings}" />
+      <GridSplitter Grid.Row="0" Grid.Column="1" Margin="0,30" />
 
-                                <controls:StatusBadge MinWidth="45"
-                                                      Padding="15,5"
-                                                      VerticalAlignment="Center"
-                                                      Appearance="Success"
-                                                      IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                                      ToolTip.Tip="{localization:Translate Ui.SucceedPings}">
-                                    <TextBlock>
-                                        <Run
-                                            Text="{Binding SelectedService.SucceedCount, Mode=OneWay, FallbackValue=0}" />
-                                        <Run
-                                            Text="{Binding SelectedService.SucceedPercentage, Mode=OneWay, StringFormat='({0}%)', FallbackValue='(0%)'}" />
-                                    </TextBlock>
-                                </controls:StatusBadge>
+      <suki:GlassCard Grid.Row="0" Grid.Column="2" Margin="10,10,15,15">
+        <suki:GroupBox>
+          <suki:GroupBox.Header>
+            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+              <WrapPanel
+                Grid.Row="0"
+                Grid.Column="0"
+                ItemSpacing="5"
+                LineSpacing="5"
+                VerticalAlignment="Center"
+                Orientation="Horizontal"
+              >
+                <icon:MaterialIconText
+                  Kind="ChartBar"
+                  Text="{localization:Translate Ui.ResponseTime}"
+                  Classes="SubTitle"
+                />
 
-                                <controls:StatusBadge MinWidth="45"
-                                                      Padding="15,5"
-                                                      VerticalAlignment="Center"
-                                                      Appearance="Danger"
-                                                      IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                                      ToolTip.Tip="{localization:Translate Ui.FailedPings}">
-                                    <TextBlock>
-                                        <Run Text="{Binding SelectedService.FailedCount, Mode=OneWay, FallbackValue=0}" />
-                                        <Run
-                                            Text="{Binding SelectedService.FailedPercentage, Mode=OneWay, StringFormat='({0}%)', FallbackValue='(0%)'}" />
-                                    </TextBlock>
-                                </controls:StatusBadge>
-                            </WrapPanel>
+                <Panel
+                  VerticalAlignment="Center"
+                  IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                >
+                  <controls:StatusBadge
+                    MinWidth="45"
+                    Padding="10,4"
+                    Appearance="Success"
+                    IsVisible="{Binding !SelectedService.WasLastPingFailed, FallbackValue=True}"
+                    ToolTip.Tip="{localization:Translate Ui.LastReplyStatus}"
+                  >
+                    <controls:StatusBadge.Content>
+                      <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
+                        <Binding Path="SelectedService.LastStatus" />
+                        <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
+                      </MultiBinding>
+                    </controls:StatusBadge.Content>
+                  </controls:StatusBadge>
+                  <controls:StatusBadge
+                    MinWidth="45"
+                    Padding="10,4"
+                    Appearance="Danger"
+                    IsVisible="{Binding SelectedService.WasLastPingFailed, FallbackValue=False}"
+                    ToolTip.Tip="{localization:Translate Ui.LastReplyStatus}"
+                  >
+                    <controls:StatusBadge.Content>
+                      <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
+                        <Binding Path="SelectedService.LastStatus" />
+                        <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
+                      </MultiBinding>
+                    </controls:StatusBadge.Content>
+                  </controls:StatusBadge>
+                </Panel>
 
-                            <WrapPanel Grid.Column="1"
-                                       HorizontalAlignment="Right"
-                                       IsEnabled="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                       IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                       ItemSpacing="5"
-                                       LineSpacing="5"
-                                       Orientation="Horizontal">
-                                <Button Padding="10,8"
-                                        Command="{Binding ResetServiceStatisticsForSelectedItemCommand}"
-                                        Content="{icon:MaterialIconExt Kind=Eraser}"
-                                        IsEnabled="{Binding SelectedService.Pings.Count, FallbackValue={x:False}}"
-                                        ToolTip.Tip="{localization:Translate Ui.ClearStatistics}" />
+                <TextBlock
+                  Margin="5,0,0,0"
+                  VerticalAlignment="Center"
+                  Foreground="{DynamicResource SukiLowText}"
+                  IsVisible="{Binding PingGraphModel.HasMultiServices}"
+                >
+                  <TextBlock.Text>
+                    <MultiBinding
+                      Converter="{StaticResource LocalizedStringFormatConverter}"
+                      ConverterParameter="Ui.ServicesCount"
+                    >
+                      <Binding Path="PingGraphModel.Services.Length" />
+                      <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
+                    </MultiBinding>
+                  </TextBlock.Text>
+                </TextBlock>
+              </WrapPanel>
 
-                                <Button Padding="10,8"
-                                        Command="{Binding ResumeSelectedServiceCommand}"
-                                        Content="{icon:MaterialIconExt Kind=Play}"
-                                        IsEnabled="{Binding !SelectedService.IsEnabled}"
-                                        IsVisible="{Binding !SelectedService.IsEnabled}"
-                                        ToolTip.Tip="{localization:Translate Ui.Resume}" />
+              <WrapPanel
+                Grid.Column="0"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Margin="0,6,0,0"
+                IsVisible="{Binding PingGraphModel.HasSingleService}"
+                ItemSpacing="5"
+                LineSpacing="5"
+                Orientation="Horizontal"
+              >
+                <controls:StatusBadge
+                  MinWidth="45"
+                  Padding="10,4"
+                  VerticalAlignment="Center"
+                  Appearance="Information"
+                  Content="{Binding PingGraphModel.CurrentTimeText}"
+                  ToolTip.Tip="{localization:Translate Ui.LatestReplyLatencyOrStatus}"
+                />
 
-                                <Button Padding="10,8"
-                                        Command="{Binding PauseSelectedServiceCommand}"
-                                        Content="{icon:MaterialIconExt Kind=Pause}"
-                                        IsEnabled="{Binding SelectedService.IsEnabled, FallbackValue={x:False}}"
-                                        IsVisible="{Binding SelectedService.IsEnabled, FallbackValue={x:False}}"
-                                        ToolTip.Tip="{localization:Translate Ui.Pause}" />
+                <controls:StatusBadge
+                  MinWidth="45"
+                  Padding="10,4"
+                  VerticalAlignment="Center"
+                  Appearance="Success"
+                  Content="{Binding PingGraphModel.MedianTimeText}"
+                  ToolTip.Tip="{localization:Translate Ui.MedianLatencyInTheDisplayedWindow}"
+                />
 
-                                <Button Padding="10,8"
-                                        Content="{icon:MaterialIconExt Kind=Export}"
-                                        IsEnabled="{Binding SelectedService.Pings.Count, FallbackValue={x:False}}"
-                                        ToolTip.Tip="{localization:Translate Ui.ExportPings}">
-                                    <Button.Flyout>
-                                        <MenuFlyout>
-                                            <MenuItem Command="{Binding ExportCurrentPingsToCsvCommand}"
-                                                      Header="{localization:Translate Ui.ExportToCSV}"
-                                                      Icon="{icon:MaterialIconExt Kind=FileCsvOutline}" />
-                                            <MenuItem Command="{Binding ExportCurrentPingsToTabularCommand}"
-                                                      Header="{localization:Translate Ui.ExportToTSV}"
-                                                      Icon="{icon:MaterialIconExt Kind=TableLarge}" />
-                                            <MenuItem Command="{Binding ExportCurrentPingsToJsonCommand}"
-                                                      Header="{localization:Translate Ui.ExportToJSON}"
-                                                      Icon="{icon:MaterialIconExt Kind=CodeJson}" />
-                                        </MenuFlyout>
-                                    </Button.Flyout>
-                                </Button>
-                            </WrapPanel>
-                        </Grid>
+                <controls:StatusBadge
+                  MinWidth="45"
+                  Padding="10,4"
+                  VerticalAlignment="Center"
+                  Appearance="Warning"
+                  Content="{Binding PingGraphModel.P95TimeText}"
+                  ToolTip.Tip="{localization:Translate Ui.95thPercentileLatencyInTheDisplayedWindow}"
+                />
 
+                <controls:StatusBadge
+                  MinWidth="45"
+                  Padding="10,4"
+                  VerticalAlignment="Center"
+                  Appearance="Information"
+                  Content="{Binding PingGraphModel.JitterText}"
+                  ToolTip.Tip="{localization:Translate Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies}"
+                />
 
-                    </suki:GroupBox.Header>
-                    <Panel>
-                        <DataGrid Name="PingRepliesGrid"
-                                  CanUserReorderColumns="True"
-                                  CanUserResizeColumns="True"
-                                  CanUserSortColumns="True"
-                                  ClipboardCopyMode="IncludeHeader"
-                                  HeadersVisibility="All"
-                                  IsReadOnly="True"
-                                  ItemsSource="{Binding SelectedServicePingReplies, FallbackValue={x:Null}}">
-                            <DataGrid.Styles>
-                                <Style Selector="DataGridRow">
-                                    <Setter Property="Header" Value="{Binding $self.Index}" />
-                                </Style>
-                            </DataGrid.Styles>
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding IpAddressStr, Mode=OneWay}"
-                                                    Header="{localization:Translate Ui.ReplyIPAddress}" />
-                                <DataGridTemplateColumn CellStyleClasses="center"
-                                                        Header="{localization:Translate Ui.Time}"
-                                                        IsReadOnly="True"
-                                                        SortMemberPath="Time">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Panel>
-                                                <TextBlock IsVisible="{Binding IsSucceeded}"
-                                                           Text="{Binding Time, StringFormat='{}{0:#,#0.##}ms', Mode=OneWay}" />
-                                                <TextBlock Classes="Danger extraBold"
-                                                           IsVisible="{Binding IsFailed, Mode=OneWay}"
-                                                           Text="{Binding Time}" />
-                                            </Panel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTextColumn Binding="{Binding Ttl, Mode=OneWay}"
-                                                    CellStyleClasses="center"
-                                                    Header="TTL" />
-                                <DataGridTextColumn Binding="{Binding BufferLength, Mode=OneWay}"
-                                                    CellStyleClasses="center"
-                                                    Header="{localization:Translate Ui.BufferSize}" />
-                                <DataGridTextColumn Binding="{Binding SentDateTime, Mode=OneWay}"
-                                                    Header="{localization:Translate Ui.SentOn}" />
-                                <DataGridTemplateColumn CellStyleClasses="center"
-                                                        ClipboardContentBinding="{Binding Status, Converter={StaticResource LocalizedStatusConverter}, DataType=network:PingableServiceReply}"
-                                                        Header="{localization:Translate Ui.Status}"
-                                                        IsReadOnly="True"
-                                                        CustomSortComparer="{StaticResource LocalizedStatusComparer}"
-                                                        SortMemberPath="StatusStr">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Panel>
-                                                <TextBlock IsVisible="{Binding IsSucceeded, Mode=OneWay}">
-                                                    <TextBlock.Text>
-                                                        <MultiBinding
-                                                            Converter="{StaticResource LocalizedStatusConverter}">
-                                                            <Binding Path="Status" />
-                                                            <Binding Source="{x:Static app:App.Localization}"
-                                                                     Path="Culture" />
-                                                        </MultiBinding>
-                                                    </TextBlock.Text>
-                                                </TextBlock>
-                                                <TextBlock Classes="Danger extraBold"
-                                                           IsVisible="{Binding IsFailed, Mode=OneWay}">
-                                                    <TextBlock.Text>
-                                                        <MultiBinding
-                                                            Converter="{StaticResource LocalizedStatusConverter}">
-                                                            <Binding Path="Status" />
-                                                            <Binding Source="{x:Static app:App.Localization}"
-                                                                     Path="Culture" />
-                                                        </MultiBinding>
-                                                    </TextBlock.Text>
-                                                </TextBlock>
-                                            </Panel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTextColumn Binding="{Binding ErrorMessage, Mode=OneWay}"
-                                                    Header="{localization:Translate Ui.ErrorMessage}" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Panel>
-                </suki:GroupBox>
-            </suki:GlassCard>
+                <controls:StatusBadge
+                  MinWidth="45"
+                  Padding="10,4"
+                  VerticalAlignment="Center"
+                  Appearance="Danger"
+                  Content="{Binding PingGraphModel.WindowLossText}"
+                  ToolTip.Tip="{localization:Translate Ui.FailedRepliesInTheDisplayedWindow}"
+                />
+              </WrapPanel>
 
-            <GridSplitter Grid.Row="0"
-                          Grid.Column="1"
-                          Margin="0,30" />
+              <WrapPanel
+                Grid.Row="0"
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Orientation="Horizontal"
+                Height="34"
+                ItemSpacing="5"
+              >
+                <ComboBox
+                  MinWidth="112"
+                  VerticalAlignment="Stretch"
+                  IsVisible="{Binding PingGraphModel.HasService}"
+                  ItemsSource="{Binding PingGraphModel.WindowSizeOptions}"
+                  SelectedItem="{Binding PingGraphModel.SelectedWindowSize}"
+                  ToolTip.Tip="{localization:Translate Ui.RecentRepliesIncludedInTheGraphAndStatistics}"
+                />
 
-            <suki:GlassCard Grid.Row="0"
-                            Grid.Column="2"
-                            Margin="10,10,15,15">
-                <suki:GroupBox>
-                    <suki:GroupBox.Header>
+                <ToggleButton
+                  Padding="10,4"
+                  Command="{Binding PingGraphModel.ToggleServicesEnabledCommand}"
+                  IsChecked="{Binding PingGraphModel.AreAllServicesEnabled, Mode=OneWay}"
+                  IsVisible="{Binding PingGraphModel.HasService}"
+                  ToolTip.Tip="{Binding PingGraphModel.ServicesEnabledActionToolTip}"
+                >
+                  <icon:MaterialIconText
+                    Kind="{Binding PingGraphModel.ServicesEnabledActionIcon}"
+                    Text="{Binding PingGraphModel.ServicesEnabledActionText}"
+                  />
+                </ToggleButton>
 
-                        <Grid ColumnDefinitions="*,Auto"
-                              RowDefinitions="Auto,Auto">
-                            <WrapPanel Grid.Row="0"
-                                       Grid.Column="0"
-                                       ItemSpacing="5"
-                                       LineSpacing="5"
-                                       VerticalAlignment="Center"
-                                       Orientation="Horizontal">
+                <ToggleButton
+                  Padding="10,4"
+                  IsChecked="{Binding PingGraphModel.IsGraphFrozen}"
+                  IsVisible="{Binding PingGraphModel.HasService}"
+                  ToolTip.Tip="{Binding PingGraphModel.FreezeToolTip}"
+                >
+                  <icon:MaterialIconText
+                    Kind="{Binding PingGraphModel.FreezeIcon}"
+                    Text="{Binding PingGraphModel.FreezeActionText}"
+                  />
+                </ToggleButton>
 
-                                <icon:MaterialIconText Kind="ChartBar"
-                                                       Text="{localization:Translate Ui.ResponseTime}"
-                                                       Classes="SubTitle" />
+                <ToggleButton
+                  Padding="10,4"
+                  IsChecked="{Binding PingGraphModel.IsFullScale}"
+                  IsVisible="{Binding PingGraphModel.HasSingleService}"
+                  ToolTip.Tip="{Binding PingGraphModel.ScaleModeToolTip}"
+                >
+                  <icon:MaterialIconText
+                    Kind="ArrowExpandVertical"
+                    Text="{Binding PingGraphModel.ScaleModeText}"
+                  />
+                </ToggleButton>
 
-                                <Panel VerticalAlignment="Center"
-                                       IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}">
-                                    <controls:StatusBadge MinWidth="45"
-                                                          Padding="10,4"
-                                                          Appearance="Success"
-                                                          IsVisible="{Binding !SelectedService.WasLastPingFailed, FallbackValue=True}"
-                                                          ToolTip.Tip="{localization:Translate Ui.LastReplyStatus}">
-                                        <controls:StatusBadge.Content>
-                                            <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
-                                                <Binding Path="SelectedService.LastStatus" />
-                                                <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
-                                            </MultiBinding>
-                                        </controls:StatusBadge.Content>
-                                    </controls:StatusBadge>
-                                    <controls:StatusBadge MinWidth="45"
-                                                          Padding="10,4"
-                                                          Appearance="Danger"
-                                                          IsVisible="{Binding SelectedService.WasLastPingFailed, FallbackValue=False}"
-                                                          ToolTip.Tip="{localization:Translate Ui.LastReplyStatus}">
-                                        <controls:StatusBadge.Content>
-                                            <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
-                                                <Binding Path="SelectedService.LastStatus" />
-                                                <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
-                                            </MultiBinding>
-                                        </controls:StatusBadge.Content>
-                                    </controls:StatusBadge>
-                                </Panel>
+                <Button
+                  Padding="10,4"
+                  Command="{Binding OpenGraphInNewWindowCommand}"
+                  Content="{icon:MaterialIconExt Kind=ChartBoxOutline}"
+                  IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
+                  HotKey="{OnPlatform macOS='Meta+Shift+G', Default='Ctrl+Shift+G'}"
+                >
+                  <ToolTip.Tip>
+                    <MultiBinding StringFormat="{}{0} ({1})">
+                      <localization:TranslateExtension Key="Ui.OpenGraphInANewWindow" />
+                      <Binding Path="$self.HotKey" />
+                    </MultiBinding>
+                  </ToolTip.Tip>
+                </Button>
+              </WrapPanel>
+            </Grid>
+          </suki:GroupBox.Header>
 
-                                <TextBlock Margin="5,0,0,0"
-                                           VerticalAlignment="Center"
-                                           Foreground="{DynamicResource SukiLowText}"
-                                           IsVisible="{Binding PingGraphModel.HasMultiServices}">
-                                    <TextBlock.Text>
-                                        <MultiBinding Converter="{StaticResource LocalizedStringFormatConverter}"
-                                                      ConverterParameter="Ui.ServicesCount">
-                                            <Binding Path="PingGraphModel.Services.Length" />
-                                            <Binding Source="{x:Static app:App.Localization}" Path="Culture" />
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                            </WrapPanel>
-
-                            <WrapPanel Grid.Column="0" Grid.Row="1"
-                                       Grid.ColumnSpan="2"
-                                       Margin="0,6,0,0"
-                                       IsVisible="{Binding PingGraphModel.HasSingleService}"
-                                       ItemSpacing="5"
-                                       LineSpacing="5"
-                                       Orientation="Horizontal">
-                                <controls:StatusBadge MinWidth="45"
-                                                      Padding="10,4"
-                                                      VerticalAlignment="Center"
-                                                      Appearance="Information"
-                                                      Content="{Binding PingGraphModel.CurrentTimeText}"
-                                                      ToolTip.Tip="{localization:Translate Ui.LatestReplyLatencyOrStatus}" />
-
-                                <controls:StatusBadge MinWidth="45"
-                                                      Padding="10,4"
-                                                      VerticalAlignment="Center"
-                                                      Appearance="Success"
-                                                      Content="{Binding PingGraphModel.MedianTimeText}"
-                                                      ToolTip.Tip="{localization:Translate Ui.MedianLatencyInTheDisplayedWindow}" />
-
-                                <controls:StatusBadge MinWidth="45"
-                                                      Padding="10,4"
-                                                      VerticalAlignment="Center"
-                                                      Appearance="Warning"
-                                                      Content="{Binding PingGraphModel.P95TimeText}"
-                                                      ToolTip.Tip="{localization:Translate Ui.95thPercentileLatencyInTheDisplayedWindow}" />
-
-                                <controls:StatusBadge MinWidth="45"
-                                                      Padding="10,4"
-                                                      VerticalAlignment="Center"
-                                                      Appearance="Information"
-                                                      Content="{Binding PingGraphModel.JitterText}"
-                                                      ToolTip.Tip="{localization:Translate Ui.MeanLatencyChangeBetweenAdjacentSuccessfulReplies}" />
-
-                                <controls:StatusBadge MinWidth="45"
-                                                      Padding="10,4"
-                                                      VerticalAlignment="Center"
-                                                      Appearance="Danger"
-                                                      Content="{Binding PingGraphModel.WindowLossText}"
-                                                      ToolTip.Tip="{localization:Translate Ui.FailedRepliesInTheDisplayedWindow}" />
-                            </WrapPanel>
-
-                            <WrapPanel Grid.Row="0"
-                                       Grid.Column="1"
-                                       HorizontalAlignment="Right"
-                                       VerticalAlignment="Center"
-                                       Orientation="Horizontal"
-                                       Height="34"
-                                       ItemSpacing="5">
-                                <ComboBox MinWidth="112"
-                                          VerticalAlignment="Stretch"
-                                          IsVisible="{Binding PingGraphModel.HasService}"
-                                          ItemsSource="{Binding PingGraphModel.WindowSizeOptions}"
-                                          SelectedItem="{Binding PingGraphModel.SelectedWindowSize}"
-                                          ToolTip.Tip="{localization:Translate Ui.RecentRepliesIncludedInTheGraphAndStatistics}" />
-
-                                <ToggleButton Padding="10,4"
-                                              Command="{Binding PingGraphModel.ToggleServicesEnabledCommand}"
-                                              IsChecked="{Binding PingGraphModel.AreAllServicesEnabled, Mode=OneWay}"
-                                              IsVisible="{Binding PingGraphModel.HasService}"
-                                              ToolTip.Tip="{Binding PingGraphModel.ServicesEnabledActionToolTip}">
-                                    <icon:MaterialIconText Kind="{Binding PingGraphModel.ServicesEnabledActionIcon}"
-                                                           Text="{Binding PingGraphModel.ServicesEnabledActionText}" />
-                                </ToggleButton>
-
-                                <ToggleButton Padding="10,4"
-                                              IsChecked="{Binding PingGraphModel.IsGraphFrozen}"
-                                              IsVisible="{Binding PingGraphModel.HasService}"
-                                              ToolTip.Tip="{Binding PingGraphModel.FreezeToolTip}">
-                                    <icon:MaterialIconText Kind="{Binding PingGraphModel.FreezeIcon}"
-                                                           Text="{Binding PingGraphModel.FreezeActionText}" />
-                                </ToggleButton>
-
-                                <ToggleButton Padding="10,4"
-                                              IsChecked="{Binding PingGraphModel.IsFullScale}"
-                                              IsVisible="{Binding PingGraphModel.HasSingleService}"
-                                              ToolTip.Tip="{Binding PingGraphModel.ScaleModeToolTip}">
-                                    <icon:MaterialIconText Kind="ArrowExpandVertical"
-                                                           Text="{Binding PingGraphModel.ScaleModeText}" />
-                                </ToggleButton>
-
-                                <Button Padding="10,4"
-                                        Command="{Binding OpenGraphInNewWindowCommand}"
-                                        Content="{icon:MaterialIconExt Kind=ChartBoxOutline}"
-                                        IsVisible="{Binding SelectedService, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                        HotKey="{OnPlatform macOS='Meta+Shift+G', Default='Ctrl+Shift+G'}">
-                                    <ToolTip.Tip>
-                                        <MultiBinding StringFormat="{}{0} ({1})">
-                                            <localization:TranslateExtension Key="Ui.OpenGraphInANewWindow" />
-                                            <Binding Path="$self.HotKey" />
-                                        </MultiBinding>
-                                    </ToolTip.Tip>
-                                </Button>
-                            </WrapPanel>
-                        </Grid>
-
-                    </suki:GroupBox.Header>
-
-                    <fragments:PingableServiceGraphFragment DataContext="{Binding PingGraphModel}" />
-
-                </suki:GroupBox>
-            </suki:GlassCard>
-
-        </Grid>
-
+          <fragments:PingableServiceGraphFragment DataContext="{Binding PingGraphModel}" />
+        </suki:GroupBox>
+      </suki:GlassCard>
     </Grid>
-
-
+  </Grid>
 </controls:UserControlBase>

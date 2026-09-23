@@ -14,6 +14,7 @@ public partial class App
     {
         AppSettings.SaveInstance();
         SpeedTestsFile.SaveInstance();
+        NetworkScansFile.SaveInstance();
         PingableServicesFile.SaveInstance();
         PingableServicesFile.SavePingRepliesInstance();
     }

@@ -344,11 +344,14 @@ public partial class AppSettings : RootSettingsFile<AppSettings>
 
     [ObservableProperty] public partial SpeedTestSettings SpeedTest { get; set; } = new();
 
+    [ObservableProperty] public partial NetworkScannerSettings NetworkScanner { get; set; } = new();
+
     [JsonIgnore]
     public override SubSettings[] SubSettingsCollection =>
     [
         PingServices,
         NetworkInterfaces,
-        SpeedTest
+        SpeedTest,
+        NetworkScanner
     ];
 }

@@ -1345,11 +1345,8 @@ IP-адрес: {0}
     <data name="Navigation.NetworkScanner" xml:space="preserve">
     <value>Сканер сети</value>
   </data>
-    <data name="NetworkScanner.Dependency.Title" xml:space="preserve">
-    <value>Зависимость nmap не найдена</value>
-  </data>
     <data name="NetworkScanner.Dependency.Message" xml:space="preserve">
-    <value>Для этого модуля требуется nmap, но он не найден в системе.</value>
+    <value>nmap не найден. Используется встроенный сканер: он находит узлы и открытые TCP-порты, без версий служб, UDP и определения ОС.</value>
   </data>
     <data name="NetworkScanner.Scan" xml:space="preserve">
     <value>Сканировать</value>
@@ -1392,5 +1389,154 @@ IP-адрес: {0}
   </data>
     <data name="Ui.ScannerVersion" xml:space="preserve">
     <value>Версия</value>
+  </data>
+    <data name="NetworkScanner.RefreshTargets" xml:space="preserve">
+    <value>Обновить обнаруженные сети</value>
+  </data>
+    <data name="NetworkScanner.Options" xml:space="preserve">
+    <value>Параметры сканирования</value>
+  </data>
+    <data name="NetworkScanner.Options.UseNmap" xml:space="preserve">
+    <value>Использовать nmap, если доступен</value>
+  </data>
+    <data name="NetworkScanner.Options.ResolveDns" xml:space="preserve">
+    <value>Разрешать имена узлов</value>
+  </data>
+    <data name="NetworkScanner.Options.ServiceDetection" xml:space="preserve">
+    <value>Определять версии служб</value>
+  </data>
+    <data name="NetworkScanner.Options.Elevated" xml:space="preserve">
+    <value>Запускать с правами администратора</value>
+  </data>
+    <data name="NetworkScanner.Options.Elevated.Tip" xml:space="preserve">
+    <value>Сканирование с повышенными правами сообщает MAC-адреса и производителей и включает параметры UDP и ОС. При запуске запрашивается авторизация; в macOS вывод приходит только после завершения сканирования.</value>
+  </data>
+    <data name="NetworkScanner.Options.UdpScan" xml:space="preserve">
+    <value>Сканировать UDP-порты</value>
+  </data>
+    <data name="NetworkScanner.Options.OsDetection" xml:space="preserve">
+    <value>Определять операционную систему</value>
+  </data>
+    <data name="NetworkScanner.Options.NotifyChanges" xml:space="preserve">
+    <value>Уведомлять об изменениях в сети</value>
+  </data>
+    <data name="NetworkScanner.Options.PortRange" xml:space="preserve">
+    <value>Диапазон портов:</value>
+  </data>
+    <data name="NetworkScanner.Options.CustomPorts" xml:space="preserve">
+    <value>Пользовательские порты:</value>
+  </data>
+    <data name="NetworkScanner.Options.Timing" xml:space="preserve">
+    <value>Шаблон таймингов (0-5):</value>
+  </data>
+    <data name="NetworkScanner.Options.HostTimeout" xml:space="preserve">
+    <value>Тайм-аут узла:</value>
+  </data>
+    <data name="NetworkScanner.Options.ProbeTimeout" xml:space="preserve">
+    <value>Тайм-аут пробы:</value>
+  </data>
+    <data name="NetworkScanner.Options.MaxHosts" xml:space="preserve">
+    <value>Максимум узлов за сканирование:</value>
+  </data>
+    <data name="NetworkScanner.Options.AutoRescan" xml:space="preserve">
+    <value>Автоматическое пересканирование:</value>
+  </data>
+    <data name="NetworkScanner.ScanAllPorts" xml:space="preserve">
+    <value>Сканировать порты всех узлов</value>
+  </data>
+    <data name="NetworkScanner.AddPortsToMonitoring" xml:space="preserve">
+    <value>Добавить открытые порты в мониторинг</value>
+  </data>
+    <data name="NetworkScanner.Export.Json" xml:space="preserve">
+    <value>Экспортировать результаты в JSON</value>
+  </data>
+    <data name="NetworkScanner.Export.Csv" xml:space="preserve">
+    <value>Экспортировать результаты в CSV</value>
+  </data>
+    <data name="NetworkScanner.Export.RawXml" xml:space="preserve">
+    <value>Сохранить исходный отчет nmap</value>
+  </data>
+    <data name="NetworkScanner.ClearResults" xml:space="preserve">
+    <value>Очистить результаты</value>
+  </data>
+    <data name="NetworkScanner.Filter" xml:space="preserve">
+    <value>Фильтр узлов, портов и служб</value>
+  </data>
+    <data name="NetworkScanner.CopyAddress" xml:space="preserve">
+    <value>Копировать адрес</value>
+  </data>
+    <data name="NetworkScanner.CopyMacAddress" xml:space="preserve">
+    <value>Копировать MAC-адрес</value>
+  </data>
+    <data name="NetworkScanner.OpenInBrowser" xml:space="preserve">
+    <value>Открыть в браузере</value>
+  </data>
+    <data name="NetworkScanner.RescanHost" xml:space="preserve">
+    <value>Пересканировать порты</value>
+  </data>
+    <data name="NetworkScanner.RemoveHost" xml:space="preserve">
+    <value>Удалить из списка</value>
+  </data>
+    <data name="NetworkScanner.Progress" xml:space="preserve">
+    <value>{0} - {1}%</value>
+  </data>
+    <data name="NetworkScanner.Summary" xml:space="preserve">
+    <value>{0} узлов - {1} открытых портов - {2} показано</value>
+  </data>
+    <data name="NetworkScanner.LastScan" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
+    <data name="NetworkScanner.Engine.Nmap" xml:space="preserve">
+    <value>nmap</value>
+  </data>
+    <data name="NetworkScanner.Engine.Builtin" xml:space="preserve">
+    <value>Встроенный сканер</value>
+  </data>
+    <data name="NetworkScanner.Changes.Title" xml:space="preserve">
+    <value>Изменения в сети</value>
+  </data>
+    <data name="NetworkScanner.Changes.Message" xml:space="preserve">
+    <value>{0} новых, {1} исчезло, {2} с изменениями портов</value>
+  </data>
+    <data name="NetworkScanner.Change.New" xml:space="preserve">
+    <value>Новый</value>
+  </data>
+    <data name="NetworkScanner.Change.PortsChanged" xml:space="preserve">
+    <value>Порты изменились</value>
+  </data>
+    <data name="NetworkScanner.Change.Gone" xml:space="preserve">
+    <value>Исчез</value>
+  </data>
+    <data name="Ui.ScannerChange" xml:space="preserve">
+    <value>Изменение</value>
+  </data>
+    <data name="Ui.ScannerOperatingSystem" xml:space="preserve">
+    <value>Операционная система</value>
+  </data>
+    <data name="Unit.SecondsShort" xml:space="preserve">
+    <value>с</value>
+  </data>
+    <data name="Unit.MillisecondsShort" xml:space="preserve">
+    <value>мс</value>
+  </data>
+    <data name="Unit.MinutesShort" xml:space="preserve">
+    <value>мин</value>
+  </data>
+    <data name="NetworkScanner.RemoveSelected.Title" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить выбранные узлы ({0})?</value>
+  </data>
+    <data name="NetworkScanner.RemoveSelected.Message" xml:space="preserve">
+    <value>Вы собираетесь удалить {0} выбранных узлов из результатов сканирования.
+Вы уверены, что хотите продолжить?</value>
+  </data>
+    <data name="NetworkScanner.ClearResults.Title" xml:space="preserve">
+    <value>Вы уверены, что хотите очистить все просканированные узлы ({0})?</value>
+  </data>
+    <data name="NetworkScanner.ClearResults.Message" xml:space="preserve">
+    <value>Вы собираетесь удалить все {0} узлов из результатов сканирования.
+Вы уверены, что хотите продолжить?</value>
+  </data>
+    <data name="NetworkScanner.ProgressEta" xml:space="preserve">
+    <value>{0} - {1}% - осталось {2}</value>
   </data>
 </root>

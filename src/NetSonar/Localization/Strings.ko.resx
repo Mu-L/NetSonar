@@ -1345,11 +1345,8 @@ IP 주소: {0}
     <data name="Navigation.NetworkScanner" xml:space="preserve">
     <value>네트워크 스캐너</value>
   </data>
-    <data name="NetworkScanner.Dependency.Title" xml:space="preserve">
-    <value>nmap 종속성을 찾을 수 없음</value>
-  </data>
     <data name="NetworkScanner.Dependency.Message" xml:space="preserve">
-    <value>이 모듈에는 nmap이 필요하지만 이 시스템에서 찾을 수 없습니다.</value>
+    <value>nmap을 찾을 수 없습니다. 내장 스캐너를 사용합니다. 호스트와 열린 TCP 포트를 찾지만 서비스 버전, UDP, OS 탐지는 지원하지 않습니다.</value>
   </data>
     <data name="NetworkScanner.Scan" xml:space="preserve">
     <value>검사</value>
@@ -1392,5 +1389,154 @@ IP 주소: {0}
   </data>
     <data name="Ui.ScannerVersion" xml:space="preserve">
     <value>버전</value>
+  </data>
+    <data name="NetworkScanner.RefreshTargets" xml:space="preserve">
+    <value>감지된 네트워크 새로 고침</value>
+  </data>
+    <data name="NetworkScanner.Options" xml:space="preserve">
+    <value>스캔 옵션</value>
+  </data>
+    <data name="NetworkScanner.Options.UseNmap" xml:space="preserve">
+    <value>가능하면 nmap 사용</value>
+  </data>
+    <data name="NetworkScanner.Options.ResolveDns" xml:space="preserve">
+    <value>호스트 이름 확인</value>
+  </data>
+    <data name="NetworkScanner.Options.ServiceDetection" xml:space="preserve">
+    <value>서비스 버전 탐지</value>
+  </data>
+    <data name="NetworkScanner.Options.Elevated" xml:space="preserve">
+    <value>관리자 권한으로 실행</value>
+  </data>
+    <data name="NetworkScanner.Options.Elevated.Tip" xml:space="preserve">
+    <value>관리자 권한 스캔은 MAC 주소와 제조사를 보고하고 UDP 및 OS 옵션을 사용할 수 있게 합니다. 시작할 때 권한을 요청하며, macOS에서는 스캔이 끝난 뒤에만 출력이 도착합니다.</value>
+  </data>
+    <data name="NetworkScanner.Options.UdpScan" xml:space="preserve">
+    <value>UDP 포트 스캔</value>
+  </data>
+    <data name="NetworkScanner.Options.OsDetection" xml:space="preserve">
+    <value>운영 체제 탐지</value>
+  </data>
+    <data name="NetworkScanner.Options.NotifyChanges" xml:space="preserve">
+    <value>네트워크 변경 알림</value>
+  </data>
+    <data name="NetworkScanner.Options.PortRange" xml:space="preserve">
+    <value>포트 범위:</value>
+  </data>
+    <data name="NetworkScanner.Options.CustomPorts" xml:space="preserve">
+    <value>사용자 지정 포트:</value>
+  </data>
+    <data name="NetworkScanner.Options.Timing" xml:space="preserve">
+    <value>타이밍 템플릿 (0-5):</value>
+  </data>
+    <data name="NetworkScanner.Options.HostTimeout" xml:space="preserve">
+    <value>호스트 제한 시간:</value>
+  </data>
+    <data name="NetworkScanner.Options.ProbeTimeout" xml:space="preserve">
+    <value>프로브 제한 시간:</value>
+  </data>
+    <data name="NetworkScanner.Options.MaxHosts" xml:space="preserve">
+    <value>스캔당 최대 호스트 수:</value>
+  </data>
+    <data name="NetworkScanner.Options.AutoRescan" xml:space="preserve">
+    <value>자동 재스캔:</value>
+  </data>
+    <data name="NetworkScanner.ScanAllPorts" xml:space="preserve">
+    <value>모든 호스트의 포트 스캔</value>
+  </data>
+    <data name="NetworkScanner.AddPortsToMonitoring" xml:space="preserve">
+    <value>열린 포트를 모니터링에 추가</value>
+  </data>
+    <data name="NetworkScanner.Export.Json" xml:space="preserve">
+    <value>결과를 JSON으로 내보내기</value>
+  </data>
+    <data name="NetworkScanner.Export.Csv" xml:space="preserve">
+    <value>결과를 CSV로 내보내기</value>
+  </data>
+    <data name="NetworkScanner.Export.RawXml" xml:space="preserve">
+    <value>원본 nmap 보고서 저장</value>
+  </data>
+    <data name="NetworkScanner.ClearResults" xml:space="preserve">
+    <value>결과 지우기</value>
+  </data>
+    <data name="NetworkScanner.Filter" xml:space="preserve">
+    <value>호스트, 포트, 서비스 필터</value>
+  </data>
+    <data name="NetworkScanner.CopyAddress" xml:space="preserve">
+    <value>주소 복사</value>
+  </data>
+    <data name="NetworkScanner.CopyMacAddress" xml:space="preserve">
+    <value>MAC 주소 복사</value>
+  </data>
+    <data name="NetworkScanner.OpenInBrowser" xml:space="preserve">
+    <value>브라우저에서 열기</value>
+  </data>
+    <data name="NetworkScanner.RescanHost" xml:space="preserve">
+    <value>포트 다시 스캔</value>
+  </data>
+    <data name="NetworkScanner.RemoveHost" xml:space="preserve">
+    <value>목록에서 제거</value>
+  </data>
+    <data name="NetworkScanner.Progress" xml:space="preserve">
+    <value>{0} - {1}%</value>
+  </data>
+    <data name="NetworkScanner.Summary" xml:space="preserve">
+    <value>호스트 {0}개 - 열린 포트 {1}개 - {2}개 표시</value>
+  </data>
+    <data name="NetworkScanner.LastScan" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
+    <data name="NetworkScanner.Engine.Nmap" xml:space="preserve">
+    <value>nmap</value>
+  </data>
+    <data name="NetworkScanner.Engine.Builtin" xml:space="preserve">
+    <value>내장 스캐너</value>
+  </data>
+    <data name="NetworkScanner.Changes.Title" xml:space="preserve">
+    <value>네트워크 변경</value>
+  </data>
+    <data name="NetworkScanner.Changes.Message" xml:space="preserve">
+    <value>새로 {0}개, 사라짐 {1}개, 포트 변경 {2}개</value>
+  </data>
+    <data name="NetworkScanner.Change.New" xml:space="preserve">
+    <value>신규</value>
+  </data>
+    <data name="NetworkScanner.Change.PortsChanged" xml:space="preserve">
+    <value>포트 변경</value>
+  </data>
+    <data name="NetworkScanner.Change.Gone" xml:space="preserve">
+    <value>사라짐</value>
+  </data>
+    <data name="Ui.ScannerChange" xml:space="preserve">
+    <value>변경</value>
+  </data>
+    <data name="Ui.ScannerOperatingSystem" xml:space="preserve">
+    <value>운영 체제</value>
+  </data>
+    <data name="Unit.SecondsShort" xml:space="preserve">
+    <value>초</value>
+  </data>
+    <data name="Unit.MillisecondsShort" xml:space="preserve">
+    <value>밀리초</value>
+  </data>
+    <data name="Unit.MinutesShort" xml:space="preserve">
+    <value>분</value>
+  </data>
+    <data name="NetworkScanner.RemoveSelected.Title" xml:space="preserve">
+    <value>선택한 {0}개의 호스트를 제거하시겠습니까?</value>
+  </data>
+    <data name="NetworkScanner.RemoveSelected.Message" xml:space="preserve">
+    <value>스캔 결과에서 선택한 {0}개의 호스트를 제거하려고 합니다.
+계속하시겠습니까?</value>
+  </data>
+    <data name="NetworkScanner.ClearResults.Title" xml:space="preserve">
+    <value>스캔한 {0}개의 호스트를 모두 지우시겠습니까?</value>
+  </data>
+    <data name="NetworkScanner.ClearResults.Message" xml:space="preserve">
+    <value>스캔 결과에서 모든 {0}개의 호스트를 지우려고 합니다.
+계속하시겠습니까?</value>
+  </data>
+    <data name="NetworkScanner.ProgressEta" xml:space="preserve">
+    <value>{0} - {1}% - 남은 시간 {2}</value>
   </data>
 </root>

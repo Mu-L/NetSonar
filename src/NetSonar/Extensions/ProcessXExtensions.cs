@@ -4,8 +4,11 @@ using NetSonar.Avalonia.SystemOS;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using StageKit.Primitives.Extensions;
 using StageKit.Primitives.System;
 using ZLinq;
 using ZLogger;
@@ -34,6 +37,107 @@ public record ProcessXToast
 public static class ProcessXExtensions
 {
     private const string GsudoPath = @".\binaries\gsudo\gsudo.exe";
+
+    /// <summary>
+    /// The bundled gsudo executable, resolved against the application directory so it does not depend on the
+    /// current working directory.
+    /// </summary>
+    public static string GsudoExecutablePath { get; } =
+        Path.Combine(AppContext.BaseDirectory, "binaries", "gsudo", "gsudo.exe");
+
+    /// <summary>
+    /// Builds the start information that runs a program, optionally through the platform elevation helper, while
+    /// keeping its standard output and error capturable.
+    /// </summary>
+    /// <param name="executable">The executable path.</param>
+    /// <param name="arguments">The arguments, passed as a list so no shell quoting is required.</param>
+    /// <param name="requireElevation">
+    /// <see langword="true"/> to request administrator privileges. Ignored when the process is already privileged.
+    /// </param>
+    /// <param name="prompt">The reason shown on the macOS authorization prompt.</param>
+    /// <returns>The start information to hand to <see cref="ProcessX"/>.</returns>
+    /// <remarks>
+    /// Windows uses the bundled gsudo and Linux uses <c>pkexec</c>; both relay the child output to the redirected
+    /// pipes, so the output stays readable and streamable. macOS uses <c>osascript</c>, which only returns the
+    /// command output once the command completes, so an elevated macOS run produces no intermediate output.
+    /// </remarks>
+    public static ProcessStartInfo CreateStartInfo(
+        string executable,
+        IEnumerable<string> arguments,
+        bool requireElevation = false,
+        string? prompt = null)
+    {
+        var argumentList = arguments as IReadOnlyList<string> ?? arguments.AsValueEnumerable().ToArray();
+
+        if (requireElevation && Environment.IsPrivilegedProcess) requireElevation = false;
+
+        var startInfo = new ProcessStartInfo
+        {
+            UseShellExecute = false,
+            CreateNoWindow = true,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true
+        };
+
+        if (!requireElevation)
+        {
+            startInfo.FileName = executable;
+            foreach (var argument in argumentList) startInfo.ArgumentList.Add(argument);
+            return startInfo;
+        }
+
+        if (OperatingSystem.IsWindows())
+        {
+            startInfo.FileName = GsudoExecutablePath;
+            startInfo.ArgumentList.Add(executable);
+            foreach (var argument in argumentList) startInfo.ArgumentList.Add(argument);
+            return startInfo;
+        }
+
+        if (OperatingSystem.IsMacOS())
+        {
+            var command = BuildShellCommand(executable, argumentList);
+            startInfo.FileName = "osascript";
+            startInfo.ArgumentList.Add("-e");
+            startInfo.ArgumentList.Add(
+                $"do shell script \"{EscapeAppleScript(command)}\" with prompt \"{EscapeAppleScript(prompt ?? App.Software)}\" with administrator privileges");
+            return startInfo;
+        }
+
+        startInfo.FileName = "pkexec";
+        startInfo.ArgumentList.Add(executable);
+        foreach (var argument in argumentList) startInfo.ArgumentList.Add(argument);
+        return startInfo;
+    }
+
+    /// <summary>
+    /// Returns true when the platform can elevate a process whose output is captured.
+    /// </summary>
+    /// <returns><see langword="true"/> when an elevation helper is available.</returns>
+    public static bool CanElevate()
+    {
+        if (Environment.IsPrivilegedProcess) return true;
+        if (OperatingSystem.IsWindows()) return File.Exists(GsudoExecutablePath);
+        if (OperatingSystem.IsMacOS()) return true;
+        return HostSystem.TryFindExecutable("pkexec", out _);
+    }
+
+    private static string BuildShellCommand(string executable, IReadOnlyList<string> arguments)
+    {
+        var builder = new StringBuilder(executable.QuoteShell());
+        foreach (var argument in arguments)
+        {
+            builder.Append(' ').Append(argument.QuoteShell());
+        }
+
+        return builder.ToString();
+    }
+
+    private static string EscapeAppleScript(string value)
+    {
+        return value.Replace("\\", "\\\\", StringComparison.Ordinal)
+            .Replace("\"", "\\\"", StringComparison.Ordinal);
+    }
 
     public static Task<bool> ExecuteHandled(string command, ProcessXToast toast, bool requireAdminRights = false)
     {

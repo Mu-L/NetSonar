@@ -1345,11 +1345,8 @@ IP 地址：{0}
     <data name="Navigation.NetworkScanner" xml:space="preserve">
     <value>网络扫描器</value>
   </data>
-    <data name="NetworkScanner.Dependency.Title" xml:space="preserve">
-    <value>未找到 nmap 依赖项</value>
-  </data>
     <data name="NetworkScanner.Dependency.Message" xml:space="preserve">
-    <value>此模块需要 nmap，但系统中未找到它。</value>
+    <value>未找到 nmap。将使用内置扫描器：它可以发现主机和开放的 TCP 端口，但不支持服务版本、UDP 和操作系统检测。</value>
   </data>
     <data name="NetworkScanner.Scan" xml:space="preserve">
     <value>扫描</value>
@@ -1392,5 +1389,154 @@ IP 地址：{0}
   </data>
     <data name="Ui.ScannerVersion" xml:space="preserve">
     <value>版本</value>
+  </data>
+    <data name="NetworkScanner.RefreshTargets" xml:space="preserve">
+    <value>刷新检测到的网络</value>
+  </data>
+    <data name="NetworkScanner.Options" xml:space="preserve">
+    <value>扫描选项</value>
+  </data>
+    <data name="NetworkScanner.Options.UseNmap" xml:space="preserve">
+    <value>可用时使用 nmap</value>
+  </data>
+    <data name="NetworkScanner.Options.ResolveDns" xml:space="preserve">
+    <value>解析主机名</value>
+  </data>
+    <data name="NetworkScanner.Options.ServiceDetection" xml:space="preserve">
+    <value>检测服务版本</value>
+  </data>
+    <data name="NetworkScanner.Options.Elevated" xml:space="preserve">
+    <value>以管理员权限运行</value>
+  </data>
+    <data name="NetworkScanner.Options.Elevated.Tip" xml:space="preserve">
+    <value>提权扫描会报告 MAC 地址和厂商，并启用 UDP 和操作系统选项。启动时会请求授权；在 macOS 上，其输出只在扫描完成后才返回。</value>
+  </data>
+    <data name="NetworkScanner.Options.UdpScan" xml:space="preserve">
+    <value>扫描 UDP 端口</value>
+  </data>
+    <data name="NetworkScanner.Options.OsDetection" xml:space="preserve">
+    <value>检测操作系统</value>
+  </data>
+    <data name="NetworkScanner.Options.NotifyChanges" xml:space="preserve">
+    <value>通知网络变化</value>
+  </data>
+    <data name="NetworkScanner.Options.PortRange" xml:space="preserve">
+    <value>端口范围：</value>
+  </data>
+    <data name="NetworkScanner.Options.CustomPorts" xml:space="preserve">
+    <value>自定义端口：</value>
+  </data>
+    <data name="NetworkScanner.Options.Timing" xml:space="preserve">
+    <value>时序模板 (0-5)：</value>
+  </data>
+    <data name="NetworkScanner.Options.HostTimeout" xml:space="preserve">
+    <value>主机超时：</value>
+  </data>
+    <data name="NetworkScanner.Options.ProbeTimeout" xml:space="preserve">
+    <value>探测超时：</value>
+  </data>
+    <data name="NetworkScanner.Options.MaxHosts" xml:space="preserve">
+    <value>每次扫描的最大主机数：</value>
+  </data>
+    <data name="NetworkScanner.Options.AutoRescan" xml:space="preserve">
+    <value>自动重新扫描：</value>
+  </data>
+    <data name="NetworkScanner.ScanAllPorts" xml:space="preserve">
+    <value>扫描所有主机的端口</value>
+  </data>
+    <data name="NetworkScanner.AddPortsToMonitoring" xml:space="preserve">
+    <value>将开放端口加入监控</value>
+  </data>
+    <data name="NetworkScanner.Export.Json" xml:space="preserve">
+    <value>将结果导出为 JSON</value>
+  </data>
+    <data name="NetworkScanner.Export.Csv" xml:space="preserve">
+    <value>将结果导出为 CSV</value>
+  </data>
+    <data name="NetworkScanner.Export.RawXml" xml:space="preserve">
+    <value>保存原始 nmap 报告</value>
+  </data>
+    <data name="NetworkScanner.ClearResults" xml:space="preserve">
+    <value>清除结果</value>
+  </data>
+    <data name="NetworkScanner.Filter" xml:space="preserve">
+    <value>筛选主机、端口和服务</value>
+  </data>
+    <data name="NetworkScanner.CopyAddress" xml:space="preserve">
+    <value>复制地址</value>
+  </data>
+    <data name="NetworkScanner.CopyMacAddress" xml:space="preserve">
+    <value>复制 MAC 地址</value>
+  </data>
+    <data name="NetworkScanner.OpenInBrowser" xml:space="preserve">
+    <value>在浏览器中打开</value>
+  </data>
+    <data name="NetworkScanner.RescanHost" xml:space="preserve">
+    <value>重新扫描端口</value>
+  </data>
+    <data name="NetworkScanner.RemoveHost" xml:space="preserve">
+    <value>从列表中移除</value>
+  </data>
+    <data name="NetworkScanner.Progress" xml:space="preserve">
+    <value>{0} - {1}%</value>
+  </data>
+    <data name="NetworkScanner.Summary" xml:space="preserve">
+    <value>{0} 台主机 - {1} 个开放端口 - 显示 {2} 个</value>
+  </data>
+    <data name="NetworkScanner.LastScan" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
+    <data name="NetworkScanner.Engine.Nmap" xml:space="preserve">
+    <value>nmap</value>
+  </data>
+    <data name="NetworkScanner.Engine.Builtin" xml:space="preserve">
+    <value>内置扫描器</value>
+  </data>
+    <data name="NetworkScanner.Changes.Title" xml:space="preserve">
+    <value>网络变化</value>
+  </data>
+    <data name="NetworkScanner.Changes.Message" xml:space="preserve">
+    <value>新增 {0}，消失 {1}，端口变化 {2}</value>
+  </data>
+    <data name="NetworkScanner.Change.New" xml:space="preserve">
+    <value>新增</value>
+  </data>
+    <data name="NetworkScanner.Change.PortsChanged" xml:space="preserve">
+    <value>端口变化</value>
+  </data>
+    <data name="NetworkScanner.Change.Gone" xml:space="preserve">
+    <value>消失</value>
+  </data>
+    <data name="Ui.ScannerChange" xml:space="preserve">
+    <value>变化</value>
+  </data>
+    <data name="Ui.ScannerOperatingSystem" xml:space="preserve">
+    <value>操作系统</value>
+  </data>
+    <data name="Unit.SecondsShort" xml:space="preserve">
+    <value>秒</value>
+  </data>
+    <data name="Unit.MillisecondsShort" xml:space="preserve">
+    <value>毫秒</value>
+  </data>
+    <data name="Unit.MinutesShort" xml:space="preserve">
+    <value>分钟</value>
+  </data>
+    <data name="NetworkScanner.RemoveSelected.Title" xml:space="preserve">
+    <value>确定要删除选中的 {0} 台主机吗？</value>
+  </data>
+    <data name="NetworkScanner.RemoveSelected.Message" xml:space="preserve">
+    <value>您即将从扫描结果中删除选中的 {0} 台主机。
+确定要继续吗？</value>
+  </data>
+    <data name="NetworkScanner.ClearResults.Title" xml:space="preserve">
+    <value>确定要清除全部 {0} 台已扫描主机吗？</value>
+  </data>
+    <data name="NetworkScanner.ClearResults.Message" xml:space="preserve">
+    <value>您即将从扫描结果中清除全部 {0} 台主机。
+确定要继续吗？</value>
+  </data>
+    <data name="NetworkScanner.ProgressEta" xml:space="preserve">
+    <value>{0} - {1}% - 预计剩余 {2}</value>
   </data>
 </root>

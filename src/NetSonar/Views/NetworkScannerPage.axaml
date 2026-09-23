@@ -9,119 +9,474 @@
   xmlns:viewModels="clr-namespace:NetSonar.Avalonia.ViewModels"
   x:DataType="viewModels:NetworkScannerPageModel"
 >
-  <Grid Margin="15" RowDefinitions="Auto,*" RowSpacing="10">
+  <Grid Margin="15" RowDefinitions="Auto,Auto,*" RowSpacing="10">
     <suki:GlassCard>
-      <suki:GroupBox Header="{Binding DisplayName}">
-        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
-          <ComboBox
-            Grid.Column="0"
-            IsEditable="True"
-            ItemsSource="{Binding TargetsView}"
-            PlaceholderText="192.168.1.0/24"
-            Text="{Binding Target}"
-          />
-          <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="5">
-            <Button
-              Command="{Binding RefreshTargetsCommand}"
-              Content="{icon:MaterialIconExt Kind=Refresh}"
+      <suki:GroupBox>
+        <suki:GroupBox.Header>
+          <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto">
+            <WrapPanel
+              Grid.Row="0"
+              Grid.Column="0"
+              ItemSpacing="10"
+              LineSpacing="5"
+              Orientation="Horizontal"
+            >
+              <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="10">
+                <icon:MaterialIconText
+                  Kind="{Binding Icon}"
+                  Text="{Binding DisplayName}"
+                  Classes="Title"
+                />
+              </StackPanel>
+
+              <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Spacing="5">
+                <Button
+                  MinWidth="45"
+                  Padding="15,5"
+                  VerticalAlignment="Center"
+                  Classes="Information Rounded"
+                  Command="{Binding ClearFiltersCommand}"
+                  Content="{Binding HostsView.Count}"
+                />
+                <Button
+                  MinWidth="45"
+                  Padding="15,5"
+                  VerticalAlignment="Center"
+                  Classes="Success Rounded"
+                  Command="{Binding ClearFiltersCommand}"
+                  Content="{Binding OpenPortCount}"
+                />
+
+                <controls:StatusBadge
+                  MinWidth="45"
+                  Padding="15,5"
+                  VerticalAlignment="Center"
+                  Appearance="Warning"
+                  Content="{Binding FilterHostCount}"
+                />
+              </StackPanel>
+              <TextBox
+                Width="300"
+                VerticalAlignment="Center"
+                suki:TextBoxExtensions.Prefix="{icon:MaterialIconExt Kind=Magnify}"
+                suki:TextBoxExtensions.AddDeleteButton="True"
+                Text="{Binding FilterText, Delay=250}"
+                PlaceholderText="{localization:Translate NetworkScanner.Filter}"
+              />
+            </WrapPanel>
+            <Button Grid.Column="1" Classes="AppIcon">
+              <icon:MaterialIcon Foreground="{DynamicResource SukiText}" Kind="Cog" />
+              <Button.Flyout>
+                <Flyout>
+                  <Panel Width="920">
+                    <Border
+                      Margin="20"
+                      BoxShadow="{DynamicResource SukiPopupShadow}"
+                      CornerRadius="20"
+                    />
+
+                    <Border
+                      Margin="20"
+                      Background="{DynamicResource SukiCardBackground}"
+                      BorderBrush="{DynamicResource SukiLightBorderBrush}"
+                      BorderThickness="1"
+                      ClipToBounds="True"
+                      CornerRadius="15"
+                    >
+                      <Border Padding="15" Background="{DynamicResource PopupGradientBrush}">
+                        <suki:GlassCard Padding="15" CornerRadius="15">
+                          <suki:GroupBox Header="{localization:Translate NetworkScanner.Options}">
+                            <Grid
+                              ColumnDefinitions="Auto,Auto,*"
+                              ColumnSpacing="20"
+                              RowDefinitions="*"
+                              RowSpacing="10"
+                            >
+                              <StackPanel
+                                Grid.Column="0"
+                                Spacing="10"
+                                Orientation="Vertical"
+                                Margin="0,0,10,0"
+                              >
+                                <CheckBox
+                                  Content="{localization:Translate NetworkScanner.Options.UseNmap}"
+                                  IsChecked="{Binding AppSettings.NetworkScanner.UseNmapWhenAvailable}"
+                                  IsEnabled="{Binding IsNmapAvailable}"
+                                />
+                                <CheckBox
+                                  Content="{localization:Translate NetworkScanner.Options.ResolveDns}"
+                                  IsChecked="{Binding AppSettings.NetworkScanner.ResolveDns}"
+                                />
+                                <CheckBox
+                                  Content="{localization:Translate NetworkScanner.Options.ServiceDetection}"
+                                  IsChecked="{Binding AppSettings.NetworkScanner.ServiceDetection}"
+                                />
+                                <CheckBox
+                                  Content="{localization:Translate NetworkScanner.Options.Elevated}"
+                                  IsChecked="{Binding AppSettings.NetworkScanner.ElevatedScan}"
+                                  ToolTip.Tip="{localization:Translate NetworkScanner.Options.Elevated.Tip}"
+                                />
+                                <CheckBox
+                                  Content="{localization:Translate NetworkScanner.Options.UdpScan}"
+                                  IsChecked="{Binding AppSettings.NetworkScanner.UdpScan}"
+                                  IsEnabled="{Binding AppSettings.NetworkScanner.ElevatedScan}"
+                                />
+                                <CheckBox
+                                  Content="{localization:Translate NetworkScanner.Options.OsDetection}"
+                                  IsChecked="{Binding AppSettings.NetworkScanner.OsDetection}"
+                                  IsEnabled="{Binding AppSettings.NetworkScanner.ElevatedScan}"
+                                />
+                                <CheckBox
+                                  Content="{localization:Translate NetworkScanner.Options.NotifyChanges}"
+                                  IsChecked="{Binding AppSettings.NetworkScanner.NotifyChanges}"
+                                />
+
+                                <SelectableTextBlock
+                                  VerticalAlignment="Center"
+                                  Margin="0,10,0,0"
+                                  Classes="small"
+                                  Opacity="0.8"
+                                  TextWrapping="Wrap"
+                                  Text="{Binding NmapVersion}"
+                                />
+                              </StackPanel>
+
+                              <Border
+                                Grid.Column="1"
+                                Background="{DynamicResource SukiControlBorderBrush}"
+                                Width="1"
+                                Margin="0,10"
+                              />
+
+                              <Grid
+                                Grid.Column="2"
+                                RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+                                ColumnDefinitions="Auto,*"
+                                ColumnSpacing="10"
+                                RowSpacing="10"
+                              >
+                                <TextBlock
+                                  Grid.Row="0"
+                                  Grid.Column="0"
+                                  VerticalAlignment="Center"
+                                  Text="{localization:Translate NetworkScanner.Options.PortRange}"
+                                />
+                                <ComboBox
+                                  Grid.Row="0"
+                                  Grid.Column="1"
+                                  Width="220"
+                                  ItemsSource="{Binding AppSettings.NetworkScanner.PortScanRange, Converter={StaticResource EnumToCollectionConverter}, Mode=OneTime}"
+                                  SelectedItem="{Binding AppSettings.NetworkScanner.PortScanRange, Converter={StaticResource FromValueDescriptionToEnumConverter}}"
+                                />
+
+                                <TextBlock
+                                  Grid.Row="1"
+                                  Grid.Column="0"
+                                  VerticalAlignment="Center"
+                                  Text="{localization:Translate NetworkScanner.Options.CustomPorts}"
+                                />
+                                <TextBox
+                                  Grid.Row="1"
+                                  Grid.Column="1"
+                                  Width="220"
+                                  Text="{Binding AppSettings.NetworkScanner.CustomPorts}"
+                                  PlaceholderText="22,80,443,8000-8100"
+                                />
+
+                                <TextBlock
+                                  Grid.Row="2"
+                                  Grid.Column="0"
+                                  VerticalAlignment="Center"
+                                  Text="{localization:Translate NetworkScanner.Options.Timing}"
+                                />
+                                <NumericUpDown
+                                  Grid.Row="2"
+                                  Grid.Column="1"
+                                  Width="220"
+                                  FormatString="0"
+                                  Increment="1"
+                                  Maximum="5"
+                                  Minimum="0"
+                                  Value="{Binding AppSettings.NetworkScanner.TimingTemplate}"
+                                />
+
+                                <TextBlock
+                                  Grid.Row="3"
+                                  Grid.Column="0"
+                                  VerticalAlignment="Center"
+                                  Text="{localization:Translate NetworkScanner.Options.HostTimeout}"
+                                />
+                                <NumericUpDown
+                                  Grid.Row="3"
+                                  Grid.Column="1"
+                                  Width="220"
+                                  FormatString="0"
+                                  Increment="30"
+                                  Maximum="3600"
+                                  Minimum="0"
+                                  suki:NumericUpDownExtensions.Unit="{localization:Translate Unit.SecondsShort}"
+                                  Value="{Binding AppSettings.NetworkScanner.HostTimeoutSeconds}"
+                                />
+
+                                <TextBlock
+                                  Grid.Row="4"
+                                  Grid.Column="0"
+                                  VerticalAlignment="Center"
+                                  Text="{localization:Translate NetworkScanner.Options.ProbeTimeout}"
+                                />
+                                <NumericUpDown
+                                  Grid.Row="4"
+                                  Grid.Column="1"
+                                  Width="220"
+                                  FormatString="0"
+                                  Increment="100"
+                                  Maximum="10000"
+                                  Minimum="100"
+                                  suki:NumericUpDownExtensions.Unit="{localization:Translate Unit.MillisecondsShort}"
+                                  Value="{Binding AppSettings.NetworkScanner.ProbeTimeoutMilliseconds}"
+                                />
+
+                                <TextBlock
+                                  Grid.Row="5"
+                                  Grid.Column="0"
+                                  VerticalAlignment="Center"
+                                  Text="{localization:Translate NetworkScanner.Options.MaxHosts}"
+                                />
+                                <NumericUpDown
+                                  Grid.Row="5"
+                                  Grid.Column="1"
+                                  Width="220"
+                                  FormatString="0"
+                                  Increment="256"
+                                  Maximum="65536"
+                                  Minimum="1"
+                                  suki:NumericUpDownExtensions.Unit="{icon:MaterialIconExt Lan}"
+                                  Value="{Binding AppSettings.NetworkScanner.MaxHostsPerScan}"
+                                />
+                                <TextBlock
+                                  Grid.Row="6"
+                                  Grid.Column="0"
+                                  VerticalAlignment="Center"
+                                  Text="{localization:Translate NetworkScanner.Options.AutoRescan}"
+                                />
+                                <NumericUpDown
+                                  Grid.Row="6"
+                                  Grid.Column="1"
+                                  Width="220"
+                                  FormatString="0"
+                                  Increment="5"
+                                  Maximum="1440"
+                                  Minimum="0"
+                                  suki:NumericUpDownExtensions.Unit="{localization:Translate Unit.MinutesShort}"
+                                  Value="{Binding AppSettings.NetworkScanner.AutoRescanMinutes}"
+                                />
+                              </Grid>
+                            </Grid>
+                          </suki:GroupBox>
+                        </suki:GlassCard>
+                      </Border>
+                    </Border>
+                  </Panel>
+                </Flyout>
+              </Button.Flyout>
+            </Button>
+          </Grid>
+        </suki:GroupBox.Header>
+        <StackPanel Spacing="10">
+          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+            <ComboBox
+              Grid.Column="0"
+              IsEditable="True"
+              ItemsSource="{Binding TargetsView}"
+              PlaceholderText="192.168.1.0/24"
+              Text="{Binding Target}"
             />
-            <Button
-              Command="{Binding ScanNetworkCommand}"
-              IsVisible="{Binding !IsScanning}"
-              Content="{icon:MaterialIconTextExt Kind=Radar, Text={localization:Translate NetworkScanner.Scan}}"
-              Classes="Flat"
-            />
-            <Button
-              Command="{Binding CancelScanCommand}"
-              IsVisible="{Binding IsScanning}"
-              Content="{icon:MaterialIconTextExt Kind=StopCircleOutline, Text={localization:Translate Common.Cancel}}"
-              Classes="Danger"
-            />
-          </StackPanel>
-        </Grid>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="5">
+              <Button
+                Command="{Binding RefreshTargetsCommand}"
+                Content="{icon:MaterialIconExt Kind=Refresh}"
+                ToolTip.Tip="{localization:Translate NetworkScanner.RefreshTargets}"
+              />
+              <Button
+                Classes="Flat"
+                Command="{Binding ScanNetworkCommand}"
+                Content="{icon:MaterialIconTextExt Kind=Radar,
+                                                   Text={localization:Translate NetworkScanner.Scan}}"
+                IsVisible="{Binding !IsScanning}"
+              />
+              <Button
+                Classes="Danger"
+                Command="{Binding CancelScanCommand}"
+                Content="{icon:MaterialIconTextExt Kind=StopCircleOutline,
+                                                   Text={localization:Translate Common.Cancel}}"
+                IsVisible="{Binding IsScanning}"
+              />
+            </StackPanel>
+          </Grid>
+        </StackPanel>
       </suki:GroupBox>
     </suki:GlassCard>
 
-    <Panel Grid.Row="1">
-      <Grid IsVisible="{Binding IsExecutableAvailable}">
-        <suki:GlassCard>
-          <Grid RowDefinitions="Auto,Auto,*" RowSpacing="10">
+    <suki:GlassCard Grid.Row="1" IsVisible="{Binding !IsNmapAvailable}">
+      <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+        <icon:MaterialIcon Grid.Column="0" VerticalAlignment="Center" Kind="InformationOutline" />
+        <SelectableTextBlock
+          Grid.Column="1"
+          VerticalAlignment="Center"
+          Text="{localization:Translate NetworkScanner.Dependency.Message}"
+          TextWrapping="Wrap"
+        />
+        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="5">
+          <Button
+            Command="{Binding AutoInstallDependencyCommand}"
+            IsVisible="{Binding CanAutoInstall}"
+            suki:ButtonExtensions.ShowProgress="{Binding IsInstalling}"
+          >
             <StackPanel Orientation="Horizontal" Spacing="5">
-              <Button
-                Command="{Binding ScanSelectedPortsCommand}"
-                IsEnabled="{Binding HasSelectedHosts}"
-              >
-                <StackPanel Orientation="Horizontal" Spacing="5">
-                  <icon:MaterialIcon Kind="LanConnect" />
-                  <TextBlock Text="{localization:Translate NetworkScanner.ScanPorts}" />
-                </StackPanel>
-              </Button>
-              <Button
-                Command="{Binding AddSelectedToMonitoringCommand}"
-                IsEnabled="{Binding HasSelectedHosts}"
-              >
-                <StackPanel Orientation="Horizontal" Spacing="5">
-                  <icon:MaterialIcon Kind="Plus" />
-                  <TextBlock Text="{localization:Translate NetworkScanner.AddToMonitoring}" />
-                </StackPanel>
-              </Button>
-              <Button Classes="Flat" Command="{Binding ClearResultsCommand}">
-                <icon:MaterialIcon Kind="DeleteSweep" />
-              </Button>
+              <icon:MaterialIcon Kind="AutoDownload" />
+              <TextBlock Text="{localization:Translate SpeedTest.AutoInstall}" />
             </StackPanel>
-            <ProgressBar
-              Grid.Row="1"
-              Classes="Information"
-              IsIndeterminate="True"
-              IsVisible="{Binding IsScanning}"
-            />
-            <TreeDataGrid Grid.Row="2" Classes="Suki" Source="{Binding HostsSource}" />
-          </Grid>
-        </suki:GlassCard>
+          </Button>
+          <Button
+            Command="{Binding LaunchUriCommand}"
+            CommandParameter="https://nmap.org/download.html"
+          >
+            <StackPanel Orientation="Horizontal" Spacing="5">
+              <icon:MaterialIcon Kind="Download" />
+              <TextBlock Text="{localization:Translate SpeedTest.ManualInstall}" />
+            </StackPanel>
+          </Button>
+          <Button Classes="Flat" Command="{Binding ReloadDependencyCommand}">
+            <StackPanel Orientation="Horizontal" Spacing="5">
+              <icon:MaterialIcon Kind="Refresh" />
+              <TextBlock Text="{localization:Translate Common.Reload}" />
+            </StackPanel>
+          </Button>
+        </StackPanel>
       </Grid>
+    </suki:GlassCard>
 
-      <Border
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        IsVisible="{Binding !IsExecutableAvailable}"
-      >
-        <suki:SukiMessageBoxHost
-          Header="{localization:Translate NetworkScanner.Dependency.Title}"
-          IconPreset="Error"
-        >
-          <SelectableTextBlock
-            Text="{localization:Translate NetworkScanner.Dependency.Message}"
-            TextWrapping="Wrap"
+    <suki:GlassCard Grid.Row="2">
+      <Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="10">
+        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+          <StackPanel Orientation="Horizontal" Spacing="5">
+            <Button
+              Command="{Binding ScanSelectedPortsCommand}"
+              Content="{icon:MaterialIconTextExt Kind=LanConnect, Text={localization:Translate NetworkScanner.ScanPorts}}"
+            />
+            <Button
+              Command="{Binding ScanAllPortsCommand}"
+              Content="{icon:MaterialIconTextExt Kind=LanPending, Text={localization:Translate NetworkScanner.ScanAllPorts}}"
+            />
+            <Button
+              Command="{Binding AddSelectedToMonitoringCommand}"
+              Content="{icon:MaterialIconTextExt Kind=Plus, Text={localization:Translate NetworkScanner.AddToMonitoring}}"
+            />
+            <Button
+              Command="{Binding AddSelectedPortsToMonitoringCommand}"
+              Content="{icon:MaterialIconTextExt Kind=PlusNetwork, Text={localization:Translate NetworkScanner.AddPortsToMonitoring}}"
+            />
+          </StackPanel>
+
+          <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="5">
+            <Button
+              Command="{Binding ExportResultsToJsonCommand}"
+              Content="{icon:MaterialIconExt Kind=CodeJson}"
+              ToolTip.Tip="{localization:Translate NetworkScanner.Export.Json}"
+            />
+            <Button
+              Command="{Binding ExportResultsToCsvCommand}"
+              Content="{icon:MaterialIconExt Kind=FileDelimited}"
+              ToolTip.Tip="{localization:Translate NetworkScanner.Export.Csv}"
+            />
+            <Button
+              Command="{Binding SaveRawOutputCommand}"
+              Content="{icon:MaterialIconExt Kind=CodeTags}"
+              ToolTip.Tip="{localization:Translate NetworkScanner.Export.RawXml}"
+            />
+            <Button
+              Classes="Flat"
+              Command="{Binding ClearResultsCommand}"
+              Content="{icon:MaterialIconExt Kind=DeleteSweep}"
+              ToolTip.Tip="{localization:Translate NetworkScanner.ClearResults}"
+            />
+          </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="10">
+          <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10">
+            <TextBlock
+              VerticalAlignment="Center"
+              Foreground="{DynamicResource SukiLowText}"
+              Text="{Binding SummaryText}"
+            />
+            <TextBlock
+              VerticalAlignment="Center"
+              Foreground="{DynamicResource SukiLowText}"
+              Text="{Binding EngineText}"
+            />
+          </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="2" IsVisible="{Binding IsScanning}" Spacing="4">
+          <ProgressBar
+            Classes="Information"
+            IsIndeterminate="{Binding IsProgressIndeterminate}"
+            Maximum="100"
+            Minimum="0"
+            Value="{Binding ProgressPercent}"
           />
-          <suki:SukiMessageBoxHost.ActionButtonsSource>
-            <Button
-              Command="{Binding AutoInstallDependencyCommand}"
-              IsVisible="{Binding CanAutoInstall}"
-              suki:ButtonExtensions.ShowProgress="{Binding IsInstalling}"
-            >
-              <StackPanel Orientation="Horizontal" Spacing="5">
-                <icon:MaterialIcon Kind="AutoDownload" />
-                <TextBlock Text="{localization:Translate SpeedTest.AutoInstall}" />
-              </StackPanel>
-            </Button>
-            <Button
-              Command="{Binding LaunchUriCommand}"
-              CommandParameter="https://nmap.org/download.html"
-            >
-              <StackPanel Orientation="Horizontal" Spacing="5">
-                <icon:MaterialIcon Kind="Download" />
-                <TextBlock Text="{localization:Translate SpeedTest.ManualInstall}" />
-              </StackPanel>
-            </Button>
-            <Button Classes="Flat" Command="{Binding ReloadDependencyCommand}">
-              <StackPanel Orientation="Horizontal" Spacing="5">
-                <icon:MaterialIcon Kind="Refresh" />
-                <TextBlock Text="{localization:Translate Common.Reload}" />
-              </StackPanel>
-            </Button>
-          </suki:SukiMessageBoxHost.ActionButtonsSource>
-        </suki:SukiMessageBoxHost>
-      </Border>
-    </Panel>
+          <TextBlock
+            Foreground="{DynamicResource SukiLowText}"
+            Text="{Binding ProgressText}"
+            TextTrimming="CharacterEllipsis"
+          />
+        </StackPanel>
+
+        <TreeDataGrid Grid.Row="3" Classes="Suki" Source="{Binding HostsSource}">
+          <TreeDataGrid.ContextMenu>
+            <ContextMenu>
+              <MenuItem
+                Command="{Binding CopySelectedAddressCommand}"
+                Header="{localization:Translate NetworkScanner.CopyAddress}"
+                Icon="{icon:MaterialIconExt Kind=ContentCopy}"
+              />
+              <MenuItem
+                Command="{Binding CopySelectedMacAddressCommand}"
+                Header="{localization:Translate NetworkScanner.CopyMacAddress}"
+                Icon="{icon:MaterialIconExt Kind=ContentCopy}"
+              />
+              <MenuItem
+                Command="{Binding OpenSelectedInBrowserCommand}"
+                Header="{localization:Translate NetworkScanner.OpenInBrowser}"
+                Icon="{icon:MaterialIconExt Kind=Web}"
+              />
+              <Separator />
+              <MenuItem
+                Command="{Binding RescanSelectedHostsCommand}"
+                Header="{localization:Translate NetworkScanner.RescanHost}"
+                Icon="{icon:MaterialIconExt Kind=Refresh}"
+              />
+              <MenuItem
+                Command="{Binding AddSelectedToMonitoringCommand}"
+                Header="{localization:Translate NetworkScanner.AddToMonitoring}"
+                Icon="{icon:MaterialIconExt Kind=Plus}"
+              />
+              <MenuItem
+                Command="{Binding AddSelectedPortsToMonitoringCommand}"
+                Header="{localization:Translate NetworkScanner.AddPortsToMonitoring}"
+                Icon="{icon:MaterialIconExt Kind=PlusNetwork}"
+              />
+              <Separator />
+              <MenuItem
+                Command="{Binding RemoveSelectedHostsCommand}"
+                Header="{localization:Translate NetworkScanner.RemoveHost}"
+                Icon="{icon:MaterialIconExt Kind=Delete}"
+              />
+            </ContextMenu>
+          </TreeDataGrid.ContextMenu>
+        </TreeDataGrid>
+      </Grid>
+    </suki:GlassCard>
   </Grid>
 </controls:UserControlBase>

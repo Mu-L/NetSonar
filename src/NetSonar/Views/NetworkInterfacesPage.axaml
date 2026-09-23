@@ -1,334 +1,374 @@
-<controls:UserControlBase x:Class="NetSonar.Avalonia.Views.NetworkInterfacesPage"
-                          xmlns="https://github.com/avaloniaui"
-                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
-                          xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
-                          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                          xmlns:fragments="clr-namespace:NetSonar.Avalonia.Views.Fragments"
-                          xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
-                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                          xmlns:models="clr-namespace:NetSonar.Avalonia.Models"
-                          xmlns:settings="clr-namespace:NetSonar.Avalonia.Settings"
-                          xmlns:suki="https://github.com/kikipoulet/SukiUI"
-                          xmlns:viewModels="clr-namespace:NetSonar.Avalonia.ViewModels"
-                          Name="Root"
-                          d:DesignHeight="650"
-                          d:DesignWidth="850"
-                          x:DataType="viewModels:NetworkInterfacesPageModel"
-                          mc:Ignorable="d">
-    <Design.DataContext>
-        <viewModels:NetworkInterfacesPageModel />
-    </Design.DataContext>
+<controls:UserControlBase
+  x:Class="NetSonar.Avalonia.Views.NetworkInterfacesPage"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
+  xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:fragments="clr-namespace:NetSonar.Avalonia.Views.Fragments"
+  xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:models="clr-namespace:NetSonar.Avalonia.Models"
+  xmlns:settings="clr-namespace:NetSonar.Avalonia.Settings"
+  xmlns:suki="https://github.com/kikipoulet/SukiUI"
+  xmlns:viewModels="clr-namespace:NetSonar.Avalonia.ViewModels"
+  Name="Root"
+  d:DesignHeight="650"
+  d:DesignWidth="850"
+  x:DataType="viewModels:NetworkInterfacesPageModel"
+  mc:Ignorable="d"
+>
+  <Design.DataContext>
+    <viewModels:NetworkInterfacesPageModel />
+  </Design.DataContext>
 
-    <Grid ColumnDefinitions="*"
-          RowDefinitions="Auto,*">
-        <suki:GlassCard Grid.Row="0"
-                        Margin="15,15,15,0">
-            <Grid ColumnDefinitions="*,Auto"
-                  RowDefinitions="Auto">
+  <Grid ColumnDefinitions="*" RowDefinitions="Auto,*">
+    <suki:GlassCard Grid.Row="0" Margin="15,15,15,0">
+      <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto">
+        <!--  HEADER  -->
+        <!--  Information  -->
+        <WrapPanel
+          Grid.Row="0"
+          Grid.Column="0"
+          ItemSpacing="10"
+          LineSpacing="5"
+          Orientation="Horizontal"
+        >
+          <icon:MaterialIconText
+            Kind="{Binding Icon}"
+            Text="{localization:Translate Ui.NetworkInterfaces}"
+            Classes="Title"
+          />
 
-                <!--  HEADER  -->
-                <!--  Information  -->
-                <WrapPanel Grid.Row="0"
-                           Grid.Column="0"
-                           ItemSpacing="10"
-                           LineSpacing="5"
-                           Orientation="Horizontal">
+          <StackPanel Orientation="Horizontal" Spacing="5">
+            <Button
+              MinWidth="45"
+              Padding="15,5"
+              VerticalAlignment="Center"
+              Classes="Information Rounded"
+              Command="{Binding ClearFiltersCommand}"
+              Content="{Binding InterfaceCount}"
+            />
 
-                    <icon:MaterialIconText Kind="{Binding Icon}"
-                                           Text="{localization:Translate Ui.NetworkInterfaces}"
-                                           Classes="Title"/>
+            <Button
+              MinWidth="45"
+              Padding="15,5"
+              VerticalAlignment="Center"
+              Classes="Success Rounded"
+              Command="{Binding AttachStatusOnlineFilterCommand}"
+              Content="{Binding OnlineInterfaceCount}"
+            />
 
-                    <StackPanel Orientation="Horizontal"
-                                Spacing="5">
-                        <Button MinWidth="45"
-                                Padding="15,5"
-                                VerticalAlignment="Center"
-                                Classes="Information Rounded"
-                                Command="{Binding ClearFiltersCommand}"
-                                Content="{Binding InterfaceCount}" />
+            <Button
+              MinWidth="45"
+              Padding="15,5"
+              VerticalAlignment="Center"
+              Classes="Danger Rounded"
+              Command="{Binding AttachStatusOfflineFilterCommand}"
+              Content="{Binding OfflineInterfaceCount}"
+            />
 
-                        <Button MinWidth="45"
-                                Padding="15,5"
-                                VerticalAlignment="Center"
-                                Classes="Success Rounded"
-                                Command="{Binding AttachStatusOnlineFilterCommand}"
-                                Content="{Binding OnlineInterfaceCount}" />
+            <controls:StatusBadge
+              MinWidth="45"
+              Padding="15,5"
+              VerticalAlignment="Center"
+              Appearance="Warning"
+              Content="{Binding InterfacesViewCollection.Count}"
+            />
+          </StackPanel>
 
-                        <Button MinWidth="45"
-                                Padding="15,5"
-                                VerticalAlignment="Center"
-                                Classes="Danger Rounded"
-                                Command="{Binding AttachStatusOfflineFilterCommand}"
-                                Content="{Binding OfflineInterfaceCount}" />
+          <DropDownButton IsEnabled="{Binding FilterText, Converter={x:Static StringConverters.IsNullOrEmpty}}">
+            <DropDownButton.Content>
+              <StackPanel Orientation="Horizontal" Spacing="5">
+                <CheckBox IsChecked="{Binding AppSettings.NetworkInterfaces.EnableFilterTypes}" />
+                <icon:MaterialIconText Kind="Filter" Text="{localization:Translate Ui.Type}" />
+              </StackPanel>
+            </DropDownButton.Content>
+            <DropDownButton.DataTemplates>
+              <DataTemplate DataType="{x:Type models:EnumViewFilter}">
+                <CheckBox
+                  HorizontalAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch"
+                  Content="{Binding Description}"
+                  IsChecked="{Binding Include}"
+                />
+              </DataTemplate>
+            </DropDownButton.DataTemplates>
+            <DropDownButton.Flyout>
+              <MenuFlyout ItemsSource="{Binding InterfaceTypeFiltersCollection}" Placement="Right">
+                <MenuFlyout.ItemContainerTheme>
+                  <ControlTheme
+                    x:DataType="models:EnumViewFilter"
+                    BasedOn="{StaticResource {x:Type MenuItem}}"
+                    TargetType="MenuItem"
+                  >
+                    <Setter Property="Icon" Value="{Binding Icon}" />
+                  </ControlTheme>
+                </MenuFlyout.ItemContainerTheme>
+              </MenuFlyout>
+            </DropDownButton.Flyout>
+          </DropDownButton>
 
-                        <controls:StatusBadge MinWidth="45"
-                                              Padding="15,5"
-                                              VerticalAlignment="Center"
-                                              Appearance="Warning"
-                                              Content="{Binding InterfacesViewCollection.Count}" />
-                    </StackPanel>
+          <DropDownButton IsEnabled="{Binding FilterText, Converter={x:Static StringConverters.IsNullOrEmpty}}">
+            <DropDownButton.Content>
+              <StackPanel Orientation="Horizontal" Spacing="5">
+                <CheckBox IsChecked="{Binding AppSettings.NetworkInterfaces.EnableFilterStatus}" />
+                <icon:MaterialIconText Kind="Filter" Text="{localization:Translate Ui.Status}" />
+              </StackPanel>
+            </DropDownButton.Content>
+            <DropDownButton.DataTemplates>
+              <DataTemplate DataType="{x:Type models:EnumViewFilter}">
+                <CheckBox
+                  HorizontalAlignment="Stretch"
+                  HorizontalContentAlignment="Stretch"
+                  Content="{Binding Description}"
+                  IsChecked="{Binding Include}"
+                />
+              </DataTemplate>
+            </DropDownButton.DataTemplates>
+            <DropDownButton.Flyout>
+              <MenuFlyout
+                ItemsSource="{Binding InterfaceStatusFiltersCollection}"
+                Placement="Right"
+              >
+                <MenuFlyout.ItemContainerTheme>
+                  <ControlTheme
+                    x:DataType="models:EnumViewFilter"
+                    BasedOn="{StaticResource {x:Type MenuItem}}"
+                    TargetType="MenuItem"
+                  >
+                    <Setter Property="Icon" Value="{Binding Icon}" />
+                  </ControlTheme>
+                </MenuFlyout.ItemContainerTheme>
+              </MenuFlyout>
+            </DropDownButton.Flyout>
+          </DropDownButton>
 
+          <DropDownButton
+            Classes="Small"
+            IsEnabled="{Binding FilterText, Converter={x:Static StringConverters.IsNullOrEmpty}}"
+          >
+            <DropDownButton.Content>
+              <StackPanel Orientation="Horizontal" Spacing="5">
+                <CheckBox IsChecked="{Binding AppSettings.NetworkInterfaces.EnableFilterOthers}" />
+                <icon:MaterialIconText Kind="Filter" Text="{localization:Translate Ui.Others}" />
+              </StackPanel>
+            </DropDownButton.Content>
+            <DropDownButton.Flyout>
+              <MenuFlyout Placement="Right">
+                <MenuItem Icon="{icon:MaterialIconExt Kind=VirtualPrivateNetwork}">
+                  <MenuItem.Header>
+                    <CheckBox
+                      HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch"
+                      Content="{localization:Translate Ui.VirtualNetworks}"
+                      IsChecked="{Binding AppSettings.NetworkInterfaces.FilterByVirtual}"
+                      IsThreeState="True"
+                    />
+                  </MenuItem.Header>
+                </MenuItem>
 
-                    <DropDownButton IsEnabled="{Binding FilterText, Converter={x:Static StringConverters.IsNullOrEmpty}}">
-                        <DropDownButton.Content>
-                            <StackPanel Orientation="Horizontal"
-                                        Spacing="5">
-                                <CheckBox IsChecked="{Binding AppSettings.NetworkInterfaces.EnableFilterTypes}" />
-                                <icon:MaterialIconText Kind="Filter"
-                                                       Text="{localization:Translate Ui.Type}" />
-                            </StackPanel>
-                        </DropDownButton.Content>
-                        <DropDownButton.DataTemplates>
-                            <DataTemplate DataType="{x:Type models:EnumViewFilter}">
-                                <CheckBox HorizontalAlignment="Stretch"
-                                          HorizontalContentAlignment="Stretch"
-                                          Content="{Binding Description}"
-                                          IsChecked="{Binding Include}" />
-                            </DataTemplate>
-                        </DropDownButton.DataTemplates>
-                        <DropDownButton.Flyout>
-                            <MenuFlyout ItemsSource="{Binding InterfaceTypeFiltersCollection}"
-                                        Placement="Right">
-                                <MenuFlyout.ItemContainerTheme>
-                                    <ControlTheme x:DataType="models:EnumViewFilter"
-                                                  BasedOn="{StaticResource {x:Type MenuItem}}"
-                                                  TargetType="MenuItem">
+                <MenuItem Icon="{icon:MaterialIconExt Kind=Identifier}">
+                  <MenuItem.Header>
+                    <CheckBox
+                      HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch"
+                      Content="{localization:Translate Ui.HavePhysicalAddress}"
+                      IsChecked="{Binding AppSettings.NetworkInterfaces.FilterByHavePhysicalAddress}"
+                      IsThreeState="True"
+                    />
+                  </MenuItem.Header>
+                </MenuItem>
 
-                                        <Setter Property="Icon" Value="{Binding Icon}" />
+                <MenuItem Icon="{icon:MaterialIconExt Kind=IpNetwork}">
+                  <MenuItem.Header>
+                    <CheckBox
+                      HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch"
+                      Content="{localization:Translate Ui.HaveIPAddress}"
+                      IsChecked="{Binding AppSettings.NetworkInterfaces.FilterByHaveIPAddress}"
+                      IsThreeState="True"
+                    />
+                  </MenuItem.Header>
+                </MenuItem>
 
-                                    </ControlTheme>
-                                </MenuFlyout.ItemContainerTheme>
-                            </MenuFlyout>
-                        </DropDownButton.Flyout>
-                    </DropDownButton>
+                <MenuItem Icon="{icon:MaterialIconExt Kind=SwapVertical}">
+                  <MenuItem.Header>
+                    <CheckBox
+                      HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch"
+                      Content="{localization:Translate Ui.IsTransmittingData}"
+                      IsChecked="{Binding AppSettings.NetworkInterfaces.FilterByIsTransmittingData}"
+                      IsThreeState="True"
+                    />
+                  </MenuItem.Header>
+                </MenuItem>
+              </MenuFlyout>
+            </DropDownButton.Flyout>
+          </DropDownButton>
 
-                    <DropDownButton IsEnabled="{Binding FilterText, Converter={x:Static StringConverters.IsNullOrEmpty}}">
-                        <DropDownButton.Content>
-                            <StackPanel Orientation="Horizontal"
-                                        Spacing="5">
-                                <CheckBox IsChecked="{Binding AppSettings.NetworkInterfaces.EnableFilterStatus}" />
-                                <icon:MaterialIconText Kind="Filter"
-                                                       Text="{localization:Translate Ui.Status}" />
-                            </StackPanel>
-                        </DropDownButton.Content>
-                        <DropDownButton.DataTemplates>
-                            <DataTemplate DataType="{x:Type models:EnumViewFilter}">
-                                <CheckBox HorizontalAlignment="Stretch"
-                                          HorizontalContentAlignment="Stretch"
-                                          Content="{Binding Description}"
-                                          IsChecked="{Binding Include}" />
-                            </DataTemplate>
-                        </DropDownButton.DataTemplates>
-                        <DropDownButton.Flyout>
-                            <MenuFlyout ItemsSource="{Binding InterfaceStatusFiltersCollection}"
-                                        Placement="Right">
-                                <MenuFlyout.ItemContainerTheme>
-                                    <ControlTheme x:DataType="models:EnumViewFilter"
-                                                  BasedOn="{StaticResource {x:Type MenuItem}}"
-                                                  TargetType="MenuItem">
+          <TextBox
+            Width="300"
+            VerticalAlignment="Center"
+            suki:TextBoxExtensions.Prefix="{icon:MaterialIconExt Kind=Magnify}"
+            suki:TextBoxExtensions.AddDeleteButton="True"
+            Text="{Binding FilterText, Delay=500}"
+            PlaceholderText="{localization:Translate Ui.FilterInterfacesByText}"
+          />
+        </WrapPanel>
 
-                                        <Setter Property="Icon" Value="{Binding Icon}" />
+        <WrapPanel
+          Grid.Row="0"
+          Grid.Column="1"
+          HorizontalAlignment="Right"
+          ItemSpacing="5"
+          LineSpacing="5"
+        >
+          <Button
+            Padding="10,8"
+            Classes="Flat"
+            Command="{Binding RefreshCommand}"
+            Content="{icon:MaterialIconExt Kind=Refresh}"
+            ToolTip.Tip="{localization:Translate Ui.RefreshAllInterfaces}"
+          />
 
-                                    </ControlTheme>
-                                </MenuFlyout.ItemContainerTheme>
-                            </MenuFlyout>
-                        </DropDownButton.Flyout>
-                    </DropDownButton>
+          <Button
+            Padding="10,8"
+            Command="{Binding OpenSystemNetworkManagerCommand}"
+            Content="{icon:MaterialIconExt Kind=Lan}"
+            ToolTip.Tip="{localization:Translate Ui.OpenSystemNetworkManager}"
+          />
 
-                    <DropDownButton Classes="Small"
-                                    IsEnabled="{Binding FilterText, Converter={x:Static StringConverters.IsNullOrEmpty}}">
-                        <DropDownButton.Content>
-                            <StackPanel Orientation="Horizontal"
-                                        Spacing="5">
-                                <CheckBox IsChecked="{Binding AppSettings.NetworkInterfaces.EnableFilterOthers}" />
-                                <icon:MaterialIconText Kind="Filter"
-                                                       Text="{localization:Translate Ui.Others}" />
-                            </StackPanel>
-                        </DropDownButton.Content>
-                        <DropDownButton.Flyout>
-                            <MenuFlyout Placement="Right">
-                                <MenuItem Icon="{icon:MaterialIconExt Kind=VirtualPrivateNetwork}">
-                                    <MenuItem.Header>
-                                        <CheckBox HorizontalAlignment="Stretch"
-                                                  HorizontalContentAlignment="Stretch"
-                                                  Content="{localization:Translate Ui.VirtualNetworks}"
-                                                  IsChecked="{Binding AppSettings.NetworkInterfaces.FilterByVirtual}"
-                                                  IsThreeState="True" />
-                                    </MenuItem.Header>
-                                </MenuItem>
+          <Button Padding="10,8" Content="{icon:MaterialIconExt Kind=Settings}">
+            <Button.Flyout>
+              <Flyout>
+                <Panel Width="450">
+                  <Border
+                    Margin="20"
+                    BoxShadow="{DynamicResource SukiPopupShadow}"
+                    CornerRadius="20"
+                  />
 
-                                <MenuItem Icon="{icon:MaterialIconExt Kind=Identifier}">
-                                    <MenuItem.Header>
-                                        <CheckBox HorizontalAlignment="Stretch"
-                                                  HorizontalContentAlignment="Stretch"
-                                                  Content="{localization:Translate Ui.HavePhysicalAddress}"
-                                                  IsChecked="{Binding AppSettings.NetworkInterfaces.FilterByHavePhysicalAddress}"
-                                                  IsThreeState="True" />
-                                    </MenuItem.Header>
-                                </MenuItem>
+                  <Border
+                    Margin="20"
+                    Background="{DynamicResource SukiCardBackground}"
+                    BorderBrush="{DynamicResource SukiLightBorderBrush}"
+                    BorderThickness="1"
+                    ClipToBounds="True"
+                    CornerRadius="15"
+                  >
+                    <Border Padding="15" Background="{DynamicResource PopupGradientBrush}">
+                      <suki:GlassCard Padding="15" CornerRadius="15">
+                        <suki:GroupBox Header="{localization:Translate Ui.NetworkInterfacesSettings}">
+                          <Grid
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="10"
+                            RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                            RowSpacing="10"
+                          >
+                            <TextBlock
+                              Grid.Row="0"
+                              Grid.Column="0"
+                              VerticalAlignment="Center"
+                              Text="{localization:Translate Ui.AutoRefresh}"
+                            />
 
-                                <MenuItem Icon="{icon:MaterialIconExt Kind=IpNetwork}">
-                                    <MenuItem.Header>
-                                        <CheckBox HorizontalAlignment="Stretch"
-                                                  HorizontalContentAlignment="Stretch"
-                                                  Content="{localization:Translate Ui.HaveIPAddress}"
-                                                  IsChecked="{Binding AppSettings.NetworkInterfaces.FilterByHaveIPAddress}"
-                                                  IsThreeState="True" />
-                                    </MenuItem.Header>
-                                </MenuItem>
+                            <Grid
+                              Grid.Row="0"
+                              Grid.Column="1"
+                              ColumnDefinitions="Auto,*"
+                              ColumnSpacing="0"
+                              RowDefinitions="Auto"
+                            >
+                              <ToggleSwitch
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                IsChecked="{Binding AppSettings.NetworkInterfaces.AutoRefresh}"
+                              />
 
-                                <MenuItem Icon="{icon:MaterialIconExt Kind=SwapVertical}">
-                                    <MenuItem.Header>
-                                        <CheckBox HorizontalAlignment="Stretch"
-                                                  HorizontalContentAlignment="Stretch"
-                                                  Content="{localization:Translate Ui.IsTransmittingData}"
-                                                  IsChecked="{Binding AppSettings.NetworkInterfaces.FilterByIsTransmittingData}"
-                                                  IsThreeState="True" />
-                                    </MenuItem.Header>
-                                </MenuItem>
-                            </MenuFlyout>
-                        </DropDownButton.Flyout>
-                    </DropDownButton>
+                              <NumericUpDown
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                suki:NumericUpDownExtensions.Unit="s"
+                                FormatString="N0"
+                                Increment="1"
+                                IsEnabled="{Binding AppSettings.NetworkInterfaces.AutoRefresh}"
+                                Maximum="{Binding Source={x:Static settings:NetworkInterfacesSettings.RefreshEveryMaxSeconds}}"
+                                Minimum="{Binding Source={x:Static settings:NetworkInterfacesSettings.RefreshEveryMinSeconds}}"
+                                Value="{Binding AppSettings.NetworkInterfaces.RefreshEverySeconds}"
+                              />
+                            </Grid>
 
-                    <TextBox Width="300"
-                             VerticalAlignment="Center"
-                             suki:TextBoxExtensions.AddDeleteButton="True"
-                             Text="{Binding FilterText, Delay=500}"
-                             PlaceholderText="{localization:Translate Ui.FilterInterfacesByText}" />
+                            <TextBlock
+                              Grid.Row="2"
+                              Grid.Column="0"
+                              VerticalAlignment="Center"
+                              Text="{localization:Translate Ui.CardWidth}"
+                            />
+                            <NumericUpDown
+                              Grid.Row="2"
+                              Grid.Column="1"
+                              suki:NumericUpDownExtensions.Unit="px"
+                              FormatString="F0"
+                              Increment="25"
+                              Maximum="{Binding Source={x:Static settings:NetworkInterfacesSettings.CardMaxWidth}}"
+                              Minimum="{Binding Source={x:Static settings:NetworkInterfacesSettings.CardMinWidth}}"
+                              Value="{Binding AppSettings.NetworkInterfaces.CardWidth}"
+                            />
 
-                </WrapPanel>
+                            <TextBlock
+                              Grid.Row="3"
+                              Grid.Column="0"
+                              VerticalAlignment="Center"
+                              Text="{localization:Translate Ui.CardHeight}"
+                            />
+                            <NumericUpDown
+                              Grid.Row="3"
+                              Grid.Column="1"
+                              suki:NumericUpDownExtensions.Unit="px"
+                              FormatString="F0"
+                              Increment="25"
+                              Maximum="{Binding Source={x:Static settings:NetworkInterfacesSettings.CardMaxHeight}}"
+                              Minimum="{Binding Source={x:Static settings:NetworkInterfacesSettings.CardMinHeight}}"
+                              Value="{Binding AppSettings.NetworkInterfaces.CardHeight}"
+                            />
+                          </Grid>
+                        </suki:GroupBox>
+                      </suki:GlassCard>
+                    </Border>
+                  </Border>
+                </Panel>
+              </Flyout>
+            </Button.Flyout>
+          </Button>
+        </WrapPanel>
+      </Grid>
+    </suki:GlassCard>
 
-                <WrapPanel Grid.Row="0"
-                           Grid.Column="1"
-                           HorizontalAlignment="Right"
-                           ItemSpacing="5"
-                           LineSpacing="5">
-
-                    <Button Padding="10,8"
-                            Classes="Flat"
-                            Command="{Binding RefreshCommand}"
-                            Content="{icon:MaterialIconExt Kind=Refresh}"
-                            ToolTip.Tip="{localization:Translate Ui.RefreshAllInterfaces}" />
-
-                    <Button Padding="10,8"
-                            Command="{Binding OpenSystemNetworkManagerCommand}"
-                            Content="{icon:MaterialIconExt Kind=Lan}"
-                            ToolTip.Tip="{localization:Translate Ui.OpenSystemNetworkManager}" />
-
-                    <Button Padding="10,8"
-                            Content="{icon:MaterialIconExt Kind=Settings}">
-                        <Button.Flyout>
-                            <Flyout>
-                                <Panel Width="450">
-
-                                    <Border Margin="20"
-                                            BoxShadow="{DynamicResource SukiPopupShadow}"
-                                            CornerRadius="20" />
-
-                                    <Border Margin="20"
-                                            Background="{DynamicResource SukiCardBackground}"
-                                            BorderBrush="{DynamicResource SukiLightBorderBrush}"
-                                            BorderThickness="1"
-                                            ClipToBounds="True"
-                                            CornerRadius="15">
-                                        <Border Padding="15"
-                                                Background="{DynamicResource PopupGradientBrush}">
-                                            <suki:GlassCard Padding="15"
-                                                            CornerRadius="15">
-                                                <suki:GroupBox Header="{localization:Translate Ui.NetworkInterfacesSettings}">
-                                                    <Grid ColumnDefinitions="Auto,*"
-                                                          ColumnSpacing="10"
-                                                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
-                                                          RowSpacing="10">
-
-                                                        <TextBlock Grid.Row="0"
-                                                                   Grid.Column="0"
-                                                                   VerticalAlignment="Center"
-                                                                   Text="{localization:Translate Ui.AutoRefresh}" />
-
-                                                        <Grid Grid.Row="0"
-                                                              Grid.Column="1"
-                                                              ColumnDefinitions="Auto,*"
-                                                              ColumnSpacing="0"
-                                                              RowDefinitions="Auto">
-                                                            <ToggleSwitch Grid.Row="0"
-                                                                          Grid.Column="0"
-                                                                          IsChecked="{Binding AppSettings.NetworkInterfaces.AutoRefresh}" />
-
-                                                            <NumericUpDown Grid.Row="0"
-                                                                           Grid.Column="1"
-                                                                           suki:NumericUpDownExtensions.Unit="s"
-                                                                           FormatString="N0"
-                                                                           Increment="1"
-                                                                           IsEnabled="{Binding AppSettings.NetworkInterfaces.AutoRefresh}"
-                                                                           Maximum="{Binding Source={x:Static settings:NetworkInterfacesSettings.RefreshEveryMaxSeconds}}"
-                                                                           Minimum="{Binding Source={x:Static settings:NetworkInterfacesSettings.RefreshEveryMinSeconds}}"
-                                                                           Value="{Binding AppSettings.NetworkInterfaces.RefreshEverySeconds}" />
-                                                        </Grid>
-
-
-                                                        <TextBlock Grid.Row="2"
-                                                                   Grid.Column="0"
-                                                                   VerticalAlignment="Center"
-                                                                   Text="{localization:Translate Ui.CardWidth}" />
-                                                        <NumericUpDown Grid.Row="2"
-                                                                       Grid.Column="1"
-                                                                       suki:NumericUpDownExtensions.Unit="px"
-                                                                       FormatString="F0"
-                                                                       Increment="25"
-                                                                       Maximum="{Binding Source={x:Static settings:NetworkInterfacesSettings.CardMaxWidth}}"
-                                                                       Minimum="{Binding Source={x:Static settings:NetworkInterfacesSettings.CardMinWidth}}"
-                                                                       Value="{Binding AppSettings.NetworkInterfaces.CardWidth}" />
-
-                                                        <TextBlock Grid.Row="3"
-                                                                   Grid.Column="0"
-                                                                   VerticalAlignment="Center"
-                                                                   Text="{localization:Translate Ui.CardHeight}" />
-                                                        <NumericUpDown Grid.Row="3"
-                                                                       Grid.Column="1"
-                                                                       suki:NumericUpDownExtensions.Unit="px"
-                                                                       FormatString="F0"
-                                                                       Increment="25"
-                                                                       Maximum="{Binding Source={x:Static settings:NetworkInterfacesSettings.CardMaxHeight}}"
-                                                                       Minimum="{Binding Source={x:Static settings:NetworkInterfacesSettings.CardMinHeight}}"
-                                                                       Value="{Binding AppSettings.NetworkInterfaces.CardHeight}" />
-
-
-                                                    </Grid>
-                                                </suki:GroupBox>
-
-                                            </suki:GlassCard>
-                                        </Border>
-                                    </Border>
-                                </Panel>
-                            </Flyout>
-                        </Button.Flyout>
-                    </Button>
-                </WrapPanel>
-            </Grid>
-        </suki:GlassCard>
-
-        <!--  Content  -->
-        <ScrollViewer Grid.Row="1">
-            <ItemsRepeater Margin="15,15,0,10"
-                           HorizontalAlignment="Center"
-                           ItemsSource="{Binding InterfacesViewCollection}">
-                <ItemsRepeater.Layout>
-                    <UniformGridLayout MinColumnSpacing="15"
-                                       MinItemHeight="{Binding #Root.((viewModels:NetworkInterfacesPageModel)DataContext).AppSettings.NetworkInterfaces.CardHeight}"
-                                       MinItemWidth="{Binding #Root.((viewModels:NetworkInterfacesPageModel)DataContext).AppSettings.NetworkInterfaces.CardWidth}"
-                                       MinRowSpacing="15" />
-                </ItemsRepeater.Layout>
-                <ItemsRepeater.ItemTemplate>
-                    <DataTemplate>
-                        <fragments:NetworkInterfaceFragment Width="{Binding #Root.((viewModels:NetworkInterfacesPageModel)DataContext).AppSettings.NetworkInterfaces.CardWidth}"
-                                                            Height="{Binding #Root.((viewModels:NetworkInterfacesPageModel)DataContext).AppSettings.NetworkInterfaces.CardHeight}" />
-                    </DataTemplate>
-                </ItemsRepeater.ItemTemplate>
-
-            </ItemsRepeater>
-        </ScrollViewer>
-    </Grid>
-
+    <!--  Content  -->
+    <ScrollViewer Grid.Row="1">
+      <ItemsRepeater
+        Margin="15,15,0,10"
+        HorizontalAlignment="Center"
+        ItemsSource="{Binding InterfacesViewCollection}"
+      >
+        <ItemsRepeater.Layout>
+          <UniformGridLayout
+            MinColumnSpacing="15"
+            MinItemHeight="{Binding #Root.((viewModels:NetworkInterfacesPageModel)DataContext).AppSettings.NetworkInterfaces.CardHeight}"
+            MinItemWidth="{Binding #Root.((viewModels:NetworkInterfacesPageModel)DataContext).AppSettings.NetworkInterfaces.CardWidth}"
+            MinRowSpacing="15"
+          />
+        </ItemsRepeater.Layout>
+        <ItemsRepeater.ItemTemplate>
+          <DataTemplate>
+            <fragments:NetworkInterfaceFragment
+              Width="{Binding #Root.((viewModels:NetworkInterfacesPageModel)DataContext).AppSettings.NetworkInterfaces.CardWidth}"
+              Height="{Binding #Root.((viewModels:NetworkInterfacesPageModel)DataContext).AppSettings.NetworkInterfaces.CardHeight}"
+            />
+          </DataTemplate>
+        </ItemsRepeater.ItemTemplate>
+      </ItemsRepeater>
+    </ScrollViewer>
+  </Grid>
 </controls:UserControlBase>

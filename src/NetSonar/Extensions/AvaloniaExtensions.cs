@@ -43,6 +43,16 @@ public static class AvaloniaExtensions
         }
     ];
 
+    public static FilePickerFileType[] FilePickerXml { get; } =
+    [
+        new("XML files")
+        {
+            Patterns = ["*.xml"],
+            AppleUniformTypeIdentifiers = ["public.xml"],
+            MimeTypes = ["text/xml"]
+        }
+    ];
+
     public static FilePickerFileType[] FilePickerIni { get; } =
     [
         new("INI files")
