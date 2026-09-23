@@ -1,6 +1,9 @@
+using System;
+using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NetSonar.Avalonia.Network;
+using NetSonar.Avalonia.Settings;
 
 namespace NetSonar.Tests;
 
@@ -245,6 +248,48 @@ public sealed class NetworkScannerEngineTests
             new[] { "192.168.1.2", "192.168.1.9", "192.168.1.10" },
             kept.Select(host => host.Address).ToArray());
     }
+
+    [TestMethod]
+    public void NetworkScansFile_StoreReplacesTheScanOfTheSameTarget()
+    {
+        var file = CreateScansFile();
+        file.Store(Snapshot("192.168.1.0/24", "192.168.1.10"));
+        file.Store(Snapshot("10.0.0.0/24", "10.0.0.5"));
+        file.Store(Snapshot("192.168.1.0/24", "192.168.1.11"));
+
+        Assert.HasCount(2, file);
+        var latest = file.FindLatest("192.168.1.0/24");
+        Assert.IsNotNull(latest);
+        Assert.HasCount(1, latest.Hosts);
+        Assert.AreEqual("192.168.1.11", latest.Hosts[0].Address);
+    }
+
+    [TestMethod]
+    public void NetworkScansFile_RemoveTargetForgetsTheStoredScan()
+    {
+        var file = CreateScansFile();
+        file.Store(Snapshot("192.168.1.0/24", "192.168.1.10"));
+        file.Store(Snapshot("10.0.0.0/24", "10.0.0.5"));
+
+        Assert.IsTrue(file.RemoveTarget(" 192.168.1.0/24 "));
+        Assert.IsNull(file.FindLatest("192.168.1.0/24"));
+        Assert.IsNotNull(file.FindLatest("10.0.0.0/24"));
+
+        Assert.IsFalse(file.RemoveTarget("192.168.1.0/24"));
+        Assert.IsFalse(file.RemoveTarget(null));
+        Assert.IsFalse(file.RemoveTarget("   "));
+    }
+
+    // The instance must never touch the real settings directory of the developer running the tests.
+    private static NetworkScansFile CreateScansFile() =>
+        new() { AutoSave = false, DirectoryPath = Path.Combine(Path.GetTempPath(), $"netsonar-tests-{Guid.NewGuid():N}") };
+
+    private static NetworkScanSnapshot Snapshot(string target, params string[] addresses) =>
+        new()
+        {
+            Target = target,
+            Hosts = addresses.Select(Host).ToArray(),
+        };
 
     private static NetworkScannerHost Host(string address) =>
         new() { Address = address, State = "up" };

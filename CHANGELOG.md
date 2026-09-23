@@ -12,22 +12,6 @@
 - Add scan-to-scan comparison that flags new hosts, hosts that disappeared, and hosts with port changes, with a
   persisted scan history that restores the last result on start
 - Add Network Scanner exports to JSON and CSV and saving of the raw nmap report
-- Run the Network Scanner processes through ProcessX, so an elevated scan keeps its captured output and live
-  progress through gsudo, `pkexec`, or `osascript` instead of writing a temporary report file
-- Add mapping of open ports to protocol probes when importing scan results into monitoring, instead of always ICMP
-- Keep a scanned host listed for a few missed scans instead of removing it, so a missed probe no longer shows up
-  as a removed host and its return as a new one
-- Merge the neighbour (ARP) cache into an unprivileged nmap discovery, which stabilizes the host list and fills
-  in the MAC address and vendor that an unprivileged scan cannot see
-- Fix the Network Scanner offering a scan target wider than `/16`, which could expand into an internet-wide scan, and
-  crashing when a platform does not report an interface prefix length
-- Fix Network Scanner port scans missing `-Pn`, which made an unprivileged nmap repeat host discovery and report no
-  open ports
-- Fix Network Scanner port scans keeping stale ports for hosts that stopped answering, and rediscovery erasing the
-  ports of hosts that were already scanned
-- Fix the Network Scanner grid headers not following a language change, the open-port column sorting as text, a
-  cancellation race that could throw after a scan finished, and a truncated nmap report being reported as an error
-- Fix Network Scanner monitoring import requiring nmap to be installed
 - Fix the update-check cross-thread exception
 - Upgrade AvaloniaUI from 12.1.2 to 12.1.3
 

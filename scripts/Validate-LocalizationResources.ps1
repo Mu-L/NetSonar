@@ -6,19 +6,39 @@ $ErrorActionPreference = 'Stop'
 $errors = [System.Collections.Generic.List[string]]::new()
 $basePath = Join-Path $LocalizationDirectory 'Strings.resx'
 $placeholderPattern = '\{\d+(?:[^{}]*)\}'
+# Brand names, unit abbreviations, and placeholder-only formats can be culture invariant.
 $technicalSameValueKeys = @(
+    'NetworkScanner.Engine.Nmap',
+    'NetworkScanner.LastScan',
+    'NetworkScanner.Progress',
+    'NetworkScanner.ProgressEta',
     'Status.HttpFallback',
+    'Unit.MillisecondsShort',
+    'Unit.MinutesShort',
+    'Unit.SecondsShort',
     'Ui.AvaloniaUI',
     'Ui.IP',
     'Ui.IQM',
     'Ui.TimeToLive'
 )
+# These localized terms legitimately share their English spelling.
 $intentionalSameValues = @(
+    'de|Ui.ScannerHost',
+    'de|Ui.ScannerVersion',
     'es|Common.No',
     'es|Status.ErrorFallback',
+    'es|Ui.ScannerHost',
     'fr|Ui.ServicesCountPlain',
+    'fr|Ui.ScannerService',
+    'fr|Ui.ScannerVersion',
     'fr|Ui.Type',
     'it|Common.No',
+    'it|Ui.ScannerHost',
+    'nl-NL|Ui.ScannerHost',
+    'nl-NL|Ui.ScannerProtocol',
+    'nl-NL|Ui.ScannerService',
+    'pl|Ui.ScannerHost',
+    'pt-BR|Ui.ScannerHost',
     'zh-Hans|Ui.Ping'
 )
 

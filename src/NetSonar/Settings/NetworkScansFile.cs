@@ -49,6 +49,30 @@ public sealed class NetworkScansFile : RootCollectionFile<NetworkScansFile, Netw
     }
 
     /// <summary>
+    /// Drops every stored scan of a target.
+    /// </summary>
+    /// <param name="target">The target to forget.</param>
+    /// <returns><see langword="true"/> when a stored scan was removed.</returns>
+    public bool RemoveTarget(string? target)
+    {
+        if (string.IsNullOrWhiteSpace(target)) return false;
+
+        var value = target.Trim();
+        var removed = false;
+
+        for (var index = Count - 1; index >= 0; index--)
+        {
+            if (!string.Equals(this[index].Target, value, StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            RemoveAt(index);
+            removed = true;
+        }
+
+        return removed;
+    }
+
+    /// <summary>
     /// Stores a scan, replacing the previous scan of the same target and trimming the history.
     /// </summary>
     /// <param name="snapshot">The scan to store.</param>

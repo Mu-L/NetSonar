@@ -108,11 +108,13 @@ public partial class NetworkScannerPageModel : PageViewModelBase
     public partial bool IsNmapAvailable { get; private set; }
 
     [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(AutoInstallDependencyCommand))]
     public partial bool IsInstalling { get; private set; }
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(ScanNetworkCommand))]
     [NotifyCanExecuteChangedFor(nameof(ScanSelectedPortsCommand))]
+    [NotifyCanExecuteChangedFor(nameof(ScanAllPortsCommand))]
     [NotifyCanExecuteChangedFor(nameof(CancelScanCommand))]
     [NotifyCanExecuteChangedFor(nameof(RescanSelectedHostsCommand))]
     public partial bool IsScanning { get; private set; }
@@ -154,9 +156,15 @@ public partial class NetworkScannerPageModel : PageViewModelBase
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasSelection))]
+    [NotifyPropertyChangedFor(nameof(HasSelectedHosts))]
     [NotifyCanExecuteChangedFor(nameof(OpenSelectedInBrowserCommand))]
     [NotifyCanExecuteChangedFor(nameof(CopySelectedAddressCommand))]
     [NotifyCanExecuteChangedFor(nameof(CopySelectedMacAddressCommand))]
+    [NotifyCanExecuteChangedFor(nameof(ScanSelectedPortsCommand))]
+    [NotifyCanExecuteChangedFor(nameof(RescanSelectedHostsCommand))]
+    [NotifyCanExecuteChangedFor(nameof(AddSelectedToMonitoringCommand))]
+    [NotifyCanExecuteChangedFor(nameof(AddSelectedPortsToMonitoringCommand))]
+    [NotifyCanExecuteChangedFor(nameof(RemoveSelectedHostsCommand))]
     public partial NetworkScannerTreeNode? SelectedNode { get; private set; }
 
     /// <summary>
@@ -290,7 +298,7 @@ public partial class NetworkScannerPageModel : PageViewModelBase
         await ScanPorts(selected.Select(host => host.Address).ToArray());
     }
 
-    [RelayCommand(CanExecute = nameof(CanStartScan))]
+    [RelayCommand(CanExecute = nameof(CanScanAllPorts))]
     public async Task ScanAllPorts()
     {
         var addresses = Hosts.Select(host => host.Address).ToArray();
@@ -340,6 +348,9 @@ public partial class NetworkScannerPageModel : PageViewModelBase
                     OnPropertyChanged(nameof(HasRawOutput));
                     SaveRawOutputCommand.NotifyCanExecuteChanged();
                     RebuildHostTree();
+
+                    // The stored scan has to go with it, or the next start restores what was just cleared.
+                    PersistHosts();
                 }
             )
             .TryShow();
@@ -389,6 +400,7 @@ public partial class NetworkScannerPageModel : PageViewModelBase
                     }
 
                     RebuildHostTree();
+                    PersistHosts();
                 }
             )
             .TryShow();
@@ -499,6 +511,11 @@ public partial class NetworkScannerPageModel : PageViewModelBase
     private bool CanCancelScan()
     {
         return IsScanning;
+    }
+
+    private bool CanScanAllPorts()
+    {
+        return !IsScanning && HasResults;
     }
 
     private bool CanScanSelectedPorts()
@@ -854,7 +871,6 @@ public partial class NetworkScannerPageModel : PageViewModelBase
         );
 
         OnPropertyChanged(nameof(HasResults));
-        OnPropertyChanged($"{nameof(Hosts)}.Count");
         ExportResultsToJsonCommand.NotifyCanExecuteChanged();
         ExportResultsToCsvCommand.NotifyCanExecuteChanged();
         ClearResultsCommand.NotifyCanExecuteChanged();
@@ -887,15 +903,41 @@ public partial class NetworkScannerPageModel : PageViewModelBase
     private void UpdateSelectionState()
     {
         SelectedNode = HostsSource.RowSelection?.SelectedItem;
-        OnPropertyChanged(nameof(HasSelectedHosts));
-        ScanSelectedPortsCommand.NotifyCanExecuteChanged();
-        RescanSelectedHostsCommand.NotifyCanExecuteChanged();
-        AddSelectedToMonitoringCommand.NotifyCanExecuteChanged();
-        AddSelectedPortsToMonitoringCommand.NotifyCanExecuteChanged();
-        RemoveSelectedHostsCommand.NotifyCanExecuteChanged();
-        CopySelectedAddressCommand.NotifyCanExecuteChanged();
-        CopySelectedMacAddressCommand.NotifyCanExecuteChanged();
-        OpenSelectedInBrowserCommand.NotifyCanExecuteChanged();
+    }
+
+    /// <summary>
+    /// Gets the target the displayed hosts belong to.
+    /// </summary>
+    private static string CurrentTarget =>
+        string.IsNullOrWhiteSpace(Settings.LastTarget) ? string.Empty : Settings.LastTarget;
+
+    /// <summary>
+    /// Writes the displayed hosts back to the scan history, so an edit of the list survives a restart.
+    /// </summary>
+    /// <remarks>
+    /// Only a scan writes a new timestamp; editing the list keeps the timestamp of the scan it came from.
+    /// An emptied list drops the stored scan instead of storing an empty one.
+    /// </remarks>
+    private void PersistHosts()
+    {
+        var target = CurrentTarget;
+        if (target.Length == 0) return;
+
+        if (Hosts.Count == 0)
+        {
+            NetworkScansFile.Instance.RemoveTarget(target);
+            return;
+        }
+
+        NetworkScansFile.Instance.Store(
+            new NetworkScanSnapshot
+            {
+                Target = target,
+                Timestamp = LastScanTimestamp ?? DateTime.Now,
+                Engine = Engine,
+                Hosts = Hosts.ToArray(),
+            }
+        );
     }
 
     private void RestoreLastScan()
