@@ -36,9 +36,10 @@
     <suki:SukiTheme ThemeColor="Blue" />
     <materialIcons:MaterialIconStyles />
     <StyleInclude Source="avares://Avalonia.Controls.TreeDataGrid/Themes/Generic.axaml" />
-    <!--<StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Simple.xaml"/>-->
+    <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.v2.xaml" />
     <StyleInclude Source="avares://NetSonar.Avalonia/Assets/Styles/AppStyles.axaml" />
     <StyleInclude Source="avares://NetSonar.Avalonia/Assets/Styles/TreeDataGrid.axaml" />
+    <StyleInclude Source="avares://NetSonar.Avalonia/Assets/Styles/ProDataGrid.axaml" />
   </Application.Styles>
 
   <TrayIcon.Icons>

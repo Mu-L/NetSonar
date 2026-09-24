@@ -1,91 +1,101 @@
-<controls:UserControlBase x:Class="NetSonar.Avalonia.Views.Fragments.NetworkInterfaceFragment"
-                          xmlns="https://github.com/avaloniaui"
-                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
-                          xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
-                          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                          xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
-                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                          xmlns:network="clr-namespace:NetSonar.Avalonia.Network"
-                          xmlns:networkInformation="clr-namespace:System.Net.NetworkInformation;assembly=System.Net.NetworkInformation"
-                          xmlns:suki="https://github.com/kikipoulet/SukiUI"
-                          d:DataContext="{x:Static network:NetworkInterfaceBridge.PrimaryInterface}"
-                          d:DesignHeight="600"
-                          d:DesignWidth="850"
-                          x:DataType="network:NetworkInterfaceBridge"
-                          mc:Ignorable="d">
+<controls:UserControlBase
+    x:Class="NetSonar.Avalonia.Views.Fragments.NetworkInterfaceFragment"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
+    xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:network="clr-namespace:NetSonar.Avalonia.Network"
+    xmlns:networkInformation="clr-namespace:System.Net.NetworkInformation;assembly=System.Net.NetworkInformation"
+    xmlns:suki="https://github.com/kikipoulet/SukiUI"
+    d:DataContext="{x:Static network:NetworkInterfaceBridge.PrimaryInterface}"
+    d:DesignHeight="600"
+    d:DesignWidth="850"
+    x:DataType="network:NetworkInterfaceBridge"
+    mc:Ignorable="d">
     <suki:GlassCard>
         <suki:GroupBox>
             <suki:GroupBox.Header>
-                <Grid ColumnDefinitions="Auto,*,Auto"
-                      ColumnSpacing="5"
-                      RowDefinitions="Auto,Auto,Auto"
-                      RowSpacing="5">
+                <Grid
+                    ColumnDefinitions="Auto,*,Auto"
+                    ColumnSpacing="5"
+                    RowDefinitions="Auto,Auto,Auto"
+                    RowSpacing="5">
                     <!--  Interface icons  -->
-                    <icon:MaterialIcon Grid.Row="0"
-                                       Grid.Column="0"
-                                       VerticalAlignment="Center"
-                                       FontWeight="Bold"
-                                       Kind="{Binding TypeIcon}"
-                                       ToolTip.Tip="{Binding Interface.NetworkInterfaceType}" />
+                    <icon:MaterialIcon
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        FontWeight="Bold"
+                        Kind="{Binding TypeIcon}"
+                        ToolTip.Tip="{Binding Interface.NetworkInterfaceType}" />
 
-                    <icon:MaterialIcon Grid.Row="1"
-                                       Grid.Column="0"
-                                       VerticalAlignment="Center"
-                                       Classes="Success"
-                                       FontWeight="Bold"
-                                       IsVisible="{Binding IsActive}"
-                                       Kind="{Binding StatusIcon}"
-                                       ToolTip.Tip="{Binding Interface.OperationalStatus}" />
-                    <icon:MaterialIcon Grid.Row="1"
-                                       Grid.Column="0"
-                                       VerticalAlignment="Center"
-                                       Classes="Danger"
-                                       FontWeight="Bold"
-                                       IsVisible="{Binding !IsActive}"
-                                       Kind="{Binding StatusIcon}"
-                                       ToolTip.Tip="{Binding Interface.OperationalStatus}" />
-
+                    <icon:MaterialIcon
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Classes="Success"
+                        FontWeight="Bold"
+                        IsVisible="{Binding IsActive}"
+                        Kind="{Binding StatusIcon}"
+                        ToolTip.Tip="{Binding Interface.OperationalStatus}" />
+                    <icon:MaterialIcon
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Classes="Danger"
+                        FontWeight="Bold"
+                        IsVisible="{Binding !IsActive}"
+                        Kind="{Binding StatusIcon}"
+                        ToolTip.Tip="{Binding Interface.OperationalStatus}" />
 
                     <!--  Name and Description  -->
-                    <ScrollViewer Grid.Row="0"
-                                  Grid.Column="1"
-                                  HorizontalScrollBarVisibility="Auto"
-                                  VerticalScrollBarVisibility="Disabled">
-                        <SelectableTextBlock VerticalAlignment="Center"
-                                             FontWeight="Bold"
-                                             Text="{Binding Interface.Name}" />
+                    <ScrollViewer
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalScrollBarVisibility="Auto"
+                        VerticalScrollBarVisibility="Disabled">
+                        <SelectableTextBlock
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="{Binding Interface.Name}" />
                     </ScrollViewer>
 
-                    <ScrollViewer Grid.Row="1"
-                                  Grid.Column="1"
-                                  HorizontalScrollBarVisibility="Auto"
-                                  VerticalScrollBarVisibility="Disabled">
-                        <SelectableTextBlock VerticalAlignment="Center"
-                                             FontWeight="Bold"
-                                             Text="{Binding Interface.Description}" />
+                    <ScrollViewer
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalScrollBarVisibility="Auto"
+                        VerticalScrollBarVisibility="Disabled">
+                        <SelectableTextBlock
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="{Binding Interface.Description}" />
                     </ScrollViewer>
 
                     <!--  Settings  -->
-                    <Button Grid.Row="0"
-                            Grid.RowSpan="2"
-                            Grid.Column="2"
-                            Margin="5,0,0,0"
-                            VerticalAlignment="Center"
-                            Classes="AppIcon"
-                            Content="{icon:MaterialIconExt Kind=Settings}">
+                    <Button
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="2"
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Classes="AppIcon"
+                        Content="{icon:MaterialIconExt Kind=Settings}">
                         <Button.Flyout>
                             <MenuFlyout>
-                                <MenuItem Command="{Binding DisableCommand}"
-                                          Header="{localization:Translate Ui.Disable}"
-                                          Icon="{icon:MaterialIconExt Kind=NetworkOffOutline}"
-                                          IsVisible="{Binding IsEnabled}" />
+                                <MenuItem
+                                    Command="{Binding DisableCommand}"
+                                    Header="{localization:Translate Ui.Disable}"
+                                    Icon="{icon:MaterialIconExt Kind=NetworkOffOutline}"
+                                    IsVisible="{Binding IsEnabled}" />
 
-                                <MenuItem Command="{Binding EnableCommand}"
-                                          Header="{localization:Translate Ui.Enable}"
-                                          Icon="{icon:MaterialIconExt Kind=NetworkOutline}"
-                                          IsVisible="{Binding IsDisabled}" />
-
+                                <MenuItem
+                                    Command="{Binding EnableCommand}"
+                                    Header="{localization:Translate Ui.Enable}"
+                                    Icon="{icon:MaterialIconExt Kind=NetworkOutline}"
+                                    IsVisible="{Binding IsDisabled}" />
 
                                 <!--
                 <MenuItem Header="{localization:Translate Ui.ReleaseIP}"
@@ -94,9 +104,10 @@
                           Command="{Binding ReleaseIpCommand}"/>
                                 -->
 
-                                <MenuItem Command="{Binding RenewIpCommand}"
-                                          Header="{localization:Translate Ui.RenewIP}"
-                                          Icon="{icon:MaterialIconExt Kind=Autorenew}">
+                                <MenuItem
+                                    Command="{Binding RenewIpCommand}"
+                                    Header="{localization:Translate Ui.RenewIP}"
+                                    Icon="{icon:MaterialIconExt Kind=Autorenew}">
                                     <MenuItem.IsVisible>
                                         <MultiBinding Converter="{x:Static BoolConverters.And}">
                                             <Binding Path="IsActive" />
@@ -105,168 +116,192 @@
                                     </MenuItem.IsVisible>
                                 </MenuItem>
 
-                                <MenuItem Header="{localization:Translate Ui.SetIP}"
-                                          Icon="{icon:MaterialIconExt Kind=Ip}"
-                                          IsVisible="{Binding SupportsAnyIpProtocol}">
-                                    <MenuItem Command="{Binding SetDhcpIPCommand}"
-                                              CommandParameter="{x:Static network:IPVersion.V4}"
-                                              Header="DHCPv4"
-                                              Icon="{icon:MaterialIconExt Kind=Asterisk}" />
+                                <MenuItem
+                                    Header="{localization:Translate Ui.SetIP}"
+                                    Icon="{icon:MaterialIconExt Kind=Ip}"
+                                    IsVisible="{Binding SupportsAnyIpProtocol}">
+                                    <MenuItem
+                                        Command="{Binding SetDhcpIPCommand}"
+                                        CommandParameter="{x:Static network:IPVersion.V4}"
+                                        Header="DHCPv4"
+                                        Icon="{icon:MaterialIconExt Kind=Asterisk}" />
 
-                                    <MenuItem Command="{Binding SetDhcpIPCommand}"
-                                              CommandParameter="{x:Static network:IPVersion.V6}"
-                                              Header="DHCPv6"
-                                              Icon="{icon:MaterialIconExt Kind=Asterisk}" />
+                                    <MenuItem
+                                        Command="{Binding SetDhcpIPCommand}"
+                                        CommandParameter="{x:Static network:IPVersion.V6}"
+                                        Header="DHCPv6"
+                                        Icon="{icon:MaterialIconExt Kind=Asterisk}" />
 
-                                    <MenuItem Command="{Binding SetDhcpIPCommand}"
-                                              CommandParameter="{x:Static network:IPVersion.V4_V6}"
-                                              Header="DHCPv4+6"
-                                              Icon="{icon:MaterialIconExt Kind=Asterisk}" />
+                                    <MenuItem
+                                        Command="{Binding SetDhcpIPCommand}"
+                                        CommandParameter="{x:Static network:IPVersion.V4_V6}"
+                                        Header="DHCPv4+6"
+                                        Icon="{icon:MaterialIconExt Kind=Asterisk}" />
 
-                                    <MenuItem Command="{Binding ShowManualAssignmentIPDialogCommand}"
-                                              Header="{localization:Translate Ui.ManualAssignment}"
-                                              Icon="{icon:MaterialIconExt Kind=Numeric}" />
+                                    <MenuItem
+                                        Command="{Binding ShowManualAssignmentIPDialogCommand}"
+                                        Header="{localization:Translate Ui.ManualAssignment}"
+                                        Icon="{icon:MaterialIconExt Kind=Numeric}" />
                                 </MenuItem>
 
                                 <Separator />
 
-                                <MenuItem Header="{localization:Translate Ui.ExportTo}"
-                                          Icon="{icon:MaterialIconExt Kind=Export}">
-                                    <MenuItem Command="{Binding ExportToCsvCommand}"
-                                              Header="CSV"
-                                              Icon="{icon:MaterialIconExt Kind=FileCsvOutline}" />
-                                    <MenuItem Command="{Binding ExportToJsonCommand}"
-                                              Header="JSON"
-                                              Icon="{icon:MaterialIconExt Kind=CodeJson}" />
-                                    <MenuItem Command="{Binding ExportToIniCommand}"
-                                              Header="INI"
-                                              Icon="{icon:MaterialIconExt Kind=FileDocumentOutline}" />
+                                <MenuItem
+                                    Header="{localization:Translate Ui.ExportTo}"
+                                    Icon="{icon:MaterialIconExt Kind=Export}">
+                                    <MenuItem
+                                        Command="{Binding ExportToCsvCommand}"
+                                        Header="CSV"
+                                        Icon="{icon:MaterialIconExt Kind=FileCsvOutline}" />
+                                    <MenuItem
+                                        Command="{Binding ExportToJsonCommand}"
+                                        Header="JSON"
+                                        Icon="{icon:MaterialIconExt Kind=CodeJson}" />
+                                    <MenuItem
+                                        Command="{Binding ExportToIniCommand}"
+                                        Header="INI"
+                                        Icon="{icon:MaterialIconExt Kind=FileDocumentOutline}" />
                                 </MenuItem>
 
                                 <Separator />
 
-                                <MenuItem Command="{Binding OpenInNewWindowCommand}"
-                                          Header="{localization:Translate Ui.OpenInNewWindow}"
-                                          Icon="{icon:MaterialIconExt Kind=WindowRestore}" />
+                                <MenuItem
+                                    Command="{Binding OpenInNewWindowCommand}"
+                                    Header="{localization:Translate Ui.OpenInNewWindow}"
+                                    Icon="{icon:MaterialIconExt Kind=WindowRestore}" />
                             </MenuFlyout>
                         </Button.Flyout>
                     </Button>
 
-                    <Grid Grid.Row="2"
-                          Grid.Column="0"
-                          Grid.ColumnSpan="3"
-                          ColumnDefinitions="*,*,*"
-                          ColumnSpacing="5"
-                          RowDefinitions="Auto,Auto">
-                        <SelectableTextBlock Grid.Row="0"
-                                             Grid.Column="0"
-                                             Padding="0"
-                                             IsVisible="{Binding IPv4Address, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                             Text="{Binding IPv4Address}">
+                    <Grid
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        ColumnDefinitions="*,*,*"
+                        ColumnSpacing="5"
+                        RowDefinitions="Auto,Auto">
+                        <SelectableTextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Padding="0"
+                            IsVisible="{Binding IPv4Address, Converter={x:Static ObjectConverters.IsNotNull}}"
+                            Text="{Binding IPv4Address}">
                             <SelectableTextBlock.ContextMenu>
                                 <ContextMenu ItemsSource="{Binding Properties.UnicastAddresses}">
                                     <ContextMenu.ItemContainerTheme>
-                                        <ControlTheme x:DataType="networkInformation:UnicastIPAddressInformation"
-                                                      BasedOn="{StaticResource {x:Type MenuItem}}"
-                                                      TargetType="MenuItem">
-
+                                        <ControlTheme
+                                            x:DataType="networkInformation:UnicastIPAddressInformation"
+                                            BasedOn="{StaticResource {x:Type MenuItem}}"
+                                            TargetType="MenuItem">
                                             <Setter Property="Header" Value="{Binding Address}" />
-                                            <Setter Property="Command" Value="{Binding $parent[controls:UserControlBase].CopyToClipboardCommand}" />
+                                            <Setter
+                                                Property="Command"
+                                                Value="{Binding $parent[controls:UserControlBase].CopyToClipboardCommand}" />
                                             <Setter Property="CommandParameter" Value="{Binding Address}" />
-
                                         </ControlTheme>
                                     </ContextMenu.ItemContainerTheme>
                                 </ContextMenu>
                             </SelectableTextBlock.ContextMenu>
                         </SelectableTextBlock>
 
-                        <SelectableTextBlock Grid.Row="0"
-                                             Grid.Column="0"
-                                             IsVisible="{Binding IPv4Address, Converter={x:Static ObjectConverters.IsNull}}"
-                                             Text="{Binding IPv6Address}" />
+                        <SelectableTextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            IsVisible="{Binding IPv4Address, Converter={x:Static ObjectConverters.IsNull}}"
+                            Text="{Binding IPv6Address}" />
 
-                        <SelectableTextBlock Grid.Row="0"
-                                             Grid.Column="1"
-                                             HorizontalAlignment="Center"
-                                             IsVisible="{Binding PhysicalAddressString, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                                             Text="{Binding PhysicalAddressString}"
-                                             ToolTip.Tip="{localization:Translate Ui.PhysicalAddressMACAddress}" />
+                        <SelectableTextBlock
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            IsVisible="{Binding PhysicalAddressString, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                            Text="{Binding PhysicalAddressString}"
+                            ToolTip.Tip="{localization:Translate Ui.PhysicalAddressMACAddress}" />
 
-                        <SelectableTextBlock Grid.Row="0"
-                                             Grid.Column="2"
-                                             HorizontalAlignment="Right"
-                                             IsVisible="{Binding !!Interface.Speed}"
-                                             Text="{Binding Interface.Speed, Converter={StaticResource InternetSpeedNormalize}}"
-                                             ToolTip.Tip="{localization:Translate Ui.ConnectionSpeed}" />
-                        <WrapPanel Grid.Row="1"
-                                   Grid.Column="0"
-                                   Grid.ColumnSpan="2"
-                                   Margin="0,5,0,0"
-                                   VerticalAlignment="Center"
-                                   ItemSpacing="5"
-                                   LineSpacing="5">
-                            <Button MinWidth="45"
-                                    Padding="15,5"
-                                    VerticalAlignment="Center"
-                                    Classes="Information Rounded"
-                                    Content="IPv4"
-                                    IsEnabled="False"
-                                    IsVisible="{Binding SupportsIPv4}" />
+                        <SelectableTextBlock
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            HorizontalAlignment="Right"
+                            IsVisible="{Binding !!Interface.Speed}"
+                            Text="{Binding Interface.Speed, Converter={StaticResource InternetSpeedNormalize}}"
+                            ToolTip.Tip="{localization:Translate Ui.ConnectionSpeed}" />
+                        <WrapPanel
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0,5,0,0"
+                            VerticalAlignment="Center"
+                            ItemSpacing="5"
+                            LineSpacing="5">
+                            <Button
+                                MinWidth="45"
+                                Padding="15,5"
+                                VerticalAlignment="Center"
+                                Classes="Information Rounded"
+                                Content="IPv4"
+                                IsEnabled="False"
+                                IsVisible="{Binding SupportsIPv4}" />
 
-                            <Button MinWidth="45"
-                                    Padding="15,5"
-                                    VerticalAlignment="Center"
-                                    Classes="Information Rounded"
-                                    Content="IPv6"
-                                    IsEnabled="False"
-                                    IsVisible="{Binding SupportsIPv6}" />
+                            <Button
+                                MinWidth="45"
+                                Padding="15,5"
+                                VerticalAlignment="Center"
+                                Classes="Information Rounded"
+                                Content="IPv6"
+                                IsEnabled="False"
+                                IsVisible="{Binding SupportsIPv6}" />
 
-                            <Button MinWidth="45"
-                                    Padding="15,5"
-                                    VerticalAlignment="Center"
-                                    Classes="Information Rounded"
-                                    Content="DHCPv4"
-                                    IsEnabled="False"
-                                    IsVisible="{Binding IsDHCPv4}" />
+                            <Button
+                                MinWidth="45"
+                                Padding="15,5"
+                                VerticalAlignment="Center"
+                                Classes="Information Rounded"
+                                Content="DHCPv4"
+                                IsEnabled="False"
+                                IsVisible="{Binding IsDHCPv4}" />
 
-                            <Button MinWidth="45"
-                                    Padding="15,5"
-                                    VerticalAlignment="Center"
-                                    Classes="Information Rounded"
-                                    Content="{localization:Translate Ui.StaticIPv4}"
-                                    IsEnabled="False"
-                                    IsVisible="{Binding IsStaticIPv4}" />
+                            <Button
+                                MinWidth="45"
+                                Padding="15,5"
+                                VerticalAlignment="Center"
+                                Classes="Information Rounded"
+                                Content="{localization:Translate Ui.StaticIPv4}"
+                                IsEnabled="False"
+                                IsVisible="{Binding IsStaticIPv4}" />
                         </WrapPanel>
-                        <StackPanel Grid.Row="1"
-                                    Grid.Column="2"
-                                    HorizontalAlignment="Right"
-                                    Orientation="Vertical">
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            HorizontalAlignment="Right"
+                            Orientation="Vertical">
+                            <icon:MaterialIconText
+                                IsTextSelectable="True"
+                                IsVisible="{Binding !!BytesReceived}"
+                                Kind="ArrowDown"
+                                Text="{Binding Statistics.BytesReceived, Converter={StaticResource FileSizeNormalize}}"
+                                ToolTip.Tip="{localization:Translate Ui.Downloaded}" />
 
-                            <icon:MaterialIconText IsTextSelectable="True"
-                                                   IsVisible="{Binding !!BytesReceived}"
-                                                   Kind="ArrowDown"
-                                                   Text="{Binding Statistics.BytesReceived, Converter={StaticResource FileSizeNormalize}}"
-                                                   ToolTip.Tip="{localization:Translate Ui.Downloaded}" />
-
-                            <icon:MaterialIconText IsTextSelectable="True"
-                                                   IsVisible="{Binding !!BytesSent}"
-                                                   Kind="ArrowUp"
-                                                   Text="{Binding Statistics.BytesSent, Converter={StaticResource FileSizeNormalize}}"
-                                                   ToolTip.Tip="{localization:Translate Ui.Uploaded}" />
+                            <icon:MaterialIconText
+                                IsTextSelectable="True"
+                                IsVisible="{Binding !!BytesSent}"
+                                Kind="ArrowUp"
+                                Text="{Binding Statistics.BytesSent, Converter={StaticResource FileSizeNormalize}}"
+                                ToolTip.Tip="{localization:Translate Ui.Uploaded}" />
                         </StackPanel>
                     </Grid>
-
                 </Grid>
-
             </suki:GroupBox.Header>
 
-            <DataGrid CanUserReorderColumns="False"
-                      CanUserResizeColumns="True"
-                      CanUserSortColumns="True"
-                      ClipboardCopyMode="IncludeHeader"
-                      HeadersVisibility="All"
-                      IsReadOnly="True"
-                      ItemsSource="{Binding TabularDataGroupView}">
+            <DataGrid
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="True"
+                CanUserSortColumns="True"
+                CanUserDeleteRows="False"
+                CanUserAddRows="False"
+                ClipboardCopyMode="IncludeHeader"
+                HeadersVisibility="All"
+                IsReadOnly="True"
+                ItemsSource="{Binding TabularDataGroupView}">
                 <DataGrid.Styles>
                     <Style Selector="DataGridRow">
                         <Setter Property="Header" Value="{Binding $self.Index}" />
@@ -276,14 +311,15 @@
                     </Style>
                 </DataGrid.Styles>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="180"
-                                        Binding="{ReflectionBinding Value.Name}"
-                                        Header="{localization:Translate Ui.Property}" />
-                    <DataGridTextColumn Binding="{ReflectionBinding Value.Value}"
-                                        Header="{localization:Translate Ui.Value}" />
+                    <DataGridTextColumn
+                        Width="180"
+                        Binding="{ReflectionBinding Value.Name}"
+                        Header="{localization:Translate Ui.Property}" />
+                    <DataGridTextColumn
+                        Binding="{ReflectionBinding Value.Value}"
+                        Header="{localization:Translate Ui.Value}" />
                 </DataGrid.Columns>
             </DataGrid>
-
         </suki:GroupBox>
     </suki:GlassCard>
 </controls:UserControlBase>

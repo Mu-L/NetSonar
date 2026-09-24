@@ -1,0 +1,180 @@
+<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--
+    Keep ProDataGrid's Fluent v2 control themes intact and only replace their
+    palette and layout resources. SukiUI's DataGrid themes target the original
+    DataGrid templates and would hide ProDataGrid-specific template behavior.
+  -->
+    <Styles.Resources>
+        <ResourceDictionary>
+            <!-- Suki palette -->
+            <SolidColorBrush x:Key="DataGridBackgroundBrush" Color="Transparent" />
+            <SolidColorBrush x:Key="DataGridBorderBrush" Color="{DynamicResource SukiBorderBrush}" />
+            <SolidColorBrush x:Key="DataGridGridLinesBrush" Color="{DynamicResource SukiBorderBrush}" />
+
+            <SolidColorBrush
+                x:Key="DataGridColumnHeaderForegroundBrush"
+                Color="{DynamicResource SukiLowText}" />
+            <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundBrush" Color="Transparent" />
+            <SolidColorBrush
+                x:Key="DataGridColumnHeaderHoveredBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor7}" />
+            <SolidColorBrush
+                x:Key="DataGridColumnHeaderPressedBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor15}" />
+            <SolidColorBrush
+                x:Key="DataGridColumnHeaderDraggedBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor10}" />
+            <SolidColorBrush
+                x:Key="DataGridColumnHeaderSelectedBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor15}" />
+            <SolidColorBrush
+                x:Key="DataGridColumnHeaderSelectedHoveredBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor20}" />
+            <SolidColorBrush
+                x:Key="DataGridColumnHeaderSelectedForegroundBrush"
+                Color="{DynamicResource SukiText}" />
+            <SolidColorBrush
+                x:Key="DataGridColumnHeaderCurrentBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor15}" />
+            <SolidColorBrush
+                x:Key="DataGridColumnHeaderCurrentForegroundBrush"
+                Color="{DynamicResource SukiText}" />
+
+            <SolidColorBrush x:Key="DataGridRowBackgroundBrush" Color="Transparent" />
+            <SolidColorBrush x:Key="DataGridCellBackgroundBrush" Color="Transparent" />
+            <SolidColorBrush
+                x:Key="DataGridRowHoveredBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor7}" />
+            <SolidColorBrush
+                x:Key="DataGridCellHoveredBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor7}" />
+            <SolidColorBrush
+                x:Key="DataGridRowSelectedBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor}" />
+            <SolidColorBrush
+                x:Key="DataGridRowSelectedHoveredBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor}" />
+            <SolidColorBrush
+                x:Key="DataGridRowSelectedUnfocusedBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor}" />
+            <SolidColorBrush
+                x:Key="DataGridRowSelectedHoveredUnfocusedBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor}" />
+            <x:Double x:Key="DataGridRowSelectedBackgroundOpacity">0.15</x:Double>
+            <x:Double x:Key="DataGridRowSelectedHoveredBackgroundOpacity">0.20</x:Double>
+            <x:Double x:Key="DataGridRowSelectedUnfocusedBackgroundOpacity">0.10</x:Double>
+            <x:Double x:Key="DataGridRowSelectedHoveredUnfocusedBackgroundOpacity">0.15</x:Double>
+            <SolidColorBrush
+                x:Key="DataGridCellSelectedBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor}"
+                Opacity="0.15" />
+            <SolidColorBrush
+                x:Key="DataGridCellSelectedHoveredBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor}"
+                Opacity="0.20" />
+            <SolidColorBrush
+                x:Key="DataGridCellSelectedUnfocusedBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor}"
+                Opacity="0.10" />
+            <SolidColorBrush
+                x:Key="DataGridCellSelectedHoveredUnfocusedBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor}"
+                Opacity="0.15" />
+
+            <SolidColorBrush
+                x:Key="DataGridRowGroupHeaderBackgroundBrush"
+                Color="{DynamicResource SukiStrongBackground}" />
+            <SolidColorBrush
+                x:Key="DataGridRowGroupHeaderPressedBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor15}" />
+            <SolidColorBrush
+                x:Key="DataGridRowGroupHeaderForegroundBrush"
+                Color="{DynamicResource SukiText}" />
+            <SolidColorBrush
+                x:Key="DataGridRowGroupHeaderHoveredBackgroundBrush"
+                Color="{DynamicResource SukiPrimaryColor7}" />
+
+            <SolidColorBrush
+                x:Key="DataGridCellFocusVisualPrimaryBrush"
+                Color="{DynamicResource SukiPrimaryColor}" />
+            <SolidColorBrush
+                x:Key="DataGridCellFocusVisualSecondaryBrush"
+                Color="{DynamicResource SukiControlBorderBrush}" />
+            <SolidColorBrush
+                x:Key="DataGridCurrencyVisualPrimaryBrush"
+                Color="{DynamicResource SukiPrimaryColor50}" />
+            <SolidColorBrush
+                x:Key="DataGridSelectionOutlineBrush"
+                Color="{DynamicResource SukiPrimaryColor}" />
+            <SolidColorBrush x:Key="DataGridFillHandleBrush" Color="{DynamicResource SukiPrimaryColor}" />
+            <SolidColorBrush
+                x:Key="DataGridRowDropIndicatorBrush"
+                Color="{DynamicResource SukiPrimaryColor}" />
+
+            <SolidColorBrush x:Key="DataGridRowInvalidBrush" Color="{DynamicResource SukiDangerColor}" />
+            <SolidColorBrush x:Key="DataGridRowWarningBrush" Color="{DynamicResource SukiWarningColor}" />
+            <SolidColorBrush
+                x:Key="DataGridRowInfoBrush"
+                Color="{DynamicResource SukiInformationColor}" />
+            <SolidColorBrush x:Key="DataGridCellInvalidBrush" Color="{DynamicResource SukiDangerColor}" />
+            <SolidColorBrush
+                x:Key="DataGridCellWarningBrush"
+                Color="{DynamicResource SukiWarningColor}" />
+            <SolidColorBrush
+                x:Key="DataGridCellInfoBrush"
+                Color="{DynamicResource SukiInformationColor}" />
+
+            <SolidColorBrush
+                x:Key="DataGridDetailsPresenterBackgroundBrush"
+                Color="{DynamicResource SukiCardBackground}" />
+            <SolidColorBrush
+                x:Key="DataGridSummaryRowBackgroundBrush"
+                Color="{DynamicResource SukiStrongBackground}" />
+            <SolidColorBrush
+                x:Key="DataGridSummaryRowForegroundBrush"
+                Color="{DynamicResource SukiText}" />
+            <SolidColorBrush
+                x:Key="DataGridTotalSummaryRowBackgroundBrush"
+                Color="{DynamicResource SukiStrongBackground}" />
+            <SolidColorBrush
+                x:Key="DataGridGroupSummaryRowBackgroundBrush"
+                Color="{DynamicResource SukiCardBackground}" />
+            <SolidColorBrush
+                x:Key="DataGridFilterFlyoutBackgroundBrush"
+                Color="{DynamicResource SukiPopupBackground}" />
+            <SolidColorBrush
+                x:Key="DataGridSearchMatchBrush"
+                Color="{DynamicResource SukiWarningColor}"
+                Opacity="0.25" />
+            <SolidColorBrush
+                x:Key="DataGridSearchCurrentBrush"
+                Color="{DynamicResource SukiWarningColor}"
+                Opacity="0.45" />
+            <SolidColorBrush
+                x:Key="DataGridSearchMatchForegroundBrush"
+                Color="{DynamicResource SukiText}" />
+
+            <!-- Suki DataGrid layout metrics -->
+            <x:Double x:Key="DataGridSortIconMinWidth">24</x:Double>
+            <x:Double x:Key="DataGridCellFontSize">14</x:Double>
+            <x:Double x:Key="DataGridCellMinHeight">36</x:Double>
+            <x:Double x:Key="DataGridColumnHeaderFontSize">14</x:Double>
+            <x:Double x:Key="DataGridColumnHeaderMinHeight">44</x:Double>
+            <x:Double x:Key="DataGridRowGroupHeaderFontSize">16</x:Double>
+            <x:Double x:Key="DataGridRowGroupHeaderMinHeight">36</x:Double>
+            <x:Double x:Key="DataGridSummaryRowMinHeight">36</x:Double>
+            <Thickness x:Key="DataGridCellTextBlockMargin">12,0</Thickness>
+            <Thickness x:Key="DataGridColumnHeaderPadding">12,0</Thickness>
+        </ResourceDictionary>
+    </Styles.Resources>
+
+    <Style Selector="DataGrid">
+        <Setter Property="Foreground" Value="{DynamicResource SukiText}" />
+    </Style>
+
+    <Style Selector="DataGridColumnHeader TextBlock">
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+    </Style>
+</Styles>

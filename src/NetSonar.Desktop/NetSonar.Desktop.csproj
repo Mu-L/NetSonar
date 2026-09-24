@@ -1,42 +1,41 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <OutputType>WinExe</OutputType>
-        <!--If you are willing to use Windows/MacOS native APIs you will need to create 3 projects.
-    One for Windows with net8.0-windows TFM, one for MacOS with net8.0-macos and one with net8.0 TFM for Linux.-->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <!--If you are willing to use Windows/MacOS native APIs you will need to create 3 projects.
+        One for Windows with net8.0-windows TFM, one for MacOS with net8.0-macos and one with net8.0 TFM for Linux.-->
 
-        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-        <ApplicationManifest>app.manifest</ApplicationManifest>
-        <AssemblyName>$(SoftwareName)</AssemblyName>
-    </PropertyGroup>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>$(SoftwareName)</AssemblyName>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\NetSonar\NetSonar.Avalonia.csproj"/>
-        <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)"/>
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NetSonar\NetSonar.Avalonia.csproj" />
+    <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <Content Include="..\..\dependencies\$(RuntimeIdentifier)\**"
-                 Condition="'$(RuntimeIdentifier)' != ''">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <Link>binaries\%(RecursiveDir)%(Filename)%(Extension)</Link>
-        </Content>
+  <ItemGroup>
+    <Content
+      Include="..\..\dependencies\$(RuntimeIdentifier)\**"
+      Condition="'$(RuntimeIdentifier)' != ''"
+    >
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>binaries\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>
 
-        <Content Include="..\..\dependencies\$(RuntimeFamily)\**"
-                 Condition="'$(RuntimeFamily)' != ''">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <Link>binaries\%(RecursiveDir)%(Filename)%(Extension)</Link>
-        </Content>
+    <Content Include="..\..\dependencies\$(RuntimeFamily)\**" Condition="'$(RuntimeFamily)' != ''">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>binaries\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>
 
-        <Content Include="..\..\dependencies\win\**"
-                 Condition="'$(RuntimeIdentifier)' == ''">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <Link>binaries\%(RecursiveDir)%(Filename)%(Extension)</Link>
-        </Content>
+    <Content Include="..\..\dependencies\win\**" Condition="'$(RuntimeIdentifier)' == ''">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>binaries\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>
 
-        <Content Include="..\..\dependencies\win-x64\**"
-                 Condition="'$(RuntimeIdentifier)' == ''">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <Link>binaries\%(RecursiveDir)%(Filename)%(Extension)</Link>
-        </Content>
-    </ItemGroup>
+    <Content Include="..\..\dependencies\win-x64\**" Condition="'$(RuntimeIdentifier)' == ''">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>binaries\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>
+  </ItemGroup>
 </Project>

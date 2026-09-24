@@ -191,6 +191,12 @@ public partial class NetworkScannerPageModel : PageViewModelBase
 
     public bool HasRawOutput => _rawOutput.Length > 0;
 
+    /// <summary>
+    /// Gets the target the displayed hosts belong to.
+    /// </summary>
+    private static string CurrentTarget =>
+        string.IsNullOrWhiteSpace(Settings.LastTarget) ? string.Empty : Settings.LastTarget;
+
     protected internal override void OnInitialized()
     {
         base.OnInitialized();
@@ -219,6 +225,7 @@ public partial class NetworkScannerPageModel : PageViewModelBase
         {
             NmapVersion = NmapScannerService.GetVersion();
         }
+
         MacVendorLookup.Invalidate();
     }
 
@@ -906,12 +913,6 @@ public partial class NetworkScannerPageModel : PageViewModelBase
     }
 
     /// <summary>
-    /// Gets the target the displayed hosts belong to.
-    /// </summary>
-    private static string CurrentTarget =>
-        string.IsNullOrWhiteSpace(Settings.LastTarget) ? string.Empty : Settings.LastTarget;
-
-    /// <summary>
     /// Writes the displayed hosts back to the scan history, so an edit of the list survives a restart.
     /// </summary>
     /// <remarks>
@@ -921,7 +922,8 @@ public partial class NetworkScannerPageModel : PageViewModelBase
     private void PersistHosts()
     {
         var target = CurrentTarget;
-        if (target.Length == 0) return;
+        if (target.Length == 0)
+            return;
 
         if (Hosts.Count == 0)
         {
@@ -1260,7 +1262,12 @@ public sealed class NetworkScannerTreeNode
             ? string.IsNullOrWhiteSpace(Host.Hostname)
                 ? Host.Address
                 : $"{Host.Address} ({Host.Hostname})"
-            : $"{Port!.Number}/{Port.Protocol}";
+            : $"{Port!.Number}/{Port.Protocol}"
+                + (
+                    string.IsNullOrWhiteSpace(Port.Service)
+                        ? string.Empty
+                        : $" ({Port.Service.ToUpperInvariant()})"
+                );
 
     public string State => Host?.State ?? Port?.State ?? string.Empty;
     public string MacAddress => Host?.MacAddress ?? string.Empty;

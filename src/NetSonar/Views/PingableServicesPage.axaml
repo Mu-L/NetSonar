@@ -9,7 +9,7 @@
   xmlns:fragments="clr-namespace:NetSonar.Avalonia.Views.Fragments"
   xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:network="clr-namespace:NetSonar.Avalonia.Network"
+  xmlns:network="clr-namespace:NetSonar.Avalonia.Network;assembly=NetSonar.Avalonia"
   xmlns:suki="https://github.com/kikipoulet/SukiUI"
   xmlns:sys="clr-namespace:System;assembly=System.Runtime"
   xmlns:viewModels="clr-namespace:NetSonar.Avalonia.ViewModels"
@@ -379,7 +379,10 @@
           CanUserReorderColumns="True"
           CanUserResizeColumns="True"
           CanUserSortColumns="True"
+          CanUserDeleteRows="False"
+          CanUserAddRows="False"
           ClipboardCopyMode="IncludeHeader"
+          SelectionUnit="FullRow"
           HeadersVisibility="All"
           IsReadOnly="False"
           ItemsSource="{Binding ServicesViewCollection}"
@@ -540,6 +543,7 @@
                     <TextBlock
                       Classes="Success extraBold"
                       IsVisible="{Binding WasLastPingSucceeded}"
+                      VerticalAlignment="Center"
                     >
                       <TextBlock.Text>
                         <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
@@ -548,7 +552,11 @@
                         </MultiBinding>
                       </TextBlock.Text>
                     </TextBlock>
-                    <TextBlock Classes="Danger extraBold" IsVisible="{Binding WasLastPingFailed}">
+                    <TextBlock
+                      Classes="Danger extraBold"
+                      IsVisible="{Binding WasLastPingFailed}"
+                      VerticalAlignment="Center"
+                    >
                       <TextBlock.Text>
                         <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
                           <Binding Path="LastStatus" />
@@ -569,6 +577,11 @@
               Binding="{Binding Description}"
               Header="{localization:Translate Ui.Description}"
             />
+            <DataGridTextColumn
+              HeaderStyleClasses="Danger"
+              Binding="{Binding Description}"
+              Header="{localization:Translate Ui.Description}"
+            />
             <DataGridTemplateColumn
               CellStyleClasses="center"
               ClipboardContentBinding="{Binding LastTime, DataType=network:PingableService}"
@@ -580,11 +593,13 @@
                 <DataTemplate>
                   <Panel>
                     <TextBlock
+                      VerticalAlignment="Center"
                       IsVisible="{Binding WasLastPingSucceeded, Mode=OneWay}"
                       Text="{Binding LastTime, StringFormat='{}{0:#,#0.##}ms'}"
                     />
                     <TextBlock
                       Classes="Danger extraBold"
+                      VerticalAlignment="Center"
                       IsVisible="{Binding WasLastPingFailed, Mode=OneWay}"
                       Text="{Binding LastTime, StringFormat='{}{0}ms'}"
                     />
@@ -609,6 +624,7 @@
                 <DataTemplate>
                   <StackPanel>
                     <TextBlock
+                      VerticalAlignment="Center"
                       HorizontalAlignment="Center"
                       Text="{Binding AverageTime, StringFormat='{}{0:#,#0.##}ms', Mode=OneWay}"
                     />
@@ -651,6 +667,7 @@
                 <DataTemplate>
                   <StackPanel>
                     <TextBlock
+                      VerticalAlignment="Center"
                       HorizontalAlignment="Center"
                       Text="{Binding SucceedCountRepresentation}"
                     />
@@ -679,6 +696,7 @@
                 <DataTemplate>
                   <StackPanel>
                     <TextBlock
+                      VerticalAlignment="Center"
                       HorizontalAlignment="Center"
                       Text="{Binding FailedCountRepresentation}"
                     />
@@ -706,7 +724,7 @@
             >
               <DataGridTemplateColumn.CellTemplate>
                 <DataTemplate>
-                  <TextBlock>
+                  <TextBlock VerticalAlignment="Center">
                     <Run Text="{Binding ConsecutiveSucceedCount, Mode=OneWay}" />
                     <Run Text="{Binding MaxConsecutiveSucceedCount, StringFormat='/ {0}', Mode=OneWay}" />
                   </TextBlock>
@@ -722,7 +740,7 @@
             >
               <DataGridTemplateColumn.CellTemplate>
                 <DataTemplate>
-                  <TextBlock>
+                  <TextBlock VerticalAlignment="Center">
                     <Run Text="{Binding ConsecutiveFailedCount, Mode=OneWay}" />
                     <Run Text="{Binding MaxConsecutiveFailedCount, StringFormat='/ {0}', Mode=OneWay}" />
                   </TextBlock>
@@ -993,6 +1011,8 @@
               CanUserReorderColumns="True"
               CanUserResizeColumns="True"
               CanUserSortColumns="True"
+              CanUserDeleteRows="False"
+              CanUserAddRows="False"
               ClipboardCopyMode="IncludeHeader"
               HeadersVisibility="All"
               IsReadOnly="True"
@@ -1018,10 +1038,12 @@
                     <DataTemplate>
                       <Panel>
                         <TextBlock
+                          VerticalAlignment="Center"
                           IsVisible="{Binding IsSucceeded}"
                           Text="{Binding Time, StringFormat='{}{0:#,#0.##}ms', Mode=OneWay}"
                         />
                         <TextBlock
+                          VerticalAlignment="Center"
                           Classes="Danger extraBold"
                           IsVisible="{Binding IsFailed, Mode=OneWay}"
                           Text="{Binding Time}"
@@ -1055,7 +1077,10 @@
                   <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                       <Panel>
-                        <TextBlock IsVisible="{Binding IsSucceeded, Mode=OneWay}">
+                        <TextBlock
+                          VerticalAlignment="Center"
+                          IsVisible="{Binding IsSucceeded, Mode=OneWay}"
+                        >
                           <TextBlock.Text>
                             <MultiBinding Converter="{StaticResource LocalizedStatusConverter}">
                               <Binding Path="Status" />
@@ -1065,6 +1090,7 @@
                         </TextBlock>
                         <TextBlock
                           Classes="Danger extraBold"
+                          VerticalAlignment="Center"
                           IsVisible="{Binding IsFailed, Mode=OneWay}"
                         >
                           <TextBlock.Text>

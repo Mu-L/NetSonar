@@ -1,298 +1,368 @@
-<controls:UserControlBase x:Class="NetSonar.Avalonia.Views.Dialogs.AddPingServicesDialogView"
-                          xmlns="https://github.com/avaloniaui"
-                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                          xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
-                          xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
-                          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                          xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
-                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                          xmlns:models="clr-namespace:NetSonar.Avalonia.Models"
-                          xmlns:network="clr-namespace:NetSonar.Avalonia.Network"
-                          xmlns:suki="https://github.com/kikipoulet/SukiUI"
-                          xmlns:sys="clr-namespace:System;assembly=System.Runtime"
-                          xmlns:viewModels="clr-namespace:NetSonar.Avalonia.ViewModels"
-                          xmlns:vm="clr-namespace:NetSonar.Avalonia.ViewModels.Dialogs"
-                          d:DesignHeight="450"
-                          d:DesignWidth="800"
-                          x:DataType="vm:AddPingServicesDialogModel"
-                          mc:Ignorable="d">
-    <controls:UserControlBase.KeyBindings>
-        <KeyBinding Command="{Binding RemoveServicesCommand}"
-                    CommandParameter="{Binding #ServicesGrid.SelectedItems}"
-                    Gesture="Shift + Delete" />
-        <KeyBinding Command="{Binding ClearCommand}"
-                    Gesture="{OnPlatform macOS='Cmd + Shift + Delete',
-                                         Default='Ctrl + Shift + Delete'}" />
-    </controls:UserControlBase.KeyBindings>
+<controls:UserControlBase
+  x:Class="NetSonar.Avalonia.Views.Dialogs.AddPingServicesDialogView"
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:localization="clr-namespace:NetSonar.Avalonia.Localization"
+  xmlns:controls="clr-namespace:NetSonar.Avalonia.Controls"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:icon="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:models="clr-namespace:NetSonar.Avalonia.Models;assembly=NetSonar.Avalonia"
+  xmlns:network="clr-namespace:NetSonar.Avalonia.Network"
+  xmlns:suki="https://github.com/kikipoulet/SukiUI"
+  xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+  xmlns:viewModels="clr-namespace:NetSonar.Avalonia.ViewModels"
+  xmlns:vm="clr-namespace:NetSonar.Avalonia.ViewModels.Dialogs"
+  d:DesignHeight="450"
+  d:DesignWidth="800"
+  x:DataType="vm:AddPingServicesDialogModel"
+  mc:Ignorable="d"
+>
+  <controls:UserControlBase.KeyBindings>
+    <KeyBinding
+      Command="{Binding RemoveServicesCommand}"
+      CommandParameter="{Binding #ServicesGrid.SelectedItems}"
+      Gesture="Shift + Delete"
+    />
+    <KeyBinding
+      Command="{Binding ClearCommand}"
+      Gesture="{OnPlatform macOS='Cmd + Shift + Delete',
+                                         Default='Ctrl + Shift + Delete'}"
+    />
+  </controls:UserControlBase.KeyBindings>
 
+  <suki:SukiMessageBoxHost Classes="AppPanel">
+    <suki:SukiMessageBoxHost.Header>
+      <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto">
+        <StackPanel Orientation="Horizontal" Spacing="10">
+          <icon:MaterialIcon Kind="Web" />
 
-    <suki:SukiMessageBoxHost Classes="AppPanel">
-        <suki:SukiMessageBoxHost.Header>
-            <Grid ColumnDefinitions="Auto, *"
-                  RowDefinitions="Auto">
-                <StackPanel Orientation="Horizontal"
-                            Spacing="10">
-                    <icon:MaterialIcon Kind="Web" />
+          <TextBlock VerticalAlignment="Center" Classes="h4" Text="{Binding HeaderText}" />
 
-                    <TextBlock VerticalAlignment="Center"
-                               Classes="h4"
-                               Text="{Binding HeaderText}" />
+          <Button
+            MinWidth="45"
+            Padding="15,5"
+            VerticalAlignment="Center"
+            Classes="Information Rounded"
+            Content="{Binding ServicesView.Count}"
+            IsEnabled="False"
+          />
+        </StackPanel>
 
-                    <Button MinWidth="45"
-                            Padding="15,5"
-                            VerticalAlignment="Center"
-                            Classes="Information Rounded"
-                            Content="{Binding ServicesView.Count}"
-                            IsEnabled="False" />
-                </StackPanel>
+        <StackPanel
+          Grid.Column="1"
+          HorizontalAlignment="Right"
+          Orientation="Horizontal"
+          Spacing="10"
+        >
+          <SplitButton
+            Classes="Flat Small"
+            Command="{Binding AddEmptyCommand}"
+            Content="{icon:MaterialIconExt Kind=Add}"
+            IsVisible="{Binding !IsEditing}"
+            ToolTip.Tip="{localization:Translate Ui.AddNewServicesWithPasteHint}"
+          >
+            <SplitButton.Flyout>
+              <MenuFlyout Placement="Bottom">
+                <MenuItem
+                  Command="{Binding PasteFromClipboardCommand}"
+                  Header="{localization:Translate Ui.PasteFromClipboard}"
+                  Icon="{icon:MaterialIconExt Kind=ContentPaste}"
+                  IsVisible="{Binding !IsEditing}"
+                  ToolTip.Tip="{localization:Translate Ui.PasteFormatHint}"
+                />
+                <MenuItem
+                  Command="{Binding ImportFromJsonCommand}"
+                  Header="{localization:Translate Ui.ImportFromJSON}"
+                  Icon="{icon:MaterialIconExt Kind=CodeJson}"
+                />
+                <MenuItem
+                  Command="{Binding ImportNetworkGatewaysCommand}"
+                  Header="{localization:Translate Ui.ImportNetworkGatewayS}"
+                  Icon="{icon:MaterialIconExt Kind=ServerNetworkOutline}"
+                />
+                <MenuItem
+                  Header="{localization:Translate Ui.ImportPublicHosts}"
+                  Icon="{icon:MaterialIconExt Kind=ServerNetwork}"
+                >
+                  <MenuItem
+                    Command="{Binding ImportPublicProtocolHostsCommand}"
+                    CommandParameter="{x:Static network:ServiceProtocolType.TLS}"
+                    Header="TLS"
+                    Icon="{icon:MaterialIconExt Kind=ShieldLockOutline}"
+                  />
+                  <MenuItem
+                    Command="{Binding ImportPublicProtocolHostsCommand}"
+                    CommandParameter="{x:Static network:ServiceProtocolType.DNS}"
+                    Header="DNS"
+                    Icon="{icon:MaterialIconExt Kind=DnsOutline}"
+                  />
+                  <MenuItem
+                    Command="{Binding ImportPublicProtocolHostsCommand}"
+                    CommandParameter="{x:Static network:ServiceProtocolType.NTP}"
+                    Header="NTP"
+                    Icon="{icon:MaterialIconExt Kind=ClockOutline}"
+                  />
+                  <MenuItem
+                    Command="{Binding ImportPublicProtocolHostsCommand}"
+                    CommandParameter="{x:Static network:ServiceProtocolType.HTTP}"
+                    Header="HTTP"
+                    Icon="{icon:MaterialIconExt Kind=WebCheck}"
+                  />
+                  <MenuItem
+                    Command="{Binding ImportPublicProtocolHostsCommand}"
+                    CommandParameter="{x:Static network:ServiceProtocolType.WebSocket}"
+                    Header="WebSocket"
+                    Icon="{icon:MaterialIconExt Kind=Web}"
+                  />
+                  <MenuItem
+                    Command="{Binding ImportPublicProtocolHostsCommand}"
+                    CommandParameter="{x:Static network:ServiceProtocolType.SSH}"
+                    Header="SSH"
+                    Icon="{icon:MaterialIconExt Kind=Console}"
+                  />
+                  <MenuItem
+                    Command="{Binding ImportPublicProtocolHostsCommand}"
+                    CommandParameter="{x:Static network:ServiceProtocolType.SMTP}"
+                    Header="SMTP"
+                    Icon="{icon:MaterialIconExt Kind=EmailSendOutline}"
+                  />
+                  <MenuItem
+                    Command="{Binding ImportPublicProtocolHostsCommand}"
+                    CommandParameter="{x:Static network:ServiceProtocolType.IMAP}"
+                    Header="IMAP"
+                    Icon="{icon:MaterialIconExt Kind=EmailReceiveOutline}"
+                  />
+                  <MenuItem
+                    Command="{Binding ImportPublicProtocolHostsCommand}"
+                    CommandParameter="{x:Static network:ServiceProtocolType.MQTT}"
+                    Header="MQTT"
+                    Icon="{icon:MaterialIconExt Kind=MessageProcessingOutline}"
+                  />
+                  <MenuItem
+                    Command="{Binding ImportPublicProtocolHostsCommand}"
+                    CommandParameter="{x:Static network:ServiceProtocolType.STUN}"
+                    Header="STUN"
+                    Icon="{icon:MaterialIconExt Kind=RouterWireless}"
+                  />
+                  <MenuItem
+                    Command="{Binding ImportPublicProtocolHostsCommand}"
+                    CommandParameter="{x:Static network:ServiceProtocolType.SIP}"
+                    Header="SIP"
+                    Icon="{icon:MaterialIconExt Kind=PhoneVoip}"
+                  />
+                  <Separator />
+                  <MenuItem
+                    Command="{Binding ImportAllPublicProtocolHostsCommand}"
+                    Header="{localization:Translate Ui.ImportAll}"
+                    Icon="{icon:MaterialIconExt Kind=Import}"
+                  />
+                </MenuItem>
+              </MenuFlyout>
+            </SplitButton.Flyout>
+          </SplitButton>
 
-                <StackPanel Grid.Column="1"
-                            HorizontalAlignment="Right"
-                            Orientation="Horizontal"
-                            Spacing="10">
-                    <SplitButton Classes="Flat Small"
-                                 Command="{Binding AddEmptyCommand}"
-                                 Content="{icon:MaterialIconExt Kind=Add}"
-                                 IsVisible="{Binding !IsEditing}"
-                                 ToolTip.Tip="{localization:Translate Ui.AddNewServicesWithPasteHint}">
-                        <SplitButton.Flyout>
-                            <MenuFlyout Placement="Bottom">
-                                <MenuItem Command="{Binding PasteFromClipboardCommand}"
-                                          Header="{localization:Translate Ui.PasteFromClipboard}"
-                                          Icon="{icon:MaterialIconExt Kind=ContentPaste}"
-                                          IsVisible="{Binding !IsEditing}"
-                                          ToolTip.Tip="{localization:Translate Ui.PasteFormatHint}" />
-                                <MenuItem Command="{Binding ImportFromJsonCommand}"
-                                          Header="{localization:Translate Ui.ImportFromJSON}"
-                                          Icon="{icon:MaterialIconExt Kind=CodeJson}" />
-                                <MenuItem Command="{Binding ImportNetworkGatewaysCommand}"
-                                          Header="{localization:Translate Ui.ImportNetworkGatewayS}"
-                                          Icon="{icon:MaterialIconExt Kind=ServerNetworkOutline}" />
-                                <MenuItem Header="{localization:Translate Ui.ImportPublicHosts}"
-                                          Icon="{icon:MaterialIconExt Kind=ServerNetwork}">
-                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
-                                              CommandParameter="{x:Static network:ServiceProtocolType.TLS}"
-                                              Header="TLS"
-                                              Icon="{icon:MaterialIconExt Kind=ShieldLockOutline}" />
-                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
-                                              CommandParameter="{x:Static network:ServiceProtocolType.DNS}"
-                                              Header="DNS"
-                                              Icon="{icon:MaterialIconExt Kind=DnsOutline}" />
-                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
-                                              CommandParameter="{x:Static network:ServiceProtocolType.NTP}"
-                                              Header="NTP"
-                                              Icon="{icon:MaterialIconExt Kind=ClockOutline}" />
-                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
-                                              CommandParameter="{x:Static network:ServiceProtocolType.HTTP}"
-                                              Header="HTTP"
-                                              Icon="{icon:MaterialIconExt Kind=WebCheck}" />
-                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
-                                              CommandParameter="{x:Static network:ServiceProtocolType.WebSocket}"
-                                              Header="WebSocket"
-                                              Icon="{icon:MaterialIconExt Kind=Web}" />
-                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
-                                              CommandParameter="{x:Static network:ServiceProtocolType.SSH}"
-                                              Header="SSH"
-                                              Icon="{icon:MaterialIconExt Kind=Console}" />
-                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
-                                              CommandParameter="{x:Static network:ServiceProtocolType.SMTP}"
-                                              Header="SMTP"
-                                              Icon="{icon:MaterialIconExt Kind=EmailSendOutline}" />
-                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
-                                              CommandParameter="{x:Static network:ServiceProtocolType.IMAP}"
-                                              Header="IMAP"
-                                              Icon="{icon:MaterialIconExt Kind=EmailReceiveOutline}" />
-                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
-                                              CommandParameter="{x:Static network:ServiceProtocolType.MQTT}"
-                                              Header="MQTT"
-                                              Icon="{icon:MaterialIconExt Kind=MessageProcessingOutline}" />
-                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
-                                              CommandParameter="{x:Static network:ServiceProtocolType.STUN}"
-                                              Header="STUN"
-                                              Icon="{icon:MaterialIconExt Kind=RouterWireless}" />
-                                    <MenuItem Command="{Binding ImportPublicProtocolHostsCommand}"
-                                              CommandParameter="{x:Static network:ServiceProtocolType.SIP}"
-                                              Header="SIP"
-                                              Icon="{icon:MaterialIconExt Kind=PhoneVoip}" />
-                                    <Separator />
-                                    <MenuItem Command="{Binding ImportAllPublicProtocolHostsCommand}"
-                                              Header="{localization:Translate Ui.ImportAll}"
-                                              Icon="{icon:MaterialIconExt Kind=Import}" />
-                                </MenuItem>
-                            </MenuFlyout>
-                        </SplitButton.Flyout>
-                    </SplitButton>
+          <SplitButton
+            Classes="Flat Small"
+            Command="{Binding RemoveServicesCommand}"
+            CommandParameter="{Binding #ServicesGrid.SelectedItems}"
+            Content="{icon:MaterialIconExt Kind=TrashCanOutline}"
+            IsVisible="{Binding !IsEditing}"
+            ToolTip.Tip="{localization:Translate Ui.RemoveServiceS}"
+          >
+            <SplitButton.Flyout>
+              <MenuFlyout Placement="Bottom">
+                <MenuItem
+                  Command="{Binding ClearCommand}"
+                  Header="{localization:Translate Ui.RemoveAll}"
+                  Icon="{icon:MaterialIconExt Kind=TrashCan}"
+                />
+              </MenuFlyout>
+            </SplitButton.Flyout>
+          </SplitButton>
+        </StackPanel>
+      </Grid>
+    </suki:SukiMessageBoxHost.Header>
 
-                    <SplitButton Classes="Flat Small"
-                                 Command="{Binding RemoveServicesCommand}"
-                                 CommandParameter="{Binding #ServicesGrid.SelectedItems}"
-                                 Content="{icon:MaterialIconExt Kind=TrashCanOutline}"
-                                 IsVisible="{Binding !IsEditing}"
-                                 ToolTip.Tip="{localization:Translate Ui.RemoveServiceS}">
-                        <SplitButton.Flyout>
-                            <MenuFlyout Placement="Bottom">
-                                <MenuItem Command="{Binding ClearCommand}"
-                                          Header="{localization:Translate Ui.RemoveAll}"
-                                          Icon="{icon:MaterialIconExt Kind=TrashCan}" />
-                            </MenuFlyout>
-                        </SplitButton.Flyout>
-                    </SplitButton>
-                </StackPanel>
-            </Grid>
-        </suki:SukiMessageBoxHost.Header>
+    <Grid ColumnDefinitions="*" RowDefinitions="Auto,*">
+      <suki:InfoBar
+        Title="{localization:Translate Ui.PleaseFixTheFollowingErrors}"
+        Grid.Row="0"
+        Grid.Column="0"
+        IsVisible="{Binding HasErrors}"
+        Message="{Binding ValidationErrors}"
+        Severity="Error"
+      />
 
-        <Grid ColumnDefinitions="*"
-              RowDefinitions="Auto,*">
+      <DataGrid
+        Name="ServicesGrid"
+        Grid.Row="1"
+        MinHeight="200"
+        CanUserReorderColumns="True"
+        CanUserResizeColumns="True"
+        CanUserSortColumns="True"
+        CanUserDeleteRows="False"
+        CanUserAddRows="False"
+        ClipboardCopyMode="IncludeHeader"
+        HeadersVisibility="All"
+        IsReadOnly="False"
+        ItemsSource="{Binding ServicesView}"
+      >
+        <DataGrid.Styles>
+          <Style Selector="DataGridRow">
+            <Setter Property="Header" Value="{Binding $self.Index}" />
+          </Style>
+        </DataGrid.Styles>
+        <DataGrid.ContextMenu>
+          <ContextMenu>
+            <MenuItem
+              Command="{Binding RemoveServicesCommand}"
+              CommandParameter="{Binding $parent[DataGrid].SelectedItems}"
+              Header="{localization:Translate Ui.RemoveSelectedServiceS}"
+              HotKey="Shift + Delete"
+              Icon="{icon:MaterialIconExt Kind=Delete}"
+              IsEnabled="{Binding $parent[DataGrid].SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}"
+              IsVisible="{Binding !IsEditing}"
+            />
+          </ContextMenu>
+        </DataGrid.ContextMenu>
+        <DataGrid.Columns>
+          <DataGridCheckBoxColumn
+            Binding="{Binding IsEnabled}"
+            CellStyleClasses="center"
+            Header="{localization:Translate Ui.Enable}"
+          />
+          <DataGridTemplateColumn
+            ClipboardContentBinding="{Binding ProtocolType, DataType=models:NewPingService}"
+            Header="{localization:Translate Ui.Type}"
+            SortMemberPath="ProtocolType"
+          >
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <ComboBox
+                  HorizontalAlignment="Stretch"
+                  ItemsSource="{Binding ProtocolType, Converter={StaticResource RawEnumToCollectionConverter}, Mode=OneTime}"
+                  SelectedItem="{Binding ProtocolType, Converter={StaticResource FromStringToEnumConverter}}"
+                />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+          <DataGridTextColumn
+            Width="200"
+            Binding="{Binding IpAddressOrUrl}"
+            Header="{localization:Translate Ui.IPAddressUrl}"
+          />
+          <DataGridTextColumn
+            Width="150"
+            Binding="{Binding Description}"
+            Header="{localization:Translate Ui.Description}"
+          />
+          <DataGridTextColumn
+            Width="150"
+            Binding="{Binding Group}"
+            Header="{localization:Translate Ui.Group}"
+          />
+          <DataGridTemplateColumn
+            ClipboardContentBinding="{Binding PingEverySeconds, DataType=network:PingableService}"
+            Header="{localization:Translate Ui.PingEveryS}"
+            SortMemberPath="PingEveryMilliseconds"
+          >
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <NumericUpDown
+                  Width="130"
+                  suki:NumericUpDownExtensions.Unit="s"
+                  FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
+                  Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownPingIncrement}}"
+                  Maximum="{Binding Source={x:Static network:PingableService.MaxPingEverySeconds}}"
+                  Minimum="{Binding Source={x:Static network:PingableService.MinPingEverySeconds}}"
+                  Value="{Binding PingEverySeconds}"
+                />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+          <DataGridTemplateColumn
+            ClipboardContentBinding="{Binding TimeoutSeconds, DataType=network:PingableService}"
+            Header="{localization:Translate Ui.TimeoutS}"
+            SortMemberPath="Timeout"
+          >
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <NumericUpDown
+                  Width="130"
+                  suki:NumericUpDownExtensions.Unit="s"
+                  FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
+                  Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeoutIncrement}}"
+                  Maximum="{Binding Source={x:Static network:PingableService.MaxTimeoutSeconds}}"
+                  Minimum="{Binding Source={x:Static network:PingableService.MinTimeoutSeconds}}"
+                  Value="{Binding TimeoutSeconds}"
+                />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+          <DataGridTemplateColumn
+            ClipboardContentBinding="{Binding BufferSize, DataType=network:PingableService}"
+            Header="{localization:Translate Ui.BufferSize}"
+            SortMemberPath="BufferSize"
+          >
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <NumericUpDown
+                  Width="90"
+                  FormatString="N0"
+                  Maximum="{Binding Source={x:Static network:PingableService.MaxBufferSize}}"
+                  Minimum="{Binding Source={x:Static network:PingableService.MinBufferSize}}"
+                  Value="{Binding BufferSize}"
+                />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+          <DataGridTemplateColumn
+            ClipboardContentBinding="{Binding Ttl, DataType=network:PingableService}"
+            Header="TTL"
+            SortMemberPath="TTL"
+          >
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <NumericUpDown
+                  Width="90"
+                  FormatString="N0"
+                  Maximum="{Binding Source={x:Static sys:Byte.MaxValue}}"
+                  Minimum="{Binding Source={x:Static sys:Byte.MinValue}}"
+                  Value="{Binding Ttl}"
+                />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+          <DataGridTemplateColumn
+            CellStyleClasses="center"
+            ClipboardContentBinding="{Binding DontFragment, DataType=network:PingableService}"
+            Header="{localization:Translate Ui.NoFrag}"
+            SortMemberPath="DontFragment"
+          >
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <CheckBox IsChecked="{Binding DontFragment}" />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+        </DataGrid.Columns>
+      </DataGrid>
+    </Grid>
 
-            <suki:InfoBar Title="{localization:Translate Ui.PleaseFixTheFollowingErrors}"
-                          Grid.Row="0"
-                          Grid.Column="0"
-                          IsVisible="{Binding HasErrors}"
-                          Message="{Binding ValidationErrors}"
-                          Severity="Error" />
-
-            <DataGrid Name="ServicesGrid"
-                      Grid.Row="1"
-                      MinHeight="200"
-                      CanUserReorderColumns="True"
-                      CanUserResizeColumns="True"
-                      CanUserSortColumns="True"
-                      ClipboardCopyMode="IncludeHeader"
-                      HeadersVisibility="All"
-                      IsReadOnly="False"
-                      ItemsSource="{Binding ServicesView}">
-                <DataGrid.Styles>
-                    <Style Selector="DataGridRow">
-                        <Setter Property="Header" Value="{Binding $self.Index}" />
-                    </Style>
-                </DataGrid.Styles>
-                <DataGrid.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Command="{Binding RemoveServicesCommand}"
-                                  CommandParameter="{Binding $parent[DataGrid].SelectedItems}"
-                                  Header="{localization:Translate Ui.RemoveSelectedServiceS}"
-                                  HotKey="Shift + Delete"
-                                  Icon="{icon:MaterialIconExt Kind=Delete}"
-                                  IsEnabled="{Binding $parent[DataGrid].SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                  IsVisible="{Binding !IsEditing}" />
-                    </ContextMenu>
-                </DataGrid.ContextMenu>
-                <DataGrid.Columns>
-                    <DataGridCheckBoxColumn Binding="{Binding IsEnabled}"
-                                            CellStyleClasses="center"
-                                            Header="{localization:Translate Ui.Enable}" />
-                    <DataGridTemplateColumn
-                        ClipboardContentBinding="{Binding ProtocolType, DataType=models:NewPingService}"
-                        Header="{localization:Translate Ui.Type}"
-                        SortMemberPath="ProtocolType">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <ComboBox HorizontalAlignment="Stretch"
-                                          ItemsSource="{Binding ProtocolType, Converter={StaticResource RawEnumToCollectionConverter}, Mode=OneTime}"
-                                          SelectedItem="{Binding ProtocolType, Converter={StaticResource FromStringToEnumConverter}}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Width="200"
-                                        Binding="{Binding IpAddressOrUrl}"
-                                        Header="{localization:Translate Ui.IPAddressUrl}" />
-                    <DataGridTextColumn Width="150"
-                                        Binding="{Binding Description}"
-                                        Header="{localization:Translate Ui.Description}" />
-                    <DataGridTextColumn Width="150"
-                                        Binding="{Binding Group}"
-                                        Header="{localization:Translate Ui.Group}" />
-                    <DataGridTemplateColumn
-                        ClipboardContentBinding="{Binding PingEverySeconds, DataType=network:PingableService}"
-                        Header="{localization:Translate Ui.PingEveryS}"
-                        SortMemberPath="PingEveryMilliseconds">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <NumericUpDown Width="130"
-                                               suki:NumericUpDownExtensions.Unit="s"
-                                               FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
-                                               Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownPingIncrement}}"
-                                               Maximum="{Binding Source={x:Static network:PingableService.MaxPingEverySeconds}}"
-                                               Minimum="{Binding Source={x:Static network:PingableService.MinPingEverySeconds}}"
-                                               Value="{Binding PingEverySeconds}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn
-                        ClipboardContentBinding="{Binding TimeoutSeconds, DataType=network:PingableService}"
-                        Header="{localization:Translate Ui.TimeoutS}"
-                        SortMemberPath="Timeout">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <NumericUpDown Width="130"
-                                               suki:NumericUpDownExtensions.Unit="s"
-                                               FormatString="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeFormat}}"
-                                               Increment="{Binding Source={x:Static viewModels:PingableServicesPageModel.NumericUpDownTimeoutIncrement}}"
-                                               Maximum="{Binding Source={x:Static network:PingableService.MaxTimeoutSeconds}}"
-                                               Minimum="{Binding Source={x:Static network:PingableService.MinTimeoutSeconds}}"
-                                               Value="{Binding TimeoutSeconds}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn
-                        ClipboardContentBinding="{Binding BufferSize, DataType=network:PingableService}"
-                        Header="{localization:Translate Ui.BufferSize}"
-                        SortMemberPath="BufferSize">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <NumericUpDown Width="90"
-                                               FormatString="N0"
-                                               Maximum="{Binding Source={x:Static network:PingableService.MaxBufferSize}}"
-                                               Minimum="{Binding Source={x:Static network:PingableService.MinBufferSize}}"
-                                               Value="{Binding BufferSize}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn ClipboardContentBinding="{Binding Ttl, DataType=network:PingableService}"
-                                            Header="TTL"
-                                            SortMemberPath="TTL">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <NumericUpDown Width="90"
-                                               FormatString="N0"
-                                               Maximum="{Binding Source={x:Static sys:Byte.MaxValue}}"
-                                               Minimum="{Binding Source={x:Static sys:Byte.MinValue}}"
-                                               Value="{Binding Ttl}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn CellStyleClasses="center"
-                                            ClipboardContentBinding="{Binding DontFragment, DataType=network:PingableService}"
-                                            Header="{localization:Translate Ui.NoFrag}"
-                                            SortMemberPath="DontFragment">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox IsChecked="{Binding DontFragment}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
-
-        <suki:SukiMessageBoxHost.ActionButtonsSource>
-            <Button Classes="Flat"
-                    Command="{Binding ApplyCommand}">
-                <StackPanel Orientation="Horizontal"
-                            Spacing="5">
-                    <icon:MaterialIcon Kind="{Binding ApplyButtonIcon}" />
-                    <TextBlock Text="{Binding ApplyButtonText}" />
-                </StackPanel>
-            </Button>
-            <Button Classes="Flat"
-                    Command="{Binding CloseDialogCommand}">
-                <StackPanel Orientation="Horizontal"
-                            Spacing="5">
-                    <icon:MaterialIcon Kind="Cancel" />
-                    <TextBlock Text="{localization:Translate Ui.Cancel}" />
-                </StackPanel>
-            </Button>
-        </suki:SukiMessageBoxHost.ActionButtonsSource>
-    </suki:SukiMessageBoxHost>
-
+    <suki:SukiMessageBoxHost.ActionButtonsSource>
+      <Button Classes="Flat" Command="{Binding ApplyCommand}">
+        <StackPanel Orientation="Horizontal" Spacing="5">
+          <icon:MaterialIcon Kind="{Binding ApplyButtonIcon}" />
+          <TextBlock Text="{Binding ApplyButtonText}" />
+        </StackPanel>
+      </Button>
+      <Button Classes="Flat" Command="{Binding CloseDialogCommand}">
+        <StackPanel Orientation="Horizontal" Spacing="5">
+          <icon:MaterialIcon Kind="Cancel" />
+          <TextBlock Text="{localization:Translate Ui.Cancel}" />
+        </StackPanel>
+      </Button>
+    </suki:SukiMessageBoxHost.ActionButtonsSource>
+  </suki:SukiMessageBoxHost>
 </controls:UserControlBase>
