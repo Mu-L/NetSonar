@@ -1,16 +1,16 @@
 ﻿using System;
-using Material.Icons;
-using System.Net.NetworkInformation;
-using NetSonar.Avalonia.Network;
-using ObservableCollections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Net.NetworkInformation;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Material.Icons;
 using NetSonar.Avalonia.Models;
+using NetSonar.Avalonia.Network;
 using NetSonar.Avalonia.Settings;
 using NetSonar.Avalonia.SystemOS;
+using ObservableCollections;
 using StageKit.Primitives.System;
 using ZLinq;
 
@@ -24,7 +24,10 @@ public partial class NetworkInterfacesPageModel : PageViewModelBase
 
     private readonly DispatcherTimer _timer = new();
 
-    public ISynchronizedView<KeyValuePair<string, NetworkInterfaceBridge>, NetworkInterfaceBridge> InterfacesView { get; }
+    public ISynchronizedView<
+        KeyValuePair<string, NetworkInterfaceBridge>,
+        NetworkInterfaceBridge
+    > InterfacesView { get; }
 
     public ObservableDictionary<string, NetworkInterfaceBridge> Interfaces { get; } = [];
 
@@ -33,28 +36,40 @@ public partial class NetworkInterfacesPageModel : PageViewModelBase
     public NotifyCollectionChangedSynchronizedViewList<EnumViewFilter> InterfaceTypeFiltersCollection { get; }
     public NotifyCollectionChangedSynchronizedViewList<EnumViewFilter> InterfaceStatusFiltersCollection { get; }
 
+    [ObservableProperty]
+    public partial int InterfaceCount { get; private set; }
 
-    [ObservableProperty] public partial int InterfaceCount { get; private set; }
-    [ObservableProperty] public partial int OfflineInterfaceCount { get; private set; }
+    [ObservableProperty]
+    public partial int OfflineInterfaceCount { get; private set; }
 
-    [ObservableProperty] public partial int OnlineInterfaceCount { get; private set; }
+    [ObservableProperty]
+    public partial int OnlineInterfaceCount { get; private set; }
 
-    [ObservableProperty] public partial string FilterText { get; set; } = string.Empty;
-
+    [ObservableProperty]
+    public partial string FilterText { get; set; } = string.Empty;
 
     public NetworkInterfacesPageModel()
     {
         InterfacesView = Interfaces.CreateView(pair => pair.Value);
-        InterfacesViewCollection = InterfacesView.ToNotifyCollectionChanged(SynchronizationContextCollectionEventDispatcher.Current);
+        InterfacesViewCollection = InterfacesView.ToNotifyCollectionChanged(
+            SynchronizationContextCollectionEventDispatcher.Current
+        );
 
-        var interfaceTypeFilters = AppSettings.NetworkInterfaces.FilterTypes.CreateView(pair => pair.Value);
-        InterfaceTypeFiltersCollection = interfaceTypeFilters.ToNotifyCollectionChanged(SynchronizationContextCollectionEventDispatcher.Current);
+        var interfaceTypeFilters = AppSettings.NetworkInterfaces.FilterTypes.CreateView(pair =>
+            pair.Value
+        );
+        InterfaceTypeFiltersCollection = interfaceTypeFilters.ToNotifyCollectionChanged(
+            SynchronizationContextCollectionEventDispatcher.Current
+        );
 
-        var interfaceStatusFilters = AppSettings.NetworkInterfaces.FilterStatus.CreateView(pair => pair.Value);
-        InterfaceStatusFiltersCollection = interfaceStatusFilters.ToNotifyCollectionChanged(SynchronizationContextCollectionEventDispatcher.Current);
+        var interfaceStatusFilters = AppSettings.NetworkInterfaces.FilterStatus.CreateView(pair =>
+            pair.Value
+        );
+        InterfaceStatusFiltersCollection = interfaceStatusFilters.ToNotifyCollectionChanged(
+            SynchronizationContextCollectionEventDispatcher.Current
+        );
 
         AppSettings.NetworkInterfaces.PropertyChanged += NetworkInterfacesOnPropertyChanged;
-
 
         foreach (var filter in InterfaceTypeFiltersCollection)
         {
@@ -82,26 +97,32 @@ public partial class NetworkInterfacesPageModel : PageViewModelBase
         {
             ReAttachFilters();
         }
+
         base.OnPropertyChanged(e);
     }
 
     private void NetworkInterfacesOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName is null) return;
+        if (e.PropertyName is null)
+            return;
         if (e.PropertyName == nameof(NetworkInterfacesSettings.AutoRefresh))
         {
             _timer.IsEnabled = AppSettings.NetworkInterfaces.AutoRefresh;
         }
         else if (e.PropertyName == nameof(NetworkInterfacesSettings.RefreshEverySeconds))
         {
-            _timer.Interval = TimeSpan.FromSeconds(AppSettings.NetworkInterfaces.RefreshEverySeconds);
+            _timer.Interval = TimeSpan.FromSeconds(
+                AppSettings.NetworkInterfaces.RefreshEverySeconds
+            );
         }
-        else if (e.PropertyName.Contains("Filter")) ReAttachFilters();
+        else if (e.PropertyName.Contains("Filter"))
+            ReAttachFilters();
     }
 
     private void Filter_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(EnumViewFilter.Include)) ReAttachFilters();
+        if (e.PropertyName == nameof(EnumViewFilter.Include))
+            ReAttachFilters();
     }
 
     private void TimerTick(object? sender, EventArgs e)
@@ -114,6 +135,7 @@ public partial class NetworkInterfacesPageModel : PageViewModelBase
     {
         var networks = NetworkInterface.GetAllNetworkInterfaces();
         var keys = new string[networks.Length];
+        var reattachFilters = false;
         int offlineCount = 0;
         int onlineCount = 0;
         for (var i = 0; i < networks.Length; i++)
@@ -122,30 +144,39 @@ public partial class NetworkInterfacesPageModel : PageViewModelBase
 
             if (Interfaces.TryGetValue(adapter.Id, out var networkInterface))
             {
+                var wasIncluded = MatchesCurrentFilters(networkInterface);
                 networkInterface.Interface = adapter;
+                networkInterface.Refresh();
+                reattachFilters |= wasIncluded != MatchesCurrentFilters(networkInterface);
             }
             else
             {
                 networkInterface = new NetworkInterfaceBridge(adapter);
                 networkInterface.Refresh();
                 Interfaces.Add(adapter.Id, networkInterface);
+                reattachFilters = true;
             }
 
             keys[i] = adapter.Id;
-            if (networkInterface.IsActive) onlineCount++;
-            else offlineCount++;
+            if (networkInterface.IsActive)
+                onlineCount++;
+            else
+                offlineCount++;
         }
 
         // Remove gone interfaces
-        using (var keysToRemove = Interfaces
-                   .AsValueEnumerable()
-                   .Where(adapter => !keys.AsValueEnumerable().Contains(adapter.Value.Interface.Id))
-                   .Select(adapter => adapter.Value.Interface.Id)
-                   .ToArrayPool())
+        using (
+            var keysToRemove = Interfaces
+                .AsValueEnumerable()
+                .Where(adapter => !keys.AsValueEnumerable().Contains(adapter.Value.Interface.Id))
+                .Select(adapter => adapter.Value.Interface.Id)
+                .ToArrayPool()
+        )
         {
             foreach (var key in keysToRemove.Span)
             {
-                if (!Interfaces.Remove(key, out var networkInterface)) continue;
+                if (!Interfaces.Remove(key, out var networkInterface))
+                    continue;
                 networkInterface.Dispose();
             }
         }
@@ -153,7 +184,8 @@ public partial class NetworkInterfacesPageModel : PageViewModelBase
         InterfaceCount = networks.Length;
         OfflineInterfaceCount = offlineCount;
         OnlineInterfaceCount = onlineCount;
-        ReAttachFilters();
+        if (reattachFilters)
+            ReAttachFilters();
     }
 
     [RelayCommand]
@@ -177,70 +209,143 @@ public partial class NetworkInterfacesPageModel : PageViewModelBase
     [RelayCommand]
     public void ReAttachFilters()
     {
-        InterfacesView.AttachFilter(pair =>
+        InterfacesView.AttachFilter(pair => MatchesCurrentFilters(pair.Value));
+    }
+
+    private bool MatchesCurrentFilters(NetworkInterfaceBridge networkInterface)
+    {
+        if (string.IsNullOrWhiteSpace(FilterText))
         {
-            if (string.IsNullOrWhiteSpace(FilterText))
+            if (AppSettings.NetworkInterfaces.EnableFilterTypes)
             {
-                if (AppSettings.NetworkInterfaces.EnableFilterTypes)
+                if (
+                    AppSettings.NetworkInterfaces.FilterTypes.TryGetValue(
+                        networkInterface.Interface.NetworkInterfaceType,
+                        out var filter
+                    )
+                )
                 {
-                    if (AppSettings.NetworkInterfaces.FilterTypes.TryGetValue(pair.Value.Interface.NetworkInterfaceType,
-                            out var filter))
-                    {
-                        if (!filter.Include) return false;
-                    }
-                }
-
-                if (AppSettings.NetworkInterfaces.EnableFilterStatus)
-                {
-                    if (AppSettings.NetworkInterfaces.FilterStatus.TryGetValue(pair.Value.Interface.OperationalStatus,
-                            out var filter))
-                    {
-                        if (!filter.Include) return false;
-                    }
-                }
-
-                if (AppSettings.NetworkInterfaces.EnableFilterOthers)
-                {
-                    if (AppSettings.NetworkInterfaces.FilterByVirtual.HasValue) if (pair.Value.IsVirtual != AppSettings.NetworkInterfaces.FilterByVirtual.Value) return false;
-                    if (AppSettings.NetworkInterfaces.FilterByHavePhysicalAddress.HasValue) if (pair.Value.HavePhysicalAddress != AppSettings.NetworkInterfaces.FilterByHavePhysicalAddress.Value) return false;
-                    if (AppSettings.NetworkInterfaces.FilterByHaveIPAddress.HasValue) if (pair.Value.HaveIPAddress != AppSettings.NetworkInterfaces.FilterByHaveIPAddress.Value) return false;
-                    if (AppSettings.NetworkInterfaces.FilterByIsTransmittingData.HasValue) if (pair.Value.IsTransmittingData != AppSettings.NetworkInterfaces.FilterByIsTransmittingData.Value) return false;
+                    if (!filter.Include)
+                        return false;
                 }
             }
-            else
+
+            if (AppSettings.NetworkInterfaces.EnableFilterStatus)
             {
-                var splitText = FilterText.Split(' ', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-                foreach (var word in splitText)
+                if (
+                    AppSettings.NetworkInterfaces.FilterStatus.TryGetValue(
+                        networkInterface.Interface.OperationalStatus,
+                        out var filter
+                    )
+                )
                 {
-                    if (word.Equals("status:up", StringComparison.OrdinalIgnoreCase) ||
-                        word.Equals("status:active", StringComparison.OrdinalIgnoreCase) ||
-                        word.Equals("status:online", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return pair.Value.IsActive;
-                    }
+                    if (!filter.Include)
+                        return false;
+                }
+            }
 
-                    if (word.Equals("status:down", StringComparison.OrdinalIgnoreCase) ||
-                        word.Equals("status:inactive", StringComparison.OrdinalIgnoreCase) ||
-                        word.Equals("status:offline", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return !pair.Value.IsActive;
-                    }
-
-                    if (pair.Value.Interface.Id.Contains(word, StringComparison.OrdinalIgnoreCase)) return true;
-                    if (pair.Value.Interface.Name.Contains(word, StringComparison.OrdinalIgnoreCase)) return true;
-                    if (pair.Value.Interface.Description.Contains(word, StringComparison.OrdinalIgnoreCase)) return true;
-                    if (pair.Value.Interface.OperationalStatus.ToString().Equals(word, StringComparison.OrdinalIgnoreCase)) return true;
-                    if (pair.Value.Interface.NetworkInterfaceType.ToString().Equals(word, StringComparison.OrdinalIgnoreCase)) return true;
-                    if (pair.Value.Properties.UnicastAddresses.AsValueEnumerable().Any(address => address.Address.ToString().Contains(word, StringComparison.OrdinalIgnoreCase)))
-                    {
-                        return true;
-                    }
+            if (AppSettings.NetworkInterfaces.EnableFilterOthers)
+            {
+                if (
+                    AppSettings.NetworkInterfaces.FilterByVirtual.HasValue
+                    && networkInterface.IsVirtual
+                        != AppSettings.NetworkInterfaces.FilterByVirtual.Value
+                )
+                    return false;
+                if (
+                    AppSettings.NetworkInterfaces.FilterByHavePhysicalAddress.HasValue
+                    && networkInterface.HavePhysicalAddress
+                        != AppSettings.NetworkInterfaces.FilterByHavePhysicalAddress.Value
+                )
+                    return false;
+                if (
+                    AppSettings.NetworkInterfaces.FilterByHaveIPAddress.HasValue
+                    && networkInterface.HaveIPAddress
+                        != AppSettings.NetworkInterfaces.FilterByHaveIPAddress.Value
+                )
+                    return false;
+                if (
+                    AppSettings.NetworkInterfaces.FilterByIsTransmittingData.HasValue
+                    && networkInterface.IsTransmittingData
+                        != AppSettings.NetworkInterfaces.FilterByIsTransmittingData.Value
+                )
+                    return false;
+            }
+        }
+        else
+        {
+            var splitText = FilterText.Split(
+                ' ',
+                StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries
+            );
+            foreach (var word in splitText)
+            {
+                if (
+                    word.Equals("status:up", StringComparison.OrdinalIgnoreCase)
+                    || word.Equals("status:active", StringComparison.OrdinalIgnoreCase)
+                    || word.Equals("status:online", StringComparison.OrdinalIgnoreCase)
+                )
+                {
+                    return networkInterface.IsActive;
                 }
 
-                return false;
+                if (
+                    word.Equals("status:down", StringComparison.OrdinalIgnoreCase)
+                    || word.Equals("status:inactive", StringComparison.OrdinalIgnoreCase)
+                    || word.Equals("status:offline", StringComparison.OrdinalIgnoreCase)
+                )
+                {
+                    return !networkInterface.IsActive;
+                }
+
+                if (
+                    networkInterface.Interface.Id.Contains(word, StringComparison.OrdinalIgnoreCase)
+                )
+                    return true;
+                if (
+                    networkInterface.Interface.Name.Contains(
+                        word,
+                        StringComparison.OrdinalIgnoreCase
+                    )
+                )
+                    return true;
+                if (
+                    networkInterface.Interface.Description.Contains(
+                        word,
+                        StringComparison.OrdinalIgnoreCase
+                    )
+                )
+                    return true;
+                if (
+                    networkInterface
+                        .Interface.OperationalStatus.ToString()
+                        .Equals(word, StringComparison.OrdinalIgnoreCase)
+                )
+                    return true;
+                if (
+                    networkInterface
+                        .Interface.NetworkInterfaceType.ToString()
+                        .Equals(word, StringComparison.OrdinalIgnoreCase)
+                )
+                    return true;
+                if (
+                    networkInterface
+                        .Properties.UnicastAddresses.AsValueEnumerable()
+                        .Any(address =>
+                            address
+                                .Address.ToString()
+                                .Contains(word, StringComparison.OrdinalIgnoreCase)
+                        )
+                )
+                {
+                    return true;
+                }
             }
-            return true;
-        });
+
+            return false;
+        }
+
+        return true;
     }
 
     [RelayCommand]
@@ -255,6 +360,5 @@ public partial class NetworkInterfacesPageModel : PageViewModelBase
         {
             ProcessHelper.StartShell("nm-connection-editor");
         }
-
     }
 }

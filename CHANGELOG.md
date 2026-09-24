@@ -1,17 +1,13 @@
 # v0.6.0 (/09/2026)
 
-- Add a Network Scanner module with local-network target discovery, host and port scanning, monitoring import, and
-  cross-platform dependency installation
-- Add a built-in scan engine (ICMP sweep, neighbour cache, and TCP connect probes) so the Network Scanner works
-  without nmap installed
-- Add Network Scanner options: engine choice, DNS resolution, service and version detection, elevated scans, UDP and
-  OS detection, port range presets and custom port specifications, timing template, host and probe timeouts, host
-  limit, and an automatic rescan interval
-- Add live scan progress with percentage and ETA, a host, port, and service filter, a result summary, and per-host
-  actions to copy the address or MAC address, open the host in a browser, rescan, and remove it
-- Add scan-to-scan comparison that flags new hosts, hosts that disappeared, and hosts with port changes, with a
-  persisted scan history that restores the last result on start
-- Add Network Scanner exports to JSON and CSV and saving of the raw nmap report
+- Add the Network Scanner module with local-network target discovery, host and port scanning, monitoring import,
+  cross-platform dependency installation, and a built-in ICMP sweep, neighbour-cache, and TCP-connect engine for systems
+  without nmap; configure engine selection, DNS resolution, service/version, UDP and OS detection, port presets and
+  custom ranges, timing, host/probe timeouts, host limits, and automatic rescans; show live progress, percentage and
+  ETA, searchable host/port/service results, per-host actions, scan-to-scan comparisons, persisted scan history,
+  JSON/CSV exports, and raw nmap reports
+- Fix network-interface refresh reapplying unchanged filters and resetting cards, which caused scroll jumps, lost hover
+  state, and settings-button flicker
 - Fix the update-check cross-thread exception
 - Upgrade AvaloniaUI from 12.1.2 to 12.1.3
 
